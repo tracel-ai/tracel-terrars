@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontDistributionData {
@@ -99,7 +99,8 @@ impl CloudfrontDistribution {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -112,7 +113,7 @@ impl CloudfrontDistribution {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -123,12 +124,22 @@ impl CloudfrontDistribution {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -230,10 +241,10 @@ impl CloudfrontDistribution {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().custom_error_response = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.custom_error_response = Some(d);
-            },
+            }
         }
         self
     }
@@ -246,23 +257,26 @@ impl CloudfrontDistribution {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().default_cache_behavior = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.default_cache_behavior = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `logging_config`.\n"]
-    pub fn set_logging_config(self, v: impl Into<BlockAssignable<CloudfrontDistributionLoggingConfigEl>>) -> Self {
+    pub fn set_logging_config(
+        self,
+        v: impl Into<BlockAssignable<CloudfrontDistributionLoggingConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().logging_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.logging_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -275,10 +289,10 @@ impl CloudfrontDistribution {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ordered_cache_behavior = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ordered_cache_behavior = Some(d);
-            },
+            }
         }
         self
     }
@@ -288,36 +302,42 @@ impl CloudfrontDistribution {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().origin = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.origin = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `origin_group`.\n"]
-    pub fn set_origin_group(self, v: impl Into<BlockAssignable<CloudfrontDistributionOriginGroupEl>>) -> Self {
+    pub fn set_origin_group(
+        self,
+        v: impl Into<BlockAssignable<CloudfrontDistributionOriginGroupEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().origin_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.origin_group = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `restrictions`.\n"]
-    pub fn set_restrictions(self, v: impl Into<BlockAssignable<CloudfrontDistributionRestrictionsEl>>) -> Self {
+    pub fn set_restrictions(
+        self,
+        v: impl Into<BlockAssignable<CloudfrontDistributionRestrictionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().restrictions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.restrictions = Some(d);
-            },
+            }
         }
         self
     }
@@ -330,22 +350,28 @@ impl CloudfrontDistribution {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().viewer_certificate = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.viewer_certificate = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `aliases` after provisioning.\n"]
     pub fn aliases(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.aliases", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.aliases", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `anycast_ip_list_id` after provisioning.\n"]
     pub fn anycast_ip_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.anycast_ip_list_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.anycast_ip_list_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -355,47 +381,74 @@ impl CloudfrontDistribution {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `continuous_deployment_policy_id` after provisioning.\n"]
     pub fn continuous_deployment_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.continuous_deployment_policy_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.continuous_deployment_policy_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_root_object` after provisioning.\n"]
     pub fn default_root_object(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_root_object", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_root_object", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_version` after provisioning.\n"]
     pub fn http_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -405,107 +458,172 @@ impl CloudfrontDistribution {
 
     #[doc = "Get a reference to the value of field `in_progress_validation_batches` after provisioning.\n"]
     pub fn in_progress_validation_batches(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.in_progress_validation_batches", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.in_progress_validation_batches", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_ipv6_enabled` after provisioning.\n"]
     pub fn is_ipv6_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_ipv6_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_ipv6_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_v1_enabled` after provisioning.\n"]
     pub fn logging_v1_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.logging_v1_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.logging_v1_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `price_class` after provisioning.\n"]
     pub fn price_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.price_class", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.price_class", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retain_on_delete` after provisioning.\n"]
     pub fn retain_on_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retain_on_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retain_on_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `staging` after provisioning.\n"]
     pub fn staging(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.staging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.staging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_key_groups` after provisioning.\n"]
     pub fn trusted_key_groups(&self) -> ListRef<CloudfrontDistributionTrustedKeyGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_key_groups", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_key_groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_signers` after provisioning.\n"]
     pub fn trusted_signers(&self) -> ListRef<CloudfrontDistributionTrustedSignersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_signers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_signers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_deployment` after provisioning.\n"]
     pub fn wait_for_deployment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_deployment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_deployment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_acl_id` after provisioning.\n"]
     pub fn web_acl_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.web_acl_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.web_acl_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_cache_behavior` after provisioning.\n"]
-    pub fn default_cache_behavior(&self) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_cache_behavior", self.extract_ref()))
+    pub fn default_cache_behavior(
+        &self,
+    ) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_cache_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
     pub fn logging_config(&self) -> ListRef<CloudfrontDistributionLoggingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ordered_cache_behavior` after provisioning.\n"]
-    pub fn ordered_cache_behavior(&self) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ordered_cache_behavior", self.extract_ref()))
+    pub fn ordered_cache_behavior(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ordered_cache_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restrictions` after provisioning.\n"]
     pub fn restrictions(&self) -> ListRef<CloudfrontDistributionRestrictionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.restrictions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.restrictions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `viewer_certificate` after provisioning.\n"]
     pub fn viewer_certificate(&self) -> ListRef<CloudfrontDistributionViewerCertificateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.viewer_certificate", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.viewer_certificate", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontDistribution {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontDistribution { }
+impl Resource for CloudfrontDistribution {}
 
 impl ToListMappable for CloudfrontDistribution {
     type O = ListRef<CloudfrontDistributionRef>;
@@ -585,10 +703,7 @@ pub struct CloudfrontDistributionRef {
 
 impl Ref for CloudfrontDistributionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -603,12 +718,18 @@ impl CloudfrontDistributionRef {
 
     #[doc = "Get a reference to the value of field `aliases` after provisioning.\n"]
     pub fn aliases(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.aliases", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.aliases", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `anycast_ip_list_id` after provisioning.\n"]
     pub fn anycast_ip_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.anycast_ip_list_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.anycast_ip_list_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -618,47 +739,74 @@ impl CloudfrontDistributionRef {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `continuous_deployment_policy_id` after provisioning.\n"]
     pub fn continuous_deployment_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.continuous_deployment_policy_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.continuous_deployment_policy_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_root_object` after provisioning.\n"]
     pub fn default_root_object(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_root_object", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_root_object", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_version` after provisioning.\n"]
     pub fn http_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -668,97 +816,158 @@ impl CloudfrontDistributionRef {
 
     #[doc = "Get a reference to the value of field `in_progress_validation_batches` after provisioning.\n"]
     pub fn in_progress_validation_batches(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.in_progress_validation_batches", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.in_progress_validation_batches", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_ipv6_enabled` after provisioning.\n"]
     pub fn is_ipv6_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_ipv6_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_ipv6_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_v1_enabled` after provisioning.\n"]
     pub fn logging_v1_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.logging_v1_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.logging_v1_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `price_class` after provisioning.\n"]
     pub fn price_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.price_class", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.price_class", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retain_on_delete` after provisioning.\n"]
     pub fn retain_on_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retain_on_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retain_on_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `staging` after provisioning.\n"]
     pub fn staging(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.staging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.staging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_key_groups` after provisioning.\n"]
     pub fn trusted_key_groups(&self) -> ListRef<CloudfrontDistributionTrustedKeyGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_key_groups", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_key_groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_signers` after provisioning.\n"]
     pub fn trusted_signers(&self) -> ListRef<CloudfrontDistributionTrustedSignersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_signers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_signers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_deployment` after provisioning.\n"]
     pub fn wait_for_deployment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_deployment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_deployment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_acl_id` after provisioning.\n"]
     pub fn web_acl_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.web_acl_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.web_acl_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_cache_behavior` after provisioning.\n"]
-    pub fn default_cache_behavior(&self) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_cache_behavior", self.extract_ref()))
+    pub fn default_cache_behavior(
+        &self,
+    ) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_cache_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
     pub fn logging_config(&self) -> ListRef<CloudfrontDistributionLoggingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ordered_cache_behavior` after provisioning.\n"]
-    pub fn ordered_cache_behavior(&self) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ordered_cache_behavior", self.extract_ref()))
+    pub fn ordered_cache_behavior(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ordered_cache_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restrictions` after provisioning.\n"]
     pub fn restrictions(&self) -> ListRef<CloudfrontDistributionRestrictionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.restrictions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.restrictions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `viewer_certificate` after provisioning.\n"]
     pub fn viewer_certificate(&self) -> ListRef<CloudfrontDistributionViewerCertificateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.viewer_certificate", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.viewer_certificate", self.extract_ref()),
+        )
     }
 }
 
@@ -813,7 +1022,10 @@ pub struct CloudfrontDistributionTrustedKeyGroupsElItemsElRef {
 }
 
 impl Ref for CloudfrontDistributionTrustedKeyGroupsElItemsElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionTrustedKeyGroupsElItemsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionTrustedKeyGroupsElItemsElRef {
         CloudfrontDistributionTrustedKeyGroupsElItemsElRef {
             shared: shared,
             base: base.to_string(),
@@ -853,7 +1065,10 @@ impl CloudfrontDistributionTrustedKeyGroupsEl {
     }
 
     #[doc = "Set the field `items`.\n"]
-    pub fn set_items(mut self, v: impl Into<ListField<CloudfrontDistributionTrustedKeyGroupsElItemsEl>>) -> Self {
+    pub fn set_items(
+        mut self,
+        v: impl Into<ListField<CloudfrontDistributionTrustedKeyGroupsElItemsEl>>,
+    ) -> Self {
         self.items = Some(v.into());
         self
     }
@@ -978,7 +1193,10 @@ impl CloudfrontDistributionTrustedSignersElItemsElRef {
 
     #[doc = "Get a reference to the value of field `aws_account_number` after provisioning.\n"]
     pub fn aws_account_number(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_account_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_account_number", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_pair_ids` after provisioning.\n"]
@@ -1003,7 +1221,10 @@ impl CloudfrontDistributionTrustedSignersEl {
     }
 
     #[doc = "Set the field `items`.\n"]
-    pub fn set_items(mut self, v: impl Into<ListField<CloudfrontDistributionTrustedSignersElItemsEl>>) -> Self {
+    pub fn set_items(
+        mut self,
+        v: impl Into<ListField<CloudfrontDistributionTrustedSignersElItemsEl>>,
+    ) -> Self {
         self.items = Some(v.into());
         self
     }
@@ -1142,7 +1363,10 @@ impl CloudfrontDistributionCustomErrorResponseElRef {
 
     #[doc = "Get a reference to the value of field `error_caching_min_ttl` after provisioning.\n"]
     pub fn error_caching_min_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.error_caching_min_ttl", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.error_caching_min_ttl", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_code` after provisioning.\n"]
@@ -1152,12 +1376,18 @@ impl CloudfrontDistributionCustomErrorResponseElRef {
 
     #[doc = "Get a reference to the value of field `response_code` after provisioning.\n"]
     pub fn response_code(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_code", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_code", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_page_path` after provisioning.\n"]
     pub fn response_page_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_page_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_page_path", self.base),
+        )
     }
 }
 
@@ -1177,7 +1407,8 @@ impl CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl {
 }
 
 impl ToListMappable for CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl {
-    type O = BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl>;
+    type O =
+        BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1231,13 +1462,18 @@ impl CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesElRef {
 
     #[doc = "Get a reference to the value of field `whitelisted_names` after provisioning.\n"]
     pub fn whitelisted_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.whitelisted_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.whitelisted_names", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElDynamic {
-    cookies: Option<DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl>>,
+    cookies: Option<
+        DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1260,7 +1496,10 @@ impl CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesEl {
     }
 
     #[doc = "Set the field `query_string_cache_keys`.\n"]
-    pub fn set_query_string_cache_keys(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_query_string_cache_keys(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.query_string_cache_keys = Some(v.into());
         self
     }
@@ -1268,15 +1507,17 @@ impl CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesEl {
     #[doc = "Set the field `cookies`.\n"]
     pub fn set_cookies(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cookies = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cookies = Some(d);
-            },
+            }
         }
         self
     }
@@ -1317,7 +1558,10 @@ pub struct CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef {
 }
 
 impl Ref for CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef {
         CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1342,11 +1586,16 @@ impl CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef {
 
     #[doc = "Get a reference to the value of field `query_string_cache_keys` after provisioning.\n"]
     pub fn query_string_cache_keys(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.query_string_cache_keys", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_string_cache_keys", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies` after provisioning.\n"]
-    pub fn cookies(&self) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesElRef> {
+    pub fn cookies(
+        &self,
+    ) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElCookiesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.cookies", self.base))
     }
 }
@@ -1357,7 +1606,7 @@ pub struct CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl {
     function_arn: PrimField<String>,
 }
 
-impl CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl { }
+impl CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl {}
 
 impl ToListMappable for CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl {
     type O = BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl>;
@@ -1450,7 +1699,9 @@ pub struct BuildCloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl {}
 
 impl BuildCloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl {
     pub fn build(self) -> CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl {
-        CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl { enabled: core::default::Default::default() }
+        CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -1460,7 +1711,10 @@ pub struct CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef {
 }
 
 impl Ref for CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef {
         CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1496,7 +1750,8 @@ impl CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl {
 }
 
 impl ToListMappable for CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl {
-    type O = BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl>;
+    type O =
+        BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1564,8 +1819,10 @@ impl CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationElRef 
 
 #[derive(Serialize, Default)]
 struct CloudfrontDistributionDefaultCacheBehaviorElDynamic {
-    forwarded_values: Option<DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesEl>>,
-    function_association: Option<DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl>>,
+    forwarded_values:
+        Option<DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesEl>>,
+    function_association:
+        Option<DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl>>,
     grpc_config: Option<DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl>>,
     lambda_function_association: Option<
         DynamicBlock<CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl>,
@@ -1605,11 +1862,13 @@ pub struct CloudfrontDistributionDefaultCacheBehaviorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     forwarded_values: Option<Vec<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    function_association: Option<Vec<CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl>>,
+    function_association:
+        Option<Vec<CloudfrontDistributionDefaultCacheBehaviorElFunctionAssociationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     grpc_config: Option<Vec<CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_function_association: Option<Vec<CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl>>,
+    lambda_function_association:
+        Option<Vec<CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl>>,
     dynamic: CloudfrontDistributionDefaultCacheBehaviorElDynamic,
 }
 
@@ -1694,10 +1953,10 @@ impl CloudfrontDistributionDefaultCacheBehaviorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.forwarded_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.forwarded_values = Some(d);
-            },
+            }
         }
         self
     }
@@ -1710,10 +1969,10 @@ impl CloudfrontDistributionDefaultCacheBehaviorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.function_association = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.function_association = Some(d);
-            },
+            }
         }
         self
     }
@@ -1726,10 +1985,10 @@ impl CloudfrontDistributionDefaultCacheBehaviorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.grpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.grpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1737,15 +1996,19 @@ impl CloudfrontDistributionDefaultCacheBehaviorEl {
     #[doc = "Set the field `lambda_function_association`.\n"]
     pub fn set_lambda_function_association(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontDistributionDefaultCacheBehaviorElLambdaFunctionAssociationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_association = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_association = Some(d);
-            },
+            }
         }
         self
     }
@@ -1823,17 +2086,26 @@ impl CloudfrontDistributionDefaultCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `allowed_methods` after provisioning.\n"]
     pub fn allowed_methods(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_methods", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_policy_id` after provisioning.\n"]
     pub fn cache_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cache_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cache_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cached_methods` after provisioning.\n"]
     pub fn cached_methods(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cached_methods", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cached_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compress` after provisioning.\n"]
@@ -1848,7 +2120,10 @@ impl CloudfrontDistributionDefaultCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `field_level_encryption_id` after provisioning.\n"]
     pub fn field_level_encryption_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.field_level_encryption_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.field_level_encryption_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_ttl` after provisioning.\n"]
@@ -1863,51 +2138,82 @@ impl CloudfrontDistributionDefaultCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `origin_request_policy_id` after provisioning.\n"]
     pub fn origin_request_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_request_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_request_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `realtime_log_config_arn` after provisioning.\n"]
     pub fn realtime_log_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.realtime_log_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.realtime_log_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_headers_policy_id` after provisioning.\n"]
     pub fn response_headers_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_headers_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_headers_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `smooth_streaming` after provisioning.\n"]
     pub fn smooth_streaming(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.smooth_streaming", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.smooth_streaming", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_origin_id` after provisioning.\n"]
     pub fn target_origin_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_origin_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_origin_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_key_groups` after provisioning.\n"]
     pub fn trusted_key_groups(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_key_groups", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_key_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_signers` after provisioning.\n"]
     pub fn trusted_signers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_signers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_signers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `viewer_protocol_policy` after provisioning.\n"]
     pub fn viewer_protocol_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.viewer_protocol_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.viewer_protocol_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forwarded_values` after provisioning.\n"]
-    pub fn forwarded_values(&self) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.forwarded_values", self.base))
+    pub fn forwarded_values(
+        &self,
+    ) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElForwardedValuesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.forwarded_values", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grpc_config` after provisioning.\n"]
-    pub fn grpc_config(&self) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef> {
+    pub fn grpc_config(
+        &self,
+    ) -> ListRef<CloudfrontDistributionDefaultCacheBehaviorElGrpcConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.grpc_config", self.base))
     }
 }
@@ -1992,7 +2298,10 @@ impl CloudfrontDistributionLoggingConfigElRef {
 
     #[doc = "Get a reference to the value of field `include_cookies` after provisioning.\n"]
     pub fn include_cookies(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_cookies", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_cookies", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
@@ -2017,7 +2326,8 @@ impl CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl {
 }
 
 impl ToListMappable for CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl {
-    type O = BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl>;
+    type O =
+        BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2071,13 +2381,18 @@ impl CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesElRef {
 
     #[doc = "Get a reference to the value of field `whitelisted_names` after provisioning.\n"]
     pub fn whitelisted_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.whitelisted_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.whitelisted_names", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElDynamic {
-    cookies: Option<DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl>>,
+    cookies: Option<
+        DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -2100,7 +2415,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesEl {
     }
 
     #[doc = "Set the field `query_string_cache_keys`.\n"]
-    pub fn set_query_string_cache_keys(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_query_string_cache_keys(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.query_string_cache_keys = Some(v.into());
         self
     }
@@ -2108,15 +2426,17 @@ impl CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesEl {
     #[doc = "Set the field `cookies`.\n"]
     pub fn set_cookies(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cookies = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cookies = Some(d);
-            },
+            }
         }
         self
     }
@@ -2157,7 +2477,10 @@ pub struct CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef {
 }
 
 impl Ref for CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef {
         CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2182,11 +2505,16 @@ impl CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef {
 
     #[doc = "Get a reference to the value of field `query_string_cache_keys` after provisioning.\n"]
     pub fn query_string_cache_keys(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.query_string_cache_keys", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_string_cache_keys", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies` after provisioning.\n"]
-    pub fn cookies(&self) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesElRef> {
+    pub fn cookies(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElCookiesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.cookies", self.base))
     }
 }
@@ -2197,7 +2525,7 @@ pub struct CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl {
     function_arn: PrimField<String>,
 }
 
-impl CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl { }
+impl CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl {}
 
 impl ToListMappable for CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl {
     type O = BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl>;
@@ -2290,7 +2618,9 @@ pub struct BuildCloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl {}
 
 impl BuildCloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl {
     pub fn build(self) -> CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl {
-        CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl { enabled: core::default::Default::default() }
+        CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -2300,7 +2630,10 @@ pub struct CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef {
 }
 
 impl Ref for CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef {
         CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2336,7 +2669,8 @@ impl CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl {
 }
 
 impl ToListMappable for CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl {
-    type O = BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl>;
+    type O =
+        BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2404,8 +2738,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationElRef 
 
 #[derive(Serialize, Default)]
 struct CloudfrontDistributionOrderedCacheBehaviorElDynamic {
-    forwarded_values: Option<DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesEl>>,
-    function_association: Option<DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl>>,
+    forwarded_values:
+        Option<DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesEl>>,
+    function_association:
+        Option<DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl>>,
     grpc_config: Option<DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl>>,
     lambda_function_association: Option<
         DynamicBlock<CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl>,
@@ -2446,11 +2782,13 @@ pub struct CloudfrontDistributionOrderedCacheBehaviorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     forwarded_values: Option<Vec<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    function_association: Option<Vec<CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl>>,
+    function_association:
+        Option<Vec<CloudfrontDistributionOrderedCacheBehaviorElFunctionAssociationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     grpc_config: Option<Vec<CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_function_association: Option<Vec<CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl>>,
+    lambda_function_association:
+        Option<Vec<CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl>>,
     dynamic: CloudfrontDistributionOrderedCacheBehaviorElDynamic,
 }
 
@@ -2535,10 +2873,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.forwarded_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.forwarded_values = Some(d);
-            },
+            }
         }
         self
     }
@@ -2551,10 +2889,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.function_association = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.function_association = Some(d);
-            },
+            }
         }
         self
     }
@@ -2567,10 +2905,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.grpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.grpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2578,15 +2916,19 @@ impl CloudfrontDistributionOrderedCacheBehaviorEl {
     #[doc = "Set the field `lambda_function_association`.\n"]
     pub fn set_lambda_function_association(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontDistributionOrderedCacheBehaviorElLambdaFunctionAssociationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_association = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_association = Some(d);
-            },
+            }
         }
         self
     }
@@ -2667,17 +3009,26 @@ impl CloudfrontDistributionOrderedCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `allowed_methods` after provisioning.\n"]
     pub fn allowed_methods(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_methods", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_policy_id` after provisioning.\n"]
     pub fn cache_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cache_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cache_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cached_methods` after provisioning.\n"]
     pub fn cached_methods(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cached_methods", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cached_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compress` after provisioning.\n"]
@@ -2692,7 +3043,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `field_level_encryption_id` after provisioning.\n"]
     pub fn field_level_encryption_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.field_level_encryption_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.field_level_encryption_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_ttl` after provisioning.\n"]
@@ -2707,7 +3061,10 @@ impl CloudfrontDistributionOrderedCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `origin_request_policy_id` after provisioning.\n"]
     pub fn origin_request_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_request_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_request_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_pattern` after provisioning.\n"]
@@ -2717,46 +3074,74 @@ impl CloudfrontDistributionOrderedCacheBehaviorElRef {
 
     #[doc = "Get a reference to the value of field `realtime_log_config_arn` after provisioning.\n"]
     pub fn realtime_log_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.realtime_log_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.realtime_log_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_headers_policy_id` after provisioning.\n"]
     pub fn response_headers_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_headers_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_headers_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `smooth_streaming` after provisioning.\n"]
     pub fn smooth_streaming(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.smooth_streaming", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.smooth_streaming", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_origin_id` after provisioning.\n"]
     pub fn target_origin_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_origin_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_origin_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_key_groups` after provisioning.\n"]
     pub fn trusted_key_groups(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_key_groups", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_key_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_signers` after provisioning.\n"]
     pub fn trusted_signers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_signers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_signers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `viewer_protocol_policy` after provisioning.\n"]
     pub fn viewer_protocol_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.viewer_protocol_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.viewer_protocol_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forwarded_values` after provisioning.\n"]
-    pub fn forwarded_values(&self) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.forwarded_values", self.base))
+    pub fn forwarded_values(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElForwardedValuesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.forwarded_values", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grpc_config` after provisioning.\n"]
-    pub fn grpc_config(&self) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef> {
+    pub fn grpc_config(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOrderedCacheBehaviorElGrpcConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.grpc_config", self.base))
     }
 }
@@ -2767,7 +3152,7 @@ pub struct CloudfrontDistributionOriginElCustomHeaderEl {
     value: PrimField<String>,
 }
 
-impl CloudfrontDistributionOriginElCustomHeaderEl { }
+impl CloudfrontDistributionOriginElCustomHeaderEl {}
 
 impl ToListMappable for CloudfrontDistributionOriginElCustomHeaderEl {
     type O = BlockAssignable<CloudfrontDistributionOriginElCustomHeaderEl>;
@@ -2904,7 +3289,10 @@ pub struct CloudfrontDistributionOriginElCustomOriginConfigElRef {
 }
 
 impl Ref for CloudfrontDistributionOriginElCustomOriginConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionOriginElCustomOriginConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionOriginElCustomOriginConfigElRef {
         CloudfrontDistributionOriginElCustomOriginConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2929,27 +3317,42 @@ impl CloudfrontDistributionOriginElCustomOriginConfigElRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_keepalive_timeout` after provisioning.\n"]
     pub fn origin_keepalive_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_keepalive_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_keepalive_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_protocol_policy` after provisioning.\n"]
     pub fn origin_protocol_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_protocol_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_protocol_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_read_timeout` after provisioning.\n"]
     pub fn origin_read_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_read_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_read_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_ssl_protocols` after provisioning.\n"]
     pub fn origin_ssl_protocols(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.origin_ssl_protocols", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.origin_ssl_protocols", self.base),
+        )
     }
 }
 
@@ -3020,7 +3423,10 @@ impl CloudfrontDistributionOriginElOriginShieldElRef {
 
     #[doc = "Get a reference to the value of field `origin_shield_region` after provisioning.\n"]
     pub fn origin_shield_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_shield_region", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_shield_region", self.base),
+        )
     }
 }
 
@@ -3029,7 +3435,7 @@ pub struct CloudfrontDistributionOriginElS3OriginConfigEl {
     origin_access_identity: PrimField<String>,
 }
 
-impl CloudfrontDistributionOriginElS3OriginConfigEl { }
+impl CloudfrontDistributionOriginElS3OriginConfigEl {}
 
 impl ToListMappable for CloudfrontDistributionOriginElS3OriginConfigEl {
     type O = BlockAssignable<CloudfrontDistributionOriginElS3OriginConfigEl>;
@@ -3050,7 +3456,9 @@ pub struct BuildCloudfrontDistributionOriginElS3OriginConfigEl {
 
 impl BuildCloudfrontDistributionOriginElS3OriginConfigEl {
     pub fn build(self) -> CloudfrontDistributionOriginElS3OriginConfigEl {
-        CloudfrontDistributionOriginElS3OriginConfigEl { origin_access_identity: self.origin_access_identity }
+        CloudfrontDistributionOriginElS3OriginConfigEl {
+            origin_access_identity: self.origin_access_identity,
+        }
     }
 }
 
@@ -3075,7 +3483,10 @@ impl CloudfrontDistributionOriginElS3OriginConfigElRef {
 
     #[doc = "Get a reference to the value of field `origin_access_identity` after provisioning.\n"]
     pub fn origin_access_identity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_access_identity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_access_identity", self.base),
+        )
     }
 }
 
@@ -3135,7 +3546,10 @@ pub struct CloudfrontDistributionOriginElVpcOriginConfigElRef {
 }
 
 impl Ref for CloudfrontDistributionOriginElVpcOriginConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionOriginElVpcOriginConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionOriginElVpcOriginConfigElRef {
         CloudfrontDistributionOriginElVpcOriginConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -3150,17 +3564,26 @@ impl CloudfrontDistributionOriginElVpcOriginConfigElRef {
 
     #[doc = "Get a reference to the value of field `origin_keepalive_timeout` after provisioning.\n"]
     pub fn origin_keepalive_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_keepalive_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_keepalive_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_read_timeout` after provisioning.\n"]
     pub fn origin_read_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_read_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_read_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_origin_id` after provisioning.\n"]
     pub fn vpc_origin_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_origin_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_origin_id", self.base),
+        )
     }
 }
 
@@ -3239,10 +3662,10 @@ impl CloudfrontDistributionOriginEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_header = Some(d);
-            },
+            }
         }
         self
     }
@@ -3255,10 +3678,10 @@ impl CloudfrontDistributionOriginEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_origin_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_origin_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -3271,10 +3694,10 @@ impl CloudfrontDistributionOriginEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.origin_shield = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.origin_shield = Some(d);
-            },
+            }
         }
         self
     }
@@ -3287,10 +3710,10 @@ impl CloudfrontDistributionOriginEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_origin_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_origin_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -3303,10 +3726,10 @@ impl CloudfrontDistributionOriginEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vpc_origin_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vpc_origin_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -3372,12 +3795,18 @@ impl CloudfrontDistributionOriginElRef {
 
     #[doc = "Get a reference to the value of field `connection_attempts` after provisioning.\n"]
     pub fn connection_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_attempts", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_attempts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_timeout` after provisioning.\n"]
     pub fn connection_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
@@ -3387,7 +3816,10 @@ impl CloudfrontDistributionOriginElRef {
 
     #[doc = "Get a reference to the value of field `origin_access_control_id` after provisioning.\n"]
     pub fn origin_access_control_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_access_control_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_access_control_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_id` after provisioning.\n"]
@@ -3402,27 +3834,44 @@ impl CloudfrontDistributionOriginElRef {
 
     #[doc = "Get a reference to the value of field `response_completion_timeout` after provisioning.\n"]
     pub fn response_completion_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_completion_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_completion_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_origin_config` after provisioning.\n"]
-    pub fn custom_origin_config(&self) -> ListRef<CloudfrontDistributionOriginElCustomOriginConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_origin_config", self.base))
+    pub fn custom_origin_config(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOriginElCustomOriginConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_origin_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_shield` after provisioning.\n"]
     pub fn origin_shield(&self) -> ListRef<CloudfrontDistributionOriginElOriginShieldElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.origin_shield", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.origin_shield", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_origin_config` after provisioning.\n"]
     pub fn s3_origin_config(&self) -> ListRef<CloudfrontDistributionOriginElS3OriginConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_origin_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_origin_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_origin_config` after provisioning.\n"]
     pub fn vpc_origin_config(&self) -> ListRef<CloudfrontDistributionOriginElVpcOriginConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_origin_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_origin_config", self.base),
+        )
     }
 }
 
@@ -3431,7 +3880,7 @@ pub struct CloudfrontDistributionOriginGroupElFailoverCriteriaEl {
     status_codes: SetField<PrimField<f64>>,
 }
 
-impl CloudfrontDistributionOriginGroupElFailoverCriteriaEl { }
+impl CloudfrontDistributionOriginGroupElFailoverCriteriaEl {}
 
 impl ToListMappable for CloudfrontDistributionOriginGroupElFailoverCriteriaEl {
     type O = BlockAssignable<CloudfrontDistributionOriginGroupElFailoverCriteriaEl>;
@@ -3452,7 +3901,9 @@ pub struct BuildCloudfrontDistributionOriginGroupElFailoverCriteriaEl {
 
 impl BuildCloudfrontDistributionOriginGroupElFailoverCriteriaEl {
     pub fn build(self) -> CloudfrontDistributionOriginGroupElFailoverCriteriaEl {
-        CloudfrontDistributionOriginGroupElFailoverCriteriaEl { status_codes: self.status_codes }
+        CloudfrontDistributionOriginGroupElFailoverCriteriaEl {
+            status_codes: self.status_codes,
+        }
     }
 }
 
@@ -3462,7 +3913,10 @@ pub struct CloudfrontDistributionOriginGroupElFailoverCriteriaElRef {
 }
 
 impl Ref for CloudfrontDistributionOriginGroupElFailoverCriteriaElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionOriginGroupElFailoverCriteriaElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionOriginGroupElFailoverCriteriaElRef {
         CloudfrontDistributionOriginGroupElFailoverCriteriaElRef {
             shared: shared,
             base: base.to_string(),
@@ -3486,7 +3940,7 @@ pub struct CloudfrontDistributionOriginGroupElMemberEl {
     origin_id: PrimField<String>,
 }
 
-impl CloudfrontDistributionOriginGroupElMemberEl { }
+impl CloudfrontDistributionOriginGroupElMemberEl {}
 
 impl ToListMappable for CloudfrontDistributionOriginGroupElMemberEl {
     type O = BlockAssignable<CloudfrontDistributionOriginGroupElMemberEl>;
@@ -3507,7 +3961,9 @@ pub struct BuildCloudfrontDistributionOriginGroupElMemberEl {
 
 impl BuildCloudfrontDistributionOriginGroupElMemberEl {
     pub fn build(self) -> CloudfrontDistributionOriginGroupElMemberEl {
-        CloudfrontDistributionOriginGroupElMemberEl { origin_id: self.origin_id }
+        CloudfrontDistributionOriginGroupElMemberEl {
+            origin_id: self.origin_id,
+        }
     }
 }
 
@@ -3561,23 +4017,26 @@ impl CloudfrontDistributionOriginGroupEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.failover_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.failover_criteria = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `member`.\n"]
-    pub fn set_member(mut self, v: impl Into<BlockAssignable<CloudfrontDistributionOriginGroupElMemberEl>>) -> Self {
+    pub fn set_member(
+        mut self,
+        v: impl Into<BlockAssignable<CloudfrontDistributionOriginGroupElMemberEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.member = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.member = Some(d);
-            },
+            }
         }
         self
     }
@@ -3636,8 +4095,13 @@ impl CloudfrontDistributionOriginGroupElRef {
     }
 
     #[doc = "Get a reference to the value of field `failover_criteria` after provisioning.\n"]
-    pub fn failover_criteria(&self) -> ListRef<CloudfrontDistributionOriginGroupElFailoverCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.failover_criteria", self.base))
+    pub fn failover_criteria(
+        &self,
+    ) -> ListRef<CloudfrontDistributionOriginGroupElFailoverCriteriaElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.failover_criteria", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `member` after provisioning.\n"]
@@ -3693,7 +4157,10 @@ pub struct CloudfrontDistributionRestrictionsElGeoRestrictionElRef {
 }
 
 impl Ref for CloudfrontDistributionRestrictionsElGeoRestrictionElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontDistributionRestrictionsElGeoRestrictionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontDistributionRestrictionsElGeoRestrictionElRef {
         CloudfrontDistributionRestrictionsElGeoRestrictionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3713,7 +4180,10 @@ impl CloudfrontDistributionRestrictionsElGeoRestrictionElRef {
 
     #[doc = "Get a reference to the value of field `restriction_type` after provisioning.\n"]
     pub fn restriction_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restriction_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restriction_type", self.base),
+        )
     }
 }
 
@@ -3738,10 +4208,10 @@ impl CloudfrontDistributionRestrictionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.geo_restriction = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.geo_restriction = Some(d);
-            },
+            }
         }
         self
     }
@@ -3790,8 +4260,13 @@ impl CloudfrontDistributionRestrictionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `geo_restriction` after provisioning.\n"]
-    pub fn geo_restriction(&self) -> ListRef<CloudfrontDistributionRestrictionsElGeoRestrictionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.geo_restriction", self.base))
+    pub fn geo_restriction(
+        &self,
+    ) -> ListRef<CloudfrontDistributionRestrictionsElGeoRestrictionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.geo_restriction", self.base),
+        )
     }
 }
 
@@ -3888,27 +4363,42 @@ impl CloudfrontDistributionViewerCertificateElRef {
 
     #[doc = "Get a reference to the value of field `acm_certificate_arn` after provisioning.\n"]
     pub fn acm_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.acm_certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.acm_certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudfront_default_certificate` after provisioning.\n"]
     pub fn cloudfront_default_certificate(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudfront_default_certificate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudfront_default_certificate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_certificate_id` after provisioning.\n"]
     pub fn iam_certificate_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_certificate_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_certificate_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_protocol_version` after provisioning.\n"]
     pub fn minimum_protocol_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_protocol_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_protocol_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ssl_support_method` after provisioning.\n"]
     pub fn ssl_support_method(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssl_support_method", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssl_support_method", self.base),
+        )
     }
 }
 

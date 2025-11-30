@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEcrpublicImagesData {
@@ -46,69 +46,86 @@ impl DataEcrpublicImages {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `registry_id`.\nAWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed."]
+    #[doc = "Set the field `registry_id`.\nAWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed."]
     pub fn set_registry_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().registry_id = Some(v.into());
         self
     }
 
     #[doc = "Set the field `image_ids`.\n"]
-    pub fn set_image_ids(self, v: impl Into<BlockAssignable<DataEcrpublicImagesImageIdsEl>>) -> Self {
+    pub fn set_image_ids(
+        self,
+        v: impl Into<BlockAssignable<DataEcrpublicImagesImageIdsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().image_ids = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.image_ids = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `images` after provisioning.\n"]
     pub fn images(&self) -> ListRef<DataEcrpublicImagesImagesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.images", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.images", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `registry_id` after provisioning.\nAWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed."]
+    #[doc = "Get a reference to the value of field `registry_id` after provisioning.\nAWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed."]
     pub fn registry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `repository_name` after provisioning.\nName of the public repository."]
+    #[doc = "Get a reference to the value of field `repository_name` after provisioning.\nName of the public repository."]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_ids` after provisioning.\n"]
     pub fn image_ids(&self) -> ListRef<DataEcrpublicImagesImageIdsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_ids", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEcrpublicImages {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEcrpublicImages { }
+impl Datasource for DataEcrpublicImages {}
 
 impl ToListMappable for DataEcrpublicImages {
     type O = ListRef<DataEcrpublicImagesRef>;
@@ -167,10 +184,7 @@ pub struct DataEcrpublicImagesRef {
 
 impl Ref for DataEcrpublicImagesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -185,30 +199,42 @@ impl DataEcrpublicImagesRef {
 
     #[doc = "Get a reference to the value of field `images` after provisioning.\n"]
     pub fn images(&self) -> ListRef<DataEcrpublicImagesImagesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.images", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.images", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `registry_id` after provisioning.\nAWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed."]
+    #[doc = "Get a reference to the value of field `registry_id` after provisioning.\nAWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed."]
     pub fn registry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `repository_name` after provisioning.\nName of the public repository."]
+    #[doc = "Get a reference to the value of field `repository_name` after provisioning.\nName of the public repository."]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_ids` after provisioning.\n"]
     pub fn image_ids(&self) -> ListRef<DataEcrpublicImagesImageIdsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_ids", self.extract_ref()),
+        )
     }
 }
 
@@ -332,7 +358,10 @@ impl DataEcrpublicImagesImagesElRef {
 
     #[doc = "Get a reference to the value of field `artifact_media_type` after provisioning.\n"]
     pub fn artifact_media_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.artifact_media_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.artifact_media_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_digest` after provisioning.\n"]
@@ -342,17 +371,26 @@ impl DataEcrpublicImagesImagesElRef {
 
     #[doc = "Get a reference to the value of field `image_manifest_media_type` after provisioning.\n"]
     pub fn image_manifest_media_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_manifest_media_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_manifest_media_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_pushed_at` after provisioning.\n"]
     pub fn image_pushed_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_pushed_at", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_pushed_at", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_size_in_bytes` after provisioning.\n"]
     pub fn image_size_in_bytes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_size_in_bytes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_size_in_bytes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_tags` after provisioning.\n"]
@@ -367,7 +405,10 @@ impl DataEcrpublicImagesImagesElRef {
 
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.base),
+        )
     }
 }
 

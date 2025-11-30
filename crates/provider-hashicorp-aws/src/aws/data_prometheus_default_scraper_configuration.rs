@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataPrometheusDefaultScraperConfigurationData {
@@ -23,7 +23,9 @@ struct DataPrometheusDefaultScraperConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct DataPrometheusDefaultScraperConfiguration(Rc<DataPrometheusDefaultScraperConfiguration_>);
+pub struct DataPrometheusDefaultScraperConfiguration(
+    Rc<DataPrometheusDefaultScraperConfiguration_>,
+);
 
 impl DataPrometheusDefaultScraperConfiguration {
     fn shared(&self) -> &StackShared {
@@ -40,8 +42,7 @@ impl DataPrometheusDefaultScraperConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -49,23 +50,32 @@ impl DataPrometheusDefaultScraperConfiguration {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataPrometheusDefaultScraperConfiguration {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataPrometheusDefaultScraperConfiguration { }
+impl Datasource for DataPrometheusDefaultScraperConfiguration {}
 
 impl ToListMappable for DataPrometheusDefaultScraperConfiguration {
     type O = ListRef<DataPrometheusDefaultScraperConfigurationRef>;
@@ -96,16 +106,18 @@ pub struct BuildDataPrometheusDefaultScraperConfiguration {
 
 impl BuildDataPrometheusDefaultScraperConfiguration {
     pub fn build(self, stack: &mut Stack) -> DataPrometheusDefaultScraperConfiguration {
-        let out = DataPrometheusDefaultScraperConfiguration(Rc::new(DataPrometheusDefaultScraperConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataPrometheusDefaultScraperConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out = DataPrometheusDefaultScraperConfiguration(Rc::new(
+            DataPrometheusDefaultScraperConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataPrometheusDefaultScraperConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    region: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -118,10 +130,7 @@ pub struct DataPrometheusDefaultScraperConfigurationRef {
 
 impl Ref for DataPrometheusDefaultScraperConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -136,12 +145,17 @@ impl DataPrometheusDefaultScraperConfigurationRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

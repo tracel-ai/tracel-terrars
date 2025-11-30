@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDefaultTagsData {
@@ -53,17 +53,24 @@ impl DataDefaultTags {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDefaultTags {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDefaultTags { }
+impl Datasource for DataDefaultTags {}
 
 impl ToListMappable for DataDefaultTags {
     type O = ListRef<DataDefaultTagsRef>;
@@ -116,10 +123,7 @@ pub struct DataDefaultTagsRef {
 
 impl Ref for DataDefaultTagsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -139,6 +143,9 @@ impl DataDefaultTagsRef {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }

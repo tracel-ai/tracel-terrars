@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct TimestreamwriteTableData {
@@ -25,7 +25,8 @@ struct TimestreamwriteTableData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    magnetic_store_write_properties: Option<Vec<TimestreamwriteTableMagneticStoreWritePropertiesEl>>,
+    magnetic_store_write_properties:
+        Option<Vec<TimestreamwriteTableMagneticStoreWritePropertiesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     retention_properties: Option<Vec<TimestreamwriteTableRetentionPropertiesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -68,7 +69,8 @@ impl TimestreamwriteTable {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +83,7 @@ impl TimestreamwriteTable {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +94,22 @@ impl TimestreamwriteTable {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -107,8 +119,7 @@ impl TimestreamwriteTable {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,10 +145,14 @@ impl TimestreamwriteTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().magnetic_store_write_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.magnetic_store_write_properties = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .magnetic_store_write_properties = Some(d);
+            }
         }
         self
     }
@@ -150,10 +165,10 @@ impl TimestreamwriteTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().retention_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.retention_properties = Some(d);
-            },
+            }
         }
         self
     }
@@ -163,10 +178,10 @@ impl TimestreamwriteTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,7 +193,10 @@ impl TimestreamwriteTable {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -186,50 +204,76 @@ impl TimestreamwriteTable {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `magnetic_store_write_properties` after provisioning.\n"]
-    pub fn magnetic_store_write_properties(&self) -> ListRef<TimestreamwriteTableMagneticStoreWritePropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.magnetic_store_write_properties", self.extract_ref()))
+    pub fn magnetic_store_write_properties(
+        &self,
+    ) -> ListRef<TimestreamwriteTableMagneticStoreWritePropertiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.magnetic_store_write_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_properties` after provisioning.\n"]
     pub fn retention_properties(&self) -> ListRef<TimestreamwriteTableRetentionPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retention_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retention_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> ListRef<TimestreamwriteTableSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for TimestreamwriteTable {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for TimestreamwriteTable { }
+impl Resource for TimestreamwriteTable {}
 
 impl ToListMappable for TimestreamwriteTable {
     type O = ListRef<TimestreamwriteTableRef>;
@@ -296,10 +340,7 @@ pub struct TimestreamwriteTableRef {
 
 impl Ref for TimestreamwriteTableRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -319,7 +360,10 @@ impl TimestreamwriteTableRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -327,45 +371,68 @@ impl TimestreamwriteTableRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `magnetic_store_write_properties` after provisioning.\n"]
-    pub fn magnetic_store_write_properties(&self) -> ListRef<TimestreamwriteTableMagneticStoreWritePropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.magnetic_store_write_properties", self.extract_ref()))
+    pub fn magnetic_store_write_properties(
+        &self,
+    ) -> ListRef<TimestreamwriteTableMagneticStoreWritePropertiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.magnetic_store_write_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_properties` after provisioning.\n"]
     pub fn retention_properties(&self) -> ListRef<TimestreamwriteTableRetentionPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retention_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retention_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> ListRef<TimestreamwriteTableSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationEl {
+pub struct TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -417,7 +484,8 @@ impl ToListMappable for TimestreamwriteTableMagneticStoreWritePropertiesElMagnet
     }
 }
 
-pub struct BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationEl {}
+pub struct BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationEl
+{}
 
 impl BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationEl {
     pub fn build(
@@ -432,7 +500,8 @@ impl BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejecte
     }
 }
 
-pub struct TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationElRef {
+pub struct TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -509,17 +578,21 @@ impl TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedData
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl {
-    type O = BlockAssignable<TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl>;
+impl ToListMappable
+    for TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl
+{
+    type O = BlockAssignable<
+        TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -530,10 +603,13 @@ impl ToListMappable for TimestreamwriteTableMagneticStoreWritePropertiesElMagnet
     }
 }
 
-pub struct BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl {}
+pub struct BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl
+{}
 
 impl BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl {
-    pub fn build(self) -> TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl {
+    pub fn build(
+        self,
+    ) -> TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl {
         TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl {
             s3_configuration: core::default::Default::default(),
             dynamic: Default::default(),
@@ -541,16 +617,20 @@ impl BuildTimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejecte
     }
 }
 
-pub struct TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef {
+pub struct TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef {
+impl Ref
+    for TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef {
+    ) -> TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef
+    {
         TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef {
             shared: shared,
             base: base.to_string(),
@@ -568,15 +648,20 @@ impl TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedData
         &self,
     ) -> ListRef<
         TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElS3ConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.s3_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TimestreamwriteTableMagneticStoreWritePropertiesElDynamic {
     magnetic_store_rejected_data_location: Option<
-        DynamicBlock<TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl>,
+        DynamicBlock<
+            TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationEl,
+        >,
     >,
 }
 
@@ -613,10 +698,10 @@ impl TimestreamwriteTableMagneticStoreWritePropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.magnetic_store_rejected_data_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.magnetic_store_rejected_data_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -652,7 +737,10 @@ pub struct TimestreamwriteTableMagneticStoreWritePropertiesElRef {
 }
 
 impl Ref for TimestreamwriteTableMagneticStoreWritePropertiesElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamwriteTableMagneticStoreWritePropertiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamwriteTableMagneticStoreWritePropertiesElRef {
         TimestreamwriteTableMagneticStoreWritePropertiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -667,14 +755,22 @@ impl TimestreamwriteTableMagneticStoreWritePropertiesElRef {
 
     #[doc = "Get a reference to the value of field `enable_magnetic_store_writes` after provisioning.\n"]
     pub fn enable_magnetic_store_writes(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_magnetic_store_writes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_magnetic_store_writes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `magnetic_store_rejected_data_location` after provisioning.\n"]
     pub fn magnetic_store_rejected_data_location(
         &self,
-    ) -> ListRef<TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.magnetic_store_rejected_data_location", self.base))
+    ) -> ListRef<
+        TimestreamwriteTableMagneticStoreWritePropertiesElMagneticStoreRejectedDataLocationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.magnetic_store_rejected_data_location", self.base),
+        )
     }
 }
 
@@ -684,7 +780,7 @@ pub struct TimestreamwriteTableRetentionPropertiesEl {
     memory_store_retention_period_in_hours: PrimField<f64>,
 }
 
-impl TimestreamwriteTableRetentionPropertiesEl { }
+impl TimestreamwriteTableRetentionPropertiesEl {}
 
 impl ToListMappable for TimestreamwriteTableRetentionPropertiesEl {
     type O = BlockAssignable<TimestreamwriteTableRetentionPropertiesEl>;
@@ -735,12 +831,18 @@ impl TimestreamwriteTableRetentionPropertiesElRef {
 
     #[doc = "Get a reference to the value of field `magnetic_store_retention_period_in_days` after provisioning.\n"]
     pub fn magnetic_store_retention_period_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.magnetic_store_retention_period_in_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.magnetic_store_retention_period_in_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_store_retention_period_in_hours` after provisioning.\n"]
     pub fn memory_store_retention_period_in_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_store_retention_period_in_hours", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_store_retention_period_in_hours", self.base),
+        )
     }
 }
 
@@ -801,7 +903,10 @@ pub struct TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
 }
 
 impl Ref for TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
         TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
             shared: shared,
             base: base.to_string(),
@@ -816,7 +921,10 @@ impl TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
 
     #[doc = "Get a reference to the value of field `enforcement_in_record` after provisioning.\n"]
     pub fn enforcement_in_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enforcement_in_record", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enforcement_in_record", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -832,7 +940,8 @@ impl TimestreamwriteTableSchemaElCompositePartitionKeyElRef {
 
 #[derive(Serialize, Default)]
 struct TimestreamwriteTableSchemaElDynamic {
-    composite_partition_key: Option<DynamicBlock<TimestreamwriteTableSchemaElCompositePartitionKeyEl>>,
+    composite_partition_key:
+        Option<DynamicBlock<TimestreamwriteTableSchemaElCompositePartitionKeyEl>>,
 }
 
 #[derive(Serialize)]
@@ -851,10 +960,10 @@ impl TimestreamwriteTableSchemaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.composite_partition_key = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.composite_partition_key = Some(d);
-            },
+            }
         }
         self
     }
@@ -903,14 +1012,20 @@ impl TimestreamwriteTableSchemaElRef {
     }
 
     #[doc = "Get a reference to the value of field `composite_partition_key` after provisioning.\n"]
-    pub fn composite_partition_key(&self) -> ListRef<TimestreamwriteTableSchemaElCompositePartitionKeyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.composite_partition_key", self.base))
+    pub fn composite_partition_key(
+        &self,
+    ) -> ListRef<TimestreamwriteTableSchemaElCompositePartitionKeyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.composite_partition_key", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TimestreamwriteTableDynamic {
-    magnetic_store_write_properties: Option<DynamicBlock<TimestreamwriteTableMagneticStoreWritePropertiesEl>>,
+    magnetic_store_write_properties:
+        Option<DynamicBlock<TimestreamwriteTableMagneticStoreWritePropertiesEl>>,
     retention_properties: Option<DynamicBlock<TimestreamwriteTableRetentionPropertiesEl>>,
     schema: Option<DynamicBlock<TimestreamwriteTableSchemaEl>>,
 }

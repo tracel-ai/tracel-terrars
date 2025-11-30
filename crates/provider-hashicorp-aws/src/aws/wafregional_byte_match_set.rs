@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafregionalByteMatchSetData {
@@ -59,7 +59,8 @@ impl WafregionalByteMatchSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl WafregionalByteMatchSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl WafregionalByteMatchSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,22 +109,24 @@ impl WafregionalByteMatchSet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `byte_match_tuples`.\n"]
-    pub fn set_byte_match_tuples(self, v: impl Into<BlockAssignable<WafregionalByteMatchSetByteMatchTuplesEl>>) -> Self {
+    pub fn set_byte_match_tuples(
+        self,
+        v: impl Into<BlockAssignable<WafregionalByteMatchSetByteMatchTuplesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().byte_match_tuples = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.byte_match_tuples = Some(d);
-            },
+            }
         }
         self
     }
@@ -125,23 +138,32 @@ impl WafregionalByteMatchSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafregionalByteMatchSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafregionalByteMatchSet { }
+impl Resource for WafregionalByteMatchSet {}
 
 impl ToListMappable for WafregionalByteMatchSet {
     type O = ListRef<WafregionalByteMatchSetRef>;
@@ -201,10 +223,7 @@ pub struct WafregionalByteMatchSetRef {
 
 impl Ref for WafregionalByteMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -224,13 +243,18 @@ impl WafregionalByteMatchSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -282,7 +306,10 @@ pub struct WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef {
 }
 
 impl Ref for WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef {
-    fn new(shared: StackShared, base: String) -> WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef {
         WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -337,10 +364,10 @@ impl WafregionalByteMatchSetByteMatchTuplesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -398,22 +425,36 @@ impl WafregionalByteMatchSetByteMatchTuplesElRef {
 
     #[doc = "Get a reference to the value of field `positional_constraint` after provisioning.\n"]
     pub fn positional_constraint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.positional_constraint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.positional_constraint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_string` after provisioning.\n"]
     pub fn target_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_string", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_string", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
-    pub fn field_to_match(&self) -> ListRef<WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+    pub fn field_to_match(
+        &self,
+    ) -> ListRef<WafregionalByteMatchSetByteMatchTuplesElFieldToMatchElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 

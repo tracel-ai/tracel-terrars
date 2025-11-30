@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SsmcontactsRotationData {
@@ -63,7 +63,8 @@ impl SsmcontactsRotation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +77,7 @@ impl SsmcontactsRotation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,17 +88,26 @@ impl SsmcontactsRotation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -116,14 +126,17 @@ impl SsmcontactsRotation {
     }
 
     #[doc = "Set the field `recurrence`.\n"]
-    pub fn set_recurrence(self, v: impl Into<BlockAssignable<SsmcontactsRotationRecurrenceEl>>) -> Self {
+    pub fn set_recurrence(
+        self,
+        v: impl Into<BlockAssignable<SsmcontactsRotationRecurrenceEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().recurrence = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.recurrence = Some(d);
-            },
+            }
         }
         self
     }
@@ -135,7 +148,10 @@ impl SsmcontactsRotation {
 
     #[doc = "Get a reference to the value of field `contact_ids` after provisioning.\n"]
     pub fn contact_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.contact_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.contact_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -145,48 +161,72 @@ impl SsmcontactsRotation {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_zone_id` after provisioning.\n"]
     pub fn time_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recurrence` after provisioning.\n"]
     pub fn recurrence(&self) -> ListRef<SsmcontactsRotationRecurrenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recurrence", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recurrence", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SsmcontactsRotation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SsmcontactsRotation { }
+impl Resource for SsmcontactsRotation {}
 
 impl ToListMappable for SsmcontactsRotation {
     type O = ListRef<SsmcontactsRotationRef>;
@@ -253,10 +293,7 @@ pub struct SsmcontactsRotationRef {
 
 impl Ref for SsmcontactsRotationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -276,7 +313,10 @@ impl SsmcontactsRotationRef {
 
     #[doc = "Get a reference to the value of field `contact_ids` after provisioning.\n"]
     pub fn contact_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.contact_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.contact_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -286,38 +326,58 @@ impl SsmcontactsRotationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_zone_id` after provisioning.\n"]
     pub fn time_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recurrence` after provisioning.\n"]
     pub fn recurrence(&self) -> ListRef<SsmcontactsRotationRecurrenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recurrence", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recurrence", self.extract_ref()),
+        )
     }
 }
 
@@ -327,7 +387,7 @@ pub struct SsmcontactsRotationRecurrenceElDailySettingsEl {
     minute_of_hour: PrimField<f64>,
 }
 
-impl SsmcontactsRotationRecurrenceElDailySettingsEl { }
+impl SsmcontactsRotationRecurrenceElDailySettingsEl {}
 
 impl ToListMappable for SsmcontactsRotationRecurrenceElDailySettingsEl {
     type O = BlockAssignable<SsmcontactsRotationRecurrenceElDailySettingsEl>;
@@ -383,7 +443,10 @@ impl SsmcontactsRotationRecurrenceElDailySettingsElRef {
 
     #[doc = "Get a reference to the value of field `minute_of_hour` after provisioning.\n"]
     pub fn minute_of_hour(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minute_of_hour", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minute_of_hour", self.base),
+        )
     }
 }
 
@@ -393,7 +456,7 @@ pub struct SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl {
     minute_of_hour: PrimField<f64>,
 }
 
-impl SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl { }
+impl SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl {}
 
 impl ToListMappable for SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl {
     type O = BlockAssignable<SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl>;
@@ -429,7 +492,10 @@ pub struct SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef {
 }
 
 impl Ref for SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef {
-    fn new(shared: StackShared, base: String) -> SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef {
         SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef {
             shared: shared,
             base: base.to_string(),
@@ -449,13 +515,17 @@ impl SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef {
 
     #[doc = "Get a reference to the value of field `minute_of_hour` after provisioning.\n"]
     pub fn minute_of_hour(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minute_of_hour", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minute_of_hour", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SsmcontactsRotationRecurrenceElMonthlySettingsElDynamic {
-    hand_off_time: Option<DynamicBlock<SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl>>,
+    hand_off_time:
+        Option<DynamicBlock<SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeEl>>,
 }
 
 #[derive(Serialize)]
@@ -475,10 +545,10 @@ impl SsmcontactsRotationRecurrenceElMonthlySettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hand_off_time = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hand_off_time = Some(d);
-            },
+            }
         }
         self
     }
@@ -517,7 +587,10 @@ pub struct SsmcontactsRotationRecurrenceElMonthlySettingsElRef {
 }
 
 impl Ref for SsmcontactsRotationRecurrenceElMonthlySettingsElRef {
-    fn new(shared: StackShared, base: String) -> SsmcontactsRotationRecurrenceElMonthlySettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmcontactsRotationRecurrenceElMonthlySettingsElRef {
         SsmcontactsRotationRecurrenceElMonthlySettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -536,8 +609,13 @@ impl SsmcontactsRotationRecurrenceElMonthlySettingsElRef {
     }
 
     #[doc = "Get a reference to the value of field `hand_off_time` after provisioning.\n"]
-    pub fn hand_off_time(&self) -> ListRef<SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hand_off_time", self.base))
+    pub fn hand_off_time(
+        &self,
+    ) -> ListRef<SsmcontactsRotationRecurrenceElMonthlySettingsElHandOffTimeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hand_off_time", self.base),
+        )
     }
 }
 
@@ -547,7 +625,7 @@ pub struct SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl {
     minute_of_hour: PrimField<f64>,
 }
 
-impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl { }
+impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl {}
 
 impl ToListMappable for SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl {
     type O = BlockAssignable<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl>;
@@ -606,7 +684,10 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndElRef {
 
     #[doc = "Get a reference to the value of field `minute_of_hour` after provisioning.\n"]
     pub fn minute_of_hour(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minute_of_hour", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minute_of_hour", self.base),
+        )
     }
 }
 
@@ -616,7 +697,7 @@ pub struct SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl
     minute_of_hour: PrimField<f64>,
 }
 
-impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl { }
+impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl {}
 
 impl ToListMappable for SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl {
     type O = BlockAssignable<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl>;
@@ -675,14 +756,18 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartElRef {
 
     #[doc = "Get a reference to the value of field `minute_of_hour` after provisioning.\n"]
     pub fn minute_of_hour(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minute_of_hour", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minute_of_hour", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElDynamic {
     end: Option<DynamicBlock<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl>>,
-    start: Option<DynamicBlock<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl>>,
+    start:
+        Option<DynamicBlock<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl>>,
 }
 
 #[derive(Serialize)]
@@ -698,15 +783,17 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(
         mut self,
-        v: impl Into<BlockAssignable<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl>>,
+        v: impl Into<
+            BlockAssignable<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.end = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.end = Some(d);
-            },
+            }
         }
         self
     }
@@ -714,15 +801,17 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesEl {
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(
         mut self,
-        v: impl Into<BlockAssignable<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl>>,
+        v: impl Into<
+            BlockAssignable<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.start = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.start = Some(d);
-            },
+            }
         }
         self
     }
@@ -758,7 +847,10 @@ pub struct SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef {
 }
 
 impl Ref for SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef {
-    fn new(shared: StackShared, base: String) -> SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef {
         SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef {
             shared: shared,
             base: base.to_string(),
@@ -772,19 +864,24 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef {
     }
 
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
-    pub fn end(&self) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndElRef> {
+    pub fn end(
+        &self,
+    ) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElEndElRef> {
         ListRef::new(self.shared().clone(), format!("{}.end", self.base))
     }
 
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
-    pub fn start(&self) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartElRef> {
+    pub fn start(
+        &self,
+    ) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElStartElRef> {
         ListRef::new(self.shared().clone(), format!("{}.start", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct SsmcontactsRotationRecurrenceElShiftCoveragesElDynamic {
-    coverage_times: Option<DynamicBlock<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesEl>>,
+    coverage_times:
+        Option<DynamicBlock<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesEl>>,
 }
 
 #[derive(Serialize)]
@@ -804,10 +901,10 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.coverage_times = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.coverage_times = Some(d);
-            },
+            }
         }
         self
     }
@@ -846,7 +943,10 @@ pub struct SsmcontactsRotationRecurrenceElShiftCoveragesElRef {
 }
 
 impl Ref for SsmcontactsRotationRecurrenceElShiftCoveragesElRef {
-    fn new(shared: StackShared, base: String) -> SsmcontactsRotationRecurrenceElShiftCoveragesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmcontactsRotationRecurrenceElShiftCoveragesElRef {
         SsmcontactsRotationRecurrenceElShiftCoveragesElRef {
             shared: shared,
             base: base.to_string(),
@@ -861,12 +961,20 @@ impl SsmcontactsRotationRecurrenceElShiftCoveragesElRef {
 
     #[doc = "Get a reference to the value of field `map_block_key` after provisioning.\n"]
     pub fn map_block_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.map_block_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.map_block_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `coverage_times` after provisioning.\n"]
-    pub fn coverage_times(&self) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.coverage_times", self.base))
+    pub fn coverage_times(
+        &self,
+    ) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElCoverageTimesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.coverage_times", self.base),
+        )
     }
 }
 
@@ -876,7 +984,7 @@ pub struct SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl {
     minute_of_hour: PrimField<f64>,
 }
 
-impl SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl { }
+impl SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl {}
 
 impl ToListMappable for SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl {
     type O = BlockAssignable<SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl>;
@@ -912,7 +1020,10 @@ pub struct SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef {
 }
 
 impl Ref for SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef {
-    fn new(shared: StackShared, base: String) -> SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef {
         SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef {
             shared: shared,
             base: base.to_string(),
@@ -932,13 +1043,17 @@ impl SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef {
 
     #[doc = "Get a reference to the value of field `minute_of_hour` after provisioning.\n"]
     pub fn minute_of_hour(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minute_of_hour", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minute_of_hour", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SsmcontactsRotationRecurrenceElWeeklySettingsElDynamic {
-    hand_off_time: Option<DynamicBlock<SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl>>,
+    hand_off_time:
+        Option<DynamicBlock<SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeEl>>,
 }
 
 #[derive(Serialize)]
@@ -958,10 +1073,10 @@ impl SsmcontactsRotationRecurrenceElWeeklySettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hand_off_time = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hand_off_time = Some(d);
-            },
+            }
         }
         self
     }
@@ -1000,7 +1115,10 @@ pub struct SsmcontactsRotationRecurrenceElWeeklySettingsElRef {
 }
 
 impl Ref for SsmcontactsRotationRecurrenceElWeeklySettingsElRef {
-    fn new(shared: StackShared, base: String) -> SsmcontactsRotationRecurrenceElWeeklySettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmcontactsRotationRecurrenceElWeeklySettingsElRef {
         SsmcontactsRotationRecurrenceElWeeklySettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1019,8 +1137,13 @@ impl SsmcontactsRotationRecurrenceElWeeklySettingsElRef {
     }
 
     #[doc = "Get a reference to the value of field `hand_off_time` after provisioning.\n"]
-    pub fn hand_off_time(&self) -> ListRef<SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hand_off_time", self.base))
+    pub fn hand_off_time(
+        &self,
+    ) -> ListRef<SsmcontactsRotationRecurrenceElWeeklySettingsElHandOffTimeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hand_off_time", self.base),
+        )
     }
 }
 
@@ -1056,10 +1179,10 @@ impl SsmcontactsRotationRecurrenceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.daily_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.daily_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1072,10 +1195,10 @@ impl SsmcontactsRotationRecurrenceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.monthly_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.monthly_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1088,10 +1211,10 @@ impl SsmcontactsRotationRecurrenceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.shift_coverages = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.shift_coverages = Some(d);
-            },
+            }
         }
         self
     }
@@ -1104,10 +1227,10 @@ impl SsmcontactsRotationRecurrenceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.weekly_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.weekly_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1167,32 +1290,50 @@ impl SsmcontactsRotationRecurrenceElRef {
 
     #[doc = "Get a reference to the value of field `number_of_on_calls` after provisioning.\n"]
     pub fn number_of_on_calls(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_on_calls", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_on_calls", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recurrence_multiplier` after provisioning.\n"]
     pub fn recurrence_multiplier(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.recurrence_multiplier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.recurrence_multiplier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `daily_settings` after provisioning.\n"]
     pub fn daily_settings(&self) -> ListRef<SsmcontactsRotationRecurrenceElDailySettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.daily_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.daily_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monthly_settings` after provisioning.\n"]
     pub fn monthly_settings(&self) -> ListRef<SsmcontactsRotationRecurrenceElMonthlySettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monthly_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monthly_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shift_coverages` after provisioning.\n"]
     pub fn shift_coverages(&self) -> ListRef<SsmcontactsRotationRecurrenceElShiftCoveragesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.shift_coverages", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.shift_coverages", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weekly_settings` after provisioning.\n"]
     pub fn weekly_settings(&self) -> ListRef<SsmcontactsRotationRecurrenceElWeeklySettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.weekly_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.weekly_settings", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppmeshMeshData {
@@ -59,8 +59,7 @@ impl DataAppmeshMesh {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -79,7 +78,10 @@ impl DataAppmeshMesh {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -89,48 +91,72 @@ impl DataAppmeshMesh {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshMeshSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppmeshMesh {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppmeshMesh { }
+impl Datasource for DataAppmeshMesh {}
 
 impl ToListMappable for DataAppmeshMesh {
     type O = ListRef<DataAppmeshMeshRef>;
@@ -189,10 +215,7 @@ pub struct DataAppmeshMeshRef {
 
 impl Ref for DataAppmeshMeshRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -212,7 +235,10 @@ impl DataAppmeshMeshRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -222,38 +248,58 @@ impl DataAppmeshMeshRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshMeshSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -287,7 +333,9 @@ pub struct BuildDataAppmeshMeshSpecElEgressFilterEl {}
 
 impl BuildDataAppmeshMeshSpecElEgressFilterEl {
     pub fn build(self) -> DataAppmeshMeshSpecElEgressFilterEl {
-        DataAppmeshMeshSpecElEgressFilterEl { type_: core::default::Default::default() }
+        DataAppmeshMeshSpecElEgressFilterEl {
+            type_: core::default::Default::default(),
+        }
     }
 }
 
@@ -346,7 +394,9 @@ pub struct BuildDataAppmeshMeshSpecElServiceDiscoveryEl {}
 
 impl BuildDataAppmeshMeshSpecElServiceDiscoveryEl {
     pub fn build(self) -> DataAppmeshMeshSpecElServiceDiscoveryEl {
-        DataAppmeshMeshSpecElServiceDiscoveryEl { ip_preference: core::default::Default::default() }
+        DataAppmeshMeshSpecElServiceDiscoveryEl {
+            ip_preference: core::default::Default::default(),
+        }
     }
 }
 
@@ -371,7 +421,10 @@ impl DataAppmeshMeshSpecElServiceDiscoveryElRef {
 
     #[doc = "Get a reference to the value of field `ip_preference` after provisioning.\n"]
     pub fn ip_preference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_preference", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_preference", self.base),
+        )
     }
 }
 
@@ -385,13 +438,19 @@ pub struct DataAppmeshMeshSpecEl {
 
 impl DataAppmeshMeshSpecEl {
     #[doc = "Set the field `egress_filter`.\n"]
-    pub fn set_egress_filter(mut self, v: impl Into<ListField<DataAppmeshMeshSpecElEgressFilterEl>>) -> Self {
+    pub fn set_egress_filter(
+        mut self,
+        v: impl Into<ListField<DataAppmeshMeshSpecElEgressFilterEl>>,
+    ) -> Self {
         self.egress_filter = Some(v.into());
         self
     }
 
     #[doc = "Set the field `service_discovery`.\n"]
-    pub fn set_service_discovery(mut self, v: impl Into<ListField<DataAppmeshMeshSpecElServiceDiscoveryEl>>) -> Self {
+    pub fn set_service_discovery(
+        mut self,
+        v: impl Into<ListField<DataAppmeshMeshSpecElServiceDiscoveryEl>>,
+    ) -> Self {
         self.service_discovery = Some(v.into());
         self
     }
@@ -441,11 +500,17 @@ impl DataAppmeshMeshSpecElRef {
 
     #[doc = "Get a reference to the value of field `egress_filter` after provisioning.\n"]
     pub fn egress_filter(&self) -> ListRef<DataAppmeshMeshSpecElEgressFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.egress_filter", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.egress_filter", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_discovery` after provisioning.\n"]
     pub fn service_discovery(&self) -> ListRef<DataAppmeshMeshSpecElServiceDiscoveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_discovery", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_discovery", self.base),
+        )
     }
 }

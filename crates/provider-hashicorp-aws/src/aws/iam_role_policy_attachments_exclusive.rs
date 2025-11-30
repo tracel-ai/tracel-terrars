@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IamRolePolicyAttachmentsExclusiveData {
@@ -53,7 +53,8 @@ impl IamRolePolicyAttachmentsExclusive {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -66,7 +67,7 @@ impl IamRolePolicyAttachmentsExclusive {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -77,33 +78,53 @@ impl IamRolePolicyAttachmentsExclusive {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
     #[doc = "Get a reference to the value of field `policy_arns` after provisioning.\n"]
     pub fn policy_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.policy_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.policy_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_name` after provisioning.\n"]
     pub fn role_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IamRolePolicyAttachmentsExclusive {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IamRolePolicyAttachmentsExclusive { }
+impl Resource for IamRolePolicyAttachmentsExclusive {}
 
 impl ToListMappable for IamRolePolicyAttachmentsExclusive {
     type O = ListRef<IamRolePolicyAttachmentsExclusiveRef>;
@@ -162,10 +183,7 @@ pub struct IamRolePolicyAttachmentsExclusiveRef {
 
 impl Ref for IamRolePolicyAttachmentsExclusiveRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -180,11 +198,17 @@ impl IamRolePolicyAttachmentsExclusiveRef {
 
     #[doc = "Get a reference to the value of field `policy_arns` after provisioning.\n"]
     pub fn policy_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.policy_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.policy_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_name` after provisioning.\n"]
     pub fn role_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_name", self.extract_ref()),
+        )
     }
 }

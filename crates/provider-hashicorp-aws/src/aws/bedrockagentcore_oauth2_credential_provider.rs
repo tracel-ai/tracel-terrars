@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentcoreOauth2CredentialProviderData {
@@ -19,7 +19,8 @@ struct BedrockagentcoreOauth2CredentialProviderData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    oauth2_provider_config: Option<Vec<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl>>,
+    oauth2_provider_config:
+        Option<Vec<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl>>,
     dynamic: BedrockagentcoreOauth2CredentialProviderDynamic,
 }
 
@@ -58,7 +59,8 @@ impl BedrockagentcoreOauth2CredentialProvider {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +73,7 @@ impl BedrockagentcoreOauth2CredentialProvider {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,17 +84,26 @@ impl BedrockagentcoreOauth2CredentialProvider {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -106,53 +117,78 @@ impl BedrockagentcoreOauth2CredentialProvider {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `client_secret_arn` after provisioning.\n"]
-    pub fn client_secret_arn(&self) -> ListRef<BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_secret_arn", self.extract_ref()))
+    pub fn client_secret_arn(
+        &self,
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_secret_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_provider_arn` after provisioning.\n"]
     pub fn credential_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_provider_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_provider_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_provider_vendor` after provisioning.\n"]
     pub fn credential_provider_vendor(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_provider_vendor", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_provider_vendor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth2_provider_config` after provisioning.\n"]
-    pub fn oauth2_provider_config(&self) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.oauth2_provider_config", self.extract_ref()))
+    pub fn oauth2_provider_config(
+        &self,
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth2_provider_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockagentcoreOauth2CredentialProvider {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentcoreOauth2CredentialProvider { }
+impl Resource for BedrockagentcoreOauth2CredentialProvider {}
 
 impl ToListMappable for BedrockagentcoreOauth2CredentialProvider {
     type O = ListRef<BedrockagentcoreOauth2CredentialProviderRef>;
@@ -187,21 +223,23 @@ pub struct BuildBedrockagentcoreOauth2CredentialProvider {
 
 impl BuildBedrockagentcoreOauth2CredentialProvider {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreOauth2CredentialProvider {
-        let out = BedrockagentcoreOauth2CredentialProvider(Rc::new(BedrockagentcoreOauth2CredentialProvider_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(BedrockagentcoreOauth2CredentialProviderData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                credential_provider_vendor: self.credential_provider_vendor,
-                name: self.name,
-                region: core::default::Default::default(),
-                oauth2_provider_config: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = BedrockagentcoreOauth2CredentialProvider(Rc::new(
+            BedrockagentcoreOauth2CredentialProvider_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(BedrockagentcoreOauth2CredentialProviderData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    credential_provider_vendor: self.credential_provider_vendor,
+                    name: self.name,
+                    region: core::default::Default::default(),
+                    oauth2_provider_config: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -214,10 +252,7 @@ pub struct BedrockagentcoreOauth2CredentialProviderRef {
 
 impl Ref for BedrockagentcoreOauth2CredentialProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -231,34 +266,55 @@ impl BedrockagentcoreOauth2CredentialProviderRef {
     }
 
     #[doc = "Get a reference to the value of field `client_secret_arn` after provisioning.\n"]
-    pub fn client_secret_arn(&self) -> ListRef<BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_secret_arn", self.extract_ref()))
+    pub fn client_secret_arn(
+        &self,
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_secret_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_provider_arn` after provisioning.\n"]
     pub fn credential_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_provider_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_provider_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_provider_vendor` after provisioning.\n"]
     pub fn credential_provider_vendor(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_provider_vendor", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_provider_vendor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth2_provider_config` after provisioning.\n"]
-    pub fn oauth2_provider_config(&self) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.oauth2_provider_config", self.extract_ref()))
+    pub fn oauth2_provider_config(
+        &self,
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth2_provider_config", self.extract_ref()),
+        )
     }
 }
 
@@ -292,7 +348,9 @@ pub struct BuildBedrockagentcoreOauth2CredentialProviderClientSecretArnEl {}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderClientSecretArnEl {
     pub fn build(self) -> BedrockagentcoreOauth2CredentialProviderClientSecretArnEl {
-        BedrockagentcoreOauth2CredentialProviderClientSecretArnEl { secret_arn: core::default::Default::default() }
+        BedrockagentcoreOauth2CredentialProviderClientSecretArnEl {
+            secret_arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -302,7 +360,10 @@ pub struct BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef {
 }
 
 impl Ref for BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef {
         BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef {
             shared: shared,
             base: base.to_string(),
@@ -322,7 +383,8 @@ impl BedrockagentcoreOauth2CredentialProviderClientSecretArnElRef {
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     authorization_endpoint: PrimField<String>,
     issuer: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -353,7 +415,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     #[doc = ""]
     pub authorization_endpoint: PrimField<String>,
     #[doc = ""]
@@ -375,7 +438,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -486,7 +550,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryEl {
     pub fn build(
@@ -500,7 +565,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -613,18 +679,21 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2P
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_discovery = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_discovery = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl {
-    type O =
-        BlockAssignable<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl>;
+impl ToListMappable
+    for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -635,10 +704,16 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl
+{}
 
-impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl {
-    pub fn build(self) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl {
+impl
+    BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl
+{
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl
+    {
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigEl {
             client_credentials_wo_version: core::default::Default::default(),
             client_id: core::default::Default::default(),
@@ -651,7 +726,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -675,7 +751,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2P
 
     #[doc = "Get a reference to the value of field `client_credentials_wo_version` after provisioning.\n"]
     pub fn client_credentials_wo_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_credentials_wo_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_credentials_wo_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -690,12 +769,18 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2P
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret_wo` after provisioning.\n"]
     pub fn client_secret_wo(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret_wo", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret_wo", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_discovery` after provisioning.\n"]
@@ -703,13 +788,17 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2P
         &self,
     ) -> ListRef<
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElOauthDiscoveryElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_discovery", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_discovery", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     authorization_endpoint: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -761,7 +850,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
     pub fn build(
@@ -776,7 +866,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -870,7 +961,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryEl {
     pub fn build(
@@ -883,7 +975,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -921,7 +1014,8 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2P
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     client_credentials_wo_version: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -966,9 +1060,12 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2P
     }
 }
 
-impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl {
-    type O =
-        BlockAssignable<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl>;
+impl ToListMappable
+    for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -979,10 +1076,16 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl
+{}
 
-impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl {
-    pub fn build(self) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl {
+impl
+    BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl
+{
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl
+    {
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigEl {
             client_credentials_wo_version: core::default::Default::default(),
             client_id: core::default::Default::default(),
@@ -993,7 +1096,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1017,7 +1121,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2P
 
     #[doc = "Get a reference to the value of field `client_credentials_wo_version` after provisioning.\n"]
     pub fn client_credentials_wo_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_credentials_wo_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_credentials_wo_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -1032,12 +1139,18 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2P
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret_wo` after provisioning.\n"]
     pub fn client_secret_wo(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret_wo", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret_wo", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_discovery` after provisioning.\n"]
@@ -1045,13 +1158,17 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2P
         &self,
     ) -> ListRef<
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElOauthDiscoveryElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_discovery", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_discovery", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     authorization_endpoint: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1103,7 +1220,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
     pub fn build(
@@ -1118,7 +1236,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1212,7 +1331,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryEl {
     pub fn build(
@@ -1225,7 +1345,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1263,7 +1384,8 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2P
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     client_credentials_wo_version: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1308,9 +1430,12 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2P
     }
 }
 
-impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl {
-    type O =
-        BlockAssignable<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl>;
+impl ToListMappable
+    for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1321,10 +1446,16 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl
+{}
 
-impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl {
-    pub fn build(self) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl {
+impl
+    BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl
+{
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl
+    {
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigEl {
             client_credentials_wo_version: core::default::Default::default(),
             client_id: core::default::Default::default(),
@@ -1335,7 +1466,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOa
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1359,7 +1491,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2P
 
     #[doc = "Get a reference to the value of field `client_credentials_wo_version` after provisioning.\n"]
     pub fn client_credentials_wo_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_credentials_wo_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_credentials_wo_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -1374,12 +1509,18 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2P
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret_wo` after provisioning.\n"]
     pub fn client_secret_wo(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret_wo", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret_wo", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_discovery` after provisioning.\n"]
@@ -1387,13 +1528,17 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2P
         &self,
     ) -> ListRef<
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElOauthDiscoveryElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_discovery", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_discovery", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     authorization_endpoint: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1445,7 +1590,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
     pub fn build(
@@ -1460,7 +1606,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosof
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1554,7 +1701,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryEl {
     pub fn build(
@@ -1567,7 +1715,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosof
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1605,7 +1754,8 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOaut
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     client_credentials_wo_version: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1665,7 +1815,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigEl {
     pub fn build(
@@ -1681,7 +1832,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosof
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1698,14 +1850,19 @@ impl Ref for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicro
     }
 }
 
-impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElRef {
+impl
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `client_credentials_wo_version` after provisioning.\n"]
     pub fn client_credentials_wo_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_credentials_wo_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_credentials_wo_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -1720,12 +1877,18 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOaut
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret_wo` after provisioning.\n"]
     pub fn client_secret_wo(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret_wo", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret_wo", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_discovery` after provisioning.\n"]
@@ -1733,13 +1896,17 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOaut
         &self,
     ) -> ListRef<
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElOauthDiscoveryElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_discovery", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_discovery", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     authorization_endpoint: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1791,7 +1958,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
     pub fn build(
@@ -1806,7 +1974,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesfor
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1900,7 +2069,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryEl {
     pub fn build(
@@ -1913,7 +2083,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesfor
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElOauthDiscoveryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1951,7 +2122,8 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOau
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     client_credentials_wo_version: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1964,7 +2136,9 @@ pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesfo
     client_secret_wo: Option<PrimField<String>>,
 }
 
-impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl {
+impl
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl
+{
     #[doc = "Set the field `client_credentials_wo_version`.\n"]
     pub fn set_client_credentials_wo_version(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.client_credentials_wo_version = Some(v.into());
@@ -2011,7 +2185,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigEl {
     pub fn build(
@@ -2027,7 +2202,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesfor
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2085,7 +2261,8 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOau
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     authorization_endpoint: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2137,7 +2314,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataEl {
     pub fn build(
@@ -2152,7 +2330,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOau
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElAuthorizationServerMetadataElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2246,7 +2425,8 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryEl
+{}
 
 impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryEl {
     pub fn build(
@@ -2259,7 +2439,8 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOau
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2297,7 +2478,8 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2Pr
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     client_credentials_wo_version: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2342,9 +2524,12 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2Pr
     }
 }
 
-impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl {
-    type O =
-        BlockAssignable<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl>;
+impl ToListMappable
+    for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2355,10 +2540,16 @@ impl ToListMappable for BedrockagentcoreOauth2CredentialProviderOauth2ProviderCo
     }
 }
 
-pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl {}
+pub struct BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl
+{}
 
-impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl {
-    pub fn build(self) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl {
+impl
+    BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl
+{
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl
+    {
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigEl {
             client_credentials_wo_version: core::default::Default::default(),
             client_id: core::default::Default::default(),
@@ -2369,16 +2560,20 @@ impl BuildBedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOau
     }
 }
 
-pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef {
+pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef {
+impl Ref
+    for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef {
+    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef
+    {
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2393,7 +2588,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2Pr
 
     #[doc = "Get a reference to the value of field `client_credentials_wo_version` after provisioning.\n"]
     pub fn client_credentials_wo_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_credentials_wo_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_credentials_wo_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -2408,12 +2606,18 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2Pr
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret_wo` after provisioning.\n"]
     pub fn client_secret_wo(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret_wo", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret_wo", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_discovery` after provisioning.\n"]
@@ -2421,8 +2625,11 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2Pr
         &self,
     ) -> ListRef<
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElOauthDiscoveryElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_discovery", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_discovery", self.base),
+        )
     }
 }
 
@@ -2493,10 +2700,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2516,10 +2723,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.github_oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.github_oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2539,10 +2746,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.google_oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.google_oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2562,10 +2769,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.microsoft_oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.microsoft_oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2585,10 +2792,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.salesforce_oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.salesforce_oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2608,10 +2815,10 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.slack_oauth2_provider_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.slack_oauth2_provider_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2651,7 +2858,10 @@ pub struct BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef {
 }
 
 impl Ref for BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef {
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2667,47 +2877,66 @@ impl BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElRef {
     #[doc = "Get a reference to the value of field `custom_oauth2_provider_config` after provisioning.\n"]
     pub fn custom_oauth2_provider_config(
         &self,
-    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_oauth2_provider_config", self.base))
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElCustomOauth2ProviderConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_oauth2_provider_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `github_oauth2_provider_config` after provisioning.\n"]
     pub fn github_oauth2_provider_config(
         &self,
-    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.github_oauth2_provider_config", self.base))
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGithubOauth2ProviderConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.github_oauth2_provider_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `google_oauth2_provider_config` after provisioning.\n"]
     pub fn google_oauth2_provider_config(
         &self,
-    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.google_oauth2_provider_config", self.base))
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElGoogleOauth2ProviderConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.google_oauth2_provider_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `microsoft_oauth2_provider_config` after provisioning.\n"]
     pub fn microsoft_oauth2_provider_config(
         &self,
-    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.microsoft_oauth2_provider_config", self.base))
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElMicrosoftOauth2ProviderConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.microsoft_oauth2_provider_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `salesforce_oauth2_provider_config` after provisioning.\n"]
     pub fn salesforce_oauth2_provider_config(
         &self,
-    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.salesforce_oauth2_provider_config", self.base))
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSalesforceOauth2ProviderConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.salesforce_oauth2_provider_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `slack_oauth2_provider_config` after provisioning.\n"]
     pub fn slack_oauth2_provider_config(
         &self,
-    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.slack_oauth2_provider_config", self.base))
+    ) -> ListRef<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigElSlackOauth2ProviderConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.slack_oauth2_provider_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentcoreOauth2CredentialProviderDynamic {
-    oauth2_provider_config: Option<DynamicBlock<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl>>,
+    oauth2_provider_config:
+        Option<DynamicBlock<BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigEl>>,
 }

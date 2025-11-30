@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontKeyValueStoreData {
@@ -56,7 +56,8 @@ impl CloudfrontKeyValueStore {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -69,7 +70,7 @@ impl CloudfrontKeyValueStore {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -80,12 +81,22 @@ impl CloudfrontKeyValueStore {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -108,12 +119,18 @@ impl CloudfrontKeyValueStore {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -123,27 +140,40 @@ impl CloudfrontKeyValueStore {
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudfrontKeyValueStoreTimeoutsElRef {
-        CloudfrontKeyValueStoreTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CloudfrontKeyValueStoreTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontKeyValueStore {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontKeyValueStore { }
+impl Resource for CloudfrontKeyValueStore {}
 
 impl ToListMappable for CloudfrontKeyValueStore {
     type O = ListRef<CloudfrontKeyValueStoreRef>;
@@ -201,10 +231,7 @@ pub struct CloudfrontKeyValueStoreRef {
 
 impl Ref for CloudfrontKeyValueStoreRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -224,12 +251,18 @@ impl CloudfrontKeyValueStoreRef {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -239,17 +272,26 @@ impl CloudfrontKeyValueStoreRef {
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudfrontKeyValueStoreTimeoutsElRef {
-        CloudfrontKeyValueStoreTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CloudfrontKeyValueStoreTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -260,8 +302,7 @@ pub struct CloudfrontKeyValueStoreTimeoutsEl {
 }
 
 impl CloudfrontKeyValueStoreTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
@@ -284,7 +325,9 @@ pub struct BuildCloudfrontKeyValueStoreTimeoutsEl {}
 
 impl BuildCloudfrontKeyValueStoreTimeoutsEl {
     pub fn build(self) -> CloudfrontKeyValueStoreTimeoutsEl {
-        CloudfrontKeyValueStoreTimeoutsEl { create: core::default::Default::default() }
+        CloudfrontKeyValueStoreTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 
@@ -307,8 +350,7 @@ impl CloudfrontKeyValueStoreTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LambdaEventSourceMappingData {
@@ -54,11 +54,13 @@ struct LambdaEventSourceMappingData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tumbling_window_in_seconds: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    amazon_managed_kafka_event_source_config: Option<Vec<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigEl>>,
+    amazon_managed_kafka_event_source_config:
+        Option<Vec<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     destination_config: Option<Vec<LambdaEventSourceMappingDestinationConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    document_db_event_source_config: Option<Vec<LambdaEventSourceMappingDocumentDbEventSourceConfigEl>>,
+    document_db_event_source_config:
+        Option<Vec<LambdaEventSourceMappingDocumentDbEventSourceConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     filter_criteria: Option<Vec<LambdaEventSourceMappingFilterCriteriaEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -70,7 +72,8 @@ struct LambdaEventSourceMappingData {
     #[serde(skip_serializing_if = "Option::is_none")]
     self_managed_event_source: Option<Vec<LambdaEventSourceMappingSelfManagedEventSourceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    self_managed_kafka_event_source_config: Option<Vec<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigEl>>,
+    self_managed_kafka_event_source_config:
+        Option<Vec<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_access_configuration: Option<Vec<LambdaEventSourceMappingSourceAccessConfigurationEl>>,
     dynamic: LambdaEventSourceMappingDynamic,
@@ -111,7 +114,8 @@ impl LambdaEventSourceMapping {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -124,7 +128,7 @@ impl LambdaEventSourceMapping {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -135,12 +139,22 @@ impl LambdaEventSourceMapping {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -216,8 +230,7 @@ impl LambdaEventSourceMapping {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -266,11 +279,18 @@ impl LambdaEventSourceMapping {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().amazon_managed_kafka_event_source_config = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .amazon_managed_kafka_event_source_config = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.amazon_managed_kafka_event_source_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .amazon_managed_kafka_event_source_config = Some(d);
+            }
         }
         self
     }
@@ -283,10 +303,10 @@ impl LambdaEventSourceMapping {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().destination_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.destination_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -299,36 +319,46 @@ impl LambdaEventSourceMapping {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().document_db_event_source_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.document_db_event_source_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .document_db_event_source_config = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `filter_criteria`.\n"]
-    pub fn set_filter_criteria(self, v: impl Into<BlockAssignable<LambdaEventSourceMappingFilterCriteriaEl>>) -> Self {
+    pub fn set_filter_criteria(
+        self,
+        v: impl Into<BlockAssignable<LambdaEventSourceMappingFilterCriteriaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter_criteria = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `metrics_config`.\n"]
-    pub fn set_metrics_config(self, v: impl Into<BlockAssignable<LambdaEventSourceMappingMetricsConfigEl>>) -> Self {
+    pub fn set_metrics_config(
+        self,
+        v: impl Into<BlockAssignable<LambdaEventSourceMappingMetricsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().metrics_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.metrics_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -341,23 +371,26 @@ impl LambdaEventSourceMapping {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().provisioned_poller_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.provisioned_poller_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `scaling_config`.\n"]
-    pub fn set_scaling_config(self, v: impl Into<BlockAssignable<LambdaEventSourceMappingScalingConfigEl>>) -> Self {
+    pub fn set_scaling_config(
+        self,
+        v: impl Into<BlockAssignable<LambdaEventSourceMappingScalingConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scaling_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scaling_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -370,10 +403,10 @@ impl LambdaEventSourceMapping {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().self_managed_event_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.self_managed_event_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -385,11 +418,18 @@ impl LambdaEventSourceMapping {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().self_managed_kafka_event_source_config = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .self_managed_kafka_event_source_config = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.self_managed_kafka_event_source_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .self_managed_kafka_event_source_config = Some(d);
+            }
         }
         self
     }
@@ -402,10 +442,10 @@ impl LambdaEventSourceMapping {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source_access_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source_access_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -417,37 +457,58 @@ impl LambdaEventSourceMapping {
 
     #[doc = "Get a reference to the value of field `batch_size` after provisioning.\n"]
     pub fn batch_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.batch_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.batch_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bisect_batch_on_function_error` after provisioning.\n"]
     pub fn bisect_batch_on_function_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bisect_batch_on_function_error", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bisect_batch_on_function_error", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_source_arn` after provisioning.\n"]
     pub fn event_source_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_source_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_source_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_response_types` after provisioning.\n"]
     pub fn function_response_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.function_response_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.function_response_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -457,93 +518,146 @@ impl LambdaEventSourceMapping {
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_processing_result` after provisioning.\n"]
     pub fn last_processing_result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_processing_result", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_processing_result", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_record_age_in_seconds` after provisioning.\n"]
     pub fn maximum_record_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_record_age_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_record_age_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parallelization_factor` after provisioning.\n"]
     pub fn parallelization_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parallelization_factor", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parallelization_factor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queues` after provisioning.\n"]
     pub fn queues(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.queues", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.queues", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position_timestamp` after provisioning.\n"]
     pub fn starting_position_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_transition_reason` after provisioning.\n"]
     pub fn state_transition_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_transition_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_transition_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topics` after provisioning.\n"]
     pub fn topics(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.topics", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.topics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tumbling_window_in_seconds` after provisioning.\n"]
     pub fn tumbling_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tumbling_window_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tumbling_window_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uuid` after provisioning.\n"]
     pub fn uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uuid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `amazon_managed_kafka_event_source_config` after provisioning.\n"]
@@ -552,60 +666,100 @@ impl LambdaEventSourceMapping {
     ) -> ListRef<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef> {
         ListRef::new(
             self.shared().clone(),
-            format!("{}.amazon_managed_kafka_event_source_config", self.extract_ref()),
+            format!(
+                "{}.amazon_managed_kafka_event_source_config",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `destination_config` after provisioning.\n"]
     pub fn destination_config(&self) -> ListRef<LambdaEventSourceMappingDestinationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_db_event_source_config` after provisioning.\n"]
-    pub fn document_db_event_source_config(&self) -> ListRef<LambdaEventSourceMappingDocumentDbEventSourceConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.document_db_event_source_config", self.extract_ref()))
+    pub fn document_db_event_source_config(
+        &self,
+    ) -> ListRef<LambdaEventSourceMappingDocumentDbEventSourceConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.document_db_event_source_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<LambdaEventSourceMappingFilterCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_criteria", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metrics_config` after provisioning.\n"]
     pub fn metrics_config(&self) -> ListRef<LambdaEventSourceMappingMetricsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metrics_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metrics_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_poller_config` after provisioning.\n"]
-    pub fn provisioned_poller_config(&self) -> ListRef<LambdaEventSourceMappingProvisionedPollerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioned_poller_config", self.extract_ref()))
+    pub fn provisioned_poller_config(
+        &self,
+    ) -> ListRef<LambdaEventSourceMappingProvisionedPollerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioned_poller_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_config` after provisioning.\n"]
     pub fn scaling_config(&self) -> ListRef<LambdaEventSourceMappingScalingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_managed_event_source` after provisioning.\n"]
-    pub fn self_managed_event_source(&self) -> ListRef<LambdaEventSourceMappingSelfManagedEventSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.self_managed_event_source", self.extract_ref()))
+    pub fn self_managed_event_source(
+        &self,
+    ) -> ListRef<LambdaEventSourceMappingSelfManagedEventSourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.self_managed_event_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_managed_kafka_event_source_config` after provisioning.\n"]
     pub fn self_managed_kafka_event_source_config(
         &self,
     ) -> ListRef<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.self_managed_kafka_event_source_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.self_managed_kafka_event_source_config",
+                self.extract_ref()
+            ),
+        )
     }
 }
 
 impl Referable for LambdaEventSourceMapping {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LambdaEventSourceMapping { }
+impl Resource for LambdaEventSourceMapping {}
 
 impl ToListMappable for LambdaEventSourceMapping {
     type O = ListRef<LambdaEventSourceMappingRef>;
@@ -691,10 +845,7 @@ pub struct LambdaEventSourceMappingRef {
 
 impl Ref for LambdaEventSourceMappingRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -714,37 +865,58 @@ impl LambdaEventSourceMappingRef {
 
     #[doc = "Get a reference to the value of field `batch_size` after provisioning.\n"]
     pub fn batch_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.batch_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.batch_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bisect_batch_on_function_error` after provisioning.\n"]
     pub fn bisect_batch_on_function_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bisect_batch_on_function_error", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bisect_batch_on_function_error", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_source_arn` after provisioning.\n"]
     pub fn event_source_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_source_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_source_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_response_types` after provisioning.\n"]
     pub fn function_response_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.function_response_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.function_response_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -754,93 +926,146 @@ impl LambdaEventSourceMappingRef {
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_processing_result` after provisioning.\n"]
     pub fn last_processing_result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_processing_result", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_processing_result", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_record_age_in_seconds` after provisioning.\n"]
     pub fn maximum_record_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_record_age_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_record_age_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parallelization_factor` after provisioning.\n"]
     pub fn parallelization_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parallelization_factor", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parallelization_factor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queues` after provisioning.\n"]
     pub fn queues(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.queues", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.queues", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position_timestamp` after provisioning.\n"]
     pub fn starting_position_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_transition_reason` after provisioning.\n"]
     pub fn state_transition_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_transition_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_transition_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topics` after provisioning.\n"]
     pub fn topics(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.topics", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.topics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tumbling_window_in_seconds` after provisioning.\n"]
     pub fn tumbling_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tumbling_window_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tumbling_window_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uuid` after provisioning.\n"]
     pub fn uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uuid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `amazon_managed_kafka_event_source_config` after provisioning.\n"]
@@ -849,55 +1074,92 @@ impl LambdaEventSourceMappingRef {
     ) -> ListRef<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef> {
         ListRef::new(
             self.shared().clone(),
-            format!("{}.amazon_managed_kafka_event_source_config", self.extract_ref()),
+            format!(
+                "{}.amazon_managed_kafka_event_source_config",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `destination_config` after provisioning.\n"]
     pub fn destination_config(&self) -> ListRef<LambdaEventSourceMappingDestinationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_db_event_source_config` after provisioning.\n"]
-    pub fn document_db_event_source_config(&self) -> ListRef<LambdaEventSourceMappingDocumentDbEventSourceConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.document_db_event_source_config", self.extract_ref()))
+    pub fn document_db_event_source_config(
+        &self,
+    ) -> ListRef<LambdaEventSourceMappingDocumentDbEventSourceConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.document_db_event_source_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<LambdaEventSourceMappingFilterCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_criteria", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metrics_config` after provisioning.\n"]
     pub fn metrics_config(&self) -> ListRef<LambdaEventSourceMappingMetricsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metrics_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metrics_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_poller_config` after provisioning.\n"]
-    pub fn provisioned_poller_config(&self) -> ListRef<LambdaEventSourceMappingProvisionedPollerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioned_poller_config", self.extract_ref()))
+    pub fn provisioned_poller_config(
+        &self,
+    ) -> ListRef<LambdaEventSourceMappingProvisionedPollerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioned_poller_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_config` after provisioning.\n"]
     pub fn scaling_config(&self) -> ListRef<LambdaEventSourceMappingScalingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_managed_event_source` after provisioning.\n"]
-    pub fn self_managed_event_source(&self) -> ListRef<LambdaEventSourceMappingSelfManagedEventSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.self_managed_event_source", self.extract_ref()))
+    pub fn self_managed_event_source(
+        &self,
+    ) -> ListRef<LambdaEventSourceMappingSelfManagedEventSourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.self_managed_event_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_managed_kafka_event_source_config` after provisioning.\n"]
     pub fn self_managed_kafka_event_source_config(
         &self,
     ) -> ListRef<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.self_managed_kafka_event_source_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.self_managed_kafka_event_source_config",
+                self.extract_ref()
+            ),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {
+pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl
+{
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -933,7 +1195,8 @@ impl ToListMappable for LambdaEventSourceMappingAmazonManagedKafkaEventSourceCon
     }
 }
 
-pub struct BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {}
+pub struct BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl
+{}
 
 impl BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {
     pub fn build(
@@ -946,7 +1209,8 @@ impl BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaReg
     }
 }
 
-pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigElRef {
+pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -980,7 +1244,8 @@ impl LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistry
 }
 
 #[derive(Serialize)]
-pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl {
+pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     attribute: Option<PrimField<String>>,
 }
@@ -1008,7 +1273,8 @@ impl ToListMappable for LambdaEventSourceMappingAmazonManagedKafkaEventSourceCon
     }
 }
 
-pub struct BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl {}
+pub struct BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl
+{}
 
 impl BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl {
     pub fn build(
@@ -1020,7 +1286,8 @@ impl BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaReg
     }
 }
 
-pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigElRef {
+pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1109,10 +1376,10 @@ impl LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistry
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1132,17 +1399,21 @@ impl LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistry
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema_validation_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema_validation_config = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
-    type O = BlockAssignable<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl>;
+impl ToListMappable
+    for LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl
+{
+    type O = BlockAssignable<
+        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1153,10 +1424,13 @@ impl ToListMappable for LambdaEventSourceMappingAmazonManagedKafkaEventSourceCon
     }
 }
 
-pub struct BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {}
+pub struct BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl
+{}
 
 impl BuildLambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
-    pub fn build(self) -> LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
+    pub fn build(
+        self,
+    ) -> LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
             event_record_format: core::default::Default::default(),
             schema_registry_uri: core::default::Default::default(),
@@ -1172,11 +1446,14 @@ pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRe
     base: String,
 }
 
-impl Ref for LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef {
+impl Ref
+    for LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef {
+    ) -> LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef
+    {
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1191,19 +1468,27 @@ impl LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistry
 
     #[doc = "Get a reference to the value of field `event_record_format` after provisioning.\n"]
     pub fn event_record_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_record_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_record_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_registry_uri` after provisioning.\n"]
     pub fn schema_registry_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schema_registry_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schema_registry_uri", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElDynamic {
     schema_registry_config: Option<
-        DynamicBlock<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl>,
+        DynamicBlock<
+            LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
+        >,
     >,
 }
 
@@ -1228,22 +1513,19 @@ impl LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigEl {
     #[doc = "Set the field `schema_registry_config`.\n"]
     pub fn set_schema_registry_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema_registry_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema_registry_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1279,7 +1561,10 @@ pub struct LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef {
 }
 
 impl Ref for LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef {
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1294,14 +1579,22 @@ impl LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElRef {
 
     #[doc = "Get a reference to the value of field `consumer_group_id` after provisioning.\n"]
     pub fn consumer_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.consumer_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.consumer_group_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_registry_config` after provisioning.\n"]
     pub fn schema_registry_config(
         &self,
-    ) -> ListRef<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_registry_config", self.base))
+    ) -> ListRef<
+        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_registry_config", self.base),
+        )
     }
 }
 
@@ -1310,7 +1603,7 @@ pub struct LambdaEventSourceMappingDestinationConfigElOnFailureEl {
     destination_arn: PrimField<String>,
 }
 
-impl LambdaEventSourceMappingDestinationConfigElOnFailureEl { }
+impl LambdaEventSourceMappingDestinationConfigElOnFailureEl {}
 
 impl ToListMappable for LambdaEventSourceMappingDestinationConfigElOnFailureEl {
     type O = BlockAssignable<LambdaEventSourceMappingDestinationConfigElOnFailureEl>;
@@ -1331,7 +1624,9 @@ pub struct BuildLambdaEventSourceMappingDestinationConfigElOnFailureEl {
 
 impl BuildLambdaEventSourceMappingDestinationConfigElOnFailureEl {
     pub fn build(self) -> LambdaEventSourceMappingDestinationConfigElOnFailureEl {
-        LambdaEventSourceMappingDestinationConfigElOnFailureEl { destination_arn: self.destination_arn }
+        LambdaEventSourceMappingDestinationConfigElOnFailureEl {
+            destination_arn: self.destination_arn,
+        }
     }
 }
 
@@ -1341,7 +1636,10 @@ pub struct LambdaEventSourceMappingDestinationConfigElOnFailureElRef {
 }
 
 impl Ref for LambdaEventSourceMappingDestinationConfigElOnFailureElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingDestinationConfigElOnFailureElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingDestinationConfigElOnFailureElRef {
         LambdaEventSourceMappingDestinationConfigElOnFailureElRef {
             shared: shared,
             base: base.to_string(),
@@ -1356,7 +1654,10 @@ impl LambdaEventSourceMappingDestinationConfigElOnFailureElRef {
 
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_arn", self.base),
+        )
     }
 }
 
@@ -1381,10 +1682,10 @@ impl LambdaEventSourceMappingDestinationConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_failure = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_failure = Some(d);
-            },
+            }
         }
         self
     }
@@ -1494,7 +1795,10 @@ pub struct LambdaEventSourceMappingDocumentDbEventSourceConfigElRef {
 }
 
 impl Ref for LambdaEventSourceMappingDocumentDbEventSourceConfigElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingDocumentDbEventSourceConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingDocumentDbEventSourceConfigElRef {
         LambdaEventSourceMappingDocumentDbEventSourceConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1509,17 +1813,26 @@ impl LambdaEventSourceMappingDocumentDbEventSourceConfigElRef {
 
     #[doc = "Get a reference to the value of field `collection_name` after provisioning.\n"]
     pub fn collection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `full_document` after provisioning.\n"]
     pub fn full_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.full_document", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.full_document", self.base),
+        )
     }
 }
 
@@ -1553,7 +1866,9 @@ pub struct BuildLambdaEventSourceMappingFilterCriteriaElFilterEl {}
 
 impl BuildLambdaEventSourceMappingFilterCriteriaElFilterEl {
     pub fn build(self) -> LambdaEventSourceMappingFilterCriteriaElFilterEl {
-        LambdaEventSourceMappingFilterCriteriaElFilterEl { pattern: core::default::Default::default() }
+        LambdaEventSourceMappingFilterCriteriaElFilterEl {
+            pattern: core::default::Default::default(),
+        }
     }
 }
 
@@ -1563,7 +1878,10 @@ pub struct LambdaEventSourceMappingFilterCriteriaElFilterElRef {
 }
 
 impl Ref for LambdaEventSourceMappingFilterCriteriaElFilterElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingFilterCriteriaElFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingFilterCriteriaElFilterElRef {
         LambdaEventSourceMappingFilterCriteriaElFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1603,10 +1921,10 @@ impl LambdaEventSourceMappingFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1660,7 +1978,7 @@ pub struct LambdaEventSourceMappingMetricsConfigEl {
     metrics: SetField<PrimField<String>>,
 }
 
-impl LambdaEventSourceMappingMetricsConfigEl { }
+impl LambdaEventSourceMappingMetricsConfigEl {}
 
 impl ToListMappable for LambdaEventSourceMappingMetricsConfigEl {
     type O = BlockAssignable<LambdaEventSourceMappingMetricsConfigEl>;
@@ -1681,7 +1999,9 @@ pub struct BuildLambdaEventSourceMappingMetricsConfigEl {
 
 impl BuildLambdaEventSourceMappingMetricsConfigEl {
     pub fn build(self) -> LambdaEventSourceMappingMetricsConfigEl {
-        LambdaEventSourceMappingMetricsConfigEl { metrics: self.metrics }
+        LambdaEventSourceMappingMetricsConfigEl {
+            metrics: self.metrics,
+        }
     }
 }
 
@@ -1761,7 +2081,10 @@ pub struct LambdaEventSourceMappingProvisionedPollerConfigElRef {
 }
 
 impl Ref for LambdaEventSourceMappingProvisionedPollerConfigElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingProvisionedPollerConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingProvisionedPollerConfigElRef {
         LambdaEventSourceMappingProvisionedPollerConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1776,12 +2099,18 @@ impl LambdaEventSourceMappingProvisionedPollerConfigElRef {
 
     #[doc = "Get a reference to the value of field `maximum_pollers` after provisioning.\n"]
     pub fn maximum_pollers(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_pollers", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_pollers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_pollers` after provisioning.\n"]
     pub fn minimum_pollers(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_pollers", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_pollers", self.base),
+        )
     }
 }
 
@@ -1815,7 +2144,9 @@ pub struct BuildLambdaEventSourceMappingScalingConfigEl {}
 
 impl BuildLambdaEventSourceMappingScalingConfigEl {
     pub fn build(self) -> LambdaEventSourceMappingScalingConfigEl {
-        LambdaEventSourceMappingScalingConfigEl { maximum_concurrency: core::default::Default::default() }
+        LambdaEventSourceMappingScalingConfigEl {
+            maximum_concurrency: core::default::Default::default(),
+        }
     }
 }
 
@@ -1840,7 +2171,10 @@ impl LambdaEventSourceMappingScalingConfigElRef {
 
     #[doc = "Get a reference to the value of field `maximum_concurrency` after provisioning.\n"]
     pub fn maximum_concurrency(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_concurrency", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_concurrency", self.base),
+        )
     }
 }
 
@@ -1849,7 +2183,7 @@ pub struct LambdaEventSourceMappingSelfManagedEventSourceEl {
     endpoints: RecField<PrimField<String>>,
 }
 
-impl LambdaEventSourceMappingSelfManagedEventSourceEl { }
+impl LambdaEventSourceMappingSelfManagedEventSourceEl {}
 
 impl ToListMappable for LambdaEventSourceMappingSelfManagedEventSourceEl {
     type O = BlockAssignable<LambdaEventSourceMappingSelfManagedEventSourceEl>;
@@ -1870,7 +2204,9 @@ pub struct BuildLambdaEventSourceMappingSelfManagedEventSourceEl {
 
 impl BuildLambdaEventSourceMappingSelfManagedEventSourceEl {
     pub fn build(self) -> LambdaEventSourceMappingSelfManagedEventSourceEl {
-        LambdaEventSourceMappingSelfManagedEventSourceEl { endpoints: self.endpoints }
+        LambdaEventSourceMappingSelfManagedEventSourceEl {
+            endpoints: self.endpoints,
+        }
     }
 }
 
@@ -1880,7 +2216,10 @@ pub struct LambdaEventSourceMappingSelfManagedEventSourceElRef {
 }
 
 impl Ref for LambdaEventSourceMappingSelfManagedEventSourceElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingSelfManagedEventSourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingSelfManagedEventSourceElRef {
         LambdaEventSourceMappingSelfManagedEventSourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1900,14 +2239,17 @@ impl LambdaEventSourceMappingSelfManagedEventSourceElRef {
 }
 
 #[derive(Serialize)]
-pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {
+pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl
+{
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     uri: Option<PrimField<String>>,
 }
 
-impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {
+impl
+    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl
+{
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
@@ -1936,7 +2278,8 @@ impl ToListMappable for LambdaEventSourceMappingSelfManagedKafkaEventSourceConfi
     }
 }
 
-pub struct BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {}
+pub struct BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl
+{}
 
 impl BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigEl {
     pub fn build(
@@ -1949,7 +2292,8 @@ impl BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegis
     }
 }
 
-pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigElRef {
+pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElAccessConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1983,7 +2327,8 @@ impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryCo
 }
 
 #[derive(Serialize)]
-pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl {
+pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     attribute: Option<PrimField<String>>,
 }
@@ -2011,7 +2356,8 @@ impl ToListMappable for LambdaEventSourceMappingSelfManagedKafkaEventSourceConfi
     }
 }
 
-pub struct BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl {}
+pub struct BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl
+{}
 
 impl BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigEl {
     pub fn build(
@@ -2023,7 +2369,8 @@ impl BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegis
     }
 }
 
-pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigElRef {
+pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElSchemaValidationConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2108,10 +2455,10 @@ impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryCo
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2131,17 +2478,21 @@ impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryCo
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema_validation_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema_validation_config = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
-    type O = BlockAssignable<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl>;
+impl ToListMappable
+    for LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl
+{
+    type O = BlockAssignable<
+        LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2152,10 +2503,13 @@ impl ToListMappable for LambdaEventSourceMappingSelfManagedKafkaEventSourceConfi
     }
 }
 
-pub struct BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {}
+pub struct BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
+}
 
 impl BuildLambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
-    pub fn build(self) -> LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
+    pub fn build(
+        self,
+    ) -> LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
         LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl {
             event_record_format: core::default::Default::default(),
             schema_registry_uri: core::default::Default::default(),
@@ -2190,19 +2544,27 @@ impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryCo
 
     #[doc = "Get a reference to the value of field `event_record_format` after provisioning.\n"]
     pub fn event_record_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_record_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_record_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_registry_uri` after provisioning.\n"]
     pub fn schema_registry_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schema_registry_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schema_registry_uri", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElDynamic {
     schema_registry_config: Option<
-        DynamicBlock<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl>,
+        DynamicBlock<
+            LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
+        >,
     >,
 }
 
@@ -2227,22 +2589,19 @@ impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigEl {
     #[doc = "Set the field `schema_registry_config`.\n"]
     pub fn set_schema_registry_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema_registry_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema_registry_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2278,7 +2637,10 @@ pub struct LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef {
 }
 
 impl Ref for LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef {
         LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2293,14 +2655,21 @@ impl LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElRef {
 
     #[doc = "Get a reference to the value of field `consumer_group_id` after provisioning.\n"]
     pub fn consumer_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.consumer_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.consumer_group_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_registry_config` after provisioning.\n"]
     pub fn schema_registry_config(
         &self,
-    ) -> ListRef<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_registry_config", self.base))
+    ) -> ListRef<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigElSchemaRegistryConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_registry_config", self.base),
+        )
     }
 }
 
@@ -2311,7 +2680,7 @@ pub struct LambdaEventSourceMappingSourceAccessConfigurationEl {
     uri: PrimField<String>,
 }
 
-impl LambdaEventSourceMappingSourceAccessConfigurationEl { }
+impl LambdaEventSourceMappingSourceAccessConfigurationEl {}
 
 impl ToListMappable for LambdaEventSourceMappingSourceAccessConfigurationEl {
     type O = BlockAssignable<LambdaEventSourceMappingSourceAccessConfigurationEl>;
@@ -2347,7 +2716,10 @@ pub struct LambdaEventSourceMappingSourceAccessConfigurationElRef {
 }
 
 impl Ref for LambdaEventSourceMappingSourceAccessConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> LambdaEventSourceMappingSourceAccessConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaEventSourceMappingSourceAccessConfigurationElRef {
         LambdaEventSourceMappingSourceAccessConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2373,18 +2745,20 @@ impl LambdaEventSourceMappingSourceAccessConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct LambdaEventSourceMappingDynamic {
-    amazon_managed_kafka_event_source_config: Option<
-        DynamicBlock<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigEl>,
-    >,
+    amazon_managed_kafka_event_source_config:
+        Option<DynamicBlock<LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigEl>>,
     destination_config: Option<DynamicBlock<LambdaEventSourceMappingDestinationConfigEl>>,
-    document_db_event_source_config: Option<DynamicBlock<LambdaEventSourceMappingDocumentDbEventSourceConfigEl>>,
+    document_db_event_source_config:
+        Option<DynamicBlock<LambdaEventSourceMappingDocumentDbEventSourceConfigEl>>,
     filter_criteria: Option<DynamicBlock<LambdaEventSourceMappingFilterCriteriaEl>>,
     metrics_config: Option<DynamicBlock<LambdaEventSourceMappingMetricsConfigEl>>,
-    provisioned_poller_config: Option<DynamicBlock<LambdaEventSourceMappingProvisionedPollerConfigEl>>,
+    provisioned_poller_config:
+        Option<DynamicBlock<LambdaEventSourceMappingProvisionedPollerConfigEl>>,
     scaling_config: Option<DynamicBlock<LambdaEventSourceMappingScalingConfigEl>>,
-    self_managed_event_source: Option<DynamicBlock<LambdaEventSourceMappingSelfManagedEventSourceEl>>,
-    self_managed_kafka_event_source_config: Option<
-        DynamicBlock<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigEl>,
-    >,
-    source_access_configuration: Option<DynamicBlock<LambdaEventSourceMappingSourceAccessConfigurationEl>>,
+    self_managed_event_source:
+        Option<DynamicBlock<LambdaEventSourceMappingSelfManagedEventSourceEl>>,
+    self_managed_kafka_event_source_config:
+        Option<DynamicBlock<LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigEl>>,
+    source_access_configuration:
+        Option<DynamicBlock<LambdaEventSourceMappingSourceAccessConfigurationEl>>,
 }

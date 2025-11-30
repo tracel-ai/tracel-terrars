@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2NetworkInsightsPathData {
@@ -61,8 +61,7 @@ impl DataEc2NetworkInsightsPath {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -75,14 +74,17 @@ impl DataEc2NetworkInsightsPath {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2NetworkInsightsPathFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2NetworkInsightsPathFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -94,32 +96,52 @@ impl DataEc2NetworkInsightsPath {
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_ip` after provisioning.\n"]
     pub fn destination_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_ip", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_ip", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port` after provisioning.\n"]
     pub fn destination_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_at_destination` after provisioning.\n"]
-    pub fn filter_at_destination(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_at_destination", self.extract_ref()))
+    pub fn filter_at_destination(
+        &self,
+    ) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_at_destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_at_source` after provisioning.\n"]
     pub fn filter_at_source(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_at_source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_at_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -129,48 +151,72 @@ impl DataEc2NetworkInsightsPath {
 
     #[doc = "Get a reference to the value of field `network_insights_path_id` after provisioning.\n"]
     pub fn network_insights_path_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_insights_path_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_insights_path_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
     pub fn source_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_ip` after provisioning.\n"]
     pub fn source_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_ip", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_ip", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEc2NetworkInsightsPath {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2NetworkInsightsPath { }
+impl Datasource for DataEc2NetworkInsightsPath {}
 
 impl ToListMappable for DataEc2NetworkInsightsPath {
     type O = ListRef<DataEc2NetworkInsightsPathRef>;
@@ -228,10 +274,7 @@ pub struct DataEc2NetworkInsightsPathRef {
 
 impl Ref for DataEc2NetworkInsightsPathRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -251,32 +294,52 @@ impl DataEc2NetworkInsightsPathRef {
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_ip` after provisioning.\n"]
     pub fn destination_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_ip", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_ip", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port` after provisioning.\n"]
     pub fn destination_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_at_destination` after provisioning.\n"]
-    pub fn filter_at_destination(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_at_destination", self.extract_ref()))
+    pub fn filter_at_destination(
+        &self,
+    ) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_at_destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_at_source` after provisioning.\n"]
     pub fn filter_at_source(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_at_source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_at_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -286,38 +349,58 @@ impl DataEc2NetworkInsightsPathRef {
 
     #[doc = "Get a reference to the value of field `network_insights_path_id` after provisioning.\n"]
     pub fn network_insights_path_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_insights_path_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_insights_path_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
     pub fn source_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_ip` after provisioning.\n"]
     pub fn source_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_ip", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_ip", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -450,7 +533,10 @@ pub struct DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef {
 }
 
 impl Ref for DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef {
         DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -479,11 +565,13 @@ pub struct DataEc2NetworkInsightsPathFilterAtDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     destination_address: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_port_range: Option<ListField<DataEc2NetworkInsightsPathFilterAtDestinationElDestinationPortRangeEl>>,
+    destination_port_range:
+        Option<ListField<DataEc2NetworkInsightsPathFilterAtDestinationElDestinationPortRangeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_address: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_port_range: Option<ListField<DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeEl>>,
+    source_port_range:
+        Option<ListField<DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeEl>>,
 }
 
 impl DataEc2NetworkInsightsPathFilterAtDestinationEl {
@@ -549,7 +637,10 @@ pub struct DataEc2NetworkInsightsPathFilterAtDestinationElRef {
 }
 
 impl Ref for DataEc2NetworkInsightsPathFilterAtDestinationElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2NetworkInsightsPathFilterAtDestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2NetworkInsightsPathFilterAtDestinationElRef {
         DataEc2NetworkInsightsPathFilterAtDestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -564,24 +655,38 @@ impl DataEc2NetworkInsightsPathFilterAtDestinationElRef {
 
     #[doc = "Get a reference to the value of field `destination_address` after provisioning.\n"]
     pub fn destination_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port_range` after provisioning.\n"]
     pub fn destination_port_range(
         &self,
     ) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElDestinationPortRangeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_port_range", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_port_range", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_address` after provisioning.\n"]
     pub fn source_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_port_range` after provisioning.\n"]
-    pub fn source_port_range(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_port_range", self.base))
+    pub fn source_port_range(
+        &self,
+    ) -> ListRef<DataEc2NetworkInsightsPathFilterAtDestinationElSourcePortRangeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_port_range", self.base),
+        )
     }
 }
 
@@ -636,7 +741,10 @@ pub struct DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef {
 }
 
 impl Ref for DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef {
         DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -711,7 +819,10 @@ pub struct DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef {
 }
 
 impl Ref for DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef {
         DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -740,11 +851,13 @@ pub struct DataEc2NetworkInsightsPathFilterAtSourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     destination_address: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_port_range: Option<ListField<DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeEl>>,
+    destination_port_range:
+        Option<ListField<DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_address: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_port_range: Option<ListField<DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeEl>>,
+    source_port_range:
+        Option<ListField<DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeEl>>,
 }
 
 impl DataEc2NetworkInsightsPathFilterAtSourceEl {
@@ -825,22 +938,38 @@ impl DataEc2NetworkInsightsPathFilterAtSourceElRef {
 
     #[doc = "Get a reference to the value of field `destination_address` after provisioning.\n"]
     pub fn destination_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port_range` after provisioning.\n"]
-    pub fn destination_port_range(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_port_range", self.base))
+    pub fn destination_port_range(
+        &self,
+    ) -> ListRef<DataEc2NetworkInsightsPathFilterAtSourceElDestinationPortRangeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_port_range", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_address` after provisioning.\n"]
     pub fn source_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_port_range` after provisioning.\n"]
-    pub fn source_port_range(&self) -> ListRef<DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_port_range", self.base))
+    pub fn source_port_range(
+        &self,
+    ) -> ListRef<DataEc2NetworkInsightsPathFilterAtSourceElSourcePortRangeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_port_range", self.base),
+        )
     }
 }
 
@@ -850,7 +979,7 @@ pub struct DataEc2NetworkInsightsPathFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2NetworkInsightsPathFilterEl { }
+impl DataEc2NetworkInsightsPathFilterEl {}
 
 impl ToListMappable for DataEc2NetworkInsightsPathFilterEl {
     type O = BlockAssignable<DataEc2NetworkInsightsPathFilterEl>;

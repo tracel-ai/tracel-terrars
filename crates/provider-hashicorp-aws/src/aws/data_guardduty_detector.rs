@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataGuarddutyDetectorData {
@@ -50,8 +50,7 @@ impl DataGuarddutyDetector {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -70,12 +69,18 @@ impl DataGuarddutyDetector {
 
     #[doc = "Get a reference to the value of field `features` after provisioning.\n"]
     pub fn features(&self) -> ListRef<DataGuarddutyDetectorFeaturesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.features", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.features", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `finding_publishing_frequency` after provisioning.\n"]
     pub fn finding_publishing_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.finding_publishing_frequency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.finding_publishing_frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -83,35 +88,50 @@ impl DataGuarddutyDetector {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataGuarddutyDetector {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataGuarddutyDetector { }
+impl Datasource for DataGuarddutyDetector {}
 
 impl ToListMappable for DataGuarddutyDetector {
     type O = ListRef<DataGuarddutyDetectorRef>;
@@ -166,10 +186,7 @@ pub struct DataGuarddutyDetectorRef {
 
 impl Ref for DataGuarddutyDetectorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -189,12 +206,18 @@ impl DataGuarddutyDetectorRef {
 
     #[doc = "Get a reference to the value of field `features` after provisioning.\n"]
     pub fn features(&self) -> ListRef<DataGuarddutyDetectorFeaturesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.features", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.features", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `finding_publishing_frequency` after provisioning.\n"]
     pub fn finding_publishing_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.finding_publishing_frequency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.finding_publishing_frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -202,25 +225,36 @@ impl DataGuarddutyDetectorRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -275,7 +309,10 @@ pub struct DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef {
 }
 
 impl Ref for DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef {
         DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -302,7 +339,8 @@ impl DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef {
 #[derive(Serialize)]
 pub struct DataGuarddutyDetectorFeaturesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    additional_configuration: Option<ListField<DataGuarddutyDetectorFeaturesElAdditionalConfigurationEl>>,
+    additional_configuration:
+        Option<ListField<DataGuarddutyDetectorFeaturesElAdditionalConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -376,8 +414,13 @@ impl DataGuarddutyDetectorFeaturesElRef {
     }
 
     #[doc = "Get a reference to the value of field `additional_configuration` after provisioning.\n"]
-    pub fn additional_configuration(&self) -> ListRef<DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_configuration", self.base))
+    pub fn additional_configuration(
+        &self,
+    ) -> ListRef<DataGuarddutyDetectorFeaturesElAdditionalConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

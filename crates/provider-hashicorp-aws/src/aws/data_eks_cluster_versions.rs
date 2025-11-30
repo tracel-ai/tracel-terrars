@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEksClusterVersionsData {
@@ -74,8 +74,7 @@ impl DataEksClusterVersions {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -89,48 +88,72 @@ impl DataEksClusterVersions {
 
     #[doc = "Get a reference to the value of field `cluster_type` after provisioning.\n"]
     pub fn cluster_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_versions` after provisioning.\n"]
     pub fn cluster_versions(&self) -> ListRef<DataEksClusterVersionsClusterVersionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_versions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_versions_only` after provisioning.\n"]
     pub fn cluster_versions_only(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_versions_only", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_versions_only", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_only` after provisioning.\n"]
     pub fn default_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_only", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_only", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_all` after provisioning.\n"]
     pub fn include_all(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_all", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_all", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_status` after provisioning.\n"]
     pub fn version_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_status", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEksClusterVersions {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEksClusterVersions { }
+impl Datasource for DataEksClusterVersions {}
 
 impl ToListMappable for DataEksClusterVersions {
     type O = ListRef<DataEksClusterVersionsRef>;
@@ -188,10 +211,7 @@ pub struct DataEksClusterVersionsRef {
 
 impl Ref for DataEksClusterVersionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -206,38 +226,58 @@ impl DataEksClusterVersionsRef {
 
     #[doc = "Get a reference to the value of field `cluster_type` after provisioning.\n"]
     pub fn cluster_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_versions` after provisioning.\n"]
     pub fn cluster_versions(&self) -> ListRef<DataEksClusterVersionsClusterVersionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_versions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_versions_only` after provisioning.\n"]
     pub fn cluster_versions_only(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_versions_only", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_versions_only", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_only` after provisioning.\n"]
     pub fn default_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_only", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_only", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_all` after provisioning.\n"]
     pub fn include_all(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_all", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_all", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_status` after provisioning.\n"]
     pub fn version_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_status", self.extract_ref()),
+        )
     }
 }
 
@@ -375,32 +415,50 @@ impl DataEksClusterVersionsClusterVersionsElRef {
 
     #[doc = "Get a reference to the value of field `cluster_version` after provisioning.\n"]
     pub fn cluster_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_platform_version` after provisioning.\n"]
     pub fn default_platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_platform_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_platform_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_version` after provisioning.\n"]
     pub fn default_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_of_extended_support_date` after provisioning.\n"]
     pub fn end_of_extended_support_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_of_extended_support_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_of_extended_support_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_of_standard_support_date` after provisioning.\n"]
     pub fn end_of_standard_support_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_of_standard_support_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_of_standard_support_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kubernetes_patch_version` after provisioning.\n"]
     pub fn kubernetes_patch_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kubernetes_patch_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kubernetes_patch_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_date` after provisioning.\n"]
@@ -410,6 +468,9 @@ impl DataEksClusterVersionsClusterVersionsElRef {
 
     #[doc = "Get a reference to the value of field `version_status` after provisioning.\n"]
     pub fn version_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_status", self.base),
+        )
     }
 }

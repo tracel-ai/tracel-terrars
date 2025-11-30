@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CeAnomalySubscriptionData {
@@ -67,7 +67,8 @@ impl CeAnomalySubscription {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl CeAnomalySubscription {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl CeAnomalySubscription {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -125,14 +136,17 @@ impl CeAnomalySubscription {
     }
 
     #[doc = "Set the field `subscriber`.\n"]
-    pub fn set_subscriber(self, v: impl Into<BlockAssignable<CeAnomalySubscriptionSubscriberEl>>) -> Self {
+    pub fn set_subscriber(
+        self,
+        v: impl Into<BlockAssignable<CeAnomalySubscriptionSubscriberEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().subscriber = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.subscriber = Some(d);
-            },
+            }
         }
         self
     }
@@ -145,17 +159,20 @@ impl CeAnomalySubscription {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().threshold_expression = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.threshold_expression = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -165,7 +182,10 @@ impl CeAnomalySubscription {
 
     #[doc = "Get a reference to the value of field `frequency` after provisioning.\n"]
     pub fn frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.frequency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -175,37 +195,56 @@ impl CeAnomalySubscription {
 
     #[doc = "Get a reference to the value of field `monitor_arn_list` after provisioning.\n"]
     pub fn monitor_arn_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.monitor_arn_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitor_arn_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold_expression` after provisioning.\n"]
     pub fn threshold_expression(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.threshold_expression", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.threshold_expression", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CeAnomalySubscription {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CeAnomalySubscription { }
+impl Resource for CeAnomalySubscription {}
 
 impl ToListMappable for CeAnomalySubscription {
     type O = ListRef<CeAnomalySubscriptionRef>;
@@ -274,10 +313,7 @@ pub struct CeAnomalySubscriptionRef {
 
 impl Ref for CeAnomalySubscriptionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -292,7 +328,10 @@ impl CeAnomalySubscriptionRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -302,7 +341,10 @@ impl CeAnomalySubscriptionRef {
 
     #[doc = "Get a reference to the value of field `frequency` after provisioning.\n"]
     pub fn frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.frequency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -312,27 +354,42 @@ impl CeAnomalySubscriptionRef {
 
     #[doc = "Get a reference to the value of field `monitor_arn_list` after provisioning.\n"]
     pub fn monitor_arn_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.monitor_arn_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitor_arn_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold_expression` after provisioning.\n"]
     pub fn threshold_expression(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.threshold_expression", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.threshold_expression", self.extract_ref()),
+        )
     }
 }
 
@@ -343,7 +400,7 @@ pub struct CeAnomalySubscriptionSubscriberEl {
     type_: PrimField<String>,
 }
 
-impl CeAnomalySubscriptionSubscriberEl { }
+impl CeAnomalySubscriptionSubscriberEl {}
 
 impl ToListMappable for CeAnomalySubscriptionSubscriberEl {
     type O = BlockAssignable<CeAnomalySubscriptionSubscriberEl>;
@@ -463,7 +520,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef {
         CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -483,7 +543,10 @@ impl CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -552,7 +615,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef {
         CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef {
             shared: shared,
             base: base.to_string(),
@@ -572,7 +638,10 @@ impl CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -641,7 +710,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
         CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -661,7 +733,10 @@ impl CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -672,7 +747,8 @@ impl CeAnomalySubscriptionThresholdExpressionElAndElTagsElRef {
 
 #[derive(Serialize, Default)]
 struct CeAnomalySubscriptionThresholdExpressionElAndElDynamic {
-    cost_category: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryEl>>,
+    cost_category:
+        Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryEl>>,
     dimension: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElAndElDimensionEl>>,
     tags: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElAndElTagsEl>>,
 }
@@ -697,10 +773,10 @@ impl CeAnomalySubscriptionThresholdExpressionElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
@@ -713,10 +789,10 @@ impl CeAnomalySubscriptionThresholdExpressionElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -729,10 +805,10 @@ impl CeAnomalySubscriptionThresholdExpressionElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -769,7 +845,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElAndElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElAndElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElAndElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElAndElRef {
         CeAnomalySubscriptionThresholdExpressionElAndElRef {
             shared: shared,
             base: base.to_string(),
@@ -783,12 +862,19 @@ impl CeAnomalySubscriptionThresholdExpressionElAndElRef {
     }
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
-    pub fn cost_category(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+    pub fn cost_category(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElAndElCostCategoryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
-    pub fn dimension(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef> {
+    pub fn dimension(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElAndElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
 
@@ -858,7 +944,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef {
         CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -878,7 +967,10 @@ impl CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -947,7 +1039,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElDimensionElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElDimensionElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElDimensionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElDimensionElRef {
         CeAnomalySubscriptionThresholdExpressionElDimensionElRef {
             shared: shared,
             base: base.to_string(),
@@ -967,7 +1062,10 @@ impl CeAnomalySubscriptionThresholdExpressionElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1036,7 +1134,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef {
         CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1056,7 +1157,10 @@ impl CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1125,7 +1229,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef {
         CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1145,7 +1252,10 @@ impl CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1214,7 +1324,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
         CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1234,7 +1347,10 @@ impl CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1245,7 +1361,8 @@ impl CeAnomalySubscriptionThresholdExpressionElNotElTagsElRef {
 
 #[derive(Serialize, Default)]
 struct CeAnomalySubscriptionThresholdExpressionElNotElDynamic {
-    cost_category: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryEl>>,
+    cost_category:
+        Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryEl>>,
     dimension: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElNotElDimensionEl>>,
     tags: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElNotElTagsEl>>,
 }
@@ -1270,10 +1387,10 @@ impl CeAnomalySubscriptionThresholdExpressionElNotEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
@@ -1286,10 +1403,10 @@ impl CeAnomalySubscriptionThresholdExpressionElNotEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -1302,10 +1419,10 @@ impl CeAnomalySubscriptionThresholdExpressionElNotEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -1342,7 +1459,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElNotElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElNotElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElNotElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElNotElRef {
         CeAnomalySubscriptionThresholdExpressionElNotElRef {
             shared: shared,
             base: base.to_string(),
@@ -1356,12 +1476,19 @@ impl CeAnomalySubscriptionThresholdExpressionElNotElRef {
     }
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
-    pub fn cost_category(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+    pub fn cost_category(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElNotElCostCategoryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
-    pub fn dimension(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef> {
+    pub fn dimension(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElNotElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
 
@@ -1431,7 +1558,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef {
         CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1451,7 +1581,10 @@ impl CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1520,7 +1653,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef {
         CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1540,7 +1676,10 @@ impl CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1609,7 +1748,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
         CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1629,7 +1771,10 @@ impl CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1640,7 +1785,8 @@ impl CeAnomalySubscriptionThresholdExpressionElOrElTagsElRef {
 
 #[derive(Serialize, Default)]
 struct CeAnomalySubscriptionThresholdExpressionElOrElDynamic {
-    cost_category: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryEl>>,
+    cost_category:
+        Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryEl>>,
     dimension: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElOrElDimensionEl>>,
     tags: Option<DynamicBlock<CeAnomalySubscriptionThresholdExpressionElOrElTagsEl>>,
 }
@@ -1665,10 +1811,10 @@ impl CeAnomalySubscriptionThresholdExpressionElOrEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
@@ -1681,10 +1827,10 @@ impl CeAnomalySubscriptionThresholdExpressionElOrEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -1697,10 +1843,10 @@ impl CeAnomalySubscriptionThresholdExpressionElOrEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -1751,12 +1897,19 @@ impl CeAnomalySubscriptionThresholdExpressionElOrElRef {
     }
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
-    pub fn cost_category(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+    pub fn cost_category(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElOrElCostCategoryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
-    pub fn dimension(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef> {
+    pub fn dimension(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElOrElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
 
@@ -1826,7 +1979,10 @@ pub struct CeAnomalySubscriptionThresholdExpressionElTagsElRef {
 }
 
 impl Ref for CeAnomalySubscriptionThresholdExpressionElTagsElRef {
-    fn new(shared: StackShared, base: String) -> CeAnomalySubscriptionThresholdExpressionElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CeAnomalySubscriptionThresholdExpressionElTagsElRef {
         CeAnomalySubscriptionThresholdExpressionElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1846,7 +2002,10 @@ impl CeAnomalySubscriptionThresholdExpressionElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1884,14 +2043,17 @@ pub struct CeAnomalySubscriptionThresholdExpressionEl {
 
 impl CeAnomalySubscriptionThresholdExpressionEl {
     #[doc = "Set the field `and`.\n"]
-    pub fn set_and(mut self, v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElAndEl>>) -> Self {
+    pub fn set_and(
+        mut self,
+        v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElAndEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
@@ -1904,10 +2066,10 @@ impl CeAnomalySubscriptionThresholdExpressionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
@@ -1920,49 +2082,58 @@ impl CeAnomalySubscriptionThresholdExpressionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `not`.\n"]
-    pub fn set_not(mut self, v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElNotEl>>) -> Self {
+    pub fn set_not(
+        mut self,
+        v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElNotEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.not = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.not = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `or`.\n"]
-    pub fn set_or(mut self, v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElOrEl>>) -> Self {
+    pub fn set_or(
+        mut self,
+        v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElOrEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.or = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.or = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tags`.\n"]
-    pub fn set_tags(mut self, v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElTagsEl>>) -> Self {
+    pub fn set_tags(
+        mut self,
+        v: impl Into<BlockAssignable<CeAnomalySubscriptionThresholdExpressionElTagsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -2016,8 +2187,13 @@ impl CeAnomalySubscriptionThresholdExpressionElRef {
     }
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
-    pub fn cost_category(&self) -> ListRef<CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+    pub fn cost_category(
+        &self,
+    ) -> ListRef<CeAnomalySubscriptionThresholdExpressionElCostCategoryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]

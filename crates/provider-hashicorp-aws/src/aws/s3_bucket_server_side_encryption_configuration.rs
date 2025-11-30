@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketServerSideEncryptionConfigurationData {
@@ -33,7 +33,9 @@ struct S3BucketServerSideEncryptionConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct S3BucketServerSideEncryptionConfiguration(Rc<S3BucketServerSideEncryptionConfiguration_>);
+pub struct S3BucketServerSideEncryptionConfiguration(
+    Rc<S3BucketServerSideEncryptionConfiguration_>,
+);
 
 impl S3BucketServerSideEncryptionConfiguration {
     fn shared(&self) -> &StackShared {
@@ -61,7 +63,8 @@ impl S3BucketServerSideEncryptionConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +77,7 @@ impl S3BucketServerSideEncryptionConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +88,22 @@ impl S3BucketServerSideEncryptionConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,34 +119,42 @@ impl S3BucketServerSideEncryptionConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(self, v: impl Into<BlockAssignable<S3BucketServerSideEncryptionConfigurationRuleEl>>) -> Self {
+    pub fn set_rule(
+        self,
+        v: impl Into<BlockAssignable<S3BucketServerSideEncryptionConfigurationRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expected_bucket_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expected_bucket_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -141,20 +162,26 @@ impl S3BucketServerSideEncryptionConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketServerSideEncryptionConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketServerSideEncryptionConfiguration { }
+impl Resource for S3BucketServerSideEncryptionConfiguration {}
 
 impl ToListMappable for S3BucketServerSideEncryptionConfiguration {
     type O = ListRef<S3BucketServerSideEncryptionConfigurationRef>;
@@ -187,22 +214,24 @@ pub struct BuildS3BucketServerSideEncryptionConfiguration {
 
 impl BuildS3BucketServerSideEncryptionConfiguration {
     pub fn build(self, stack: &mut Stack) -> S3BucketServerSideEncryptionConfiguration {
-        let out = S3BucketServerSideEncryptionConfiguration(Rc::new(S3BucketServerSideEncryptionConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(S3BucketServerSideEncryptionConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                bucket: self.bucket,
-                expected_bucket_owner: core::default::Default::default(),
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                rule: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = S3BucketServerSideEncryptionConfiguration(Rc::new(
+            S3BucketServerSideEncryptionConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(S3BucketServerSideEncryptionConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    bucket: self.bucket,
+                    expected_bucket_owner: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    rule: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -215,10 +244,7 @@ pub struct S3BucketServerSideEncryptionConfigurationRef {
 
 impl Ref for S3BucketServerSideEncryptionConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -233,12 +259,18 @@ impl S3BucketServerSideEncryptionConfigurationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expected_bucket_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expected_bucket_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -246,10 +278,12 @@ impl S3BucketServerSideEncryptionConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -268,8 +302,12 @@ impl S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByD
     }
 }
 
-impl ToListMappable for S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl {
-    type O = BlockAssignable<S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl>;
+impl ToListMappable
+    for S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl
+{
+    type O = BlockAssignable<
+        S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -280,13 +318,16 @@ impl ToListMappable for S3BucketServerSideEncryptionConfigurationRuleElApplyServ
     }
 }
 
-pub struct BuildS3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl {
+pub struct BuildS3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl
+{
     #[doc = ""]
     pub sse_algorithm: PrimField<String>,
 }
 
 impl BuildS3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl {
-    pub fn build(self) -> S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl {
+    pub fn build(
+        self,
+    ) -> S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl {
         S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl {
             kms_master_key_id: core::default::Default::default(),
             sse_algorithm: self.sse_algorithm,
@@ -299,11 +340,14 @@ pub struct S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncrypt
     base: String,
 }
 
-impl Ref for S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef {
+impl Ref
+    for S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef {
+    ) -> S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef
+    {
         S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef {
             shared: shared,
             base: base.to_string(),
@@ -318,19 +362,27 @@ impl S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByD
 
     #[doc = "Get a reference to the value of field `kms_master_key_id` after provisioning.\n"]
     pub fn kms_master_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_master_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_master_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"]
     pub fn sse_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sse_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sse_algorithm", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct S3BucketServerSideEncryptionConfigurationRuleElDynamic {
     apply_server_side_encryption_by_default: Option<
-        DynamicBlock<S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl>,
+        DynamicBlock<
+            S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl,
+        >,
     >,
 }
 
@@ -349,7 +401,10 @@ pub struct S3BucketServerSideEncryptionConfigurationRuleEl {
 
 impl S3BucketServerSideEncryptionConfigurationRuleEl {
     #[doc = "Set the field `blocked_encryption_types`.\n"]
-    pub fn set_blocked_encryption_types(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_blocked_encryption_types(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.blocked_encryption_types = Some(v.into());
         self
     }
@@ -363,22 +418,19 @@ impl S3BucketServerSideEncryptionConfigurationRuleEl {
     #[doc = "Set the field `apply_server_side_encryption_by_default`.\n"]
     pub fn set_apply_server_side_encryption_by_default(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.apply_server_side_encryption_by_default = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.apply_server_side_encryption_by_default = Some(d);
-            },
+            }
         }
         self
     }
@@ -415,7 +467,10 @@ pub struct S3BucketServerSideEncryptionConfigurationRuleElRef {
 }
 
 impl Ref for S3BucketServerSideEncryptionConfigurationRuleElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketServerSideEncryptionConfigurationRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketServerSideEncryptionConfigurationRuleElRef {
         S3BucketServerSideEncryptionConfigurationRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -430,19 +485,30 @@ impl S3BucketServerSideEncryptionConfigurationRuleElRef {
 
     #[doc = "Get a reference to the value of field `blocked_encryption_types` after provisioning.\n"]
     pub fn blocked_encryption_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.blocked_encryption_types", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.blocked_encryption_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_key_enabled` after provisioning.\n"]
     pub fn bucket_key_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_key_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_key_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `apply_server_side_encryption_by_default` after provisioning.\n"]
     pub fn apply_server_side_encryption_by_default(
         &self,
-    ) -> ListRef<S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.apply_server_side_encryption_by_default", self.base))
+    ) -> ListRef<
+        S3BucketServerSideEncryptionConfigurationRuleElApplyServerSideEncryptionByDefaultElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.apply_server_side_encryption_by_default", self.base),
+        )
     }
 }
 

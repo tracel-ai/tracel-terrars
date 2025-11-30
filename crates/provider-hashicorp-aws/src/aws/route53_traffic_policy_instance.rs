@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53TrafficPolicyInstanceData {
@@ -58,7 +58,8 @@ impl Route53TrafficPolicyInstance {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +72,7 @@ impl Route53TrafficPolicyInstance {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,12 +83,22 @@ impl Route53TrafficPolicyInstance {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,7 +115,10 @@ impl Route53TrafficPolicyInstance {
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -114,17 +128,26 @@ impl Route53TrafficPolicyInstance {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_policy_id` after provisioning.\n"]
     pub fn traffic_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_policy_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_policy_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_policy_version` after provisioning.\n"]
     pub fn traffic_policy_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_policy_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_policy_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
@@ -135,11 +158,15 @@ impl Route53TrafficPolicyInstance {
 
 impl Referable for Route53TrafficPolicyInstance {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53TrafficPolicyInstance { }
+impl Resource for Route53TrafficPolicyInstance {}
 
 impl ToListMappable for Route53TrafficPolicyInstance {
     type O = ListRef<Route53TrafficPolicyInstanceRef>;
@@ -208,10 +235,7 @@ pub struct Route53TrafficPolicyInstanceRef {
 
 impl Ref for Route53TrafficPolicyInstanceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -231,7 +255,10 @@ impl Route53TrafficPolicyInstanceRef {
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -241,17 +268,26 @@ impl Route53TrafficPolicyInstanceRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_policy_id` after provisioning.\n"]
     pub fn traffic_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_policy_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_policy_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_policy_version` after provisioning.\n"]
     pub fn traffic_policy_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_policy_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_policy_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RekognitionStreamProcessorData {
@@ -74,7 +74,8 @@ impl RekognitionStreamProcessor {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl RekognitionStreamProcessor {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,24 +99,32 @@ impl RekognitionStreamProcessor {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `kms_key_id`.\nThe identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN."]
+    #[doc = "Set the field `kms_key_id`.\nThe identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN."]
     pub fn set_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_id = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -135,23 +144,26 @@ impl RekognitionStreamProcessor {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().data_sharing_preference = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.data_sharing_preference = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `input`.\n"]
-    pub fn set_input(self, v: impl Into<BlockAssignable<RekognitionStreamProcessorInputEl>>) -> Self {
+    pub fn set_input(
+        self,
+        v: impl Into<BlockAssignable<RekognitionStreamProcessorInputEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().input = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.input = Some(d);
-            },
+            }
         }
         self
     }
@@ -164,23 +176,26 @@ impl RekognitionStreamProcessor {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().notification_channel = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.notification_channel = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `output`.\n"]
-    pub fn set_output(self, v: impl Into<BlockAssignable<RekognitionStreamProcessorOutputEl>>) -> Self {
+    pub fn set_output(
+        self,
+        v: impl Into<BlockAssignable<RekognitionStreamProcessorOutputEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.output = Some(d);
-            },
+            }
         }
         self
     }
@@ -193,23 +208,26 @@ impl RekognitionStreamProcessor {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().regions_of_interest = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.regions_of_interest = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `settings`.\n"]
-    pub fn set_settings(self, v: impl Into<BlockAssignable<RekognitionStreamProcessorSettingsEl>>) -> Self {
+    pub fn set_settings(
+        self,
+        v: impl Into<BlockAssignable<RekognitionStreamProcessorSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -225,73 +243,112 @@ impl RekognitionStreamProcessor {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `kms_key_id` after provisioning.\nThe identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN."]
+    #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\nThe identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN."]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `name` after provisioning.\nAn identifier you assign to the stream processor."]
+    #[doc = "Get a reference to the value of field `name` after provisioning.\nAn identifier you assign to the stream processor."]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `role_arn` after provisioning.\nThe Amazon Resource Number (ARN) of the IAM role that allows access to the stream processor."]
+    #[doc = "Get a reference to the value of field `role_arn` after provisioning.\nThe Amazon Resource Number (ARN) of the IAM role that allows access to the stream processor."]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_processor_arn` after provisioning.\n"]
     pub fn stream_processor_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_processor_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_processor_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_sharing_preference` after provisioning.\n"]
-    pub fn data_sharing_preference(&self) -> ListRef<RekognitionStreamProcessorDataSharingPreferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_sharing_preference", self.extract_ref()))
+    pub fn data_sharing_preference(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorDataSharingPreferenceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_sharing_preference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(&self) -> ListRef<RekognitionStreamProcessorInputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_channel` after provisioning.\n"]
-    pub fn notification_channel(&self) -> ListRef<RekognitionStreamProcessorNotificationChannelElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_channel", self.extract_ref()))
+    pub fn notification_channel(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorNotificationChannelElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_channel", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output` after provisioning.\n"]
     pub fn output(&self) -> ListRef<RekognitionStreamProcessorOutputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions_of_interest` after provisioning.\n"]
     pub fn regions_of_interest(&self) -> ListRef<RekognitionStreamProcessorRegionsOfInterestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.regions_of_interest", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.regions_of_interest", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `settings` after provisioning.\n"]
     pub fn settings(&self) -> ListRef<RekognitionStreamProcessorSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -305,11 +362,15 @@ impl RekognitionStreamProcessor {
 
 impl Referable for RekognitionStreamProcessor {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RekognitionStreamProcessor { }
+impl Resource for RekognitionStreamProcessor {}
 
 impl ToListMappable for RekognitionStreamProcessor {
     type O = ListRef<RekognitionStreamProcessorRef>;
@@ -379,10 +440,7 @@ pub struct RekognitionStreamProcessorRef {
 
 impl Ref for RekognitionStreamProcessorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -400,73 +458,112 @@ impl RekognitionStreamProcessorRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `kms_key_id` after provisioning.\nThe identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN."]
+    #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\nThe identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN."]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `name` after provisioning.\nAn identifier you assign to the stream processor."]
+    #[doc = "Get a reference to the value of field `name` after provisioning.\nAn identifier you assign to the stream processor."]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `role_arn` after provisioning.\nThe Amazon Resource Number (ARN) of the IAM role that allows access to the stream processor."]
+    #[doc = "Get a reference to the value of field `role_arn` after provisioning.\nThe Amazon Resource Number (ARN) of the IAM role that allows access to the stream processor."]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_processor_arn` after provisioning.\n"]
     pub fn stream_processor_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_processor_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_processor_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_sharing_preference` after provisioning.\n"]
-    pub fn data_sharing_preference(&self) -> ListRef<RekognitionStreamProcessorDataSharingPreferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_sharing_preference", self.extract_ref()))
+    pub fn data_sharing_preference(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorDataSharingPreferenceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_sharing_preference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(&self) -> ListRef<RekognitionStreamProcessorInputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_channel` after provisioning.\n"]
-    pub fn notification_channel(&self) -> ListRef<RekognitionStreamProcessorNotificationChannelElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_channel", self.extract_ref()))
+    pub fn notification_channel(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorNotificationChannelElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_channel", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output` after provisioning.\n"]
     pub fn output(&self) -> ListRef<RekognitionStreamProcessorOutputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions_of_interest` after provisioning.\n"]
     pub fn regions_of_interest(&self) -> ListRef<RekognitionStreamProcessorRegionsOfInterestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.regions_of_interest", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.regions_of_interest", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `settings` after provisioning.\n"]
     pub fn settings(&self) -> ListRef<RekognitionStreamProcessorSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -483,7 +580,7 @@ pub struct RekognitionStreamProcessorDataSharingPreferenceEl {
     opt_in: PrimField<bool>,
 }
 
-impl RekognitionStreamProcessorDataSharingPreferenceEl { }
+impl RekognitionStreamProcessorDataSharingPreferenceEl {}
 
 impl ToListMappable for RekognitionStreamProcessorDataSharingPreferenceEl {
     type O = BlockAssignable<RekognitionStreamProcessorDataSharingPreferenceEl>;
@@ -504,7 +601,9 @@ pub struct BuildRekognitionStreamProcessorDataSharingPreferenceEl {
 
 impl BuildRekognitionStreamProcessorDataSharingPreferenceEl {
     pub fn build(self) -> RekognitionStreamProcessorDataSharingPreferenceEl {
-        RekognitionStreamProcessorDataSharingPreferenceEl { opt_in: self.opt_in }
+        RekognitionStreamProcessorDataSharingPreferenceEl {
+            opt_in: self.opt_in,
+        }
     }
 }
 
@@ -514,7 +613,10 @@ pub struct RekognitionStreamProcessorDataSharingPreferenceElRef {
 }
 
 impl Ref for RekognitionStreamProcessorDataSharingPreferenceElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorDataSharingPreferenceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorDataSharingPreferenceElRef {
         RekognitionStreamProcessorDataSharingPreferenceElRef {
             shared: shared,
             base: base.to_string(),
@@ -527,8 +629,7 @@ impl RekognitionStreamProcessorDataSharingPreferenceElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `opt_in` after provisioning.\nDo you want to share data with Rekognition to improve model performance."]
+    #[doc = "Get a reference to the value of field `opt_in` after provisioning.\nDo you want to share data with Rekognition to improve model performance."]
     pub fn opt_in(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.opt_in", self.base))
     }
@@ -539,7 +640,7 @@ pub struct RekognitionStreamProcessorInputElKinesisVideoStreamEl {
     arn: PrimField<String>,
 }
 
-impl RekognitionStreamProcessorInputElKinesisVideoStreamEl { }
+impl RekognitionStreamProcessorInputElKinesisVideoStreamEl {}
 
 impl ToListMappable for RekognitionStreamProcessorInputElKinesisVideoStreamEl {
     type O = BlockAssignable<RekognitionStreamProcessorInputElKinesisVideoStreamEl>;
@@ -570,7 +671,10 @@ pub struct RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
 }
 
 impl Ref for RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
         RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
             shared: shared,
             base: base.to_string(),
@@ -583,8 +687,7 @@ impl RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `arn` after provisioning.\nARN of the Kinesis video stream stream that streams the source video."]
+    #[doc = "Get a reference to the value of field `arn` after provisioning.\nARN of the Kinesis video stream stream that streams the source video."]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
@@ -592,7 +695,8 @@ impl RekognitionStreamProcessorInputElKinesisVideoStreamElRef {
 
 #[derive(Serialize, Default)]
 struct RekognitionStreamProcessorInputElDynamic {
-    kinesis_video_stream: Option<DynamicBlock<RekognitionStreamProcessorInputElKinesisVideoStreamEl>>,
+    kinesis_video_stream:
+        Option<DynamicBlock<RekognitionStreamProcessorInputElKinesisVideoStreamEl>>,
 }
 
 #[derive(Serialize)]
@@ -611,10 +715,10 @@ impl RekognitionStreamProcessorInputEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_video_stream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_video_stream = Some(d);
-            },
+            }
         }
         self
     }
@@ -663,8 +767,13 @@ impl RekognitionStreamProcessorInputElRef {
     }
 
     #[doc = "Get a reference to the value of field `kinesis_video_stream` after provisioning.\n"]
-    pub fn kinesis_video_stream(&self) -> ListRef<RekognitionStreamProcessorInputElKinesisVideoStreamElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_video_stream", self.base))
+    pub fn kinesis_video_stream(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorInputElKinesisVideoStreamElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_video_stream", self.base),
+        )
     }
 }
 
@@ -675,8 +784,7 @@ pub struct RekognitionStreamProcessorNotificationChannelEl {
 }
 
 impl RekognitionStreamProcessorNotificationChannelEl {
-    #[doc =
-        "Set the field `sns_topic_arn`.\nThe Amazon Resource Number (ARN) of the Amazon Amazon Simple Notification Service topic to which Amazon Rekognition posts the completion status."]
+    #[doc = "Set the field `sns_topic_arn`.\nThe Amazon Resource Number (ARN) of the Amazon Amazon Simple Notification Service topic to which Amazon Rekognition posts the completion status."]
     pub fn set_sns_topic_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.sns_topic_arn = Some(v.into());
         self
@@ -699,7 +807,9 @@ pub struct BuildRekognitionStreamProcessorNotificationChannelEl {}
 
 impl BuildRekognitionStreamProcessorNotificationChannelEl {
     pub fn build(self) -> RekognitionStreamProcessorNotificationChannelEl {
-        RekognitionStreamProcessorNotificationChannelEl { sns_topic_arn: core::default::Default::default() }
+        RekognitionStreamProcessorNotificationChannelEl {
+            sns_topic_arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -709,7 +819,10 @@ pub struct RekognitionStreamProcessorNotificationChannelElRef {
 }
 
 impl Ref for RekognitionStreamProcessorNotificationChannelElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorNotificationChannelElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorNotificationChannelElRef {
         RekognitionStreamProcessorNotificationChannelElRef {
             shared: shared,
             base: base.to_string(),
@@ -722,10 +835,12 @@ impl RekognitionStreamProcessorNotificationChannelElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `sns_topic_arn` after provisioning.\nThe Amazon Resource Number (ARN) of the Amazon Amazon Simple Notification Service topic to which Amazon Rekognition posts the completion status."]
+    #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\nThe Amazon Resource Number (ARN) of the Amazon Amazon Simple Notification Service topic to which Amazon Rekognition posts the completion status."]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_arn", self.base),
+        )
     }
 }
 
@@ -759,7 +874,9 @@ pub struct BuildRekognitionStreamProcessorOutputElKinesisDataStreamEl {}
 
 impl BuildRekognitionStreamProcessorOutputElKinesisDataStreamEl {
     pub fn build(self) -> RekognitionStreamProcessorOutputElKinesisDataStreamEl {
-        RekognitionStreamProcessorOutputElKinesisDataStreamEl { arn: core::default::Default::default() }
+        RekognitionStreamProcessorOutputElKinesisDataStreamEl {
+            arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -769,7 +886,10 @@ pub struct RekognitionStreamProcessorOutputElKinesisDataStreamElRef {
 }
 
 impl Ref for RekognitionStreamProcessorOutputElKinesisDataStreamElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorOutputElKinesisDataStreamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorOutputElKinesisDataStreamElRef {
         RekognitionStreamProcessorOutputElKinesisDataStreamElRef {
             shared: shared,
             base: base.to_string(),
@@ -782,8 +902,7 @@ impl RekognitionStreamProcessorOutputElKinesisDataStreamElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `arn` after provisioning.\nARN of the output Amazon Kinesis Data Streams stream."]
+    #[doc = "Get a reference to the value of field `arn` after provisioning.\nARN of the output Amazon Kinesis Data Streams stream."]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
@@ -798,15 +917,13 @@ pub struct RekognitionStreamProcessorOutputElS3DestinationEl {
 }
 
 impl RekognitionStreamProcessorOutputElS3DestinationEl {
-    #[doc =
-        "Set the field `bucket`.\nThe name of the Amazon S3 bucket you want to associate with the streaming video project."]
+    #[doc = "Set the field `bucket`.\nThe name of the Amazon S3 bucket you want to associate with the streaming video project."]
     pub fn set_bucket(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `key_prefix`.\nThe prefix value of the location within the bucket that you want the information to be published to."]
+    #[doc = "Set the field `key_prefix`.\nThe prefix value of the location within the bucket that you want the information to be published to."]
     pub fn set_key_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key_prefix = Some(v.into());
         self
@@ -842,7 +959,10 @@ pub struct RekognitionStreamProcessorOutputElS3DestinationElRef {
 }
 
 impl Ref for RekognitionStreamProcessorOutputElS3DestinationElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorOutputElS3DestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorOutputElS3DestinationElRef {
         RekognitionStreamProcessorOutputElS3DestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -855,14 +975,12 @@ impl RekognitionStreamProcessorOutputElS3DestinationElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `bucket` after provisioning.\nThe name of the Amazon S3 bucket you want to associate with the streaming video project."]
+    #[doc = "Get a reference to the value of field `bucket` after provisioning.\nThe name of the Amazon S3 bucket you want to associate with the streaming video project."]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `key_prefix` after provisioning.\nThe prefix value of the location within the bucket that you want the information to be published to."]
+    #[doc = "Get a reference to the value of field `key_prefix` after provisioning.\nThe prefix value of the location within the bucket that you want the information to be published to."]
     pub fn key_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key_prefix", self.base))
     }
@@ -870,7 +988,8 @@ impl RekognitionStreamProcessorOutputElS3DestinationElRef {
 
 #[derive(Serialize, Default)]
 struct RekognitionStreamProcessorOutputElDynamic {
-    kinesis_data_stream: Option<DynamicBlock<RekognitionStreamProcessorOutputElKinesisDataStreamEl>>,
+    kinesis_data_stream:
+        Option<DynamicBlock<RekognitionStreamProcessorOutputElKinesisDataStreamEl>>,
     s3_destination: Option<DynamicBlock<RekognitionStreamProcessorOutputElS3DestinationEl>>,
 }
 
@@ -892,10 +1011,10 @@ impl RekognitionStreamProcessorOutputEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_data_stream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_data_stream = Some(d);
-            },
+            }
         }
         self
     }
@@ -908,10 +1027,10 @@ impl RekognitionStreamProcessorOutputEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -961,13 +1080,21 @@ impl RekognitionStreamProcessorOutputElRef {
     }
 
     #[doc = "Get a reference to the value of field `kinesis_data_stream` after provisioning.\n"]
-    pub fn kinesis_data_stream(&self) -> ListRef<RekognitionStreamProcessorOutputElKinesisDataStreamElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_data_stream", self.base))
+    pub fn kinesis_data_stream(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorOutputElKinesisDataStreamElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_data_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_destination` after provisioning.\n"]
     pub fn s3_destination(&self) -> ListRef<RekognitionStreamProcessorOutputElS3DestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_destination", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_destination", self.base),
+        )
     }
 }
 
@@ -1040,7 +1167,10 @@ pub struct RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef {
 }
 
 impl Ref for RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef {
         RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef {
             shared: shared,
             base: base.to_string(),
@@ -1053,26 +1183,22 @@ impl RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `height` after provisioning.\nHeight of the bounding box as a ratio of the overall image height."]
+    #[doc = "Get a reference to the value of field `height` after provisioning.\nHeight of the bounding box as a ratio of the overall image height."]
     pub fn height(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.height", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `left` after provisioning.\nLeft coordinate of the bounding box as a ratio of overall image width."]
+    #[doc = "Get a reference to the value of field `left` after provisioning.\nLeft coordinate of the bounding box as a ratio of overall image width."]
     pub fn left(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.left", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `top` after provisioning.\nTop coordinate of the bounding box as a ratio of overall image height."]
+    #[doc = "Get a reference to the value of field `top` after provisioning.\nTop coordinate of the bounding box as a ratio of overall image height."]
     pub fn top(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.top", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `width` after provisioning.\nWidth of the bounding box as a ratio of the overall image width."]
+    #[doc = "Get a reference to the value of field `width` after provisioning.\nWidth of the bounding box as a ratio of the overall image width."]
     pub fn width(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.width", self.base))
     }
@@ -1129,7 +1255,10 @@ pub struct RekognitionStreamProcessorRegionsOfInterestElPolygonElRef {
 }
 
 impl Ref for RekognitionStreamProcessorRegionsOfInterestElPolygonElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorRegionsOfInterestElPolygonElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorRegionsOfInterestElPolygonElRef {
         RekognitionStreamProcessorRegionsOfInterestElPolygonElRef {
             shared: shared,
             base: base.to_string(),
@@ -1142,14 +1271,12 @@ impl RekognitionStreamProcessorRegionsOfInterestElPolygonElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `x` after provisioning.\nThe value of the X coordinate for a point on a Polygon."]
+    #[doc = "Get a reference to the value of field `x` after provisioning.\nThe value of the X coordinate for a point on a Polygon."]
     pub fn x(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.x", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `y` after provisioning.\nThe value of the Y coordinate for a point on a Polygon."]
+    #[doc = "Get a reference to the value of field `y` after provisioning.\nThe value of the Y coordinate for a point on a Polygon."]
     pub fn y(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.y", self.base))
     }
@@ -1179,10 +1306,10 @@ impl RekognitionStreamProcessorRegionsOfInterestEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bounding_box = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bounding_box = Some(d);
-            },
+            }
         }
         self
     }
@@ -1195,10 +1322,10 @@ impl RekognitionStreamProcessorRegionsOfInterestEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.polygon = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.polygon = Some(d);
-            },
+            }
         }
         self
     }
@@ -1248,7 +1375,9 @@ impl RekognitionStreamProcessorRegionsOfInterestElRef {
     }
 
     #[doc = "Get a reference to the value of field `bounding_box` after provisioning.\n"]
-    pub fn bounding_box(&self) -> ListRef<RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef> {
+    pub fn bounding_box(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorRegionsOfInterestElBoundingBoxElRef> {
         ListRef::new(self.shared().clone(), format!("{}.bounding_box", self.base))
     }
 
@@ -1267,8 +1396,7 @@ pub struct RekognitionStreamProcessorSettingsElConnectedHomeEl {
 }
 
 impl RekognitionStreamProcessorSettingsElConnectedHomeEl {
-    #[doc =
-        "Set the field `labels`.\nSpecifies what you want to detect in the video, such as people, packages, or pets."]
+    #[doc = "Set the field `labels`.\nSpecifies what you want to detect in the video, such as people, packages, or pets."]
     pub fn set_labels(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.labels = Some(v.into());
         self
@@ -1310,7 +1438,10 @@ pub struct RekognitionStreamProcessorSettingsElConnectedHomeElRef {
 }
 
 impl Ref for RekognitionStreamProcessorSettingsElConnectedHomeElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorSettingsElConnectedHomeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorSettingsElConnectedHomeElRef {
         RekognitionStreamProcessorSettingsElConnectedHomeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1323,16 +1454,17 @@ impl RekognitionStreamProcessorSettingsElConnectedHomeElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `labels` after provisioning.\nSpecifies what you want to detect in the video, such as people, packages, or pets."]
+    #[doc = "Get a reference to the value of field `labels` after provisioning.\nSpecifies what you want to detect in the video, such as people, packages, or pets."]
     pub fn labels(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.labels", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `min_confidence` after provisioning.\nThe minimum confidence required to label an object in the video."]
+    #[doc = "Get a reference to the value of field `min_confidence` after provisioning.\nThe minimum confidence required to label an object in the video."]
     pub fn min_confidence(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_confidence", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_confidence", self.base),
+        )
     }
 }
 
@@ -1344,8 +1476,7 @@ pub struct RekognitionStreamProcessorSettingsElFaceSearchEl {
 }
 
 impl RekognitionStreamProcessorSettingsElFaceSearchEl {
-    #[doc =
-        "Set the field `face_match_threshold`.\nMinimum face match confidence score that must be met to return a result for a recognized face."]
+    #[doc = "Set the field `face_match_threshold`.\nMinimum face match confidence score that must be met to return a result for a recognized face."]
     pub fn set_face_match_threshold(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.face_match_threshold = Some(v.into());
         self
@@ -1384,7 +1515,10 @@ pub struct RekognitionStreamProcessorSettingsElFaceSearchElRef {
 }
 
 impl Ref for RekognitionStreamProcessorSettingsElFaceSearchElRef {
-    fn new(shared: StackShared, base: String) -> RekognitionStreamProcessorSettingsElFaceSearchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RekognitionStreamProcessorSettingsElFaceSearchElRef {
         RekognitionStreamProcessorSettingsElFaceSearchElRef {
             shared: shared,
             base: base.to_string(),
@@ -1397,16 +1531,20 @@ impl RekognitionStreamProcessorSettingsElFaceSearchElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `collection_id` after provisioning.\nThe ID of a collection that contains faces that you want to search for."]
+    #[doc = "Get a reference to the value of field `collection_id` after provisioning.\nThe ID of a collection that contains faces that you want to search for."]
     pub fn collection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collection_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collection_id", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `face_match_threshold` after provisioning.\nMinimum face match confidence score that must be met to return a result for a recognized face."]
+    #[doc = "Get a reference to the value of field `face_match_threshold` after provisioning.\nMinimum face match confidence score that must be met to return a result for a recognized face."]
     pub fn face_match_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.face_match_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.face_match_threshold", self.base),
+        )
     }
 }
 
@@ -1434,10 +1572,10 @@ impl RekognitionStreamProcessorSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connected_home = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connected_home = Some(d);
-            },
+            }
         }
         self
     }
@@ -1450,10 +1588,10 @@ impl RekognitionStreamProcessorSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.face_search = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.face_search = Some(d);
-            },
+            }
         }
         self
     }
@@ -1503,8 +1641,13 @@ impl RekognitionStreamProcessorSettingsElRef {
     }
 
     #[doc = "Get a reference to the value of field `connected_home` after provisioning.\n"]
-    pub fn connected_home(&self) -> ListRef<RekognitionStreamProcessorSettingsElConnectedHomeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connected_home", self.base))
+    pub fn connected_home(
+        &self,
+    ) -> ListRef<RekognitionStreamProcessorSettingsElConnectedHomeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connected_home", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `face_search` after provisioning.\n"]
@@ -1524,22 +1667,19 @@ pub struct RekognitionStreamProcessorTimeoutsEl {
 }
 
 impl RekognitionStreamProcessorTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1589,20 +1729,17 @@ impl RekognitionStreamProcessorTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
@@ -1610,7 +1747,8 @@ impl RekognitionStreamProcessorTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct RekognitionStreamProcessorDynamic {
-    data_sharing_preference: Option<DynamicBlock<RekognitionStreamProcessorDataSharingPreferenceEl>>,
+    data_sharing_preference:
+        Option<DynamicBlock<RekognitionStreamProcessorDataSharingPreferenceEl>>,
     input: Option<DynamicBlock<RekognitionStreamProcessorInputEl>>,
     notification_channel: Option<DynamicBlock<RekognitionStreamProcessorNotificationChannelEl>>,
     output: Option<DynamicBlock<RekognitionStreamProcessorOutputEl>>,

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ComprehendDocumentClassifierData {
@@ -81,7 +81,8 @@ impl ComprehendDocumentClassifier {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl ComprehendDocumentClassifier {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl ComprehendDocumentClassifier {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -132,8 +143,7 @@ impl ComprehendDocumentClassifier {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -177,10 +187,10 @@ impl ComprehendDocumentClassifier {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().input_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.input_data_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -193,10 +203,10 @@ impl ComprehendDocumentClassifier {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().output_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.output_data_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -208,14 +218,17 @@ impl ComprehendDocumentClassifier {
     }
 
     #[doc = "Set the field `vpc_config`.\n"]
-    pub fn set_vpc_config(self, v: impl Into<BlockAssignable<ComprehendDocumentClassifierVpcConfigEl>>) -> Self {
+    pub fn set_vpc_config(
+        self,
+        v: impl Into<BlockAssignable<ComprehendDocumentClassifierVpcConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -227,7 +240,10 @@ impl ComprehendDocumentClassifier {
 
     #[doc = "Get a reference to the value of field `data_access_role_arn` after provisioning.\n"]
     pub fn data_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -237,63 +253,98 @@ impl ComprehendDocumentClassifier {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_kms_key_id` after provisioning.\n"]
     pub fn model_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name` after provisioning.\n"]
     pub fn version_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name_prefix` after provisioning.\n"]
     pub fn version_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_kms_key_id` after provisioning.\n"]
     pub fn volume_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_data_config` after provisioning.\n"]
     pub fn input_data_config(&self) -> ListRef<ComprehendDocumentClassifierInputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_data_config` after provisioning.\n"]
     pub fn output_data_config(&self) -> ListRef<ComprehendDocumentClassifierOutputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -306,17 +357,24 @@ impl ComprehendDocumentClassifier {
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<ComprehendDocumentClassifierVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ComprehendDocumentClassifier {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ComprehendDocumentClassifier { }
+impl Resource for ComprehendDocumentClassifier {}
 
 impl ToListMappable for ComprehendDocumentClassifier {
     type O = ListRef<ComprehendDocumentClassifierRef>;
@@ -392,10 +450,7 @@ pub struct ComprehendDocumentClassifierRef {
 
 impl Ref for ComprehendDocumentClassifierRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -415,7 +470,10 @@ impl ComprehendDocumentClassifierRef {
 
     #[doc = "Get a reference to the value of field `data_access_role_arn` after provisioning.\n"]
     pub fn data_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -425,63 +483,98 @@ impl ComprehendDocumentClassifierRef {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_kms_key_id` after provisioning.\n"]
     pub fn model_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name` after provisioning.\n"]
     pub fn version_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name_prefix` after provisioning.\n"]
     pub fn version_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_kms_key_id` after provisioning.\n"]
     pub fn volume_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_data_config` after provisioning.\n"]
     pub fn input_data_config(&self) -> ListRef<ComprehendDocumentClassifierInputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_data_config` after provisioning.\n"]
     pub fn output_data_config(&self) -> ListRef<ComprehendDocumentClassifierOutputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -494,7 +587,10 @@ impl ComprehendDocumentClassifierRef {
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<ComprehendDocumentClassifierVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -594,17 +690,26 @@ impl ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsElRef {
 
     #[doc = "Get a reference to the value of field `annotation_data_s3_uri` after provisioning.\n"]
     pub fn annotation_data_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.annotation_data_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.annotation_data_s3_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attribute_names` after provisioning.\n"]
     pub fn attribute_names(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.attribute_names", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attribute_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_type` after provisioning.\n"]
     pub fn document_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
@@ -614,7 +719,10 @@ impl ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsElRef {
 
     #[doc = "Get a reference to the value of field `source_documents_s3_uri` after provisioning.\n"]
     pub fn source_documents_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_documents_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_documents_s3_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `split` after provisioning.\n"]
@@ -625,7 +733,8 @@ impl ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsElRef {
 
 #[derive(Serialize, Default)]
 struct ComprehendDocumentClassifierInputDataConfigElDynamic {
-    augmented_manifests: Option<DynamicBlock<ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsEl>>,
+    augmented_manifests:
+        Option<DynamicBlock<ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsEl>>,
 }
 
 #[derive(Serialize)]
@@ -639,7 +748,8 @@ pub struct ComprehendDocumentClassifierInputDataConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     test_s3_uri: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    augmented_manifests: Option<Vec<ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsEl>>,
+    augmented_manifests:
+        Option<Vec<ComprehendDocumentClassifierInputDataConfigElAugmentedManifestsEl>>,
     dynamic: ComprehendDocumentClassifierInputDataConfigElDynamic,
 }
 
@@ -676,10 +786,10 @@ impl ComprehendDocumentClassifierInputDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.augmented_manifests = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.augmented_manifests = Some(d);
-            },
+            }
         }
         self
     }
@@ -738,7 +848,10 @@ impl ComprehendDocumentClassifierInputDataConfigElRef {
 
     #[doc = "Get a reference to the value of field `label_delimiter` after provisioning.\n"]
     pub fn label_delimiter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.label_delimiter", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.label_delimiter", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
@@ -819,7 +932,10 @@ impl ComprehendDocumentClassifierOutputDataConfigElRef {
 
     #[doc = "Get a reference to the value of field `output_s3_uri` after provisioning.\n"]
     pub fn output_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_s3_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
@@ -923,7 +1039,7 @@ pub struct ComprehendDocumentClassifierVpcConfigEl {
     subnets: SetField<PrimField<String>>,
 }
 
-impl ComprehendDocumentClassifierVpcConfigEl { }
+impl ComprehendDocumentClassifierVpcConfigEl {}
 
 impl ToListMappable for ComprehendDocumentClassifierVpcConfigEl {
     type O = BlockAssignable<ComprehendDocumentClassifierVpcConfigEl>;
@@ -974,7 +1090,10 @@ impl ComprehendDocumentClassifierVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]

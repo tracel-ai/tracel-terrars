@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecurityhubOrganizationConfigurationData {
@@ -22,7 +22,8 @@ struct SecurityhubOrganizationConfigurationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    organization_configuration: Option<Vec<SecurityhubOrganizationConfigurationOrganizationConfigurationEl>>,
+    organization_configuration:
+        Option<Vec<SecurityhubOrganizationConfigurationOrganizationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<SecurityhubOrganizationConfigurationTimeoutsEl>,
     dynamic: SecurityhubOrganizationConfigurationDynamic,
@@ -63,7 +64,8 @@ impl SecurityhubOrganizationConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +78,7 @@ impl SecurityhubOrganizationConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +89,22 @@ impl SecurityhubOrganizationConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -108,8 +120,7 @@ impl SecurityhubOrganizationConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -123,28 +134,37 @@ impl SecurityhubOrganizationConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().organization_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.organization_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<SecurityhubOrganizationConfigurationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<SecurityhubOrganizationConfigurationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `auto_enable` after provisioning.\n"]
     pub fn auto_enable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_enable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_enable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_enable_standards` after provisioning.\n"]
     pub fn auto_enable_standards(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_enable_standards", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_enable_standards", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -152,17 +172,22 @@ impl SecurityhubOrganizationConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `organization_configuration` after provisioning.\n"]
     pub fn organization_configuration(
         &self,
     ) -> ListRef<SecurityhubOrganizationConfigurationOrganizationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.organization_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.organization_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -176,11 +201,15 @@ impl SecurityhubOrganizationConfiguration {
 
 impl Referable for SecurityhubOrganizationConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecurityhubOrganizationConfiguration { }
+impl Resource for SecurityhubOrganizationConfiguration {}
 
 impl ToListMappable for SecurityhubOrganizationConfiguration {
     type O = ListRef<SecurityhubOrganizationConfigurationRef>;
@@ -213,23 +242,24 @@ pub struct BuildSecurityhubOrganizationConfiguration {
 
 impl BuildSecurityhubOrganizationConfiguration {
     pub fn build(self, stack: &mut Stack) -> SecurityhubOrganizationConfiguration {
-        let out = SecurityhubOrganizationConfiguration(Rc::new(SecurityhubOrganizationConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(SecurityhubOrganizationConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                auto_enable: self.auto_enable,
-                auto_enable_standards: core::default::Default::default(),
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                organization_configuration: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            SecurityhubOrganizationConfiguration(Rc::new(SecurityhubOrganizationConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(SecurityhubOrganizationConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    auto_enable: self.auto_enable,
+                    auto_enable_standards: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    organization_configuration: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -242,10 +272,7 @@ pub struct SecurityhubOrganizationConfigurationRef {
 
 impl Ref for SecurityhubOrganizationConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -260,12 +287,18 @@ impl SecurityhubOrganizationConfigurationRef {
 
     #[doc = "Get a reference to the value of field `auto_enable` after provisioning.\n"]
     pub fn auto_enable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_enable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_enable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_enable_standards` after provisioning.\n"]
     pub fn auto_enable_standards(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_enable_standards", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_enable_standards", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -273,17 +306,22 @@ impl SecurityhubOrganizationConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `organization_configuration` after provisioning.\n"]
     pub fn organization_configuration(
         &self,
     ) -> ListRef<SecurityhubOrganizationConfigurationOrganizationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.organization_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.organization_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -300,7 +338,7 @@ pub struct SecurityhubOrganizationConfigurationOrganizationConfigurationEl {
     configuration_type: PrimField<String>,
 }
 
-impl SecurityhubOrganizationConfigurationOrganizationConfigurationEl { }
+impl SecurityhubOrganizationConfigurationOrganizationConfigurationEl {}
 
 impl ToListMappable for SecurityhubOrganizationConfigurationOrganizationConfigurationEl {
     type O = BlockAssignable<SecurityhubOrganizationConfigurationOrganizationConfigurationEl>;
@@ -333,7 +371,10 @@ pub struct SecurityhubOrganizationConfigurationOrganizationConfigurationElRef {
 }
 
 impl Ref for SecurityhubOrganizationConfigurationOrganizationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubOrganizationConfigurationOrganizationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubOrganizationConfigurationOrganizationConfigurationElRef {
         SecurityhubOrganizationConfigurationOrganizationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -348,7 +389,10 @@ impl SecurityhubOrganizationConfigurationOrganizationConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `configuration_type` after provisioning.\n"]
     pub fn configuration_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_type", self.base),
+        )
     }
 }
 
@@ -443,7 +487,6 @@ impl SecurityhubOrganizationConfigurationTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct SecurityhubOrganizationConfigurationDynamic {
-    organization_configuration: Option<
-        DynamicBlock<SecurityhubOrganizationConfigurationOrganizationConfigurationEl>,
-    >,
+    organization_configuration:
+        Option<DynamicBlock<SecurityhubOrganizationConfigurationOrganizationConfigurationEl>>,
 }

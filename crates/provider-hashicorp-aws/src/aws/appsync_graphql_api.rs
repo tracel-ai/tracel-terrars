@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppsyncGraphqlApiData {
@@ -41,7 +41,8 @@ struct AppsyncGraphqlApiData {
     #[serde(skip_serializing_if = "Option::is_none")]
     xray_enabled: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    additional_authentication_provider: Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderEl>>,
+    additional_authentication_provider:
+        Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     enhanced_metrics_config: Option<Vec<AppsyncGraphqlApiEnhancedMetricsConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -90,7 +91,8 @@ impl AppsyncGraphqlApi {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -103,7 +105,7 @@ impl AppsyncGraphqlApi {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -114,12 +116,22 @@ impl AppsyncGraphqlApi {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -153,8 +165,7 @@ impl AppsyncGraphqlApi {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -204,10 +215,14 @@ impl AppsyncGraphqlApi {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().additional_authentication_provider = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.additional_authentication_provider = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .additional_authentication_provider = Some(d);
+            }
         }
         self
     }
@@ -220,10 +235,10 @@ impl AppsyncGraphqlApi {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().enhanced_metrics_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.enhanced_metrics_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -236,23 +251,26 @@ impl AppsyncGraphqlApi {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lambda_authorizer_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lambda_authorizer_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `log_config`.\n"]
-    pub fn set_log_config(self, v: impl Into<BlockAssignable<AppsyncGraphqlApiLogConfigEl>>) -> Self {
+    pub fn set_log_config(
+        self,
+        v: impl Into<BlockAssignable<AppsyncGraphqlApiLogConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().log_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.log_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -265,30 +283,36 @@ impl AppsyncGraphqlApi {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().openid_connect_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.openid_connect_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `user_pool_config`.\n"]
-    pub fn set_user_pool_config(self, v: impl Into<BlockAssignable<AppsyncGraphqlApiUserPoolConfigEl>>) -> Self {
+    pub fn set_user_pool_config(
+        self,
+        v: impl Into<BlockAssignable<AppsyncGraphqlApiUserPoolConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().user_pool_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.user_pool_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `api_type` after provisioning.\n"]
     pub fn api_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -298,7 +322,10 @@ impl AppsyncGraphqlApi {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -308,103 +335,164 @@ impl AppsyncGraphqlApi {
 
     #[doc = "Get a reference to the value of field `introspection_config` after provisioning.\n"]
     pub fn introspection_config(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.introspection_config", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.introspection_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `merged_api_execution_role_arn` after provisioning.\n"]
     pub fn merged_api_execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.merged_api_execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.merged_api_execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_depth_limit` after provisioning.\n"]
     pub fn query_depth_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_depth_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_depth_limit", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_count_limit` after provisioning.\n"]
     pub fn resolver_count_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_count_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_count_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schema", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schema", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uris` after provisioning.\n"]
     pub fn uris(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.uris", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.uris", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `visibility` after provisioning.\n"]
     pub fn visibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.visibility", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.visibility", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xray_enabled` after provisioning.\n"]
     pub fn xray_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xray_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xray_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_authentication_provider` after provisioning.\n"]
-    pub fn additional_authentication_provider(&self) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_authentication_provider", self.extract_ref()))
+    pub fn additional_authentication_provider(
+        &self,
+    ) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_authentication_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enhanced_metrics_config` after provisioning.\n"]
     pub fn enhanced_metrics_config(&self) -> ListRef<AppsyncGraphqlApiEnhancedMetricsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.enhanced_metrics_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enhanced_metrics_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_authorizer_config` after provisioning.\n"]
-    pub fn lambda_authorizer_config(&self) -> ListRef<AppsyncGraphqlApiLambdaAuthorizerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_authorizer_config", self.extract_ref()))
+    pub fn lambda_authorizer_config(
+        &self,
+    ) -> ListRef<AppsyncGraphqlApiLambdaAuthorizerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_authorizer_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_config` after provisioning.\n"]
     pub fn log_config(&self) -> ListRef<AppsyncGraphqlApiLogConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `openid_connect_config` after provisioning.\n"]
     pub fn openid_connect_config(&self) -> ListRef<AppsyncGraphqlApiOpenidConnectConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.openid_connect_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.openid_connect_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_config` after provisioning.\n"]
     pub fn user_pool_config(&self) -> ListRef<AppsyncGraphqlApiUserPoolConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_pool_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppsyncGraphqlApi {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppsyncGraphqlApi { }
+impl Resource for AppsyncGraphqlApi {}
 
 impl ToListMappable for AppsyncGraphqlApi {
     type O = ListRef<AppsyncGraphqlApiRef>;
@@ -482,10 +570,7 @@ pub struct AppsyncGraphqlApiRef {
 
 impl Ref for AppsyncGraphqlApiRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -500,7 +585,10 @@ impl AppsyncGraphqlApiRef {
 
     #[doc = "Get a reference to the value of field `api_type` after provisioning.\n"]
     pub fn api_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -510,7 +598,10 @@ impl AppsyncGraphqlApiRef {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -520,93 +611,150 @@ impl AppsyncGraphqlApiRef {
 
     #[doc = "Get a reference to the value of field `introspection_config` after provisioning.\n"]
     pub fn introspection_config(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.introspection_config", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.introspection_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `merged_api_execution_role_arn` after provisioning.\n"]
     pub fn merged_api_execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.merged_api_execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.merged_api_execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_depth_limit` after provisioning.\n"]
     pub fn query_depth_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_depth_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_depth_limit", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_count_limit` after provisioning.\n"]
     pub fn resolver_count_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_count_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_count_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schema", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schema", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uris` after provisioning.\n"]
     pub fn uris(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.uris", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.uris", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `visibility` after provisioning.\n"]
     pub fn visibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.visibility", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.visibility", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xray_enabled` after provisioning.\n"]
     pub fn xray_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xray_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xray_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_authentication_provider` after provisioning.\n"]
-    pub fn additional_authentication_provider(&self) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_authentication_provider", self.extract_ref()))
+    pub fn additional_authentication_provider(
+        &self,
+    ) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_authentication_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enhanced_metrics_config` after provisioning.\n"]
     pub fn enhanced_metrics_config(&self) -> ListRef<AppsyncGraphqlApiEnhancedMetricsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.enhanced_metrics_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enhanced_metrics_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_authorizer_config` after provisioning.\n"]
-    pub fn lambda_authorizer_config(&self) -> ListRef<AppsyncGraphqlApiLambdaAuthorizerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_authorizer_config", self.extract_ref()))
+    pub fn lambda_authorizer_config(
+        &self,
+    ) -> ListRef<AppsyncGraphqlApiLambdaAuthorizerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_authorizer_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_config` after provisioning.\n"]
     pub fn log_config(&self) -> ListRef<AppsyncGraphqlApiLogConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `openid_connect_config` after provisioning.\n"]
     pub fn openid_connect_config(&self) -> ListRef<AppsyncGraphqlApiOpenidConnectConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.openid_connect_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.openid_connect_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_config` after provisioning.\n"]
     pub fn user_pool_config(&self) -> ListRef<AppsyncGraphqlApiUserPoolConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_pool_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_config", self.extract_ref()),
+        )
     }
 }
 
@@ -633,8 +781,12 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl
     }
 }
 
-impl ToListMappable for AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl {
-    type O = BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl>;
+impl ToListMappable
+    for AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl
+{
+    type O = BlockAssignable<
+        AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -651,7 +803,9 @@ pub struct BuildAppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthori
 }
 
 impl BuildAppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl {
-    pub fn build(self) -> AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl {
+    pub fn build(
+        self,
+    ) -> AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl {
         AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl {
             authorizer_result_ttl_in_seconds: core::default::Default::default(),
             authorizer_uri: self.authorizer_uri,
@@ -684,17 +838,26 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl
 
     #[doc = "Get a reference to the value of field `authorizer_result_ttl_in_seconds` after provisioning.\n"]
     pub fn authorizer_result_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_result_ttl_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_result_ttl_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_uri` after provisioning.\n"]
     pub fn authorizer_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_validation_expression` after provisioning.\n"]
     pub fn identity_validation_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_validation_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_validation_expression", self.base),
+        )
     }
 }
 
@@ -730,7 +893,8 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl {
 }
 
 impl ToListMappable for AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl {
-    type O = BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl>;
+    type O =
+        BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -874,7 +1038,10 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigElRef {
 
     #[doc = "Get a reference to the value of field `app_id_client_regex` after provisioning.\n"]
     pub fn app_id_client_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_id_client_regex", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_id_client_regex", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `aws_region` after provisioning.\n"]
@@ -896,18 +1063,22 @@ struct AppsyncGraphqlApiAdditionalAuthenticationProviderElDynamic {
     openid_connect_config: Option<
         DynamicBlock<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl>,
     >,
-    user_pool_config: Option<DynamicBlock<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigEl>>,
+    user_pool_config:
+        Option<DynamicBlock<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigEl>>,
 }
 
 #[derive(Serialize)]
 pub struct AppsyncGraphqlApiAdditionalAuthenticationProviderEl {
     authentication_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_authorizer_config: Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl>>,
+    lambda_authorizer_config:
+        Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    openid_connect_config: Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl>>,
+    openid_connect_config:
+        Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    user_pool_config: Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigEl>>,
+    user_pool_config:
+        Option<Vec<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigEl>>,
     dynamic: AppsyncGraphqlApiAdditionalAuthenticationProviderElDynamic,
 }
 
@@ -915,15 +1086,19 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderEl {
     #[doc = "Set the field `lambda_authorizer_config`.\n"]
     pub fn set_lambda_authorizer_config(
         mut self,
-        v: impl Into<BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_authorizer_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_authorizer_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -931,15 +1106,19 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderEl {
     #[doc = "Set the field `openid_connect_config`.\n"]
     pub fn set_openid_connect_config(
         mut self,
-        v: impl Into<BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.openid_connect_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.openid_connect_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -947,15 +1126,17 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderEl {
     #[doc = "Set the field `user_pool_config`.\n"]
     pub fn set_user_pool_config(
         mut self,
-        v: impl Into<BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigEl>>,
+        v: impl Into<
+            BlockAssignable<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.user_pool_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.user_pool_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -996,7 +1177,10 @@ pub struct AppsyncGraphqlApiAdditionalAuthenticationProviderElRef {
 }
 
 impl Ref for AppsyncGraphqlApiAdditionalAuthenticationProviderElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncGraphqlApiAdditionalAuthenticationProviderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncGraphqlApiAdditionalAuthenticationProviderElRef {
         AppsyncGraphqlApiAdditionalAuthenticationProviderElRef {
             shared: shared,
             base: base.to_string(),
@@ -1011,26 +1195,41 @@ impl AppsyncGraphqlApiAdditionalAuthenticationProviderElRef {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_authorizer_config` after provisioning.\n"]
     pub fn lambda_authorizer_config(
         &self,
-    ) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_authorizer_config", self.base))
+    ) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElLambdaAuthorizerConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_authorizer_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `openid_connect_config` after provisioning.\n"]
     pub fn openid_connect_config(
         &self,
     ) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElOpenidConnectConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.openid_connect_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.openid_connect_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_config` after provisioning.\n"]
-    pub fn user_pool_config(&self) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_pool_config", self.base))
+    pub fn user_pool_config(
+        &self,
+    ) -> ListRef<AppsyncGraphqlApiAdditionalAuthenticationProviderElUserPoolConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_config", self.base),
+        )
     }
 }
 
@@ -1041,7 +1240,7 @@ pub struct AppsyncGraphqlApiEnhancedMetricsConfigEl {
     resolver_level_metrics_behavior: PrimField<String>,
 }
 
-impl AppsyncGraphqlApiEnhancedMetricsConfigEl { }
+impl AppsyncGraphqlApiEnhancedMetricsConfigEl {}
 
 impl ToListMappable for AppsyncGraphqlApiEnhancedMetricsConfigEl {
     type O = BlockAssignable<AppsyncGraphqlApiEnhancedMetricsConfigEl>;
@@ -1095,17 +1294,26 @@ impl AppsyncGraphqlApiEnhancedMetricsConfigElRef {
 
     #[doc = "Get a reference to the value of field `data_source_level_metrics_behavior` after provisioning.\n"]
     pub fn data_source_level_metrics_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source_level_metrics_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source_level_metrics_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operation_level_metrics_config` after provisioning.\n"]
     pub fn operation_level_metrics_config(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operation_level_metrics_config", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.operation_level_metrics_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_level_metrics_behavior` after provisioning.\n"]
     pub fn resolver_level_metrics_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_level_metrics_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_level_metrics_behavior", self.base),
+        )
     }
 }
 
@@ -1180,17 +1388,26 @@ impl AppsyncGraphqlApiLambdaAuthorizerConfigElRef {
 
     #[doc = "Get a reference to the value of field `authorizer_result_ttl_in_seconds` after provisioning.\n"]
     pub fn authorizer_result_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_result_ttl_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_result_ttl_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_uri` after provisioning.\n"]
     pub fn authorizer_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_validation_expression` after provisioning.\n"]
     pub fn identity_validation_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_validation_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_validation_expression", self.base),
+        )
     }
 }
 
@@ -1260,17 +1477,26 @@ impl AppsyncGraphqlApiLogConfigElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs_role_arn` after provisioning.\n"]
     pub fn cloudwatch_logs_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_logs_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_verbose_content` after provisioning.\n"]
     pub fn exclude_verbose_content(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_verbose_content", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_verbose_content", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_log_level` after provisioning.\n"]
     pub fn field_log_level(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.field_log_level", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.field_log_level", self.base),
+        )
     }
 }
 
@@ -1448,7 +1674,10 @@ impl AppsyncGraphqlApiUserPoolConfigElRef {
 
     #[doc = "Get a reference to the value of field `app_id_client_regex` after provisioning.\n"]
     pub fn app_id_client_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_id_client_regex", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_id_client_regex", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `aws_region` after provisioning.\n"]
@@ -1458,7 +1687,10 @@ impl AppsyncGraphqlApiUserPoolConfigElRef {
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
@@ -1469,7 +1701,8 @@ impl AppsyncGraphqlApiUserPoolConfigElRef {
 
 #[derive(Serialize, Default)]
 struct AppsyncGraphqlApiDynamic {
-    additional_authentication_provider: Option<DynamicBlock<AppsyncGraphqlApiAdditionalAuthenticationProviderEl>>,
+    additional_authentication_provider:
+        Option<DynamicBlock<AppsyncGraphqlApiAdditionalAuthenticationProviderEl>>,
     enhanced_metrics_config: Option<DynamicBlock<AppsyncGraphqlApiEnhancedMetricsConfigEl>>,
     lambda_authorizer_config: Option<DynamicBlock<AppsyncGraphqlApiLambdaAuthorizerConfigEl>>,
     log_config: Option<DynamicBlock<AppsyncGraphqlApiLogConfigEl>>,

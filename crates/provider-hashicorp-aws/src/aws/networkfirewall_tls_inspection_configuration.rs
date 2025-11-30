@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkfirewallTlsInspectionConfigurationData {
@@ -17,7 +17,8 @@ struct NetworkfirewallTlsInspectionConfigurationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    encryption_configuration: Option<ListField<NetworkfirewallTlsInspectionConfigurationEncryptionConfigurationEl>>,
+    encryption_configuration:
+        Option<ListField<NetworkfirewallTlsInspectionConfigurationEncryptionConfigurationEl>>,
     name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
@@ -26,7 +27,8 @@ struct NetworkfirewallTlsInspectionConfigurationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<NetworkfirewallTlsInspectionConfigurationTimeoutsEl>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tls_inspection_configuration: Option<Vec<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl>>,
+    tls_inspection_configuration:
+        Option<Vec<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl>>,
     dynamic: NetworkfirewallTlsInspectionConfigurationDynamic,
 }
 
@@ -37,7 +39,9 @@ struct NetworkfirewallTlsInspectionConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct NetworkfirewallTlsInspectionConfiguration(Rc<NetworkfirewallTlsInspectionConfiguration_>);
+pub struct NetworkfirewallTlsInspectionConfiguration(
+    Rc<NetworkfirewallTlsInspectionConfiguration_>,
+);
 
 impl NetworkfirewallTlsInspectionConfiguration {
     fn shared(&self) -> &StackShared {
@@ -65,7 +69,8 @@ impl NetworkfirewallTlsInspectionConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +83,7 @@ impl NetworkfirewallTlsInspectionConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +94,22 @@ impl NetworkfirewallTlsInspectionConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -113,8 +128,7 @@ impl NetworkfirewallTlsInspectionConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -127,7 +141,10 @@ impl NetworkfirewallTlsInspectionConfiguration {
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<NetworkfirewallTlsInspectionConfigurationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<NetworkfirewallTlsInspectionConfigurationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -135,15 +152,21 @@ impl NetworkfirewallTlsInspectionConfiguration {
     #[doc = "Set the field `tls_inspection_configuration`.\n"]
     pub fn set_tls_inspection_configuration(
         self,
-        v: impl Into<BlockAssignable<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tls_inspection_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.tls_inspection_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .tls_inspection_configuration = Some(d);
+            }
         }
         self
     }
@@ -154,25 +177,41 @@ impl NetworkfirewallTlsInspectionConfiguration {
     }
 
     #[doc = "Get a reference to the value of field `certificate_authority` after provisioning.\n"]
-    pub fn certificate_authority(&self) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificate_authority", self.extract_ref()))
+    pub fn certificate_authority(
+        &self,
+    ) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificates` after provisioning.\n"]
-    pub fn certificates(&self) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificatesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificates", self.extract_ref()))
+    pub fn certificates(
+        &self,
+    ) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificatesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificates", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
     ) -> ListRef<NetworkfirewallTlsInspectionConfigurationEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -182,38 +221,58 @@ impl NetworkfirewallTlsInspectionConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `number_of_associations` after provisioning.\n"]
     pub fn number_of_associations(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_associations", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_associations", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_inspection_configuration_id` after provisioning.\n"]
     pub fn tls_inspection_configuration_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tls_inspection_configuration_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tls_inspection_configuration_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_token` after provisioning.\n"]
     pub fn update_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -228,17 +287,24 @@ impl NetworkfirewallTlsInspectionConfiguration {
     pub fn tls_inspection_configuration(
         &self,
     ) -> ListRef<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tls_inspection_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tls_inspection_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for NetworkfirewallTlsInspectionConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkfirewallTlsInspectionConfiguration { }
+impl Resource for NetworkfirewallTlsInspectionConfiguration {}
 
 impl ToListMappable for NetworkfirewallTlsInspectionConfiguration {
     type O = ListRef<NetworkfirewallTlsInspectionConfigurationRef>;
@@ -271,24 +337,26 @@ pub struct BuildNetworkfirewallTlsInspectionConfiguration {
 
 impl BuildNetworkfirewallTlsInspectionConfiguration {
     pub fn build(self, stack: &mut Stack) -> NetworkfirewallTlsInspectionConfiguration {
-        let out = NetworkfirewallTlsInspectionConfiguration(Rc::new(NetworkfirewallTlsInspectionConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(NetworkfirewallTlsInspectionConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                description: core::default::Default::default(),
-                encryption_configuration: core::default::Default::default(),
-                name: self.name,
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                tls_inspection_configuration: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = NetworkfirewallTlsInspectionConfiguration(Rc::new(
+            NetworkfirewallTlsInspectionConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(NetworkfirewallTlsInspectionConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    description: core::default::Default::default(),
+                    encryption_configuration: core::default::Default::default(),
+                    name: self.name,
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    tls_inspection_configuration: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -301,10 +369,7 @@ pub struct NetworkfirewallTlsInspectionConfigurationRef {
 
 impl Ref for NetworkfirewallTlsInspectionConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -323,25 +388,41 @@ impl NetworkfirewallTlsInspectionConfigurationRef {
     }
 
     #[doc = "Get a reference to the value of field `certificate_authority` after provisioning.\n"]
-    pub fn certificate_authority(&self) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificate_authority", self.extract_ref()))
+    pub fn certificate_authority(
+        &self,
+    ) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificates` after provisioning.\n"]
-    pub fn certificates(&self) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificatesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificates", self.extract_ref()))
+    pub fn certificates(
+        &self,
+    ) -> ListRef<NetworkfirewallTlsInspectionConfigurationCertificatesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificates", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
     ) -> ListRef<NetworkfirewallTlsInspectionConfigurationEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -351,38 +432,58 @@ impl NetworkfirewallTlsInspectionConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `number_of_associations` after provisioning.\n"]
     pub fn number_of_associations(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_associations", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_associations", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_inspection_configuration_id` after provisioning.\n"]
     pub fn tls_inspection_configuration_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tls_inspection_configuration_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tls_inspection_configuration_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_token` after provisioning.\n"]
     pub fn update_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -397,7 +498,10 @@ impl NetworkfirewallTlsInspectionConfigurationRef {
     pub fn tls_inspection_configuration(
         &self,
     ) -> ListRef<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tls_inspection_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tls_inspection_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -470,7 +574,10 @@ pub struct NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
 }
 
 impl Ref for NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
         NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
             shared: shared,
             base: base.to_string(),
@@ -485,12 +592,18 @@ impl NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_serial` after provisioning.\n"]
     pub fn certificate_serial(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_serial", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_serial", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -500,7 +613,10 @@ impl NetworkfirewallTlsInspectionConfigurationCertificateAuthorityElRef {
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.base),
+        )
     }
 }
 
@@ -573,7 +689,10 @@ pub struct NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
 }
 
 impl Ref for NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
         NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
             shared: shared,
             base: base.to_string(),
@@ -588,12 +707,18 @@ impl NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_serial` after provisioning.\n"]
     pub fn certificate_serial(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_serial", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_serial", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -603,7 +728,10 @@ impl NetworkfirewallTlsInspectionConfigurationCertificatesElRef {
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.base),
+        )
     }
 }
 
@@ -696,22 +824,19 @@ pub struct NetworkfirewallTlsInspectionConfigurationTimeoutsEl {
 }
 
 impl NetworkfirewallTlsInspectionConfigurationTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -748,7 +873,10 @@ pub struct NetworkfirewallTlsInspectionConfigurationTimeoutsElRef {
 }
 
 impl Ref for NetworkfirewallTlsInspectionConfigurationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallTlsInspectionConfigurationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallTlsInspectionConfigurationTimeoutsElRef {
         NetworkfirewallTlsInspectionConfigurationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),
@@ -761,27 +889,25 @@ impl NetworkfirewallTlsInspectionConfigurationTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusEl {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     revoked_status_action: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -817,7 +943,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusEl {}
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusEl
+{}
 
 impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusEl {
     pub fn build(
@@ -830,7 +957,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElCheckCertificateRevocationStatusElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -864,7 +992,8 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServer
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationEl {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationEl
+{
     address_definition: PrimField<String>,
 }
 
@@ -887,7 +1016,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationEl {
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationEl
+{
     #[doc = ""]
     pub address_definition: PrimField<String>,
 }
@@ -902,7 +1032,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -931,7 +1062,8 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServer
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationPortsEl {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationPortsEl
+{
     from_port: PrimField<f64>,
     to_port: PrimField<f64>,
 }
@@ -955,7 +1087,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationPortsEl {
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationPortsEl
+{
     #[doc = ""]
     pub from_port: PrimField<f64>,
     #[doc = ""]
@@ -973,7 +1106,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationPortsElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElDestinationPortsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1007,7 +1141,8 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServer
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourceEl {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourceEl
+{
     address_definition: PrimField<String>,
 }
 
@@ -1030,7 +1165,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourceEl {
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourceEl
+{
     #[doc = ""]
     pub address_definition: PrimField<String>,
 }
@@ -1045,7 +1181,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourceElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourceElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1074,7 +1211,8 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServer
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourcePortsEl {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourcePortsEl
+{
     from_port: PrimField<f64>,
     to_port: PrimField<f64>,
 }
@@ -1098,7 +1236,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourcePortsEl {
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourcePortsEl
+{
     #[doc = ""]
     pub from_port: PrimField<f64>,
     #[doc = ""]
@@ -1116,7 +1255,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourcePortsElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElSourcePortsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1312,7 +1452,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeEl {
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeEl
+{
     #[doc = ""]
     pub protocols: SetField<PrimField<f64>>,
 }
@@ -1332,7 +1473,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElScopeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1397,7 +1539,8 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServer
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateEl {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_arn: Option<PrimField<String>>,
 }
@@ -1425,7 +1568,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateEl {}
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateEl
+{}
 
 impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateEl {
     pub fn build(
@@ -1437,7 +1581,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElServerCertificateElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1601,7 +1746,8 @@ impl ToListMappable for NetworkfirewallTlsInspectionConfigurationTlsInspectionCo
     }
 }
 
-pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationEl {}
+pub struct BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationEl
+{}
 
 impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationEl {
     pub fn build(
@@ -1617,7 +1763,8 @@ impl BuildNetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElS
     }
 }
 
-pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElRef {
+pub struct NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1706,10 +1853,10 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.server_certificate_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.server_certificate_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1765,14 +1912,16 @@ impl NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElRef {
         &self,
     ) -> ListRef<
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationElServerCertificateConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.server_certificate_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_certificate_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallTlsInspectionConfigurationDynamic {
-    tls_inspection_configuration: Option<
-        DynamicBlock<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl>,
-    >,
+    tls_inspection_configuration:
+        Option<DynamicBlock<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationEl>>,
 }

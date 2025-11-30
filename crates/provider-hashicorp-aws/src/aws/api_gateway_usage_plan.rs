@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ApiGatewayUsagePlanData {
@@ -71,7 +71,8 @@ impl ApiGatewayUsagePlan {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl ApiGatewayUsagePlan {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl ApiGatewayUsagePlan {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +133,7 @@ impl ApiGatewayUsagePlan {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -142,40 +152,49 @@ impl ApiGatewayUsagePlan {
     }
 
     #[doc = "Set the field `api_stages`.\n"]
-    pub fn set_api_stages(self, v: impl Into<BlockAssignable<ApiGatewayUsagePlanApiStagesEl>>) -> Self {
+    pub fn set_api_stages(
+        self,
+        v: impl Into<BlockAssignable<ApiGatewayUsagePlanApiStagesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().api_stages = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.api_stages = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `quota_settings`.\n"]
-    pub fn set_quota_settings(self, v: impl Into<BlockAssignable<ApiGatewayUsagePlanQuotaSettingsEl>>) -> Self {
+    pub fn set_quota_settings(
+        self,
+        v: impl Into<BlockAssignable<ApiGatewayUsagePlanQuotaSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().quota_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.quota_settings = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `throttle_settings`.\n"]
-    pub fn set_throttle_settings(self, v: impl Into<BlockAssignable<ApiGatewayUsagePlanThrottleSettingsEl>>) -> Self {
+    pub fn set_throttle_settings(
+        self,
+        v: impl Into<BlockAssignable<ApiGatewayUsagePlanThrottleSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().throttle_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.throttle_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -187,7 +206,10 @@ impl ApiGatewayUsagePlan {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -197,48 +219,72 @@ impl ApiGatewayUsagePlan {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_code` after provisioning.\n"]
     pub fn product_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_code", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quota_settings` after provisioning.\n"]
     pub fn quota_settings(&self) -> ListRef<ApiGatewayUsagePlanQuotaSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.quota_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.quota_settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throttle_settings` after provisioning.\n"]
     pub fn throttle_settings(&self) -> ListRef<ApiGatewayUsagePlanThrottleSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.throttle_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.throttle_settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ApiGatewayUsagePlan {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ApiGatewayUsagePlan { }
+impl Resource for ApiGatewayUsagePlan {}
 
 impl ToListMappable for ApiGatewayUsagePlan {
     type O = ListRef<ApiGatewayUsagePlanRef>;
@@ -304,10 +350,7 @@ pub struct ApiGatewayUsagePlanRef {
 
 impl Ref for ApiGatewayUsagePlanRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -327,7 +370,10 @@ impl ApiGatewayUsagePlanRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -337,38 +383,58 @@ impl ApiGatewayUsagePlanRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_code` after provisioning.\n"]
     pub fn product_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_code", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quota_settings` after provisioning.\n"]
     pub fn quota_settings(&self) -> ListRef<ApiGatewayUsagePlanQuotaSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.quota_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.quota_settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throttle_settings` after provisioning.\n"]
     pub fn throttle_settings(&self) -> ListRef<ApiGatewayUsagePlanThrottleSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.throttle_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.throttle_settings", self.extract_ref()),
+        )
     }
 }
 
@@ -473,14 +539,17 @@ pub struct ApiGatewayUsagePlanApiStagesEl {
 
 impl ApiGatewayUsagePlanApiStagesEl {
     #[doc = "Set the field `throttle`.\n"]
-    pub fn set_throttle(mut self, v: impl Into<BlockAssignable<ApiGatewayUsagePlanApiStagesElThrottleEl>>) -> Self {
+    pub fn set_throttle(
+        mut self,
+        v: impl Into<BlockAssignable<ApiGatewayUsagePlanApiStagesElThrottleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.throttle = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.throttle = Some(d);
-            },
+            }
         }
         self
     }

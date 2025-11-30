@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodeartifactRepositoryData {
@@ -70,7 +70,8 @@ impl CodeartifactRepository {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -83,7 +84,7 @@ impl CodeartifactRepository {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -94,12 +95,22 @@ impl CodeartifactRepository {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -121,8 +132,7 @@ impl CodeartifactRepository {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -148,30 +158,36 @@ impl CodeartifactRepository {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().external_connections = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.external_connections = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `upstream`.\n"]
-    pub fn set_upstream(self, v: impl Into<BlockAssignable<CodeartifactRepositoryUpstreamEl>>) -> Self {
+    pub fn set_upstream(
+        self,
+        v: impl Into<BlockAssignable<CodeartifactRepositoryUpstreamEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().upstream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.upstream = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `administrator_account` after provisioning.\n"]
     pub fn administrator_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.administrator_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.administrator_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -181,17 +197,26 @@ impl CodeartifactRepository {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_owner` after provisioning.\n"]
     pub fn domain_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -199,45 +224,66 @@ impl CodeartifactRepository {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_connections` after provisioning.\n"]
     pub fn external_connections(&self) -> ListRef<CodeartifactRepositoryExternalConnectionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.external_connections", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.external_connections", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upstream` after provisioning.\n"]
     pub fn upstream(&self) -> ListRef<CodeartifactRepositoryUpstreamElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.upstream", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.upstream", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodeartifactRepository {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodeartifactRepository { }
+impl Resource for CodeartifactRepository {}
 
 impl ToListMappable for CodeartifactRepository {
     type O = ListRef<CodeartifactRepositoryRef>;
@@ -305,10 +351,7 @@ pub struct CodeartifactRepositoryRef {
 
 impl Ref for CodeartifactRepositoryRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -323,7 +366,10 @@ impl CodeartifactRepositoryRef {
 
     #[doc = "Get a reference to the value of field `administrator_account` after provisioning.\n"]
     pub fn administrator_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.administrator_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.administrator_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -333,17 +379,26 @@ impl CodeartifactRepositoryRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_owner` after provisioning.\n"]
     pub fn domain_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -351,35 +406,52 @@ impl CodeartifactRepositoryRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_connections` after provisioning.\n"]
     pub fn external_connections(&self) -> ListRef<CodeartifactRepositoryExternalConnectionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.external_connections", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.external_connections", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upstream` after provisioning.\n"]
     pub fn upstream(&self) -> ListRef<CodeartifactRepositoryUpstreamElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.upstream", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.upstream", self.extract_ref()),
+        )
     }
 }
 
@@ -388,7 +460,7 @@ pub struct CodeartifactRepositoryExternalConnectionsEl {
     external_connection_name: PrimField<String>,
 }
 
-impl CodeartifactRepositoryExternalConnectionsEl { }
+impl CodeartifactRepositoryExternalConnectionsEl {}
 
 impl ToListMappable for CodeartifactRepositoryExternalConnectionsEl {
     type O = BlockAssignable<CodeartifactRepositoryExternalConnectionsEl>;
@@ -409,7 +481,9 @@ pub struct BuildCodeartifactRepositoryExternalConnectionsEl {
 
 impl BuildCodeartifactRepositoryExternalConnectionsEl {
     pub fn build(self) -> CodeartifactRepositoryExternalConnectionsEl {
-        CodeartifactRepositoryExternalConnectionsEl { external_connection_name: self.external_connection_name }
+        CodeartifactRepositoryExternalConnectionsEl {
+            external_connection_name: self.external_connection_name,
+        }
     }
 }
 
@@ -434,12 +508,18 @@ impl CodeartifactRepositoryExternalConnectionsElRef {
 
     #[doc = "Get a reference to the value of field `external_connection_name` after provisioning.\n"]
     pub fn external_connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.external_connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.external_connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `package_format` after provisioning.\n"]
     pub fn package_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.package_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.package_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -453,7 +533,7 @@ pub struct CodeartifactRepositoryUpstreamEl {
     repository_name: PrimField<String>,
 }
 
-impl CodeartifactRepositoryUpstreamEl { }
+impl CodeartifactRepositoryUpstreamEl {}
 
 impl ToListMappable for CodeartifactRepositoryUpstreamEl {
     type O = BlockAssignable<CodeartifactRepositoryUpstreamEl>;
@@ -474,7 +554,9 @@ pub struct BuildCodeartifactRepositoryUpstreamEl {
 
 impl BuildCodeartifactRepositoryUpstreamEl {
     pub fn build(self) -> CodeartifactRepositoryUpstreamEl {
-        CodeartifactRepositoryUpstreamEl { repository_name: self.repository_name }
+        CodeartifactRepositoryUpstreamEl {
+            repository_name: self.repository_name,
+        }
     }
 }
 
@@ -499,7 +581,10 @@ impl CodeartifactRepositoryUpstreamElRef {
 
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ServicecatalogPortfolioShareData {
@@ -69,7 +69,8 @@ impl ServicecatalogPortfolioShare {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl ServicecatalogPortfolioShare {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl ServicecatalogPortfolioShare {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -114,8 +125,7 @@ impl ServicecatalogPortfolioShare {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -147,12 +157,18 @@ impl ServicecatalogPortfolioShare {
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accepted` after provisioning.\n"]
     pub fn accepted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accepted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accepted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -162,38 +178,58 @@ impl ServicecatalogPortfolioShare {
 
     #[doc = "Get a reference to the value of field `portfolio_id` after provisioning.\n"]
     pub fn portfolio_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.portfolio_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.portfolio_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principal_id` after provisioning.\n"]
     pub fn principal_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_principals` after provisioning.\n"]
     pub fn share_principals(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_principals", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_principals", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_tag_options` after provisioning.\n"]
     pub fn share_tag_options(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_tag_options", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_tag_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_acceptance` after provisioning.\n"]
     pub fn wait_for_acceptance(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_acceptance", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_acceptance", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -207,11 +243,15 @@ impl ServicecatalogPortfolioShare {
 
 impl Referable for ServicecatalogPortfolioShare {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ServicecatalogPortfolioShare { }
+impl Resource for ServicecatalogPortfolioShare {}
 
 impl ToListMappable for ServicecatalogPortfolioShare {
     type O = ListRef<ServicecatalogPortfolioShareRef>;
@@ -280,10 +320,7 @@ pub struct ServicecatalogPortfolioShareRef {
 
 impl Ref for ServicecatalogPortfolioShareRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -298,12 +335,18 @@ impl ServicecatalogPortfolioShareRef {
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accepted` after provisioning.\n"]
     pub fn accepted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accepted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accepted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -313,38 +356,58 @@ impl ServicecatalogPortfolioShareRef {
 
     #[doc = "Get a reference to the value of field `portfolio_id` after provisioning.\n"]
     pub fn portfolio_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.portfolio_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.portfolio_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principal_id` after provisioning.\n"]
     pub fn principal_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_principals` after provisioning.\n"]
     pub fn share_principals(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_principals", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_principals", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_tag_options` after provisioning.\n"]
     pub fn share_tag_options(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_tag_options", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_tag_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_acceptance` after provisioning.\n"]
     pub fn wait_for_acceptance(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_acceptance", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_acceptance", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]

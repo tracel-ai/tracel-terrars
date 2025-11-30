@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBatchJobDefinitionData {
@@ -60,8 +60,7 @@ impl DataBatchJobDefinition {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -86,17 +85,26 @@ impl DataBatchJobDefinition {
 
     #[doc = "Get a reference to the value of field `arn_prefix` after provisioning.\n"]
     pub fn arn_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.arn_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.arn_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_orchestration_type` after provisioning.\n"]
     pub fn container_orchestration_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_orchestration_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_orchestration_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eks_properties` after provisioning.\n"]
     pub fn eks_properties(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eks_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eks_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,63 +114,96 @@ impl DataBatchJobDefinition {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_properties` after provisioning.\n"]
     pub fn node_properties(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.node_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.node_properties", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_strategy` after provisioning.\n"]
     pub fn retry_strategy(&self) -> ListRef<DataBatchJobDefinitionRetryStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_strategy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision` after provisioning.\n"]
     pub fn revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduling_priority` after provisioning.\n"]
     pub fn scheduling_priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_priority", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> ListRef<DataBatchJobDefinitionTimeoutElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timeout", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBatchJobDefinition {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBatchJobDefinition { }
+impl Datasource for DataBatchJobDefinition {}
 
 impl ToListMappable for DataBatchJobDefinition {
     type O = ListRef<DataBatchJobDefinitionRef>;
@@ -219,10 +260,7 @@ pub struct DataBatchJobDefinitionRef {
 
 impl Ref for DataBatchJobDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -242,17 +280,26 @@ impl DataBatchJobDefinitionRef {
 
     #[doc = "Get a reference to the value of field `arn_prefix` after provisioning.\n"]
     pub fn arn_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.arn_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.arn_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_orchestration_type` after provisioning.\n"]
     pub fn container_orchestration_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_orchestration_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_orchestration_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eks_properties` after provisioning.\n"]
     pub fn eks_properties(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eks_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eks_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -262,53 +309,82 @@ impl DataBatchJobDefinitionRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_properties` after provisioning.\n"]
     pub fn node_properties(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.node_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.node_properties", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_strategy` after provisioning.\n"]
     pub fn retry_strategy(&self) -> ListRef<DataBatchJobDefinitionRetryStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_strategy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision` after provisioning.\n"]
     pub fn revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduling_priority` after provisioning.\n"]
     pub fn scheduling_priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_priority", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> ListRef<DataBatchJobDefinitionTimeoutElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timeout", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
@@ -412,8 +488,12 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -427,7 +507,9 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElCont
 pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
             limits: core::default::Default::default(),
             requests: core::default::Default::default(),
@@ -514,8 +596,12 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityCon
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -526,10 +612,13 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElCont
     }
 }
 
-pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {}
+pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
+}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
             privileged: core::default::Default::default(),
             read_only_root_file_system: core::default::Default::default(),
@@ -569,7 +658,10 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityCon
 
     #[doc = "Get a reference to the value of field `read_only_root_file_system` after provisioning.\n"]
     pub fn read_only_root_file_system(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_only_root_file_system", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_only_root_file_system", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_group` after provisioning.\n"]
@@ -579,7 +671,10 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityCon
 
     #[doc = "Get a reference to the value of field `run_as_non_root` after provisioning.\n"]
     pub fn run_as_non_root(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.run_as_non_root", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.run_as_non_root", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_user` after provisioning.\n"]
@@ -618,8 +713,12 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMount
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -633,7 +732,9 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElCont
 pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
             mount_path: core::default::Default::default(),
             name: core::default::Default::default(),
@@ -695,13 +796,19 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resources: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    security_context: Option<
-        ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>,
+    resources: Option<
+        ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    volume_mounts: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>>,
+    security_context: Option<
+        ListField<
+            DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl,
+        >,
+    >,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    volume_mounts: Option<
+        ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>,
+    >,
 }
 
 impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
@@ -747,7 +854,9 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[doc = "Set the field `resources`.\n"]
     pub fn set_resources(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>>,
+        v: impl Into<
+            ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>,
+        >,
     ) -> Self {
         self.resources = Some(v.into());
         self
@@ -756,7 +865,11 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[doc = "Set the field `security_context`.\n"]
     pub fn set_security_context(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl,
+            >,
+        >,
     ) -> Self {
         self.security_context = Some(v.into());
         self
@@ -765,7 +878,11 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[doc = "Set the field `volume_mounts`.\n"]
     pub fn set_volume_mounts(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl,
+            >,
+        >,
     ) -> Self {
         self.volume_mounts = Some(v.into());
         self
@@ -808,7 +925,10 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
 }
 
 impl Ref for DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
             shared: shared,
             base: base.to_string(),
@@ -832,7 +952,9 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
     }
 
     #[doc = "Get a reference to the value of field `env` after provisioning.\n"]
-    pub fn env(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvElRef> {
+    pub fn env(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvElRef> {
         ListRef::new(self.shared().clone(), format!("{}.env", self.base))
     }
 
@@ -843,7 +965,10 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
 
     #[doc = "Get a reference to the value of field `image_pull_policy` after provisioning.\n"]
     pub fn image_pull_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_pull_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_pull_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -852,22 +977,33 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
-    pub fn resources(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesElRef> {
+    pub fn resources(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.resources", self.base))
     }
 
     #[doc = "Get a reference to the value of field `security_context` after provisioning.\n"]
     pub fn security_context(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_context", self.base))
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_context", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_mounts` after provisioning.\n"]
     pub fn volume_mounts(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.volume_mounts", self.base))
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.volume_mounts", self.base),
+        )
     }
 }
 
@@ -886,7 +1022,8 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsEl {
 }
 
 impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsEl>;
+    type O =
+        BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -958,7 +1095,8 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
 }
 
 impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>;
+    type O =
+        BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -972,7 +1110,9 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInit
 pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
             name: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -1035,8 +1175,12 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourc
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1050,7 +1194,9 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInit
 pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
             limits: core::default::Default::default(),
             requests: core::default::Default::default(),
@@ -1137,8 +1283,12 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurit
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1149,10 +1299,13 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInit
     }
 }
 
-pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {}
+pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl
+{}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
             privileged: core::default::Default::default(),
             read_only_root_file_system: core::default::Default::default(),
@@ -1163,16 +1316,20 @@ impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSe
     }
 }
 
-pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef {
+pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef {
+impl Ref
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef {
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef
+    {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef {
             shared: shared,
             base: base.to_string(),
@@ -1192,7 +1349,10 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurit
 
     #[doc = "Get a reference to the value of field `read_only_root_file_system` after provisioning.\n"]
     pub fn read_only_root_file_system(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_only_root_file_system", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_only_root_file_system", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_group` after provisioning.\n"]
@@ -1202,7 +1362,10 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurit
 
     #[doc = "Get a reference to the value of field `run_as_non_root` after provisioning.\n"]
     pub fn run_as_non_root(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.run_as_non_root", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.run_as_non_root", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_user` after provisioning.\n"]
@@ -1241,8 +1404,12 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeM
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1253,10 +1420,13 @@ impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElInit
     }
 }
 
-pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {}
+pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl
+{}
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
-    pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
             mount_path: core::default::Default::default(),
             name: core::default::Default::default(),
@@ -1310,7 +1480,9 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl 
     #[serde(skip_serializing_if = "Option::is_none")]
     command: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    env: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>>,
+    env: Option<
+        ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     image: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1318,13 +1490,21 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl 
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resources: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    security_context: Option<
-        ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl>,
+    resources: Option<
+        ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    volume_mounts: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>>,
+    security_context: Option<
+        ListField<
+            DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl,
+        >,
+    >,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    volume_mounts: Option<
+        ListField<
+            DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
+        >,
+    >,
 }
 
 impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
@@ -1343,7 +1523,9 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `env`.\n"]
     pub fn set_env(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>>,
+        v: impl Into<
+            ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>,
+        >,
     ) -> Self {
         self.env = Some(v.into());
         self
@@ -1370,7 +1552,11 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `resources`.\n"]
     pub fn set_resources(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl,
+            >,
+        >,
     ) -> Self {
         self.resources = Some(v.into());
         self
@@ -1395,7 +1581,11 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `volume_mounts`.\n"]
     pub fn set_volume_mounts(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
+            >,
+        >,
     ) -> Self {
         self.volume_mounts = Some(v.into());
         self
@@ -1465,7 +1655,9 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
     }
 
     #[doc = "Get a reference to the value of field `env` after provisioning.\n"]
-    pub fn env(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvElRef> {
+    pub fn env(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvElRef> {
         ListRef::new(self.shared().clone(), format!("{}.env", self.base))
     }
 
@@ -1476,7 +1668,10 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
 
     #[doc = "Get a reference to the value of field `image_pull_policy` after provisioning.\n"]
     pub fn image_pull_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_pull_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_pull_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1487,22 +1682,33 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesElRef> {
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.resources", self.base))
     }
 
     #[doc = "Get a reference to the value of field `security_context` after provisioning.\n"]
     pub fn security_context(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_context", self.base))
+    ) -> ListRef<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_context", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_mounts` after provisioning.\n"]
     pub fn volume_mounts(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.volume_mounts", self.base))
+    ) -> ListRef<
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.volume_mounts", self.base),
+        )
     }
 }
 
@@ -1536,7 +1742,9 @@ pub struct BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
 
 impl BuildDataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
     pub fn build(self) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
-        DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl { labels: core::default::Default::default() }
+        DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
+            labels: core::default::Default::default(),
+        }
     }
 }
 
@@ -1546,7 +1754,10 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
 }
 
 impl Ref for DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
             shared: shared,
             base: base.to_string(),
@@ -1588,7 +1799,8 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl {
 }
 
 impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>;
+    type O =
+        BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1658,7 +1870,8 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl {
 }
 
 impl ToListMappable for DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl {
-    type O = BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>;
+    type O =
+        BlockAssignable<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1788,13 +2001,16 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretElRef {
 #[derive(Serialize)]
 pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    empty_dir: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>>,
+    empty_dir:
+        Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    host_path: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>>,
+    host_path:
+        Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    secret: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretEl>>,
+    secret:
+        Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretEl>>,
 }
 
 impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesEl {
@@ -1863,7 +2079,10 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
 }
 
 impl Ref for DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1877,12 +2096,16 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
     }
 
     #[doc = "Get a reference to the value of field `empty_dir` after provisioning.\n"]
-    pub fn empty_dir(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirElRef> {
+    pub fn empty_dir(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirElRef> {
         ListRef::new(self.shared().clone(), format!("{}.empty_dir", self.base))
     }
 
     #[doc = "Get a reference to the value of field `host_path` after provisioning.\n"]
-    pub fn host_path(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathElRef> {
+    pub fn host_path(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathElRef> {
         ListRef::new(self.shared().clone(), format!("{}.host_path", self.base))
     }
 
@@ -1892,7 +2115,9 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
     }
 
     #[doc = "Get a reference to the value of field `secret` after provisioning.\n"]
-    pub fn secret(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretElRef> {
+    pub fn secret(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretElRef> {
         ListRef::new(self.shared().clone(), format!("{}.secret", self.base))
     }
 }
@@ -1906,9 +2131,11 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     host_network: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    image_pull_secrets: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsEl>>,
+    image_pull_secrets:
+        Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    init_containers: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl>>,
+    init_containers:
+        Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     metadata: Option<ListField<DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2026,7 +2253,10 @@ pub struct DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
 }
 
 impl Ref for DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
         DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2040,7 +2270,9 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
     }
 
     #[doc = "Get a reference to the value of field `containers` after provisioning.\n"]
-    pub fn containers(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef> {
+    pub fn containers(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef> {
         ListRef::new(self.shared().clone(), format!("{}.containers", self.base))
     }
 
@@ -2058,31 +2290,49 @@ impl DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef {
     pub fn image_pull_secrets(
         &self,
     ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_pull_secrets", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_pull_secrets", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `init_containers` after provisioning.\n"]
-    pub fn init_containers(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.init_containers", self.base))
+    pub fn init_containers(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.init_containers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
-    pub fn metadata(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef> {
+    pub fn metadata(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef> {
         ListRef::new(self.shared().clone(), format!("{}.metadata", self.base))
     }
 
     #[doc = "Get a reference to the value of field `service_account_name` after provisioning.\n"]
     pub fn service_account_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_account_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_account_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_process_namespace` after provisioning.\n"]
     pub fn share_process_namespace(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_process_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_process_namespace", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volumes` after provisioning.\n"]
-    pub fn volumes(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef> {
+    pub fn volumes(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.volumes", self.base))
     }
 }
@@ -2120,7 +2370,9 @@ pub struct BuildDataBatchJobDefinitionEksPropertiesEl {}
 
 impl BuildDataBatchJobDefinitionEksPropertiesEl {
     pub fn build(self) -> DataBatchJobDefinitionEksPropertiesEl {
-        DataBatchJobDefinitionEksPropertiesEl { pod_properties: core::default::Default::default() }
+        DataBatchJobDefinitionEksPropertiesEl {
+            pod_properties: core::default::Default::default(),
+        }
     }
 }
 
@@ -2144,8 +2396,13 @@ impl DataBatchJobDefinitionEksPropertiesElRef {
     }
 
     #[doc = "Get a reference to the value of field `pod_properties` after provisioning.\n"]
-    pub fn pod_properties(&self) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pod_properties", self.base))
+    pub fn pod_properties(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionEksPropertiesElPodPropertiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pod_properties", self.base),
+        )
     }
 }
 
@@ -2171,8 +2428,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvir
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2183,10 +2444,13 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl {
             name: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -2199,11 +2463,14 @@ pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerE
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef {
             shared: shared,
             base: base.to_string(),
@@ -2228,7 +2495,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvir
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     size_in_gib: Option<PrimField<f64>>,
 }
@@ -2241,9 +2509,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphem
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl {
-    type O =
-        BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2254,26 +2525,34 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageEl {
             size_in_gib: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef {
             shared: shared,
             base: base.to_string(),
@@ -2293,7 +2572,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphem
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     platform_version: Option<PrimField<String>>,
 }
@@ -2321,7 +2601,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationEl {
     pub fn build(
@@ -2333,7 +2614,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2362,7 +2644,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFarga
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     container_path: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2371,7 +2654,9 @@ pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerE
     permissions: Option<ListField<PrimField<String>>>,
 }
 
-impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl {
+impl
+    DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl
+{
     #[doc = "Set the field `container_path`.\n"]
     pub fn set_container_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.container_path = Some(v.into());
@@ -2406,7 +2691,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesEl {
     pub fn build(
@@ -2420,7 +2706,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2459,7 +2746,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinux
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     container_path: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2468,7 +2756,9 @@ pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerE
     size: Option<PrimField<f64>>,
 }
 
-impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl {
+impl
+    DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl
+{
     #[doc = "Set the field `container_path`.\n"]
     pub fn set_container_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.container_path = Some(v.into());
@@ -2503,7 +2793,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsEl {
     pub fn build(
@@ -2517,7 +2808,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2633,9 +2925,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinux
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl {
-    type O =
-        BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2646,10 +2941,14 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersEl {
             devices: core::default::Default::default(),
             init_process_enabled: core::default::Default::default(),
@@ -2661,16 +2960,20 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -2686,13 +2989,16 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinux
     #[doc = "Get a reference to the value of field `devices` after provisioning.\n"]
     pub fn devices(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesElRef> {
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElDevicesElRef>{
         ListRef::new(self.shared().clone(), format!("{}.devices", self.base))
     }
 
     #[doc = "Get a reference to the value of field `init_process_enabled` after provisioning.\n"]
     pub fn init_process_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.init_process_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.init_process_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_swap` after provisioning.\n"]
@@ -2702,7 +3008,10 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinux
 
     #[doc = "Get a reference to the value of field `shared_memory_size` after provisioning.\n"]
     pub fn shared_memory_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shared_memory_size", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shared_memory_size", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `swappiness` after provisioning.\n"]
@@ -2713,13 +3022,14 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinux
     #[doc = "Get a reference to the value of field `tmpfs` after provisioning.\n"]
     pub fn tmpfs(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsElRef> {
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElTmpfsElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tmpfs", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2755,7 +3065,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsEl {
     pub fn build(
@@ -2768,7 +3079,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2845,9 +3157,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogCo
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl {
-    type O =
-        BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2858,10 +3173,14 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationEl {
             log_driver: core::default::Default::default(),
             options: core::default::Default::default(),
@@ -2870,16 +3189,20 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2907,8 +3230,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogCo
         &self,
     ) -> ListRef<
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElSecretOptionsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.secret_options", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.secret_options", self.base),
+        )
     }
 }
 
@@ -2942,8 +3268,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMount
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2954,10 +3284,13 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl {
             container_path: core::default::Default::default(),
             read_only: core::default::Default::default(),
@@ -2971,11 +3304,14 @@ pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerE
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2990,7 +3326,10 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMount
 
     #[doc = "Get a reference to the value of field `container_path` after provisioning.\n"]
     pub fn container_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_path", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_only` after provisioning.\n"]
@@ -3000,12 +3339,16 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMount
 
     #[doc = "Get a reference to the value of field `source_volume` after provisioning.\n"]
     pub fn source_volume(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_volume", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_volume", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     assign_public_ip: Option<PrimField<bool>>,
 }
@@ -3018,7 +3361,9 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetwo
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl {
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl
+{
     type O =
         BlockAssignable<
             DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl,
@@ -3033,7 +3378,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationEl {
     pub fn build(
@@ -3045,7 +3391,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3062,19 +3409,25 @@ impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContaine
     }
 }
 
-impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationElRef {
+impl
+    DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assign_public_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assign_public_ip", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl
+{
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3095,7 +3448,9 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResou
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl {
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl
+{
     type O =
         BlockAssignable<
             DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl,
@@ -3110,7 +3465,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsEl {
     pub fn build(
@@ -3123,7 +3479,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3140,7 +3497,9 @@ impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContaine
     }
 }
 
-impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsElRef {
+impl
+    DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -3178,9 +3537,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRunti
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl {
-    type O =
-        BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3191,10 +3553,14 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformEl {
             cpu_architecture: core::default::Default::default(),
             operating_system_family: core::default::Default::default(),
@@ -3202,16 +3568,20 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef {
             shared: shared,
             base: base.to_string(),
@@ -3226,12 +3596,18 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRunti
 
     #[doc = "Get a reference to the value of field `cpu_architecture` after provisioning.\n"]
     pub fn cpu_architecture(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_architecture", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_architecture", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operating_system_family` after provisioning.\n"]
     pub fn operating_system_family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operating_system_family", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.operating_system_family", self.base),
+        )
     }
 }
 
@@ -3257,8 +3633,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecre
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3272,7 +3652,9 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
 pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl {}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl {
             name: core::default::Default::default(),
             value_from: core::default::Default::default(),
@@ -3343,8 +3725,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimi
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3358,7 +3744,9 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
 pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl {}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl {
             hard_limit: core::default::Default::default(),
             name: core::default::Default::default(),
@@ -3406,7 +3794,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimi
 }
 
 #[derive(Serialize)]
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigEl {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     access_point_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3442,7 +3831,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigEl {
     pub fn build(
@@ -3455,7 +3845,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElAuthorizationConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3563,7 +3954,8 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationEl {
     pub fn build(
@@ -3579,7 +3971,8 @@ impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3645,8 +4038,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolum
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3657,26 +4054,33 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
     }
 }
 
-pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl {}
+pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl
+{}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostEl {
             source_path: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef {
+pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef {
+impl Ref
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef {
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef
+    {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef {
             shared: shared,
             base: base.to_string(),
@@ -3749,8 +4153,12 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolum
     }
 }
 
-impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl>;
+impl ToListMappable
+    for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl
+{
+    type O = BlockAssignable<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3764,7 +4172,9 @@ impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertie
 pub struct BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl {}
 
 impl BuildDataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl {
-    pub fn build(self) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl {
+    pub fn build(
+        self,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl {
             efs_volume_configuration: core::default::Default::default(),
             host: core::default::Default::default(),
@@ -3800,14 +4210,19 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolum
         &self,
     ) -> ListRef<
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElEfsVolumeConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.efs_volume_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_volume_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `host` after provisioning.\n"]
     pub fn host(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef> {
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElHostElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.host", self.base))
     }
 
@@ -3887,7 +4302,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentEl,
+            >,
+        >,
     ) -> Self {
         self.environment = Some(v.into());
         self
@@ -3984,7 +4403,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
     #[doc = "Set the field `mount_points`.\n"]
     pub fn set_mount_points(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsEl,
+            >,
+        >,
     ) -> Self {
         self.mount_points = Some(v.into());
         self
@@ -4053,7 +4476,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
     #[doc = "Set the field `secrets`.\n"]
     pub fn set_secrets(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsEl,
+            >,
+        >,
     ) -> Self {
         self.secrets = Some(v.into());
         self
@@ -4062,7 +4489,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
     #[doc = "Set the field `ulimits`.\n"]
     pub fn set_ulimits(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsEl,
+            >,
+        >,
     ) -> Self {
         self.ulimits = Some(v.into());
         self
@@ -4077,7 +4508,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
     #[doc = "Set the field `volumes`.\n"]
     pub fn set_volumes(
         mut self,
-        v: impl Into<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl>>,
+        v: impl Into<
+            ListField<
+                DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesEl,
+            >,
+        >,
     ) -> Self {
         self.volumes = Some(v.into());
         self
@@ -4085,7 +4520,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
 }
 
 impl ToListMappable for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl {
-    type O = BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl>;
+    type O =
+        BlockAssignable<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4155,20 +4591,30 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef> {
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEnvironmentElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.environment", self.base))
     }
 
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ephemeral_storage", self.base))
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElEphemeralStorageElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ephemeral_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fargate_platform_configuration` after provisioning.\n"]
@@ -4176,8 +4622,11 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
         &self,
     ) -> ListRef<
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElFargatePlatformConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.fargate_platform_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fargate_platform_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image` after provisioning.\n"]
@@ -4187,7 +4636,10 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_role_arn` after provisioning.\n"]
@@ -4198,29 +4650,44 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
     #[doc = "Get a reference to the value of field `linux_parameters` after provisioning.\n"]
     pub fn linux_parameters(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.linux_parameters", self.base))
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLinuxParametersElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.linux_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.base))
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElLogConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mount_points` after provisioning.\n"]
     pub fn mount_points(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef> {
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElMountPointsElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.mount_points", self.base))
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.base))
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElNetworkConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `privileged` after provisioning.\n"]
@@ -4230,30 +4697,47 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
 
     #[doc = "Get a reference to the value of field `readonly_root_filesystem` after provisioning.\n"]
     pub fn readonly_root_filesystem(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.readonly_root_filesystem", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.readonly_root_filesystem", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_requirements` after provisioning.\n"]
     pub fn resource_requirements(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_requirements", self.base))
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElResourceRequirementsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_requirements", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_platform` after provisioning.\n"]
     pub fn runtime_platform(
         &self,
-    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime_platform", self.base))
+    ) -> ListRef<
+        DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRuntimePlatformElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_platform", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secrets` after provisioning.\n"]
-    pub fn secrets(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsElRef> {
+    pub fn secrets(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElSecretsElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.secrets", self.base))
     }
 
     #[doc = "Get a reference to the value of field `ulimits` after provisioning.\n"]
-    pub fn ulimits(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsElRef> {
+    pub fn ulimits(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElUlimitsElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.ulimits", self.base))
     }
 
@@ -4263,7 +4747,10 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
     }
 
     #[doc = "Get a reference to the value of field `volumes` after provisioning.\n"]
-    pub fn volumes(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElRef> {
+    pub fn volumes(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElVolumesElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.volumes", self.base))
     }
 }
@@ -4271,7 +4758,8 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef {
 #[derive(Serialize)]
 pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    container: Option<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl>>,
+    container:
+        Option<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     target_nodes: Option<PrimField<String>>,
 }
@@ -4322,7 +4810,10 @@ pub struct DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef {
 }
 
 impl Ref for DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef {
         DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -4336,7 +4827,9 @@ impl DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef {
     }
 
     #[doc = "Get a reference to the value of field `container` after provisioning.\n"]
-    pub fn container(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef> {
+    pub fn container(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElContainerElRef> {
         ListRef::new(self.shared().clone(), format!("{}.container", self.base))
     }
 
@@ -4351,7 +4844,8 @@ pub struct DataBatchJobDefinitionNodePropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     main_node: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    node_range_properties: Option<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesEl>>,
+    node_range_properties:
+        Option<ListField<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     num_nodes: Option<PrimField<f64>>,
 }
@@ -4428,8 +4922,13 @@ impl DataBatchJobDefinitionNodePropertiesElRef {
     }
 
     #[doc = "Get a reference to the value of field `node_range_properties` after provisioning.\n"]
-    pub fn node_range_properties(&self) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.node_range_properties", self.base))
+    pub fn node_range_properties(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionNodePropertiesElNodeRangePropertiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.node_range_properties", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `num_nodes` after provisioning.\n"]
@@ -4507,7 +5006,10 @@ pub struct DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
 }
 
 impl Ref for DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
         DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
             shared: shared,
             base: base.to_string(),
@@ -4537,7 +5039,10 @@ impl DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
 
     #[doc = "Get a reference to the value of field `on_status_reason` after provisioning.\n"]
     pub fn on_status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_status_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_status_reason", self.base),
+        )
     }
 }
 
@@ -4614,8 +5119,13 @@ impl DataBatchJobDefinitionRetryStrategyElRef {
     }
 
     #[doc = "Get a reference to the value of field `evaluate_on_exit` after provisioning.\n"]
-    pub fn evaluate_on_exit(&self) -> ListRef<DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.evaluate_on_exit", self.base))
+    pub fn evaluate_on_exit(
+        &self,
+    ) -> ListRef<DataBatchJobDefinitionRetryStrategyElEvaluateOnExitElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.evaluate_on_exit", self.base),
+        )
     }
 }
 
@@ -4649,7 +5159,9 @@ pub struct BuildDataBatchJobDefinitionTimeoutEl {}
 
 impl BuildDataBatchJobDefinitionTimeoutEl {
     pub fn build(self) -> DataBatchJobDefinitionTimeoutEl {
-        DataBatchJobDefinitionTimeoutEl { attempt_duration_seconds: core::default::Default::default() }
+        DataBatchJobDefinitionTimeoutEl {
+            attempt_duration_seconds: core::default::Default::default(),
+        }
     }
 }
 
@@ -4674,6 +5186,9 @@ impl DataBatchJobDefinitionTimeoutElRef {
 
     #[doc = "Get a reference to the value of field `attempt_duration_seconds` after provisioning.\n"]
     pub fn attempt_duration_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attempt_duration_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attempt_duration_seconds", self.base),
+        )
     }
 }

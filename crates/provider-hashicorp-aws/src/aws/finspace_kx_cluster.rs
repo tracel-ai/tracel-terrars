@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct FinspaceKxClusterData {
@@ -96,7 +96,8 @@ impl FinspaceKxCluster {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -109,7 +110,7 @@ impl FinspaceKxCluster {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -120,12 +121,22 @@ impl FinspaceKxCluster {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -165,8 +176,7 @@ impl FinspaceKxCluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -192,10 +202,10 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_scaling_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_scaling_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -208,10 +218,14 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cache_storage_configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.cache_storage_configurations = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .cache_storage_configurations = Some(d);
+            }
         }
         self
     }
@@ -224,10 +238,10 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.capacity_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -237,10 +251,10 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().code = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.code = Some(d);
-            },
+            }
         }
         self
     }
@@ -250,10 +264,10 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().database = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.database = Some(d);
-            },
+            }
         }
         self
     }
@@ -266,10 +280,14 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().savedown_storage_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.savedown_storage_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .savedown_storage_configuration = Some(d);
+            }
         }
         self
     }
@@ -282,10 +300,10 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scaling_group_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scaling_group_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -298,10 +316,14 @@ impl FinspaceKxCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tickerplant_log_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.tickerplant_log_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .tickerplant_log_configuration = Some(d);
+            }
         }
         self
     }
@@ -313,14 +335,17 @@ impl FinspaceKxCluster {
     }
 
     #[doc = "Set the field `vpc_configuration`.\n"]
-    pub fn set_vpc_configuration(self, v: impl Into<BlockAssignable<FinspaceKxClusterVpcConfigurationEl>>) -> Self {
+    pub fn set_vpc_configuration(
+        self,
+        v: impl Into<BlockAssignable<FinspaceKxClusterVpcConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -332,37 +357,58 @@ impl FinspaceKxCluster {
 
     #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\n"]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `az_mode` after provisioning.\n"]
     pub fn az_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.az_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.az_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `command_line_arguments` after provisioning.\n"]
     pub fn command_line_arguments(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.command_line_arguments", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.command_line_arguments", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_timestamp` after provisioning.\n"]
     pub fn created_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_id` after provisioning.\n"]
     pub fn environment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.environment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.environment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -372,113 +418,186 @@ impl FinspaceKxCluster {
 
     #[doc = "Get a reference to the value of field `initialization_script` after provisioning.\n"]
     pub fn initialization_script(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.initialization_script", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.initialization_script", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_timestamp` after provisioning.\n"]
     pub fn last_modified_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration` after provisioning.\n"]
-    pub fn auto_scaling_configuration(&self) -> ListRef<FinspaceKxClusterAutoScalingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_scaling_configuration", self.extract_ref()))
+    pub fn auto_scaling_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterAutoScalingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_storage_configurations` after provisioning.\n"]
-    pub fn cache_storage_configurations(&self) -> ListRef<FinspaceKxClusterCacheStorageConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache_storage_configurations", self.extract_ref()))
+    pub fn cache_storage_configurations(
+        &self,
+    ) -> ListRef<FinspaceKxClusterCacheStorageConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache_storage_configurations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_configuration` after provisioning.\n"]
     pub fn capacity_configuration(&self) -> ListRef<FinspaceKxClusterCapacityConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> ListRef<FinspaceKxClusterCodeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<FinspaceKxClusterDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `savedown_storage_configuration` after provisioning.\n"]
-    pub fn savedown_storage_configuration(&self) -> ListRef<FinspaceKxClusterSavedownStorageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.savedown_storage_configuration", self.extract_ref()))
+    pub fn savedown_storage_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterSavedownStorageConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.savedown_storage_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_group_configuration` after provisioning.\n"]
-    pub fn scaling_group_configuration(&self) -> ListRef<FinspaceKxClusterScalingGroupConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_group_configuration", self.extract_ref()))
+    pub fn scaling_group_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterScalingGroupConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_group_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tickerplant_log_configuration` after provisioning.\n"]
-    pub fn tickerplant_log_configuration(&self) -> ListRef<FinspaceKxClusterTickerplantLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tickerplant_log_configuration", self.extract_ref()))
+    pub fn tickerplant_log_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterTickerplantLogConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tickerplant_log_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FinspaceKxClusterTimeoutsElRef {
-        FinspaceKxClusterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        FinspaceKxClusterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_configuration` after provisioning.\n"]
     pub fn vpc_configuration(&self) -> ListRef<FinspaceKxClusterVpcConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for FinspaceKxCluster {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for FinspaceKxCluster { }
+impl Resource for FinspaceKxCluster {}
 
 impl ToListMappable for FinspaceKxCluster {
     type O = ListRef<FinspaceKxClusterRef>;
@@ -566,10 +685,7 @@ pub struct FinspaceKxClusterRef {
 
 impl Ref for FinspaceKxClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -589,37 +705,58 @@ impl FinspaceKxClusterRef {
 
     #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\n"]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `az_mode` after provisioning.\n"]
     pub fn az_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.az_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.az_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `command_line_arguments` after provisioning.\n"]
     pub fn command_line_arguments(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.command_line_arguments", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.command_line_arguments", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_timestamp` after provisioning.\n"]
     pub fn created_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_id` after provisioning.\n"]
     pub fn environment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.environment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.environment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -629,103 +766,172 @@ impl FinspaceKxClusterRef {
 
     #[doc = "Get a reference to the value of field `initialization_script` after provisioning.\n"]
     pub fn initialization_script(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.initialization_script", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.initialization_script", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_timestamp` after provisioning.\n"]
     pub fn last_modified_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration` after provisioning.\n"]
-    pub fn auto_scaling_configuration(&self) -> ListRef<FinspaceKxClusterAutoScalingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_scaling_configuration", self.extract_ref()))
+    pub fn auto_scaling_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterAutoScalingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_storage_configurations` after provisioning.\n"]
-    pub fn cache_storage_configurations(&self) -> ListRef<FinspaceKxClusterCacheStorageConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache_storage_configurations", self.extract_ref()))
+    pub fn cache_storage_configurations(
+        &self,
+    ) -> ListRef<FinspaceKxClusterCacheStorageConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache_storage_configurations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_configuration` after provisioning.\n"]
     pub fn capacity_configuration(&self) -> ListRef<FinspaceKxClusterCapacityConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> ListRef<FinspaceKxClusterCodeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<FinspaceKxClusterDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `savedown_storage_configuration` after provisioning.\n"]
-    pub fn savedown_storage_configuration(&self) -> ListRef<FinspaceKxClusterSavedownStorageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.savedown_storage_configuration", self.extract_ref()))
+    pub fn savedown_storage_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterSavedownStorageConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.savedown_storage_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_group_configuration` after provisioning.\n"]
-    pub fn scaling_group_configuration(&self) -> ListRef<FinspaceKxClusterScalingGroupConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_group_configuration", self.extract_ref()))
+    pub fn scaling_group_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterScalingGroupConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_group_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tickerplant_log_configuration` after provisioning.\n"]
-    pub fn tickerplant_log_configuration(&self) -> ListRef<FinspaceKxClusterTickerplantLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tickerplant_log_configuration", self.extract_ref()))
+    pub fn tickerplant_log_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxClusterTickerplantLogConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tickerplant_log_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FinspaceKxClusterTimeoutsElRef {
-        FinspaceKxClusterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        FinspaceKxClusterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_configuration` after provisioning.\n"]
     pub fn vpc_configuration(&self) -> ListRef<FinspaceKxClusterVpcConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -739,7 +945,7 @@ pub struct FinspaceKxClusterAutoScalingConfigurationEl {
     scale_out_cooldown_seconds: PrimField<f64>,
 }
 
-impl FinspaceKxClusterAutoScalingConfigurationEl { }
+impl FinspaceKxClusterAutoScalingConfigurationEl {}
 
 impl ToListMappable for FinspaceKxClusterAutoScalingConfigurationEl {
     type O = BlockAssignable<FinspaceKxClusterAutoScalingConfigurationEl>;
@@ -802,32 +1008,50 @@ impl FinspaceKxClusterAutoScalingConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `auto_scaling_metric` after provisioning.\n"]
     pub fn auto_scaling_metric(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_metric", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_metric", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_node_count` after provisioning.\n"]
     pub fn max_node_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_node_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_node_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_target` after provisioning.\n"]
     pub fn metric_target(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_target", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_target", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_node_count` after provisioning.\n"]
     pub fn min_node_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_node_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_node_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_in_cooldown_seconds` after provisioning.\n"]
     pub fn scale_in_cooldown_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_in_cooldown_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_in_cooldown_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_out_cooldown_seconds` after provisioning.\n"]
     pub fn scale_out_cooldown_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_out_cooldown_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_out_cooldown_seconds", self.base),
+        )
     }
 }
 
@@ -838,7 +1062,7 @@ pub struct FinspaceKxClusterCacheStorageConfigurationsEl {
     type_: PrimField<String>,
 }
 
-impl FinspaceKxClusterCacheStorageConfigurationsEl { }
+impl FinspaceKxClusterCacheStorageConfigurationsEl {}
 
 impl ToListMappable for FinspaceKxClusterCacheStorageConfigurationsEl {
     type O = BlockAssignable<FinspaceKxClusterCacheStorageConfigurationsEl>;
@@ -904,7 +1128,7 @@ pub struct FinspaceKxClusterCapacityConfigurationEl {
     node_type: PrimField<String>,
 }
 
-impl FinspaceKxClusterCapacityConfigurationEl { }
+impl FinspaceKxClusterCapacityConfigurationEl {}
 
 impl ToListMappable for FinspaceKxClusterCapacityConfigurationEl {
     type O = BlockAssignable<FinspaceKxClusterCapacityConfigurationEl>;
@@ -1040,7 +1264,10 @@ impl FinspaceKxClusterCodeElRef {
 
     #[doc = "Get a reference to the value of field `s3_object_version` after provisioning.\n"]
     pub fn s3_object_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_object_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_object_version", self.base),
+        )
     }
 }
 
@@ -1091,7 +1318,10 @@ pub struct FinspaceKxClusterDatabaseElCacheConfigurationsElRef {
 }
 
 impl Ref for FinspaceKxClusterDatabaseElCacheConfigurationsElRef {
-    fn new(shared: StackShared, base: String) -> FinspaceKxClusterDatabaseElCacheConfigurationsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FinspaceKxClusterDatabaseElCacheConfigurationsElRef {
         FinspaceKxClusterDatabaseElCacheConfigurationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1153,10 +1383,10 @@ impl FinspaceKxClusterDatabaseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cache_configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cache_configurations = Some(d);
-            },
+            }
         }
         self
     }
@@ -1217,17 +1447,28 @@ impl FinspaceKxClusterDatabaseElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dataview_name` after provisioning.\n"]
     pub fn dataview_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dataview_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dataview_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_configurations` after provisioning.\n"]
-    pub fn cache_configurations(&self) -> ListRef<FinspaceKxClusterDatabaseElCacheConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache_configurations", self.base))
+    pub fn cache_configurations(
+        &self,
+    ) -> ListRef<FinspaceKxClusterDatabaseElCacheConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache_configurations", self.base),
+        )
     }
 }
 
@@ -1291,7 +1532,10 @@ pub struct FinspaceKxClusterSavedownStorageConfigurationElRef {
 }
 
 impl Ref for FinspaceKxClusterSavedownStorageConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> FinspaceKxClusterSavedownStorageConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FinspaceKxClusterSavedownStorageConfigurationElRef {
         FinspaceKxClusterSavedownStorageConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1409,7 +1653,10 @@ impl FinspaceKxClusterScalingGroupConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `memory_reservation` after provisioning.\n"]
     pub fn memory_reservation(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_reservation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_reservation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_count` after provisioning.\n"]
@@ -1419,7 +1666,10 @@ impl FinspaceKxClusterScalingGroupConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `scaling_group_name` after provisioning.\n"]
     pub fn scaling_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_group_name", self.base),
+        )
     }
 }
 
@@ -1428,7 +1678,7 @@ pub struct FinspaceKxClusterTickerplantLogConfigurationEl {
     tickerplant_log_volumes: SetField<PrimField<String>>,
 }
 
-impl FinspaceKxClusterTickerplantLogConfigurationEl { }
+impl FinspaceKxClusterTickerplantLogConfigurationEl {}
 
 impl ToListMappable for FinspaceKxClusterTickerplantLogConfigurationEl {
     type O = BlockAssignable<FinspaceKxClusterTickerplantLogConfigurationEl>;
@@ -1449,7 +1699,9 @@ pub struct BuildFinspaceKxClusterTickerplantLogConfigurationEl {
 
 impl BuildFinspaceKxClusterTickerplantLogConfigurationEl {
     pub fn build(self) -> FinspaceKxClusterTickerplantLogConfigurationEl {
-        FinspaceKxClusterTickerplantLogConfigurationEl { tickerplant_log_volumes: self.tickerplant_log_volumes }
+        FinspaceKxClusterTickerplantLogConfigurationEl {
+            tickerplant_log_volumes: self.tickerplant_log_volumes,
+        }
     }
 }
 
@@ -1474,7 +1726,10 @@ impl FinspaceKxClusterTickerplantLogConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `tickerplant_log_volumes` after provisioning.\n"]
     pub fn tickerplant_log_volumes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tickerplant_log_volumes", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tickerplant_log_volumes", self.base),
+        )
     }
 }
 
@@ -1575,7 +1830,7 @@ pub struct FinspaceKxClusterVpcConfigurationEl {
     vpc_id: PrimField<String>,
 }
 
-impl FinspaceKxClusterVpcConfigurationEl { }
+impl FinspaceKxClusterVpcConfigurationEl {}
 
 impl ToListMappable for FinspaceKxClusterVpcConfigurationEl {
     type O = BlockAssignable<FinspaceKxClusterVpcConfigurationEl>;
@@ -1632,12 +1887,18 @@ impl FinspaceKxClusterVpcConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
@@ -1654,12 +1915,15 @@ impl FinspaceKxClusterVpcConfigurationElRef {
 #[derive(Serialize, Default)]
 struct FinspaceKxClusterDynamic {
     auto_scaling_configuration: Option<DynamicBlock<FinspaceKxClusterAutoScalingConfigurationEl>>,
-    cache_storage_configurations: Option<DynamicBlock<FinspaceKxClusterCacheStorageConfigurationsEl>>,
+    cache_storage_configurations:
+        Option<DynamicBlock<FinspaceKxClusterCacheStorageConfigurationsEl>>,
     capacity_configuration: Option<DynamicBlock<FinspaceKxClusterCapacityConfigurationEl>>,
     code: Option<DynamicBlock<FinspaceKxClusterCodeEl>>,
     database: Option<DynamicBlock<FinspaceKxClusterDatabaseEl>>,
-    savedown_storage_configuration: Option<DynamicBlock<FinspaceKxClusterSavedownStorageConfigurationEl>>,
+    savedown_storage_configuration:
+        Option<DynamicBlock<FinspaceKxClusterSavedownStorageConfigurationEl>>,
     scaling_group_configuration: Option<DynamicBlock<FinspaceKxClusterScalingGroupConfigurationEl>>,
-    tickerplant_log_configuration: Option<DynamicBlock<FinspaceKxClusterTickerplantLogConfigurationEl>>,
+    tickerplant_log_configuration:
+        Option<DynamicBlock<FinspaceKxClusterTickerplantLogConfigurationEl>>,
     vpc_configuration: Option<DynamicBlock<FinspaceKxClusterVpcConfigurationEl>>,
 }

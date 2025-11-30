@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DbOptionGroupData {
@@ -74,7 +74,8 @@ impl DbOptionGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl DbOptionGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl DbOptionGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,8 +142,7 @@ impl DbOptionGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -161,10 +171,10 @@ impl DbOptionGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.option = Some(d);
-            },
+            }
         }
         self
     }
@@ -182,7 +192,10 @@ impl DbOptionGroup {
 
     #[doc = "Get a reference to the value of field `engine_name` after provisioning.\n"]
     pub fn engine_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -192,58 +205,88 @@ impl DbOptionGroup {
 
     #[doc = "Get a reference to the value of field `major_engine_version` after provisioning.\n"]
     pub fn major_engine_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.major_engine_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.major_engine_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `option_group_description` after provisioning.\n"]
     pub fn option_group_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.option_group_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.option_group_description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_destroy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_destroy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DbOptionGroupTimeoutsElRef {
-        DbOptionGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DbOptionGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DbOptionGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DbOptionGroup { }
+impl Resource for DbOptionGroup {}
 
 impl ToListMappable for DbOptionGroup {
     type O = ListRef<DbOptionGroupRef>;
@@ -313,10 +356,7 @@ pub struct DbOptionGroupRef {
 
 impl Ref for DbOptionGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -336,7 +376,10 @@ impl DbOptionGroupRef {
 
     #[doc = "Get a reference to the value of field `engine_name` after provisioning.\n"]
     pub fn engine_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -346,48 +389,74 @@ impl DbOptionGroupRef {
 
     #[doc = "Get a reference to the value of field `major_engine_version` after provisioning.\n"]
     pub fn major_engine_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.major_engine_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.major_engine_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `option_group_description` after provisioning.\n"]
     pub fn option_group_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.option_group_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.option_group_description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_destroy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_destroy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DbOptionGroupTimeoutsElRef {
-        DbOptionGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DbOptionGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -397,7 +466,7 @@ pub struct DbOptionGroupOptionElOptionSettingsEl {
     value: PrimField<String>,
 }
 
-impl DbOptionGroupOptionElOptionSettingsEl { }
+impl DbOptionGroupOptionElOptionSettingsEl {}
 
 impl ToListMappable for DbOptionGroupOptionElOptionSettingsEl {
     type O = BlockAssignable<DbOptionGroupOptionElOptionSettingsEl>;
@@ -480,7 +549,10 @@ pub struct DbOptionGroupOptionEl {
 
 impl DbOptionGroupOptionEl {
     #[doc = "Set the field `db_security_group_memberships`.\n"]
-    pub fn set_db_security_group_memberships(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_db_security_group_memberships(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.db_security_group_memberships = Some(v.into());
         self
     }
@@ -498,20 +570,26 @@ impl DbOptionGroupOptionEl {
     }
 
     #[doc = "Set the field `vpc_security_group_memberships`.\n"]
-    pub fn set_vpc_security_group_memberships(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_vpc_security_group_memberships(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.vpc_security_group_memberships = Some(v.into());
         self
     }
 
     #[doc = "Set the field `option_settings`.\n"]
-    pub fn set_option_settings(mut self, v: impl Into<BlockAssignable<DbOptionGroupOptionElOptionSettingsEl>>) -> Self {
+    pub fn set_option_settings(
+        mut self,
+        v: impl Into<BlockAssignable<DbOptionGroupOptionElOptionSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.option_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.option_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -569,7 +647,10 @@ impl DbOptionGroupOptionElRef {
 
     #[doc = "Get a reference to the value of field `db_security_group_memberships` after provisioning.\n"]
     pub fn db_security_group_memberships(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.db_security_group_memberships", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.db_security_group_memberships", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `option_name` after provisioning.\n"]
@@ -589,7 +670,10 @@ impl DbOptionGroupOptionElRef {
 
     #[doc = "Get a reference to the value of field `vpc_security_group_memberships` after provisioning.\n"]
     pub fn vpc_security_group_memberships(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_security_group_memberships", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_security_group_memberships", self.base),
+        )
     }
 }
 
@@ -623,7 +707,9 @@ pub struct BuildDbOptionGroupTimeoutsEl {}
 
 impl BuildDbOptionGroupTimeoutsEl {
     pub fn build(self) -> DbOptionGroupTimeoutsEl {
-        DbOptionGroupTimeoutsEl { delete: core::default::Default::default() }
+        DbOptionGroupTimeoutsEl {
+            delete: core::default::Default::default(),
+        }
     }
 }
 

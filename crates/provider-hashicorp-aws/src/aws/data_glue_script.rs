@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataGlueScriptData {
@@ -61,8 +61,7 @@ impl DataGlueScript {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -73,10 +72,10 @@ impl DataGlueScript {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dag_edge = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dag_edge = Some(d);
-            },
+            }
         }
         self
     }
@@ -86,10 +85,10 @@ impl DataGlueScript {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dag_node = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dag_node = Some(d);
-            },
+            }
         }
         self
     }
@@ -101,43 +100,64 @@ impl DataGlueScript {
 
     #[doc = "Get a reference to the value of field `language` after provisioning.\n"]
     pub fn language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `python_script` after provisioning.\n"]
     pub fn python_script(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.python_script", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.python_script", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scala_code` after provisioning.\n"]
     pub fn scala_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scala_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scala_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dag_edge` after provisioning.\n"]
     pub fn dag_edge(&self) -> ListRef<DataGlueScriptDagEdgeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dag_edge", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dag_edge", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dag_node` after provisioning.\n"]
     pub fn dag_node(&self) -> ListRef<DataGlueScriptDagNodeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dag_node", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dag_node", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataGlueScript {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataGlueScript { }
+impl Datasource for DataGlueScript {}
 
 impl ToListMappable for DataGlueScript {
     type O = ListRef<DataGlueScriptRef>;
@@ -195,10 +215,7 @@ pub struct DataGlueScriptRef {
 
 impl Ref for DataGlueScriptRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -218,33 +235,50 @@ impl DataGlueScriptRef {
 
     #[doc = "Get a reference to the value of field `language` after provisioning.\n"]
     pub fn language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `python_script` after provisioning.\n"]
     pub fn python_script(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.python_script", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.python_script", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scala_code` after provisioning.\n"]
     pub fn scala_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scala_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scala_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dag_edge` after provisioning.\n"]
     pub fn dag_edge(&self) -> ListRef<DataGlueScriptDagEdgeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dag_edge", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dag_edge", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dag_node` after provisioning.\n"]
     pub fn dag_node(&self) -> ListRef<DataGlueScriptDagNodeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dag_node", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dag_node", self.extract_ref()),
+        )
     }
 }
 
@@ -324,7 +358,10 @@ impl DataGlueScriptDagEdgeElRef {
 
     #[doc = "Get a reference to the value of field `target_parameter` after provisioning.\n"]
     pub fn target_parameter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_parameter", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_parameter", self.base),
+        )
     }
 }
 
@@ -432,14 +469,17 @@ impl DataGlueScriptDagNodeEl {
     }
 
     #[doc = "Set the field `args`.\n"]
-    pub fn set_args(mut self, v: impl Into<BlockAssignable<DataGlueScriptDagNodeElArgsEl>>) -> Self {
+    pub fn set_args(
+        mut self,
+        v: impl Into<BlockAssignable<DataGlueScriptDagNodeElArgsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.args = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.args = Some(d);
-            },
+            }
         }
         self
     }

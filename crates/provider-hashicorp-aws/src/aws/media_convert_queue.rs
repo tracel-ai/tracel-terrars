@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct MediaConvertQueueData {
@@ -71,7 +71,8 @@ impl MediaConvertQueue {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl MediaConvertQueue {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl MediaConvertQueue {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -128,8 +139,7 @@ impl MediaConvertQueue {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -161,10 +171,10 @@ impl MediaConvertQueue {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().reservation_plan_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.reservation_plan_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -176,12 +186,18 @@ impl MediaConvertQueue {
 
     #[doc = "Get a reference to the value of field `concurrent_jobs` after provisioning.\n"]
     pub fn concurrent_jobs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.concurrent_jobs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.concurrent_jobs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -191,48 +207,74 @@ impl MediaConvertQueue {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pricing_plan` after provisioning.\n"]
     pub fn pricing_plan(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pricing_plan", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pricing_plan", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reservation_plan_settings` after provisioning.\n"]
-    pub fn reservation_plan_settings(&self) -> ListRef<MediaConvertQueueReservationPlanSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reservation_plan_settings", self.extract_ref()))
+    pub fn reservation_plan_settings(
+        &self,
+    ) -> ListRef<MediaConvertQueueReservationPlanSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reservation_plan_settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for MediaConvertQueue {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for MediaConvertQueue { }
+impl Resource for MediaConvertQueue {}
 
 impl ToListMappable for MediaConvertQueue {
     type O = ListRef<MediaConvertQueueRef>;
@@ -298,10 +340,7 @@ pub struct MediaConvertQueueRef {
 
 impl Ref for MediaConvertQueueRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -321,12 +360,18 @@ impl MediaConvertQueueRef {
 
     #[doc = "Get a reference to the value of field `concurrent_jobs` after provisioning.\n"]
     pub fn concurrent_jobs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.concurrent_jobs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.concurrent_jobs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -336,38 +381,60 @@ impl MediaConvertQueueRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pricing_plan` after provisioning.\n"]
     pub fn pricing_plan(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pricing_plan", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pricing_plan", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reservation_plan_settings` after provisioning.\n"]
-    pub fn reservation_plan_settings(&self) -> ListRef<MediaConvertQueueReservationPlanSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reservation_plan_settings", self.extract_ref()))
+    pub fn reservation_plan_settings(
+        &self,
+    ) -> ListRef<MediaConvertQueueReservationPlanSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reservation_plan_settings", self.extract_ref()),
+        )
     }
 }
 
@@ -378,7 +445,7 @@ pub struct MediaConvertQueueReservationPlanSettingsEl {
     reserved_slots: PrimField<f64>,
 }
 
-impl MediaConvertQueueReservationPlanSettingsEl { }
+impl MediaConvertQueueReservationPlanSettingsEl {}
 
 impl ToListMappable for MediaConvertQueueReservationPlanSettingsEl {
     type O = BlockAssignable<MediaConvertQueueReservationPlanSettingsEl>;
@@ -442,7 +509,10 @@ impl MediaConvertQueueReservationPlanSettingsElRef {
 
     #[doc = "Get a reference to the value of field `reserved_slots` after provisioning.\n"]
     pub fn reserved_slots(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reserved_slots", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reserved_slots", self.base),
+        )
     }
 }
 

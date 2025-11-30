@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDmsReplicationSubnetGroupData {
@@ -51,8 +51,7 @@ impl DataDmsReplicationSubnetGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -69,55 +68,85 @@ impl DataDmsReplicationSubnetGroup {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_subnet_group_arn` after provisioning.\n"]
     pub fn replication_subnet_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_subnet_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replication_subnet_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_subnet_group_description` after provisioning.\n"]
     pub fn replication_subnet_group_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_subnet_group_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.replication_subnet_group_description",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_subnet_group_id` after provisioning.\n"]
     pub fn replication_subnet_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_subnet_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replication_subnet_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_group_status` after provisioning.\n"]
     pub fn subnet_group_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_group_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_group_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDmsReplicationSubnetGroup {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDmsReplicationSubnetGroup { }
+impl Datasource for DataDmsReplicationSubnetGroup {}
 
 impl ToListMappable for DataDmsReplicationSubnetGroup {
     type O = ListRef<DataDmsReplicationSubnetGroupRef>;
@@ -175,10 +204,7 @@ pub struct DataDmsReplicationSubnetGroupRef {
 
 impl Ref for DataDmsReplicationSubnetGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -196,44 +222,70 @@ impl DataDmsReplicationSubnetGroupRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_subnet_group_arn` after provisioning.\n"]
     pub fn replication_subnet_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_subnet_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replication_subnet_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_subnet_group_description` after provisioning.\n"]
     pub fn replication_subnet_group_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_subnet_group_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.replication_subnet_group_description",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_subnet_group_id` after provisioning.\n"]
     pub fn replication_subnet_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_subnet_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replication_subnet_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_group_status` after provisioning.\n"]
     pub fn subnet_group_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_group_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_group_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpclatticeServiceNetworkServiceAssociationData {
@@ -35,7 +35,9 @@ struct VpclatticeServiceNetworkServiceAssociation_ {
 }
 
 #[derive(Clone)]
-pub struct VpclatticeServiceNetworkServiceAssociation(Rc<VpclatticeServiceNetworkServiceAssociation_>);
+pub struct VpclatticeServiceNetworkServiceAssociation(
+    Rc<VpclatticeServiceNetworkServiceAssociation_>,
+);
 
 impl VpclatticeServiceNetworkServiceAssociation {
     fn shared(&self) -> &StackShared {
@@ -63,7 +65,8 @@ impl VpclatticeServiceNetworkServiceAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +79,7 @@ impl VpclatticeServiceNetworkServiceAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +90,22 @@ impl VpclatticeServiceNetworkServiceAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -102,8 +115,7 @@ impl VpclatticeServiceNetworkServiceAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -122,7 +134,10 @@ impl VpclatticeServiceNetworkServiceAssociation {
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<VpclatticeServiceNetworkServiceAssociationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<VpclatticeServiceNetworkServiceAssociationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -134,17 +149,26 @@ impl VpclatticeServiceNetworkServiceAssociation {
 
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain_name` after provisioning.\n"]
     pub fn custom_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_entry` after provisioning.\n"]
     pub fn dns_entry(&self) -> ListRef<VpclatticeServiceNetworkServiceAssociationDnsEntryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_entry", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_entry", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -152,35 +176,52 @@ impl VpclatticeServiceNetworkServiceAssociation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_network_identifier` after provisioning.\n"]
     pub fn service_network_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_network_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_network_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -194,11 +235,15 @@ impl VpclatticeServiceNetworkServiceAssociation {
 
 impl Referable for VpclatticeServiceNetworkServiceAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpclatticeServiceNetworkServiceAssociation { }
+impl Resource for VpclatticeServiceNetworkServiceAssociation {}
 
 impl ToListMappable for VpclatticeServiceNetworkServiceAssociation {
     type O = ListRef<VpclatticeServiceNetworkServiceAssociationRef>;
@@ -233,23 +278,25 @@ pub struct BuildVpclatticeServiceNetworkServiceAssociation {
 
 impl BuildVpclatticeServiceNetworkServiceAssociation {
     pub fn build(self, stack: &mut Stack) -> VpclatticeServiceNetworkServiceAssociation {
-        let out = VpclatticeServiceNetworkServiceAssociation(Rc::new(VpclatticeServiceNetworkServiceAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(VpclatticeServiceNetworkServiceAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                service_identifier: self.service_identifier,
-                service_network_identifier: self.service_network_identifier,
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = VpclatticeServiceNetworkServiceAssociation(Rc::new(
+            VpclatticeServiceNetworkServiceAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(VpclatticeServiceNetworkServiceAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    service_identifier: self.service_identifier,
+                    service_network_identifier: self.service_network_identifier,
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -262,10 +309,7 @@ pub struct VpclatticeServiceNetworkServiceAssociationRef {
 
 impl Ref for VpclatticeServiceNetworkServiceAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -285,17 +329,26 @@ impl VpclatticeServiceNetworkServiceAssociationRef {
 
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain_name` after provisioning.\n"]
     pub fn custom_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_entry` after provisioning.\n"]
     pub fn dns_entry(&self) -> ListRef<VpclatticeServiceNetworkServiceAssociationDnsEntryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_entry", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_entry", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -303,35 +356,52 @@ impl VpclatticeServiceNetworkServiceAssociationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_network_identifier` after provisioning.\n"]
     pub fn service_network_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_network_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_network_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -394,7 +464,10 @@ pub struct VpclatticeServiceNetworkServiceAssociationDnsEntryElRef {
 }
 
 impl Ref for VpclatticeServiceNetworkServiceAssociationDnsEntryElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeServiceNetworkServiceAssociationDnsEntryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeServiceNetworkServiceAssociationDnsEntryElRef {
         VpclatticeServiceNetworkServiceAssociationDnsEntryElRef {
             shared: shared,
             base: base.to_string(),
@@ -414,7 +487,10 @@ impl VpclatticeServiceNetworkServiceAssociationDnsEntryElRef {
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.base),
+        )
     }
 }
 
@@ -478,7 +554,10 @@ pub struct VpclatticeServiceNetworkServiceAssociationTimeoutsElRef {
 }
 
 impl Ref for VpclatticeServiceNetworkServiceAssociationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeServiceNetworkServiceAssociationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeServiceNetworkServiceAssociationTimeoutsElRef {
         VpclatticeServiceNetworkServiceAssociationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationData {
@@ -70,7 +70,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -83,7 +84,7 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -94,17 +95,26 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -125,15 +135,17 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
     #[doc = "Set the field `elements`.\n"]
     pub fn set_elements(
         self,
-        v: impl Into<BlockAssignable<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl>>,
+        v: impl Into<
+            BlockAssignable<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().elements = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.elements = Some(d);
-            },
+            }
         }
         self
     }
@@ -153,16 +165,23 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().real_time_alert_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.real_time_alert_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .real_time_alert_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -179,44 +198,70 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_access_role_arn` after provisioning.\n"]
     pub fn resource_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `elements` after provisioning.\n"]
-    pub fn elements(&self) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.elements", self.extract_ref()))
+    pub fn elements(
+        &self,
+    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.elements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `real_time_alert_configuration` after provisioning.\n"]
     pub fn real_time_alert_configuration(
         &self,
-    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.real_time_alert_configuration", self.extract_ref()))
+    ) -> ListRef<
+        ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.real_time_alert_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
-    pub fn timeouts(&self) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef {
+    pub fn timeouts(
+        &self,
+    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef {
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef::new(
             self.shared().clone(),
             format!("{}.timeouts", self.extract_ref()),
@@ -226,11 +271,15 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
 
 impl Referable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration { }
+impl Resource for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {}
 
 impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
     type O = ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRef>;
@@ -264,13 +313,16 @@ pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
 }
 
 impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
-    pub fn build(self, stack: &mut Stack) -> ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
-        let out =
-            ChimesdkmediapipelinesMediaInsightsPipelineConfiguration(
-                Rc::new(ChimesdkmediapipelinesMediaInsightsPipelineConfiguration_ {
-                    shared: stack.shared.clone(),
-                    tf_id: self.tf_id,
-                    data: RefCell::new(ChimesdkmediapipelinesMediaInsightsPipelineConfigurationData {
+    pub fn build(
+        self,
+        stack: &mut Stack,
+    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
+        let out = ChimesdkmediapipelinesMediaInsightsPipelineConfiguration(Rc::new(
+            ChimesdkmediapipelinesMediaInsightsPipelineConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(
+                    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationData {
                         depends_on: core::default::Default::default(),
                         provider: None,
                         lifecycle: core::default::Default::default(),
@@ -284,9 +336,10 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfiguration {
                         real_time_alert_configuration: core::default::Default::default(),
                         timeouts: core::default::Default::default(),
                         dynamic: Default::default(),
-                    }),
-                }),
-            );
+                    },
+                ),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -299,10 +352,7 @@ pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRef {
 
 impl Ref for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -327,44 +377,70 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_access_role_arn` after provisioning.\n"]
     pub fn resource_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `elements` after provisioning.\n"]
-    pub fn elements(&self) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.elements", self.extract_ref()))
+    pub fn elements(
+        &self,
+    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.elements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `real_time_alert_configuration` after provisioning.\n"]
     pub fn real_time_alert_configuration(
         &self,
-    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.real_time_alert_configuration", self.extract_ref()))
+    ) -> ListRef<
+        ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.real_time_alert_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
-    pub fn timeouts(&self) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef {
+    pub fn timeouts(
+        &self,
+    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef {
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef::new(
             self.shared().clone(),
             format!("{}.timeouts", self.extract_ref()),
@@ -373,7 +449,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRef {
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElPostCallAnalyticsSettingsEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElPostCallAnalyticsSettingsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     content_redaction_output: Option<PrimField<String>>,
     data_access_role_arn: PrimField<String>,
@@ -411,7 +488,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElPostCallAnalyticsSettingsEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElPostCallAnalyticsSettingsEl
+{
     #[doc = ""]
     pub data_access_role_arn: PrimField<String>,
     #[doc = ""]
@@ -431,7 +509,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmaz
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElPostCallAnalyticsSettingsElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElPostCallAnalyticsSettingsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -623,7 +702,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationEl
+{
     #[doc = ""]
     pub language_code: PrimField<String>,
 }
@@ -651,7 +731,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmaz
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -744,7 +825,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTra
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     content_identification_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -853,7 +935,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationEl
+{
     #[doc = ""]
     pub language_code: PrimField<String>,
 }
@@ -879,7 +962,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmaz
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -963,7 +1047,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTra
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationEl
+{
     insights_target: PrimField<String>,
 }
 
@@ -984,7 +1069,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationEl
+{
     #[doc = ""]
     pub insights_target: PrimField<String>,
 }
@@ -999,7 +1085,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKine
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1028,7 +1115,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDa
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationEl
+{
     insights_target: PrimField<String>,
 }
 
@@ -1049,7 +1137,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationEl
+{
     #[doc = ""]
     pub insights_target: PrimField<String>,
 }
@@ -1064,7 +1153,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLamb
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1093,12 +1183,15 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFun
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     destination: Option<PrimField<String>>,
 }
 
-impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl {
+impl
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl
+{
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.destination = Some(v.into());
@@ -1121,7 +1214,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl {}
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl
+{}
 
 impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationEl {
     pub fn build(
@@ -1133,7 +1227,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3Re
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1162,11 +1257,12 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3Recordi
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl
+{
     insights_target: PrimField<String>,
 }
 
-impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl { }
+impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl {}
 
 impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl {
     type O =
@@ -1183,7 +1279,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationEl
+{
     #[doc = ""]
     pub insights_target: PrimField<String>,
 }
@@ -1198,7 +1295,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsT
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1215,23 +1313,29 @@ impl Ref for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS
     }
 }
 
-impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationElRef {
+impl
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `insights_target` after provisioning.\n"]
     pub fn insights_target(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.insights_target", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.insights_target", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl
+{
     insights_target: PrimField<String>,
 }
 
-impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl { }
+impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl {}
 
 impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl {
     type O =
@@ -1248,7 +1352,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationEl
+{
     #[doc = ""]
     pub insights_target: PrimField<String>,
 }
@@ -1263,7 +1368,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQ
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1280,19 +1386,25 @@ impl Ref for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS
     }
 }
 
-impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationElRef {
+impl
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `insights_target` after provisioning.\n"]
     pub fn insights_target(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.insights_target", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.insights_target", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationEl
+{
     speaker_search_status: PrimField<String>,
     voice_tone_analysis_status: PrimField<String>,
 }
@@ -1314,7 +1426,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationEl
+{
     #[doc = ""]
     pub speaker_search_status: PrimField<String>,
     #[doc = ""]
@@ -1332,7 +1445,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoic
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1462,10 +1576,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.amazon_transcribe_call_analytics_processor_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.dynamic.amazon_transcribe_call_analytics_processor_configuration = Some(d);
-            },
+                self.dynamic
+                    .amazon_transcribe_call_analytics_processor_configuration = Some(d);
+            }
         }
         self
     }
@@ -1485,10 +1600,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.amazon_transcribe_processor_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.amazon_transcribe_processor_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1508,10 +1623,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_data_stream_sink_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_data_stream_sink_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1531,10 +1646,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_sink_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_sink_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1554,10 +1669,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_recording_sink_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_recording_sink_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1577,10 +1692,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sns_topic_sink_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sns_topic_sink_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1600,10 +1715,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sqs_queue_sink_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sqs_queue_sink_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1623,10 +1738,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.voice_analytics_processor_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.voice_analytics_processor_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1653,7 +1768,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
     pub fn build(self) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl {
             type_: self.type_,
-            amazon_transcribe_call_analytics_processor_configuration: core::default::Default::default(),
+            amazon_transcribe_call_analytics_processor_configuration:
+                core::default::Default::default(),
             amazon_transcribe_processor_configuration: core::default::Default::default(),
             kinesis_data_stream_sink_configuration: core::default::Default::default(),
             lambda_function_sink_configuration: core::default::Default::default(),
@@ -1693,16 +1809,18 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `amazon_transcribe_call_analytics_processor_configuration` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `amazon_transcribe_call_analytics_processor_configuration` after provisioning.\n"]
     pub fn amazon_transcribe_call_analytics_processor_configuration(
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeCallAnalyticsProcessorConfigurationElRef,
-    > {
+    >{
         ListRef::new(
             self.shared().clone(),
-            format!("{}.amazon_transcribe_call_analytics_processor_configuration", self.base),
+            format!(
+                "{}.amazon_transcribe_call_analytics_processor_configuration",
+                self.base
+            ),
         )
     }
 
@@ -1711,8 +1829,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef {
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElAmazonTranscribeProcessorConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.amazon_transcribe_processor_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.amazon_transcribe_processor_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_data_stream_sink_configuration` after provisioning.\n"]
@@ -1720,8 +1841,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef {
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElKinesisDataStreamSinkConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_data_stream_sink_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_data_stream_sink_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_function_sink_configuration` after provisioning.\n"]
@@ -1729,29 +1853,41 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef {
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElLambdaFunctionSinkConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_function_sink_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_function_sink_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_recording_sink_configuration` after provisioning.\n"]
     pub fn s3_recording_sink_configuration(
         &self,
-    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_recording_sink_configuration", self.base))
+    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElS3RecordingSinkConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_recording_sink_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_sink_configuration` after provisioning.\n"]
     pub fn sns_topic_sink_configuration(
         &self,
-    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sns_topic_sink_configuration", self.base))
+    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSnsTopicSinkConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_sink_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_queue_sink_configuration` after provisioning.\n"]
     pub fn sqs_queue_sink_configuration(
         &self,
-    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_queue_sink_configuration", self.base))
+    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElSqsQueueSinkConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_queue_sink_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `voice_analytics_processor_configuration` after provisioning.\n"]
@@ -1759,13 +1895,17 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElRef {
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsElVoiceAnalyticsProcessorConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.voice_analytics_processor_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.voice_analytics_processor_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationEl
+{
     rule_name: PrimField<String>,
 }
 
@@ -1788,7 +1928,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationEl
+{
     #[doc = ""]
     pub rule_name: PrimField<String>,
 }
@@ -1803,7 +1944,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertC
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1832,7 +1974,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationEl
+{
     keywords: ListField<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     negate: Option<PrimField<bool>>,
@@ -1862,7 +2005,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationEl
+{
     #[doc = ""]
     pub keywords: ListField<PrimField<String>>,
     #[doc = ""]
@@ -1881,7 +2025,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertC
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1920,7 +2065,8 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
 }
 
 #[derive(Serialize)]
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationEl {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationEl
+{
     rule_name: PrimField<String>,
     sentiment_type: PrimField<String>,
     time_period: PrimField<f64>,
@@ -1945,7 +2091,8 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationEl
+{
     #[doc = ""]
     pub rule_name: PrimField<String>,
     #[doc = ""]
@@ -1966,7 +2113,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertC
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2064,10 +2212,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.issue_detection_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.issue_detection_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2087,10 +2235,10 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.keyword_match_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.keyword_match_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2110,18 +2258,21 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sentiment_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sentiment_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl {
-    type O =
-        BlockAssignable<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl>;
+impl ToListMappable
+    for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl
+{
+    type O = BlockAssignable<
+        ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2132,15 +2283,19 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl {
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
 
-impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl {
+impl
+    BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl
+{
     pub fn build(
         self,
-    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl {
+    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl
+    {
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesEl {
             type_: self.type_,
             issue_detection_configuration: core::default::Default::default(),
@@ -2151,7 +2306,8 @@ impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertC
     }
 }
 
-pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElRef {
+pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2168,7 +2324,9 @@ impl Ref for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAle
     }
 }
 
-impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElRef {
+impl
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -2183,8 +2341,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElIssueDetectionConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.issue_detection_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.issue_detection_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `keyword_match_configuration` after provisioning.\n"]
@@ -2192,8 +2353,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElKeywordMatchConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.keyword_match_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.keyword_match_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sentiment_configuration` after provisioning.\n"]
@@ -2201,8 +2365,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         &self,
     ) -> ListRef<
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElSentimentConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.sentiment_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sentiment_configuration", self.base),
+        )
     }
 }
 
@@ -2244,17 +2411,21 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rules = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rules = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl {
-    type O = BlockAssignable<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl>;
+impl ToListMappable
+    for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl
+{
+    type O = BlockAssignable<
+        ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2265,10 +2436,13 @@ impl ToListMappable for ChimesdkmediapipelinesMediaInsightsPipelineConfiguration
     }
 }
 
-pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl {}
+pub struct BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl
+{}
 
 impl BuildChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl {
-    pub fn build(self) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl {
+    pub fn build(
+        self,
+    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl {
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl {
             disabled: core::default::Default::default(),
             rules: core::default::Default::default(),
@@ -2282,11 +2456,14 @@ pub struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlert
     base: String,
 }
 
-impl Ref for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef {
+impl Ref
+    for ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef {
+    ) -> ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef
+    {
         ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2307,7 +2484,7 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfig
     #[doc = "Get a reference to the value of field `rules` after provisioning.\n"]
     pub fn rules(
         &self,
-    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElRef> {
+    ) -> ListRef<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationElRulesElRef>{
         ListRef::new(self.shared().clone(), format!("{}.rules", self.base))
     }
 }
@@ -2406,8 +2583,11 @@ impl ChimesdkmediapipelinesMediaInsightsPipelineConfigurationTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct ChimesdkmediapipelinesMediaInsightsPipelineConfigurationDynamic {
-    elements: Option<DynamicBlock<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl>>,
+    elements:
+        Option<DynamicBlock<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsEl>>,
     real_time_alert_configuration: Option<
-        DynamicBlock<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl>,
+        DynamicBlock<
+            ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationEl,
+        >,
     >,
 }

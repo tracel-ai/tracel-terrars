@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LexSlotTypeData {
@@ -67,7 +67,8 @@ impl LexSlotType {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl LexSlotType {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl LexSlotType {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -118,8 +129,7 @@ impl LexSlotType {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -132,14 +142,17 @@ impl LexSlotType {
     }
 
     #[doc = "Set the field `enumeration_value`.\n"]
-    pub fn set_enumeration_value(self, v: impl Into<BlockAssignable<LexSlotTypeEnumerationValueEl>>) -> Self {
+    pub fn set_enumeration_value(
+        self,
+        v: impl Into<BlockAssignable<LexSlotTypeEnumerationValueEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().enumeration_value = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.enumeration_value = Some(d);
-            },
+            }
         }
         self
     }
@@ -152,22 +165,34 @@ impl LexSlotType {
 
     #[doc = "Get a reference to the value of field `checksum` after provisioning.\n"]
     pub fn checksum(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checksum", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checksum", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_version` after provisioning.\n"]
     pub fn create_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -177,43 +202,64 @@ impl LexSlotType {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value_selection_strategy` after provisioning.\n"]
     pub fn value_selection_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.value_selection_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.value_selection_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LexSlotTypeTimeoutsElRef {
-        LexSlotTypeTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        LexSlotTypeTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for LexSlotType {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LexSlotType { }
+impl Resource for LexSlotType {}
 
 impl ToListMappable for LexSlotType {
     type O = ListRef<LexSlotTypeRef>;
@@ -277,10 +323,7 @@ pub struct LexSlotTypeRef {
 
 impl Ref for LexSlotTypeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -295,22 +338,34 @@ impl LexSlotTypeRef {
 
     #[doc = "Get a reference to the value of field `checksum` after provisioning.\n"]
     pub fn checksum(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checksum", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checksum", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_version` after provisioning.\n"]
     pub fn create_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -320,33 +375,50 @@ impl LexSlotTypeRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value_selection_strategy` after provisioning.\n"]
     pub fn value_selection_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.value_selection_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.value_selection_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LexSlotTypeTimeoutsElRef {
-        LexSlotTypeTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        LexSlotTypeTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 

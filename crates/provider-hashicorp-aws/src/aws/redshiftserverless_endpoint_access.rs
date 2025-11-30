@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RedshiftserverlessEndpointAccessData {
@@ -62,7 +62,8 @@ impl RedshiftserverlessEndpointAccess {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -75,7 +76,7 @@ impl RedshiftserverlessEndpointAccess {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -86,12 +87,22 @@ impl RedshiftserverlessEndpointAccess {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -107,8 +118,7 @@ impl RedshiftserverlessEndpointAccess {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -122,7 +132,10 @@ impl RedshiftserverlessEndpointAccess {
 
     #[doc = "Get a reference to the value of field `address` after provisioning.\n"]
     pub fn address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -132,7 +145,10 @@ impl RedshiftserverlessEndpointAccess {
 
     #[doc = "Get a reference to the value of field `endpoint_name` after provisioning.\n"]
     pub fn endpoint_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -142,48 +158,72 @@ impl RedshiftserverlessEndpointAccess {
 
     #[doc = "Get a reference to the value of field `owner_account` after provisioning.\n"]
     pub fn owner_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint` after provisioning.\n"]
     pub fn vpc_endpoint(&self) -> ListRef<RedshiftserverlessEndpointAccessVpcEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_endpoint", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_security_group_ids` after provisioning.\n"]
     pub fn vpc_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_security_group_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workgroup_name` after provisioning.\n"]
     pub fn workgroup_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workgroup_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workgroup_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for RedshiftserverlessEndpointAccess {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RedshiftserverlessEndpointAccess { }
+impl Resource for RedshiftserverlessEndpointAccess {}
 
 impl ToListMappable for RedshiftserverlessEndpointAccess {
     type O = ListRef<RedshiftserverlessEndpointAccessRef>;
@@ -249,10 +289,7 @@ pub struct RedshiftserverlessEndpointAccessRef {
 
 impl Ref for RedshiftserverlessEndpointAccessRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -267,7 +304,10 @@ impl RedshiftserverlessEndpointAccessRef {
 
     #[doc = "Get a reference to the value of field `address` after provisioning.\n"]
     pub fn address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -277,7 +317,10 @@ impl RedshiftserverlessEndpointAccessRef {
 
     #[doc = "Get a reference to the value of field `endpoint_name` after provisioning.\n"]
     pub fn endpoint_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -287,38 +330,58 @@ impl RedshiftserverlessEndpointAccessRef {
 
     #[doc = "Get a reference to the value of field `owner_account` after provisioning.\n"]
     pub fn owner_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint` after provisioning.\n"]
     pub fn vpc_endpoint(&self) -> ListRef<RedshiftserverlessEndpointAccessVpcEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_endpoint", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_security_group_ids` after provisioning.\n"]
     pub fn vpc_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_security_group_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workgroup_name` after provisioning.\n"]
     pub fn workgroup_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workgroup_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workgroup_name", self.extract_ref()),
+        )
     }
 }
 
@@ -391,7 +454,10 @@ pub struct RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
 }
 
 impl Ref for RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
-    fn new(shared: StackShared, base: String) -> RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
         RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
             shared: shared,
             base: base.to_string(),
@@ -406,17 +472,26 @@ impl RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip_address` after provisioning.\n"]
     pub fn private_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
@@ -428,7 +503,8 @@ impl RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef {
 #[derive(Serialize)]
 pub struct RedshiftserverlessEndpointAccessVpcEndpointEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_interface: Option<ListField<RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceEl>>,
+    network_interface:
+        Option<ListField<RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     vpc_endpoint_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -502,13 +578,21 @@ impl RedshiftserverlessEndpointAccessVpcEndpointElRef {
     }
 
     #[doc = "Get a reference to the value of field `network_interface` after provisioning.\n"]
-    pub fn network_interface(&self) -> ListRef<RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface", self.base))
+    pub fn network_interface(
+        &self,
+    ) -> ListRef<RedshiftserverlessEndpointAccessVpcEndpointElNetworkInterfaceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]

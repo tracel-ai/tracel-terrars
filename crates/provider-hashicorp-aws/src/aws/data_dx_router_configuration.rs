@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDxRouterConfigurationData {
@@ -50,8 +50,7 @@ impl DataDxRouterConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -59,7 +58,10 @@ impl DataDxRouterConfiguration {
 
     #[doc = "Get a reference to the value of field `customer_router_config` after provisioning.\n"]
     pub fn customer_router_config(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_router_config", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_router_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -67,40 +69,58 @@ impl DataDxRouterConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `router` after provisioning.\n"]
     pub fn router(&self) -> ListRef<DataDxRouterConfigurationRouterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.router", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.router", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `router_type_identifier` after provisioning.\n"]
     pub fn router_type_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.router_type_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.router_type_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_interface_id` after provisioning.\n"]
     pub fn virtual_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_interface_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_interface_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_interface_name` after provisioning.\n"]
     pub fn virtual_interface_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_interface_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_interface_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDxRouterConfiguration {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDxRouterConfiguration { }
+impl Datasource for DataDxRouterConfiguration {}
 
 impl ToListMappable for DataDxRouterConfiguration {
     type O = ListRef<DataDxRouterConfigurationRef>;
@@ -160,10 +180,7 @@ pub struct DataDxRouterConfigurationRef {
 
 impl Ref for DataDxRouterConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -178,7 +195,10 @@ impl DataDxRouterConfigurationRef {
 
     #[doc = "Get a reference to the value of field `customer_router_config` after provisioning.\n"]
     pub fn customer_router_config(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_router_config", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_router_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -186,30 +206,44 @@ impl DataDxRouterConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `router` after provisioning.\n"]
     pub fn router(&self) -> ListRef<DataDxRouterConfigurationRouterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.router", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.router", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `router_type_identifier` after provisioning.\n"]
     pub fn router_type_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.router_type_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.router_type_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_interface_id` after provisioning.\n"]
     pub fn virtual_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_interface_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_interface_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_interface_name` after provisioning.\n"]
     pub fn virtual_interface_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_interface_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_interface_name", self.extract_ref()),
+        )
     }
 }
 
@@ -320,7 +354,10 @@ impl DataDxRouterConfigurationRouterElRef {
 
     #[doc = "Get a reference to the value of field `router_type_identifier` after provisioning.\n"]
     pub fn router_type_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.router_type_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.router_type_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `software` after provisioning.\n"]
@@ -335,11 +372,17 @@ impl DataDxRouterConfigurationRouterElRef {
 
     #[doc = "Get a reference to the value of field `xslt_template_name` after provisioning.\n"]
     pub fn xslt_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xslt_template_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xslt_template_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xslt_template_name_for_mac_sec` after provisioning.\n"]
     pub fn xslt_template_name_for_mac_sec(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xslt_template_name_for_mac_sec", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xslt_template_name_for_mac_sec", self.base),
+        )
     }
 }

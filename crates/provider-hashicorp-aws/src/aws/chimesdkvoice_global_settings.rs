@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ChimesdkvoiceGlobalSettingsData {
@@ -56,7 +56,8 @@ impl ChimesdkvoiceGlobalSettings {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -69,7 +70,7 @@ impl ChimesdkvoiceGlobalSettings {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -80,12 +81,22 @@ impl ChimesdkvoiceGlobalSettings {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,10 +114,10 @@ impl ChimesdkvoiceGlobalSettings {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().voice_connector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.voice_connector = Some(d);
-            },
+            }
         }
         self
     }
@@ -118,17 +129,24 @@ impl ChimesdkvoiceGlobalSettings {
 
     #[doc = "Get a reference to the value of field `voice_connector` after provisioning.\n"]
     pub fn voice_connector(&self) -> ListRef<ChimesdkvoiceGlobalSettingsVoiceConnectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.voice_connector", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.voice_connector", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ChimesdkvoiceGlobalSettings {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ChimesdkvoiceGlobalSettings { }
+impl Resource for ChimesdkvoiceGlobalSettings {}
 
 impl ToListMappable for ChimesdkvoiceGlobalSettings {
     type O = ListRef<ChimesdkvoiceGlobalSettingsRef>;
@@ -184,10 +202,7 @@ pub struct ChimesdkvoiceGlobalSettingsRef {
 
 impl Ref for ChimesdkvoiceGlobalSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -207,7 +222,10 @@ impl ChimesdkvoiceGlobalSettingsRef {
 
     #[doc = "Get a reference to the value of field `voice_connector` after provisioning.\n"]
     pub fn voice_connector(&self) -> ListRef<ChimesdkvoiceGlobalSettingsVoiceConnectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.voice_connector", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.voice_connector", self.extract_ref()),
+        )
     }
 }
 
@@ -241,7 +259,9 @@ pub struct BuildChimesdkvoiceGlobalSettingsVoiceConnectorEl {}
 
 impl BuildChimesdkvoiceGlobalSettingsVoiceConnectorEl {
     pub fn build(self) -> ChimesdkvoiceGlobalSettingsVoiceConnectorEl {
-        ChimesdkvoiceGlobalSettingsVoiceConnectorEl { cdr_bucket: core::default::Default::default() }
+        ChimesdkvoiceGlobalSettingsVoiceConnectorEl {
+            cdr_bucket: core::default::Default::default(),
+        }
     }
 }
 

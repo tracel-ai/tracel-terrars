@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpcEndpointSecurityGroupAssociationData {
@@ -59,7 +59,8 @@ impl VpcEndpointSecurityGroupAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl VpcEndpointSecurityGroupAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl VpcEndpointSecurityGroupAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,8 +109,7 @@ impl VpcEndpointSecurityGroupAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -116,35 +126,50 @@ impl VpcEndpointSecurityGroupAssociation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replace_default_association` after provisioning.\n"]
     pub fn replace_default_association(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replace_default_association", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replace_default_association", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpcEndpointSecurityGroupAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpcEndpointSecurityGroupAssociation { }
+impl Resource for VpcEndpointSecurityGroupAssociation {}
 
 impl ToListMappable for VpcEndpointSecurityGroupAssociation {
     type O = ListRef<VpcEndpointSecurityGroupAssociationRef>;
@@ -179,21 +204,22 @@ pub struct BuildVpcEndpointSecurityGroupAssociation {
 
 impl BuildVpcEndpointSecurityGroupAssociation {
     pub fn build(self, stack: &mut Stack) -> VpcEndpointSecurityGroupAssociation {
-        let out = VpcEndpointSecurityGroupAssociation(Rc::new(VpcEndpointSecurityGroupAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(VpcEndpointSecurityGroupAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                replace_default_association: core::default::Default::default(),
-                security_group_id: self.security_group_id,
-                vpc_endpoint_id: self.vpc_endpoint_id,
-            }),
-        }));
+        let out =
+            VpcEndpointSecurityGroupAssociation(Rc::new(VpcEndpointSecurityGroupAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(VpcEndpointSecurityGroupAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    replace_default_association: core::default::Default::default(),
+                    security_group_id: self.security_group_id,
+                    vpc_endpoint_id: self.vpc_endpoint_id,
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -206,10 +232,7 @@ pub struct VpcEndpointSecurityGroupAssociationRef {
 
 impl Ref for VpcEndpointSecurityGroupAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -227,24 +250,35 @@ impl VpcEndpointSecurityGroupAssociationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replace_default_association` after provisioning.\n"]
     pub fn replace_default_association(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replace_default_association", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replace_default_association", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamSessionContextData {
@@ -59,32 +59,48 @@ impl DataIamSessionContext {
 
     #[doc = "Get a reference to the value of field `issuer_arn` after provisioning.\n"]
     pub fn issuer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.issuer_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.issuer_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer_id` after provisioning.\n"]
     pub fn issuer_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.issuer_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.issuer_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer_name` after provisioning.\n"]
     pub fn issuer_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.issuer_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.issuer_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_name` after provisioning.\n"]
     pub fn session_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamSessionContext {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamSessionContext { }
+impl Datasource for DataIamSessionContext {}
 
 impl ToListMappable for DataIamSessionContext {
     type O = ListRef<DataIamSessionContextRef>;
@@ -140,10 +156,7 @@ pub struct DataIamSessionContextRef {
 
 impl Ref for DataIamSessionContextRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -168,21 +181,33 @@ impl DataIamSessionContextRef {
 
     #[doc = "Get a reference to the value of field `issuer_arn` after provisioning.\n"]
     pub fn issuer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.issuer_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.issuer_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer_id` after provisioning.\n"]
     pub fn issuer_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.issuer_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.issuer_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer_name` after provisioning.\n"]
     pub fn issuer_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.issuer_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.issuer_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_name` after provisioning.\n"]
     pub fn session_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_name", self.extract_ref()),
+        )
     }
 }

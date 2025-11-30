@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ApprunnerDefaultAutoScalingConfigurationVersionData {
@@ -26,7 +26,9 @@ struct ApprunnerDefaultAutoScalingConfigurationVersion_ {
 }
 
 #[derive(Clone)]
-pub struct ApprunnerDefaultAutoScalingConfigurationVersion(Rc<ApprunnerDefaultAutoScalingConfigurationVersion_>);
+pub struct ApprunnerDefaultAutoScalingConfigurationVersion(
+    Rc<ApprunnerDefaultAutoScalingConfigurationVersion_>,
+);
 
 impl ApprunnerDefaultAutoScalingConfigurationVersion {
     fn shared(&self) -> &StackShared {
@@ -54,7 +56,8 @@ impl ApprunnerDefaultAutoScalingConfigurationVersion {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -67,7 +70,7 @@ impl ApprunnerDefaultAutoScalingConfigurationVersion {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -78,17 +81,26 @@ impl ApprunnerDefaultAutoScalingConfigurationVersion {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -96,7 +108,10 @@ impl ApprunnerDefaultAutoScalingConfigurationVersion {
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_arn` after provisioning.\n"]
     pub fn auto_scaling_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -104,20 +119,26 @@ impl ApprunnerDefaultAutoScalingConfigurationVersion {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ApprunnerDefaultAutoScalingConfigurationVersion {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ApprunnerDefaultAutoScalingConfigurationVersion { }
+impl Resource for ApprunnerDefaultAutoScalingConfigurationVersion {}
 
 impl ToListMappable for ApprunnerDefaultAutoScalingConfigurationVersion {
     type O = ListRef<ApprunnerDefaultAutoScalingConfigurationVersionRef>;
@@ -150,8 +171,8 @@ pub struct BuildApprunnerDefaultAutoScalingConfigurationVersion {
 
 impl BuildApprunnerDefaultAutoScalingConfigurationVersion {
     pub fn build(self, stack: &mut Stack) -> ApprunnerDefaultAutoScalingConfigurationVersion {
-        let out =
-            ApprunnerDefaultAutoScalingConfigurationVersion(Rc::new(ApprunnerDefaultAutoScalingConfigurationVersion_ {
+        let out = ApprunnerDefaultAutoScalingConfigurationVersion(Rc::new(
+            ApprunnerDefaultAutoScalingConfigurationVersion_ {
                 shared: stack.shared.clone(),
                 tf_id: self.tf_id,
                 data: RefCell::new(ApprunnerDefaultAutoScalingConfigurationVersionData {
@@ -162,7 +183,8 @@ impl BuildApprunnerDefaultAutoScalingConfigurationVersion {
                     auto_scaling_configuration_arn: self.auto_scaling_configuration_arn,
                     region: core::default::Default::default(),
                 }),
-            }));
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -175,10 +197,7 @@ pub struct ApprunnerDefaultAutoScalingConfigurationVersionRef {
 
 impl Ref for ApprunnerDefaultAutoScalingConfigurationVersionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -193,7 +212,10 @@ impl ApprunnerDefaultAutoScalingConfigurationVersionRef {
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_arn` after provisioning.\n"]
     pub fn auto_scaling_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -201,9 +223,11 @@ impl ApprunnerDefaultAutoScalingConfigurationVersionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

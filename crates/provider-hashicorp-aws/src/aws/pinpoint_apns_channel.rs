@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct PinpointApnsChannelData {
@@ -72,7 +72,8 @@ impl PinpointApnsChannel {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -85,7 +86,7 @@ impl PinpointApnsChannel {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -96,12 +97,22 @@ impl PinpointApnsChannel {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -141,8 +152,7 @@ impl PinpointApnsChannel {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -168,27 +178,42 @@ impl PinpointApnsChannel {
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bundle_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bundle_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_authentication_method` after provisioning.\n"]
     pub fn default_authentication_method(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_authentication_method", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_authentication_method", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -198,38 +223,56 @@ impl PinpointApnsChannel {
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_key", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `team_id` after provisioning.\n"]
     pub fn team_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.team_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.team_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_key` after provisioning.\n"]
     pub fn token_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_key_id` after provisioning.\n"]
     pub fn token_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_key_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for PinpointApnsChannel {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for PinpointApnsChannel { }
+impl Resource for PinpointApnsChannel {}
 
 impl ToListMappable for PinpointApnsChannel {
     type O = ListRef<PinpointApnsChannelRef>;
@@ -295,10 +338,7 @@ pub struct PinpointApnsChannelRef {
 
 impl Ref for PinpointApnsChannelRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -313,27 +353,42 @@ impl PinpointApnsChannelRef {
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bundle_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bundle_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_authentication_method` after provisioning.\n"]
     pub fn default_authentication_method(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_authentication_method", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_authentication_method", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -343,27 +398,41 @@ impl PinpointApnsChannelRef {
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_key", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `team_id` after provisioning.\n"]
     pub fn team_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.team_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.team_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_key` after provisioning.\n"]
     pub fn token_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_key_id` after provisioning.\n"]
     pub fn token_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_key_id", self.extract_ref()),
+        )
     }
 }

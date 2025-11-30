@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncLocationSmbData {
@@ -69,7 +69,8 @@ impl DatasyncLocationSmb {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl DatasyncLocationSmb {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl DatasyncLocationSmb {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -114,8 +125,7 @@ impl DatasyncLocationSmb {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,21 +144,27 @@ impl DatasyncLocationSmb {
     }
 
     #[doc = "Set the field `mount_options`.\n"]
-    pub fn set_mount_options(self, v: impl Into<BlockAssignable<DatasyncLocationSmbMountOptionsEl>>) -> Self {
+    pub fn set_mount_options(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationSmbMountOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().mount_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.mount_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.agent_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.agent_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -158,7 +174,10 @@ impl DatasyncLocationSmb {
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -168,33 +187,50 @@ impl DatasyncLocationSmb {
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_hostname` after provisioning.\n"]
     pub fn server_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_hostname", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_hostname", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -204,22 +240,32 @@ impl DatasyncLocationSmb {
 
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(&self) -> ListRef<DatasyncLocationSmbMountOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mount_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mount_options", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncLocationSmb {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncLocationSmb { }
+impl Resource for DatasyncLocationSmb {}
 
 impl ToListMappable for DatasyncLocationSmb {
     type O = ListRef<DatasyncLocationSmbRef>;
@@ -294,10 +340,7 @@ pub struct DatasyncLocationSmbRef {
 
 impl Ref for DatasyncLocationSmbRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -312,7 +355,10 @@ impl DatasyncLocationSmbRef {
 
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.agent_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.agent_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -322,7 +368,10 @@ impl DatasyncLocationSmbRef {
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -332,33 +381,50 @@ impl DatasyncLocationSmbRef {
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_hostname` after provisioning.\n"]
     pub fn server_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_hostname", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_hostname", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -368,12 +434,18 @@ impl DatasyncLocationSmbRef {
 
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(&self) -> ListRef<DatasyncLocationSmbMountOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mount_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mount_options", self.extract_ref()),
+        )
     }
 }
 
@@ -407,7 +479,9 @@ pub struct BuildDatasyncLocationSmbMountOptionsEl {}
 
 impl BuildDatasyncLocationSmbMountOptionsEl {
     pub fn build(self) -> DatasyncLocationSmbMountOptionsEl {
-        DatasyncLocationSmbMountOptionsEl { version: core::default::Default::default() }
+        DatasyncLocationSmbMountOptionsEl {
+            version: core::default::Default::default(),
+        }
     }
 }
 

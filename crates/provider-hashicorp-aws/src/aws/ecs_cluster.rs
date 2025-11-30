@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EcsClusterData {
@@ -67,7 +67,8 @@ impl EcsCluster {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl EcsCluster {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl EcsCluster {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl EcsCluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,14 +136,17 @@ impl EcsCluster {
     }
 
     #[doc = "Set the field `configuration`.\n"]
-    pub fn set_configuration(self, v: impl Into<BlockAssignable<EcsClusterConfigurationEl>>) -> Self {
+    pub fn set_configuration(
+        self,
+        v: impl Into<BlockAssignable<EcsClusterConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -146,10 +159,10 @@ impl EcsCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().service_connect_defaults = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.service_connect_defaults = Some(d);
-            },
+            }
         }
         self
     }
@@ -159,10 +172,10 @@ impl EcsCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().setting = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.setting = Some(d);
-            },
+            }
         }
         self
     }
@@ -179,43 +192,64 @@ impl EcsCluster {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<EcsClusterConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_connect_defaults` after provisioning.\n"]
     pub fn service_connect_defaults(&self) -> ListRef<EcsClusterServiceConnectDefaultsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_connect_defaults", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_connect_defaults", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EcsCluster {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EcsCluster { }
+impl Resource for EcsCluster {}
 
 impl ToListMappable for EcsCluster {
     type O = ListRef<EcsClusterRef>;
@@ -279,10 +313,7 @@ pub struct EcsClusterRef {
 
 impl Ref for EcsClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -307,33 +338,50 @@ impl EcsClusterRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<EcsClusterConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_connect_defaults` after provisioning.\n"]
     pub fn service_connect_defaults(&self) -> ListRef<EcsClusterServiceConnectDefaultsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_connect_defaults", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_connect_defaults", self.extract_ref()),
+        )
     }
 }
 
@@ -384,7 +432,8 @@ impl EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl {
 }
 
 impl ToListMappable for EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl {
-    type O = BlockAssignable<EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl>;
+    type O =
+        BlockAssignable<EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -433,27 +482,42 @@ impl EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationElRef
 
     #[doc = "Get a reference to the value of field `cloud_watch_encryption_enabled` after provisioning.\n"]
     pub fn cloud_watch_encryption_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_watch_encryption_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_encryption_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloud_watch_log_group_name` after provisioning.\n"]
     pub fn cloud_watch_log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_watch_log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_log_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_encryption_enabled` after provisioning.\n"]
     pub fn s3_bucket_encryption_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_encryption_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_encryption_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_key_prefix` after provisioning.\n"]
     pub fn s3_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_key_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_key_prefix", self.base),
+        )
     }
 }
 
@@ -471,7 +535,8 @@ pub struct EcsClusterConfigurationElExecuteCommandConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     logging: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    log_configuration: Option<Vec<EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl>>,
+    log_configuration:
+        Option<Vec<EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl>>,
     dynamic: EcsClusterConfigurationElExecuteCommandConfigurationElDynamic,
 }
 
@@ -491,15 +556,19 @@ impl EcsClusterConfigurationElExecuteCommandConfigurationEl {
     #[doc = "Set the field `log_configuration`.\n"]
     pub fn set_log_configuration(
         mut self,
-        v: impl Into<BlockAssignable<EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.log_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.log_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -536,7 +605,10 @@ pub struct EcsClusterConfigurationElExecuteCommandConfigurationElRef {
 }
 
 impl Ref for EcsClusterConfigurationElExecuteCommandConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EcsClusterConfigurationElExecuteCommandConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsClusterConfigurationElExecuteCommandConfigurationElRef {
         EcsClusterConfigurationElExecuteCommandConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -563,7 +635,10 @@ impl EcsClusterConfigurationElExecuteCommandConfigurationElRef {
     pub fn log_configuration(
         &self,
     ) -> ListRef<EcsClusterConfigurationElExecuteCommandConfigurationElLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.base),
+        )
     }
 }
 
@@ -577,7 +652,10 @@ pub struct EcsClusterConfigurationElManagedStorageConfigurationEl {
 
 impl EcsClusterConfigurationElManagedStorageConfigurationEl {
     #[doc = "Set the field `fargate_ephemeral_storage_kms_key_id`.\n"]
-    pub fn set_fargate_ephemeral_storage_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_fargate_ephemeral_storage_kms_key_id(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.fargate_ephemeral_storage_kms_key_id = Some(v.into());
         self
     }
@@ -618,7 +696,10 @@ pub struct EcsClusterConfigurationElManagedStorageConfigurationElRef {
 }
 
 impl Ref for EcsClusterConfigurationElManagedStorageConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EcsClusterConfigurationElManagedStorageConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsClusterConfigurationElManagedStorageConfigurationElRef {
         EcsClusterConfigurationElManagedStorageConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -633,7 +714,10 @@ impl EcsClusterConfigurationElManagedStorageConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `fargate_ephemeral_storage_kms_key_id` after provisioning.\n"]
     pub fn fargate_ephemeral_storage_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fargate_ephemeral_storage_kms_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fargate_ephemeral_storage_kms_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
@@ -644,16 +728,20 @@ impl EcsClusterConfigurationElManagedStorageConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct EcsClusterConfigurationElDynamic {
-    execute_command_configuration: Option<DynamicBlock<EcsClusterConfigurationElExecuteCommandConfigurationEl>>,
-    managed_storage_configuration: Option<DynamicBlock<EcsClusterConfigurationElManagedStorageConfigurationEl>>,
+    execute_command_configuration:
+        Option<DynamicBlock<EcsClusterConfigurationElExecuteCommandConfigurationEl>>,
+    managed_storage_configuration:
+        Option<DynamicBlock<EcsClusterConfigurationElManagedStorageConfigurationEl>>,
 }
 
 #[derive(Serialize)]
 pub struct EcsClusterConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    execute_command_configuration: Option<Vec<EcsClusterConfigurationElExecuteCommandConfigurationEl>>,
+    execute_command_configuration:
+        Option<Vec<EcsClusterConfigurationElExecuteCommandConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    managed_storage_configuration: Option<Vec<EcsClusterConfigurationElManagedStorageConfigurationEl>>,
+    managed_storage_configuration:
+        Option<Vec<EcsClusterConfigurationElManagedStorageConfigurationEl>>,
     dynamic: EcsClusterConfigurationElDynamic,
 }
 
@@ -666,10 +754,10 @@ impl EcsClusterConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.execute_command_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.execute_command_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -682,10 +770,10 @@ impl EcsClusterConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.managed_storage_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.managed_storage_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -735,13 +823,23 @@ impl EcsClusterConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `execute_command_configuration` after provisioning.\n"]
-    pub fn execute_command_configuration(&self) -> ListRef<EcsClusterConfigurationElExecuteCommandConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execute_command_configuration", self.base))
+    pub fn execute_command_configuration(
+        &self,
+    ) -> ListRef<EcsClusterConfigurationElExecuteCommandConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execute_command_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_storage_configuration` after provisioning.\n"]
-    pub fn managed_storage_configuration(&self) -> ListRef<EcsClusterConfigurationElManagedStorageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_storage_configuration", self.base))
+    pub fn managed_storage_configuration(
+        &self,
+    ) -> ListRef<EcsClusterConfigurationElManagedStorageConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_storage_configuration", self.base),
+        )
     }
 }
 
@@ -750,7 +848,7 @@ pub struct EcsClusterServiceConnectDefaultsEl {
     namespace: PrimField<String>,
 }
 
-impl EcsClusterServiceConnectDefaultsEl { }
+impl EcsClusterServiceConnectDefaultsEl {}
 
 impl ToListMappable for EcsClusterServiceConnectDefaultsEl {
     type O = BlockAssignable<EcsClusterServiceConnectDefaultsEl>;
@@ -771,7 +869,9 @@ pub struct BuildEcsClusterServiceConnectDefaultsEl {
 
 impl BuildEcsClusterServiceConnectDefaultsEl {
     pub fn build(self) -> EcsClusterServiceConnectDefaultsEl {
-        EcsClusterServiceConnectDefaultsEl { namespace: self.namespace }
+        EcsClusterServiceConnectDefaultsEl {
+            namespace: self.namespace,
+        }
     }
 }
 
@@ -806,7 +906,7 @@ pub struct EcsClusterSettingEl {
     value: PrimField<String>,
 }
 
-impl EcsClusterSettingEl { }
+impl EcsClusterSettingEl {}
 
 impl ToListMappable for EcsClusterSettingEl {
     type O = BlockAssignable<EcsClusterSettingEl>;

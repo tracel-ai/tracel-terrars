@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVpcEndpointServiceData {
@@ -96,10 +96,10 @@ impl DataVpcEndpointService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -112,7 +112,10 @@ impl DataVpcEndpointService {
 
     #[doc = "Get a reference to the value of field `acceptance_required` after provisioning.\n"]
     pub fn acceptance_required(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.acceptance_required", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.acceptance_required", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -122,12 +125,18 @@ impl DataVpcEndpointService {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `base_endpoint_dns_names` after provisioning.\n"]
     pub fn base_endpoint_dns_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.base_endpoint_dns_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.base_endpoint_dns_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -137,87 +146,136 @@ impl DataVpcEndpointService {
 
     #[doc = "Get a reference to the value of field `manages_vpc_endpoints` after provisioning.\n"]
     pub fn manages_vpc_endpoints(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.manages_vpc_endpoints", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.manages_vpc_endpoints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_name` after provisioning.\n"]
     pub fn private_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_names` after provisioning.\n"]
     pub fn private_dns_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.private_dns_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.private_dns_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]
     pub fn service(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_region` after provisioning.\n"]
     pub fn service_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_regions` after provisioning.\n"]
     pub fn service_regions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.service_regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.service_regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_type` after provisioning.\n"]
     pub fn service_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_ip_address_types` after provisioning.\n"]
     pub fn supported_ip_address_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.supported_ip_address_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.supported_ip_address_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_policy_supported` after provisioning.\n"]
     pub fn vpc_endpoint_policy_supported(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_policy_supported", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_policy_supported", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataVpcEndpointServiceTimeoutsElRef {
-        DataVpcEndpointServiceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataVpcEndpointServiceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataVpcEndpointService {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVpcEndpointService { }
+impl Datasource for DataVpcEndpointService {}
 
 impl ToListMappable for DataVpcEndpointService {
     type O = ListRef<DataVpcEndpointServiceRef>;
@@ -278,10 +336,7 @@ pub struct DataVpcEndpointServiceRef {
 
 impl Ref for DataVpcEndpointServiceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -296,7 +351,10 @@ impl DataVpcEndpointServiceRef {
 
     #[doc = "Get a reference to the value of field `acceptance_required` after provisioning.\n"]
     pub fn acceptance_required(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.acceptance_required", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.acceptance_required", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -306,12 +364,18 @@ impl DataVpcEndpointServiceRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `base_endpoint_dns_names` after provisioning.\n"]
     pub fn base_endpoint_dns_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.base_endpoint_dns_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.base_endpoint_dns_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -321,77 +385,122 @@ impl DataVpcEndpointServiceRef {
 
     #[doc = "Get a reference to the value of field `manages_vpc_endpoints` after provisioning.\n"]
     pub fn manages_vpc_endpoints(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.manages_vpc_endpoints", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.manages_vpc_endpoints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_name` after provisioning.\n"]
     pub fn private_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_names` after provisioning.\n"]
     pub fn private_dns_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.private_dns_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.private_dns_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]
     pub fn service(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_region` after provisioning.\n"]
     pub fn service_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_regions` after provisioning.\n"]
     pub fn service_regions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.service_regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.service_regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_type` after provisioning.\n"]
     pub fn service_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_ip_address_types` after provisioning.\n"]
     pub fn supported_ip_address_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.supported_ip_address_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.supported_ip_address_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_policy_supported` after provisioning.\n"]
     pub fn vpc_endpoint_policy_supported(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_policy_supported", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_policy_supported", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataVpcEndpointServiceTimeoutsElRef {
-        DataVpcEndpointServiceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataVpcEndpointServiceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -401,7 +510,7 @@ pub struct DataVpcEndpointServiceFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataVpcEndpointServiceFilterEl { }
+impl DataVpcEndpointServiceFilterEl {}
 
 impl ToListMappable for DataVpcEndpointServiceFilterEl {
     type O = BlockAssignable<DataVpcEndpointServiceFilterEl>;
@@ -491,7 +600,9 @@ pub struct BuildDataVpcEndpointServiceTimeoutsEl {}
 
 impl BuildDataVpcEndpointServiceTimeoutsEl {
     pub fn build(self) -> DataVpcEndpointServiceTimeoutsEl {
-        DataVpcEndpointServiceTimeoutsEl { read: core::default::Default::default() }
+        DataVpcEndpointServiceTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

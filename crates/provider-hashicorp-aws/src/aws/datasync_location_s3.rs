@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncLocationS3Data {
@@ -68,7 +68,8 @@ impl DatasyncLocationS3 {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +82,7 @@ impl DatasyncLocationS3 {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +93,22 @@ impl DatasyncLocationS3 {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -113,8 +124,7 @@ impl DatasyncLocationS3 {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -139,21 +149,27 @@ impl DatasyncLocationS3 {
     }
 
     #[doc = "Set the field `s3_config`.\n"]
-    pub fn set_s3_config(self, v: impl Into<BlockAssignable<DatasyncLocationS3S3ConfigEl>>) -> Self {
+    pub fn set_s3_config(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationS3S3ConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().s3_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.s3_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.agent_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.agent_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -166,35 +182,52 @@ impl DatasyncLocationS3 {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_storage_class` after provisioning.\n"]
     pub fn s3_storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_storage_class", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_storage_class", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -204,17 +237,24 @@ impl DatasyncLocationS3 {
 
     #[doc = "Get a reference to the value of field `s3_config` after provisioning.\n"]
     pub fn s3_config(&self) -> ListRef<DatasyncLocationS3S3ConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncLocationS3 {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncLocationS3 { }
+impl Resource for DatasyncLocationS3 {}
 
 impl ToListMappable for DatasyncLocationS3 {
     type O = ListRef<DatasyncLocationS3Ref>;
@@ -281,10 +321,7 @@ pub struct DatasyncLocationS3Ref {
 
 impl Ref for DatasyncLocationS3Ref {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -299,7 +336,10 @@ impl DatasyncLocationS3Ref {
 
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.agent_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.agent_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -312,35 +352,52 @@ impl DatasyncLocationS3Ref {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_storage_class` after provisioning.\n"]
     pub fn s3_storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_storage_class", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_storage_class", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -350,7 +407,10 @@ impl DatasyncLocationS3Ref {
 
     #[doc = "Get a reference to the value of field `s3_config` after provisioning.\n"]
     pub fn s3_config(&self) -> ListRef<DatasyncLocationS3S3ConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_config", self.extract_ref()),
+        )
     }
 }
 
@@ -359,7 +419,7 @@ pub struct DatasyncLocationS3S3ConfigEl {
     bucket_access_role_arn: PrimField<String>,
 }
 
-impl DatasyncLocationS3S3ConfigEl { }
+impl DatasyncLocationS3S3ConfigEl {}
 
 impl ToListMappable for DatasyncLocationS3S3ConfigEl {
     type O = BlockAssignable<DatasyncLocationS3S3ConfigEl>;
@@ -380,7 +440,9 @@ pub struct BuildDatasyncLocationS3S3ConfigEl {
 
 impl BuildDatasyncLocationS3S3ConfigEl {
     pub fn build(self) -> DatasyncLocationS3S3ConfigEl {
-        DatasyncLocationS3S3ConfigEl { bucket_access_role_arn: self.bucket_access_role_arn }
+        DatasyncLocationS3S3ConfigEl {
+            bucket_access_role_arn: self.bucket_access_role_arn,
+        }
     }
 }
 
@@ -405,7 +467,10 @@ impl DatasyncLocationS3S3ConfigElRef {
 
     #[doc = "Get a reference to the value of field `bucket_access_role_arn` after provisioning.\n"]
     pub fn bucket_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_access_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_access_role_arn", self.base),
+        )
     }
 }
 

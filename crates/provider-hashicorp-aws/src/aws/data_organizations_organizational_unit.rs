@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOrganizationsOrganizationalUnitData {
@@ -60,22 +60,32 @@ impl DataOrganizationsOrganizationalUnit {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_id` after provisioning.\n"]
     pub fn parent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOrganizationsOrganizationalUnit {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOrganizationsOrganizationalUnit { }
+impl Datasource for DataOrganizationsOrganizationalUnit {}
 
 impl ToListMappable for DataOrganizationsOrganizationalUnit {
     type O = ListRef<DataOrganizationsOrganizationalUnitRef>;
@@ -110,18 +120,19 @@ pub struct BuildDataOrganizationsOrganizationalUnit {
 
 impl BuildDataOrganizationsOrganizationalUnit {
     pub fn build(self, stack: &mut Stack) -> DataOrganizationsOrganizationalUnit {
-        let out = DataOrganizationsOrganizationalUnit(Rc::new(DataOrganizationsOrganizationalUnit_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOrganizationsOrganizationalUnitData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                name: self.name,
-                parent_id: self.parent_id,
-            }),
-        }));
+        let out =
+            DataOrganizationsOrganizationalUnit(Rc::new(DataOrganizationsOrganizationalUnit_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOrganizationsOrganizationalUnitData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    name: self.name,
+                    parent_id: self.parent_id,
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -134,10 +145,7 @@ pub struct DataOrganizationsOrganizationalUnitRef {
 
 impl Ref for DataOrganizationsOrganizationalUnitRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -162,11 +170,17 @@ impl DataOrganizationsOrganizationalUnitRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_id` after provisioning.\n"]
     pub fn parent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_id", self.extract_ref()),
+        )
     }
 }

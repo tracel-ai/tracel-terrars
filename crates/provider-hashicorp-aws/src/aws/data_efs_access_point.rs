@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEfsAccessPointData {
@@ -51,8 +51,7 @@ impl DataEfsAccessPoint {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,7 +65,10 @@ impl DataEfsAccessPoint {
 
     #[doc = "Get a reference to the value of field `access_point_id` after provisioning.\n"]
     pub fn access_point_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_point_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_point_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -76,12 +78,18 @@ impl DataEfsAccessPoint {
 
     #[doc = "Get a reference to the value of field `file_system_arn` after provisioning.\n"]
     pub fn file_system_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,38 +99,56 @@ impl DataEfsAccessPoint {
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `posix_user` after provisioning.\n"]
     pub fn posix_user(&self) -> ListRef<DataEfsAccessPointPosixUserElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.posix_user", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.posix_user", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_directory` after provisioning.\n"]
     pub fn root_directory(&self) -> ListRef<DataEfsAccessPointRootDirectoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.root_directory", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.root_directory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEfsAccessPoint {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEfsAccessPoint { }
+impl Datasource for DataEfsAccessPoint {}
 
 impl ToListMappable for DataEfsAccessPoint {
     type O = ListRef<DataEfsAccessPointRef>;
@@ -180,10 +206,7 @@ pub struct DataEfsAccessPointRef {
 
 impl Ref for DataEfsAccessPointRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -198,7 +221,10 @@ impl DataEfsAccessPointRef {
 
     #[doc = "Get a reference to the value of field `access_point_id` after provisioning.\n"]
     pub fn access_point_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_point_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_point_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -208,12 +234,18 @@ impl DataEfsAccessPointRef {
 
     #[doc = "Get a reference to the value of field `file_system_arn` after provisioning.\n"]
     pub fn file_system_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -223,28 +255,42 @@ impl DataEfsAccessPointRef {
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `posix_user` after provisioning.\n"]
     pub fn posix_user(&self) -> ListRef<DataEfsAccessPointPosixUserElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.posix_user", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.posix_user", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_directory` after provisioning.\n"]
     pub fn root_directory(&self) -> ListRef<DataEfsAccessPointRootDirectoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.root_directory", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.root_directory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -328,7 +374,10 @@ impl DataEfsAccessPointPosixUserElRef {
 
     #[doc = "Get a reference to the value of field `secondary_gids` after provisioning.\n"]
     pub fn secondary_gids(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.secondary_gids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.secondary_gids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uid` after provisioning.\n"]
@@ -397,7 +446,10 @@ pub struct DataEfsAccessPointRootDirectoryElCreationInfoElRef {
 }
 
 impl Ref for DataEfsAccessPointRootDirectoryElCreationInfoElRef {
-    fn new(shared: StackShared, base: String) -> DataEfsAccessPointRootDirectoryElCreationInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEfsAccessPointRootDirectoryElCreationInfoElRef {
         DataEfsAccessPointRootDirectoryElCreationInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -495,7 +547,10 @@ impl DataEfsAccessPointRootDirectoryElRef {
 
     #[doc = "Get a reference to the value of field `creation_info` after provisioning.\n"]
     pub fn creation_info(&self) -> ListRef<DataEfsAccessPointRootDirectoryElCreationInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.creation_info", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.creation_info", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]

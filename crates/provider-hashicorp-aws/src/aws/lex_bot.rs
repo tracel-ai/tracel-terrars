@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LexBotData {
@@ -84,7 +84,8 @@ impl LexBot {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -97,7 +98,7 @@ impl LexBot {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -108,12 +109,22 @@ impl LexBot {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -171,8 +182,7 @@ impl LexBot {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -185,27 +195,33 @@ impl LexBot {
     }
 
     #[doc = "Set the field `abort_statement`.\n"]
-    pub fn set_abort_statement(self, v: impl Into<BlockAssignable<LexBotAbortStatementEl>>) -> Self {
+    pub fn set_abort_statement(
+        self,
+        v: impl Into<BlockAssignable<LexBotAbortStatementEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().abort_statement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.abort_statement = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `clarification_prompt`.\n"]
-    pub fn set_clarification_prompt(self, v: impl Into<BlockAssignable<LexBotClarificationPromptEl>>) -> Self {
+    pub fn set_clarification_prompt(
+        self,
+        v: impl Into<BlockAssignable<LexBotClarificationPromptEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().clarification_prompt = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.clarification_prompt = Some(d);
-            },
+            }
         }
         self
     }
@@ -215,10 +231,10 @@ impl LexBot {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().intent = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.intent = Some(d);
-            },
+            }
         }
         self
     }
@@ -236,42 +252,66 @@ impl LexBot {
 
     #[doc = "Get a reference to the value of field `checksum` after provisioning.\n"]
     pub fn checksum(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checksum", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checksum", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `child_directed` after provisioning.\n"]
     pub fn child_directed(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.child_directed", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.child_directed", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_version` after provisioning.\n"]
     pub fn create_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detect_sentiment` after provisioning.\n"]
     pub fn detect_sentiment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detect_sentiment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detect_sentiment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_model_improvements` after provisioning.\n"]
     pub fn enable_model_improvements(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_model_improvements", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_model_improvements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_reason` after provisioning.\n"]
     pub fn failure_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -281,78 +321,120 @@ impl LexBot {
 
     #[doc = "Get a reference to the value of field `idle_session_ttl_in_seconds` after provisioning.\n"]
     pub fn idle_session_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.idle_session_ttl_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.idle_session_ttl_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `locale` after provisioning.\n"]
     pub fn locale(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.locale", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.locale", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `nlu_intent_confidence_threshold` after provisioning.\n"]
     pub fn nlu_intent_confidence_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.nlu_intent_confidence_threshold", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.nlu_intent_confidence_threshold", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `process_behavior` after provisioning.\n"]
     pub fn process_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.process_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.process_behavior", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `voice_id` after provisioning.\n"]
     pub fn voice_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.voice_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.voice_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `abort_statement` after provisioning.\n"]
     pub fn abort_statement(&self) -> ListRef<LexBotAbortStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.abort_statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.abort_statement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `clarification_prompt` after provisioning.\n"]
     pub fn clarification_prompt(&self) -> ListRef<LexBotClarificationPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.clarification_prompt", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.clarification_prompt", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LexBotTimeoutsElRef {
-        LexBotTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        LexBotTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for LexBot {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LexBot { }
+impl Resource for LexBot {}
 
 impl ToListMappable for LexBot {
     type O = ListRef<LexBotRef>;
@@ -427,10 +509,7 @@ pub struct LexBotRef {
 
 impl Ref for LexBotRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -450,42 +529,66 @@ impl LexBotRef {
 
     #[doc = "Get a reference to the value of field `checksum` after provisioning.\n"]
     pub fn checksum(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checksum", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checksum", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `child_directed` after provisioning.\n"]
     pub fn child_directed(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.child_directed", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.child_directed", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_version` after provisioning.\n"]
     pub fn create_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detect_sentiment` after provisioning.\n"]
     pub fn detect_sentiment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detect_sentiment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detect_sentiment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_model_improvements` after provisioning.\n"]
     pub fn enable_model_improvements(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_model_improvements", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_model_improvements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_reason` after provisioning.\n"]
     pub fn failure_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -495,68 +598,106 @@ impl LexBotRef {
 
     #[doc = "Get a reference to the value of field `idle_session_ttl_in_seconds` after provisioning.\n"]
     pub fn idle_session_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.idle_session_ttl_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.idle_session_ttl_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `locale` after provisioning.\n"]
     pub fn locale(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.locale", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.locale", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `nlu_intent_confidence_threshold` after provisioning.\n"]
     pub fn nlu_intent_confidence_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.nlu_intent_confidence_threshold", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.nlu_intent_confidence_threshold", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `process_behavior` after provisioning.\n"]
     pub fn process_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.process_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.process_behavior", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `voice_id` after provisioning.\n"]
     pub fn voice_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.voice_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.voice_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `abort_statement` after provisioning.\n"]
     pub fn abort_statement(&self) -> ListRef<LexBotAbortStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.abort_statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.abort_statement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `clarification_prompt` after provisioning.\n"]
     pub fn clarification_prompt(&self) -> ListRef<LexBotClarificationPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.clarification_prompt", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.clarification_prompt", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LexBotTimeoutsElRef {
-        LexBotTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        LexBotTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -662,14 +803,17 @@ impl LexBotAbortStatementEl {
     }
 
     #[doc = "Set the field `message`.\n"]
-    pub fn set_message(mut self, v: impl Into<BlockAssignable<LexBotAbortStatementElMessageEl>>) -> Self {
+    pub fn set_message(
+        mut self,
+        v: impl Into<BlockAssignable<LexBotAbortStatementElMessageEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -720,7 +864,10 @@ impl LexBotAbortStatementElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -827,14 +974,17 @@ impl LexBotClarificationPromptEl {
     }
 
     #[doc = "Set the field `message`.\n"]
-    pub fn set_message(mut self, v: impl Into<BlockAssignable<LexBotClarificationPromptElMessageEl>>) -> Self {
+    pub fn set_message(
+        mut self,
+        v: impl Into<BlockAssignable<LexBotClarificationPromptElMessageEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -894,7 +1044,10 @@ impl LexBotClarificationPromptElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -904,7 +1057,7 @@ pub struct LexBotIntentEl {
     intent_version: PrimField<String>,
 }
 
-impl LexBotIntentEl { }
+impl LexBotIntentEl {}
 
 impl ToListMappable for LexBotIntentEl {
     type O = BlockAssignable<LexBotIntentEl>;
@@ -960,7 +1113,10 @@ impl LexBotIntentElRef {
 
     #[doc = "Get a reference to the value of field `intent_version` after provisioning.\n"]
     pub fn intent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.intent_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.intent_version", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DirectoryServiceConditionalForwarderData {
@@ -58,7 +58,8 @@ impl DirectoryServiceConditionalForwarder {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +72,7 @@ impl DirectoryServiceConditionalForwarder {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,12 +83,22 @@ impl DirectoryServiceConditionalForwarder {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -97,8 +108,7 @@ impl DirectoryServiceConditionalForwarder {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -106,12 +116,18 @@ impl DirectoryServiceConditionalForwarder {
 
     #[doc = "Get a reference to the value of field `directory_id` after provisioning.\n"]
     pub fn directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.directory_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.directory_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_ips` after provisioning.\n"]
     pub fn dns_ips(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_ips", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_ips", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -119,25 +135,34 @@ impl DirectoryServiceConditionalForwarder {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_domain_name` after provisioning.\n"]
     pub fn remote_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_domain_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DirectoryServiceConditionalForwarder {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DirectoryServiceConditionalForwarder { }
+impl Resource for DirectoryServiceConditionalForwarder {}
 
 impl ToListMappable for DirectoryServiceConditionalForwarder {
     type O = ListRef<DirectoryServiceConditionalForwarderRef>;
@@ -174,21 +199,22 @@ pub struct BuildDirectoryServiceConditionalForwarder {
 
 impl BuildDirectoryServiceConditionalForwarder {
     pub fn build(self, stack: &mut Stack) -> DirectoryServiceConditionalForwarder {
-        let out = DirectoryServiceConditionalForwarder(Rc::new(DirectoryServiceConditionalForwarder_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DirectoryServiceConditionalForwarderData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                directory_id: self.directory_id,
-                dns_ips: self.dns_ips,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                remote_domain_name: self.remote_domain_name,
-            }),
-        }));
+        let out =
+            DirectoryServiceConditionalForwarder(Rc::new(DirectoryServiceConditionalForwarder_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DirectoryServiceConditionalForwarderData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    directory_id: self.directory_id,
+                    dns_ips: self.dns_ips,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    remote_domain_name: self.remote_domain_name,
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -201,10 +227,7 @@ pub struct DirectoryServiceConditionalForwarderRef {
 
 impl Ref for DirectoryServiceConditionalForwarderRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -219,12 +242,18 @@ impl DirectoryServiceConditionalForwarderRef {
 
     #[doc = "Get a reference to the value of field `directory_id` after provisioning.\n"]
     pub fn directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.directory_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.directory_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_ips` after provisioning.\n"]
     pub fn dns_ips(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_ips", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_ips", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -232,14 +261,19 @@ impl DirectoryServiceConditionalForwarderRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_domain_name` after provisioning.\n"]
     pub fn remote_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_domain_name", self.extract_ref()),
+        )
     }
 }

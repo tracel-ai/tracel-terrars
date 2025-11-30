@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CurReportDefinitionData {
@@ -71,7 +71,8 @@ impl CurReportDefinition {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl CurReportDefinition {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl CurReportDefinition {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -142,12 +153,18 @@ impl CurReportDefinition {
 
     #[doc = "Get a reference to the value of field `additional_artifacts` after provisioning.\n"]
     pub fn additional_artifacts(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_artifacts", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_artifacts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_schema_elements` after provisioning.\n"]
     pub fn additional_schema_elements(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_schema_elements", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_schema_elements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -157,12 +174,18 @@ impl CurReportDefinition {
 
     #[doc = "Get a reference to the value of field `compression` after provisioning.\n"]
     pub fn compression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compression", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compression", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.format", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -172,57 +195,88 @@ impl CurReportDefinition {
 
     #[doc = "Get a reference to the value of field `refresh_closed_reports` after provisioning.\n"]
     pub fn refresh_closed_reports(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_closed_reports", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_closed_reports", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `report_name` after provisioning.\n"]
     pub fn report_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.report_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.report_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `report_versioning` after provisioning.\n"]
     pub fn report_versioning(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.report_versioning", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.report_versioning", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_region` after provisioning.\n"]
     pub fn s3_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_unit` after provisioning.\n"]
     pub fn time_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_unit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_unit", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CurReportDefinition {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CurReportDefinition { }
+impl Resource for CurReportDefinition {}
 
 impl ToListMappable for CurReportDefinition {
     type O = ListRef<CurReportDefinitionRef>;
@@ -305,10 +359,7 @@ pub struct CurReportDefinitionRef {
 
 impl Ref for CurReportDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -323,12 +374,18 @@ impl CurReportDefinitionRef {
 
     #[doc = "Get a reference to the value of field `additional_artifacts` after provisioning.\n"]
     pub fn additional_artifacts(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_artifacts", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_artifacts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_schema_elements` after provisioning.\n"]
     pub fn additional_schema_elements(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_schema_elements", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_schema_elements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -338,12 +395,18 @@ impl CurReportDefinitionRef {
 
     #[doc = "Get a reference to the value of field `compression` after provisioning.\n"]
     pub fn compression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compression", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compression", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.format", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -353,46 +416,73 @@ impl CurReportDefinitionRef {
 
     #[doc = "Get a reference to the value of field `refresh_closed_reports` after provisioning.\n"]
     pub fn refresh_closed_reports(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_closed_reports", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_closed_reports", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `report_name` after provisioning.\n"]
     pub fn report_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.report_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.report_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `report_versioning` after provisioning.\n"]
     pub fn report_versioning(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.report_versioning", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.report_versioning", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_region` after provisioning.\n"]
     pub fn s3_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_unit` after provisioning.\n"]
     pub fn time_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_unit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_unit", self.extract_ref()),
+        )
     }
 }

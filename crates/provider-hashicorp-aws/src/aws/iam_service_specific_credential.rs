@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IamServiceSpecificCredentialData {
@@ -59,7 +59,8 @@ impl IamServiceSpecificCredential {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl IamServiceSpecificCredential {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl IamServiceSpecificCredential {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,17 +123,26 @@ impl IamServiceSpecificCredential {
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_age_days` after provisioning.\n"]
     pub fn credential_age_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_age_days", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_age_days", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expiration_date` after provisioning.\n"]
     pub fn expiration_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expiration_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -132,52 +152,80 @@ impl IamServiceSpecificCredential {
 
     #[doc = "Get a reference to the value of field `service_credential_alias` after provisioning.\n"]
     pub fn service_credential_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_credential_alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_credential_alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_credential_secret` after provisioning.\n"]
     pub fn service_credential_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_credential_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_credential_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_password` after provisioning.\n"]
     pub fn service_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_password", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_specific_credential_id` after provisioning.\n"]
     pub fn service_specific_credential_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_specific_credential_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_specific_credential_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_user_name` after provisioning.\n"]
     pub fn service_user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_user_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IamServiceSpecificCredential {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IamServiceSpecificCredential { }
+impl Resource for IamServiceSpecificCredential {}
 
 impl ToListMappable for IamServiceSpecificCredential {
     type O = ListRef<IamServiceSpecificCredentialRef>;
@@ -239,10 +287,7 @@ pub struct IamServiceSpecificCredentialRef {
 
 impl Ref for IamServiceSpecificCredentialRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -257,17 +302,26 @@ impl IamServiceSpecificCredentialRef {
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_age_days` after provisioning.\n"]
     pub fn credential_age_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_age_days", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_age_days", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expiration_date` after provisioning.\n"]
     pub fn expiration_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expiration_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -277,41 +331,65 @@ impl IamServiceSpecificCredentialRef {
 
     #[doc = "Get a reference to the value of field `service_credential_alias` after provisioning.\n"]
     pub fn service_credential_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_credential_alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_credential_alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_credential_secret` after provisioning.\n"]
     pub fn service_credential_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_credential_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_credential_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_password` after provisioning.\n"]
     pub fn service_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_password", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_specific_credential_id` after provisioning.\n"]
     pub fn service_specific_credential_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_specific_credential_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_specific_credential_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_user_name` after provisioning.\n"]
     pub fn service_user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_user_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name", self.extract_ref()),
+        )
     }
 }

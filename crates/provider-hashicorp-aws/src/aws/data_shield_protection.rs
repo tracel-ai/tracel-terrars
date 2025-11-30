@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataShieldProtectionData {
@@ -61,32 +61,48 @@ impl DataShieldProtection {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_arn` after provisioning.\n"]
     pub fn protection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_id` after provisioning.\n"]
     pub fn protection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataShieldProtection {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataShieldProtection { }
+impl Datasource for DataShieldProtection {}
 
 impl ToListMappable for DataShieldProtection {
     type O = ListRef<DataShieldProtectionRef>;
@@ -140,10 +156,7 @@ pub struct DataShieldProtectionRef {
 
 impl Ref for DataShieldProtectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -163,21 +176,33 @@ impl DataShieldProtectionRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_arn` after provisioning.\n"]
     pub fn protection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_id` after provisioning.\n"]
     pub fn protection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 }

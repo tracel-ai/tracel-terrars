@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDmsCertificateData {
@@ -51,8 +51,7 @@ impl DataDmsCertificate {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,32 +65,50 @@ impl DataDmsCertificate {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_creation_date` after provisioning.\n"]
     pub fn certificate_creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_creation_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_creation_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_id` after provisioning.\n"]
     pub fn certificate_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_owner` after provisioning.\n"]
     pub fn certificate_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_pem` after provisioning.\n"]
     pub fn certificate_pem(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_pem", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_pem", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_wallet` after provisioning.\n"]
     pub fn certificate_wallet(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_wallet", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_wallet", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -101,43 +118,64 @@ impl DataDmsCertificate {
 
     #[doc = "Get a reference to the value of field `key_length` after provisioning.\n"]
     pub fn key_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_length", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm` after provisioning.\n"]
     pub fn signing_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_from_date` after provisioning.\n"]
     pub fn valid_from_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_from_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_from_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_to_date` after provisioning.\n"]
     pub fn valid_to_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_to_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_to_date", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDmsCertificate {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDmsCertificate { }
+impl Datasource for DataDmsCertificate {}
 
 impl ToListMappable for DataDmsCertificate {
     type O = ListRef<DataDmsCertificateRef>;
@@ -195,10 +233,7 @@ pub struct DataDmsCertificateRef {
 
 impl Ref for DataDmsCertificateRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -213,32 +248,50 @@ impl DataDmsCertificateRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_creation_date` after provisioning.\n"]
     pub fn certificate_creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_creation_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_creation_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_id` after provisioning.\n"]
     pub fn certificate_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_owner` after provisioning.\n"]
     pub fn certificate_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_pem` after provisioning.\n"]
     pub fn certificate_pem(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_pem", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_pem", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_wallet` after provisioning.\n"]
     pub fn certificate_wallet(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_wallet", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_wallet", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -248,32 +301,49 @@ impl DataDmsCertificateRef {
 
     #[doc = "Get a reference to the value of field `key_length` after provisioning.\n"]
     pub fn key_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_length", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm` after provisioning.\n"]
     pub fn signing_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_from_date` after provisioning.\n"]
     pub fn valid_from_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_from_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_from_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_to_date` after provisioning.\n"]
     pub fn valid_to_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_to_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_to_date", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchLogMetricFilterData {
@@ -63,7 +63,8 @@ impl CloudwatchLogMetricFilter {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +77,7 @@ impl CloudwatchLogMetricFilter {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +88,22 @@ impl CloudwatchLogMetricFilter {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -108,8 +119,7 @@ impl CloudwatchLogMetricFilter {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -123,17 +133,20 @@ impl CloudwatchLogMetricFilter {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().metric_transformation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.metric_transformation = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `apply_on_transformed_logs` after provisioning.\n"]
     pub fn apply_on_transformed_logs(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.apply_on_transformed_logs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.apply_on_transformed_logs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -143,38 +156,58 @@ impl CloudwatchLogMetricFilter {
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pattern", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pattern", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_transformation` after provisioning.\n"]
-    pub fn metric_transformation(&self) -> ListRef<CloudwatchLogMetricFilterMetricTransformationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_transformation", self.extract_ref()))
+    pub fn metric_transformation(
+        &self,
+    ) -> ListRef<CloudwatchLogMetricFilterMetricTransformationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_transformation", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchLogMetricFilter {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchLogMetricFilter { }
+impl Resource for CloudwatchLogMetricFilter {}
 
 impl ToListMappable for CloudwatchLogMetricFilter {
     type O = ListRef<CloudwatchLogMetricFilterRef>;
@@ -241,10 +274,7 @@ pub struct CloudwatchLogMetricFilterRef {
 
 impl Ref for CloudwatchLogMetricFilterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,7 +289,10 @@ impl CloudwatchLogMetricFilterRef {
 
     #[doc = "Get a reference to the value of field `apply_on_transformed_logs` after provisioning.\n"]
     pub fn apply_on_transformed_logs(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.apply_on_transformed_logs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.apply_on_transformed_logs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -269,28 +302,44 @@ impl CloudwatchLogMetricFilterRef {
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pattern", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pattern", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_transformation` after provisioning.\n"]
-    pub fn metric_transformation(&self) -> ListRef<CloudwatchLogMetricFilterMetricTransformationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_transformation", self.extract_ref()))
+    pub fn metric_transformation(
+        &self,
+    ) -> ListRef<CloudwatchLogMetricFilterMetricTransformationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_transformation", self.extract_ref()),
+        )
     }
 }
 
@@ -367,7 +416,10 @@ pub struct CloudwatchLogMetricFilterMetricTransformationElRef {
 }
 
 impl Ref for CloudwatchLogMetricFilterMetricTransformationElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchLogMetricFilterMetricTransformationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchLogMetricFilterMetricTransformationElRef {
         CloudwatchLogMetricFilterMetricTransformationElRef {
             shared: shared,
             base: base.to_string(),
@@ -382,7 +434,10 @@ impl CloudwatchLogMetricFilterMetricTransformationElRef {
 
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimensions` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DbProxyDefaultTargetGroupData {
@@ -61,7 +61,8 @@ impl DbProxyDefaultTargetGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl DbProxyDefaultTargetGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl DbProxyDefaultTargetGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,8 +111,7 @@ impl DbProxyDefaultTargetGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -115,10 +125,10 @@ impl DbProxyDefaultTargetGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().connection_pool_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.connection_pool_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -136,7 +146,10 @@ impl DbProxyDefaultTargetGroup {
 
     #[doc = "Get a reference to the value of field `db_proxy_name` after provisioning.\n"]
     pub fn db_proxy_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_proxy_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_proxy_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -146,18 +159,28 @@ impl DbProxyDefaultTargetGroup {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_pool_config` after provisioning.\n"]
-    pub fn connection_pool_config(&self) -> ListRef<DbProxyDefaultTargetGroupConnectionPoolConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_pool_config", self.extract_ref()))
+    pub fn connection_pool_config(
+        &self,
+    ) -> ListRef<DbProxyDefaultTargetGroupConnectionPoolConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_pool_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -171,11 +194,15 @@ impl DbProxyDefaultTargetGroup {
 
 impl Referable for DbProxyDefaultTargetGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DbProxyDefaultTargetGroup { }
+impl Resource for DbProxyDefaultTargetGroup {}
 
 impl ToListMappable for DbProxyDefaultTargetGroup {
     type O = ListRef<DbProxyDefaultTargetGroupRef>;
@@ -236,10 +263,7 @@ pub struct DbProxyDefaultTargetGroupRef {
 
 impl Ref for DbProxyDefaultTargetGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,7 +283,10 @@ impl DbProxyDefaultTargetGroupRef {
 
     #[doc = "Get a reference to the value of field `db_proxy_name` after provisioning.\n"]
     pub fn db_proxy_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_proxy_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_proxy_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -269,18 +296,28 @@ impl DbProxyDefaultTargetGroupRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_pool_config` after provisioning.\n"]
-    pub fn connection_pool_config(&self) -> ListRef<DbProxyDefaultTargetGroupConnectionPoolConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_pool_config", self.extract_ref()))
+    pub fn connection_pool_config(
+        &self,
+    ) -> ListRef<DbProxyDefaultTargetGroupConnectionPoolConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_pool_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -332,7 +369,10 @@ impl DbProxyDefaultTargetGroupConnectionPoolConfigEl {
     }
 
     #[doc = "Set the field `session_pinning_filters`.\n"]
-    pub fn set_session_pinning_filters(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_session_pinning_filters(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.session_pinning_filters = Some(v.into());
         self
     }
@@ -370,7 +410,10 @@ pub struct DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
 }
 
 impl Ref for DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
-    fn new(shared: StackShared, base: String) -> DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
         DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -385,7 +428,10 @@ impl DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
 
     #[doc = "Get a reference to the value of field `connection_borrow_timeout` after provisioning.\n"]
     pub fn connection_borrow_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_borrow_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_borrow_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `init_query` after provisioning.\n"]
@@ -395,17 +441,26 @@ impl DbProxyDefaultTargetGroupConnectionPoolConfigElRef {
 
     #[doc = "Get a reference to the value of field `max_connections_percent` after provisioning.\n"]
     pub fn max_connections_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_connections_percent", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_connections_percent", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_idle_connections_percent` after provisioning.\n"]
     pub fn max_idle_connections_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_idle_connections_percent", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_idle_connections_percent", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_pinning_filters` after provisioning.\n"]
     pub fn session_pinning_filters(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.session_pinning_filters", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.session_pinning_filters", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOdbDbSystemShapesData {
@@ -42,46 +42,54 @@ impl DataOdbDbSystemShapes {
         self
     }
 
-    #[doc =
-        "Set the field `availability_zone_id`.\nThe physical ID of the AZ, for example, use1-az4. This ID persists across accounts."]
+    #[doc = "Set the field `availability_zone_id`.\nThe physical ID of the AZ, for example, use1-az4. This ID persists across accounts."]
     pub fn set_availability_zone_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().availability_zone_id = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe physical ID of the AZ, for example, use1-az4. This ID persists across accounts."]
+    #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe physical ID of the AZ, for example, use1-az4. This ID persists across accounts."]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_system_shapes` after provisioning.\nThe list of shapes and their properties. Information about a hardware system model (shape) that's available for an Exadata infrastructure.The shape determines resources, such as CPU cores, memory, and storage, to allocate to the Exadata infrastructure."]
+    #[doc = "Get a reference to the value of field `db_system_shapes` after provisioning.\nThe list of shapes and their properties. Information about a hardware system model (shape) that's available for an Exadata infrastructure.The shape determines resources, such as CPU cores, memory, and storage, to allocate to the Exadata infrastructure."]
     pub fn db_system_shapes(&self) -> ListRef<DataOdbDbSystemShapesDbSystemShapesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.db_system_shapes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.db_system_shapes", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOdbDbSystemShapes {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOdbDbSystemShapes { }
+impl Datasource for DataOdbDbSystemShapes {}
 
 impl ToListMappable for DataOdbDbSystemShapes {
     type O = ListRef<DataOdbDbSystemShapesRef>;
@@ -135,10 +143,7 @@ pub struct DataOdbDbSystemShapesRef {
 
 impl Ref for DataOdbDbSystemShapesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -151,22 +156,28 @@ impl DataOdbDbSystemShapesRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe physical ID of the AZ, for example, use1-az4. This ID persists across accounts."]
+    #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe physical ID of the AZ, for example, use1-az4. This ID persists across accounts."]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_system_shapes` after provisioning.\nThe list of shapes and their properties. Information about a hardware system model (shape) that's available for an Exadata infrastructure.The shape determines resources, such as CPU cores, memory, and storage, to allocate to the Exadata infrastructure."]
+    #[doc = "Get a reference to the value of field `db_system_shapes` after provisioning.\nThe list of shapes and their properties. Information about a hardware system model (shape) that's available for an Exadata infrastructure.The shape determines resources, such as CPU cores, memory, and storage, to allocate to the Exadata infrastructure."]
     pub fn db_system_shapes(&self) -> ListRef<DataOdbDbSystemShapesDbSystemShapesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.db_system_shapes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.db_system_shapes", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -238,7 +249,10 @@ impl DataOdbDbSystemShapesDbSystemShapesEl {
     }
 
     #[doc = "Set the field `available_data_storage_per_server_in_tbs`.\n"]
-    pub fn set_available_data_storage_per_server_in_tbs(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_available_data_storage_per_server_in_tbs(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.available_data_storage_per_server_in_tbs = Some(v.into());
         self
     }
@@ -416,92 +430,146 @@ impl DataOdbDbSystemShapesDbSystemShapesElRef {
 
     #[doc = "Get a reference to the value of field `available_core_count` after provisioning.\n"]
     pub fn available_core_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_core_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_core_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_core_count_per_node` after provisioning.\n"]
     pub fn available_core_count_per_node(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_core_count_per_node", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_core_count_per_node", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_data_storage_in_tbs` after provisioning.\n"]
     pub fn available_data_storage_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_data_storage_in_tbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_data_storage_in_tbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_data_storage_per_server_in_tbs` after provisioning.\n"]
     pub fn available_data_storage_per_server_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_data_storage_per_server_in_tbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_data_storage_per_server_in_tbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_db_node_per_node_in_gbs` after provisioning.\n"]
     pub fn available_db_node_per_node_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_db_node_per_node_in_gbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_db_node_per_node_in_gbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_db_node_storage_in_gbs` after provisioning.\n"]
     pub fn available_db_node_storage_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_db_node_storage_in_gbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_db_node_storage_in_gbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_memory_in_gbs` after provisioning.\n"]
     pub fn available_memory_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_memory_in_gbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_memory_in_gbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_memory_per_node_in_gbs` after provisioning.\n"]
     pub fn available_memory_per_node_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_memory_per_node_in_gbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_memory_per_node_in_gbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_count_increment` after provisioning.\n"]
     pub fn core_count_increment(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_count_increment", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_count_increment", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_storage_count` after provisioning.\n"]
     pub fn max_storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_storage_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_storage_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_node_count` after provisioning.\n"]
     pub fn maximum_node_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_node_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_node_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_core_count_per_node` after provisioning.\n"]
     pub fn min_core_count_per_node(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_core_count_per_node", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_core_count_per_node", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_data_storage_in_tbs` after provisioning.\n"]
     pub fn min_data_storage_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_data_storage_in_tbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_data_storage_in_tbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_db_node_storage_per_node_in_gbs` after provisioning.\n"]
     pub fn min_db_node_storage_per_node_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_db_node_storage_per_node_in_gbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_db_node_storage_per_node_in_gbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_memory_per_node_in_gbs` after provisioning.\n"]
     pub fn min_memory_per_node_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_memory_per_node_in_gbs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_memory_per_node_in_gbs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_storage_count` after provisioning.\n"]
     pub fn min_storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_storage_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_storage_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_core_count` after provisioning.\n"]
     pub fn minimum_core_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_core_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_core_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_node_count` after provisioning.\n"]
     pub fn minimum_node_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_node_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_node_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -511,7 +579,10 @@ impl DataOdbDbSystemShapesDbSystemShapesElRef {
 
     #[doc = "Get a reference to the value of field `runtime_minimum_core_count` after provisioning.\n"]
     pub fn runtime_minimum_core_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.runtime_minimum_core_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.runtime_minimum_core_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shape_family` after provisioning.\n"]

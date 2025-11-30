@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GuarddutyMemberData {
@@ -66,7 +66,8 @@ impl GuarddutyMember {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl GuarddutyMember {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl GuarddutyMember {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -123,8 +134,7 @@ impl GuarddutyMember {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -138,22 +148,34 @@ impl GuarddutyMember {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disable_email_notification` after provisioning.\n"]
     pub fn disable_email_notification(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_email_notification", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_email_notification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email` after provisioning.\n"]
     pub fn email(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -163,38 +185,56 @@ impl GuarddutyMember {
 
     #[doc = "Get a reference to the value of field `invitation_message` after provisioning.\n"]
     pub fn invitation_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invitation_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invitation_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `invite` after provisioning.\n"]
     pub fn invite(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invite", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invite", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `relationship_status` after provisioning.\n"]
     pub fn relationship_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.relationship_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.relationship_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> GuarddutyMemberTimeoutsElRef {
-        GuarddutyMemberTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        GuarddutyMemberTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GuarddutyMember {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GuarddutyMember { }
+impl Resource for GuarddutyMember {}
 
 impl ToListMappable for GuarddutyMember {
     type O = ListRef<GuarddutyMemberRef>;
@@ -262,10 +302,7 @@ pub struct GuarddutyMemberRef {
 
 impl Ref for GuarddutyMemberRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -280,22 +317,34 @@ impl GuarddutyMemberRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disable_email_notification` after provisioning.\n"]
     pub fn disable_email_notification(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_email_notification", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_email_notification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email` after provisioning.\n"]
     pub fn email(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -305,28 +354,42 @@ impl GuarddutyMemberRef {
 
     #[doc = "Get a reference to the value of field `invitation_message` after provisioning.\n"]
     pub fn invitation_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invitation_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invitation_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `invite` after provisioning.\n"]
     pub fn invite(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invite", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invite", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `relationship_status` after provisioning.\n"]
     pub fn relationship_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.relationship_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.relationship_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> GuarddutyMemberTimeoutsElRef {
-        GuarddutyMemberTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        GuarddutyMemberTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontRealtimeLogConfigData {
@@ -59,7 +59,8 @@ impl CloudfrontRealtimeLogConfig {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl CloudfrontRealtimeLogConfig {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl CloudfrontRealtimeLogConfig {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -99,14 +110,17 @@ impl CloudfrontRealtimeLogConfig {
     }
 
     #[doc = "Set the field `endpoint`.\n"]
-    pub fn set_endpoint(self, v: impl Into<BlockAssignable<CloudfrontRealtimeLogConfigEndpointEl>>) -> Self {
+    pub fn set_endpoint(
+        self,
+        v: impl Into<BlockAssignable<CloudfrontRealtimeLogConfigEndpointEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().endpoint = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.endpoint = Some(d);
-            },
+            }
         }
         self
     }
@@ -118,7 +132,10 @@ impl CloudfrontRealtimeLogConfig {
 
     #[doc = "Get a reference to the value of field `fields` after provisioning.\n"]
     pub fn fields(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.fields", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.fields", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -128,27 +145,40 @@ impl CloudfrontRealtimeLogConfig {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_rate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> ListRef<CloudfrontRealtimeLogConfigEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoint", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoint", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontRealtimeLogConfig {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontRealtimeLogConfig { }
+impl Resource for CloudfrontRealtimeLogConfig {}
 
 impl ToListMappable for CloudfrontRealtimeLogConfig {
     type O = ListRef<CloudfrontRealtimeLogConfigRef>;
@@ -213,10 +243,7 @@ pub struct CloudfrontRealtimeLogConfigRef {
 
 impl Ref for CloudfrontRealtimeLogConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -236,7 +263,10 @@ impl CloudfrontRealtimeLogConfigRef {
 
     #[doc = "Get a reference to the value of field `fields` after provisioning.\n"]
     pub fn fields(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.fields", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.fields", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -246,17 +276,26 @@ impl CloudfrontRealtimeLogConfigRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_rate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> ListRef<CloudfrontRealtimeLogConfigEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoint", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoint", self.extract_ref()),
+        )
     }
 }
 
@@ -266,7 +305,7 @@ pub struct CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl {
     stream_arn: PrimField<String>,
 }
 
-impl CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl { }
+impl CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl {}
 
 impl ToListMappable for CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl {
     type O = BlockAssignable<CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl>;
@@ -302,7 +341,10 @@ pub struct CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
 }
 
 impl Ref for CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
         CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -328,7 +370,8 @@ impl CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
 
 #[derive(Serialize, Default)]
 struct CloudfrontRealtimeLogConfigEndpointElDynamic {
-    kinesis_stream_config: Option<DynamicBlock<CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl>>,
+    kinesis_stream_config:
+        Option<DynamicBlock<CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -348,10 +391,10 @@ impl CloudfrontRealtimeLogConfigEndpointEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_stream_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_stream_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -409,8 +452,13 @@ impl CloudfrontRealtimeLogConfigEndpointElRef {
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream_config` after provisioning.\n"]
-    pub fn kinesis_stream_config(&self) -> ListRef<CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream_config", self.base))
+    pub fn kinesis_stream_config(
+        &self,
+    ) -> ListRef<CloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream_config", self.base),
+        )
     }
 }
 

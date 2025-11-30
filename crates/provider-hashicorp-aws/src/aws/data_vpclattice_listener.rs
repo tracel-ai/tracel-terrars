@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVpclatticeListenerData {
@@ -52,8 +52,7 @@ impl DataVpclatticeListener {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -72,12 +71,18 @@ impl DataVpclatticeListener {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<DataVpclatticeListenerDefaultActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -87,68 +92,104 @@ impl DataVpclatticeListener {
 
     #[doc = "Get a reference to the value of field `last_updated_at` after provisioning.\n"]
     pub fn last_updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `listener_id` after provisioning.\n"]
     pub fn listener_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `listener_identifier` after provisioning.\n"]
     pub fn listener_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_arn` after provisioning.\n"]
     pub fn service_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataVpclatticeListener {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVpclatticeListener { }
+impl Datasource for DataVpclatticeListener {}
 
 impl ToListMappable for DataVpclatticeListener {
     type O = ListRef<DataVpclatticeListenerRef>;
@@ -209,10 +250,7 @@ pub struct DataVpclatticeListenerRef {
 
 impl Ref for DataVpclatticeListenerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -232,12 +270,18 @@ impl DataVpclatticeListenerRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<DataVpclatticeListenerDefaultActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -247,58 +291,90 @@ impl DataVpclatticeListenerRef {
 
     #[doc = "Get a reference to the value of field `last_updated_at` after provisioning.\n"]
     pub fn last_updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `listener_id` after provisioning.\n"]
     pub fn listener_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `listener_identifier` after provisioning.\n"]
     pub fn listener_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_arn` after provisioning.\n"]
     pub fn service_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -332,7 +408,9 @@ pub struct BuildDataVpclatticeListenerDefaultActionElFixedResponseEl {}
 
 impl BuildDataVpclatticeListenerDefaultActionElFixedResponseEl {
     pub fn build(self) -> DataVpclatticeListenerDefaultActionElFixedResponseEl {
-        DataVpclatticeListenerDefaultActionElFixedResponseEl { status_code: core::default::Default::default() }
+        DataVpclatticeListenerDefaultActionElFixedResponseEl {
+            status_code: core::default::Default::default(),
+        }
     }
 }
 
@@ -342,7 +420,10 @@ pub struct DataVpclatticeListenerDefaultActionElFixedResponseElRef {
 }
 
 impl Ref for DataVpclatticeListenerDefaultActionElFixedResponseElRef {
-    fn new(shared: StackShared, base: String) -> DataVpclatticeListenerDefaultActionElFixedResponseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataVpclatticeListenerDefaultActionElFixedResponseElRef {
         DataVpclatticeListenerDefaultActionElFixedResponseElRef {
             shared: shared,
             base: base.to_string(),
@@ -412,7 +493,10 @@ pub struct DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
 }
 
 impl Ref for DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
-    fn new(shared: StackShared, base: String) -> DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
         DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
             shared: shared,
             base: base.to_string(),
@@ -427,7 +511,10 @@ impl DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
 
     #[doc = "Get a reference to the value of field `target_group_identifier` after provisioning.\n"]
     pub fn target_group_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -469,7 +556,9 @@ pub struct BuildDataVpclatticeListenerDefaultActionElForwardEl {}
 
 impl BuildDataVpclatticeListenerDefaultActionElForwardEl {
     pub fn build(self) -> DataVpclatticeListenerDefaultActionElForwardEl {
-        DataVpclatticeListenerDefaultActionElForwardEl { target_groups: core::default::Default::default() }
+        DataVpclatticeListenerDefaultActionElForwardEl {
+            target_groups: core::default::Default::default(),
+        }
     }
 }
 
@@ -493,8 +582,13 @@ impl DataVpclatticeListenerDefaultActionElForwardElRef {
     }
 
     #[doc = "Get a reference to the value of field `target_groups` after provisioning.\n"]
-    pub fn target_groups(&self) -> ListRef<DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_groups", self.base))
+    pub fn target_groups(
+        &self,
+    ) -> ListRef<DataVpclatticeListenerDefaultActionElForwardElTargetGroupsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_groups", self.base),
+        )
     }
 }
 
@@ -517,7 +611,10 @@ impl DataVpclatticeListenerDefaultActionEl {
     }
 
     #[doc = "Set the field `forward`.\n"]
-    pub fn set_forward(mut self, v: impl Into<ListField<DataVpclatticeListenerDefaultActionElForwardEl>>) -> Self {
+    pub fn set_forward(
+        mut self,
+        v: impl Into<ListField<DataVpclatticeListenerDefaultActionElForwardEl>>,
+    ) -> Self {
         self.forward = Some(v.into());
         self
     }
@@ -566,8 +663,13 @@ impl DataVpclatticeListenerDefaultActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `fixed_response` after provisioning.\n"]
-    pub fn fixed_response(&self) -> ListRef<DataVpclatticeListenerDefaultActionElFixedResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fixed_response", self.base))
+    pub fn fixed_response(
+        &self,
+    ) -> ListRef<DataVpclatticeListenerDefaultActionElFixedResponseElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fixed_response", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward` after provisioning.\n"]

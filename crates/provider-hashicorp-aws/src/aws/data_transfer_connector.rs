@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataTransferConnectorData {
@@ -41,8 +41,7 @@ impl DataTransferConnector {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -50,7 +49,10 @@ impl DataTransferConnector {
 
     #[doc = "Get a reference to the value of field `access_role` after provisioning.\n"]
     pub fn access_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -60,7 +62,10 @@ impl DataTransferConnector {
 
     #[doc = "Get a reference to the value of field `as2_config` after provisioning.\n"]
     pub fn as2_config(&self) -> ListRef<DataTransferConnectorAs2ConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.as2_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.as2_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -70,33 +75,50 @@ impl DataTransferConnector {
 
     #[doc = "Get a reference to the value of field `logging_role` after provisioning.\n"]
     pub fn logging_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.logging_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.logging_role", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_policy_name` after provisioning.\n"]
     pub fn security_policy_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_policy_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_policy_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_managed_egress_ip_addresses` after provisioning.\n"]
     pub fn service_managed_egress_ip_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.service_managed_egress_ip_addresses", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_managed_egress_ip_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sftp_config` after provisioning.\n"]
     pub fn sftp_config(&self) -> ListRef<DataTransferConnectorSftpConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sftp_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sftp_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -107,11 +129,15 @@ impl DataTransferConnector {
 
 impl Referable for DataTransferConnector {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataTransferConnector { }
+impl Datasource for DataTransferConnector {}
 
 impl ToListMappable for DataTransferConnector {
     type O = ListRef<DataTransferConnectorRef>;
@@ -167,10 +193,7 @@ pub struct DataTransferConnectorRef {
 
 impl Ref for DataTransferConnectorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -185,7 +208,10 @@ impl DataTransferConnectorRef {
 
     #[doc = "Get a reference to the value of field `access_role` after provisioning.\n"]
     pub fn access_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -195,7 +221,10 @@ impl DataTransferConnectorRef {
 
     #[doc = "Get a reference to the value of field `as2_config` after provisioning.\n"]
     pub fn as2_config(&self) -> ListRef<DataTransferConnectorAs2ConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.as2_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.as2_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -205,33 +234,50 @@ impl DataTransferConnectorRef {
 
     #[doc = "Get a reference to the value of field `logging_role` after provisioning.\n"]
     pub fn logging_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.logging_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.logging_role", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_policy_name` after provisioning.\n"]
     pub fn security_policy_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_policy_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_policy_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_managed_egress_ip_addresses` after provisioning.\n"]
     pub fn service_managed_egress_ip_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.service_managed_egress_ip_addresses", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_managed_egress_ip_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sftp_config` after provisioning.\n"]
     pub fn sftp_config(&self) -> ListRef<DataTransferConnectorSftpConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sftp_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sftp_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -369,7 +415,10 @@ impl DataTransferConnectorAs2ConfigElRef {
 
     #[doc = "Get a reference to the value of field `basic_auth_secret_id` after provisioning.\n"]
     pub fn basic_auth_secret_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.basic_auth_secret_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.basic_auth_secret_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compression` after provisioning.\n"]
@@ -379,12 +428,18 @@ impl DataTransferConnectorAs2ConfigElRef {
 
     #[doc = "Get a reference to the value of field `encryption_algorithm` after provisioning.\n"]
     pub fn encryption_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_algorithm", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_profile_id` after provisioning.\n"]
     pub fn local_profile_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_profile_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_profile_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mdn_response` after provisioning.\n"]
@@ -394,22 +449,34 @@ impl DataTransferConnectorAs2ConfigElRef {
 
     #[doc = "Get a reference to the value of field `mdn_signing_algorithm` after provisioning.\n"]
     pub fn mdn_signing_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mdn_signing_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mdn_signing_algorithm", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `message_subject` after provisioning.\n"]
     pub fn message_subject(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_subject", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_subject", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partner_profile_id` after provisioning.\n"]
     pub fn partner_profile_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partner_profile_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partner_profile_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `singing_algorithm` after provisioning.\n"]
     pub fn singing_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.singing_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.singing_algorithm", self.base),
+        )
     }
 }
 
@@ -479,11 +546,17 @@ impl DataTransferConnectorSftpConfigElRef {
 
     #[doc = "Get a reference to the value of field `trusted_host_keys` after provisioning.\n"]
     pub fn trusted_host_keys(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_host_keys", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_host_keys", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_secret_id` after provisioning.\n"]
     pub fn user_secret_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_secret_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_secret_id", self.base),
+        )
     }
 }

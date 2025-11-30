@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecuritylakeSubscriberData {
@@ -68,7 +68,8 @@ impl SecuritylakeSubscriber {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +82,7 @@ impl SecuritylakeSubscriber {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +93,22 @@ impl SecuritylakeSubscriber {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -107,8 +118,7 @@ impl SecuritylakeSubscriber {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,10 +147,10 @@ impl SecuritylakeSubscriber {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source = Some(d);
-            },
+            }
         }
         self
     }
@@ -153,10 +163,10 @@ impl SecuritylakeSubscriber {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().subscriber_identity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.subscriber_identity = Some(d);
-            },
+            }
         }
         self
     }
@@ -169,7 +179,10 @@ impl SecuritylakeSubscriber {
 
     #[doc = "Get a reference to the value of field `access_type` after provisioning.\n"]
     pub fn access_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -182,80 +195,122 @@ impl SecuritylakeSubscriber {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_share_arn` after provisioning.\n"]
     pub fn resource_share_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_share_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_share_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_share_name` after provisioning.\n"]
     pub fn resource_share_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_share_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_share_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_description` after provisioning.\n"]
     pub fn subscriber_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_endpoint` after provisioning.\n"]
     pub fn subscriber_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_name` after provisioning.\n"]
     pub fn subscriber_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_status` after provisioning.\n"]
     pub fn subscriber_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_identity` after provisioning.\n"]
     pub fn subscriber_identity(&self) -> ListRef<SecuritylakeSubscriberSubscriberIdentityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subscriber_identity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subscriber_identity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SecuritylakeSubscriberTimeoutsElRef {
-        SecuritylakeSubscriberTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        SecuritylakeSubscriberTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SecuritylakeSubscriber {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecuritylakeSubscriber { }
+impl Resource for SecuritylakeSubscriber {}
 
 impl ToListMappable for SecuritylakeSubscriber {
     type O = ListRef<SecuritylakeSubscriberRef>;
@@ -317,10 +372,7 @@ pub struct SecuritylakeSubscriberRef {
 
 impl Ref for SecuritylakeSubscriberRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -335,7 +387,10 @@ impl SecuritylakeSubscriberRef {
 
     #[doc = "Get a reference to the value of field `access_type` after provisioning.\n"]
     pub fn access_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -348,70 +403,108 @@ impl SecuritylakeSubscriberRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_share_arn` after provisioning.\n"]
     pub fn resource_share_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_share_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_share_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_share_name` after provisioning.\n"]
     pub fn resource_share_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_share_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_share_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_description` after provisioning.\n"]
     pub fn subscriber_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_endpoint` after provisioning.\n"]
     pub fn subscriber_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_name` after provisioning.\n"]
     pub fn subscriber_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_status` after provisioning.\n"]
     pub fn subscriber_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_identity` after provisioning.\n"]
     pub fn subscriber_identity(&self) -> ListRef<SecuritylakeSubscriberSubscriberIdentityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subscriber_identity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subscriber_identity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SecuritylakeSubscriberTimeoutsElRef {
-        SecuritylakeSubscriberTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        SecuritylakeSubscriberTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -462,7 +555,10 @@ pub struct SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef {
 }
 
 impl Ref for SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef {
-    fn new(shared: StackShared, base: String) -> SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef {
         SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -482,7 +578,10 @@ impl SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef {
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.base),
+        )
     }
 }
 
@@ -703,7 +802,10 @@ pub struct SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
 }
 
 impl Ref for SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
-    fn new(shared: StackShared, base: String) -> SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
         SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -717,12 +819,16 @@ impl SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
     }
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
-    pub fn attributes(&self) -> ListRef<SecuritylakeSubscriberSourceElCustomLogSourceResourceElAttributesElRef> {
+    pub fn attributes(
+        &self,
+    ) -> ListRef<SecuritylakeSubscriberSourceElCustomLogSourceResourceElAttributesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.attributes", self.base))
     }
 
     #[doc = "Get a reference to the value of field `provider` after provisioning.\n"]
-    pub fn provider(&self) -> ListRef<SecuritylakeSubscriberSourceElCustomLogSourceResourceElProviderElRef> {
+    pub fn provider(
+        &self,
+    ) -> ListRef<SecuritylakeSubscriberSourceElCustomLogSourceResourceElProviderElRef> {
         ListRef::new(self.shared().clone(), format!("{}.provider", self.base))
     }
 
@@ -733,14 +839,19 @@ impl SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef {
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SecuritylakeSubscriberSourceElDynamic {
-    aws_log_source_resource: Option<DynamicBlock<SecuritylakeSubscriberSourceElAwsLogSourceResourceEl>>,
-    custom_log_source_resource: Option<DynamicBlock<SecuritylakeSubscriberSourceElCustomLogSourceResourceEl>>,
+    aws_log_source_resource:
+        Option<DynamicBlock<SecuritylakeSubscriberSourceElAwsLogSourceResourceEl>>,
+    custom_log_source_resource:
+        Option<DynamicBlock<SecuritylakeSubscriberSourceElCustomLogSourceResourceEl>>,
 }
 
 #[derive(Serialize)]
@@ -748,7 +859,8 @@ pub struct SecuritylakeSubscriberSourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     aws_log_source_resource: Option<Vec<SecuritylakeSubscriberSourceElAwsLogSourceResourceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_log_source_resource: Option<Vec<SecuritylakeSubscriberSourceElCustomLogSourceResourceEl>>,
+    custom_log_source_resource:
+        Option<Vec<SecuritylakeSubscriberSourceElCustomLogSourceResourceEl>>,
     dynamic: SecuritylakeSubscriberSourceElDynamic,
 }
 
@@ -761,10 +873,10 @@ impl SecuritylakeSubscriberSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_log_source_resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_log_source_resource = Some(d);
-            },
+            }
         }
         self
     }
@@ -777,10 +889,10 @@ impl SecuritylakeSubscriberSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_log_source_resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_log_source_resource = Some(d);
-            },
+            }
         }
         self
     }
@@ -830,13 +942,23 @@ impl SecuritylakeSubscriberSourceElRef {
     }
 
     #[doc = "Get a reference to the value of field `aws_log_source_resource` after provisioning.\n"]
-    pub fn aws_log_source_resource(&self) -> ListRef<SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.aws_log_source_resource", self.base))
+    pub fn aws_log_source_resource(
+        &self,
+    ) -> ListRef<SecuritylakeSubscriberSourceElAwsLogSourceResourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.aws_log_source_resource", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_log_source_resource` after provisioning.\n"]
-    pub fn custom_log_source_resource(&self) -> ListRef<SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_log_source_resource", self.base))
+    pub fn custom_log_source_resource(
+        &self,
+    ) -> ListRef<SecuritylakeSubscriberSourceElCustomLogSourceResourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_log_source_resource", self.base),
+        )
     }
 }
 
@@ -846,7 +968,7 @@ pub struct SecuritylakeSubscriberSubscriberIdentityEl {
     principal: PrimField<String>,
 }
 
-impl SecuritylakeSubscriberSubscriberIdentityEl { }
+impl SecuritylakeSubscriberSubscriberIdentityEl {}
 
 impl ToListMappable for SecuritylakeSubscriberSubscriberIdentityEl {
     type O = BlockAssignable<SecuritylakeSubscriberSubscriberIdentityEl>;
@@ -917,22 +1039,19 @@ pub struct SecuritylakeSubscriberTimeoutsEl {
 }
 
 impl SecuritylakeSubscriberTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -982,20 +1101,17 @@ impl SecuritylakeSubscriberTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

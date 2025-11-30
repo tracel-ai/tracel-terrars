@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GameliftGameServerGroupData {
@@ -78,7 +78,8 @@ impl GameliftGameServerGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -91,7 +92,7 @@ impl GameliftGameServerGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -102,12 +103,22 @@ impl GameliftGameServerGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -129,8 +140,7 @@ impl GameliftGameServerGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -162,10 +172,10 @@ impl GameliftGameServerGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_scaling_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_scaling_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,23 +188,26 @@ impl GameliftGameServerGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_definition = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `launch_template`.\n"]
-    pub fn set_launch_template(self, v: impl Into<BlockAssignable<GameliftGameServerGroupLaunchTemplateEl>>) -> Self {
+    pub fn set_launch_template(
+        self,
+        v: impl Into<BlockAssignable<GameliftGameServerGroupLaunchTemplateEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().launch_template = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.launch_template = Some(d);
-            },
+            }
         }
         self
     }
@@ -212,22 +225,34 @@ impl GameliftGameServerGroup {
 
     #[doc = "Get a reference to the value of field `auto_scaling_group_arn` after provisioning.\n"]
     pub fn auto_scaling_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `balancing_strategy` after provisioning.\n"]
     pub fn balancing_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.balancing_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.balancing_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `game_server_group_name` after provisioning.\n"]
     pub fn game_server_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.game_server_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.game_server_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `game_server_protection_policy` after provisioning.\n"]
     pub fn game_server_protection_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.game_server_protection_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.game_server_protection_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -237,63 +262,96 @@ impl GameliftGameServerGroup {
 
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_size", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_subnets` after provisioning.\n"]
     pub fn vpc_subnets(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_subnets", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_subnets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_policy` after provisioning.\n"]
     pub fn auto_scaling_policy(&self) -> ListRef<GameliftGameServerGroupAutoScalingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_scaling_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
     pub fn launch_template(&self) -> ListRef<GameliftGameServerGroupLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> GameliftGameServerGroupTimeoutsElRef {
-        GameliftGameServerGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        GameliftGameServerGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GameliftGameServerGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GameliftGameServerGroup { }
+impl Resource for GameliftGameServerGroup {}
 
 impl ToListMappable for GameliftGameServerGroup {
     type O = ListRef<GameliftGameServerGroupRef>;
@@ -370,10 +428,7 @@ pub struct GameliftGameServerGroupRef {
 
 impl Ref for GameliftGameServerGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -393,22 +448,34 @@ impl GameliftGameServerGroupRef {
 
     #[doc = "Get a reference to the value of field `auto_scaling_group_arn` after provisioning.\n"]
     pub fn auto_scaling_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `balancing_strategy` after provisioning.\n"]
     pub fn balancing_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.balancing_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.balancing_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `game_server_group_name` after provisioning.\n"]
     pub fn game_server_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.game_server_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.game_server_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `game_server_protection_policy` after provisioning.\n"]
     pub fn game_server_protection_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.game_server_protection_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.game_server_protection_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -418,53 +485,82 @@ impl GameliftGameServerGroupRef {
 
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_size", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_subnets` after provisioning.\n"]
     pub fn vpc_subnets(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_subnets", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_subnets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_policy` after provisioning.\n"]
     pub fn auto_scaling_policy(&self) -> ListRef<GameliftGameServerGroupAutoScalingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_scaling_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
     pub fn launch_template(&self) -> ListRef<GameliftGameServerGroupLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> GameliftGameServerGroupTimeoutsElRef {
-        GameliftGameServerGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        GameliftGameServerGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -473,10 +569,11 @@ pub struct GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfiguration
     target_value: PrimField<f64>,
 }
 
-impl GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl { }
+impl GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl {}
 
 impl ToListMappable for GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl {
-    type O = BlockAssignable<GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl>;
+    type O =
+        BlockAssignable<GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -494,7 +591,9 @@ pub struct BuildGameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigur
 
 impl BuildGameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl {
     pub fn build(self) -> GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl {
-        GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl { target_value: self.target_value }
+        GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl {
+            target_value: self.target_value,
+        }
     }
 }
 
@@ -538,7 +637,8 @@ pub struct GameliftGameServerGroupAutoScalingPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     estimated_instance_warmup: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    target_tracking_configuration: Option<Vec<GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl>>,
+    target_tracking_configuration:
+        Option<Vec<GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl>>,
     dynamic: GameliftGameServerGroupAutoScalingPolicyElDynamic,
 }
 
@@ -552,15 +652,19 @@ impl GameliftGameServerGroupAutoScalingPolicyEl {
     #[doc = "Set the field `target_tracking_configuration`.\n"]
     pub fn set_target_tracking_configuration(
         mut self,
-        v: impl Into<BlockAssignable<GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_tracking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_tracking_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -611,14 +715,20 @@ impl GameliftGameServerGroupAutoScalingPolicyElRef {
 
     #[doc = "Get a reference to the value of field `estimated_instance_warmup` after provisioning.\n"]
     pub fn estimated_instance_warmup(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_instance_warmup", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_instance_warmup", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_tracking_configuration` after provisioning.\n"]
     pub fn target_tracking_configuration(
         &self,
     ) -> ListRef<GameliftGameServerGroupAutoScalingPolicyElTargetTrackingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_tracking_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_tracking_configuration", self.base),
+        )
     }
 }
 
@@ -684,12 +794,18 @@ impl GameliftGameServerGroupInstanceDefinitionElRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 }
 

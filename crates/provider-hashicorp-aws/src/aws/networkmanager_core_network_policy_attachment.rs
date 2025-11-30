@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkmanagerCoreNetworkPolicyAttachmentData {
@@ -29,7 +29,9 @@ struct NetworkmanagerCoreNetworkPolicyAttachment_ {
 }
 
 #[derive(Clone)]
-pub struct NetworkmanagerCoreNetworkPolicyAttachment(Rc<NetworkmanagerCoreNetworkPolicyAttachment_>);
+pub struct NetworkmanagerCoreNetworkPolicyAttachment(
+    Rc<NetworkmanagerCoreNetworkPolicyAttachment_>,
+);
 
 impl NetworkmanagerCoreNetworkPolicyAttachment {
     fn shared(&self) -> &StackShared {
@@ -57,7 +59,8 @@ impl NetworkmanagerCoreNetworkPolicyAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +73,7 @@ impl NetworkmanagerCoreNetworkPolicyAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +84,22 @@ impl NetworkmanagerCoreNetworkPolicyAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -97,14 +110,20 @@ impl NetworkmanagerCoreNetworkPolicyAttachment {
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -114,12 +133,18 @@ impl NetworkmanagerCoreNetworkPolicyAttachment {
 
     #[doc = "Get a reference to the value of field `policy_document` after provisioning.\n"]
     pub fn policy_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_document", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_document", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -133,11 +158,15 @@ impl NetworkmanagerCoreNetworkPolicyAttachment {
 
 impl Referable for NetworkmanagerCoreNetworkPolicyAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkmanagerCoreNetworkPolicyAttachment { }
+impl Resource for NetworkmanagerCoreNetworkPolicyAttachment {}
 
 impl ToListMappable for NetworkmanagerCoreNetworkPolicyAttachment {
     type O = ListRef<NetworkmanagerCoreNetworkPolicyAttachmentRef>;
@@ -172,20 +201,22 @@ pub struct BuildNetworkmanagerCoreNetworkPolicyAttachment {
 
 impl BuildNetworkmanagerCoreNetworkPolicyAttachment {
     pub fn build(self, stack: &mut Stack) -> NetworkmanagerCoreNetworkPolicyAttachment {
-        let out = NetworkmanagerCoreNetworkPolicyAttachment(Rc::new(NetworkmanagerCoreNetworkPolicyAttachment_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(NetworkmanagerCoreNetworkPolicyAttachmentData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                core_network_id: self.core_network_id,
-                id: core::default::Default::default(),
-                policy_document: self.policy_document,
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = NetworkmanagerCoreNetworkPolicyAttachment(Rc::new(
+            NetworkmanagerCoreNetworkPolicyAttachment_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(NetworkmanagerCoreNetworkPolicyAttachmentData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    core_network_id: self.core_network_id,
+                    id: core::default::Default::default(),
+                    policy_document: self.policy_document,
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -198,10 +229,7 @@ pub struct NetworkmanagerCoreNetworkPolicyAttachmentRef {
 
 impl Ref for NetworkmanagerCoreNetworkPolicyAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -216,7 +244,10 @@ impl NetworkmanagerCoreNetworkPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -226,12 +257,18 @@ impl NetworkmanagerCoreNetworkPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `policy_document` after provisioning.\n"]
     pub fn policy_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_document", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_document", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -273,7 +310,9 @@ pub struct BuildNetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl {}
 
 impl BuildNetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl {
     pub fn build(self) -> NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl {
-        NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl { update: core::default::Default::default() }
+        NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsEl {
+            update: core::default::Default::default(),
+        }
     }
 }
 
@@ -283,7 +322,10 @@ pub struct NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsElRef {
 }
 
 impl Ref for NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsElRef {
         NetworkmanagerCoreNetworkPolicyAttachmentTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

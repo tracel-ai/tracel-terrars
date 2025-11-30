@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ConfigRemediationConfigurationData {
@@ -73,7 +73,8 @@ impl ConfigRemediationConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -86,7 +87,7 @@ impl ConfigRemediationConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -97,12 +98,22 @@ impl ConfigRemediationConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -124,8 +135,7 @@ impl ConfigRemediationConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -157,23 +167,26 @@ impl ConfigRemediationConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().execution_controls = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.execution_controls = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `parameter`.\n"]
-    pub fn set_parameter(self, v: impl Into<BlockAssignable<ConfigRemediationConfigurationParameterEl>>) -> Self {
+    pub fn set_parameter(
+        self,
+        v: impl Into<BlockAssignable<ConfigRemediationConfigurationParameterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -185,12 +198,18 @@ impl ConfigRemediationConfiguration {
 
     #[doc = "Get a reference to the value of field `automatic` after provisioning.\n"]
     pub fn automatic(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.automatic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.automatic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `config_rule_name` after provisioning.\n"]
     pub fn config_rule_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_rule_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_rule_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -200,58 +219,90 @@ impl ConfigRemediationConfiguration {
 
     #[doc = "Get a reference to the value of field `maximum_automatic_attempts` after provisioning.\n"]
     pub fn maximum_automatic_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_automatic_attempts", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_automatic_attempts", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_attempt_seconds` after provisioning.\n"]
     pub fn retry_attempt_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retry_attempt_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retry_attempt_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_type` after provisioning.\n"]
     pub fn target_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_version` after provisioning.\n"]
     pub fn target_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_controls` after provisioning.\n"]
-    pub fn execution_controls(&self) -> ListRef<ConfigRemediationConfigurationExecutionControlsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execution_controls", self.extract_ref()))
+    pub fn execution_controls(
+        &self,
+    ) -> ListRef<ConfigRemediationConfigurationExecutionControlsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execution_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameter` after provisioning.\n"]
     pub fn parameter(&self) -> ListRef<ConfigRemediationConfigurationParameterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.parameter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.parameter", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ConfigRemediationConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ConfigRemediationConfiguration { }
+impl Resource for ConfigRemediationConfiguration {}
 
 impl ToListMappable for ConfigRemediationConfiguration {
     type O = ListRef<ConfigRemediationConfigurationRef>;
@@ -323,10 +374,7 @@ pub struct ConfigRemediationConfigurationRef {
 
 impl Ref for ConfigRemediationConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -346,12 +394,18 @@ impl ConfigRemediationConfigurationRef {
 
     #[doc = "Get a reference to the value of field `automatic` after provisioning.\n"]
     pub fn automatic(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.automatic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.automatic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `config_rule_name` after provisioning.\n"]
     pub fn config_rule_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_rule_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_rule_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -361,48 +415,76 @@ impl ConfigRemediationConfigurationRef {
 
     #[doc = "Get a reference to the value of field `maximum_automatic_attempts` after provisioning.\n"]
     pub fn maximum_automatic_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_automatic_attempts", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_automatic_attempts", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_attempt_seconds` after provisioning.\n"]
     pub fn retry_attempt_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retry_attempt_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retry_attempt_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_type` after provisioning.\n"]
     pub fn target_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_version` after provisioning.\n"]
     pub fn target_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_controls` after provisioning.\n"]
-    pub fn execution_controls(&self) -> ListRef<ConfigRemediationConfigurationExecutionControlsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execution_controls", self.extract_ref()))
+    pub fn execution_controls(
+        &self,
+    ) -> ListRef<ConfigRemediationConfigurationExecutionControlsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execution_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameter` after provisioning.\n"]
     pub fn parameter(&self) -> ListRef<ConfigRemediationConfigurationParameterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.parameter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.parameter", self.extract_ref()),
+        )
     }
 }
 
@@ -416,7 +498,10 @@ pub struct ConfigRemediationConfigurationExecutionControlsElSsmControlsEl {
 
 impl ConfigRemediationConfigurationExecutionControlsElSsmControlsEl {
     #[doc = "Set the field `concurrent_execution_rate_percentage`.\n"]
-    pub fn set_concurrent_execution_rate_percentage(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_concurrent_execution_rate_percentage(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.concurrent_execution_rate_percentage = Some(v.into());
         self
     }
@@ -457,7 +542,10 @@ pub struct ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef {
 }
 
 impl Ref for ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef {
-    fn new(shared: StackShared, base: String) -> ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef {
         ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef {
             shared: shared,
             base: base.to_string(),
@@ -472,18 +560,25 @@ impl ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef {
 
     #[doc = "Get a reference to the value of field `concurrent_execution_rate_percentage` after provisioning.\n"]
     pub fn concurrent_execution_rate_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.concurrent_execution_rate_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.concurrent_execution_rate_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_percentage` after provisioning.\n"]
     pub fn error_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.error_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.error_percentage", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct ConfigRemediationConfigurationExecutionControlsElDynamic {
-    ssm_controls: Option<DynamicBlock<ConfigRemediationConfigurationExecutionControlsElSsmControlsEl>>,
+    ssm_controls:
+        Option<DynamicBlock<ConfigRemediationConfigurationExecutionControlsElSsmControlsEl>>,
 }
 
 #[derive(Serialize)]
@@ -502,10 +597,10 @@ impl ConfigRemediationConfigurationExecutionControlsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ssm_controls = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ssm_controls = Some(d);
-            },
+            }
         }
         self
     }
@@ -540,7 +635,10 @@ pub struct ConfigRemediationConfigurationExecutionControlsElRef {
 }
 
 impl Ref for ConfigRemediationConfigurationExecutionControlsElRef {
-    fn new(shared: StackShared, base: String) -> ConfigRemediationConfigurationExecutionControlsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConfigRemediationConfigurationExecutionControlsElRef {
         ConfigRemediationConfigurationExecutionControlsElRef {
             shared: shared,
             base: base.to_string(),
@@ -554,7 +652,9 @@ impl ConfigRemediationConfigurationExecutionControlsElRef {
     }
 
     #[doc = "Get a reference to the value of field `ssm_controls` after provisioning.\n"]
-    pub fn ssm_controls(&self) -> ListRef<ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef> {
+    pub fn ssm_controls(
+        &self,
+    ) -> ListRef<ConfigRemediationConfigurationExecutionControlsElSsmControlsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.ssm_controls", self.base))
     }
 }
@@ -644,7 +744,10 @@ impl ConfigRemediationConfigurationParameterElRef {
 
     #[doc = "Get a reference to the value of field `resource_value` after provisioning.\n"]
     pub fn resource_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `static_value` after provisioning.\n"]
@@ -654,7 +757,10 @@ impl ConfigRemediationConfigurationParameterElRef {
 
     #[doc = "Get a reference to the value of field `static_values` after provisioning.\n"]
     pub fn static_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.static_values", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.static_values", self.base),
+        )
     }
 }
 

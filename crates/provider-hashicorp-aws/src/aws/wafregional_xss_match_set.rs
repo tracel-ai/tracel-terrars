@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafregionalXssMatchSetData {
@@ -59,7 +59,8 @@ impl WafregionalXssMatchSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl WafregionalXssMatchSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl WafregionalXssMatchSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,22 +109,24 @@ impl WafregionalXssMatchSet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `xss_match_tuple`.\n"]
-    pub fn set_xss_match_tuple(self, v: impl Into<BlockAssignable<WafregionalXssMatchSetXssMatchTupleEl>>) -> Self {
+    pub fn set_xss_match_tuple(
+        self,
+        v: impl Into<BlockAssignable<WafregionalXssMatchSetXssMatchTupleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().xss_match_tuple = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.xss_match_tuple = Some(d);
-            },
+            }
         }
         self
     }
@@ -125,23 +138,32 @@ impl WafregionalXssMatchSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafregionalXssMatchSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafregionalXssMatchSet { }
+impl Resource for WafregionalXssMatchSet {}
 
 impl ToListMappable for WafregionalXssMatchSet {
     type O = ListRef<WafregionalXssMatchSetRef>;
@@ -201,10 +223,7 @@ pub struct WafregionalXssMatchSetRef {
 
 impl Ref for WafregionalXssMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -224,13 +243,18 @@ impl WafregionalXssMatchSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -282,7 +306,10 @@ pub struct WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef {
 }
 
 impl Ref for WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef {
-    fn new(shared: StackShared, base: String) -> WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef {
         WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -328,10 +355,10 @@ impl WafregionalXssMatchSetXssMatchTupleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -385,12 +412,20 @@ impl WafregionalXssMatchSetXssMatchTupleElRef {
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
-    pub fn field_to_match(&self) -> ListRef<WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+    pub fn field_to_match(
+        &self,
+    ) -> ListRef<WafregionalXssMatchSetXssMatchTupleElFieldToMatchElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 

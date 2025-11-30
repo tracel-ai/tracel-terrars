@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpcIpamPoolCidrData {
@@ -65,7 +65,8 @@ impl VpcIpamPoolCidr {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl VpcIpamPoolCidr {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl VpcIpamPoolCidr {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -116,8 +127,7 @@ impl VpcIpamPoolCidr {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,10 +141,10 @@ impl VpcIpamPoolCidr {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cidr_authorization_context = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cidr_authorization_context = Some(d);
-            },
+            }
         }
         self
     }
@@ -147,7 +157,10 @@ impl VpcIpamPoolCidr {
 
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -157,43 +170,66 @@ impl VpcIpamPoolCidr {
 
     #[doc = "Get a reference to the value of field `ipam_pool_cidr_id` after provisioning.\n"]
     pub fn ipam_pool_cidr_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_pool_cidr_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_pool_cidr_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipam_pool_id` after provisioning.\n"]
     pub fn ipam_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `netmask_length` after provisioning.\n"]
     pub fn netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.netmask_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.netmask_length", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_authorization_context` after provisioning.\n"]
-    pub fn cidr_authorization_context(&self) -> ListRef<VpcIpamPoolCidrCidrAuthorizationContextElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_authorization_context", self.extract_ref()))
+    pub fn cidr_authorization_context(
+        &self,
+    ) -> ListRef<VpcIpamPoolCidrCidrAuthorizationContextElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_authorization_context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcIpamPoolCidrTimeoutsElRef {
-        VpcIpamPoolCidrTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpcIpamPoolCidrTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpcIpamPoolCidr {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpcIpamPoolCidr { }
+impl Resource for VpcIpamPoolCidr {}
 
 impl ToListMappable for VpcIpamPoolCidr {
     type O = ListRef<VpcIpamPoolCidrRef>;
@@ -256,10 +292,7 @@ pub struct VpcIpamPoolCidrRef {
 
 impl Ref for VpcIpamPoolCidrRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -274,7 +307,10 @@ impl VpcIpamPoolCidrRef {
 
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -284,33 +320,52 @@ impl VpcIpamPoolCidrRef {
 
     #[doc = "Get a reference to the value of field `ipam_pool_cidr_id` after provisioning.\n"]
     pub fn ipam_pool_cidr_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_pool_cidr_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_pool_cidr_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipam_pool_id` after provisioning.\n"]
     pub fn ipam_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `netmask_length` after provisioning.\n"]
     pub fn netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.netmask_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.netmask_length", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_authorization_context` after provisioning.\n"]
-    pub fn cidr_authorization_context(&self) -> ListRef<VpcIpamPoolCidrCidrAuthorizationContextElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_authorization_context", self.extract_ref()))
+    pub fn cidr_authorization_context(
+        &self,
+    ) -> ListRef<VpcIpamPoolCidrCidrAuthorizationContextElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_authorization_context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcIpamPoolCidrTimeoutsElRef {
-        VpcIpamPoolCidrTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpcIpamPoolCidrTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 

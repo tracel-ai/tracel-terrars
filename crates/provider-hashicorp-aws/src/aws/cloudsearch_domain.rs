@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudsearchDomainData {
@@ -67,7 +67,8 @@ impl CloudsearchDomain {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl CloudsearchDomain {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl CloudsearchDomain {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,48 +123,56 @@ impl CloudsearchDomain {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `endpoint_options`.\n"]
-    pub fn set_endpoint_options(self, v: impl Into<BlockAssignable<CloudsearchDomainEndpointOptionsEl>>) -> Self {
+    pub fn set_endpoint_options(
+        self,
+        v: impl Into<BlockAssignable<CloudsearchDomainEndpointOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().endpoint_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.endpoint_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `index_field`.\n"]
-    pub fn set_index_field(self, v: impl Into<BlockAssignable<CloudsearchDomainIndexFieldEl>>) -> Self {
+    pub fn set_index_field(
+        self,
+        v: impl Into<BlockAssignable<CloudsearchDomainIndexFieldEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().index_field = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.index_field = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `scaling_parameters`.\n"]
-    pub fn set_scaling_parameters(self, v: impl Into<BlockAssignable<CloudsearchDomainScalingParametersEl>>) -> Self {
+    pub fn set_scaling_parameters(
+        self,
+        v: impl Into<BlockAssignable<CloudsearchDomainScalingParametersEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scaling_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scaling_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -171,12 +190,18 @@ impl CloudsearchDomain {
 
     #[doc = "Get a reference to the value of field `document_service_endpoint` after provisioning.\n"]
     pub fn document_service_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_service_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_service_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -186,48 +211,72 @@ impl CloudsearchDomain {
 
     #[doc = "Get a reference to the value of field `multi_az` after provisioning.\n"]
     pub fn multi_az(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multi_az", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multi_az", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `search_service_endpoint` after provisioning.\n"]
     pub fn search_service_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.search_service_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.search_service_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_options` after provisioning.\n"]
     pub fn endpoint_options(&self) -> ListRef<CloudsearchDomainEndpointOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoint_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoint_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_parameters` after provisioning.\n"]
     pub fn scaling_parameters(&self) -> ListRef<CloudsearchDomainScalingParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudsearchDomainTimeoutsElRef {
-        CloudsearchDomainTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CloudsearchDomainTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudsearchDomain {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudsearchDomain { }
+impl Resource for CloudsearchDomain {}
 
 impl ToListMappable for CloudsearchDomain {
     type O = ListRef<CloudsearchDomainRef>;
@@ -291,10 +340,7 @@ pub struct CloudsearchDomainRef {
 
 impl Ref for CloudsearchDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -314,12 +360,18 @@ impl CloudsearchDomainRef {
 
     #[doc = "Get a reference to the value of field `document_service_endpoint` after provisioning.\n"]
     pub fn document_service_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_service_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_service_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -329,38 +381,58 @@ impl CloudsearchDomainRef {
 
     #[doc = "Get a reference to the value of field `multi_az` after provisioning.\n"]
     pub fn multi_az(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multi_az", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multi_az", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `search_service_endpoint` after provisioning.\n"]
     pub fn search_service_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.search_service_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.search_service_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_options` after provisioning.\n"]
     pub fn endpoint_options(&self) -> ListRef<CloudsearchDomainEndpointOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoint_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoint_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_parameters` after provisioning.\n"]
     pub fn scaling_parameters(&self) -> ListRef<CloudsearchDomainScalingParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudsearchDomainTimeoutsElRef {
-        CloudsearchDomainTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CloudsearchDomainTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -430,12 +502,18 @@ impl CloudsearchDomainEndpointOptionsElRef {
 
     #[doc = "Get a reference to the value of field `enforce_https` after provisioning.\n"]
     pub fn enforce_https(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enforce_https", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enforce_https", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_security_policy` after provisioning.\n"]
     pub fn tls_security_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tls_security_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tls_security_policy", self.base),
+        )
     }
 }
 
@@ -569,12 +647,18 @@ impl CloudsearchDomainIndexFieldElRef {
 
     #[doc = "Get a reference to the value of field `analysis_scheme` after provisioning.\n"]
     pub fn analysis_scheme(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.analysis_scheme", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.analysis_scheme", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `facet` after provisioning.\n"]
@@ -609,7 +693,10 @@ impl CloudsearchDomainIndexFieldElRef {
 
     #[doc = "Get a reference to the value of field `source_fields` after provisioning.\n"]
     pub fn source_fields(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_fields", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_fields", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -693,17 +780,26 @@ impl CloudsearchDomainScalingParametersElRef {
 
     #[doc = "Get a reference to the value of field `desired_instance_type` after provisioning.\n"]
     pub fn desired_instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_partition_count` after provisioning.\n"]
     pub fn desired_partition_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_partition_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_partition_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_replication_count` after provisioning.\n"]
     pub fn desired_replication_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_replication_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_replication_count", self.base),
+        )
     }
 }
 

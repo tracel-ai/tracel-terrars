@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontOriginAccessControlData {
@@ -46,12 +46,18 @@ impl DataCloudfrontOriginAccessControl {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -61,32 +67,48 @@ impl DataCloudfrontOriginAccessControl {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_access_control_origin_type` after provisioning.\n"]
     pub fn origin_access_control_origin_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_access_control_origin_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_access_control_origin_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_behavior` after provisioning.\n"]
     pub fn signing_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_protocol` after provisioning.\n"]
     pub fn signing_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_protocol", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontOriginAccessControl {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontOriginAccessControl { }
+impl Datasource for DataCloudfrontOriginAccessControl {}
 
 impl ToListMappable for DataCloudfrontOriginAccessControl {
     type O = ListRef<DataCloudfrontOriginAccessControlRef>;
@@ -141,10 +163,7 @@ pub struct DataCloudfrontOriginAccessControlRef {
 
 impl Ref for DataCloudfrontOriginAccessControlRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -164,12 +183,18 @@ impl DataCloudfrontOriginAccessControlRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -179,21 +204,33 @@ impl DataCloudfrontOriginAccessControlRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_access_control_origin_type` after provisioning.\n"]
     pub fn origin_access_control_origin_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_access_control_origin_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_access_control_origin_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_behavior` after provisioning.\n"]
     pub fn signing_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_protocol` after provisioning.\n"]
     pub fn signing_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_protocol", self.extract_ref()),
+        )
     }
 }

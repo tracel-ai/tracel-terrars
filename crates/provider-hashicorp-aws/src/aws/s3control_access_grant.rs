@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3controlAccessGrantData {
@@ -25,7 +25,8 @@ struct S3controlAccessGrantData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_grants_location_configuration: Option<Vec<S3controlAccessGrantAccessGrantsLocationConfigurationEl>>,
+    access_grants_location_configuration:
+        Option<Vec<S3controlAccessGrantAccessGrantsLocationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     grantee: Option<Vec<S3controlAccessGrantGranteeEl>>,
     dynamic: S3controlAccessGrantDynamic,
@@ -66,7 +67,8 @@ impl S3controlAccessGrant {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +81,7 @@ impl S3controlAccessGrant {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +92,22 @@ impl S3controlAccessGrant {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,8 +117,7 @@ impl S3controlAccessGrant {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,11 +142,18 @@ impl S3controlAccessGrant {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().access_grants_location_configuration = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .access_grants_location_configuration = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.access_grants_location_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .access_grants_location_configuration = Some(d);
+            }
         }
         self
     }
@@ -145,37 +163,52 @@ impl S3controlAccessGrant {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().grantee = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.grantee = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `access_grant_arn` after provisioning.\n"]
     pub fn access_grant_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_grant_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_grant_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_grant_id` after provisioning.\n"]
     pub fn access_grant_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_grant_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_grant_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_grants_location_id` after provisioning.\n"]
     pub fn access_grants_location_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_grants_location_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_grants_location_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_scope` after provisioning.\n"]
     pub fn grant_scope(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grant_scope", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grant_scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -185,50 +218,77 @@ impl S3controlAccessGrant {
 
     #[doc = "Get a reference to the value of field `permission` after provisioning.\n"]
     pub fn permission(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permission", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permission", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_prefix_type` after provisioning.\n"]
     pub fn s3_prefix_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_prefix_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_prefix_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_grants_location_configuration` after provisioning.\n"]
     pub fn access_grants_location_configuration(
         &self,
     ) -> ListRef<S3controlAccessGrantAccessGrantsLocationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_grants_location_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.access_grants_location_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grantee` after provisioning.\n"]
     pub fn grantee(&self) -> ListRef<S3controlAccessGrantGranteeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.grantee", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.grantee", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3controlAccessGrant {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3controlAccessGrant { }
+impl Resource for S3controlAccessGrant {}
 
 impl ToListMappable for S3controlAccessGrant {
     type O = ListRef<S3controlAccessGrantRef>;
@@ -294,10 +354,7 @@ pub struct S3controlAccessGrantRef {
 
 impl Ref for S3controlAccessGrantRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -312,27 +369,42 @@ impl S3controlAccessGrantRef {
 
     #[doc = "Get a reference to the value of field `access_grant_arn` after provisioning.\n"]
     pub fn access_grant_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_grant_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_grant_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_grant_id` after provisioning.\n"]
     pub fn access_grant_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_grant_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_grant_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_grants_location_id` after provisioning.\n"]
     pub fn access_grants_location_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_grants_location_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_grants_location_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_scope` after provisioning.\n"]
     pub fn grant_scope(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grant_scope", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grant_scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -342,40 +414,63 @@ impl S3controlAccessGrantRef {
 
     #[doc = "Get a reference to the value of field `permission` after provisioning.\n"]
     pub fn permission(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permission", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permission", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_prefix_type` after provisioning.\n"]
     pub fn s3_prefix_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_prefix_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_prefix_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_grants_location_configuration` after provisioning.\n"]
     pub fn access_grants_location_configuration(
         &self,
     ) -> ListRef<S3controlAccessGrantAccessGrantsLocationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_grants_location_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.access_grants_location_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grantee` after provisioning.\n"]
     pub fn grantee(&self) -> ListRef<S3controlAccessGrantGranteeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.grantee", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.grantee", self.extract_ref()),
+        )
     }
 }
 
@@ -409,7 +504,9 @@ pub struct BuildS3controlAccessGrantAccessGrantsLocationConfigurationEl {}
 
 impl BuildS3controlAccessGrantAccessGrantsLocationConfigurationEl {
     pub fn build(self) -> S3controlAccessGrantAccessGrantsLocationConfigurationEl {
-        S3controlAccessGrantAccessGrantsLocationConfigurationEl { s3_sub_prefix: core::default::Default::default() }
+        S3controlAccessGrantAccessGrantsLocationConfigurationEl {
+            s3_sub_prefix: core::default::Default::default(),
+        }
     }
 }
 
@@ -419,7 +516,10 @@ pub struct S3controlAccessGrantAccessGrantsLocationConfigurationElRef {
 }
 
 impl Ref for S3controlAccessGrantAccessGrantsLocationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> S3controlAccessGrantAccessGrantsLocationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3controlAccessGrantAccessGrantsLocationConfigurationElRef {
         S3controlAccessGrantAccessGrantsLocationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -434,7 +534,10 @@ impl S3controlAccessGrantAccessGrantsLocationConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `s3_sub_prefix` after provisioning.\n"]
     pub fn s3_sub_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_sub_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_sub_prefix", self.base),
+        )
     }
 }
 
@@ -444,7 +547,7 @@ pub struct S3controlAccessGrantGranteeEl {
     grantee_type: PrimField<String>,
 }
 
-impl S3controlAccessGrantGranteeEl { }
+impl S3controlAccessGrantGranteeEl {}
 
 impl ToListMappable for S3controlAccessGrantGranteeEl {
     type O = BlockAssignable<S3controlAccessGrantGranteeEl>;
@@ -495,7 +598,10 @@ impl S3controlAccessGrantGranteeElRef {
 
     #[doc = "Get a reference to the value of field `grantee_identifier` after provisioning.\n"]
     pub fn grantee_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grantee_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grantee_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grantee_type` after provisioning.\n"]
@@ -506,8 +612,7 @@ impl S3controlAccessGrantGranteeElRef {
 
 #[derive(Serialize, Default)]
 struct S3controlAccessGrantDynamic {
-    access_grants_location_configuration: Option<
-        DynamicBlock<S3controlAccessGrantAccessGrantsLocationConfigurationEl>,
-    >,
+    access_grants_location_configuration:
+        Option<DynamicBlock<S3controlAccessGrantAccessGrantsLocationConfigurationEl>>,
     grantee: Option<DynamicBlock<S3controlAccessGrantGranteeEl>>,
 }

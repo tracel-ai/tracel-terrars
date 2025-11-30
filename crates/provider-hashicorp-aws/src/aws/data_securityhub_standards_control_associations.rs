@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSecurityhubStandardsControlAssociationsData {
@@ -24,7 +24,9 @@ struct DataSecurityhubStandardsControlAssociations_ {
 }
 
 #[derive(Clone)]
-pub struct DataSecurityhubStandardsControlAssociations(Rc<DataSecurityhubStandardsControlAssociations_>);
+pub struct DataSecurityhubStandardsControlAssociations(
+    Rc<DataSecurityhubStandardsControlAssociations_>,
+);
 
 impl DataSecurityhubStandardsControlAssociations {
     fn shared(&self) -> &StackShared {
@@ -41,8 +43,7 @@ impl DataSecurityhubStandardsControlAssociations {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -53,32 +54,44 @@ impl DataSecurityhubStandardsControlAssociations {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_control_id` after provisioning.\n"]
     pub fn security_control_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_control_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_control_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `standards_control_associations` after provisioning.\n"]
     pub fn standards_control_associations(
         &self,
     ) -> ListRef<DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.standards_control_associations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.standards_control_associations", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSecurityhubStandardsControlAssociations {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSecurityhubStandardsControlAssociations { }
+impl Datasource for DataSecurityhubStandardsControlAssociations {}
 
 impl ToListMappable for DataSecurityhubStandardsControlAssociations {
     type O = ListRef<DataSecurityhubStandardsControlAssociationsRef>;
@@ -111,17 +124,19 @@ pub struct BuildDataSecurityhubStandardsControlAssociations {
 
 impl BuildDataSecurityhubStandardsControlAssociations {
     pub fn build(self, stack: &mut Stack) -> DataSecurityhubStandardsControlAssociations {
-        let out = DataSecurityhubStandardsControlAssociations(Rc::new(DataSecurityhubStandardsControlAssociations_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataSecurityhubStandardsControlAssociationsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                region: core::default::Default::default(),
-                security_control_id: self.security_control_id,
-            }),
-        }));
+        let out = DataSecurityhubStandardsControlAssociations(Rc::new(
+            DataSecurityhubStandardsControlAssociations_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataSecurityhubStandardsControlAssociationsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    region: core::default::Default::default(),
+                    security_control_id: self.security_control_id,
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -134,10 +149,7 @@ pub struct DataSecurityhubStandardsControlAssociationsRef {
 
 impl Ref for DataSecurityhubStandardsControlAssociationsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -155,22 +167,30 @@ impl DataSecurityhubStandardsControlAssociationsRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_control_id` after provisioning.\n"]
     pub fn security_control_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_control_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_control_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `standards_control_associations` after provisioning.\n"]
     pub fn standards_control_associations(
         &self,
     ) -> ListRef<DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.standards_control_associations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.standards_control_associations", self.extract_ref()),
+        )
     }
 }
 
@@ -253,7 +273,8 @@ impl DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {
 }
 
 impl ToListMappable for DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {
-    type O = BlockAssignable<DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl>;
+    type O =
+        BlockAssignable<DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -267,7 +288,9 @@ impl ToListMappable for DataSecurityhubStandardsControlAssociationsStandardsCont
 pub struct BuildDataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {}
 
 impl BuildDataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {
-    pub fn build(self) -> DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {
+    pub fn build(
+        self,
+    ) -> DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {
         DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsEl {
             association_status: core::default::Default::default(),
             related_requirements: core::default::Default::default(),
@@ -306,37 +329,58 @@ impl DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsElRe
 
     #[doc = "Get a reference to the value of field `association_status` after provisioning.\n"]
     pub fn association_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.association_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.association_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `related_requirements` after provisioning.\n"]
     pub fn related_requirements(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.related_requirements", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.related_requirements", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_control_arn` after provisioning.\n"]
     pub fn security_control_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_control_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_control_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_control_id` after provisioning.\n"]
     pub fn security_control_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_control_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_control_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `standards_arn` after provisioning.\n"]
     pub fn standards_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.standards_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.standards_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `standards_control_description` after provisioning.\n"]
     pub fn standards_control_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.standards_control_description", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.standards_control_description", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `standards_control_title` after provisioning.\n"]
     pub fn standards_control_title(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.standards_control_title", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.standards_control_title", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
@@ -346,6 +390,9 @@ impl DataSecurityhubStandardsControlAssociationsStandardsControlAssociationsElRe
 
     #[doc = "Get a reference to the value of field `updated_reason` after provisioning.\n"]
     pub fn updated_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_reason", self.base),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBatchSchedulingPolicyData {
@@ -51,8 +51,7 @@ impl DataBatchSchedulingPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,7 +70,10 @@ impl DataBatchSchedulingPolicy {
 
     #[doc = "Get a reference to the value of field `fair_share_policy` after provisioning.\n"]
     pub fn fair_share_policy(&self) -> ListRef<DataBatchSchedulingPolicyFairSharePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fair_share_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fair_share_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -81,28 +83,40 @@ impl DataBatchSchedulingPolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBatchSchedulingPolicy {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBatchSchedulingPolicy { }
+impl Datasource for DataBatchSchedulingPolicy {}
 
 impl ToListMappable for DataBatchSchedulingPolicy {
     type O = ListRef<DataBatchSchedulingPolicyRef>;
@@ -160,10 +174,7 @@ pub struct DataBatchSchedulingPolicyRef {
 
 impl Ref for DataBatchSchedulingPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -183,7 +194,10 @@ impl DataBatchSchedulingPolicyRef {
 
     #[doc = "Get a reference to the value of field `fair_share_policy` after provisioning.\n"]
     pub fn fair_share_policy(&self) -> ListRef<DataBatchSchedulingPolicyFairSharePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fair_share_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fair_share_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -193,18 +207,26 @@ impl DataBatchSchedulingPolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -259,7 +281,10 @@ pub struct DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef {
 }
 
 impl Ref for DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef {
-    fn new(shared: StackShared, base: String) -> DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef {
         DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef {
             shared: shared,
             base: base.to_string(),
@@ -274,12 +299,18 @@ impl DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef {
 
     #[doc = "Get a reference to the value of field `share_identifier` after provisioning.\n"]
     pub fn share_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight_factor` after provisioning.\n"]
     pub fn weight_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weight_factor", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weight_factor", self.base),
+        )
     }
 }
 
@@ -290,7 +321,8 @@ pub struct DataBatchSchedulingPolicyFairSharePolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     share_decay_seconds: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    share_distribution: Option<SetField<DataBatchSchedulingPolicyFairSharePolicyElShareDistributionEl>>,
+    share_distribution:
+        Option<SetField<DataBatchSchedulingPolicyFairSharePolicyElShareDistributionEl>>,
 }
 
 impl DataBatchSchedulingPolicyFairSharePolicyEl {
@@ -361,16 +393,27 @@ impl DataBatchSchedulingPolicyFairSharePolicyElRef {
 
     #[doc = "Get a reference to the value of field `compute_reservation` after provisioning.\n"]
     pub fn compute_reservation(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_reservation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_reservation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_decay_seconds` after provisioning.\n"]
     pub fn share_decay_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_decay_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_decay_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_distribution` after provisioning.\n"]
-    pub fn share_distribution(&self) -> SetRef<DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.share_distribution", self.base))
+    pub fn share_distribution(
+        &self,
+    ) -> SetRef<DataBatchSchedulingPolicyFairSharePolicyElShareDistributionElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.share_distribution", self.base),
+        )
     }
 }

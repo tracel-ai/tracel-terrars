@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontOriginRequestPolicyData {
@@ -61,22 +61,34 @@ impl DataCloudfrontOriginRequestPolicy {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies_config` after provisioning.\n"]
     pub fn cookies_config(&self) -> ListRef<DataCloudfrontOriginRequestPolicyCookiesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cookies_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cookies_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `headers_config` after provisioning.\n"]
     pub fn headers_config(&self) -> ListRef<DataCloudfrontOriginRequestPolicyHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.headers_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -86,22 +98,34 @@ impl DataCloudfrontOriginRequestPolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_strings_config` after provisioning.\n"]
-    pub fn query_strings_config(&self) -> ListRef<DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_strings_config", self.extract_ref()))
+    pub fn query_strings_config(
+        &self,
+    ) -> ListRef<DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_strings_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontOriginRequestPolicy {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontOriginRequestPolicy { }
+impl Datasource for DataCloudfrontOriginRequestPolicy {}
 
 impl ToListMappable for DataCloudfrontOriginRequestPolicy {
     type O = ListRef<DataCloudfrontOriginRequestPolicyRef>;
@@ -155,10 +179,7 @@ pub struct DataCloudfrontOriginRequestPolicyRef {
 
 impl Ref for DataCloudfrontOriginRequestPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -178,22 +199,34 @@ impl DataCloudfrontOriginRequestPolicyRef {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies_config` after provisioning.\n"]
     pub fn cookies_config(&self) -> ListRef<DataCloudfrontOriginRequestPolicyCookiesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cookies_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cookies_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `headers_config` after provisioning.\n"]
     pub fn headers_config(&self) -> ListRef<DataCloudfrontOriginRequestPolicyHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.headers_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -203,12 +236,20 @@ impl DataCloudfrontOriginRequestPolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_strings_config` after provisioning.\n"]
-    pub fn query_strings_config(&self) -> ListRef<DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_strings_config", self.extract_ref()))
+    pub fn query_strings_config(
+        &self,
+    ) -> ListRef<DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_strings_config", self.extract_ref()),
+        )
     }
 }
 
@@ -242,7 +283,9 @@ pub struct BuildDataCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {}
 
 impl BuildDataCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
     pub fn build(self) -> DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
-        DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl { items: core::default::Default::default() }
+        DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
+            items: core::default::Default::default(),
+        }
     }
 }
 
@@ -252,7 +295,10 @@ pub struct DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
 }
 
 impl Ref for DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
         DataCloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -325,7 +371,10 @@ pub struct DataCloudfrontOriginRequestPolicyCookiesConfigElRef {
 }
 
 impl Ref for DataCloudfrontOriginRequestPolicyCookiesConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontOriginRequestPolicyCookiesConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontOriginRequestPolicyCookiesConfigElRef {
         DataCloudfrontOriginRequestPolicyCookiesConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -340,7 +389,10 @@ impl DataCloudfrontOriginRequestPolicyCookiesConfigElRef {
 
     #[doc = "Get a reference to the value of field `cookie_behavior` after provisioning.\n"]
     pub fn cookie_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cookie_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cookie_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies` after provisioning.\n"]
@@ -379,7 +431,9 @@ pub struct BuildDataCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {}
 
 impl BuildDataCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
     pub fn build(self) -> DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
-        DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl { items: core::default::Default::default() }
+        DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
+            items: core::default::Default::default(),
+        }
     }
 }
 
@@ -389,7 +443,10 @@ pub struct DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
 }
 
 impl Ref for DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
         DataCloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
             shared: shared,
             base: base.to_string(),
@@ -462,7 +519,10 @@ pub struct DataCloudfrontOriginRequestPolicyHeadersConfigElRef {
 }
 
 impl Ref for DataCloudfrontOriginRequestPolicyHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontOriginRequestPolicyHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontOriginRequestPolicyHeadersConfigElRef {
         DataCloudfrontOriginRequestPolicyHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -477,7 +537,10 @@ impl DataCloudfrontOriginRequestPolicyHeadersConfigElRef {
 
     #[doc = "Get a reference to the value of field `header_behavior` after provisioning.\n"]
     pub fn header_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.header_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.header_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `headers` after provisioning.\n"]
@@ -555,7 +618,8 @@ pub struct DataCloudfrontOriginRequestPolicyQueryStringsConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     query_string_behavior: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    query_strings: Option<ListField<DataCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl>>,
+    query_strings:
+        Option<ListField<DataCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl>>,
 }
 
 impl DataCloudfrontOriginRequestPolicyQueryStringsConfigEl {
@@ -604,7 +668,10 @@ pub struct DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef {
 }
 
 impl Ref for DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef {
         DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -619,11 +686,19 @@ impl DataCloudfrontOriginRequestPolicyQueryStringsConfigElRef {
 
     #[doc = "Get a reference to the value of field `query_string_behavior` after provisioning.\n"]
     pub fn query_string_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_string_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_string_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_strings` after provisioning.\n"]
-    pub fn query_strings(&self) -> ListRef<DataCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_strings", self.base))
+    pub fn query_strings(
+        &self,
+    ) -> ListRef<DataCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_strings", self.base),
+        )
     }
 }

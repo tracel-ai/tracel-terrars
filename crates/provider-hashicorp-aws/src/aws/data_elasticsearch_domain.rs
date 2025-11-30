@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataElasticsearchDomainData {
@@ -51,8 +51,7 @@ impl DataElasticsearchDomain {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,17 +65,28 @@ impl DataElasticsearchDomain {
 
     #[doc = "Get a reference to the value of field `access_policies` after provisioning.\n"]
     pub fn access_policies(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_policies", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_policies", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_options` after provisioning.\n"]
     pub fn advanced_options(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.advanced_options", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_security_options` after provisioning.\n"]
-    pub fn advanced_security_options(&self) -> ListRef<DataElasticsearchDomainAdvancedSecurityOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_security_options", self.extract_ref()))
+    pub fn advanced_security_options(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainAdvancedSecurityOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_security_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -86,57 +96,90 @@ impl DataElasticsearchDomain {
 
     #[doc = "Get a reference to the value of field `auto_tune_options` after provisioning.\n"]
     pub fn auto_tune_options(&self) -> ListRef<DataElasticsearchDomainAutoTuneOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_tune_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_tune_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_config` after provisioning.\n"]
     pub fn cluster_config(&self) -> ListRef<DataElasticsearchDomainClusterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cognito_options` after provisioning.\n"]
     pub fn cognito_options(&self) -> ListRef<DataElasticsearchDomainCognitoOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cognito_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cognito_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created` after provisioning.\n"]
     pub fn created(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deleted` after provisioning.\n"]
     pub fn deleted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deleted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deleted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_options` after provisioning.\n"]
     pub fn ebs_options(&self) -> ListRef<DataElasticsearchDomainEbsOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ebs_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ebs_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `elasticsearch_version` after provisioning.\n"]
     pub fn elasticsearch_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.elasticsearch_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.elasticsearch_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_at_rest` after provisioning.\n"]
     pub fn encryption_at_rest(&self) -> ListRef<DataElasticsearchDomainEncryptionAtRestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_at_rest", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_at_rest", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -146,53 +189,84 @@ impl DataElasticsearchDomain {
 
     #[doc = "Get a reference to the value of field `kibana_endpoint` after provisioning.\n"]
     pub fn kibana_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kibana_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kibana_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_publishing_options` after provisioning.\n"]
-    pub fn log_publishing_options(&self) -> SetRef<DataElasticsearchDomainLogPublishingOptionsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.log_publishing_options", self.extract_ref()))
+    pub fn log_publishing_options(
+        &self,
+    ) -> SetRef<DataElasticsearchDomainLogPublishingOptionsElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.log_publishing_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_to_node_encryption` after provisioning.\n"]
-    pub fn node_to_node_encryption(&self) -> ListRef<DataElasticsearchDomainNodeToNodeEncryptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.node_to_node_encryption", self.extract_ref()))
+    pub fn node_to_node_encryption(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainNodeToNodeEncryptionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.node_to_node_encryption", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `processing` after provisioning.\n"]
     pub fn processing(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.processing", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.processing", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `snapshot_options` after provisioning.\n"]
     pub fn snapshot_options(&self) -> ListRef<DataElasticsearchDomainSnapshotOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.snapshot_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.snapshot_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<DataElasticsearchDomainVpcOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_options", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataElasticsearchDomain {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataElasticsearchDomain { }
+impl Datasource for DataElasticsearchDomain {}
 
 impl ToListMappable for DataElasticsearchDomain {
     type O = ListRef<DataElasticsearchDomainRef>;
@@ -250,10 +324,7 @@ pub struct DataElasticsearchDomainRef {
 
 impl Ref for DataElasticsearchDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -268,17 +339,28 @@ impl DataElasticsearchDomainRef {
 
     #[doc = "Get a reference to the value of field `access_policies` after provisioning.\n"]
     pub fn access_policies(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_policies", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_policies", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_options` after provisioning.\n"]
     pub fn advanced_options(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.advanced_options", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_security_options` after provisioning.\n"]
-    pub fn advanced_security_options(&self) -> ListRef<DataElasticsearchDomainAdvancedSecurityOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_security_options", self.extract_ref()))
+    pub fn advanced_security_options(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainAdvancedSecurityOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_security_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -288,57 +370,90 @@ impl DataElasticsearchDomainRef {
 
     #[doc = "Get a reference to the value of field `auto_tune_options` after provisioning.\n"]
     pub fn auto_tune_options(&self) -> ListRef<DataElasticsearchDomainAutoTuneOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_tune_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_tune_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_config` after provisioning.\n"]
     pub fn cluster_config(&self) -> ListRef<DataElasticsearchDomainClusterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cognito_options` after provisioning.\n"]
     pub fn cognito_options(&self) -> ListRef<DataElasticsearchDomainCognitoOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cognito_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cognito_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created` after provisioning.\n"]
     pub fn created(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deleted` after provisioning.\n"]
     pub fn deleted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deleted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deleted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_options` after provisioning.\n"]
     pub fn ebs_options(&self) -> ListRef<DataElasticsearchDomainEbsOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ebs_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ebs_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `elasticsearch_version` after provisioning.\n"]
     pub fn elasticsearch_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.elasticsearch_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.elasticsearch_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_at_rest` after provisioning.\n"]
     pub fn encryption_at_rest(&self) -> ListRef<DataElasticsearchDomainEncryptionAtRestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_at_rest", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_at_rest", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -348,43 +463,70 @@ impl DataElasticsearchDomainRef {
 
     #[doc = "Get a reference to the value of field `kibana_endpoint` after provisioning.\n"]
     pub fn kibana_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kibana_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kibana_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_publishing_options` after provisioning.\n"]
-    pub fn log_publishing_options(&self) -> SetRef<DataElasticsearchDomainLogPublishingOptionsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.log_publishing_options", self.extract_ref()))
+    pub fn log_publishing_options(
+        &self,
+    ) -> SetRef<DataElasticsearchDomainLogPublishingOptionsElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.log_publishing_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_to_node_encryption` after provisioning.\n"]
-    pub fn node_to_node_encryption(&self) -> ListRef<DataElasticsearchDomainNodeToNodeEncryptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.node_to_node_encryption", self.extract_ref()))
+    pub fn node_to_node_encryption(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainNodeToNodeEncryptionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.node_to_node_encryption", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `processing` after provisioning.\n"]
     pub fn processing(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.processing", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.processing", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `snapshot_options` after provisioning.\n"]
     pub fn snapshot_options(&self) -> ListRef<DataElasticsearchDomainSnapshotOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.snapshot_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.snapshot_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<DataElasticsearchDomainVpcOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_options", self.extract_ref()),
+        )
     }
 }
 
@@ -439,7 +581,10 @@ pub struct DataElasticsearchDomainAdvancedSecurityOptionsElRef {
 }
 
 impl Ref for DataElasticsearchDomainAdvancedSecurityOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataElasticsearchDomainAdvancedSecurityOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataElasticsearchDomainAdvancedSecurityOptionsElRef {
         DataElasticsearchDomainAdvancedSecurityOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -459,7 +604,10 @@ impl DataElasticsearchDomainAdvancedSecurityOptionsElRef {
 
     #[doc = "Get a reference to the value of field `internal_user_database_enabled` after provisioning.\n"]
     pub fn internal_user_database_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.internal_user_database_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.internal_user_database_enabled", self.base),
+        )
     }
 }
 
@@ -486,7 +634,8 @@ impl DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
 }
 
 impl ToListMappable for DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
-    type O = BlockAssignable<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>;
+    type O =
+        BlockAssignable<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -546,7 +695,8 @@ pub struct DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cron_expression_for_recurrence: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    duration: Option<ListField<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>>,
+    duration:
+        Option<ListField<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     start_at: Option<PrimField<String>>,
 }
@@ -604,7 +754,10 @@ pub struct DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
 }
 
 impl Ref for DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
-    fn new(shared: StackShared, base: String) -> DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
         DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
             shared: shared,
             base: base.to_string(),
@@ -619,11 +772,16 @@ impl DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
 
     #[doc = "Get a reference to the value of field `cron_expression_for_recurrence` after provisioning.\n"]
     pub fn cron_expression_for_recurrence(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cron_expression_for_recurrence", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cron_expression_for_recurrence", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
-    pub fn duration(&self) -> ListRef<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationElRef> {
+    pub fn duration(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.duration", self.base))
     }
 
@@ -638,7 +796,8 @@ pub struct DataElasticsearchDomainAutoTuneOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     desired_state: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    maintenance_schedule: Option<SetField<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleEl>>,
+    maintenance_schedule:
+        Option<SetField<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     rollback_on_disable: Option<PrimField<String>>,
 }
@@ -711,17 +870,28 @@ impl DataElasticsearchDomainAutoTuneOptionsElRef {
 
     #[doc = "Get a reference to the value of field `desired_state` after provisioning.\n"]
     pub fn desired_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_state", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_state", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_schedule` after provisioning.\n"]
-    pub fn maintenance_schedule(&self) -> SetRef<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.maintenance_schedule", self.base))
+    pub fn maintenance_schedule(
+        &self,
+    ) -> SetRef<DataElasticsearchDomainAutoTuneOptionsElMaintenanceScheduleElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.maintenance_schedule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rollback_on_disable` after provisioning.\n"]
     pub fn rollback_on_disable(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rollback_on_disable", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rollback_on_disable", self.base),
+        )
     }
 }
 
@@ -755,7 +925,9 @@ pub struct BuildDataElasticsearchDomainClusterConfigElColdStorageOptionsEl {}
 
 impl BuildDataElasticsearchDomainClusterConfigElColdStorageOptionsEl {
     pub fn build(self) -> DataElasticsearchDomainClusterConfigElColdStorageOptionsEl {
-        DataElasticsearchDomainClusterConfigElColdStorageOptionsEl { enabled: core::default::Default::default() }
+        DataElasticsearchDomainClusterConfigElColdStorageOptionsEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -765,7 +937,10 @@ pub struct DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef {
 }
 
 impl Ref for DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef {
         DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -826,7 +1001,10 @@ pub struct DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef {
 }
 
 impl Ref for DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef {
         DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -841,14 +1019,18 @@ impl DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef {
 
     #[doc = "Get a reference to the value of field `availability_zone_count` after provisioning.\n"]
     pub fn availability_zone_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_count", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataElasticsearchDomainClusterConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    cold_storage_options: Option<ListField<DataElasticsearchDomainClusterConfigElColdStorageOptionsEl>>,
+    cold_storage_options:
+        Option<ListField<DataElasticsearchDomainClusterConfigElColdStorageOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     dedicated_master_count: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -866,7 +1048,8 @@ pub struct DataElasticsearchDomainClusterConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     warm_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    zone_awareness_config: Option<ListField<DataElasticsearchDomainClusterConfigElZoneAwarenessConfigEl>>,
+    zone_awareness_config:
+        Option<ListField<DataElasticsearchDomainClusterConfigElZoneAwarenessConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     zone_awareness_enabled: Option<PrimField<bool>>,
 }
@@ -997,33 +1180,53 @@ impl DataElasticsearchDomainClusterConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `cold_storage_options` after provisioning.\n"]
-    pub fn cold_storage_options(&self) -> ListRef<DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cold_storage_options", self.base))
+    pub fn cold_storage_options(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainClusterConfigElColdStorageOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cold_storage_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dedicated_master_count` after provisioning.\n"]
     pub fn dedicated_master_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dedicated_master_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dedicated_master_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dedicated_master_enabled` after provisioning.\n"]
     pub fn dedicated_master_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dedicated_master_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dedicated_master_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dedicated_master_type` after provisioning.\n"]
     pub fn dedicated_master_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dedicated_master_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dedicated_master_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_count` after provisioning.\n"]
     pub fn instance_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warm_count` after provisioning.\n"]
@@ -1042,13 +1245,21 @@ impl DataElasticsearchDomainClusterConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `zone_awareness_config` after provisioning.\n"]
-    pub fn zone_awareness_config(&self) -> ListRef<DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.zone_awareness_config", self.base))
+    pub fn zone_awareness_config(
+        &self,
+    ) -> ListRef<DataElasticsearchDomainClusterConfigElZoneAwarenessConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.zone_awareness_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zone_awareness_enabled` after provisioning.\n"]
     pub fn zone_awareness_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zone_awareness_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zone_awareness_enabled", self.base),
+        )
     }
 }
 
@@ -1141,7 +1352,10 @@ impl DataElasticsearchDomainCognitoOptionsElRef {
 
     #[doc = "Get a reference to the value of field `identity_pool_id` after provisioning.\n"]
     pub fn identity_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_pool_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_pool_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1422,7 +1636,10 @@ impl DataElasticsearchDomainLogPublishingOptionsElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_arn` after provisioning.\n"]
     pub fn cloudwatch_log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_log_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
@@ -1466,7 +1683,9 @@ pub struct BuildDataElasticsearchDomainNodeToNodeEncryptionEl {}
 
 impl BuildDataElasticsearchDomainNodeToNodeEncryptionEl {
     pub fn build(self) -> DataElasticsearchDomainNodeToNodeEncryptionEl {
-        DataElasticsearchDomainNodeToNodeEncryptionEl { enabled: core::default::Default::default() }
+        DataElasticsearchDomainNodeToNodeEncryptionEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -1525,7 +1744,9 @@ pub struct BuildDataElasticsearchDomainSnapshotOptionsEl {}
 
 impl BuildDataElasticsearchDomainSnapshotOptionsEl {
     pub fn build(self) -> DataElasticsearchDomainSnapshotOptionsEl {
-        DataElasticsearchDomainSnapshotOptionsEl { automated_snapshot_start_hour: core::default::Default::default() }
+        DataElasticsearchDomainSnapshotOptionsEl {
+            automated_snapshot_start_hour: core::default::Default::default(),
+        }
     }
 }
 
@@ -1550,7 +1771,10 @@ impl DataElasticsearchDomainSnapshotOptionsElRef {
 
     #[doc = "Get a reference to the value of field `automated_snapshot_start_hour` after provisioning.\n"]
     pub fn automated_snapshot_start_hour(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.automated_snapshot_start_hour", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.automated_snapshot_start_hour", self.base),
+        )
     }
 }
 
@@ -1638,12 +1862,18 @@ impl DataElasticsearchDomainVpcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]

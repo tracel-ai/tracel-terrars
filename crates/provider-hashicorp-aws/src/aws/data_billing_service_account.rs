@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBillingServiceAccountData {
@@ -59,11 +59,15 @@ impl DataBillingServiceAccount {
 
 impl Referable for DataBillingServiceAccount {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBillingServiceAccount { }
+impl Datasource for DataBillingServiceAccount {}
 
 impl ToListMappable for DataBillingServiceAccount {
     type O = ListRef<DataBillingServiceAccountRef>;
@@ -116,10 +120,7 @@ pub struct DataBillingServiceAccountRef {
 
 impl Ref for DataBillingServiceAccountRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 

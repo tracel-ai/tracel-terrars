@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSesv2EmailIdentityMailFromAttributesData {
@@ -49,8 +49,7 @@ impl DataSesv2EmailIdentityMailFromAttributes {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,12 +57,18 @@ impl DataSesv2EmailIdentityMailFromAttributes {
 
     #[doc = "Get a reference to the value of field `behavior_on_mx_failure` after provisioning.\n"]
     pub fn behavior_on_mx_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.behavior_on_mx_failure", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.behavior_on_mx_failure", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_identity` after provisioning.\n"]
     pub fn email_identity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_identity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_identity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -73,23 +78,32 @@ impl DataSesv2EmailIdentityMailFromAttributes {
 
     #[doc = "Get a reference to the value of field `mail_from_domain` after provisioning.\n"]
     pub fn mail_from_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mail_from_domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mail_from_domain", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSesv2EmailIdentityMailFromAttributes {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSesv2EmailIdentityMailFromAttributes { }
+impl Datasource for DataSesv2EmailIdentityMailFromAttributes {}
 
 impl ToListMappable for DataSesv2EmailIdentityMailFromAttributes {
     type O = ListRef<DataSesv2EmailIdentityMailFromAttributesRef>;
@@ -122,18 +136,20 @@ pub struct BuildDataSesv2EmailIdentityMailFromAttributes {
 
 impl BuildDataSesv2EmailIdentityMailFromAttributes {
     pub fn build(self, stack: &mut Stack) -> DataSesv2EmailIdentityMailFromAttributes {
-        let out = DataSesv2EmailIdentityMailFromAttributes(Rc::new(DataSesv2EmailIdentityMailFromAttributes_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataSesv2EmailIdentityMailFromAttributesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                email_identity: self.email_identity,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out = DataSesv2EmailIdentityMailFromAttributes(Rc::new(
+            DataSesv2EmailIdentityMailFromAttributes_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataSesv2EmailIdentityMailFromAttributesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    email_identity: self.email_identity,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -146,10 +162,7 @@ pub struct DataSesv2EmailIdentityMailFromAttributesRef {
 
 impl Ref for DataSesv2EmailIdentityMailFromAttributesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -164,12 +177,18 @@ impl DataSesv2EmailIdentityMailFromAttributesRef {
 
     #[doc = "Get a reference to the value of field `behavior_on_mx_failure` after provisioning.\n"]
     pub fn behavior_on_mx_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.behavior_on_mx_failure", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.behavior_on_mx_failure", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_identity` after provisioning.\n"]
     pub fn email_identity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_identity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_identity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -179,12 +198,17 @@ impl DataSesv2EmailIdentityMailFromAttributesRef {
 
     #[doc = "Get a reference to the value of field `mail_from_domain` after provisioning.\n"]
     pub fn mail_from_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mail_from_domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mail_from_domain", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

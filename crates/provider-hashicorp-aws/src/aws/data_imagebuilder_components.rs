@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataImagebuilderComponentsData {
@@ -59,29 +59,34 @@ impl DataImagebuilderComponents {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataImagebuilderComponentsFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataImagebuilderComponentsFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,28 +96,40 @@ impl DataImagebuilderComponents {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataImagebuilderComponents {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataImagebuilderComponents { }
+impl Datasource for DataImagebuilderComponents {}
 
 impl ToListMappable for DataImagebuilderComponents {
     type O = ListRef<DataImagebuilderComponentsRef>;
@@ -169,10 +186,7 @@ pub struct DataImagebuilderComponentsRef {
 
 impl Ref for DataImagebuilderComponentsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -187,7 +201,10 @@ impl DataImagebuilderComponentsRef {
 
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -197,18 +214,26 @@ impl DataImagebuilderComponentsRef {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -218,7 +243,7 @@ pub struct DataImagebuilderComponentsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataImagebuilderComponentsFilterEl { }
+impl DataImagebuilderComponentsFilterEl {}
 
 impl ToListMappable for DataImagebuilderComponentsFilterEl {
     type O = BlockAssignable<DataImagebuilderComponentsFilterEl>;

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamInstanceProfilesData {
@@ -49,7 +49,10 @@ impl DataIamInstanceProfiles {
 
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -59,27 +62,40 @@ impl DataIamInstanceProfiles {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `paths` after provisioning.\n"]
     pub fn paths(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.paths", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.paths", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_name` after provisioning.\n"]
     pub fn role_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamInstanceProfiles {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamInstanceProfiles { }
+impl Datasource for DataIamInstanceProfiles {}
 
 impl ToListMappable for DataIamInstanceProfiles {
     type O = ListRef<DataIamInstanceProfilesRef>;
@@ -135,10 +151,7 @@ pub struct DataIamInstanceProfilesRef {
 
 impl Ref for DataIamInstanceProfilesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -153,7 +166,10 @@ impl DataIamInstanceProfilesRef {
 
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -163,16 +179,25 @@ impl DataIamInstanceProfilesRef {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `paths` after provisioning.\n"]
     pub fn paths(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.paths", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.paths", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_name` after provisioning.\n"]
     pub fn role_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_name", self.extract_ref()),
+        )
     }
 }

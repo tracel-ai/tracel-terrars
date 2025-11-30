@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct OdbCloudExadataInfrastructureData {
@@ -20,7 +20,8 @@ struct OdbCloudExadataInfrastructureData {
     #[serde(skip_serializing_if = "Option::is_none")]
     compute_count: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    customer_contacts_to_send_to_oci: Option<SetField<OdbCloudExadataInfrastructureCustomerContactsToSendToOciEl>>,
+    customer_contacts_to_send_to_oci:
+        Option<SetField<OdbCloudExadataInfrastructureCustomerContactsToSendToOciEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     database_server_type: Option<PrimField<String>>,
     display_name: PrimField<String>,
@@ -75,7 +76,8 @@ impl OdbCloudExadataInfrastructure {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +90,7 @@ impl OdbCloudExadataInfrastructure {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,31 +101,38 @@ impl OdbCloudExadataInfrastructure {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `availability_zone`.\nThe name of the Availability Zone (AZ) where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
+    #[doc = "Set the field `availability_zone`.\nThe name of the Availability Zone (AZ) where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
     pub fn set_availability_zone(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().availability_zone = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `compute_count`.\n The number of compute instances that the Exadata infrastructure is located"]
+    #[doc = "Set the field `compute_count`.\n The number of compute instances that the Exadata infrastructure is located"]
     pub fn set_compute_count(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().compute_count = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `customer_contacts_to_send_to_oci`.\nThe email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure. Changing this will force terraform to create new resource"]
+    #[doc = "Set the field `customer_contacts_to_send_to_oci`.\nThe email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure. Changing this will force terraform to create new resource"]
     pub fn set_customer_contacts_to_send_to_oci(
         self,
         v: impl Into<SetField<OdbCloudExadataInfrastructureCustomerContactsToSendToOciEl>>,
@@ -132,29 +141,25 @@ impl OdbCloudExadataInfrastructure {
         self
     }
 
-    #[doc =
-        "Set the field `database_server_type`.\nThe database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
+    #[doc = "Set the field `database_server_type`.\nThe database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
     pub fn set_database_server_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().database_server_type = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `storage_count`.\nTThe number of storage servers that are activated for the Exadata infrastructure"]
+    #[doc = "Set the field `storage_count`.\nTThe number of storage servers that are activated for the Exadata infrastructure"]
     pub fn set_storage_count(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().storage_count = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `storage_server_type`.\nThe storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
+    #[doc = "Set the field `storage_server_type`.\nThe storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
     pub fn set_storage_server_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().storage_server_type = Some(v.into());
         self
@@ -174,10 +179,10 @@ impl OdbCloudExadataInfrastructure {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().maintenance_window = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.maintenance_window = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,16 +193,20 @@ impl OdbCloudExadataInfrastructure {
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `activated_storage_count` after provisioning.\nThe number of storage servers requested for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `activated_storage_count` after provisioning.\nThe number of storage servers requested for the Exadata infrastructure"]
     pub fn activated_storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.activated_storage_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.activated_storage_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `additional_storage_count` after provisioning.\n The number of storage servers requested for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `additional_storage_count` after provisioning.\n The number of storage servers requested for the Exadata infrastructure"]
     pub fn additional_storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_storage_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_storage_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -205,84 +214,110 @@ impl OdbCloudExadataInfrastructure {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone` after provisioning.\nThe name of the Availability Zone (AZ) where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\nThe name of the Availability Zone (AZ) where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone_id` after provisioning.\n The AZ ID of the AZ where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\n The AZ ID of the AZ where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `available_storage_size_in_gbs` after provisioning.\nThe amount of available storage, in gigabytes (GB), for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `available_storage_size_in_gbs` after provisioning.\nThe amount of available storage, in gigabytes (GB), for the Exadata infrastructure"]
     pub fn available_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `compute_count` after provisioning.\n The number of compute instances that the Exadata infrastructure is located"]
+    #[doc = "Get a reference to the value of field `compute_count` after provisioning.\n The number of compute instances that the Exadata infrastructure is located"]
     pub fn compute_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an\n  instance: ECPU or OCPU. An ECPU is an abstracted measure of\n compute resources. ECPUs are based on the number of cores\n elastically allocated from a pool of compute and storage servers.\n  An OCPU is a legacy physical measure of compute resources. OCPUs\n are based on the physical core of a processor with\n  hyper-threading enabled."]
+    #[doc = "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an\n  instance: ECPU or OCPU. An ECPU is an abstracted measure of\n compute resources. ECPUs are based on the number of cores\n elastically allocated from a pool of compute and storage servers.\n  An OCPU is a legacy physical measure of compute resources. OCPUs\n are based on the physical core of a processor with\n  hyper-threading enabled."]
     pub fn compute_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_model", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `cpu_count` after provisioning.\nThe total number of CPU cores that are allocated to the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `cpu_count` after provisioning.\nThe total number of CPU cores that are allocated to the Exadata infrastructure"]
     pub fn cpu_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_at` after provisioning.\nThe time when the Exadata infrastructure was created."]
+    #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe time when the Exadata infrastructure was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `customer_contacts_to_send_to_oci` after provisioning.\nThe email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `customer_contacts_to_send_to_oci` after provisioning.\nThe email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure. Changing this will force terraform to create new resource"]
     pub fn customer_contacts_to_send_to_oci(
         &self,
     ) -> SetRef<OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.customer_contacts_to_send_to_oci", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.customer_contacts_to_send_to_oci", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the Exadata infrastructure's data disk group, in terabytes (TB)"]
+    #[doc = "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the Exadata infrastructure's data disk group, in terabytes (TB)"]
     pub fn data_storage_size_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_storage_size_in_tbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_storage_size_in_tbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `database_server_type` after provisioning.\nThe database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
+    #[doc = "Get a reference to the value of field `database_server_type` after provisioning.\nThe database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
     pub fn database_server_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_server_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_server_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe size of the Exadata infrastructure's local node storage, in gigabytes (GB)"]
+    #[doc = "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe size of the Exadata infrastructure's local node storage, in gigabytes (GB)"]
     pub fn db_node_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_node_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_node_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_server_version` after provisioning.\nThe software version of the database servers (dom0) in the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `db_server_version` after provisioning.\nThe software version of the database servers (dom0) in the Exadata infrastructure"]
     pub fn db_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_server_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `display_name` after provisioning.\nThe user-friendly name for the Exadata infrastructure. Changing this will force terraform to create a new resource"]
+    #[doc = "Get a reference to the value of field `display_name` after provisioning.\nThe user-friendly name for the Exadata infrastructure. Changing this will force terraform to create a new resource"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -290,144 +325,198 @@ impl OdbCloudExadataInfrastructure {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `last_maintenance_run_id` after provisioning.\nThe Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `last_maintenance_run_id` after provisioning.\nThe Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata infrastructure"]
     pub fn last_maintenance_run_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_maintenance_run_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_maintenance_run_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_cpu_count` after provisioning.\nThe total number of CPU cores available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_cpu_count` after provisioning.\nThe total number of CPU cores available on the Exadata infrastructure"]
     pub fn max_cpu_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_cpu_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_cpu_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_data_storage_in_tbs` after provisioning.\nThe total amount of data disk group storage, in terabytes (TB), that's available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_data_storage_in_tbs` after provisioning.\nThe total amount of data disk group storage, in terabytes (TB), that's available on the Exadata infrastructure"]
     pub fn max_data_storage_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_data_storage_in_tbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_data_storage_in_tbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_db_node_storage_size_in_gbs` after provisioning.\nThe total amount of local node storage, in gigabytes (GB), that's available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_db_node_storage_size_in_gbs` after provisioning.\nThe total amount of local node storage, in gigabytes (GB), that's available on the Exadata infrastructure"]
     pub fn max_db_node_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_db_node_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_db_node_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_memory_in_gbs` after provisioning.\nThe total amount of memory in gigabytes (GB) available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_memory_in_gbs` after provisioning.\nThe total amount of memory in gigabytes (GB) available on the Exadata infrastructure"]
     pub fn max_memory_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_memory_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_memory_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated on the Exadata infrastructure"]
     pub fn memory_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `monthly_db_server_version` after provisioning.\nThe monthly software version of the database servers in the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `monthly_db_server_version` after provisioning.\nThe monthly software version of the database servers in the Exadata infrastructure"]
     pub fn monthly_db_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monthly_db_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monthly_db_server_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `monthly_storage_server_version` after provisioning.\nThe monthly software version of the storage servers installed on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `monthly_storage_server_version` after provisioning.\nThe monthly software version of the storage servers installed on the Exadata infrastructure"]
     pub fn monthly_storage_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monthly_storage_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monthly_storage_server_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `next_maintenance_run_id` after provisioning.\nThe OCID of the next maintenance run for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `next_maintenance_run_id` after provisioning.\nThe OCID of the next maintenance run for the Exadata infrastructure"]
     pub fn next_maintenance_run_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.next_maintenance_run_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.next_maintenance_run_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the Exadata infrastructure"]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the Exadata infrastructure in OCI"]
+    #[doc = "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the Exadata infrastructure in OCI"]
     pub fn oci_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ocid` after provisioning.\nThe OCID of the Exadata infrastructure"]
     pub fn ocid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ocid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ocid", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the Exadata infrastructure, expressed as a percentage"]
+    #[doc = "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the Exadata infrastructure, expressed as a percentage"]
     pub fn percent_progress(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.percent_progress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.percent_progress", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `shape` after provisioning.\nThe model name of the Exadata infrastructure. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `shape` after provisioning.\nThe model name of the Exadata infrastructure. Changing this will force terraform to create new resource"]
     pub fn shape(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shape", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shape", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status` after provisioning.\nThe current status of the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `status` after provisioning.\nThe current status of the Exadata infrastructure"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the Exadata infrastructure"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_count` after provisioning.\nTThe number of storage servers that are activated for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `storage_count` after provisioning.\nTThe number of storage servers that are activated for the Exadata infrastructure"]
     pub fn storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_server_type` after provisioning.\nThe storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
+    #[doc = "Get a reference to the value of field `storage_server_type` after provisioning.\nThe storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
     pub fn storage_server_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_server_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_server_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_server_version` after provisioning.\nThe software version of the storage servers on the Exadata infrastructure."]
+    #[doc = "Get a reference to the value of field `storage_server_version` after provisioning.\nThe software version of the storage servers on the Exadata infrastructure."]
     pub fn storage_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_server_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `total_storage_size_in_gbs` after provisioning.\nThe total amount of storage, in gigabytes (GB), on the Exadata infrastructure."]
+    #[doc = "Get a reference to the value of field `total_storage_size_in_gbs` after provisioning.\nThe total amount of storage, in gigabytes (GB), on the Exadata infrastructure."]
     pub fn total_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.total_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.total_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_window` after provisioning.\n"]
-    pub fn maintenance_window(&self) -> ListRef<OdbCloudExadataInfrastructureMaintenanceWindowElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maintenance_window", self.extract_ref()))
+    pub fn maintenance_window(
+        &self,
+    ) -> ListRef<OdbCloudExadataInfrastructureMaintenanceWindowElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maintenance_window", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -441,11 +530,15 @@ impl OdbCloudExadataInfrastructure {
 
 impl Referable for OdbCloudExadataInfrastructure {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for OdbCloudExadataInfrastructure { }
+impl Resource for OdbCloudExadataInfrastructure {}
 
 impl ToListMappable for OdbCloudExadataInfrastructure {
     type O = ListRef<OdbCloudExadataInfrastructureRef>;
@@ -472,11 +565,9 @@ impl Resource_ for OdbCloudExadataInfrastructure_ {
 
 pub struct BuildOdbCloudExadataInfrastructure {
     pub tf_id: String,
-    #[doc =
-        " The AZ ID of the AZ where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
+    #[doc = " The AZ ID of the AZ where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
     pub availability_zone_id: PrimField<String>,
-    #[doc =
-        "The user-friendly name for the Exadata infrastructure. Changing this will force terraform to create a new resource"]
+    #[doc = "The user-friendly name for the Exadata infrastructure. Changing this will force terraform to create a new resource"]
     pub display_name: PrimField<String>,
     #[doc = "The model name of the Exadata infrastructure. Changing this will force terraform to create new resource"]
     pub shape: PrimField<String>,
@@ -520,10 +611,7 @@ pub struct OdbCloudExadataInfrastructureRef {
 
 impl Ref for OdbCloudExadataInfrastructureRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -536,16 +624,20 @@ impl OdbCloudExadataInfrastructureRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `activated_storage_count` after provisioning.\nThe number of storage servers requested for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `activated_storage_count` after provisioning.\nThe number of storage servers requested for the Exadata infrastructure"]
     pub fn activated_storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.activated_storage_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.activated_storage_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `additional_storage_count` after provisioning.\n The number of storage servers requested for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `additional_storage_count` after provisioning.\n The number of storage servers requested for the Exadata infrastructure"]
     pub fn additional_storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_storage_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_storage_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -553,84 +645,110 @@ impl OdbCloudExadataInfrastructureRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone` after provisioning.\nThe name of the Availability Zone (AZ) where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\nThe name of the Availability Zone (AZ) where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone_id` after provisioning.\n The AZ ID of the AZ where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\n The AZ ID of the AZ where the Exadata infrastructure is located. Changing this will force terraform to create new resource"]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `available_storage_size_in_gbs` after provisioning.\nThe amount of available storage, in gigabytes (GB), for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `available_storage_size_in_gbs` after provisioning.\nThe amount of available storage, in gigabytes (GB), for the Exadata infrastructure"]
     pub fn available_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.available_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.available_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `compute_count` after provisioning.\n The number of compute instances that the Exadata infrastructure is located"]
+    #[doc = "Get a reference to the value of field `compute_count` after provisioning.\n The number of compute instances that the Exadata infrastructure is located"]
     pub fn compute_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an\n  instance: ECPU or OCPU. An ECPU is an abstracted measure of\n compute resources. ECPUs are based on the number of cores\n elastically allocated from a pool of compute and storage servers.\n  An OCPU is a legacy physical measure of compute resources. OCPUs\n are based on the physical core of a processor with\n  hyper-threading enabled."]
+    #[doc = "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an\n  instance: ECPU or OCPU. An ECPU is an abstracted measure of\n compute resources. ECPUs are based on the number of cores\n elastically allocated from a pool of compute and storage servers.\n  An OCPU is a legacy physical measure of compute resources. OCPUs\n are based on the physical core of a processor with\n  hyper-threading enabled."]
     pub fn compute_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_model", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `cpu_count` after provisioning.\nThe total number of CPU cores that are allocated to the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `cpu_count` after provisioning.\nThe total number of CPU cores that are allocated to the Exadata infrastructure"]
     pub fn cpu_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_at` after provisioning.\nThe time when the Exadata infrastructure was created."]
+    #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe time when the Exadata infrastructure was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `customer_contacts_to_send_to_oci` after provisioning.\nThe email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `customer_contacts_to_send_to_oci` after provisioning.\nThe email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure. Changing this will force terraform to create new resource"]
     pub fn customer_contacts_to_send_to_oci(
         &self,
     ) -> SetRef<OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.customer_contacts_to_send_to_oci", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.customer_contacts_to_send_to_oci", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the Exadata infrastructure's data disk group, in terabytes (TB)"]
+    #[doc = "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the Exadata infrastructure's data disk group, in terabytes (TB)"]
     pub fn data_storage_size_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_storage_size_in_tbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_storage_size_in_tbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `database_server_type` after provisioning.\nThe database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
+    #[doc = "Get a reference to the value of field `database_server_type` after provisioning.\nThe database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
     pub fn database_server_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_server_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_server_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe size of the Exadata infrastructure's local node storage, in gigabytes (GB)"]
+    #[doc = "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe size of the Exadata infrastructure's local node storage, in gigabytes (GB)"]
     pub fn db_node_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_node_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_node_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_server_version` after provisioning.\nThe software version of the database servers (dom0) in the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `db_server_version` after provisioning.\nThe software version of the database servers (dom0) in the Exadata infrastructure"]
     pub fn db_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_server_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `display_name` after provisioning.\nThe user-friendly name for the Exadata infrastructure. Changing this will force terraform to create a new resource"]
+    #[doc = "Get a reference to the value of field `display_name` after provisioning.\nThe user-friendly name for the Exadata infrastructure. Changing this will force terraform to create a new resource"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -638,144 +756,198 @@ impl OdbCloudExadataInfrastructureRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `last_maintenance_run_id` after provisioning.\nThe Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `last_maintenance_run_id` after provisioning.\nThe Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata infrastructure"]
     pub fn last_maintenance_run_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_maintenance_run_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_maintenance_run_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_cpu_count` after provisioning.\nThe total number of CPU cores available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_cpu_count` after provisioning.\nThe total number of CPU cores available on the Exadata infrastructure"]
     pub fn max_cpu_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_cpu_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_cpu_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_data_storage_in_tbs` after provisioning.\nThe total amount of data disk group storage, in terabytes (TB), that's available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_data_storage_in_tbs` after provisioning.\nThe total amount of data disk group storage, in terabytes (TB), that's available on the Exadata infrastructure"]
     pub fn max_data_storage_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_data_storage_in_tbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_data_storage_in_tbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_db_node_storage_size_in_gbs` after provisioning.\nThe total amount of local node storage, in gigabytes (GB), that's available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_db_node_storage_size_in_gbs` after provisioning.\nThe total amount of local node storage, in gigabytes (GB), that's available on the Exadata infrastructure"]
     pub fn max_db_node_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_db_node_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_db_node_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_memory_in_gbs` after provisioning.\nThe total amount of memory in gigabytes (GB) available on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `max_memory_in_gbs` after provisioning.\nThe total amount of memory in gigabytes (GB) available on the Exadata infrastructure"]
     pub fn max_memory_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_memory_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_memory_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated on the Exadata infrastructure"]
     pub fn memory_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `monthly_db_server_version` after provisioning.\nThe monthly software version of the database servers in the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `monthly_db_server_version` after provisioning.\nThe monthly software version of the database servers in the Exadata infrastructure"]
     pub fn monthly_db_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monthly_db_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monthly_db_server_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `monthly_storage_server_version` after provisioning.\nThe monthly software version of the storage servers installed on the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `monthly_storage_server_version` after provisioning.\nThe monthly software version of the storage servers installed on the Exadata infrastructure"]
     pub fn monthly_storage_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monthly_storage_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monthly_storage_server_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `next_maintenance_run_id` after provisioning.\nThe OCID of the next maintenance run for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `next_maintenance_run_id` after provisioning.\nThe OCID of the next maintenance run for the Exadata infrastructure"]
     pub fn next_maintenance_run_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.next_maintenance_run_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.next_maintenance_run_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the Exadata infrastructure"]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the Exadata infrastructure in OCI"]
+    #[doc = "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the Exadata infrastructure in OCI"]
     pub fn oci_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ocid` after provisioning.\nThe OCID of the Exadata infrastructure"]
     pub fn ocid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ocid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ocid", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the Exadata infrastructure, expressed as a percentage"]
+    #[doc = "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the Exadata infrastructure, expressed as a percentage"]
     pub fn percent_progress(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.percent_progress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.percent_progress", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `shape` after provisioning.\nThe model name of the Exadata infrastructure. Changing this will force terraform to create new resource"]
+    #[doc = "Get a reference to the value of field `shape` after provisioning.\nThe model name of the Exadata infrastructure. Changing this will force terraform to create new resource"]
     pub fn shape(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shape", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shape", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status` after provisioning.\nThe current status of the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `status` after provisioning.\nThe current status of the Exadata infrastructure"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the Exadata infrastructure"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_count` after provisioning.\nTThe number of storage servers that are activated for the Exadata infrastructure"]
+    #[doc = "Get a reference to the value of field `storage_count` after provisioning.\nTThe number of storage servers that are activated for the Exadata infrastructure"]
     pub fn storage_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_server_type` after provisioning.\nThe storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
+    #[doc = "Get a reference to the value of field `storage_server_type` after provisioning.\nThe storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation"]
     pub fn storage_server_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_server_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_server_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_server_version` after provisioning.\nThe software version of the storage servers on the Exadata infrastructure."]
+    #[doc = "Get a reference to the value of field `storage_server_version` after provisioning.\nThe software version of the storage servers on the Exadata infrastructure."]
     pub fn storage_server_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_server_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_server_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `total_storage_size_in_gbs` after provisioning.\nThe total amount of storage, in gigabytes (GB), on the Exadata infrastructure."]
+    #[doc = "Get a reference to the value of field `total_storage_size_in_gbs` after provisioning.\nThe total amount of storage, in gigabytes (GB), on the Exadata infrastructure."]
     pub fn total_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.total_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.total_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_window` after provisioning.\n"]
-    pub fn maintenance_window(&self) -> ListRef<OdbCloudExadataInfrastructureMaintenanceWindowElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maintenance_window", self.extract_ref()))
+    pub fn maintenance_window(
+        &self,
+    ) -> ListRef<OdbCloudExadataInfrastructureMaintenanceWindowElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maintenance_window", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -817,7 +989,9 @@ pub struct BuildOdbCloudExadataInfrastructureCustomerContactsToSendToOciEl {}
 
 impl BuildOdbCloudExadataInfrastructureCustomerContactsToSendToOciEl {
     pub fn build(self) -> OdbCloudExadataInfrastructureCustomerContactsToSendToOciEl {
-        OdbCloudExadataInfrastructureCustomerContactsToSendToOciEl { email: core::default::Default::default() }
+        OdbCloudExadataInfrastructureCustomerContactsToSendToOciEl {
+            email: core::default::Default::default(),
+        }
     }
 }
 
@@ -827,7 +1001,10 @@ pub struct OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef {
 }
 
 impl Ref for OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef {
-    fn new(shared: StackShared, base: String) -> OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef {
         OdbCloudExadataInfrastructureCustomerContactsToSendToOciElRef {
             shared: shared,
             base: base.to_string(),
@@ -876,7 +1053,9 @@ pub struct BuildOdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekEl {}
 
 impl BuildOdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekEl {
     pub fn build(self) -> OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekEl {
-        OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekEl { name: core::default::Default::default() }
+        OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekEl {
+            name: core::default::Default::default(),
+        }
     }
 }
 
@@ -886,7 +1065,10 @@ pub struct OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef {
 }
 
 impl Ref for OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef {
-    fn new(shared: StackShared, base: String) -> OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef {
         OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef {
             shared: shared,
             base: base.to_string(),
@@ -935,7 +1117,9 @@ pub struct BuildOdbCloudExadataInfrastructureMaintenanceWindowElMonthsEl {}
 
 impl BuildOdbCloudExadataInfrastructureMaintenanceWindowElMonthsEl {
     pub fn build(self) -> OdbCloudExadataInfrastructureMaintenanceWindowElMonthsEl {
-        OdbCloudExadataInfrastructureMaintenanceWindowElMonthsEl { name: core::default::Default::default() }
+        OdbCloudExadataInfrastructureMaintenanceWindowElMonthsEl {
+            name: core::default::Default::default(),
+        }
     }
 }
 
@@ -945,7 +1129,10 @@ pub struct OdbCloudExadataInfrastructureMaintenanceWindowElMonthsElRef {
 }
 
 impl Ref for OdbCloudExadataInfrastructureMaintenanceWindowElMonthsElRef {
-    fn new(shared: StackShared, base: String) -> OdbCloudExadataInfrastructureMaintenanceWindowElMonthsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OdbCloudExadataInfrastructureMaintenanceWindowElMonthsElRef {
         OdbCloudExadataInfrastructureMaintenanceWindowElMonthsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1065,7 +1252,10 @@ pub struct OdbCloudExadataInfrastructureMaintenanceWindowElRef {
 }
 
 impl Ref for OdbCloudExadataInfrastructureMaintenanceWindowElRef {
-    fn new(shared: StackShared, base: String) -> OdbCloudExadataInfrastructureMaintenanceWindowElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OdbCloudExadataInfrastructureMaintenanceWindowElRef {
         OdbCloudExadataInfrastructureMaintenanceWindowElRef {
             shared: shared,
             base: base.to_string(),
@@ -1080,11 +1270,16 @@ impl OdbCloudExadataInfrastructureMaintenanceWindowElRef {
 
     #[doc = "Get a reference to the value of field `custom_action_timeout_in_mins` after provisioning.\n"]
     pub fn custom_action_timeout_in_mins(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_action_timeout_in_mins", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_action_timeout_in_mins", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `days_of_week` after provisioning.\n"]
-    pub fn days_of_week(&self) -> SetRef<OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef> {
+    pub fn days_of_week(
+        &self,
+    ) -> SetRef<OdbCloudExadataInfrastructureMaintenanceWindowElDaysOfWeekElRef> {
         SetRef::new(self.shared().clone(), format!("{}.days_of_week", self.base))
     }
 
@@ -1095,12 +1290,18 @@ impl OdbCloudExadataInfrastructureMaintenanceWindowElRef {
 
     #[doc = "Get a reference to the value of field `is_custom_action_timeout_enabled` after provisioning.\n"]
     pub fn is_custom_action_timeout_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_custom_action_timeout_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_custom_action_timeout_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lead_time_in_weeks` after provisioning.\n"]
     pub fn lead_time_in_weeks(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lead_time_in_weeks", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lead_time_in_weeks", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `months` after provisioning.\n"]
@@ -1110,7 +1311,10 @@ impl OdbCloudExadataInfrastructureMaintenanceWindowElRef {
 
     #[doc = "Get a reference to the value of field `patching_mode` after provisioning.\n"]
     pub fn patching_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.patching_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.patching_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preference` after provisioning.\n"]
@@ -1120,7 +1324,10 @@ impl OdbCloudExadataInfrastructureMaintenanceWindowElRef {
 
     #[doc = "Get a reference to the value of field `weeks_of_month` after provisioning.\n"]
     pub fn weeks_of_month(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.weeks_of_month", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.weeks_of_month", self.base),
+        )
     }
 }
 
@@ -1135,22 +1342,19 @@ pub struct OdbCloudExadataInfrastructureTimeoutsEl {
 }
 
 impl OdbCloudExadataInfrastructureTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1200,20 +1404,17 @@ impl OdbCloudExadataInfrastructureTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

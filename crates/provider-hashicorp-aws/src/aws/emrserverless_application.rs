@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EmrserverlessApplicationData {
@@ -86,7 +86,8 @@ impl EmrserverlessApplication {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -99,7 +100,7 @@ impl EmrserverlessApplication {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -110,12 +111,22 @@ impl EmrserverlessApplication {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,8 +142,7 @@ impl EmrserverlessApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -158,10 +168,10 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_start_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_start_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -174,10 +184,10 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_stop_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_stop_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -190,23 +200,26 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().image_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.image_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `initial_capacity`.\n"]
-    pub fn set_initial_capacity(self, v: impl Into<BlockAssignable<EmrserverlessApplicationInitialCapacityEl>>) -> Self {
+    pub fn set_initial_capacity(
+        self,
+        v: impl Into<BlockAssignable<EmrserverlessApplicationInitialCapacityEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().initial_capacity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.initial_capacity = Some(d);
-            },
+            }
         }
         self
     }
@@ -219,23 +232,26 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().interactive_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.interactive_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `maximum_capacity`.\n"]
-    pub fn set_maximum_capacity(self, v: impl Into<BlockAssignable<EmrserverlessApplicationMaximumCapacityEl>>) -> Self {
+    pub fn set_maximum_capacity(
+        self,
+        v: impl Into<BlockAssignable<EmrserverlessApplicationMaximumCapacityEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().maximum_capacity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.maximum_capacity = Some(d);
-            },
+            }
         }
         self
     }
@@ -248,10 +264,10 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -264,10 +280,10 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -280,10 +296,10 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().runtime_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.runtime_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -296,17 +312,20 @@ impl EmrserverlessApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scheduler_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scheduler_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `architecture` after provisioning.\n"]
     pub fn architecture(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.architecture", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.architecture", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -321,88 +340,150 @@ impl EmrserverlessApplication {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_start_configuration` after provisioning.\n"]
-    pub fn auto_start_configuration(&self) -> ListRef<EmrserverlessApplicationAutoStartConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_start_configuration", self.extract_ref()))
+    pub fn auto_start_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationAutoStartConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_start_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_stop_configuration` after provisioning.\n"]
-    pub fn auto_stop_configuration(&self) -> ListRef<EmrserverlessApplicationAutoStopConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_stop_configuration", self.extract_ref()))
+    pub fn auto_stop_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationAutoStopConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_stop_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_configuration` after provisioning.\n"]
     pub fn image_configuration(&self) -> ListRef<EmrserverlessApplicationImageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `interactive_configuration` after provisioning.\n"]
-    pub fn interactive_configuration(&self) -> ListRef<EmrserverlessApplicationInteractiveConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.interactive_configuration", self.extract_ref()))
+    pub fn interactive_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationInteractiveConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.interactive_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_capacity` after provisioning.\n"]
     pub fn maximum_capacity(&self) -> ListRef<EmrserverlessApplicationMaximumCapacityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maximum_capacity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maximum_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_configuration` after provisioning.\n"]
-    pub fn monitoring_configuration(&self) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring_configuration", self.extract_ref()))
+    pub fn monitoring_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
-    pub fn network_configuration(&self) -> ListRef<EmrserverlessApplicationNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+    pub fn network_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationNetworkConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_configuration` after provisioning.\n"]
-    pub fn runtime_configuration(&self) -> ListRef<EmrserverlessApplicationRuntimeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime_configuration", self.extract_ref()))
+    pub fn runtime_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationRuntimeConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduler_configuration` after provisioning.\n"]
-    pub fn scheduler_configuration(&self) -> ListRef<EmrserverlessApplicationSchedulerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scheduler_configuration", self.extract_ref()))
+    pub fn scheduler_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationSchedulerConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scheduler_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EmrserverlessApplication {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EmrserverlessApplication { }
+impl Resource for EmrserverlessApplication {}
 
 impl ToListMappable for EmrserverlessApplication {
     type O = ListRef<EmrserverlessApplicationRef>;
@@ -480,10 +561,7 @@ pub struct EmrserverlessApplicationRef {
 
 impl Ref for EmrserverlessApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -498,7 +576,10 @@ impl EmrserverlessApplicationRef {
 
     #[doc = "Get a reference to the value of field `architecture` after provisioning.\n"]
     pub fn architecture(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.architecture", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.architecture", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -513,78 +594,136 @@ impl EmrserverlessApplicationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_start_configuration` after provisioning.\n"]
-    pub fn auto_start_configuration(&self) -> ListRef<EmrserverlessApplicationAutoStartConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_start_configuration", self.extract_ref()))
+    pub fn auto_start_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationAutoStartConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_start_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_stop_configuration` after provisioning.\n"]
-    pub fn auto_stop_configuration(&self) -> ListRef<EmrserverlessApplicationAutoStopConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_stop_configuration", self.extract_ref()))
+    pub fn auto_stop_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationAutoStopConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_stop_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_configuration` after provisioning.\n"]
     pub fn image_configuration(&self) -> ListRef<EmrserverlessApplicationImageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `interactive_configuration` after provisioning.\n"]
-    pub fn interactive_configuration(&self) -> ListRef<EmrserverlessApplicationInteractiveConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.interactive_configuration", self.extract_ref()))
+    pub fn interactive_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationInteractiveConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.interactive_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_capacity` after provisioning.\n"]
     pub fn maximum_capacity(&self) -> ListRef<EmrserverlessApplicationMaximumCapacityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maximum_capacity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maximum_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_configuration` after provisioning.\n"]
-    pub fn monitoring_configuration(&self) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring_configuration", self.extract_ref()))
+    pub fn monitoring_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
-    pub fn network_configuration(&self) -> ListRef<EmrserverlessApplicationNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+    pub fn network_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationNetworkConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_configuration` after provisioning.\n"]
-    pub fn runtime_configuration(&self) -> ListRef<EmrserverlessApplicationRuntimeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime_configuration", self.extract_ref()))
+    pub fn runtime_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationRuntimeConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduler_configuration` after provisioning.\n"]
-    pub fn scheduler_configuration(&self) -> ListRef<EmrserverlessApplicationSchedulerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scheduler_configuration", self.extract_ref()))
+    pub fn scheduler_configuration(
+        &self,
+    ) -> ListRef<EmrserverlessApplicationSchedulerConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scheduler_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -618,7 +757,9 @@ pub struct BuildEmrserverlessApplicationAutoStartConfigurationEl {}
 
 impl BuildEmrserverlessApplicationAutoStartConfigurationEl {
     pub fn build(self) -> EmrserverlessApplicationAutoStartConfigurationEl {
-        EmrserverlessApplicationAutoStartConfigurationEl { enabled: core::default::Default::default() }
+        EmrserverlessApplicationAutoStartConfigurationEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -628,7 +769,10 @@ pub struct EmrserverlessApplicationAutoStartConfigurationElRef {
 }
 
 impl Ref for EmrserverlessApplicationAutoStartConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EmrserverlessApplicationAutoStartConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrserverlessApplicationAutoStartConfigurationElRef {
         EmrserverlessApplicationAutoStartConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -698,7 +842,10 @@ pub struct EmrserverlessApplicationAutoStopConfigurationElRef {
 }
 
 impl Ref for EmrserverlessApplicationAutoStopConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EmrserverlessApplicationAutoStopConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrserverlessApplicationAutoStopConfigurationElRef {
         EmrserverlessApplicationAutoStopConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -718,7 +865,10 @@ impl EmrserverlessApplicationAutoStopConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `idle_timeout_minutes` after provisioning.\n"]
     pub fn idle_timeout_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.idle_timeout_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.idle_timeout_minutes", self.base),
+        )
     }
 }
 
@@ -727,7 +877,7 @@ pub struct EmrserverlessApplicationImageConfigurationEl {
     image_uri: PrimField<String>,
 }
 
-impl EmrserverlessApplicationImageConfigurationEl { }
+impl EmrserverlessApplicationImageConfigurationEl {}
 
 impl ToListMappable for EmrserverlessApplicationImageConfigurationEl {
     type O = BlockAssignable<EmrserverlessApplicationImageConfigurationEl>;
@@ -748,7 +898,9 @@ pub struct BuildEmrserverlessApplicationImageConfigurationEl {
 
 impl BuildEmrserverlessApplicationImageConfigurationEl {
     pub fn build(self) -> EmrserverlessApplicationImageConfigurationEl {
-        EmrserverlessApplicationImageConfigurationEl { image_uri: self.image_uri }
+        EmrserverlessApplicationImageConfigurationEl {
+            image_uri: self.image_uri,
+        }
     }
 }
 
@@ -793,8 +945,12 @@ impl EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfi
     }
 }
 
-impl ToListMappable for EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl {
-    type O = BlockAssignable<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl>;
+impl ToListMappable
+    for EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl
+{
+    type O = BlockAssignable<
+        EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -805,7 +961,8 @@ impl ToListMappable for EmrserverlessApplicationInitialCapacityElInitialCapacity
     }
 }
 
-pub struct BuildEmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl {
+pub struct BuildEmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl
+{
     #[doc = ""]
     pub cpu: PrimField<String>,
     #[doc = ""]
@@ -813,7 +970,9 @@ pub struct BuildEmrserverlessApplicationInitialCapacityElInitialCapacityConfigEl
 }
 
 impl BuildEmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl {
-    pub fn build(self) -> EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl {
+    pub fn build(
+        self,
+    ) -> EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl {
         EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl {
             cpu: self.cpu,
             disk: core::default::Default::default(),
@@ -822,16 +981,20 @@ impl BuildEmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorker
     }
 }
 
-pub struct EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef {
+pub struct EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef {
+impl Ref
+    for EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef {
+    ) -> EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef
+    {
         EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -863,7 +1026,9 @@ impl EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfi
 #[derive(Serialize, Default)]
 struct EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElDynamic {
     worker_configuration: Option<
-        DynamicBlock<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl>,
+        DynamicBlock<
+            EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationEl,
+        >,
     >,
 }
 
@@ -893,10 +1058,10 @@ impl EmrserverlessApplicationInitialCapacityElInitialCapacityConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.worker_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.worker_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -935,7 +1100,10 @@ pub struct EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef {
 }
 
 impl Ref for EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef {
-    fn new(shared: StackShared, base: String) -> EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef {
         EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -956,21 +1124,28 @@ impl EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef {
     #[doc = "Get a reference to the value of field `worker_configuration` after provisioning.\n"]
     pub fn worker_configuration(
         &self,
-    ) -> ListRef<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.worker_configuration", self.base))
+    ) -> ListRef<
+        EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElWorkerConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.worker_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrserverlessApplicationInitialCapacityElDynamic {
-    initial_capacity_config: Option<DynamicBlock<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigEl>>,
+    initial_capacity_config:
+        Option<DynamicBlock<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigEl>>,
 }
 
 #[derive(Serialize)]
 pub struct EmrserverlessApplicationInitialCapacityEl {
     initial_capacity_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    initial_capacity_config: Option<Vec<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigEl>>,
+    initial_capacity_config:
+        Option<Vec<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigEl>>,
     dynamic: EmrserverlessApplicationInitialCapacityElDynamic,
 }
 
@@ -983,10 +1158,10 @@ impl EmrserverlessApplicationInitialCapacityEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.initial_capacity_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.initial_capacity_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1040,14 +1215,20 @@ impl EmrserverlessApplicationInitialCapacityElRef {
 
     #[doc = "Get a reference to the value of field `initial_capacity_type` after provisioning.\n"]
     pub fn initial_capacity_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.initial_capacity_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.initial_capacity_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `initial_capacity_config` after provisioning.\n"]
     pub fn initial_capacity_config(
         &self,
     ) -> ListRef<EmrserverlessApplicationInitialCapacityElInitialCapacityConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.initial_capacity_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.initial_capacity_config", self.base),
+        )
     }
 }
 
@@ -1102,7 +1283,10 @@ pub struct EmrserverlessApplicationInteractiveConfigurationElRef {
 }
 
 impl Ref for EmrserverlessApplicationInteractiveConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EmrserverlessApplicationInteractiveConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrserverlessApplicationInteractiveConfigurationElRef {
         EmrserverlessApplicationInteractiveConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1117,12 +1301,18 @@ impl EmrserverlessApplicationInteractiveConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `livy_endpoint_enabled` after provisioning.\n"]
     pub fn livy_endpoint_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.livy_endpoint_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.livy_endpoint_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `studio_enabled` after provisioning.\n"]
     pub fn studio_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.studio_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.studio_enabled", self.base),
+        )
     }
 }
 
@@ -1207,16 +1397,20 @@ impl EmrserverlessApplicationMaximumCapacityElRef {
 }
 
 #[derive(Serialize)]
-pub struct EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {
+pub struct EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl
+{
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
 
-impl EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl { }
+impl EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {}
 
-impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {
-    type O =
-        BlockAssignable<EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl>;
+impl ToListMappable
+    for EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl
+{
+    type O = BlockAssignable<
+        EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1227,17 +1421,21 @@ impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElCloudwa
     }
 }
 
-pub struct BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {
+pub struct BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
 
-impl BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {
+impl
+    BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl
+{
     pub fn build(
         self,
-    ) -> EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {
+    ) -> EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl
+    {
         EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesEl {
             name: self.name,
             values: self.values,
@@ -1245,7 +1443,8 @@ impl BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConf
     }
 }
 
-pub struct EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesElRef {
+pub struct EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1262,7 +1461,9 @@ impl Ref for EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingC
     }
 }
 
-impl EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesElRef {
+impl
+    EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElLogTypesElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1333,17 +1534,21 @@ impl EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigura
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.log_types = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.log_types = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl {
-    type O = BlockAssignable<EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl>;
+impl ToListMappable
+    for EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl
+{
+    type O = BlockAssignable<
+        EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1360,7 +1565,9 @@ pub struct BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggi
 }
 
 impl BuildEmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl {
-    pub fn build(self) -> EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl {
+    pub fn build(
+        self,
+    ) -> EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl {
         EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl {
             enabled: self.enabled,
             encryption_key_arn: core::default::Default::default(),
@@ -1401,22 +1608,32 @@ impl EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigura
 
     #[doc = "Get a reference to the value of field `encryption_key_arn` after provisioning.\n"]
     pub fn encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_key_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_key_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_stream_name_prefix` after provisioning.\n"]
     pub fn log_stream_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_stream_name_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_stream_name_prefix", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl {
+pub struct EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1437,7 +1654,9 @@ impl EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitori
     }
 }
 
-impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl {
+impl ToListMappable
+    for EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl
+{
     type O =
         BlockAssignable<
             EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl,
@@ -1452,7 +1671,8 @@ impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElManaged
     }
 }
 
-pub struct BuildEmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl {}
+pub struct BuildEmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl
+{}
 
 impl BuildEmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationEl {
     pub fn build(
@@ -1465,7 +1685,8 @@ impl BuildEmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMon
     }
 }
 
-pub struct EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationElRef {
+pub struct EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1482,7 +1703,9 @@ impl Ref for EmrserverlessApplicationMonitoringConfigurationElManagedPersistence
     }
 }
 
-impl EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationElRef {
+impl
+    EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1494,7 +1717,10 @@ impl EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitori
 
     #[doc = "Get a reference to the value of field `encryption_key_arn` after provisioning.\n"]
     pub fn encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_key_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_key_arn", self.base),
+        )
     }
 }
 
@@ -1512,8 +1738,12 @@ impl EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfig
     }
 }
 
-impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl {
-    type O = BlockAssignable<EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl>;
+impl ToListMappable
+    for EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl
+{
+    type O = BlockAssignable<
+        EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1524,10 +1754,13 @@ impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElPrometh
     }
 }
 
-pub struct BuildEmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl {}
+pub struct BuildEmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl
+{}
 
 impl BuildEmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl {
-    pub fn build(self) -> EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl {
+    pub fn build(
+        self,
+    ) -> EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl {
         EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationEl {
             remote_write_url: core::default::Default::default(),
         }
@@ -1539,11 +1772,14 @@ pub struct EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoring
     base: String,
 }
 
-impl Ref for EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef {
+impl Ref
+    for EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef {
+    ) -> EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef
+    {
         EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1558,7 +1794,10 @@ impl EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfig
 
     #[doc = "Get a reference to the value of field `remote_write_url` after provisioning.\n"]
     pub fn remote_write_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_write_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_write_url", self.base),
+        )
     }
 }
 
@@ -1584,8 +1823,12 @@ impl EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationE
     }
 }
 
-impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl {
-    type O = BlockAssignable<EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl>;
+impl ToListMappable
+    for EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl
+{
+    type O = BlockAssignable<
+        EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1599,7 +1842,9 @@ impl ToListMappable for EmrserverlessApplicationMonitoringConfigurationElS3Monit
 pub struct BuildEmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl {}
 
 impl BuildEmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl {
-    pub fn build(self) -> EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl {
+    pub fn build(
+        self,
+    ) -> EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl {
         EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl {
             encryption_key_arn: core::default::Default::default(),
             log_uri: core::default::Default::default(),
@@ -1631,7 +1876,10 @@ impl EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationE
 
     #[doc = "Get a reference to the value of field `encryption_key_arn` after provisioning.\n"]
     pub fn encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_key_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_key_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_uri` after provisioning.\n"]
@@ -1681,22 +1929,19 @@ impl EmrserverlessApplicationMonitoringConfigurationEl {
     #[doc = "Set the field `cloudwatch_logging_configuration`.\n"]
     pub fn set_cloudwatch_logging_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logging_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logging_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1716,10 +1961,10 @@ impl EmrserverlessApplicationMonitoringConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.managed_persistence_monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.managed_persistence_monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1739,10 +1984,10 @@ impl EmrserverlessApplicationMonitoringConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prometheus_monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prometheus_monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1750,15 +1995,19 @@ impl EmrserverlessApplicationMonitoringConfigurationEl {
     #[doc = "Set the field `s3_monitoring_configuration`.\n"]
     pub fn set_s3_monitoring_configuration(
         mut self,
-        v: impl Into<BlockAssignable<EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1796,7 +2045,10 @@ pub struct EmrserverlessApplicationMonitoringConfigurationElRef {
 }
 
 impl Ref for EmrserverlessApplicationMonitoringConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EmrserverlessApplicationMonitoringConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrserverlessApplicationMonitoringConfigurationElRef {
         EmrserverlessApplicationMonitoringConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1812,30 +2064,45 @@ impl EmrserverlessApplicationMonitoringConfigurationElRef {
     #[doc = "Get a reference to the value of field `cloudwatch_logging_configuration` after provisioning.\n"]
     pub fn cloudwatch_logging_configuration(
         &self,
-    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logging_configuration", self.base))
+    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElCloudwatchLoggingConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logging_configuration", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `managed_persistence_monitoring_configuration` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `managed_persistence_monitoring_configuration` after provisioning.\n"]
     pub fn managed_persistence_monitoring_configuration(
         &self,
-    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_persistence_monitoring_configuration", self.base))
+    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElManagedPersistenceMonitoringConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_persistence_monitoring_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prometheus_monitoring_configuration` after provisioning.\n"]
     pub fn prometheus_monitoring_configuration(
         &self,
-    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.prometheus_monitoring_configuration", self.base))
+    ) -> ListRef<
+        EmrserverlessApplicationMonitoringConfigurationElPrometheusMonitoringConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.prometheus_monitoring_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_monitoring_configuration` after provisioning.\n"]
     pub fn s3_monitoring_configuration(
         &self,
-    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_monitoring_configuration", self.base))
+    ) -> ListRef<EmrserverlessApplicationMonitoringConfigurationElS3MonitoringConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_monitoring_configuration", self.base),
+        )
     }
 }
 
@@ -1905,7 +2172,10 @@ impl EmrserverlessApplicationNetworkConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
@@ -1976,7 +2246,10 @@ impl EmrserverlessApplicationRuntimeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.classification", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.classification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
@@ -2036,7 +2309,10 @@ pub struct EmrserverlessApplicationSchedulerConfigurationElRef {
 }
 
 impl Ref for EmrserverlessApplicationSchedulerConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EmrserverlessApplicationSchedulerConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrserverlessApplicationSchedulerConfigurationElRef {
         EmrserverlessApplicationSchedulerConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2051,24 +2327,33 @@ impl EmrserverlessApplicationSchedulerConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `max_concurrent_runs` after provisioning.\n"]
     pub fn max_concurrent_runs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrent_runs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrent_runs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queue_timeout_minutes` after provisioning.\n"]
     pub fn queue_timeout_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.queue_timeout_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.queue_timeout_minutes", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrserverlessApplicationDynamic {
-    auto_start_configuration: Option<DynamicBlock<EmrserverlessApplicationAutoStartConfigurationEl>>,
+    auto_start_configuration:
+        Option<DynamicBlock<EmrserverlessApplicationAutoStartConfigurationEl>>,
     auto_stop_configuration: Option<DynamicBlock<EmrserverlessApplicationAutoStopConfigurationEl>>,
     image_configuration: Option<DynamicBlock<EmrserverlessApplicationImageConfigurationEl>>,
     initial_capacity: Option<DynamicBlock<EmrserverlessApplicationInitialCapacityEl>>,
-    interactive_configuration: Option<DynamicBlock<EmrserverlessApplicationInteractiveConfigurationEl>>,
+    interactive_configuration:
+        Option<DynamicBlock<EmrserverlessApplicationInteractiveConfigurationEl>>,
     maximum_capacity: Option<DynamicBlock<EmrserverlessApplicationMaximumCapacityEl>>,
-    monitoring_configuration: Option<DynamicBlock<EmrserverlessApplicationMonitoringConfigurationEl>>,
+    monitoring_configuration:
+        Option<DynamicBlock<EmrserverlessApplicationMonitoringConfigurationEl>>,
     network_configuration: Option<DynamicBlock<EmrserverlessApplicationNetworkConfigurationEl>>,
     runtime_configuration: Option<DynamicBlock<EmrserverlessApplicationRuntimeConfigurationEl>>,
     scheduler_configuration: Option<DynamicBlock<EmrserverlessApplicationSchedulerConfigurationEl>>,

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EcsTaskSetData {
@@ -85,7 +85,8 @@ impl EcsTaskSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -98,7 +99,7 @@ impl EcsTaskSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -109,12 +110,22 @@ impl EcsTaskSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -148,8 +159,7 @@ impl EcsTaskSet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -187,36 +197,42 @@ impl EcsTaskSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity_provider_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.capacity_provider_strategy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `load_balancer`.\n"]
-    pub fn set_load_balancer(self, v: impl Into<BlockAssignable<EcsTaskSetLoadBalancerEl>>) -> Self {
+    pub fn set_load_balancer(
+        self,
+        v: impl Into<BlockAssignable<EcsTaskSetLoadBalancerEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().load_balancer = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.load_balancer = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `network_configuration`.\n"]
-    pub fn set_network_configuration(self, v: impl Into<BlockAssignable<EcsTaskSetNetworkConfigurationEl>>) -> Self {
+    pub fn set_network_configuration(
+        self,
+        v: impl Into<BlockAssignable<EcsTaskSetNetworkConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -226,23 +242,26 @@ impl EcsTaskSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scale = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scale = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `service_registries`.\n"]
-    pub fn set_service_registries(self, v: impl Into<BlockAssignable<EcsTaskSetServiceRegistriesEl>>) -> Self {
+    pub fn set_service_registries(
+        self,
+        v: impl Into<BlockAssignable<EcsTaskSetServiceRegistriesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().service_registries = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.service_registries = Some(d);
-            },
+            }
         }
         self
     }
@@ -254,17 +273,26 @@ impl EcsTaskSet {
 
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
     pub fn external_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.external_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.external_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete` after provisioning.\n"]
     pub fn force_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -274,88 +302,136 @@ impl EcsTaskSet {
 
     #[doc = "Get a reference to the value of field `launch_type` after provisioning.\n"]
     pub fn launch_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]
     pub fn service(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stability_status` after provisioning.\n"]
     pub fn stability_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stability_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stability_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_set_id` after provisioning.\n"]
     pub fn task_set_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_set_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_set_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_until_stable` after provisioning.\n"]
     pub fn wait_until_stable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_until_stable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_until_stable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_until_stable_timeout` after provisioning.\n"]
     pub fn wait_until_stable_timeout(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_until_stable_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_until_stable_timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<EcsTaskSetNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale` after provisioning.\n"]
     pub fn scale(&self) -> ListRef<EcsTaskSetScaleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scale", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scale", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_registries` after provisioning.\n"]
     pub fn service_registries(&self) -> ListRef<EcsTaskSetServiceRegistriesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_registries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_registries", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EcsTaskSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EcsTaskSet { }
+impl Resource for EcsTaskSet {}
 
 impl ToListMappable for EcsTaskSet {
     type O = ListRef<EcsTaskSetRef>;
@@ -433,10 +509,7 @@ pub struct EcsTaskSetRef {
 
 impl Ref for EcsTaskSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -456,17 +529,26 @@ impl EcsTaskSetRef {
 
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
     pub fn external_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.external_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.external_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete` after provisioning.\n"]
     pub fn force_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -476,78 +558,122 @@ impl EcsTaskSetRef {
 
     #[doc = "Get a reference to the value of field `launch_type` after provisioning.\n"]
     pub fn launch_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]
     pub fn service(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stability_status` after provisioning.\n"]
     pub fn stability_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stability_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stability_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_set_id` after provisioning.\n"]
     pub fn task_set_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_set_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_set_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_until_stable` after provisioning.\n"]
     pub fn wait_until_stable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_until_stable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_until_stable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_until_stable_timeout` after provisioning.\n"]
     pub fn wait_until_stable_timeout(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_until_stable_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_until_stable_timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<EcsTaskSetNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale` after provisioning.\n"]
     pub fn scale(&self) -> ListRef<EcsTaskSetScaleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scale", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scale", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_registries` after provisioning.\n"]
     pub fn service_registries(&self) -> ListRef<EcsTaskSetServiceRegistriesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_registries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_registries", self.extract_ref()),
+        )
     }
 }
 
@@ -622,7 +748,10 @@ impl EcsTaskSetCapacityProviderStrategyElRef {
 
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -711,22 +840,34 @@ impl EcsTaskSetLoadBalancerElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_port` after provisioning.\n"]
     pub fn container_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_name` after provisioning.\n"]
     pub fn load_balancer_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_group_arn` after provisioning.\n"]
     pub fn target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_arn", self.base),
+        )
     }
 }
 
@@ -801,12 +942,18 @@ impl EcsTaskSetNetworkConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assign_public_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assign_public_ip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -970,12 +1117,18 @@ impl EcsTaskSetServiceRegistriesElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_port` after provisioning.\n"]
     pub fn container_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlueCrawlerData {
@@ -99,7 +99,8 @@ impl GlueCrawler {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -112,7 +113,7 @@ impl GlueCrawler {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -123,12 +124,22 @@ impl GlueCrawler {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -156,8 +167,7 @@ impl GlueCrawler {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -194,14 +204,17 @@ impl GlueCrawler {
     }
 
     #[doc = "Set the field `catalog_target`.\n"]
-    pub fn set_catalog_target(self, v: impl Into<BlockAssignable<GlueCrawlerCatalogTargetEl>>) -> Self {
+    pub fn set_catalog_target(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerCatalogTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().catalog_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.catalog_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -211,23 +224,26 @@ impl GlueCrawler {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().delta_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.delta_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dynamodb_target`.\n"]
-    pub fn set_dynamodb_target(self, v: impl Into<BlockAssignable<GlueCrawlerDynamodbTargetEl>>) -> Self {
+    pub fn set_dynamodb_target(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerDynamodbTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dynamodb_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dynamodb_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -237,23 +253,26 @@ impl GlueCrawler {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().hudi_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.hudi_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `iceberg_target`.\n"]
-    pub fn set_iceberg_target(self, v: impl Into<BlockAssignable<GlueCrawlerIcebergTargetEl>>) -> Self {
+    pub fn set_iceberg_target(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerIcebergTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().iceberg_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.iceberg_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -263,10 +282,10 @@ impl GlueCrawler {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().jdbc_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.jdbc_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -279,49 +298,62 @@ impl GlueCrawler {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lake_formation_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.lake_formation_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .lake_formation_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `lineage_configuration`.\n"]
-    pub fn set_lineage_configuration(self, v: impl Into<BlockAssignable<GlueCrawlerLineageConfigurationEl>>) -> Self {
+    pub fn set_lineage_configuration(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerLineageConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lineage_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lineage_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `mongodb_target`.\n"]
-    pub fn set_mongodb_target(self, v: impl Into<BlockAssignable<GlueCrawlerMongodbTargetEl>>) -> Self {
+    pub fn set_mongodb_target(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerMongodbTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().mongodb_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.mongodb_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `recrawl_policy`.\n"]
-    pub fn set_recrawl_policy(self, v: impl Into<BlockAssignable<GlueCrawlerRecrawlPolicyEl>>) -> Self {
+    pub fn set_recrawl_policy(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerRecrawlPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().recrawl_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.recrawl_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -331,23 +363,26 @@ impl GlueCrawler {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().s3_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.s3_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `schema_change_policy`.\n"]
-    pub fn set_schema_change_policy(self, v: impl Into<BlockAssignable<GlueCrawlerSchemaChangePolicyEl>>) -> Self {
+    pub fn set_schema_change_policy(
+        self,
+        v: impl Into<BlockAssignable<GlueCrawlerSchemaChangePolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schema_change_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schema_change_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -359,22 +394,34 @@ impl GlueCrawler {
 
     #[doc = "Get a reference to the value of field `classifiers` after provisioning.\n"]
     pub fn classifiers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.classifiers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.classifiers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -384,113 +431,178 @@ impl GlueCrawler {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_prefix` after provisioning.\n"]
     pub fn table_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_target` after provisioning.\n"]
     pub fn catalog_target(&self) -> ListRef<GlueCrawlerCatalogTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.catalog_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.catalog_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delta_target` after provisioning.\n"]
     pub fn delta_target(&self) -> ListRef<GlueCrawlerDeltaTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delta_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delta_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dynamodb_target` after provisioning.\n"]
     pub fn dynamodb_target(&self) -> ListRef<GlueCrawlerDynamodbTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dynamodb_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dynamodb_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hudi_target` after provisioning.\n"]
     pub fn hudi_target(&self) -> ListRef<GlueCrawlerHudiTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hudi_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hudi_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iceberg_target` after provisioning.\n"]
     pub fn iceberg_target(&self) -> ListRef<GlueCrawlerIcebergTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iceberg_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iceberg_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jdbc_target` after provisioning.\n"]
     pub fn jdbc_target(&self) -> ListRef<GlueCrawlerJdbcTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jdbc_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jdbc_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lake_formation_configuration` after provisioning.\n"]
-    pub fn lake_formation_configuration(&self) -> ListRef<GlueCrawlerLakeFormationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lake_formation_configuration", self.extract_ref()))
+    pub fn lake_formation_configuration(
+        &self,
+    ) -> ListRef<GlueCrawlerLakeFormationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lake_formation_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lineage_configuration` after provisioning.\n"]
     pub fn lineage_configuration(&self) -> ListRef<GlueCrawlerLineageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lineage_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lineage_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mongodb_target` after provisioning.\n"]
     pub fn mongodb_target(&self) -> ListRef<GlueCrawlerMongodbTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mongodb_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mongodb_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recrawl_policy` after provisioning.\n"]
     pub fn recrawl_policy(&self) -> ListRef<GlueCrawlerRecrawlPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recrawl_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recrawl_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_target` after provisioning.\n"]
     pub fn s3_target(&self) -> ListRef<GlueCrawlerS3TargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_change_policy` after provisioning.\n"]
     pub fn schema_change_policy(&self) -> ListRef<GlueCrawlerSchemaChangePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_change_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_change_policy", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GlueCrawler {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlueCrawler { }
+impl Resource for GlueCrawler {}
 
 impl ToListMappable for GlueCrawler {
     type O = ListRef<GlueCrawlerRef>;
@@ -575,10 +687,7 @@ pub struct GlueCrawlerRef {
 
 impl Ref for GlueCrawlerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -598,22 +707,34 @@ impl GlueCrawlerRef {
 
     #[doc = "Get a reference to the value of field `classifiers` after provisioning.\n"]
     pub fn classifiers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.classifiers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.classifiers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -623,103 +744,164 @@ impl GlueCrawlerRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_prefix` after provisioning.\n"]
     pub fn table_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_target` after provisioning.\n"]
     pub fn catalog_target(&self) -> ListRef<GlueCrawlerCatalogTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.catalog_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.catalog_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delta_target` after provisioning.\n"]
     pub fn delta_target(&self) -> ListRef<GlueCrawlerDeltaTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delta_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delta_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dynamodb_target` after provisioning.\n"]
     pub fn dynamodb_target(&self) -> ListRef<GlueCrawlerDynamodbTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dynamodb_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dynamodb_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hudi_target` after provisioning.\n"]
     pub fn hudi_target(&self) -> ListRef<GlueCrawlerHudiTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hudi_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hudi_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iceberg_target` after provisioning.\n"]
     pub fn iceberg_target(&self) -> ListRef<GlueCrawlerIcebergTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iceberg_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iceberg_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jdbc_target` after provisioning.\n"]
     pub fn jdbc_target(&self) -> ListRef<GlueCrawlerJdbcTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jdbc_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jdbc_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lake_formation_configuration` after provisioning.\n"]
-    pub fn lake_formation_configuration(&self) -> ListRef<GlueCrawlerLakeFormationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lake_formation_configuration", self.extract_ref()))
+    pub fn lake_formation_configuration(
+        &self,
+    ) -> ListRef<GlueCrawlerLakeFormationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lake_formation_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lineage_configuration` after provisioning.\n"]
     pub fn lineage_configuration(&self) -> ListRef<GlueCrawlerLineageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lineage_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lineage_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mongodb_target` after provisioning.\n"]
     pub fn mongodb_target(&self) -> ListRef<GlueCrawlerMongodbTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mongodb_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mongodb_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recrawl_policy` after provisioning.\n"]
     pub fn recrawl_policy(&self) -> ListRef<GlueCrawlerRecrawlPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recrawl_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recrawl_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_target` after provisioning.\n"]
     pub fn s3_target(&self) -> ListRef<GlueCrawlerS3TargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_change_policy` after provisioning.\n"]
     pub fn schema_change_policy(&self) -> ListRef<GlueCrawlerSchemaChangePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_change_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_change_policy", self.extract_ref()),
+        )
     }
 }
 
@@ -807,22 +989,34 @@ impl GlueCrawlerCatalogTargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dlq_event_queue_arn` after provisioning.\n"]
     pub fn dlq_event_queue_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dlq_event_queue_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dlq_event_queue_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_queue_arn` after provisioning.\n"]
     pub fn event_queue_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_queue_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_queue_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tables` after provisioning.\n"]
@@ -906,12 +1100,18 @@ impl GlueCrawlerDeltaTargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_native_delta_table` after provisioning.\n"]
     pub fn create_native_delta_table(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_native_delta_table", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_native_delta_table", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delta_tables` after provisioning.\n"]
@@ -921,7 +1121,10 @@ impl GlueCrawlerDeltaTargetElRef {
 
     #[doc = "Get a reference to the value of field `write_manifest` after provisioning.\n"]
     pub fn write_manifest(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.write_manifest", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.write_manifest", self.base),
+        )
     }
 }
 
@@ -1085,7 +1288,10 @@ impl GlueCrawlerHudiTargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
@@ -1095,7 +1301,10 @@ impl GlueCrawlerHudiTargetElRef {
 
     #[doc = "Get a reference to the value of field `maximum_traversal_depth` after provisioning.\n"]
     pub fn maximum_traversal_depth(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_traversal_depth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_traversal_depth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `paths` after provisioning.\n"]
@@ -1179,7 +1388,10 @@ impl GlueCrawlerIcebergTargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
@@ -1189,7 +1401,10 @@ impl GlueCrawlerIcebergTargetElRef {
 
     #[doc = "Get a reference to the value of field `maximum_traversal_depth` after provisioning.\n"]
     pub fn maximum_traversal_depth(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_traversal_depth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_traversal_depth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `paths` after provisioning.\n"]
@@ -1210,7 +1425,10 @@ pub struct GlueCrawlerJdbcTargetEl {
 
 impl GlueCrawlerJdbcTargetEl {
     #[doc = "Set the field `enable_additional_metadata`.\n"]
-    pub fn set_enable_additional_metadata(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_enable_additional_metadata(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.enable_additional_metadata = Some(v.into());
         self
     }
@@ -1273,12 +1491,18 @@ impl GlueCrawlerJdbcTargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_additional_metadata` after provisioning.\n"]
     pub fn enable_additional_metadata(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.enable_additional_metadata", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enable_additional_metadata", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
@@ -1363,7 +1587,10 @@ impl GlueCrawlerLakeFormationConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `use_lake_formation_credentials` after provisioning.\n"]
     pub fn use_lake_formation_credentials(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.use_lake_formation_credentials", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.use_lake_formation_credentials", self.base),
+        )
     }
 }
 
@@ -1397,7 +1624,9 @@ pub struct BuildGlueCrawlerLineageConfigurationEl {}
 
 impl BuildGlueCrawlerLineageConfigurationEl {
     pub fn build(self) -> GlueCrawlerLineageConfigurationEl {
-        GlueCrawlerLineageConfigurationEl { crawler_lineage_settings: core::default::Default::default() }
+        GlueCrawlerLineageConfigurationEl {
+            crawler_lineage_settings: core::default::Default::default(),
+        }
     }
 }
 
@@ -1422,7 +1651,10 @@ impl GlueCrawlerLineageConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `crawler_lineage_settings` after provisioning.\n"]
     pub fn crawler_lineage_settings(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.crawler_lineage_settings", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.crawler_lineage_settings", self.base),
+        )
     }
 }
 
@@ -1492,7 +1724,10 @@ impl GlueCrawlerMongodbTargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -1536,7 +1771,9 @@ pub struct BuildGlueCrawlerRecrawlPolicyEl {}
 
 impl BuildGlueCrawlerRecrawlPolicyEl {
     pub fn build(self) -> GlueCrawlerRecrawlPolicyEl {
-        GlueCrawlerRecrawlPolicyEl { recrawl_behavior: core::default::Default::default() }
+        GlueCrawlerRecrawlPolicyEl {
+            recrawl_behavior: core::default::Default::default(),
+        }
     }
 }
 
@@ -1561,7 +1798,10 @@ impl GlueCrawlerRecrawlPolicyElRef {
 
     #[doc = "Get a reference to the value of field `recrawl_behavior` after provisioning.\n"]
     pub fn recrawl_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.recrawl_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.recrawl_behavior", self.base),
+        )
     }
 }
 
@@ -1663,17 +1903,26 @@ impl GlueCrawlerS3TargetElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dlq_event_queue_arn` after provisioning.\n"]
     pub fn dlq_event_queue_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dlq_event_queue_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dlq_event_queue_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_queue_arn` after provisioning.\n"]
     pub fn event_queue_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_queue_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_queue_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
@@ -1758,12 +2007,18 @@ impl GlueCrawlerSchemaChangePolicyElRef {
 
     #[doc = "Get a reference to the value of field `delete_behavior` after provisioning.\n"]
     pub fn delete_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_behavior` after provisioning.\n"]
     pub fn update_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_behavior", self.base),
+        )
     }
 }
 

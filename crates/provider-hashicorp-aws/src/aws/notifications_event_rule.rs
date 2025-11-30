@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NotificationsEventRuleData {
@@ -57,7 +57,8 @@ impl NotificationsEventRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl NotificationsEventRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +82,22 @@ impl NotificationsEventRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,37 +114,56 @@ impl NotificationsEventRule {
 
     #[doc = "Get a reference to the value of field `event_pattern` after provisioning.\n"]
     pub fn event_pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_pattern", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_pattern", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_type` after provisioning.\n"]
     pub fn event_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_configuration_arn` after provisioning.\n"]
     pub fn notification_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_configuration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_configuration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for NotificationsEventRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NotificationsEventRule { }
+impl Resource for NotificationsEventRule {}
 
 impl ToListMappable for NotificationsEventRule {
     type O = ListRef<NotificationsEventRuleRef>;
@@ -199,10 +229,7 @@ pub struct NotificationsEventRuleRef {
 
 impl Ref for NotificationsEventRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -222,26 +249,41 @@ impl NotificationsEventRuleRef {
 
     #[doc = "Get a reference to the value of field `event_pattern` after provisioning.\n"]
     pub fn event_pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_pattern", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_pattern", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_type` after provisioning.\n"]
     pub fn event_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_configuration_arn` after provisioning.\n"]
     pub fn notification_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_configuration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_configuration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 }

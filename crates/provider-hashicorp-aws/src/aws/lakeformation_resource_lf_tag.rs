@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LakeformationResourceLfTagData {
@@ -66,7 +66,8 @@ impl LakeformationResourceLfTag {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl LakeformationResourceLfTag {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl LakeformationResourceLfTag {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,48 +116,56 @@ impl LakeformationResourceLfTag {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `database`.\n"]
-    pub fn set_database(self, v: impl Into<BlockAssignable<LakeformationResourceLfTagDatabaseEl>>) -> Self {
+    pub fn set_database(
+        self,
+        v: impl Into<BlockAssignable<LakeformationResourceLfTagDatabaseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().database = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.database = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lf_tag`.\n"]
-    pub fn set_lf_tag(self, v: impl Into<BlockAssignable<LakeformationResourceLfTagLfTagEl>>) -> Self {
+    pub fn set_lf_tag(
+        self,
+        v: impl Into<BlockAssignable<LakeformationResourceLfTagLfTagEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lf_tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lf_tag = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `table`.\n"]
-    pub fn set_table(self, v: impl Into<BlockAssignable<LakeformationResourceLfTagTableEl>>) -> Self {
+    pub fn set_table(
+        self,
+        v: impl Into<BlockAssignable<LakeformationResourceLfTagTableEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().table = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.table = Some(d);
-            },
+            }
         }
         self
     }
@@ -159,10 +178,10 @@ impl LakeformationResourceLfTag {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().table_with_columns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.table_with_columns = Some(d);
-            },
+            }
         }
         self
     }
@@ -175,7 +194,10 @@ impl LakeformationResourceLfTag {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -183,30 +205,44 @@ impl LakeformationResourceLfTag {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<LakeformationResourceLfTagDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lf_tag` after provisioning.\n"]
     pub fn lf_tag(&self) -> ListRef<LakeformationResourceLfTagLfTagElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lf_tag", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lf_tag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table` after provisioning.\n"]
     pub fn table(&self) -> ListRef<LakeformationResourceLfTagTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_with_columns` after provisioning.\n"]
     pub fn table_with_columns(&self) -> ListRef<LakeformationResourceLfTagTableWithColumnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table_with_columns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table_with_columns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -220,11 +256,15 @@ impl LakeformationResourceLfTag {
 
 impl Referable for LakeformationResourceLfTag {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LakeformationResourceLfTag { }
+impl Resource for LakeformationResourceLfTag {}
 
 impl ToListMappable for LakeformationResourceLfTag {
     type O = ListRef<LakeformationResourceLfTagRef>;
@@ -285,10 +325,7 @@ pub struct LakeformationResourceLfTagRef {
 
 impl Ref for LakeformationResourceLfTagRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -303,7 +340,10 @@ impl LakeformationResourceLfTagRef {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -311,30 +351,44 @@ impl LakeformationResourceLfTagRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<LakeformationResourceLfTagDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lf_tag` after provisioning.\n"]
     pub fn lf_tag(&self) -> ListRef<LakeformationResourceLfTagLfTagElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lf_tag", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lf_tag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table` after provisioning.\n"]
     pub fn table(&self) -> ListRef<LakeformationResourceLfTagTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_with_columns` after provisioning.\n"]
     pub fn table_with_columns(&self) -> ListRef<LakeformationResourceLfTagTableWithColumnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table_with_columns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table_with_columns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -582,7 +636,10 @@ impl LakeformationResourceLfTagTableElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -638,7 +695,10 @@ pub struct LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef {
 }
 
 impl Ref for LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef {
-    fn new(shared: StackShared, base: String) -> LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef {
         LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef {
             shared: shared,
             base: base.to_string(),
@@ -653,13 +713,17 @@ impl LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef {
 
     #[doc = "Get a reference to the value of field `excluded_column_names` after provisioning.\n"]
     pub fn excluded_column_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_column_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_column_names", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LakeformationResourceLfTagTableWithColumnsElDynamic {
-    column_wildcard: Option<DynamicBlock<LakeformationResourceLfTagTableWithColumnsElColumnWildcardEl>>,
+    column_wildcard:
+        Option<DynamicBlock<LakeformationResourceLfTagTableWithColumnsElColumnWildcardEl>>,
 }
 
 #[derive(Serialize)]
@@ -696,10 +760,10 @@ impl LakeformationResourceLfTagTableWithColumnsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.column_wildcard = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.column_wildcard = Some(d);
-            },
+            }
         }
         self
     }
@@ -768,7 +832,10 @@ impl LakeformationResourceLfTagTableWithColumnsElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -777,8 +844,13 @@ impl LakeformationResourceLfTagTableWithColumnsElRef {
     }
 
     #[doc = "Get a reference to the value of field `column_wildcard` after provisioning.\n"]
-    pub fn column_wildcard(&self) -> ListRef<LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.column_wildcard", self.base))
+    pub fn column_wildcard(
+        &self,
+    ) -> ListRef<LakeformationResourceLfTagTableWithColumnsElColumnWildcardElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.column_wildcard", self.base),
+        )
     }
 }
 
@@ -791,15 +863,13 @@ pub struct LakeformationResourceLfTagTimeoutsEl {
 }
 
 impl LakeformationResourceLfTagTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
@@ -848,14 +918,12 @@ impl LakeformationResourceLfTagTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }

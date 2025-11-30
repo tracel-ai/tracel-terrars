@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataMemorydbUserData {
@@ -51,8 +51,7 @@ impl DataMemorydbUser {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,7 +65,10 @@ impl DataMemorydbUser {
 
     #[doc = "Get a reference to the value of field `access_string` after provisioning.\n"]
     pub fn access_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -76,7 +78,10 @@ impl DataMemorydbUser {
 
     #[doc = "Get a reference to the value of field `authentication_mode` after provisioning.\n"]
     pub fn authentication_mode(&self) -> ListRef<DataMemorydbUserAuthenticationModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -86,33 +91,48 @@ impl DataMemorydbUser {
 
     #[doc = "Get a reference to the value of field `minimum_engine_version` after provisioning.\n"]
     pub fn minimum_engine_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_engine_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_engine_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataMemorydbUser {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataMemorydbUser { }
+impl Datasource for DataMemorydbUser {}
 
 impl ToListMappable for DataMemorydbUser {
     type O = ListRef<DataMemorydbUserRef>;
@@ -170,10 +190,7 @@ pub struct DataMemorydbUserRef {
 
 impl Ref for DataMemorydbUserRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -188,7 +205,10 @@ impl DataMemorydbUserRef {
 
     #[doc = "Get a reference to the value of field `access_string` after provisioning.\n"]
     pub fn access_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -198,7 +218,10 @@ impl DataMemorydbUserRef {
 
     #[doc = "Get a reference to the value of field `authentication_mode` after provisioning.\n"]
     pub fn authentication_mode(&self) -> ListRef<DataMemorydbUserAuthenticationModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -208,23 +231,34 @@ impl DataMemorydbUserRef {
 
     #[doc = "Get a reference to the value of field `minimum_engine_version` after provisioning.\n"]
     pub fn minimum_engine_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_engine_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_engine_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name", self.extract_ref()),
+        )
     }
 }
 
@@ -294,7 +328,10 @@ impl DataMemorydbUserAuthenticationModeElRef {
 
     #[doc = "Get a reference to the value of field `password_count` after provisioning.\n"]
     pub fn password_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]

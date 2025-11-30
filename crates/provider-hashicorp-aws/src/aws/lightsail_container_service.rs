@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LightsailContainerServiceData {
@@ -71,7 +71,8 @@ impl LightsailContainerService {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl LightsailContainerService {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl LightsailContainerService {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -116,8 +127,7 @@ impl LightsailContainerService {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -143,10 +153,10 @@ impl LightsailContainerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().private_registry_access = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.private_registry_access = Some(d);
-            },
+            }
         }
         self
     }
@@ -159,10 +169,10 @@ impl LightsailContainerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().public_domain_names = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.public_domain_names = Some(d);
-            },
+            }
         }
         self
     }
@@ -180,12 +190,18 @@ impl LightsailContainerService {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -195,63 +211,98 @@ impl LightsailContainerService {
 
     #[doc = "Get a reference to the value of field `is_disabled` after provisioning.\n"]
     pub fn is_disabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_disabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_disabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `power` after provisioning.\n"]
     pub fn power(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.power", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.power", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `power_id` after provisioning.\n"]
     pub fn power_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.power_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.power_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principal_arn` after provisioning.\n"]
     pub fn principal_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_domain_name` after provisioning.\n"]
     pub fn private_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_domain_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale` after provisioning.\n"]
     pub fn scale(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -260,13 +311,21 @@ impl LightsailContainerService {
     }
 
     #[doc = "Get a reference to the value of field `private_registry_access` after provisioning.\n"]
-    pub fn private_registry_access(&self) -> ListRef<LightsailContainerServicePrivateRegistryAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.private_registry_access", self.extract_ref()))
+    pub fn private_registry_access(
+        &self,
+    ) -> ListRef<LightsailContainerServicePrivateRegistryAccessElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_registry_access", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_domain_names` after provisioning.\n"]
     pub fn public_domain_names(&self) -> ListRef<LightsailContainerServicePublicDomainNamesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.public_domain_names", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.public_domain_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -280,11 +339,15 @@ impl LightsailContainerService {
 
 impl Referable for LightsailContainerService {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LightsailContainerService { }
+impl Resource for LightsailContainerService {}
 
 impl ToListMappable for LightsailContainerService {
     type O = ListRef<LightsailContainerServiceRef>;
@@ -355,10 +418,7 @@ pub struct LightsailContainerServiceRef {
 
 impl Ref for LightsailContainerServiceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -378,12 +438,18 @@ impl LightsailContainerServiceRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -393,63 +459,98 @@ impl LightsailContainerServiceRef {
 
     #[doc = "Get a reference to the value of field `is_disabled` after provisioning.\n"]
     pub fn is_disabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_disabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_disabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `power` after provisioning.\n"]
     pub fn power(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.power", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.power", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `power_id` after provisioning.\n"]
     pub fn power_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.power_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.power_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principal_arn` after provisioning.\n"]
     pub fn principal_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_domain_name` after provisioning.\n"]
     pub fn private_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_domain_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale` after provisioning.\n"]
     pub fn scale(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -458,13 +559,21 @@ impl LightsailContainerServiceRef {
     }
 
     #[doc = "Get a reference to the value of field `private_registry_access` after provisioning.\n"]
-    pub fn private_registry_access(&self) -> ListRef<LightsailContainerServicePrivateRegistryAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.private_registry_access", self.extract_ref()))
+    pub fn private_registry_access(
+        &self,
+    ) -> ListRef<LightsailContainerServicePrivateRegistryAccessElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_registry_access", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_domain_names` after provisioning.\n"]
     pub fn public_domain_names(&self) -> ListRef<LightsailContainerServicePublicDomainNamesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.public_domain_names", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.public_domain_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -541,21 +650,24 @@ impl LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleElRef {
 
     #[doc = "Get a reference to the value of field `principal_arn` after provisioning.\n"]
     pub fn principal_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LightsailContainerServicePrivateRegistryAccessElDynamic {
-    ecr_image_puller_role: Option<
-        DynamicBlock<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleEl>,
-    >,
+    ecr_image_puller_role:
+        Option<DynamicBlock<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleEl>>,
 }
 
 #[derive(Serialize)]
 pub struct LightsailContainerServicePrivateRegistryAccessEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    ecr_image_puller_role: Option<Vec<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleEl>>,
+    ecr_image_puller_role:
+        Option<Vec<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleEl>>,
     dynamic: LightsailContainerServicePrivateRegistryAccessElDynamic,
 }
 
@@ -563,15 +675,17 @@ impl LightsailContainerServicePrivateRegistryAccessEl {
     #[doc = "Set the field `ecr_image_puller_role`.\n"]
     pub fn set_ecr_image_puller_role(
         mut self,
-        v: impl Into<BlockAssignable<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleEl>>,
+        v: impl Into<
+            BlockAssignable<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_puller_role = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_puller_role = Some(d);
-            },
+            }
         }
         self
     }
@@ -606,7 +720,10 @@ pub struct LightsailContainerServicePrivateRegistryAccessElRef {
 }
 
 impl Ref for LightsailContainerServicePrivateRegistryAccessElRef {
-    fn new(shared: StackShared, base: String) -> LightsailContainerServicePrivateRegistryAccessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LightsailContainerServicePrivateRegistryAccessElRef {
         LightsailContainerServicePrivateRegistryAccessElRef {
             shared: shared,
             base: base.to_string(),
@@ -623,7 +740,10 @@ impl LightsailContainerServicePrivateRegistryAccessElRef {
     pub fn ecr_image_puller_role(
         &self,
     ) -> ListRef<LightsailContainerServicePrivateRegistryAccessElEcrImagePullerRoleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecr_image_puller_role", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecr_image_puller_role", self.base),
+        )
     }
 }
 
@@ -633,7 +753,7 @@ pub struct LightsailContainerServicePublicDomainNamesElCertificateEl {
     domain_names: ListField<PrimField<String>>,
 }
 
-impl LightsailContainerServicePublicDomainNamesElCertificateEl { }
+impl LightsailContainerServicePublicDomainNamesElCertificateEl {}
 
 impl ToListMappable for LightsailContainerServicePublicDomainNamesElCertificateEl {
     type O = BlockAssignable<LightsailContainerServicePublicDomainNamesElCertificateEl>;
@@ -669,7 +789,10 @@ pub struct LightsailContainerServicePublicDomainNamesElCertificateElRef {
 }
 
 impl Ref for LightsailContainerServicePublicDomainNamesElCertificateElRef {
-    fn new(shared: StackShared, base: String) -> LightsailContainerServicePublicDomainNamesElCertificateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LightsailContainerServicePublicDomainNamesElCertificateElRef {
         LightsailContainerServicePublicDomainNamesElCertificateElRef {
             shared: shared,
             base: base.to_string(),
@@ -684,7 +807,10 @@ impl LightsailContainerServicePublicDomainNamesElCertificateElRef {
 
     #[doc = "Get a reference to the value of field `certificate_name` after provisioning.\n"]
     pub fn certificate_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_names` after provisioning.\n"]
@@ -714,10 +840,10 @@ impl LightsailContainerServicePublicDomainNamesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.certificate = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.certificate = Some(d);
-            },
+            }
         }
         self
     }

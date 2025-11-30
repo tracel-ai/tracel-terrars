@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IotTopicRuleData {
@@ -106,7 +106,8 @@ impl IotTopicRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -119,7 +120,7 @@ impl IotTopicRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -130,12 +131,22 @@ impl IotTopicRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -151,8 +162,7 @@ impl IotTopicRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -171,40 +181,49 @@ impl IotTopicRule {
     }
 
     #[doc = "Set the field `cloudwatch_alarm`.\n"]
-    pub fn set_cloudwatch_alarm(self, v: impl Into<BlockAssignable<IotTopicRuleCloudwatchAlarmEl>>) -> Self {
+    pub fn set_cloudwatch_alarm(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleCloudwatchAlarmEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cloudwatch_alarm = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cloudwatch_alarm = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `cloudwatch_logs`.\n"]
-    pub fn set_cloudwatch_logs(self, v: impl Into<BlockAssignable<IotTopicRuleCloudwatchLogsEl>>) -> Self {
+    pub fn set_cloudwatch_logs(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleCloudwatchLogsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `cloudwatch_metric`.\n"]
-    pub fn set_cloudwatch_metric(self, v: impl Into<BlockAssignable<IotTopicRuleCloudwatchMetricEl>>) -> Self {
+    pub fn set_cloudwatch_metric(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleCloudwatchMetricEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cloudwatch_metric = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cloudwatch_metric = Some(d);
-            },
+            }
         }
         self
     }
@@ -214,10 +233,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dynamodb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dynamodb = Some(d);
-            },
+            }
         }
         self
     }
@@ -227,36 +246,42 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dynamodbv2 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dynamodbv2 = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `elasticsearch`.\n"]
-    pub fn set_elasticsearch(self, v: impl Into<BlockAssignable<IotTopicRuleElasticsearchEl>>) -> Self {
+    pub fn set_elasticsearch(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleElasticsearchEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().elasticsearch = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.elasticsearch = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `error_action`.\n"]
-    pub fn set_error_action(self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionEl>>) -> Self {
+    pub fn set_error_action(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().error_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.error_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -266,10 +291,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -279,23 +304,26 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().http = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.http = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `iot_analytics`.\n"]
-    pub fn set_iot_analytics(self, v: impl Into<BlockAssignable<IotTopicRuleIotAnalyticsEl>>) -> Self {
+    pub fn set_iot_analytics(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleIotAnalyticsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().iot_analytics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.iot_analytics = Some(d);
-            },
+            }
         }
         self
     }
@@ -305,10 +333,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().iot_events = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.iot_events = Some(d);
-            },
+            }
         }
         self
     }
@@ -318,10 +346,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kafka = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kafka = Some(d);
-            },
+            }
         }
         self
     }
@@ -331,10 +359,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kinesis = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kinesis = Some(d);
-            },
+            }
         }
         self
     }
@@ -344,10 +372,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lambda = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lambda = Some(d);
-            },
+            }
         }
         self
     }
@@ -357,10 +385,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().republish = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.republish = Some(d);
-            },
+            }
         }
         self
     }
@@ -370,10 +398,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -383,10 +411,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sns = Some(d);
-            },
+            }
         }
         self
     }
@@ -396,23 +424,26 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sqs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sqs = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `step_functions`.\n"]
-    pub fn set_step_functions(self, v: impl Into<BlockAssignable<IotTopicRuleStepFunctionsEl>>) -> Self {
+    pub fn set_step_functions(
+        self,
+        v: impl Into<BlockAssignable<IotTopicRuleStepFunctionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().step_functions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.step_functions = Some(d);
-            },
+            }
         }
         self
     }
@@ -422,10 +453,10 @@ impl IotTopicRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().timestream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.timestream = Some(d);
-            },
+            }
         }
         self
     }
@@ -437,12 +468,18 @@ impl IotTopicRule {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -452,13 +489,18 @@ impl IotTopicRule {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
@@ -468,32 +510,48 @@ impl IotTopicRule {
 
     #[doc = "Get a reference to the value of field `sql_version` after provisioning.\n"]
     pub fn sql_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sql_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sql_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_action` after provisioning.\n"]
     pub fn error_action(&self) -> ListRef<IotTopicRuleErrorActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.error_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.error_action", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IotTopicRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IotTopicRule { }
+impl Resource for IotTopicRule {}
 
 impl ToListMappable for IotTopicRule {
     type O = ListRef<IotTopicRuleRef>;
@@ -584,10 +642,7 @@ pub struct IotTopicRuleRef {
 
 impl Ref for IotTopicRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -607,12 +662,18 @@ impl IotTopicRuleRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -622,13 +683,18 @@ impl IotTopicRuleRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
@@ -638,22 +704,34 @@ impl IotTopicRuleRef {
 
     #[doc = "Get a reference to the value of field `sql_version` after provisioning.\n"]
     pub fn sql_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sql_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sql_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_action` after provisioning.\n"]
     pub fn error_action(&self) -> ListRef<IotTopicRuleErrorActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.error_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.error_action", self.extract_ref()),
+        )
     }
 }
 
@@ -665,7 +743,7 @@ pub struct IotTopicRuleCloudwatchAlarmEl {
     state_value: PrimField<String>,
 }
 
-impl IotTopicRuleCloudwatchAlarmEl { }
+impl IotTopicRuleCloudwatchAlarmEl {}
 
 impl ToListMappable for IotTopicRuleCloudwatchAlarmEl {
     type O = BlockAssignable<IotTopicRuleCloudwatchAlarmEl>;
@@ -812,7 +890,10 @@ impl IotTopicRuleCloudwatchLogsElRef {
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -904,12 +985,18 @@ impl IotTopicRuleCloudwatchMetricElRef {
 
     #[doc = "Get a reference to the value of field `metric_namespace` after provisioning.\n"]
     pub fn metric_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_namespace", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_timestamp` after provisioning.\n"]
     pub fn metric_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_timestamp", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_timestamp", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_unit` after provisioning.\n"]
@@ -1047,17 +1134,26 @@ impl IotTopicRuleDynamodbElRef {
 
     #[doc = "Get a reference to the value of field `hash_key_field` after provisioning.\n"]
     pub fn hash_key_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hash_key_type` after provisioning.\n"]
     pub fn hash_key_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hash_key_value` after provisioning.\n"]
     pub fn hash_key_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operation` after provisioning.\n"]
@@ -1067,22 +1163,34 @@ impl IotTopicRuleDynamodbElRef {
 
     #[doc = "Get a reference to the value of field `payload_field` after provisioning.\n"]
     pub fn payload_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.payload_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.payload_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key_field` after provisioning.\n"]
     pub fn range_key_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key_type` after provisioning.\n"]
     pub fn range_key_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key_value` after provisioning.\n"]
     pub fn range_key_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1101,7 +1209,7 @@ pub struct IotTopicRuleDynamodbv2ElPutItemEl {
     table_name: PrimField<String>,
 }
 
-impl IotTopicRuleDynamodbv2ElPutItemEl { }
+impl IotTopicRuleDynamodbv2ElPutItemEl {}
 
 impl ToListMappable for IotTopicRuleDynamodbv2ElPutItemEl {
     type O = BlockAssignable<IotTopicRuleDynamodbv2ElPutItemEl>;
@@ -1122,7 +1230,9 @@ pub struct BuildIotTopicRuleDynamodbv2ElPutItemEl {
 
 impl BuildIotTopicRuleDynamodbv2ElPutItemEl {
     pub fn build(self) -> IotTopicRuleDynamodbv2ElPutItemEl {
-        IotTopicRuleDynamodbv2ElPutItemEl { table_name: self.table_name }
+        IotTopicRuleDynamodbv2ElPutItemEl {
+            table_name: self.table_name,
+        }
     }
 }
 
@@ -1166,14 +1276,17 @@ pub struct IotTopicRuleDynamodbv2El {
 
 impl IotTopicRuleDynamodbv2El {
     #[doc = "Set the field `put_item`.\n"]
-    pub fn set_put_item(mut self, v: impl Into<BlockAssignable<IotTopicRuleDynamodbv2ElPutItemEl>>) -> Self {
+    pub fn set_put_item(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleDynamodbv2ElPutItemEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.put_item = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.put_item = Some(d);
-            },
+            }
         }
         self
     }
@@ -1246,7 +1359,7 @@ pub struct IotTopicRuleElasticsearchEl {
     type_: PrimField<String>,
 }
 
-impl IotTopicRuleElasticsearchEl { }
+impl IotTopicRuleElasticsearchEl {}
 
 impl ToListMappable for IotTopicRuleElasticsearchEl {
     type O = BlockAssignable<IotTopicRuleElasticsearchEl>;
@@ -1338,7 +1451,7 @@ pub struct IotTopicRuleErrorActionElCloudwatchAlarmEl {
     state_value: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElCloudwatchAlarmEl { }
+impl IotTopicRuleErrorActionElCloudwatchAlarmEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElCloudwatchAlarmEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElCloudwatchAlarmEl>;
@@ -1485,7 +1598,10 @@ impl IotTopicRuleErrorActionElCloudwatchLogsElRef {
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1577,12 +1693,18 @@ impl IotTopicRuleErrorActionElCloudwatchMetricElRef {
 
     #[doc = "Get a reference to the value of field `metric_namespace` after provisioning.\n"]
     pub fn metric_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_namespace", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_timestamp` after provisioning.\n"]
     pub fn metric_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_timestamp", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_timestamp", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_unit` after provisioning.\n"]
@@ -1720,17 +1842,26 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
 
     #[doc = "Get a reference to the value of field `hash_key_field` after provisioning.\n"]
     pub fn hash_key_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hash_key_type` after provisioning.\n"]
     pub fn hash_key_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hash_key_value` after provisioning.\n"]
     pub fn hash_key_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operation` after provisioning.\n"]
@@ -1740,22 +1871,34 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
 
     #[doc = "Get a reference to the value of field `payload_field` after provisioning.\n"]
     pub fn payload_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.payload_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.payload_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key_field` after provisioning.\n"]
     pub fn range_key_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key_type` after provisioning.\n"]
     pub fn range_key_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key_value` after provisioning.\n"]
     pub fn range_key_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1774,7 +1917,7 @@ pub struct IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     table_name: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElDynamodbv2ElPutItemEl { }
+impl IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElDynamodbv2ElPutItemEl>;
@@ -1795,7 +1938,9 @@ pub struct BuildIotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
 
 impl BuildIotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     pub fn build(self) -> IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
-        IotTopicRuleErrorActionElDynamodbv2ElPutItemEl { table_name: self.table_name }
+        IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
+            table_name: self.table_name,
+        }
     }
 }
 
@@ -1846,10 +1991,10 @@ impl IotTopicRuleErrorActionElDynamodbv2El {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.put_item = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.put_item = Some(d);
-            },
+            }
         }
         self
     }
@@ -1922,7 +2067,7 @@ pub struct IotTopicRuleErrorActionElElasticsearchEl {
     type_: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElElasticsearchEl { }
+impl IotTopicRuleErrorActionElElasticsearchEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElElasticsearchEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElElasticsearchEl>;
@@ -2086,7 +2231,10 @@ impl IotTopicRuleErrorActionElFirehoseElRef {
 
     #[doc = "Get a reference to the value of field `delivery_stream_name` after provisioning.\n"]
     pub fn delivery_stream_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -2106,7 +2254,7 @@ pub struct IotTopicRuleErrorActionElHttpElHttpHeaderEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElHttpElHttpHeaderEl { }
+impl IotTopicRuleErrorActionElHttpElHttpHeaderEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElHttpElHttpHeaderEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElHttpElHttpHeaderEl>;
@@ -2196,10 +2344,10 @@ impl IotTopicRuleErrorActionElHttpEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_header = Some(d);
-            },
+            }
         }
         self
     }
@@ -2254,7 +2402,10 @@ impl IotTopicRuleErrorActionElHttpElRef {
 
     #[doc = "Get a reference to the value of field `confirmation_url` after provisioning.\n"]
     pub fn confirmation_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.confirmation_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.confirmation_url", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -2448,7 +2599,7 @@ pub struct IotTopicRuleErrorActionElKafkaElHeaderEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElKafkaElHeaderEl { }
+impl IotTopicRuleErrorActionElKafkaElHeaderEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElKafkaElHeaderEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElKafkaElHeaderEl>;
@@ -2541,14 +2692,17 @@ impl IotTopicRuleErrorActionElKafkaEl {
     }
 
     #[doc = "Set the field `header`.\n"]
-    pub fn set_header(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElKafkaElHeaderEl>>) -> Self {
+    pub fn set_header(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElKafkaElHeaderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
@@ -2610,12 +2764,18 @@ impl IotTopicRuleErrorActionElKafkaElRef {
 
     #[doc = "Get a reference to the value of field `client_properties` after provisioning.\n"]
     pub fn client_properties(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.client_properties", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.client_properties", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
@@ -2705,7 +2865,10 @@ impl IotTopicRuleErrorActionElKinesisElRef {
 
     #[doc = "Get a reference to the value of field `partition_key` after provisioning.\n"]
     pub fn partition_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -2724,7 +2887,7 @@ pub struct IotTopicRuleErrorActionElLambdaEl {
     function_arn: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElLambdaEl { }
+impl IotTopicRuleErrorActionElLambdaEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElLambdaEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElLambdaEl>;
@@ -2745,7 +2908,9 @@ pub struct BuildIotTopicRuleErrorActionElLambdaEl {
 
 impl BuildIotTopicRuleErrorActionElLambdaEl {
     pub fn build(self) -> IotTopicRuleErrorActionElLambdaEl {
-        IotTopicRuleErrorActionElLambdaEl { function_arn: self.function_arn }
+        IotTopicRuleErrorActionElLambdaEl {
+            function_arn: self.function_arn,
+        }
     }
 }
 
@@ -3009,7 +3174,10 @@ impl IotTopicRuleErrorActionElSnsElRef {
 
     #[doc = "Get a reference to the value of field `message_format` after provisioning.\n"]
     pub fn message_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -3030,7 +3198,7 @@ pub struct IotTopicRuleErrorActionElSqsEl {
     use_base64: PrimField<bool>,
 }
 
-impl IotTopicRuleErrorActionElSqsEl { }
+impl IotTopicRuleErrorActionElSqsEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElSqsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElSqsEl>;
@@ -3164,7 +3332,10 @@ impl IotTopicRuleErrorActionElStepFunctionsElRef {
 
     #[doc = "Get a reference to the value of field `execution_name_prefix` after provisioning.\n"]
     pub fn execution_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_name_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_name_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -3174,7 +3345,10 @@ impl IotTopicRuleErrorActionElStepFunctionsElRef {
 
     #[doc = "Get a reference to the value of field `state_machine_name` after provisioning.\n"]
     pub fn state_machine_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_machine_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_machine_name", self.base),
+        )
     }
 }
 
@@ -3184,7 +3358,7 @@ pub struct IotTopicRuleErrorActionElTimestreamElDimensionEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElTimestreamElDimensionEl { }
+impl IotTopicRuleErrorActionElTimestreamElDimensionEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElTimestreamElDimensionEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElTimestreamElDimensionEl>;
@@ -3220,7 +3394,10 @@ pub struct IotTopicRuleErrorActionElTimestreamElDimensionElRef {
 }
 
 impl Ref for IotTopicRuleErrorActionElTimestreamElDimensionElRef {
-    fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElTimestreamElDimensionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> IotTopicRuleErrorActionElTimestreamElDimensionElRef {
         IotTopicRuleErrorActionElTimestreamElDimensionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3250,7 +3427,7 @@ pub struct IotTopicRuleErrorActionElTimestreamElTimestampEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleErrorActionElTimestreamElTimestampEl { }
+impl IotTopicRuleErrorActionElTimestreamElTimestampEl {}
 
 impl ToListMappable for IotTopicRuleErrorActionElTimestreamElTimestampEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElTimestreamElTimestampEl>;
@@ -3286,7 +3463,10 @@ pub struct IotTopicRuleErrorActionElTimestreamElTimestampElRef {
 }
 
 impl Ref for IotTopicRuleErrorActionElTimestreamElTimestampElRef {
-    fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElTimestreamElTimestampElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> IotTopicRuleErrorActionElTimestreamElTimestampElRef {
         IotTopicRuleErrorActionElTimestreamElTimestampElRef {
             shared: shared,
             base: base.to_string(),
@@ -3337,10 +3517,10 @@ impl IotTopicRuleErrorActionElTimestreamEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -3353,10 +3533,10 @@ impl IotTopicRuleErrorActionElTimestreamEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.timestamp = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.timestamp = Some(d);
-            },
+            }
         }
         self
     }
@@ -3417,7 +3597,10 @@ impl IotTopicRuleErrorActionElTimestreamElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -3511,10 +3694,10 @@ impl IotTopicRuleErrorActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_alarm = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_alarm = Some(d);
-            },
+            }
         }
         self
     }
@@ -3527,10 +3710,10 @@ impl IotTopicRuleErrorActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -3543,153 +3726,186 @@ impl IotTopicRuleErrorActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_metric = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_metric = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dynamodb`.\n"]
-    pub fn set_dynamodb(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElDynamodbEl>>) -> Self {
+    pub fn set_dynamodb(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElDynamodbEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dynamodb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dynamodb = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dynamodbv2`.\n"]
-    pub fn set_dynamodbv2(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElDynamodbv2El>>) -> Self {
+    pub fn set_dynamodbv2(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElDynamodbv2El>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dynamodbv2 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dynamodbv2 = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `elasticsearch`.\n"]
-    pub fn set_elasticsearch(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElElasticsearchEl>>) -> Self {
+    pub fn set_elasticsearch(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElElasticsearchEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.elasticsearch = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.elasticsearch = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `firehose`.\n"]
-    pub fn set_firehose(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElFirehoseEl>>) -> Self {
+    pub fn set_firehose(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElFirehoseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `http`.\n"]
-    pub fn set_http(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElHttpEl>>) -> Self {
+    pub fn set_http(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElHttpEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `iot_analytics`.\n"]
-    pub fn set_iot_analytics(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElIotAnalyticsEl>>) -> Self {
+    pub fn set_iot_analytics(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElIotAnalyticsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.iot_analytics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.iot_analytics = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `iot_events`.\n"]
-    pub fn set_iot_events(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElIotEventsEl>>) -> Self {
+    pub fn set_iot_events(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElIotEventsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.iot_events = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.iot_events = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `kafka`.\n"]
-    pub fn set_kafka(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElKafkaEl>>) -> Self {
+    pub fn set_kafka(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElKafkaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kafka = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kafka = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `kinesis`.\n"]
-    pub fn set_kinesis(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElKinesisEl>>) -> Self {
+    pub fn set_kinesis(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElKinesisEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lambda`.\n"]
-    pub fn set_lambda(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElLambdaEl>>) -> Self {
+    pub fn set_lambda(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElLambdaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `republish`.\n"]
-    pub fn set_republish(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElRepublishEl>>) -> Self {
+    pub fn set_republish(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElRepublishEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.republish = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.republish = Some(d);
-            },
+            }
         }
         self
     }
@@ -3699,36 +3915,42 @@ impl IotTopicRuleErrorActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sns`.\n"]
-    pub fn set_sns(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElSnsEl>>) -> Self {
+    pub fn set_sns(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElSnsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sns = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sqs`.\n"]
-    pub fn set_sqs(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElSqsEl>>) -> Self {
+    pub fn set_sqs(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElSqsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sqs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sqs = Some(d);
-            },
+            }
         }
         self
     }
@@ -3741,23 +3963,26 @@ impl IotTopicRuleErrorActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.step_functions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.step_functions = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timestream`.\n"]
-    pub fn set_timestream(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElTimestreamEl>>) -> Self {
+    pub fn set_timestream(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleErrorActionElTimestreamEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.timestream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.timestream = Some(d);
-            },
+            }
         }
         self
     }
@@ -3825,17 +4050,26 @@ impl IotTopicRuleErrorActionElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_alarm` after provisioning.\n"]
     pub fn cloudwatch_alarm(&self) -> ListRef<IotTopicRuleErrorActionElCloudwatchAlarmElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_alarm", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_alarm", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
     pub fn cloudwatch_logs(&self) -> ListRef<IotTopicRuleErrorActionElCloudwatchLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_metric` after provisioning.\n"]
     pub fn cloudwatch_metric(&self) -> ListRef<IotTopicRuleErrorActionElCloudwatchMetricElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_metric", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_metric", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dynamodb` after provisioning.\n"]
@@ -3850,7 +4084,10 @@ impl IotTopicRuleErrorActionElRef {
 
     #[doc = "Get a reference to the value of field `elasticsearch` after provisioning.\n"]
     pub fn elasticsearch(&self) -> ListRef<IotTopicRuleErrorActionElElasticsearchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.elasticsearch", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.elasticsearch", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firehose` after provisioning.\n"]
@@ -3865,7 +4102,10 @@ impl IotTopicRuleErrorActionElRef {
 
     #[doc = "Get a reference to the value of field `iot_analytics` after provisioning.\n"]
     pub fn iot_analytics(&self) -> ListRef<IotTopicRuleErrorActionElIotAnalyticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iot_analytics", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iot_analytics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iot_events` after provisioning.\n"]
@@ -3910,7 +4150,10 @@ impl IotTopicRuleErrorActionElRef {
 
     #[doc = "Get a reference to the value of field `step_functions` after provisioning.\n"]
     pub fn step_functions(&self) -> ListRef<IotTopicRuleErrorActionElStepFunctionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.step_functions", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.step_functions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timestream` after provisioning.\n"]
@@ -3999,7 +4242,10 @@ impl IotTopicRuleFirehoseElRef {
 
     #[doc = "Get a reference to the value of field `delivery_stream_name` after provisioning.\n"]
     pub fn delivery_stream_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -4019,7 +4265,7 @@ pub struct IotTopicRuleHttpElHttpHeaderEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleHttpElHttpHeaderEl { }
+impl IotTopicRuleHttpElHttpHeaderEl {}
 
 impl ToListMappable for IotTopicRuleHttpElHttpHeaderEl {
     type O = BlockAssignable<IotTopicRuleHttpElHttpHeaderEl>;
@@ -4102,14 +4348,17 @@ impl IotTopicRuleHttpEl {
     }
 
     #[doc = "Set the field `http_header`.\n"]
-    pub fn set_http_header(mut self, v: impl Into<BlockAssignable<IotTopicRuleHttpElHttpHeaderEl>>) -> Self {
+    pub fn set_http_header(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleHttpElHttpHeaderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_header = Some(d);
-            },
+            }
         }
         self
     }
@@ -4164,7 +4413,10 @@ impl IotTopicRuleHttpElRef {
 
     #[doc = "Get a reference to the value of field `confirmation_url` after provisioning.\n"]
     pub fn confirmation_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.confirmation_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.confirmation_url", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -4358,7 +4610,7 @@ pub struct IotTopicRuleKafkaElHeaderEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleKafkaElHeaderEl { }
+impl IotTopicRuleKafkaElHeaderEl {}
 
 impl ToListMappable for IotTopicRuleKafkaElHeaderEl {
     type O = BlockAssignable<IotTopicRuleKafkaElHeaderEl>;
@@ -4451,14 +4703,17 @@ impl IotTopicRuleKafkaEl {
     }
 
     #[doc = "Set the field `header`.\n"]
-    pub fn set_header(mut self, v: impl Into<BlockAssignable<IotTopicRuleKafkaElHeaderEl>>) -> Self {
+    pub fn set_header(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleKafkaElHeaderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
@@ -4520,12 +4775,18 @@ impl IotTopicRuleKafkaElRef {
 
     #[doc = "Get a reference to the value of field `client_properties` after provisioning.\n"]
     pub fn client_properties(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.client_properties", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.client_properties", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
@@ -4615,7 +4876,10 @@ impl IotTopicRuleKinesisElRef {
 
     #[doc = "Get a reference to the value of field `partition_key` after provisioning.\n"]
     pub fn partition_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -4634,7 +4898,7 @@ pub struct IotTopicRuleLambdaEl {
     function_arn: PrimField<String>,
 }
 
-impl IotTopicRuleLambdaEl { }
+impl IotTopicRuleLambdaEl {}
 
 impl ToListMappable for IotTopicRuleLambdaEl {
     type O = BlockAssignable<IotTopicRuleLambdaEl>;
@@ -4655,7 +4919,9 @@ pub struct BuildIotTopicRuleLambdaEl {
 
 impl BuildIotTopicRuleLambdaEl {
     pub fn build(self) -> IotTopicRuleLambdaEl {
-        IotTopicRuleLambdaEl { function_arn: self.function_arn }
+        IotTopicRuleLambdaEl {
+            function_arn: self.function_arn,
+        }
     }
 }
 
@@ -4919,7 +5185,10 @@ impl IotTopicRuleSnsElRef {
 
     #[doc = "Get a reference to the value of field `message_format` after provisioning.\n"]
     pub fn message_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -4940,7 +5209,7 @@ pub struct IotTopicRuleSqsEl {
     use_base64: PrimField<bool>,
 }
 
-impl IotTopicRuleSqsEl { }
+impl IotTopicRuleSqsEl {}
 
 impl ToListMappable for IotTopicRuleSqsEl {
     type O = BlockAssignable<IotTopicRuleSqsEl>;
@@ -5074,7 +5343,10 @@ impl IotTopicRuleStepFunctionsElRef {
 
     #[doc = "Get a reference to the value of field `execution_name_prefix` after provisioning.\n"]
     pub fn execution_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_name_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_name_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -5084,7 +5356,10 @@ impl IotTopicRuleStepFunctionsElRef {
 
     #[doc = "Get a reference to the value of field `state_machine_name` after provisioning.\n"]
     pub fn state_machine_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_machine_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_machine_name", self.base),
+        )
     }
 }
 
@@ -5094,7 +5369,7 @@ pub struct IotTopicRuleTimestreamElDimensionEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleTimestreamElDimensionEl { }
+impl IotTopicRuleTimestreamElDimensionEl {}
 
 impl ToListMappable for IotTopicRuleTimestreamElDimensionEl {
     type O = BlockAssignable<IotTopicRuleTimestreamElDimensionEl>;
@@ -5160,7 +5435,7 @@ pub struct IotTopicRuleTimestreamElTimestampEl {
     value: PrimField<String>,
 }
 
-impl IotTopicRuleTimestreamElTimestampEl { }
+impl IotTopicRuleTimestreamElTimestampEl {}
 
 impl ToListMappable for IotTopicRuleTimestreamElTimestampEl {
     type O = BlockAssignable<IotTopicRuleTimestreamElTimestampEl>;
@@ -5240,27 +5515,33 @@ pub struct IotTopicRuleTimestreamEl {
 
 impl IotTopicRuleTimestreamEl {
     #[doc = "Set the field `dimension`.\n"]
-    pub fn set_dimension(mut self, v: impl Into<BlockAssignable<IotTopicRuleTimestreamElDimensionEl>>) -> Self {
+    pub fn set_dimension(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleTimestreamElDimensionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timestamp`.\n"]
-    pub fn set_timestamp(mut self, v: impl Into<BlockAssignable<IotTopicRuleTimestreamElTimestampEl>>) -> Self {
+    pub fn set_timestamp(
+        mut self,
+        v: impl Into<BlockAssignable<IotTopicRuleTimestreamElTimestampEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.timestamp = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.timestamp = Some(d);
-            },
+            }
         }
         self
     }
@@ -5321,7 +5602,10 @@ impl IotTopicRuleTimestreamElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]

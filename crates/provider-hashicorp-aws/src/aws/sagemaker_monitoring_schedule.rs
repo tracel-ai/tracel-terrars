@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SagemakerMonitoringScheduleData {
@@ -64,7 +64,8 @@ impl SagemakerMonitoringSchedule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl SagemakerMonitoringSchedule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl SagemakerMonitoringSchedule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -109,8 +120,7 @@ impl SagemakerMonitoringSchedule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -136,10 +146,10 @@ impl SagemakerMonitoringSchedule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().monitoring_schedule_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.monitoring_schedule_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -156,38 +166,58 @@ impl SagemakerMonitoringSchedule {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_schedule_config` after provisioning.\n"]
-    pub fn monitoring_schedule_config(&self) -> ListRef<SagemakerMonitoringScheduleMonitoringScheduleConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring_schedule_config", self.extract_ref()))
+    pub fn monitoring_schedule_config(
+        &self,
+    ) -> ListRef<SagemakerMonitoringScheduleMonitoringScheduleConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring_schedule_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SagemakerMonitoringSchedule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SagemakerMonitoringSchedule { }
+impl Resource for SagemakerMonitoringSchedule {}
 
 impl ToListMappable for SagemakerMonitoringSchedule {
     type O = ListRef<SagemakerMonitoringScheduleRef>;
@@ -247,10 +277,7 @@ pub struct SagemakerMonitoringScheduleRef {
 
 impl Ref for SagemakerMonitoringScheduleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -275,28 +302,44 @@ impl SagemakerMonitoringScheduleRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_schedule_config` after provisioning.\n"]
-    pub fn monitoring_schedule_config(&self) -> ListRef<SagemakerMonitoringScheduleMonitoringScheduleConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring_schedule_config", self.extract_ref()))
+    pub fn monitoring_schedule_config(
+        &self,
+    ) -> ListRef<SagemakerMonitoringScheduleMonitoringScheduleConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring_schedule_config", self.extract_ref()),
+        )
     }
 }
 
@@ -305,7 +348,7 @@ pub struct SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl
     schedule_expression: PrimField<String>,
 }
 
-impl SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl { }
+impl SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl {}
 
 impl ToListMappable for SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl {
     type O = BlockAssignable<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>;
@@ -356,13 +399,17 @@ impl SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigElRef {
 
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerMonitoringScheduleMonitoringScheduleConfigElDynamic {
-    schedule_config: Option<DynamicBlock<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>>,
+    schedule_config:
+        Option<DynamicBlock<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -370,7 +417,8 @@ pub struct SagemakerMonitoringScheduleMonitoringScheduleConfigEl {
     monitoring_job_definition_name: PrimField<String>,
     monitoring_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    schedule_config: Option<Vec<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>>,
+    schedule_config:
+        Option<Vec<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>>,
     dynamic: SagemakerMonitoringScheduleMonitoringScheduleConfigElDynamic,
 }
 
@@ -378,15 +426,17 @@ impl SagemakerMonitoringScheduleMonitoringScheduleConfigEl {
     #[doc = "Set the field `schedule_config`.\n"]
     pub fn set_schedule_config(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schedule_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schedule_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -428,7 +478,10 @@ pub struct SagemakerMonitoringScheduleMonitoringScheduleConfigElRef {
 }
 
 impl Ref for SagemakerMonitoringScheduleMonitoringScheduleConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerMonitoringScheduleMonitoringScheduleConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerMonitoringScheduleMonitoringScheduleConfigElRef {
         SagemakerMonitoringScheduleMonitoringScheduleConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -443,21 +496,33 @@ impl SagemakerMonitoringScheduleMonitoringScheduleConfigElRef {
 
     #[doc = "Get a reference to the value of field `monitoring_job_definition_name` after provisioning.\n"]
     pub fn monitoring_job_definition_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monitoring_job_definition_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monitoring_job_definition_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_type` after provisioning.\n"]
     pub fn monitoring_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monitoring_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monitoring_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_config` after provisioning.\n"]
-    pub fn schedule_config(&self) -> ListRef<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule_config", self.base))
+    pub fn schedule_config(
+        &self,
+    ) -> ListRef<SagemakerMonitoringScheduleMonitoringScheduleConfigElScheduleConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerMonitoringScheduleDynamic {
-    monitoring_schedule_config: Option<DynamicBlock<SagemakerMonitoringScheduleMonitoringScheduleConfigEl>>,
+    monitoring_schedule_config:
+        Option<DynamicBlock<SagemakerMonitoringScheduleMonitoringScheduleConfigEl>>,
 }

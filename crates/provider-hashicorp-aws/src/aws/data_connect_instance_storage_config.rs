@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataConnectInstanceStorageConfigData {
@@ -51,8 +51,7 @@ impl DataConnectInstanceStorageConfig {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -60,7 +59,10 @@ impl DataConnectInstanceStorageConfig {
 
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.association_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.association_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -70,33 +72,48 @@ impl DataConnectInstanceStorageConfig {
 
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_config` after provisioning.\n"]
     pub fn storage_config(&self) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataConnectInstanceStorageConfig {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataConnectInstanceStorageConfig { }
+impl Datasource for DataConnectInstanceStorageConfig {}
 
 impl ToListMappable for DataConnectInstanceStorageConfig {
     type O = ListRef<DataConnectInstanceStorageConfigRef>;
@@ -159,10 +176,7 @@ pub struct DataConnectInstanceStorageConfigRef {
 
 impl Ref for DataConnectInstanceStorageConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -177,7 +191,10 @@ impl DataConnectInstanceStorageConfigRef {
 
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.association_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.association_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -187,23 +204,34 @@ impl DataConnectInstanceStorageConfigRef {
 
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_config` after provisioning.\n"]
     pub fn storage_config(&self) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_config", self.extract_ref()),
+        )
     }
 }
 
@@ -222,7 +250,8 @@ impl DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigEl {
 }
 
 impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigEl {
-    type O = BlockAssignable<DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigEl>;
+    type O =
+        BlockAssignable<DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -336,7 +365,8 @@ impl DataConnectInstanceStorageConfigStorageConfigElKinesisStreamConfigElRef {
 }
 
 #[derive(Serialize)]
-pub struct DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl {
+pub struct DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     encryption_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -357,9 +387,12 @@ impl DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEn
     }
 }
 
-impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl {
-    type O =
-        BlockAssignable<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl>;
+impl ToListMappable
+    for DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl
+{
+    type O = BlockAssignable<
+        DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -370,12 +403,16 @@ impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElKinesisVi
     }
 }
 
-pub struct BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl {}
+pub struct BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl
+{}
 
-impl BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl {
+impl
+    BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl
+{
     pub fn build(
         self,
-    ) -> DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl {
+    ) -> DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl
+    {
         DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigEl {
             encryption_type: core::default::Default::default(),
             key_id: core::default::Default::default(),
@@ -383,7 +420,8 @@ impl BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfi
     }
 }
 
-pub struct DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigElRef {
+pub struct DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -400,14 +438,19 @@ impl Ref for DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamCo
     }
 }
 
-impl DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigElRef {
+impl
+    DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `encryption_type` after provisioning.\n"]
     pub fn encryption_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
@@ -459,7 +502,8 @@ impl DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {
 }
 
 impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {
-    type O = BlockAssignable<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl>;
+    type O =
+        BlockAssignable<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -473,7 +517,9 @@ impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElKinesisVi
 pub struct BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {}
 
 impl BuildDataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {
-    pub fn build(self) -> DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {
+    pub fn build(
+        self,
+    ) -> DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {
         DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl {
             encryption_config: core::default::Default::default(),
             prefix: core::default::Default::default(),
@@ -507,8 +553,11 @@ impl DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElRe
     #[doc = "Get a reference to the value of field `encryption_config` after provisioning.\n"]
     pub fn encryption_config(
         &self,
-    ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_config", self.base))
+    ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElEncryptionConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
@@ -518,7 +567,10 @@ impl DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElRe
 
     #[doc = "Get a reference to the value of field `retention_period_hours` after provisioning.\n"]
     pub fn retention_period_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period_hours", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period_hours", self.base),
+        )
     }
 }
 
@@ -544,8 +596,12 @@ impl DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl
     }
 }
 
-impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl {
-    type O = BlockAssignable<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl>;
+impl ToListMappable
+    for DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl
+{
+    type O = BlockAssignable<
+        DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -559,7 +615,9 @@ impl ToListMappable for DataConnectInstanceStorageConfigStorageConfigElS3ConfigE
 pub struct BuildDataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl {}
 
 impl BuildDataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl {
-    pub fn build(self) -> DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl {
+    pub fn build(
+        self,
+    ) -> DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl {
         DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl {
             encryption_type: core::default::Default::default(),
             key_id: core::default::Default::default(),
@@ -591,7 +649,10 @@ impl DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl
 
     #[doc = "Get a reference to the value of field `encryption_type` after provisioning.\n"]
     pub fn encryption_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
@@ -607,7 +668,9 @@ pub struct DataConnectInstanceStorageConfigStorageConfigElS3ConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_prefix: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    encryption_config: Option<ListField<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl>>,
+    encryption_config: Option<
+        ListField<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl>,
+    >,
 }
 
 impl DataConnectInstanceStorageConfigStorageConfigElS3ConfigEl {
@@ -626,7 +689,9 @@ impl DataConnectInstanceStorageConfigStorageConfigElS3ConfigEl {
     #[doc = "Set the field `encryption_config`.\n"]
     pub fn set_encryption_config(
         mut self,
-        v: impl Into<ListField<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl>>,
+        v: impl Into<
+            ListField<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigEl>,
+        >,
     ) -> Self {
         self.encryption_config = Some(v.into());
         self
@@ -663,7 +728,10 @@ pub struct DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef {
 }
 
 impl Ref for DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef {
         DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -683,23 +751,32 @@ impl DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef {
 
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_config` after provisioning.\n"]
     pub fn encryption_config(
         &self,
-    ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_config", self.base))
+    ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElEncryptionConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataConnectInstanceStorageConfigStorageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    kinesis_firehose_config: Option<ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigEl>>,
+    kinesis_firehose_config:
+        Option<ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    kinesis_stream_config: Option<ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisStreamConfigEl>>,
+    kinesis_stream_config:
+        Option<ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisStreamConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     kinesis_video_stream_config: Option<
         ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl>,
@@ -732,7 +809,9 @@ impl DataConnectInstanceStorageConfigStorageConfigEl {
     #[doc = "Set the field `kinesis_video_stream_config`.\n"]
     pub fn set_kinesis_video_stream_config(
         mut self,
-        v: impl Into<ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl>>,
+        v: impl Into<
+            ListField<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigEl>,
+        >,
     ) -> Self {
         self.kinesis_video_stream_config = Some(v.into());
         self
@@ -786,7 +865,10 @@ pub struct DataConnectInstanceStorageConfigStorageConfigElRef {
 }
 
 impl Ref for DataConnectInstanceStorageConfigStorageConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectInstanceStorageConfigStorageConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectInstanceStorageConfigStorageConfigElRef {
         DataConnectInstanceStorageConfigStorageConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -803,25 +885,36 @@ impl DataConnectInstanceStorageConfigStorageConfigElRef {
     pub fn kinesis_firehose_config(
         &self,
     ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElKinesisFirehoseConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_firehose_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_firehose_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream_config` after provisioning.\n"]
     pub fn kinesis_stream_config(
         &self,
     ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElKinesisStreamConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_video_stream_config` after provisioning.\n"]
     pub fn kinesis_video_stream_config(
         &self,
     ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElKinesisVideoStreamConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_video_stream_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_video_stream_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_config` after provisioning.\n"]
-    pub fn s3_config(&self) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef> {
+    pub fn s3_config(
+        &self,
+    ) -> ListRef<DataConnectInstanceStorageConfigStorageConfigElS3ConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3_config", self.base))
     }
 

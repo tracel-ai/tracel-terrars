@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVpcEndpointAssociationsData {
@@ -41,8 +41,7 @@ impl DataVpcEndpointAssociations {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -50,28 +49,40 @@ impl DataVpcEndpointAssociations {
 
     #[doc = "Get a reference to the value of field `associations` after provisioning.\n"]
     pub fn associations(&self) -> ListRef<DataVpcEndpointAssociationsAssociationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.associations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associations", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataVpcEndpointAssociations {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVpcEndpointAssociations { }
+impl Datasource for DataVpcEndpointAssociations {}
 
 impl ToListMappable for DataVpcEndpointAssociations {
     type O = ListRef<DataVpcEndpointAssociationsRef>;
@@ -127,10 +138,7 @@ pub struct DataVpcEndpointAssociationsRef {
 
 impl Ref for DataVpcEndpointAssociationsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -145,18 +153,26 @@ impl DataVpcEndpointAssociationsRef {
 
     #[doc = "Get a reference to the value of field `associations` after provisioning.\n"]
     pub fn associations(&self) -> ListRef<DataVpcEndpointAssociationsAssociationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.associations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associations", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.extract_ref()),
+        )
     }
 }
 
@@ -211,7 +227,10 @@ pub struct DataVpcEndpointAssociationsAssociationsElDnsEntryElRef {
 }
 
 impl Ref for DataVpcEndpointAssociationsAssociationsElDnsEntryElRef {
-    fn new(shared: StackShared, base: String) -> DataVpcEndpointAssociationsAssociationsElDnsEntryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataVpcEndpointAssociationsAssociationsElDnsEntryElRef {
         DataVpcEndpointAssociationsAssociationsElDnsEntryElRef {
             shared: shared,
             base: base.to_string(),
@@ -231,7 +250,10 @@ impl DataVpcEndpointAssociationsAssociationsElDnsEntryElRef {
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.base),
+        )
     }
 }
 
@@ -286,7 +308,10 @@ pub struct DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef {
 }
 
 impl Ref for DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef {
-    fn new(shared: StackShared, base: String) -> DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef {
         DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef {
             shared: shared,
             base: base.to_string(),
@@ -306,7 +331,10 @@ impl DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef {
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.base),
+        )
     }
 }
 
@@ -321,7 +349,8 @@ pub struct DataVpcEndpointAssociationsAssociationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    private_dns_entry: Option<ListField<DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryEl>>,
+    private_dns_entry:
+        Option<ListField<DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_configuration_group_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -334,7 +363,10 @@ pub struct DataVpcEndpointAssociationsAssociationsEl {
 
 impl DataVpcEndpointAssociationsAssociationsEl {
     #[doc = "Set the field `associated_resource_accessibility`.\n"]
-    pub fn set_associated_resource_accessibility(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_associated_resource_accessibility(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.associated_resource_accessibility = Some(v.into());
         self
     }
@@ -445,12 +477,18 @@ impl DataVpcEndpointAssociationsAssociationsElRef {
 
     #[doc = "Get a reference to the value of field `associated_resource_accessibility` after provisioning.\n"]
     pub fn associated_resource_accessibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.associated_resource_accessibility", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.associated_resource_accessibility", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `associated_resource_arn` after provisioning.\n"]
     pub fn associated_resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.associated_resource_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.associated_resource_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_entry` after provisioning.\n"]
@@ -464,23 +502,37 @@ impl DataVpcEndpointAssociationsAssociationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `private_dns_entry` after provisioning.\n"]
-    pub fn private_dns_entry(&self) -> ListRef<DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.private_dns_entry", self.base))
+    pub fn private_dns_entry(
+        &self,
+    ) -> ListRef<DataVpcEndpointAssociationsAssociationsElPrivateDnsEntryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_dns_entry", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_configuration_group_arn` after provisioning.\n"]
     pub fn resource_configuration_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_configuration_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_configuration_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_network_arn` after provisioning.\n"]
     pub fn service_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_network_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_network_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_network_name` after provisioning.\n"]
     pub fn service_network_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_network_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_network_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]

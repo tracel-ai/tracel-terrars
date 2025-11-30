@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSsoadminApplicationProvidersData {
@@ -40,16 +40,20 @@ impl DataSsoadminApplicationProviders {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `application_providers` after provisioning.\n"]
-    pub fn application_providers(&self) -> ListRef<DataSsoadminApplicationProvidersApplicationProvidersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_providers", self.extract_ref()))
+    pub fn application_providers(
+        &self,
+    ) -> ListRef<DataSsoadminApplicationProvidersApplicationProvidersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -57,20 +61,26 @@ impl DataSsoadminApplicationProviders {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSsoadminApplicationProviders {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSsoadminApplicationProviders { }
+impl Datasource for DataSsoadminApplicationProviders {}
 
 impl ToListMappable for DataSsoadminApplicationProviders {
     type O = ListRef<DataSsoadminApplicationProvidersRef>;
@@ -123,10 +133,7 @@ pub struct DataSsoadminApplicationProvidersRef {
 
 impl Ref for DataSsoadminApplicationProvidersRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -140,8 +147,13 @@ impl DataSsoadminApplicationProvidersRef {
     }
 
     #[doc = "Get a reference to the value of field `application_providers` after provisioning.\n"]
-    pub fn application_providers(&self) -> ListRef<DataSsoadminApplicationProvidersApplicationProvidersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_providers", self.extract_ref()))
+    pub fn application_providers(
+        &self,
+    ) -> ListRef<DataSsoadminApplicationProvidersApplicationProvidersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -149,10 +161,12 @@ impl DataSsoadminApplicationProvidersRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -253,7 +267,8 @@ pub struct DataSsoadminApplicationProvidersApplicationProvidersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     application_provider_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    display_data: Option<ListField<DataSsoadminApplicationProvidersApplicationProvidersElDisplayDataEl>>,
+    display_data:
+        Option<ListField<DataSsoadminApplicationProvidersApplicationProvidersElDisplayDataEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     federation_protocol: Option<PrimField<String>>,
 }
@@ -311,7 +326,10 @@ pub struct DataSsoadminApplicationProvidersApplicationProvidersElRef {
 }
 
 impl Ref for DataSsoadminApplicationProvidersApplicationProvidersElRef {
-    fn new(shared: StackShared, base: String) -> DataSsoadminApplicationProvidersApplicationProvidersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSsoadminApplicationProvidersApplicationProvidersElRef {
         DataSsoadminApplicationProvidersApplicationProvidersElRef {
             shared: shared,
             base: base.to_string(),
@@ -326,16 +344,24 @@ impl DataSsoadminApplicationProvidersApplicationProvidersElRef {
 
     #[doc = "Get a reference to the value of field `application_provider_arn` after provisioning.\n"]
     pub fn application_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_provider_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_provider_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_data` after provisioning.\n"]
-    pub fn display_data(&self) -> ListRef<DataSsoadminApplicationProvidersApplicationProvidersElDisplayDataElRef> {
+    pub fn display_data(
+        &self,
+    ) -> ListRef<DataSsoadminApplicationProvidersApplicationProvidersElDisplayDataElRef> {
         ListRef::new(self.shared().clone(), format!("{}.display_data", self.base))
     }
 
     #[doc = "Get a reference to the value of field `federation_protocol` after provisioning.\n"]
     pub fn federation_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.federation_protocol", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.federation_protocol", self.base),
+        )
     }
 }

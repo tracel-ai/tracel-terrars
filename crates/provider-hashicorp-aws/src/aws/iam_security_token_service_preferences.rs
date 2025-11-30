@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IamSecurityTokenServicePreferencesData {
@@ -54,7 +54,8 @@ impl IamSecurityTokenServicePreferences {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -67,7 +68,7 @@ impl IamSecurityTokenServicePreferences {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -78,12 +79,22 @@ impl IamSecurityTokenServicePreferences {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -95,7 +106,10 @@ impl IamSecurityTokenServicePreferences {
 
     #[doc = "Get a reference to the value of field `global_endpoint_token_version` after provisioning.\n"]
     pub fn global_endpoint_token_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_endpoint_token_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_endpoint_token_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,11 +120,15 @@ impl IamSecurityTokenServicePreferences {
 
 impl Referable for IamSecurityTokenServicePreferences {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IamSecurityTokenServicePreferences { }
+impl Resource for IamSecurityTokenServicePreferences {}
 
 impl ToListMappable for IamSecurityTokenServicePreferences {
     type O = ListRef<IamSecurityTokenServicePreferencesRef>;
@@ -143,18 +161,19 @@ pub struct BuildIamSecurityTokenServicePreferences {
 
 impl BuildIamSecurityTokenServicePreferences {
     pub fn build(self, stack: &mut Stack) -> IamSecurityTokenServicePreferences {
-        let out = IamSecurityTokenServicePreferences(Rc::new(IamSecurityTokenServicePreferences_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(IamSecurityTokenServicePreferencesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                global_endpoint_token_version: self.global_endpoint_token_version,
-                id: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            IamSecurityTokenServicePreferences(Rc::new(IamSecurityTokenServicePreferences_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(IamSecurityTokenServicePreferencesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    global_endpoint_token_version: self.global_endpoint_token_version,
+                    id: core::default::Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -167,10 +186,7 @@ pub struct IamSecurityTokenServicePreferencesRef {
 
 impl Ref for IamSecurityTokenServicePreferencesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -185,7 +201,10 @@ impl IamSecurityTokenServicePreferencesRef {
 
     #[doc = "Get a reference to the value of field `global_endpoint_token_version` after provisioning.\n"]
     pub fn global_endpoint_token_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_endpoint_token_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_endpoint_token_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EvidentlyLaunchData {
@@ -74,7 +74,8 @@ impl EvidentlyLaunch {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl EvidentlyLaunch {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl EvidentlyLaunch {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -125,8 +136,7 @@ impl EvidentlyLaunch {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -149,23 +159,26 @@ impl EvidentlyLaunch {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().groups = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.groups = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `metric_monitors`.\n"]
-    pub fn set_metric_monitors(self, v: impl Into<BlockAssignable<EvidentlyLaunchMetricMonitorsEl>>) -> Self {
+    pub fn set_metric_monitors(
+        self,
+        v: impl Into<BlockAssignable<EvidentlyLaunchMetricMonitorsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().metric_monitors = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.metric_monitors = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,10 +191,10 @@ impl EvidentlyLaunch {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scheduled_splits_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scheduled_splits_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -199,17 +212,26 @@ impl EvidentlyLaunch {
 
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution` after provisioning.\n"]
     pub fn execution(&self) -> ListRef<EvidentlyLaunchExecutionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execution", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execution", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -219,83 +241,128 @@ impl EvidentlyLaunch {
 
     #[doc = "Get a reference to the value of field `last_updated_time` after provisioning.\n"]
     pub fn last_updated_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project` after provisioning.\n"]
     pub fn project(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `randomization_salt` after provisioning.\n"]
     pub fn randomization_salt(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.randomization_salt", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.randomization_salt", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `groups` after provisioning.\n"]
     pub fn groups(&self) -> ListRef<EvidentlyLaunchGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.groups", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_monitors` after provisioning.\n"]
     pub fn metric_monitors(&self) -> ListRef<EvidentlyLaunchMetricMonitorsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_monitors", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_monitors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduled_splits_config` after provisioning.\n"]
     pub fn scheduled_splits_config(&self) -> ListRef<EvidentlyLaunchScheduledSplitsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scheduled_splits_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scheduled_splits_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EvidentlyLaunchTimeoutsElRef {
-        EvidentlyLaunchTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EvidentlyLaunchTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EvidentlyLaunch {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EvidentlyLaunch { }
+impl Resource for EvidentlyLaunch {}
 
 impl ToListMappable for EvidentlyLaunch {
     type O = ListRef<EvidentlyLaunchRef>;
@@ -365,10 +432,7 @@ pub struct EvidentlyLaunchRef {
 
 impl Ref for EvidentlyLaunchRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -388,17 +452,26 @@ impl EvidentlyLaunchRef {
 
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution` after provisioning.\n"]
     pub fn execution(&self) -> ListRef<EvidentlyLaunchExecutionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execution", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execution", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -408,73 +481,114 @@ impl EvidentlyLaunchRef {
 
     #[doc = "Get a reference to the value of field `last_updated_time` after provisioning.\n"]
     pub fn last_updated_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project` after provisioning.\n"]
     pub fn project(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `randomization_salt` after provisioning.\n"]
     pub fn randomization_salt(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.randomization_salt", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.randomization_salt", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `groups` after provisioning.\n"]
     pub fn groups(&self) -> ListRef<EvidentlyLaunchGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.groups", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_monitors` after provisioning.\n"]
     pub fn metric_monitors(&self) -> ListRef<EvidentlyLaunchMetricMonitorsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_monitors", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_monitors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduled_splits_config` after provisioning.\n"]
     pub fn scheduled_splits_config(&self) -> ListRef<EvidentlyLaunchScheduledSplitsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scheduled_splits_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scheduled_splits_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EvidentlyLaunchTimeoutsElRef {
-        EvidentlyLaunchTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EvidentlyLaunchTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -706,7 +820,10 @@ pub struct EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef {
 }
 
 impl Ref for EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef {
-    fn new(shared: StackShared, base: String) -> EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef {
         EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef {
             shared: shared,
             base: base.to_string(),
@@ -721,12 +838,18 @@ impl EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef {
 
     #[doc = "Get a reference to the value of field `entity_id_key` after provisioning.\n"]
     pub fn entity_id_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.entity_id_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.entity_id_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_pattern` after provisioning.\n"]
     pub fn event_pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_pattern", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_pattern", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -766,10 +889,10 @@ impl EvidentlyLaunchMetricMonitorsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric_definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric_definition = Some(d);
-            },
+            }
         }
         self
     }
@@ -818,8 +941,13 @@ impl EvidentlyLaunchMetricMonitorsElRef {
     }
 
     #[doc = "Get a reference to the value of field `metric_definition` after provisioning.\n"]
-    pub fn metric_definition(&self) -> ListRef<EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_definition", self.base))
+    pub fn metric_definition(
+        &self,
+    ) -> ListRef<EvidentlyLaunchMetricMonitorsElMetricDefinitionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_definition", self.base),
+        )
     }
 }
 
@@ -830,7 +958,7 @@ pub struct EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl {
     weights: RecField<PrimField<f64>>,
 }
 
-impl EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl { }
+impl EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl {}
 
 impl ToListMappable for EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl {
     type O = BlockAssignable<EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl>;
@@ -869,7 +997,10 @@ pub struct EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
 }
 
 impl Ref for EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
-    fn new(shared: StackShared, base: String) -> EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
         EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
             shared: shared,
             base: base.to_string(),
@@ -884,7 +1015,10 @@ impl EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
 
     #[doc = "Get a reference to the value of field `evaluation_order` after provisioning.\n"]
     pub fn evaluation_order(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluation_order", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.evaluation_order", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `segment` after provisioning.\n"]
@@ -900,7 +1034,8 @@ impl EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef {
 
 #[derive(Serialize, Default)]
 struct EvidentlyLaunchScheduledSplitsConfigElStepsElDynamic {
-    segment_overrides: Option<DynamicBlock<EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl>>,
+    segment_overrides:
+        Option<DynamicBlock<EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesEl>>,
 }
 
 #[derive(Serialize)]
@@ -921,10 +1056,10 @@ impl EvidentlyLaunchScheduledSplitsConfigElStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.segment_overrides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.segment_overrides = Some(d);
-            },
+            }
         }
         self
     }
@@ -981,7 +1116,10 @@ impl EvidentlyLaunchScheduledSplitsConfigElStepsElRef {
 
     #[doc = "Get a reference to the value of field `group_weights` after provisioning.\n"]
     pub fn group_weights(&self) -> RecRef<PrimExpr<f64>> {
-        RecRef::new(self.shared().clone(), format!("{}.group_weights", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.group_weights", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
@@ -990,8 +1128,13 @@ impl EvidentlyLaunchScheduledSplitsConfigElStepsElRef {
     }
 
     #[doc = "Get a reference to the value of field `segment_overrides` after provisioning.\n"]
-    pub fn segment_overrides(&self) -> ListRef<EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.segment_overrides", self.base))
+    pub fn segment_overrides(
+        &self,
+    ) -> ListRef<EvidentlyLaunchScheduledSplitsConfigElStepsElSegmentOverridesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.segment_overrides", self.base),
+        )
     }
 }
 
@@ -1009,14 +1152,17 @@ pub struct EvidentlyLaunchScheduledSplitsConfigEl {
 
 impl EvidentlyLaunchScheduledSplitsConfigEl {
     #[doc = "Set the field `steps`.\n"]
-    pub fn set_steps(mut self, v: impl Into<BlockAssignable<EvidentlyLaunchScheduledSplitsConfigElStepsEl>>) -> Self {
+    pub fn set_steps(
+        mut self,
+        v: impl Into<BlockAssignable<EvidentlyLaunchScheduledSplitsConfigElStepsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.steps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.steps = Some(d);
-            },
+            }
         }
         self
     }

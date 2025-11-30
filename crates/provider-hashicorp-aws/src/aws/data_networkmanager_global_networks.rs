@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataNetworkmanagerGlobalNetworksData {
@@ -66,17 +66,24 @@ impl DataNetworkmanagerGlobalNetworks {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataNetworkmanagerGlobalNetworks {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataNetworkmanagerGlobalNetworks { }
+impl Datasource for DataNetworkmanagerGlobalNetworks {}
 
 impl ToListMappable for DataNetworkmanagerGlobalNetworks {
     type O = ListRef<DataNetworkmanagerGlobalNetworksRef>;
@@ -130,10 +137,7 @@ pub struct DataNetworkmanagerGlobalNetworksRef {
 
 impl Ref for DataNetworkmanagerGlobalNetworksRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -158,6 +162,9 @@ impl DataNetworkmanagerGlobalNetworksRef {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }

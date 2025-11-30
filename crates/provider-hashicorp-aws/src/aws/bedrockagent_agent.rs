@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentAgentData {
@@ -34,7 +34,8 @@ struct BedrockagentAgentData {
     #[serde(skip_serializing_if = "Option::is_none")]
     prepare_agent: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    prompt_override_configuration: Option<ListField<BedrockagentAgentPromptOverrideConfigurationEl>>,
+    prompt_override_configuration:
+        Option<ListField<BedrockagentAgentPromptOverrideConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -80,7 +81,8 @@ impl BedrockagentAgent {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -93,7 +95,7 @@ impl BedrockagentAgent {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -104,12 +106,22 @@ impl BedrockagentAgent {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -153,7 +165,10 @@ impl BedrockagentAgent {
     }
 
     #[doc = "Set the field `memory_configuration`.\n"]
-    pub fn set_memory_configuration(self, v: impl Into<ListField<BedrockagentAgentMemoryConfigurationEl>>) -> Self {
+    pub fn set_memory_configuration(
+        self,
+        v: impl Into<ListField<BedrockagentAgentMemoryConfigurationEl>>,
+    ) -> Self {
         self.0.data.borrow_mut().memory_configuration = Some(v.into());
         self
     }
@@ -173,8 +188,7 @@ impl BedrockagentAgent {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -200,52 +214,82 @@ impl BedrockagentAgent {
 
     #[doc = "Get a reference to the value of field `agent_arn` after provisioning.\n"]
     pub fn agent_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_collaboration` after provisioning.\n"]
     pub fn agent_collaboration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_collaboration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_collaboration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_id` after provisioning.\n"]
     pub fn agent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_name` after provisioning.\n"]
     pub fn agent_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_resource_role_arn` after provisioning.\n"]
     pub fn agent_resource_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_resource_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_resource_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_encryption_key_arn` after provisioning.\n"]
     pub fn customer_encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_encryption_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_encryption_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `foundation_model` after provisioning.\n"]
     pub fn foundation_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.foundation_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.foundation_model", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_configuration` after provisioning.\n"]
     pub fn guardrail_configuration(&self) -> ListRef<BedrockagentAgentGuardrailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardrail_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardrail_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -255,68 +299,106 @@ impl BedrockagentAgent {
 
     #[doc = "Get a reference to the value of field `idle_session_ttl_in_seconds` after provisioning.\n"]
     pub fn idle_session_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.idle_session_ttl_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.idle_session_ttl_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instruction` after provisioning.\n"]
     pub fn instruction(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instruction", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instruction", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_configuration` after provisioning.\n"]
     pub fn memory_configuration(&self) -> ListRef<BedrockagentAgentMemoryConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.memory_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prepare_agent` after provisioning.\n"]
     pub fn prepare_agent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prepare_agent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prepare_agent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prepared_at` after provisioning.\n"]
     pub fn prepared_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prepared_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prepared_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prompt_override_configuration` after provisioning.\n"]
-    pub fn prompt_override_configuration(&self) -> ListRef<BedrockagentAgentPromptOverrideConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.prompt_override_configuration", self.extract_ref()))
+    pub fn prompt_override_configuration(
+        &self,
+    ) -> ListRef<BedrockagentAgentPromptOverrideConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.prompt_override_configuration", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_resource_in_use_check` after provisioning.\n"]
     pub fn skip_resource_in_use_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_resource_in_use_check", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_resource_in_use_check", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentAgentTimeoutsElRef {
-        BedrockagentAgentTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentAgentTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockagentAgent {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentAgent { }
+impl Resource for BedrockagentAgent {}
 
 impl ToListMappable for BedrockagentAgent {
     type O = ListRef<BedrockagentAgentRef>;
@@ -391,10 +473,7 @@ pub struct BedrockagentAgentRef {
 
 impl Ref for BedrockagentAgentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -409,52 +488,82 @@ impl BedrockagentAgentRef {
 
     #[doc = "Get a reference to the value of field `agent_arn` after provisioning.\n"]
     pub fn agent_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_collaboration` after provisioning.\n"]
     pub fn agent_collaboration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_collaboration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_collaboration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_id` after provisioning.\n"]
     pub fn agent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_name` after provisioning.\n"]
     pub fn agent_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_resource_role_arn` after provisioning.\n"]
     pub fn agent_resource_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_resource_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_resource_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_encryption_key_arn` after provisioning.\n"]
     pub fn customer_encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_encryption_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_encryption_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `foundation_model` after provisioning.\n"]
     pub fn foundation_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.foundation_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.foundation_model", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_configuration` after provisioning.\n"]
     pub fn guardrail_configuration(&self) -> ListRef<BedrockagentAgentGuardrailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardrail_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardrail_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -464,58 +573,92 @@ impl BedrockagentAgentRef {
 
     #[doc = "Get a reference to the value of field `idle_session_ttl_in_seconds` after provisioning.\n"]
     pub fn idle_session_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.idle_session_ttl_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.idle_session_ttl_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instruction` after provisioning.\n"]
     pub fn instruction(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instruction", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instruction", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_configuration` after provisioning.\n"]
     pub fn memory_configuration(&self) -> ListRef<BedrockagentAgentMemoryConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.memory_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prepare_agent` after provisioning.\n"]
     pub fn prepare_agent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prepare_agent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prepare_agent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prepared_at` after provisioning.\n"]
     pub fn prepared_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prepared_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prepared_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prompt_override_configuration` after provisioning.\n"]
-    pub fn prompt_override_configuration(&self) -> ListRef<BedrockagentAgentPromptOverrideConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.prompt_override_configuration", self.extract_ref()))
+    pub fn prompt_override_configuration(
+        &self,
+    ) -> ListRef<BedrockagentAgentPromptOverrideConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.prompt_override_configuration", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_resource_in_use_check` after provisioning.\n"]
     pub fn skip_resource_in_use_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_resource_in_use_check", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_resource_in_use_check", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentAgentTimeoutsElRef {
-        BedrockagentAgentTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentAgentTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -585,12 +728,18 @@ impl BedrockagentAgentGuardrailConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `guardrail_identifier` after provisioning.\n"]
     pub fn guardrail_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_version` after provisioning.\n"]
     pub fn guardrail_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_version", self.base),
+        )
     }
 }
 
@@ -660,7 +809,10 @@ impl BedrockagentAgentMemoryConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `enabled_memory_types` after provisioning.\n"]
     pub fn enabled_memory_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.enabled_memory_types", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enabled_memory_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_days` after provisioning.\n"]
@@ -670,7 +822,8 @@ impl BedrockagentAgentMemoryConfigurationElRef {
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl {
+pub struct BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max_length: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -715,7 +868,9 @@ impl BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferen
     }
 }
 
-impl ToListMappable for BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl {
+impl ToListMappable
+    for BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl
+{
     type O =
         BlockAssignable<
             BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl,
@@ -730,7 +885,8 @@ impl ToListMappable for BedrockagentAgentPromptOverrideConfigurationElPromptConf
     }
 }
 
-pub struct BuildBedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl {}
+pub struct BuildBedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl
+{}
 
 impl BuildBedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationEl {
     pub fn build(
@@ -746,7 +902,8 @@ impl BuildBedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElIn
     }
 }
 
-pub struct BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationElRef {
+pub struct BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -763,7 +920,9 @@ impl Ref for BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsE
     }
 }
 
-impl BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationElRef {
+impl
+    BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -775,7 +934,10 @@ impl BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferen
 
     #[doc = "Get a reference to the value of field `stop_sequences` after provisioning.\n"]
     pub fn stop_sequences(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.stop_sequences", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stop_sequences", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `temperature` after provisioning.\n"]
@@ -911,14 +1073,20 @@ impl BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElRef {
 
     #[doc = "Get a reference to the value of field `base_prompt_template` after provisioning.\n"]
     pub fn base_prompt_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_prompt_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_prompt_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_configuration` after provisioning.\n"]
     pub fn inference_configuration(
         &self,
-    ) -> ListRef<BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inference_configuration", self.base))
+    ) -> ListRef<BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElInferenceConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parser_mode` after provisioning.\n"]
@@ -928,7 +1096,10 @@ impl BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElRef {
 
     #[doc = "Get a reference to the value of field `prompt_creation_mode` after provisioning.\n"]
     pub fn prompt_creation_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prompt_creation_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prompt_creation_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prompt_state` after provisioning.\n"]
@@ -947,7 +1118,8 @@ pub struct BedrockagentAgentPromptOverrideConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     override_lambda: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    prompt_configurations: Option<SetField<BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsEl>>,
+    prompt_configurations:
+        Option<SetField<BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsEl>>,
 }
 
 impl BedrockagentAgentPromptOverrideConfigurationEl {
@@ -1011,14 +1183,20 @@ impl BedrockagentAgentPromptOverrideConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `override_lambda` after provisioning.\n"]
     pub fn override_lambda(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.override_lambda", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.override_lambda", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prompt_configurations` after provisioning.\n"]
     pub fn prompt_configurations(
         &self,
     ) -> SetRef<BedrockagentAgentPromptOverrideConfigurationElPromptConfigurationsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.prompt_configurations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.prompt_configurations", self.base),
+        )
     }
 }
 
@@ -1033,22 +1211,19 @@ pub struct BedrockagentAgentTimeoutsEl {
 }
 
 impl BedrockagentAgentTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1098,20 +1273,17 @@ impl BedrockagentAgentTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

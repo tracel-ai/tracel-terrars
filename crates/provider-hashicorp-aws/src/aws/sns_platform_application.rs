@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SnsPlatformApplicationData {
@@ -78,7 +78,8 @@ impl SnsPlatformApplication {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -91,7 +92,7 @@ impl SnsPlatformApplication {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -102,12 +103,22 @@ impl SnsPlatformApplication {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -165,8 +176,7 @@ impl SnsPlatformApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -186,12 +196,18 @@ impl SnsPlatformApplication {
 
     #[doc = "Get a reference to the value of field `apple_platform_bundle_id` after provisioning.\n"]
     pub fn apple_platform_bundle_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.apple_platform_bundle_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.apple_platform_bundle_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `apple_platform_team_id` after provisioning.\n"]
     pub fn apple_platform_team_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.apple_platform_team_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.apple_platform_team_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -201,27 +217,42 @@ impl SnsPlatformApplication {
 
     #[doc = "Get a reference to the value of field `event_delivery_failure_topic_arn` after provisioning.\n"]
     pub fn event_delivery_failure_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_delivery_failure_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_delivery_failure_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_endpoint_created_topic_arn` after provisioning.\n"]
     pub fn event_endpoint_created_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_endpoint_created_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_endpoint_created_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_endpoint_deleted_topic_arn` after provisioning.\n"]
     pub fn event_endpoint_deleted_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_endpoint_deleted_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_endpoint_deleted_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_endpoint_updated_topic_arn` after provisioning.\n"]
     pub fn event_endpoint_updated_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_endpoint_updated_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_endpoint_updated_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_feedback_role_arn` after provisioning.\n"]
     pub fn failure_feedback_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_feedback_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_feedback_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -231,48 +262,72 @@ impl SnsPlatformApplication {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_credential` after provisioning.\n"]
     pub fn platform_credential(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_credential", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_credential", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_principal` after provisioning.\n"]
     pub fn platform_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_principal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `success_feedback_role_arn` after provisioning.\n"]
     pub fn success_feedback_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_feedback_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_feedback_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `success_feedback_sample_rate` after provisioning.\n"]
     pub fn success_feedback_sample_rate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_feedback_sample_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_feedback_sample_rate", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SnsPlatformApplication {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SnsPlatformApplication { }
+impl Resource for SnsPlatformApplication {}
 
 impl ToListMappable for SnsPlatformApplication {
     type O = ListRef<SnsPlatformApplicationRef>;
@@ -346,10 +401,7 @@ pub struct SnsPlatformApplicationRef {
 
 impl Ref for SnsPlatformApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -364,12 +416,18 @@ impl SnsPlatformApplicationRef {
 
     #[doc = "Get a reference to the value of field `apple_platform_bundle_id` after provisioning.\n"]
     pub fn apple_platform_bundle_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.apple_platform_bundle_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.apple_platform_bundle_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `apple_platform_team_id` after provisioning.\n"]
     pub fn apple_platform_team_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.apple_platform_team_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.apple_platform_team_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -379,27 +437,42 @@ impl SnsPlatformApplicationRef {
 
     #[doc = "Get a reference to the value of field `event_delivery_failure_topic_arn` after provisioning.\n"]
     pub fn event_delivery_failure_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_delivery_failure_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_delivery_failure_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_endpoint_created_topic_arn` after provisioning.\n"]
     pub fn event_endpoint_created_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_endpoint_created_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_endpoint_created_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_endpoint_deleted_topic_arn` after provisioning.\n"]
     pub fn event_endpoint_deleted_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_endpoint_deleted_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_endpoint_deleted_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_endpoint_updated_topic_arn` after provisioning.\n"]
     pub fn event_endpoint_updated_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_endpoint_updated_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_endpoint_updated_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_feedback_role_arn` after provisioning.\n"]
     pub fn failure_feedback_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_feedback_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_feedback_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -409,37 +482,57 @@ impl SnsPlatformApplicationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_credential` after provisioning.\n"]
     pub fn platform_credential(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_credential", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_credential", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_principal` after provisioning.\n"]
     pub fn platform_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_principal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `success_feedback_role_arn` after provisioning.\n"]
     pub fn success_feedback_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_feedback_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_feedback_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `success_feedback_sample_rate` after provisioning.\n"]
     pub fn success_feedback_sample_rate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_feedback_sample_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_feedback_sample_rate", self.extract_ref()),
+        )
     }
 }

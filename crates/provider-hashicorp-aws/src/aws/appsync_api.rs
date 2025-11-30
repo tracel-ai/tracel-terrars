@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppsyncApiData {
@@ -61,7 +61,8 @@ impl AppsyncApi {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl AppsyncApi {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl AppsyncApi {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,8 +111,7 @@ impl AppsyncApi {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -118,22 +128,28 @@ impl AppsyncApi {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().event_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.event_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `api_arn` after provisioning.\n"]
     pub fn api_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns` after provisioning.\n"]
@@ -143,53 +159,80 @@ impl AppsyncApi {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_contact` after provisioning.\n"]
     pub fn owner_contact(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_contact", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_contact", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `waf_web_acl_arn` after provisioning.\n"]
     pub fn waf_web_acl_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.waf_web_acl_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.waf_web_acl_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xray_enabled` after provisioning.\n"]
     pub fn xray_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xray_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xray_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_config` after provisioning.\n"]
     pub fn event_config(&self) -> ListRef<AppsyncApiEventConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppsyncApi {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppsyncApi { }
+impl Resource for AppsyncApi {}
 
 impl ToListMappable for AppsyncApi {
     type O = ListRef<AppsyncApiRef>;
@@ -250,10 +293,7 @@ pub struct AppsyncApiRef {
 
 impl Ref for AppsyncApiRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -268,12 +308,18 @@ impl AppsyncApiRef {
 
     #[doc = "Get a reference to the value of field `api_arn` after provisioning.\n"]
     pub fn api_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns` after provisioning.\n"]
@@ -283,43 +329,66 @@ impl AppsyncApiRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_contact` after provisioning.\n"]
     pub fn owner_contact(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_contact", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_contact", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `waf_web_acl_arn` after provisioning.\n"]
     pub fn waf_web_acl_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.waf_web_acl_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.waf_web_acl_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xray_enabled` after provisioning.\n"]
     pub fn xray_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xray_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xray_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_config` after provisioning.\n"]
     pub fn event_config(&self) -> ListRef<AppsyncApiEventConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_config", self.extract_ref()),
+        )
     }
 }
 
@@ -374,7 +443,10 @@ pub struct AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef {
 }
 
 impl Ref for AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef {
         AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -389,7 +461,10 @@ impl AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef {
 
     #[doc = "Get a reference to the value of field `app_id_client_regex` after provisioning.\n"]
     pub fn app_id_client_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_id_client_regex", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_id_client_regex", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `aws_region` after provisioning.\n"]
@@ -459,7 +534,10 @@ pub struct AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef {
 }
 
 impl Ref for AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef {
         AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -474,17 +552,26 @@ impl AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef {
 
     #[doc = "Get a reference to the value of field `authorizer_result_ttl_in_seconds` after provisioning.\n"]
     pub fn authorizer_result_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_result_ttl_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_result_ttl_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_uri` after provisioning.\n"]
     pub fn authorizer_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_validation_expression` after provisioning.\n"]
     pub fn identity_validation_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_validation_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_validation_expression", self.base),
+        )
     }
 }
 
@@ -553,7 +640,10 @@ pub struct AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef {
 }
 
 impl Ref for AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef {
         AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -590,8 +680,10 @@ impl AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef {
 #[derive(Serialize, Default)]
 struct AppsyncApiEventConfigElAuthProviderElDynamic {
     cognito_config: Option<DynamicBlock<AppsyncApiEventConfigElAuthProviderElCognitoConfigEl>>,
-    lambda_authorizer_config: Option<DynamicBlock<AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigEl>>,
-    openid_connect_config: Option<DynamicBlock<AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigEl>>,
+    lambda_authorizer_config:
+        Option<DynamicBlock<AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigEl>>,
+    openid_connect_config:
+        Option<DynamicBlock<AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -600,7 +692,8 @@ pub struct AppsyncApiEventConfigElAuthProviderEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cognito_config: Option<Vec<AppsyncApiEventConfigElAuthProviderElCognitoConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_authorizer_config: Option<Vec<AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigEl>>,
+    lambda_authorizer_config:
+        Option<Vec<AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     openid_connect_config: Option<Vec<AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigEl>>,
     dynamic: AppsyncApiEventConfigElAuthProviderElDynamic,
@@ -615,10 +708,10 @@ impl AppsyncApiEventConfigElAuthProviderEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cognito_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cognito_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -631,10 +724,10 @@ impl AppsyncApiEventConfigElAuthProviderEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_authorizer_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_authorizer_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -647,10 +740,10 @@ impl AppsyncApiEventConfigElAuthProviderEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.openid_connect_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.openid_connect_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -710,18 +803,33 @@ impl AppsyncApiEventConfigElAuthProviderElRef {
     }
 
     #[doc = "Get a reference to the value of field `cognito_config` after provisioning.\n"]
-    pub fn cognito_config(&self) -> ListRef<AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cognito_config", self.base))
+    pub fn cognito_config(
+        &self,
+    ) -> ListRef<AppsyncApiEventConfigElAuthProviderElCognitoConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cognito_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_authorizer_config` after provisioning.\n"]
-    pub fn lambda_authorizer_config(&self) -> ListRef<AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_authorizer_config", self.base))
+    pub fn lambda_authorizer_config(
+        &self,
+    ) -> ListRef<AppsyncApiEventConfigElAuthProviderElLambdaAuthorizerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_authorizer_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `openid_connect_config` after provisioning.\n"]
-    pub fn openid_connect_config(&self) -> ListRef<AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.openid_connect_config", self.base))
+    pub fn openid_connect_config(
+        &self,
+    ) -> ListRef<AppsyncApiEventConfigElAuthProviderElOpenidConnectConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.openid_connect_config", self.base),
+        )
     }
 }
 
@@ -730,7 +838,7 @@ pub struct AppsyncApiEventConfigElConnectionAuthModeEl {
     auth_type: PrimField<String>,
 }
 
-impl AppsyncApiEventConfigElConnectionAuthModeEl { }
+impl AppsyncApiEventConfigElConnectionAuthModeEl {}
 
 impl ToListMappable for AppsyncApiEventConfigElConnectionAuthModeEl {
     type O = BlockAssignable<AppsyncApiEventConfigElConnectionAuthModeEl>;
@@ -751,7 +859,9 @@ pub struct BuildAppsyncApiEventConfigElConnectionAuthModeEl {
 
 impl BuildAppsyncApiEventConfigElConnectionAuthModeEl {
     pub fn build(self) -> AppsyncApiEventConfigElConnectionAuthModeEl {
-        AppsyncApiEventConfigElConnectionAuthModeEl { auth_type: self.auth_type }
+        AppsyncApiEventConfigElConnectionAuthModeEl {
+            auth_type: self.auth_type,
+        }
     }
 }
 
@@ -785,7 +895,7 @@ pub struct AppsyncApiEventConfigElDefaultPublishAuthModeEl {
     auth_type: PrimField<String>,
 }
 
-impl AppsyncApiEventConfigElDefaultPublishAuthModeEl { }
+impl AppsyncApiEventConfigElDefaultPublishAuthModeEl {}
 
 impl ToListMappable for AppsyncApiEventConfigElDefaultPublishAuthModeEl {
     type O = BlockAssignable<AppsyncApiEventConfigElDefaultPublishAuthModeEl>;
@@ -806,7 +916,9 @@ pub struct BuildAppsyncApiEventConfigElDefaultPublishAuthModeEl {
 
 impl BuildAppsyncApiEventConfigElDefaultPublishAuthModeEl {
     pub fn build(self) -> AppsyncApiEventConfigElDefaultPublishAuthModeEl {
-        AppsyncApiEventConfigElDefaultPublishAuthModeEl { auth_type: self.auth_type }
+        AppsyncApiEventConfigElDefaultPublishAuthModeEl {
+            auth_type: self.auth_type,
+        }
     }
 }
 
@@ -816,7 +928,10 @@ pub struct AppsyncApiEventConfigElDefaultPublishAuthModeElRef {
 }
 
 impl Ref for AppsyncApiEventConfigElDefaultPublishAuthModeElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncApiEventConfigElDefaultPublishAuthModeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncApiEventConfigElDefaultPublishAuthModeElRef {
         AppsyncApiEventConfigElDefaultPublishAuthModeElRef {
             shared: shared,
             base: base.to_string(),
@@ -840,7 +955,7 @@ pub struct AppsyncApiEventConfigElDefaultSubscribeAuthModeEl {
     auth_type: PrimField<String>,
 }
 
-impl AppsyncApiEventConfigElDefaultSubscribeAuthModeEl { }
+impl AppsyncApiEventConfigElDefaultSubscribeAuthModeEl {}
 
 impl ToListMappable for AppsyncApiEventConfigElDefaultSubscribeAuthModeEl {
     type O = BlockAssignable<AppsyncApiEventConfigElDefaultSubscribeAuthModeEl>;
@@ -861,7 +976,9 @@ pub struct BuildAppsyncApiEventConfigElDefaultSubscribeAuthModeEl {
 
 impl BuildAppsyncApiEventConfigElDefaultSubscribeAuthModeEl {
     pub fn build(self) -> AppsyncApiEventConfigElDefaultSubscribeAuthModeEl {
-        AppsyncApiEventConfigElDefaultSubscribeAuthModeEl { auth_type: self.auth_type }
+        AppsyncApiEventConfigElDefaultSubscribeAuthModeEl {
+            auth_type: self.auth_type,
+        }
     }
 }
 
@@ -871,7 +988,10 @@ pub struct AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef {
 }
 
 impl Ref for AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef {
         AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef {
             shared: shared,
             base: base.to_string(),
@@ -896,7 +1016,7 @@ pub struct AppsyncApiEventConfigElLogConfigEl {
     log_level: PrimField<String>,
 }
 
-impl AppsyncApiEventConfigElLogConfigEl { }
+impl AppsyncApiEventConfigElLogConfigEl {}
 
 impl ToListMappable for AppsyncApiEventConfigElLogConfigEl {
     type O = BlockAssignable<AppsyncApiEventConfigElLogConfigEl>;
@@ -947,7 +1067,10 @@ impl AppsyncApiEventConfigElLogConfigElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs_role_arn` after provisioning.\n"]
     pub fn cloudwatch_logs_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_logs_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
@@ -960,8 +1083,10 @@ impl AppsyncApiEventConfigElLogConfigElRef {
 struct AppsyncApiEventConfigElDynamic {
     auth_provider: Option<DynamicBlock<AppsyncApiEventConfigElAuthProviderEl>>,
     connection_auth_mode: Option<DynamicBlock<AppsyncApiEventConfigElConnectionAuthModeEl>>,
-    default_publish_auth_mode: Option<DynamicBlock<AppsyncApiEventConfigElDefaultPublishAuthModeEl>>,
-    default_subscribe_auth_mode: Option<DynamicBlock<AppsyncApiEventConfigElDefaultSubscribeAuthModeEl>>,
+    default_publish_auth_mode:
+        Option<DynamicBlock<AppsyncApiEventConfigElDefaultPublishAuthModeEl>>,
+    default_subscribe_auth_mode:
+        Option<DynamicBlock<AppsyncApiEventConfigElDefaultSubscribeAuthModeEl>>,
     log_config: Option<DynamicBlock<AppsyncApiEventConfigElLogConfigEl>>,
 }
 
@@ -982,14 +1107,17 @@ pub struct AppsyncApiEventConfigEl {
 
 impl AppsyncApiEventConfigEl {
     #[doc = "Set the field `auth_provider`.\n"]
-    pub fn set_auth_provider(mut self, v: impl Into<BlockAssignable<AppsyncApiEventConfigElAuthProviderEl>>) -> Self {
+    pub fn set_auth_provider(
+        mut self,
+        v: impl Into<BlockAssignable<AppsyncApiEventConfigElAuthProviderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.auth_provider = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.auth_provider = Some(d);
-            },
+            }
         }
         self
     }
@@ -1002,10 +1130,10 @@ impl AppsyncApiEventConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connection_auth_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connection_auth_mode = Some(d);
-            },
+            }
         }
         self
     }
@@ -1018,10 +1146,10 @@ impl AppsyncApiEventConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_publish_auth_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_publish_auth_mode = Some(d);
-            },
+            }
         }
         self
     }
@@ -1034,23 +1162,26 @@ impl AppsyncApiEventConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_subscribe_auth_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_subscribe_auth_mode = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `log_config`.\n"]
-    pub fn set_log_config(mut self, v: impl Into<BlockAssignable<AppsyncApiEventConfigElLogConfigEl>>) -> Self {
+    pub fn set_log_config(
+        mut self,
+        v: impl Into<BlockAssignable<AppsyncApiEventConfigElLogConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.log_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.log_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1104,22 +1235,38 @@ impl AppsyncApiEventConfigElRef {
 
     #[doc = "Get a reference to the value of field `auth_provider` after provisioning.\n"]
     pub fn auth_provider(&self) -> ListRef<AppsyncApiEventConfigElAuthProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auth_provider", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auth_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_auth_mode` after provisioning.\n"]
     pub fn connection_auth_mode(&self) -> ListRef<AppsyncApiEventConfigElConnectionAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_auth_mode", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_auth_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_publish_auth_mode` after provisioning.\n"]
-    pub fn default_publish_auth_mode(&self) -> ListRef<AppsyncApiEventConfigElDefaultPublishAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_publish_auth_mode", self.base))
+    pub fn default_publish_auth_mode(
+        &self,
+    ) -> ListRef<AppsyncApiEventConfigElDefaultPublishAuthModeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_publish_auth_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_subscribe_auth_mode` after provisioning.\n"]
-    pub fn default_subscribe_auth_mode(&self) -> ListRef<AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_subscribe_auth_mode", self.base))
+    pub fn default_subscribe_auth_mode(
+        &self,
+    ) -> ListRef<AppsyncApiEventConfigElDefaultSubscribeAuthModeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_subscribe_auth_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_config` after provisioning.\n"]

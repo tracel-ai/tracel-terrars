@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontOriginAccessIdentityData {
@@ -46,27 +46,42 @@ impl DataCloudfrontOriginAccessIdentity {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudfront_access_identity_path` after provisioning.\n"]
     pub fn cloudfront_access_identity_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudfront_access_identity_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudfront_access_identity_path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_arn` after provisioning.\n"]
     pub fn iam_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -76,17 +91,24 @@ impl DataCloudfrontOriginAccessIdentity {
 
     #[doc = "Get a reference to the value of field `s3_canonical_user_id` after provisioning.\n"]
     pub fn s3_canonical_user_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_canonical_user_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_canonical_user_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontOriginAccessIdentity {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontOriginAccessIdentity { }
+impl Datasource for DataCloudfrontOriginAccessIdentity {}
 
 impl ToListMappable for DataCloudfrontOriginAccessIdentity {
     type O = ListRef<DataCloudfrontOriginAccessIdentityRef>;
@@ -119,16 +141,17 @@ pub struct BuildDataCloudfrontOriginAccessIdentity {
 
 impl BuildDataCloudfrontOriginAccessIdentity {
     pub fn build(self, stack: &mut Stack) -> DataCloudfrontOriginAccessIdentity {
-        let out = DataCloudfrontOriginAccessIdentity(Rc::new(DataCloudfrontOriginAccessIdentity_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataCloudfrontOriginAccessIdentityData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: self.id,
-            }),
-        }));
+        let out =
+            DataCloudfrontOriginAccessIdentity(Rc::new(DataCloudfrontOriginAccessIdentity_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataCloudfrontOriginAccessIdentityData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: self.id,
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -141,10 +164,7 @@ pub struct DataCloudfrontOriginAccessIdentityRef {
 
 impl Ref for DataCloudfrontOriginAccessIdentityRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -164,27 +184,42 @@ impl DataCloudfrontOriginAccessIdentityRef {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudfront_access_identity_path` after provisioning.\n"]
     pub fn cloudfront_access_identity_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudfront_access_identity_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudfront_access_identity_path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_arn` after provisioning.\n"]
     pub fn iam_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -194,6 +229,9 @@ impl DataCloudfrontOriginAccessIdentityRef {
 
     #[doc = "Get a reference to the value of field `s3_canonical_user_id` after provisioning.\n"]
     pub fn s3_canonical_user_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_canonical_user_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_canonical_user_id", self.extract_ref()),
+        )
     }
 }

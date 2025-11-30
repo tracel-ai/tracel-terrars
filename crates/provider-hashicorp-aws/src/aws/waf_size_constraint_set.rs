@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafSizeConstraintSetData {
@@ -57,7 +57,8 @@ impl WafSizeConstraintSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl WafSizeConstraintSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +82,22 @@ impl WafSizeConstraintSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -97,14 +108,17 @@ impl WafSizeConstraintSet {
     }
 
     #[doc = "Set the field `size_constraints`.\n"]
-    pub fn set_size_constraints(self, v: impl Into<BlockAssignable<WafSizeConstraintSetSizeConstraintsEl>>) -> Self {
+    pub fn set_size_constraints(
+        self,
+        v: impl Into<BlockAssignable<WafSizeConstraintSetSizeConstraintsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().size_constraints = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.size_constraints = Some(d);
-            },
+            }
         }
         self
     }
@@ -121,17 +135,24 @@ impl WafSizeConstraintSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafSizeConstraintSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafSizeConstraintSet { }
+impl Resource for WafSizeConstraintSet {}
 
 impl ToListMappable for WafSizeConstraintSet {
     type O = ListRef<WafSizeConstraintSetRef>;
@@ -190,10 +211,7 @@ pub struct WafSizeConstraintSetRef {
 
 impl Ref for WafSizeConstraintSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -218,7 +236,10 @@ impl WafSizeConstraintSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 }
 
@@ -270,7 +291,10 @@ pub struct WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef {
 }
 
 impl Ref for WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef {
-    fn new(shared: StackShared, base: String) -> WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef {
         WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -318,10 +342,10 @@ impl WafSizeConstraintSetSizeConstraintsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -381,7 +405,10 @@ impl WafSizeConstraintSetSizeConstraintsElRef {
 
     #[doc = "Get a reference to the value of field `comparison_operator` after provisioning.\n"]
     pub fn comparison_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comparison_operator", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comparison_operator", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
@@ -391,12 +418,20 @@ impl WafSizeConstraintSetSizeConstraintsElRef {
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
-    pub fn field_to_match(&self) -> ListRef<WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+    pub fn field_to_match(
+        &self,
+    ) -> ListRef<WafSizeConstraintSetSizeConstraintsElFieldToMatchElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockProvisionedModelThroughputData {
@@ -62,7 +62,8 @@ impl BedrockProvisionedModelThroughput {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -75,7 +76,7 @@ impl BedrockProvisionedModelThroughput {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -86,12 +87,22 @@ impl BedrockProvisionedModelThroughput {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -101,8 +112,7 @@ impl BedrockProvisionedModelThroughput {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -122,7 +132,10 @@ impl BedrockProvisionedModelThroughput {
 
     #[doc = "Get a reference to the value of field `commitment_duration` after provisioning.\n"]
     pub fn commitment_duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.commitment_duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.commitment_duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -132,38 +145,58 @@ impl BedrockProvisionedModelThroughput {
 
     #[doc = "Get a reference to the value of field `model_arn` after provisioning.\n"]
     pub fn model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_units` after provisioning.\n"]
     pub fn model_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_units", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_model_arn` after provisioning.\n"]
     pub fn provisioned_model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_model_name` after provisioning.\n"]
     pub fn provisioned_model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_model_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -177,11 +210,15 @@ impl BedrockProvisionedModelThroughput {
 
 impl Referable for BedrockProvisionedModelThroughput {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockProvisionedModelThroughput { }
+impl Resource for BedrockProvisionedModelThroughput {}
 
 impl ToListMappable for BedrockProvisionedModelThroughput {
     type O = ListRef<BedrockProvisionedModelThroughputRef>;
@@ -247,10 +284,7 @@ pub struct BedrockProvisionedModelThroughputRef {
 
 impl Ref for BedrockProvisionedModelThroughputRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -265,7 +299,10 @@ impl BedrockProvisionedModelThroughputRef {
 
     #[doc = "Get a reference to the value of field `commitment_duration` after provisioning.\n"]
     pub fn commitment_duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.commitment_duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.commitment_duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -275,38 +312,58 @@ impl BedrockProvisionedModelThroughputRef {
 
     #[doc = "Get a reference to the value of field `model_arn` after provisioning.\n"]
     pub fn model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_units` after provisioning.\n"]
     pub fn model_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_units", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_model_arn` after provisioning.\n"]
     pub fn provisioned_model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_model_name` after provisioning.\n"]
     pub fn provisioned_model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_model_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -325,8 +382,7 @@ pub struct BedrockProvisionedModelThroughputTimeoutsEl {
 }
 
 impl BedrockProvisionedModelThroughputTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
@@ -349,7 +405,9 @@ pub struct BuildBedrockProvisionedModelThroughputTimeoutsEl {}
 
 impl BuildBedrockProvisionedModelThroughputTimeoutsEl {
     pub fn build(self) -> BedrockProvisionedModelThroughputTimeoutsEl {
-        BedrockProvisionedModelThroughputTimeoutsEl { create: core::default::Default::default() }
+        BedrockProvisionedModelThroughputTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 
@@ -372,8 +430,7 @@ impl BedrockProvisionedModelThroughputTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }

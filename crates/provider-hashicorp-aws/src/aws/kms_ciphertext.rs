@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct KmsCiphertextData {
@@ -59,7 +59,8 @@ impl KmsCiphertext {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl KmsCiphertext {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl KmsCiphertext {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,8 +115,7 @@ impl KmsCiphertext {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -113,12 +123,18 @@ impl KmsCiphertext {
 
     #[doc = "Get a reference to the value of field `ciphertext_blob` after provisioning.\n"]
     pub fn ciphertext_blob(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ciphertext_blob", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ciphertext_blob", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -128,28 +144,40 @@ impl KmsCiphertext {
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `plaintext` after provisioning.\n"]
     pub fn plaintext(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.plaintext", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.plaintext", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for KmsCiphertext {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for KmsCiphertext { }
+impl Resource for KmsCiphertext {}
 
 impl ToListMappable for KmsCiphertext {
     type O = ListRef<KmsCiphertextRef>;
@@ -211,10 +239,7 @@ pub struct KmsCiphertextRef {
 
 impl Ref for KmsCiphertextRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -229,12 +254,18 @@ impl KmsCiphertextRef {
 
     #[doc = "Get a reference to the value of field `ciphertext_blob` after provisioning.\n"]
     pub fn ciphertext_blob(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ciphertext_blob", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ciphertext_blob", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -244,17 +275,25 @@ impl KmsCiphertextRef {
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `plaintext` after provisioning.\n"]
     pub fn plaintext(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.plaintext", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.plaintext", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

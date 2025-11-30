@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVpcIpamPoolsData {
@@ -51,8 +51,7 @@ impl DataVpcIpamPools {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,10 +62,10 @@ impl DataVpcIpamPools {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -78,23 +77,32 @@ impl DataVpcIpamPools {
 
     #[doc = "Get a reference to the value of field `ipam_pools` after provisioning.\n"]
     pub fn ipam_pools(&self) -> SetRef<DataVpcIpamPoolsIpamPoolsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.ipam_pools", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipam_pools", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataVpcIpamPools {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVpcIpamPools { }
+impl Datasource for DataVpcIpamPools {}
 
 impl ToListMappable for DataVpcIpamPools {
     type O = ListRef<DataVpcIpamPoolsRef>;
@@ -150,10 +158,7 @@ pub struct DataVpcIpamPoolsRef {
 
 impl Ref for DataVpcIpamPoolsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -173,13 +178,18 @@ impl DataVpcIpamPoolsRef {
 
     #[doc = "Get a reference to the value of field `ipam_pools` after provisioning.\n"]
     pub fn ipam_pools(&self) -> SetRef<DataVpcIpamPoolsIpamPoolsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.ipam_pools", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipam_pools", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -249,7 +259,10 @@ impl DataVpcIpamPoolsIpamPoolsEl {
     }
 
     #[doc = "Set the field `allocation_resource_tags`.\n"]
-    pub fn set_allocation_resource_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_allocation_resource_tags(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.allocation_resource_tags = Some(v.into());
         self
     }
@@ -393,27 +406,42 @@ impl DataVpcIpamPoolsIpamPoolsElRef {
 
     #[doc = "Get a reference to the value of field `address_family` after provisioning.\n"]
     pub fn address_family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_family", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_family", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allocation_default_netmask_length` after provisioning.\n"]
     pub fn allocation_default_netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_default_netmask_length", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_default_netmask_length", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allocation_max_netmask_length` after provisioning.\n"]
     pub fn allocation_max_netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_max_netmask_length", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_max_netmask_length", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allocation_min_netmask_length` after provisioning.\n"]
     pub fn allocation_min_netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_min_netmask_length", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_min_netmask_length", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allocation_resource_tags` after provisioning.\n"]
     pub fn allocation_resource_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.allocation_resource_tags", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.allocation_resource_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -443,12 +471,18 @@ impl DataVpcIpamPoolsIpamPoolsElRef {
 
     #[doc = "Get a reference to the value of field `ipam_scope_id` after provisioning.\n"]
     pub fn ipam_scope_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_scope_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_scope_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipam_scope_type` after provisioning.\n"]
     pub fn ipam_scope_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_scope_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_scope_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `locale` after provisioning.\n"]
@@ -463,12 +497,18 @@ impl DataVpcIpamPoolsIpamPoolsElRef {
 
     #[doc = "Get a reference to the value of field `publicly_advertisable` after provisioning.\n"]
     pub fn publicly_advertisable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.publicly_advertisable", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.publicly_advertisable", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_ipam_pool_id` after provisioning.\n"]
     pub fn source_ipam_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_ipam_pool_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_ipam_pool_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
@@ -488,7 +528,7 @@ pub struct DataVpcIpamPoolsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataVpcIpamPoolsFilterEl { }
+impl DataVpcIpamPoolsFilterEl {}
 
 impl ToListMappable for DataVpcIpamPoolsFilterEl {
     type O = BlockAssignable<DataVpcIpamPoolsFilterEl>;

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataImagebuilderDistributionConfigurationData {
@@ -28,7 +28,9 @@ struct DataImagebuilderDistributionConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct DataImagebuilderDistributionConfiguration(Rc<DataImagebuilderDistributionConfiguration_>);
+pub struct DataImagebuilderDistributionConfiguration(
+    Rc<DataImagebuilderDistributionConfiguration_>,
+);
 
 impl DataImagebuilderDistributionConfiguration {
     fn shared(&self) -> &StackShared {
@@ -51,8 +53,7 @@ impl DataImagebuilderDistributionConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,22 +72,36 @@ impl DataImagebuilderDistributionConfiguration {
 
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_updated", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_updated", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `distribution` after provisioning.\n"]
-    pub fn distribution(&self) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.distribution", self.extract_ref()))
+    pub fn distribution(
+        &self,
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.distribution", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -96,28 +111,40 @@ impl DataImagebuilderDistributionConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataImagebuilderDistributionConfiguration {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataImagebuilderDistributionConfiguration { }
+impl Datasource for DataImagebuilderDistributionConfiguration {}
 
 impl ToListMappable for DataImagebuilderDistributionConfiguration {
     type O = ListRef<DataImagebuilderDistributionConfigurationRef>;
@@ -150,19 +177,21 @@ pub struct BuildDataImagebuilderDistributionConfiguration {
 
 impl BuildDataImagebuilderDistributionConfiguration {
     pub fn build(self, stack: &mut Stack) -> DataImagebuilderDistributionConfiguration {
-        let out = DataImagebuilderDistributionConfiguration(Rc::new(DataImagebuilderDistributionConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataImagebuilderDistributionConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                arn: self.arn,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-            }),
-        }));
+        let out = DataImagebuilderDistributionConfiguration(Rc::new(
+            DataImagebuilderDistributionConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataImagebuilderDistributionConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    arn: self.arn,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -175,10 +204,7 @@ pub struct DataImagebuilderDistributionConfigurationRef {
 
 impl Ref for DataImagebuilderDistributionConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -198,22 +224,36 @@ impl DataImagebuilderDistributionConfigurationRef {
 
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_updated", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_updated", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `distribution` after provisioning.\n"]
-    pub fn distribution(&self) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.distribution", self.extract_ref()))
+    pub fn distribution(
+        &self,
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.distribution", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -223,23 +263,32 @@ impl DataImagebuilderDistributionConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionEl {
+pub struct DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     organization_arns: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -291,7 +340,8 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElA
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionEl {
     pub fn build(
@@ -306,7 +356,8 @@ impl BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistribution
     }
 }
 
-pub struct DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionElRef {
+pub struct DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -417,8 +468,12 @@ impl DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfi
     }
 }
 
-impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl {
-    type O = BlockAssignable<DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl>;
+impl ToListMappable
+    for DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl
+{
+    type O = BlockAssignable<
+        DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -429,10 +484,13 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElA
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl {
-    pub fn build(self) -> DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl {
         DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationEl {
             ami_tags: core::default::Default::default(),
             description: core::default::Default::default(),
@@ -444,16 +502,20 @@ impl BuildDataImagebuilderDistributionConfigurationDistributionElAmiDistribution
     }
 }
 
-pub struct DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef {
+pub struct DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef {
+impl Ref
+    for DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef {
+    ) -> DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef
+    {
         DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -486,8 +548,11 @@ impl DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfi
         &self,
     ) -> SetRef<
         DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElLaunchPermissionElRef,
-    > {
-        SetRef::new(self.shared().clone(), format!("{}.launch_permission", self.base))
+    >{
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.launch_permission", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -497,12 +562,16 @@ impl DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfi
 
     #[doc = "Get a reference to the value of field `target_account_ids` after provisioning.\n"]
     pub fn target_account_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.target_account_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.target_account_ids", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryEl {
+pub struct DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     repository_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -538,7 +607,8 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElC
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryEl {
     pub fn build(
@@ -551,7 +621,8 @@ impl BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistri
     }
 }
 
-pub struct DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryElRef {
+pub struct DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -628,9 +699,12 @@ impl DataImagebuilderDistributionConfigurationDistributionElContainerDistributio
     }
 }
 
-impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl {
-    type O =
-        BlockAssignable<DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl>;
+impl ToListMappable
+    for DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl
+{
+    type O = BlockAssignable<
+        DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -641,12 +715,16 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElC
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl
+{}
 
-impl BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl {
+impl
+    BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl
+{
     pub fn build(
         self,
-    ) -> DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl {
+    ) -> DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl
+    {
         DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationEl {
             container_tags: core::default::Default::default(),
             description: core::default::Default::default(),
@@ -655,7 +733,8 @@ impl BuildDataImagebuilderDistributionConfigurationDistributionElContainerDistri
     }
 }
 
-pub struct DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElRef {
+pub struct DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -672,14 +751,19 @@ impl Ref for DataImagebuilderDistributionConfigurationDistributionElContainerDis
     }
 }
 
-impl DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElRef {
+impl
+    DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `container_tags` after provisioning.\n"]
     pub fn container_tags(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.container_tags", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.container_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
@@ -692,13 +776,17 @@ impl DataImagebuilderDistributionConfigurationDistributionElContainerDistributio
         &self,
     ) -> SetRef<
         DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElTargetRepositoryElRef,
-    > {
-        SetRef::new(self.shared().clone(), format!("{}.target_repository", self.base))
+    >{
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.target_repository", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl {
+pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     launch_template_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -707,7 +795,9 @@ pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConf
     launch_template_version: Option<PrimField<String>>,
 }
 
-impl DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl {
+impl
+    DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl
+{
     #[doc = "Set the field `launch_template_id`.\n"]
     pub fn set_launch_template_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.launch_template_id = Some(v.into());
@@ -742,7 +832,8 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElF
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateEl {
     pub fn build(
@@ -756,7 +847,8 @@ impl BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfi
     }
 }
 
-pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateElRef {
+pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -795,7 +887,8 @@ impl DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurat
 }
 
 #[derive(Serialize)]
-pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationEl {
+pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     target_resource_count: Option<PrimField<f64>>,
 }
@@ -823,7 +916,8 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElF
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationEl {
     pub fn build(
@@ -835,7 +929,8 @@ impl BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfi
     }
 }
 
-pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationElRef {
+pub struct DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -935,8 +1030,12 @@ impl DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurat
     }
 }
 
-impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {
-    type O = BlockAssignable<DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl>;
+impl ToListMappable
+    for DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl
+{
+    type O = BlockAssignable<
+        DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -947,10 +1046,13 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElF
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {
+}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {
-    pub fn build(self) -> DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {
         DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl {
             account_id: core::default::Default::default(),
             enabled: core::default::Default::default(),
@@ -996,13 +1098,19 @@ impl DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurat
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
     pub fn launch_template(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.launch_template", self.base))
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElLaunchTemplateElRef>{
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_parallel_launches` after provisioning.\n"]
     pub fn max_parallel_launches(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_parallel_launches", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_parallel_launches", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `snapshot_configuration` after provisioning.\n"]
@@ -1010,8 +1118,11 @@ impl DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurat
         &self,
     ) -> SetRef<
         DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElSnapshotConfigurationElRef,
-    > {
-        SetRef::new(self.shared().clone(), format!("{}.snapshot_configuration", self.base))
+    >{
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.snapshot_configuration", self.base),
+        )
     }
 }
 
@@ -1045,8 +1156,12 @@ impl DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfig
     }
 }
 
-impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl {
-    type O = BlockAssignable<DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl>;
+impl ToListMappable
+    for DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl
+{
+    type O = BlockAssignable<
+        DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1057,10 +1172,13 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElL
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl {
-    pub fn build(self) -> DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl {
         DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationEl {
             account_id: core::default::Default::default(),
             default: core::default::Default::default(),
@@ -1074,11 +1192,14 @@ pub struct DataImagebuilderDistributionConfigurationDistributionElLaunchTemplate
     base: String,
 }
 
-impl Ref for DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef {
+impl Ref
+    for DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef {
+    ) -> DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef
+    {
         DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1103,7 +1224,10 @@ impl DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfig
 
     #[doc = "Get a reference to the value of field `launch_template_id` after provisioning.\n"]
     pub fn launch_template_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_id", self.base),
+        )
     }
 }
 
@@ -1145,8 +1269,12 @@ impl DataImagebuilderDistributionConfigurationDistributionElS3ExportConfiguratio
     }
 }
 
-impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl {
-    type O = BlockAssignable<DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl>;
+impl ToListMappable
+    for DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl
+{
+    type O = BlockAssignable<
+        DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1160,7 +1288,9 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElS
 pub struct BuildDataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl {}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl {
-    pub fn build(self) -> DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl {
         DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl {
             disk_image_format: core::default::Default::default(),
             role_name: core::default::Default::default(),
@@ -1194,7 +1324,10 @@ impl DataImagebuilderDistributionConfigurationDistributionElS3ExportConfiguratio
 
     #[doc = "Get a reference to the value of field `disk_image_format` after provisioning.\n"]
     pub fn disk_image_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disk_image_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disk_image_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_name` after provisioning.\n"]
@@ -1243,8 +1376,12 @@ impl DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigur
     }
 }
 
-impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl {
-    type O = BlockAssignable<DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl>;
+impl ToListMappable
+    for DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl
+{
+    type O = BlockAssignable<
+        DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1255,10 +1392,13 @@ impl ToListMappable for DataImagebuilderDistributionConfigurationDistributionElS
     }
 }
 
-pub struct BuildDataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl {}
+pub struct BuildDataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl
+{}
 
 impl BuildDataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl {
-    pub fn build(self) -> DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl {
         DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl {
             ami_account_id: core::default::Default::default(),
             data_type: core::default::Default::default(),
@@ -1291,7 +1431,10 @@ impl DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigur
 
     #[doc = "Get a reference to the value of field `ami_account_id` after provisioning.\n"]
     pub fn ami_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ami_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ami_account_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_type` after provisioning.\n"]
@@ -1301,7 +1444,10 @@ impl DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigur
 
     #[doc = "Get a reference to the value of field `parameter_name` after provisioning.\n"]
     pub fn parameter_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parameter_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parameter_name", self.base),
+        )
     }
 }
 
@@ -1373,7 +1519,11 @@ impl DataImagebuilderDistributionConfigurationDistributionEl {
     #[doc = "Set the field `fast_launch_configuration`.\n"]
     pub fn set_fast_launch_configuration(
         mut self,
-        v: impl Into<SetField<DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl>>,
+        v: impl Into<
+            SetField<
+                DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationEl,
+            >,
+        >,
     ) -> Self {
         self.fast_launch_configuration = Some(v.into());
         self
@@ -1389,7 +1539,10 @@ impl DataImagebuilderDistributionConfigurationDistributionEl {
     }
 
     #[doc = "Set the field `license_configuration_arns`.\n"]
-    pub fn set_license_configuration_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_license_configuration_arns(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.license_configuration_arns = Some(v.into());
         self
     }
@@ -1403,7 +1556,11 @@ impl DataImagebuilderDistributionConfigurationDistributionEl {
     #[doc = "Set the field `s3_export_configuration`.\n"]
     pub fn set_s3_export_configuration(
         mut self,
-        v: impl Into<SetField<DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl>>,
+        v: impl Into<
+            SetField<
+                DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationEl,
+            >,
+        >,
     ) -> Self {
         self.s3_export_configuration = Some(v.into());
         self
@@ -1412,7 +1569,11 @@ impl DataImagebuilderDistributionConfigurationDistributionEl {
     #[doc = "Set the field `ssm_parameter_configuration`.\n"]
     pub fn set_ssm_parameter_configuration(
         mut self,
-        v: impl Into<SetField<DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl>>,
+        v: impl Into<
+            SetField<
+                DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationEl,
+            >,
+        >,
     ) -> Self {
         self.ssm_parameter_configuration = Some(v.into());
         self
@@ -1454,7 +1615,10 @@ pub struct DataImagebuilderDistributionConfigurationDistributionElRef {
 }
 
 impl Ref for DataImagebuilderDistributionConfigurationDistributionElRef {
-    fn new(shared: StackShared, base: String) -> DataImagebuilderDistributionConfigurationDistributionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataImagebuilderDistributionConfigurationDistributionElRef {
         DataImagebuilderDistributionConfigurationDistributionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1470,34 +1634,54 @@ impl DataImagebuilderDistributionConfigurationDistributionElRef {
     #[doc = "Get a reference to the value of field `ami_distribution_configuration` after provisioning.\n"]
     pub fn ami_distribution_configuration(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.ami_distribution_configuration", self.base))
+    ) -> SetRef<
+        DataImagebuilderDistributionConfigurationDistributionElAmiDistributionConfigurationElRef,
+    > {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ami_distribution_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_distribution_configuration` after provisioning.\n"]
     pub fn container_distribution_configuration(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.container_distribution_configuration", self.base))
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElContainerDistributionConfigurationElRef>{
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.container_distribution_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fast_launch_configuration` after provisioning.\n"]
     pub fn fast_launch_configuration(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.fast_launch_configuration", self.base))
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElFastLaunchConfigurationElRef>
+    {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.fast_launch_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_configuration` after provisioning.\n"]
     pub fn launch_template_configuration(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.launch_template_configuration", self.base))
+    ) -> SetRef<
+        DataImagebuilderDistributionConfigurationDistributionElLaunchTemplateConfigurationElRef,
+    > {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_configuration_arns` after provisioning.\n"]
     pub fn license_configuration_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.license_configuration_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.license_configuration_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
@@ -1508,14 +1692,22 @@ impl DataImagebuilderDistributionConfigurationDistributionElRef {
     #[doc = "Get a reference to the value of field `s3_export_configuration` after provisioning.\n"]
     pub fn s3_export_configuration(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.s3_export_configuration", self.base))
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElS3ExportConfigurationElRef>
+    {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.s3_export_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ssm_parameter_configuration` after provisioning.\n"]
     pub fn ssm_parameter_configuration(
         &self,
-    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.ssm_parameter_configuration", self.base))
+    ) -> SetRef<DataImagebuilderDistributionConfigurationDistributionElSsmParameterConfigurationElRef>
+    {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ssm_parameter_configuration", self.base),
+        )
     }
 }

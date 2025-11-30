@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LambdaFunctionEventInvokeConfigData {
@@ -65,7 +65,8 @@ impl LambdaFunctionEventInvokeConfig {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl LambdaFunctionEventInvokeConfig {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl LambdaFunctionEventInvokeConfig {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +133,7 @@ impl LambdaFunctionEventInvokeConfig {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,17 +147,20 @@ impl LambdaFunctionEventInvokeConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().destination_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.destination_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -157,38 +170,58 @@ impl LambdaFunctionEventInvokeConfig {
 
     #[doc = "Get a reference to the value of field `maximum_event_age_in_seconds` after provisioning.\n"]
     pub fn maximum_event_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_event_age_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_event_age_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.qualifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.qualifier", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_config` after provisioning.\n"]
-    pub fn destination_config(&self) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_config", self.extract_ref()))
+    pub fn destination_config(
+        &self,
+    ) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for LambdaFunctionEventInvokeConfig {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LambdaFunctionEventInvokeConfig { }
+impl Resource for LambdaFunctionEventInvokeConfig {}
 
 impl ToListMappable for LambdaFunctionEventInvokeConfig {
     type O = ListRef<LambdaFunctionEventInvokeConfigRef>;
@@ -251,10 +284,7 @@ pub struct LambdaFunctionEventInvokeConfigRef {
 
 impl Ref for LambdaFunctionEventInvokeConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -269,7 +299,10 @@ impl LambdaFunctionEventInvokeConfigRef {
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -279,28 +312,44 @@ impl LambdaFunctionEventInvokeConfigRef {
 
     #[doc = "Get a reference to the value of field `maximum_event_age_in_seconds` after provisioning.\n"]
     pub fn maximum_event_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_event_age_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_event_age_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.qualifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.qualifier", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_config` after provisioning.\n"]
-    pub fn destination_config(&self) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_config", self.extract_ref()))
+    pub fn destination_config(
+        &self,
+    ) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_config", self.extract_ref()),
+        )
     }
 }
 
@@ -309,7 +358,7 @@ pub struct LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {
     destination: PrimField<String>,
 }
 
-impl LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl { }
+impl LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {}
 
 impl ToListMappable for LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {
     type O = BlockAssignable<LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl>;
@@ -330,7 +379,9 @@ pub struct BuildLambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {
 
 impl BuildLambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {
     pub fn build(self) -> LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {
-        LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl { destination: self.destination }
+        LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureEl {
+            destination: self.destination,
+        }
     }
 }
 
@@ -340,7 +391,10 @@ pub struct LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef {
 }
 
 impl Ref for LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef {
-    fn new(shared: StackShared, base: String) -> LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef {
         LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef {
             shared: shared,
             base: base.to_string(),
@@ -364,7 +418,7 @@ pub struct LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {
     destination: PrimField<String>,
 }
 
-impl LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl { }
+impl LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {}
 
 impl ToListMappable for LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {
     type O = BlockAssignable<LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl>;
@@ -385,7 +439,9 @@ pub struct BuildLambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {
 
 impl BuildLambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {
     pub fn build(self) -> LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {
-        LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl { destination: self.destination }
+        LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessEl {
+            destination: self.destination,
+        }
     }
 }
 
@@ -395,7 +451,10 @@ pub struct LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef {
 }
 
 impl Ref for LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef {
-    fn new(shared: StackShared, base: String) -> LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef {
         LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef {
             shared: shared,
             base: base.to_string(),
@@ -438,10 +497,10 @@ impl LambdaFunctionEventInvokeConfigDestinationConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_failure = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_failure = Some(d);
-            },
+            }
         }
         self
     }
@@ -454,10 +513,10 @@ impl LambdaFunctionEventInvokeConfigDestinationConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_success = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_success = Some(d);
-            },
+            }
         }
         self
     }
@@ -493,7 +552,10 @@ pub struct LambdaFunctionEventInvokeConfigDestinationConfigElRef {
 }
 
 impl Ref for LambdaFunctionEventInvokeConfigDestinationConfigElRef {
-    fn new(shared: StackShared, base: String) -> LambdaFunctionEventInvokeConfigDestinationConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LambdaFunctionEventInvokeConfigDestinationConfigElRef {
         LambdaFunctionEventInvokeConfigDestinationConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -507,12 +569,16 @@ impl LambdaFunctionEventInvokeConfigDestinationConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `on_failure` after provisioning.\n"]
-    pub fn on_failure(&self) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef> {
+    pub fn on_failure(
+        &self,
+    ) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElOnFailureElRef> {
         ListRef::new(self.shared().clone(), format!("{}.on_failure", self.base))
     }
 
     #[doc = "Get a reference to the value of field `on_success` after provisioning.\n"]
-    pub fn on_success(&self) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef> {
+    pub fn on_success(
+        &self,
+    ) -> ListRef<LambdaFunctionEventInvokeConfigDestinationConfigElOnSuccessElRef> {
         ListRef::new(self.shared().clone(), format!("{}.on_success", self.base))
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53recoverycontrolconfigClusterData {
@@ -60,7 +60,8 @@ impl Route53recoverycontrolconfigCluster {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl Route53recoverycontrolconfigCluster {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl Route53recoverycontrolconfigCluster {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -123,8 +134,13 @@ impl Route53recoverycontrolconfigCluster {
     }
 
     #[doc = "Get a reference to the value of field `cluster_endpoints` after provisioning.\n"]
-    pub fn cluster_endpoints(&self) -> ListRef<Route53recoverycontrolconfigClusterClusterEndpointsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_endpoints", self.extract_ref()))
+    pub fn cluster_endpoints(
+        &self,
+    ) -> ListRef<Route53recoverycontrolconfigClusterClusterEndpointsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_endpoints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -134,37 +150,56 @@ impl Route53recoverycontrolconfigCluster {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_type` after provisioning.\n"]
     pub fn network_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53recoverycontrolconfigCluster {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53recoverycontrolconfigCluster { }
+impl Resource for Route53recoverycontrolconfigCluster {}
 
 impl ToListMappable for Route53recoverycontrolconfigCluster {
     type O = ListRef<Route53recoverycontrolconfigClusterRef>;
@@ -197,21 +232,22 @@ pub struct BuildRoute53recoverycontrolconfigCluster {
 
 impl BuildRoute53recoverycontrolconfigCluster {
     pub fn build(self, stack: &mut Stack) -> Route53recoverycontrolconfigCluster {
-        let out = Route53recoverycontrolconfigCluster(Rc::new(Route53recoverycontrolconfigCluster_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(Route53recoverycontrolconfigClusterData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                name: self.name,
-                network_type: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            Route53recoverycontrolconfigCluster(Rc::new(Route53recoverycontrolconfigCluster_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(Route53recoverycontrolconfigClusterData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    name: self.name,
+                    network_type: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -224,10 +260,7 @@ pub struct Route53recoverycontrolconfigClusterRef {
 
 impl Ref for Route53recoverycontrolconfigClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -246,8 +279,13 @@ impl Route53recoverycontrolconfigClusterRef {
     }
 
     #[doc = "Get a reference to the value of field `cluster_endpoints` after provisioning.\n"]
-    pub fn cluster_endpoints(&self) -> ListRef<Route53recoverycontrolconfigClusterClusterEndpointsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_endpoints", self.extract_ref()))
+    pub fn cluster_endpoints(
+        &self,
+    ) -> ListRef<Route53recoverycontrolconfigClusterClusterEndpointsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_endpoints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -257,27 +295,42 @@ impl Route53recoverycontrolconfigClusterRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_type` after provisioning.\n"]
     pub fn network_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
@@ -332,7 +385,10 @@ pub struct Route53recoverycontrolconfigClusterClusterEndpointsElRef {
 }
 
 impl Ref for Route53recoverycontrolconfigClusterClusterEndpointsElRef {
-    fn new(shared: StackShared, base: String) -> Route53recoverycontrolconfigClusterClusterEndpointsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Route53recoverycontrolconfigClusterClusterEndpointsElRef {
         Route53recoverycontrolconfigClusterClusterEndpointsElRef {
             shared: shared,
             base: base.to_string(),

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ConfigConfigurationAggregatorData {
@@ -24,9 +24,11 @@ struct ConfigConfigurationAggregatorData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    account_aggregation_source: Option<Vec<ConfigConfigurationAggregatorAccountAggregationSourceEl>>,
+    account_aggregation_source:
+        Option<Vec<ConfigConfigurationAggregatorAccountAggregationSourceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    organization_aggregation_source: Option<Vec<ConfigConfigurationAggregatorOrganizationAggregationSourceEl>>,
+    organization_aggregation_source:
+        Option<Vec<ConfigConfigurationAggregatorOrganizationAggregationSourceEl>>,
     dynamic: ConfigConfigurationAggregatorDynamic,
 }
 
@@ -65,7 +67,8 @@ impl ConfigConfigurationAggregator {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +81,7 @@ impl ConfigConfigurationAggregator {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +92,22 @@ impl ConfigConfigurationAggregator {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,8 +117,7 @@ impl ConfigConfigurationAggregator {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,10 +143,10 @@ impl ConfigConfigurationAggregator {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().account_aggregation_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.account_aggregation_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -147,10 +159,14 @@ impl ConfigConfigurationAggregator {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().organization_aggregation_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.organization_aggregation_source = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .organization_aggregation_source = Some(d);
+            }
         }
         self
     }
@@ -167,45 +183,68 @@ impl ConfigConfigurationAggregator {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `account_aggregation_source` after provisioning.\n"]
-    pub fn account_aggregation_source(&self) -> ListRef<ConfigConfigurationAggregatorAccountAggregationSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_aggregation_source", self.extract_ref()))
+    pub fn account_aggregation_source(
+        &self,
+    ) -> ListRef<ConfigConfigurationAggregatorAccountAggregationSourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_aggregation_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `organization_aggregation_source` after provisioning.\n"]
     pub fn organization_aggregation_source(
         &self,
     ) -> ListRef<ConfigConfigurationAggregatorOrganizationAggregationSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.organization_aggregation_source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.organization_aggregation_source", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ConfigConfigurationAggregator {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ConfigConfigurationAggregator { }
+impl Resource for ConfigConfigurationAggregator {}
 
 impl ToListMappable for ConfigConfigurationAggregator {
     type O = ListRef<ConfigConfigurationAggregatorRef>;
@@ -268,10 +307,7 @@ pub struct ConfigConfigurationAggregatorRef {
 
 impl Ref for ConfigConfigurationAggregatorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -296,35 +332,54 @@ impl ConfigConfigurationAggregatorRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `account_aggregation_source` after provisioning.\n"]
-    pub fn account_aggregation_source(&self) -> ListRef<ConfigConfigurationAggregatorAccountAggregationSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_aggregation_source", self.extract_ref()))
+    pub fn account_aggregation_source(
+        &self,
+    ) -> ListRef<ConfigConfigurationAggregatorAccountAggregationSourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_aggregation_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `organization_aggregation_source` after provisioning.\n"]
     pub fn organization_aggregation_source(
         &self,
     ) -> ListRef<ConfigConfigurationAggregatorOrganizationAggregationSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.organization_aggregation_source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.organization_aggregation_source", self.extract_ref()),
+        )
     }
 }
 
@@ -384,7 +439,10 @@ pub struct ConfigConfigurationAggregatorAccountAggregationSourceElRef {
 }
 
 impl Ref for ConfigConfigurationAggregatorAccountAggregationSourceElRef {
-    fn new(shared: StackShared, base: String) -> ConfigConfigurationAggregatorAccountAggregationSourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConfigConfigurationAggregatorAccountAggregationSourceElRef {
         ConfigConfigurationAggregatorAccountAggregationSourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -469,7 +527,10 @@ pub struct ConfigConfigurationAggregatorOrganizationAggregationSourceElRef {
 }
 
 impl Ref for ConfigConfigurationAggregatorOrganizationAggregationSourceElRef {
-    fn new(shared: StackShared, base: String) -> ConfigConfigurationAggregatorOrganizationAggregationSourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConfigConfigurationAggregatorOrganizationAggregationSourceElRef {
         ConfigConfigurationAggregatorOrganizationAggregationSourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -500,8 +561,8 @@ impl ConfigConfigurationAggregatorOrganizationAggregationSourceElRef {
 
 #[derive(Serialize, Default)]
 struct ConfigConfigurationAggregatorDynamic {
-    account_aggregation_source: Option<DynamicBlock<ConfigConfigurationAggregatorAccountAggregationSourceEl>>,
-    organization_aggregation_source: Option<
-        DynamicBlock<ConfigConfigurationAggregatorOrganizationAggregationSourceEl>,
-    >,
+    account_aggregation_source:
+        Option<DynamicBlock<ConfigConfigurationAggregatorAccountAggregationSourceEl>>,
+    organization_aggregation_source:
+        Option<DynamicBlock<ConfigConfigurationAggregatorOrganizationAggregationSourceEl>>,
 }

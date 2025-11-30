@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3controlStorageLensConfigurationData {
@@ -26,7 +26,8 @@ struct S3controlStorageLensConfigurationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    storage_lens_configuration: Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationEl>>,
+    storage_lens_configuration:
+        Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationEl>>,
     dynamic: S3controlStorageLensConfigurationDynamic,
 }
 
@@ -65,7 +66,8 @@ impl S3controlStorageLensConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +80,7 @@ impl S3controlStorageLensConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +91,22 @@ impl S3controlStorageLensConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +122,7 @@ impl S3controlStorageLensConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,17 +148,20 @@ impl S3controlStorageLensConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().storage_lens_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.storage_lens_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -157,7 +171,10 @@ impl S3controlStorageLensConfiguration {
 
     #[doc = "Get a reference to the value of field `config_id` after provisioning.\n"]
     pub fn config_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -165,35 +182,52 @@ impl S3controlStorageLensConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_lens_configuration` after provisioning.\n"]
-    pub fn storage_lens_configuration(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_lens_configuration", self.extract_ref()))
+    pub fn storage_lens_configuration(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_lens_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3controlStorageLensConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3controlStorageLensConfiguration { }
+impl Resource for S3controlStorageLensConfiguration {}
 
 impl ToListMappable for S3controlStorageLensConfiguration {
     type O = ListRef<S3controlStorageLensConfigurationRef>;
@@ -256,10 +290,7 @@ pub struct S3controlStorageLensConfigurationRef {
 
 impl Ref for S3controlStorageLensConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -274,7 +305,10 @@ impl S3controlStorageLensConfigurationRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -284,7 +318,10 @@ impl S3controlStorageLensConfigurationRef {
 
     #[doc = "Get a reference to the value of field `config_id` after provisioning.\n"]
     pub fn config_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -292,30 +329,44 @@ impl S3controlStorageLensConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_lens_configuration` after provisioning.\n"]
-    pub fn storage_lens_configuration(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_lens_configuration", self.extract_ref()))
+    pub fn storage_lens_configuration(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_lens_configuration", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -328,9 +379,12 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAc
     }
 }
 
-impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl {
-    type O =
-        BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl>;
+impl ToListMappable
+    for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl
+{
+    type O = BlockAssignable<
+        S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -341,17 +395,24 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl
+{}
 
-impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl {
-    pub fn build(self) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl {
+impl
+    BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl
+{
+    pub fn build(
+        self,
+    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl
+    {
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsEl {
             enabled: core::default::Default::default(),
         }
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -380,7 +441,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAc
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -408,7 +470,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsEl {
     pub fn build(
@@ -420,7 +483,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -449,7 +513,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAd
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -477,7 +542,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsEl {
     pub fn build(
@@ -489,7 +555,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -518,7 +585,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAd
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -546,7 +614,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsEl {
     pub fn build(
@@ -558,7 +627,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -587,7 +657,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -615,7 +686,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsEl {
     pub fn build(
@@ -627,7 +699,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -656,7 +729,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -684,7 +758,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsEl {
     pub fn build(
@@ -696,7 +771,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -725,7 +801,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -753,7 +830,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsEl {
     pub fn build(
@@ -765,7 +843,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -794,7 +873,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     delimiter: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -838,7 +918,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaEl {
     pub fn build(
@@ -852,7 +933,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElSelectionCriteriaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -958,7 +1040,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsEl {
     pub fn build(
@@ -972,7 +1055,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElStorageMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1069,7 +1153,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelEl {
     pub fn build(
@@ -1082,7 +1167,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1190,10 +1276,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.activity_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.activity_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1213,10 +1299,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.advanced_cost_optimization_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.advanced_cost_optimization_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1236,10 +1322,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.advanced_data_protection_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.advanced_data_protection_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1259,10 +1345,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.detailed_status_code_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.detailed_status_code_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1282,17 +1368,21 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prefix_level = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prefix_level = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl {
-    type O = BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl>;
+impl ToListMappable
+    for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl
+{
+    type O = BlockAssignable<
+        S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1303,10 +1393,14 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl {
-    pub fn build(self) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl {
+    pub fn build(
+        self,
+    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl
+    {
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelEl {
             activity_metrics: core::default::Default::default(),
             advanced_cost_optimization_metrics: core::default::Default::default(),
@@ -1318,16 +1412,20 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef {
+impl Ref
+    for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef {
+    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef
+    {
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef {
             shared: shared,
             base: base.to_string(),
@@ -1345,8 +1443,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElActivityMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.activity_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.activity_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_cost_optimization_metrics` after provisioning.\n"]
@@ -1354,8 +1455,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedCostOptimizationMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_cost_optimization_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_cost_optimization_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_data_protection_metrics` after provisioning.\n"]
@@ -1363,8 +1467,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElAdvancedDataProtectionMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_data_protection_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_data_protection_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detailed_status_code_metrics` after provisioning.\n"]
@@ -1372,8 +1479,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElDetailedStatusCodeMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.detailed_status_code_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.detailed_status_code_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix_level` after provisioning.\n"]
@@ -1381,13 +1491,14 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBu
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElPrefixLevelElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.prefix_level", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
@@ -1415,7 +1526,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsEl {
     pub fn build(
@@ -1427,7 +1539,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLeve
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1521,10 +1634,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.activity_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.activity_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1544,10 +1657,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.advanced_cost_optimization_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.advanced_cost_optimization_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1567,10 +1680,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.advanced_data_protection_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.advanced_data_protection_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -1590,10 +1703,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bucket_level = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bucket_level = Some(d);
-            },
+            }
         }
         self
     }
@@ -1613,17 +1726,18 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.detailed_status_code_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.detailed_status_code_metrics = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
-    type O = BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>;
+    type O =
+        BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1637,7 +1751,9 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
 pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
-    pub fn build(self) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
+    pub fn build(
+        self,
+    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl {
             activity_metrics: core::default::Default::default(),
             advanced_cost_optimization_metrics: core::default::Default::default(),
@@ -1674,8 +1790,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElRe
     #[doc = "Get a reference to the value of field `activity_metrics` after provisioning.\n"]
     pub fn activity_metrics(
         &self,
-    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.activity_metrics", self.base))
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElActivityMetricsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.activity_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_cost_optimization_metrics` after provisioning.\n"]
@@ -1683,8 +1802,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElRe
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedCostOptimizationMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_cost_optimization_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_cost_optimization_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_data_protection_metrics` after provisioning.\n"]
@@ -1692,14 +1814,19 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElRe
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElAdvancedDataProtectionMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_data_protection_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_data_protection_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_level` after provisioning.\n"]
     pub fn bucket_level(
         &self,
-    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef> {
+    ) -> ListRef<
+        S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElBucketLevelElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.bucket_level", self.base))
     }
 
@@ -1708,8 +1835,11 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElRe
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElDetailedStatusCodeMetricsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.detailed_status_code_metrics", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.detailed_status_code_metrics", self.base),
+        )
     }
 }
 
@@ -1718,7 +1848,7 @@ pub struct S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl {
     arn: PrimField<String>,
 }
 
-impl S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl { }
+impl S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl {}
 
 impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl {
     type O = BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl>;
@@ -1772,15 +1902,19 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgElRef {
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl
+{
     enabled: PrimField<bool>,
 }
 
-impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl { }
+impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {}
 
-impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {
-    type O =
-        BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl>;
+impl ToListMappable
+    for S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl
+{
+    type O = BlockAssignable<
+        S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1791,20 +1925,27 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl
+{
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
 
-impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {
-    pub fn build(self) -> S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {
+impl
+    BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl
+{
+    pub fn build(
+        self,
+    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl
+    {
         S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsEl {
             enabled: self.enabled,
         }
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1833,7 +1974,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElClou
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseKmsEl {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseKmsEl
+{
     key_id: PrimField<String>,
 }
 
@@ -1856,7 +1998,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseKmsEl {
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseKmsEl
+{
     #[doc = ""]
     pub key_id: PrimField<String>,
 }
@@ -1871,7 +2014,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportE
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseKmsElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseKmsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1900,7 +2044,8 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3Bu
 }
 
 #[derive(Serialize)]
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3El {}
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3El
+{}
 
 impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3El {
 
@@ -1921,7 +2066,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3El {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3El
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3El {
     pub fn build(
@@ -1931,7 +2077,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportE
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3ElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElSseS3ElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2048,7 +2195,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionEl {}
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionEl
+{}
 
 impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionEl {
     pub fn build(
@@ -2062,7 +2210,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportE
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2149,16 +2298,18 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3Bu
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.encryption = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.encryption = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationEl {
+impl ToListMappable
+    for S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationEl
+{
     type O =
         BlockAssignable<
             S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationEl,
@@ -2173,7 +2324,8 @@ impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfiguratio
     }
 }
 
-pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationEl {
+pub struct BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationEl
+{
     #[doc = ""]
     pub account_id: PrimField<String>,
     #[doc = ""]
@@ -2200,7 +2352,8 @@ impl BuildS3controlStorageLensConfigurationStorageLensConfigurationElDataExportE
     }
 }
 
-pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElRef {
+pub struct S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2217,7 +2370,9 @@ impl Ref for S3controlStorageLensConfigurationStorageLensConfigurationElDataExpo
     }
 }
 
-impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElRef {
+impl
+    S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -2239,7 +2394,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3Bu
 
     #[doc = "Get a reference to the value of field `output_schema_version` after provisioning.\n"]
     pub fn output_schema_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_schema_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_schema_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
@@ -2252,7 +2410,7 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3Bu
         &self,
     ) -> ListRef<
         S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElEncryptionElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.encryption", self.base))
     }
 }
@@ -2296,10 +2454,10 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloud_watch_metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloud_watch_metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -2319,17 +2477,18 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_bucket_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_bucket_destination = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl {
-    type O = BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>;
+    type O =
+        BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2377,15 +2536,21 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElRef 
     #[doc = "Get a reference to the value of field `cloud_watch_metrics` after provisioning.\n"]
     pub fn cloud_watch_metrics(
         &self,
-    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_watch_metrics", self.base))
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElCloudWatchMetricsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_metrics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_destination` after provisioning.\n"]
     pub fn s3_bucket_destination(
         &self,
-    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_bucket_destination", self.base))
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElS3BucketDestinationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_destination", self.base),
+        )
     }
 }
 
@@ -2547,22 +2712,31 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElIncludeElRef {
 
 #[derive(Serialize, Default)]
 struct S3controlStorageLensConfigurationStorageLensConfigurationElDynamic {
-    account_level: Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>>,
-    aws_org: Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl>>,
-    data_export: Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>>,
-    exclude: Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeEl>>,
-    include: Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElIncludeEl>>,
+    account_level: Option<
+        DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>,
+    >,
+    aws_org:
+        Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl>>,
+    data_export: Option<
+        DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>,
+    >,
+    exclude:
+        Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeEl>>,
+    include:
+        Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationElIncludeEl>>,
 }
 
 #[derive(Serialize)]
 pub struct S3controlStorageLensConfigurationStorageLensConfigurationEl {
     enabled: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    account_level: Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>>,
+    account_level:
+        Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     aws_org: Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    data_export: Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>>,
+    data_export:
+        Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     exclude: Option<Vec<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2574,15 +2748,19 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationEl {
     #[doc = "Set the field `account_level`.\n"]
     pub fn set_account_level(
         mut self,
-        v: impl Into<BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.account_level = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.account_level = Some(d);
-            },
+            }
         }
         self
     }
@@ -2590,15 +2768,17 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationEl {
     #[doc = "Set the field `aws_org`.\n"]
     pub fn set_aws_org(
         mut self,
-        v: impl Into<BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl>>,
+        v: impl Into<
+            BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_org = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_org = Some(d);
-            },
+            }
         }
         self
     }
@@ -2606,15 +2786,19 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationEl {
     #[doc = "Set the field `data_export`.\n"]
     pub fn set_data_export(
         mut self,
-        v: impl Into<BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3controlStorageLensConfigurationStorageLensConfigurationElDataExportEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.data_export = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.data_export = Some(d);
-            },
+            }
         }
         self
     }
@@ -2622,15 +2806,17 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationEl {
     #[doc = "Set the field `exclude`.\n"]
     pub fn set_exclude(
         mut self,
-        v: impl Into<BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeEl>>,
+        v: impl Into<
+            BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.exclude = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.exclude = Some(d);
-            },
+            }
         }
         self
     }
@@ -2638,15 +2824,17 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationEl {
     #[doc = "Set the field `include`.\n"]
     pub fn set_include(
         mut self,
-        v: impl Into<BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElIncludeEl>>,
+        v: impl Into<
+            BlockAssignable<S3controlStorageLensConfigurationStorageLensConfigurationElIncludeEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.include = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.include = Some(d);
-            },
+            }
         }
         self
     }
@@ -2689,7 +2877,10 @@ pub struct S3controlStorageLensConfigurationStorageLensConfigurationElRef {
 }
 
 impl Ref for S3controlStorageLensConfigurationStorageLensConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> S3controlStorageLensConfigurationStorageLensConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3controlStorageLensConfigurationStorageLensConfigurationElRef {
         S3controlStorageLensConfigurationStorageLensConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2708,32 +2899,46 @@ impl S3controlStorageLensConfigurationStorageLensConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `account_level` after provisioning.\n"]
-    pub fn account_level(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_level", self.base))
+    pub fn account_level(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAccountLevelElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_level", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `aws_org` after provisioning.\n"]
-    pub fn aws_org(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgElRef> {
+    pub fn aws_org(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElAwsOrgElRef> {
         ListRef::new(self.shared().clone(), format!("{}.aws_org", self.base))
     }
 
     #[doc = "Get a reference to the value of field `data_export` after provisioning.\n"]
-    pub fn data_export(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElRef> {
+    pub fn data_export(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElDataExportElRef> {
         ListRef::new(self.shared().clone(), format!("{}.data_export", self.base))
     }
 
     #[doc = "Get a reference to the value of field `exclude` after provisioning.\n"]
-    pub fn exclude(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeElRef> {
+    pub fn exclude(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElExcludeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.exclude", self.base))
     }
 
     #[doc = "Get a reference to the value of field `include` after provisioning.\n"]
-    pub fn include(&self) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElIncludeElRef> {
+    pub fn include(
+        &self,
+    ) -> ListRef<S3controlStorageLensConfigurationStorageLensConfigurationElIncludeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.include", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct S3controlStorageLensConfigurationDynamic {
-    storage_lens_configuration: Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationEl>>,
+    storage_lens_configuration:
+        Option<DynamicBlock<S3controlStorageLensConfigurationStorageLensConfigurationEl>>,
 }

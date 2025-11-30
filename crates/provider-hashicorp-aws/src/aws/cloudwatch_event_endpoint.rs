@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchEventEndpointData {
@@ -67,7 +67,8 @@ impl CloudwatchEventEndpoint {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl CloudwatchEventEndpoint {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl CloudwatchEventEndpoint {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl CloudwatchEventEndpoint {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,14 +136,17 @@ impl CloudwatchEventEndpoint {
     }
 
     #[doc = "Set the field `event_bus`.\n"]
-    pub fn set_event_bus(self, v: impl Into<BlockAssignable<CloudwatchEventEndpointEventBusEl>>) -> Self {
+    pub fn set_event_bus(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventEndpointEventBusEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().event_bus = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.event_bus = Some(d);
-            },
+            }
         }
         self
     }
@@ -146,23 +159,26 @@ impl CloudwatchEventEndpoint {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().replication_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.replication_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `routing_config`.\n"]
-    pub fn set_routing_config(self, v: impl Into<BlockAssignable<CloudwatchEventEndpointRoutingConfigEl>>) -> Self {
+    pub fn set_routing_config(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventEndpointRoutingConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().routing_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.routing_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -174,12 +190,18 @@ impl CloudwatchEventEndpoint {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_url` after provisioning.\n"]
     pub fn endpoint_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -189,43 +211,64 @@ impl CloudwatchEventEndpoint {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_bus` after provisioning.\n"]
     pub fn event_bus(&self) -> ListRef<CloudwatchEventEndpointEventBusElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_bus", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_bus", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_config` after provisioning.\n"]
     pub fn replication_config(&self) -> ListRef<CloudwatchEventEndpointReplicationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.replication_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.replication_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `routing_config` after provisioning.\n"]
     pub fn routing_config(&self) -> ListRef<CloudwatchEventEndpointRoutingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.routing_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.routing_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchEventEndpoint {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchEventEndpoint { }
+impl Resource for CloudwatchEventEndpoint {}
 
 impl ToListMappable for CloudwatchEventEndpoint {
     type O = ListRef<CloudwatchEventEndpointRef>;
@@ -289,10 +332,7 @@ pub struct CloudwatchEventEndpointRef {
 
 impl Ref for CloudwatchEventEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -312,12 +352,18 @@ impl CloudwatchEventEndpointRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_url` after provisioning.\n"]
     pub fn endpoint_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -327,33 +373,50 @@ impl CloudwatchEventEndpointRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_bus` after provisioning.\n"]
     pub fn event_bus(&self) -> ListRef<CloudwatchEventEndpointEventBusElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_bus", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_bus", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_config` after provisioning.\n"]
     pub fn replication_config(&self) -> ListRef<CloudwatchEventEndpointReplicationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.replication_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.replication_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `routing_config` after provisioning.\n"]
     pub fn routing_config(&self) -> ListRef<CloudwatchEventEndpointRoutingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.routing_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.routing_config", self.extract_ref()),
+        )
     }
 }
 
@@ -362,7 +425,7 @@ pub struct CloudwatchEventEndpointEventBusEl {
     event_bus_arn: PrimField<String>,
 }
 
-impl CloudwatchEventEndpointEventBusEl { }
+impl CloudwatchEventEndpointEventBusEl {}
 
 impl ToListMappable for CloudwatchEventEndpointEventBusEl {
     type O = BlockAssignable<CloudwatchEventEndpointEventBusEl>;
@@ -383,7 +446,9 @@ pub struct BuildCloudwatchEventEndpointEventBusEl {
 
 impl BuildCloudwatchEventEndpointEventBusEl {
     pub fn build(self) -> CloudwatchEventEndpointEventBusEl {
-        CloudwatchEventEndpointEventBusEl { event_bus_arn: self.event_bus_arn }
+        CloudwatchEventEndpointEventBusEl {
+            event_bus_arn: self.event_bus_arn,
+        }
     }
 }
 
@@ -408,7 +473,10 @@ impl CloudwatchEventEndpointEventBusElRef {
 
     #[doc = "Get a reference to the value of field `event_bus_arn` after provisioning.\n"]
     pub fn event_bus_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_bus_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_bus_arn", self.base),
+        )
     }
 }
 
@@ -442,7 +510,9 @@ pub struct BuildCloudwatchEventEndpointReplicationConfigEl {}
 
 impl BuildCloudwatchEventEndpointReplicationConfigEl {
     pub fn build(self) -> CloudwatchEventEndpointReplicationConfigEl {
-        CloudwatchEventEndpointReplicationConfigEl { state: core::default::Default::default() }
+        CloudwatchEventEndpointReplicationConfigEl {
+            state: core::default::Default::default(),
+        }
     }
 }
 
@@ -513,7 +583,10 @@ pub struct CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef {
 }
 
 impl Ref for CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef {
         CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef {
             shared: shared,
             base: base.to_string(),
@@ -599,7 +672,8 @@ impl CloudwatchEventEndpointRoutingConfigElFailoverConfigElSecondaryElRef {
 #[derive(Serialize, Default)]
 struct CloudwatchEventEndpointRoutingConfigElFailoverConfigElDynamic {
     primary: Option<DynamicBlock<CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryEl>>,
-    secondary: Option<DynamicBlock<CloudwatchEventEndpointRoutingConfigElFailoverConfigElSecondaryEl>>,
+    secondary:
+        Option<DynamicBlock<CloudwatchEventEndpointRoutingConfigElFailoverConfigElSecondaryEl>>,
 }
 
 #[derive(Serialize)]
@@ -620,10 +694,10 @@ impl CloudwatchEventEndpointRoutingConfigElFailoverConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.primary = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.primary = Some(d);
-            },
+            }
         }
         self
     }
@@ -636,10 +710,10 @@ impl CloudwatchEventEndpointRoutingConfigElFailoverConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.secondary = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.secondary = Some(d);
-            },
+            }
         }
         self
     }
@@ -675,7 +749,10 @@ pub struct CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef {
 }
 
 impl Ref for CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef {
         CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -689,12 +766,16 @@ impl CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `primary` after provisioning.\n"]
-    pub fn primary(&self) -> ListRef<CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef> {
+    pub fn primary(
+        &self,
+    ) -> ListRef<CloudwatchEventEndpointRoutingConfigElFailoverConfigElPrimaryElRef> {
         ListRef::new(self.shared().clone(), format!("{}.primary", self.base))
     }
 
     #[doc = "Get a reference to the value of field `secondary` after provisioning.\n"]
-    pub fn secondary(&self) -> ListRef<CloudwatchEventEndpointRoutingConfigElFailoverConfigElSecondaryElRef> {
+    pub fn secondary(
+        &self,
+    ) -> ListRef<CloudwatchEventEndpointRoutingConfigElFailoverConfigElSecondaryElRef> {
         ListRef::new(self.shared().clone(), format!("{}.secondary", self.base))
     }
 }
@@ -720,10 +801,10 @@ impl CloudwatchEventEndpointRoutingConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.failover_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.failover_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -772,8 +853,13 @@ impl CloudwatchEventEndpointRoutingConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `failover_config` after provisioning.\n"]
-    pub fn failover_config(&self) -> ListRef<CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.failover_config", self.base))
+    pub fn failover_config(
+        &self,
+    ) -> ListRef<CloudwatchEventEndpointRoutingConfigElFailoverConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.failover_config", self.base),
+        )
     }
 }
 

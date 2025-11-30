@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GuarddutyFilterData {
@@ -68,7 +68,8 @@ impl GuarddutyFilter {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +82,7 @@ impl GuarddutyFilter {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +93,22 @@ impl GuarddutyFilter {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -113,8 +124,7 @@ impl GuarddutyFilter {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -133,21 +143,27 @@ impl GuarddutyFilter {
     }
 
     #[doc = "Set the field `finding_criteria`.\n"]
-    pub fn set_finding_criteria(self, v: impl Into<BlockAssignable<GuarddutyFilterFindingCriteriaEl>>) -> Self {
+    pub fn set_finding_criteria(
+        self,
+        v: impl Into<BlockAssignable<GuarddutyFilterFindingCriteriaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().finding_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.finding_criteria = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -157,12 +173,18 @@ impl GuarddutyFilter {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -172,43 +194,64 @@ impl GuarddutyFilter {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rank` after provisioning.\n"]
     pub fn rank(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rank", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rank", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `finding_criteria` after provisioning.\n"]
     pub fn finding_criteria(&self) -> ListRef<GuarddutyFilterFindingCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.finding_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.finding_criteria", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GuarddutyFilter {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GuarddutyFilter { }
+impl Resource for GuarddutyFilter {}
 
 impl ToListMappable for GuarddutyFilter {
     type O = ListRef<GuarddutyFilterRef>;
@@ -280,10 +323,7 @@ pub struct GuarddutyFilterRef {
 
 impl Ref for GuarddutyFilterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -298,7 +338,10 @@ impl GuarddutyFilterRef {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -308,12 +351,18 @@ impl GuarddutyFilterRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -323,33 +372,50 @@ impl GuarddutyFilterRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rank` after provisioning.\n"]
     pub fn rank(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rank", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rank", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `finding_criteria` after provisioning.\n"]
     pub fn finding_criteria(&self) -> ListRef<GuarddutyFilterFindingCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.finding_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.finding_criteria", self.extract_ref()),
+        )
     }
 }
 
@@ -475,7 +541,10 @@ impl GuarddutyFilterFindingCriteriaElCriterionElRef {
 
     #[doc = "Get a reference to the value of field `greater_than_or_equal` after provisioning.\n"]
     pub fn greater_than_or_equal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.greater_than_or_equal", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.greater_than_or_equal", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `less_than` after provisioning.\n"]
@@ -485,7 +554,10 @@ impl GuarddutyFilterFindingCriteriaElCriterionElRef {
 
     #[doc = "Get a reference to the value of field `less_than_or_equal` after provisioning.\n"]
     pub fn less_than_or_equal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.less_than_or_equal", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.less_than_or_equal", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_equals` after provisioning.\n"]
@@ -508,14 +580,17 @@ pub struct GuarddutyFilterFindingCriteriaEl {
 
 impl GuarddutyFilterFindingCriteriaEl {
     #[doc = "Set the field `criterion`.\n"]
-    pub fn set_criterion(mut self, v: impl Into<BlockAssignable<GuarddutyFilterFindingCriteriaElCriterionEl>>) -> Self {
+    pub fn set_criterion(
+        mut self,
+        v: impl Into<BlockAssignable<GuarddutyFilterFindingCriteriaElCriterionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.criterion = Some(d);
-            },
+            }
         }
         self
     }

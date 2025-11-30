@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53recoverycontrolconfigRoutingControlData {
@@ -29,7 +29,9 @@ struct Route53recoverycontrolconfigRoutingControl_ {
 }
 
 #[derive(Clone)]
-pub struct Route53recoverycontrolconfigRoutingControl(Rc<Route53recoverycontrolconfigRoutingControl_>);
+pub struct Route53recoverycontrolconfigRoutingControl(
+    Rc<Route53recoverycontrolconfigRoutingControl_>,
+);
 
 impl Route53recoverycontrolconfigRoutingControl {
     fn shared(&self) -> &StackShared {
@@ -57,7 +59,8 @@ impl Route53recoverycontrolconfigRoutingControl {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +73,7 @@ impl Route53recoverycontrolconfigRoutingControl {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +84,22 @@ impl Route53recoverycontrolconfigRoutingControl {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -109,12 +122,18 @@ impl Route53recoverycontrolconfigRoutingControl {
 
     #[doc = "Get a reference to the value of field `cluster_arn` after provisioning.\n"]
     pub fn cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `control_panel_arn` after provisioning.\n"]
     pub fn control_panel_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.control_panel_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.control_panel_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -124,22 +143,32 @@ impl Route53recoverycontrolconfigRoutingControl {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53recoverycontrolconfigRoutingControl {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53recoverycontrolconfigRoutingControl { }
+impl Resource for Route53recoverycontrolconfigRoutingControl {}
 
 impl ToListMappable for Route53recoverycontrolconfigRoutingControl {
     type O = ListRef<Route53recoverycontrolconfigRoutingControlRef>;
@@ -174,20 +203,22 @@ pub struct BuildRoute53recoverycontrolconfigRoutingControl {
 
 impl BuildRoute53recoverycontrolconfigRoutingControl {
     pub fn build(self, stack: &mut Stack) -> Route53recoverycontrolconfigRoutingControl {
-        let out = Route53recoverycontrolconfigRoutingControl(Rc::new(Route53recoverycontrolconfigRoutingControl_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(Route53recoverycontrolconfigRoutingControlData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                cluster_arn: self.cluster_arn,
-                control_panel_arn: core::default::Default::default(),
-                id: core::default::Default::default(),
-                name: self.name,
-            }),
-        }));
+        let out = Route53recoverycontrolconfigRoutingControl(Rc::new(
+            Route53recoverycontrolconfigRoutingControl_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(Route53recoverycontrolconfigRoutingControlData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    cluster_arn: self.cluster_arn,
+                    control_panel_arn: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    name: self.name,
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -200,10 +231,7 @@ pub struct Route53recoverycontrolconfigRoutingControlRef {
 
 impl Ref for Route53recoverycontrolconfigRoutingControlRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -223,12 +251,18 @@ impl Route53recoverycontrolconfigRoutingControlRef {
 
     #[doc = "Get a reference to the value of field `cluster_arn` after provisioning.\n"]
     pub fn cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `control_panel_arn` after provisioning.\n"]
     pub fn control_panel_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.control_panel_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.control_panel_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -238,11 +272,17 @@ impl Route53recoverycontrolconfigRoutingControlRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 }

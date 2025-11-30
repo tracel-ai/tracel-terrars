@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBackupFrameworkData {
@@ -51,8 +51,7 @@ impl DataBackupFramework {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,22 +70,34 @@ impl DataBackupFramework {
 
     #[doc = "Get a reference to the value of field `control` after provisioning.\n"]
     pub fn control(&self) -> ListRef<DataBackupFrameworkControlElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.control", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.control", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_status` after provisioning.\n"]
     pub fn deployment_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -96,33 +107,48 @@ impl DataBackupFramework {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBackupFramework {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBackupFramework { }
+impl Datasource for DataBackupFramework {}
 
 impl ToListMappable for DataBackupFramework {
     type O = ListRef<DataBackupFrameworkRef>;
@@ -180,10 +206,7 @@ pub struct DataBackupFrameworkRef {
 
 impl Ref for DataBackupFrameworkRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -203,22 +226,34 @@ impl DataBackupFrameworkRef {
 
     #[doc = "Get a reference to the value of field `control` after provisioning.\n"]
     pub fn control(&self) -> ListRef<DataBackupFrameworkControlElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.control", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.control", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_status` after provisioning.\n"]
     pub fn deployment_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -228,23 +263,34 @@ impl DataBackupFrameworkRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -335,13 +381,19 @@ pub struct DataBackupFrameworkControlElScopeEl {
 
 impl DataBackupFrameworkControlElScopeEl {
     #[doc = "Set the field `compliance_resource_ids`.\n"]
-    pub fn set_compliance_resource_ids(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_compliance_resource_ids(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.compliance_resource_ids = Some(v.into());
         self
     }
 
     #[doc = "Set the field `compliance_resource_types`.\n"]
-    pub fn set_compliance_resource_types(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_compliance_resource_types(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.compliance_resource_types = Some(v.into());
         self
     }
@@ -398,12 +450,18 @@ impl DataBackupFrameworkControlElScopeElRef {
 
     #[doc = "Get a reference to the value of field `compliance_resource_ids` after provisioning.\n"]
     pub fn compliance_resource_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.compliance_resource_ids", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compliance_resource_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compliance_resource_types` after provisioning.\n"]
     pub fn compliance_resource_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.compliance_resource_types", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compliance_resource_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
@@ -424,7 +482,10 @@ pub struct DataBackupFrameworkControlEl {
 
 impl DataBackupFrameworkControlEl {
     #[doc = "Set the field `input_parameter`.\n"]
-    pub fn set_input_parameter(mut self, v: impl Into<ListField<DataBackupFrameworkControlElInputParameterEl>>) -> Self {
+    pub fn set_input_parameter(
+        mut self,
+        v: impl Into<ListField<DataBackupFrameworkControlElInputParameterEl>>,
+    ) -> Self {
         self.input_parameter = Some(v.into());
         self
     }
@@ -436,7 +497,10 @@ impl DataBackupFrameworkControlEl {
     }
 
     #[doc = "Set the field `scope`.\n"]
-    pub fn set_scope(mut self, v: impl Into<ListField<DataBackupFrameworkControlElScopeEl>>) -> Self {
+    pub fn set_scope(
+        mut self,
+        v: impl Into<ListField<DataBackupFrameworkControlElScopeEl>>,
+    ) -> Self {
         self.scope = Some(v.into());
         self
     }
@@ -487,7 +551,10 @@ impl DataBackupFrameworkControlElRef {
 
     #[doc = "Get a reference to the value of field `input_parameter` after provisioning.\n"]
     pub fn input_parameter(&self) -> ListRef<DataBackupFrameworkControlElInputParameterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_parameter", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_parameter", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

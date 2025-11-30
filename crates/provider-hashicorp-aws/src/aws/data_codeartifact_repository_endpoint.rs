@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCodeartifactRepositoryEndpointData {
@@ -59,8 +59,7 @@ impl DataCodeartifactRepositoryEndpoint {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -68,17 +67,26 @@ impl DataCodeartifactRepositoryEndpoint {
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_owner` after provisioning.\n"]
     pub fn domain_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.format", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -86,30 +94,42 @@ impl DataCodeartifactRepositoryEndpoint {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository_endpoint` after provisioning.\n"]
     pub fn repository_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_endpoint", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCodeartifactRepositoryEndpoint {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCodeartifactRepositoryEndpoint { }
+impl Datasource for DataCodeartifactRepositoryEndpoint {}
 
 impl ToListMappable for DataCodeartifactRepositoryEndpoint {
     type O = ListRef<DataCodeartifactRepositoryEndpointRef>;
@@ -146,21 +166,22 @@ pub struct BuildDataCodeartifactRepositoryEndpoint {
 
 impl BuildDataCodeartifactRepositoryEndpoint {
     pub fn build(self, stack: &mut Stack) -> DataCodeartifactRepositoryEndpoint {
-        let out = DataCodeartifactRepositoryEndpoint(Rc::new(DataCodeartifactRepositoryEndpoint_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataCodeartifactRepositoryEndpointData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                domain: self.domain,
-                domain_owner: core::default::Default::default(),
-                format: self.format,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                repository: self.repository,
-            }),
-        }));
+        let out =
+            DataCodeartifactRepositoryEndpoint(Rc::new(DataCodeartifactRepositoryEndpoint_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataCodeartifactRepositoryEndpointData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    domain: self.domain,
+                    domain_owner: core::default::Default::default(),
+                    format: self.format,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    repository: self.repository,
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -173,10 +194,7 @@ pub struct DataCodeartifactRepositoryEndpointRef {
 
 impl Ref for DataCodeartifactRepositoryEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -191,17 +209,26 @@ impl DataCodeartifactRepositoryEndpointRef {
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_owner` after provisioning.\n"]
     pub fn domain_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.format", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -209,19 +236,27 @@ impl DataCodeartifactRepositoryEndpointRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository_endpoint` after provisioning.\n"]
     pub fn repository_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_endpoint", self.extract_ref()),
+        )
     }
 }

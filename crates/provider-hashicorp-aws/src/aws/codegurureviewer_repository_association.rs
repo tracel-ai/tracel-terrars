@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodegurureviewerRepositoryAssociationData {
@@ -66,7 +66,8 @@ impl CodegurureviewerRepositoryAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl CodegurureviewerRepositoryAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl CodegurureviewerRepositoryAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,8 +116,7 @@ impl CodegurureviewerRepositoryAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -132,10 +142,10 @@ impl CodegurureviewerRepositoryAssociation {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kms_key_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kms_key_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -148,16 +158,19 @@ impl CodegurureviewerRepositoryAssociation {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().repository = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.repository = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<CodegurureviewerRepositoryAssociationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<CodegurureviewerRepositoryAssociationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -169,12 +182,18 @@ impl CodegurureviewerRepositoryAssociation {
 
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.association_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.association_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_arn` after provisioning.\n"]
     pub fn connection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -184,58 +203,94 @@ impl CodegurureviewerRepositoryAssociation {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_type` after provisioning.\n"]
     pub fn provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_repository_details` after provisioning.\n"]
-    pub fn s3_repository_details(&self) -> ListRef<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_repository_details", self.extract_ref()))
+    pub fn s3_repository_details(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_repository_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_reason` after provisioning.\n"]
     pub fn state_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_details` after provisioning.\n"]
-    pub fn kms_key_details(&self) -> ListRef<CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kms_key_details", self.extract_ref()))
+    pub fn kms_key_details(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kms_key_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.repository", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.repository", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -249,11 +304,15 @@ impl CodegurureviewerRepositoryAssociation {
 
 impl Referable for CodegurureviewerRepositoryAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodegurureviewerRepositoryAssociation { }
+impl Resource for CodegurureviewerRepositoryAssociation {}
 
 impl ToListMappable for CodegurureviewerRepositoryAssociation {
     type O = ListRef<CodegurureviewerRepositoryAssociationRef>;
@@ -284,24 +343,26 @@ pub struct BuildCodegurureviewerRepositoryAssociation {
 
 impl BuildCodegurureviewerRepositoryAssociation {
     pub fn build(self, stack: &mut Stack) -> CodegurureviewerRepositoryAssociation {
-        let out = CodegurureviewerRepositoryAssociation(Rc::new(CodegurureviewerRepositoryAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(CodegurureviewerRepositoryAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-                kms_key_details: core::default::Default::default(),
-                repository: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = CodegurureviewerRepositoryAssociation(Rc::new(
+            CodegurureviewerRepositoryAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(CodegurureviewerRepositoryAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                    kms_key_details: core::default::Default::default(),
+                    repository: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -314,10 +375,7 @@ pub struct CodegurureviewerRepositoryAssociationRef {
 
 impl Ref for CodegurureviewerRepositoryAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -337,12 +395,18 @@ impl CodegurureviewerRepositoryAssociationRef {
 
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.association_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.association_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_arn` after provisioning.\n"]
     pub fn connection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -352,58 +416,94 @@ impl CodegurureviewerRepositoryAssociationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_type` after provisioning.\n"]
     pub fn provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_repository_details` after provisioning.\n"]
-    pub fn s3_repository_details(&self) -> ListRef<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_repository_details", self.extract_ref()))
+    pub fn s3_repository_details(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_repository_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_reason` after provisioning.\n"]
     pub fn state_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_details` after provisioning.\n"]
-    pub fn kms_key_details(&self) -> ListRef<CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kms_key_details", self.extract_ref()))
+    pub fn kms_key_details(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kms_key_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.repository", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.repository", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -438,7 +538,8 @@ impl CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {
 }
 
 impl ToListMappable for CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {
-    type O = BlockAssignable<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl>;
+    type O =
+        BlockAssignable<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -452,7 +553,9 @@ impl ToListMappable for CodegurureviewerRepositoryAssociationS3RepositoryDetails
 pub struct BuildCodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {}
 
 impl BuildCodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {
-    pub fn build(self) -> CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {
+    pub fn build(
+        self,
+    ) -> CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {
         CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl {
             build_artifacts_object_key: core::default::Default::default(),
             source_code_artifacts_object_key: core::default::Default::default(),
@@ -484,12 +587,18 @@ impl CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsElRe
 
     #[doc = "Get a reference to the value of field `build_artifacts_object_key` after provisioning.\n"]
     pub fn build_artifacts_object_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.build_artifacts_object_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.build_artifacts_object_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_code_artifacts_object_key` after provisioning.\n"]
     pub fn source_code_artifacts_object_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_code_artifacts_object_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_code_artifacts_object_key", self.base),
+        )
     }
 }
 
@@ -498,7 +607,9 @@ pub struct CodegurureviewerRepositoryAssociationS3RepositoryDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_artifacts: Option<ListField<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl>>,
+    code_artifacts: Option<
+        ListField<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl>,
+    >,
 }
 
 impl CodegurureviewerRepositoryAssociationS3RepositoryDetailsEl {
@@ -511,7 +622,9 @@ impl CodegurureviewerRepositoryAssociationS3RepositoryDetailsEl {
     #[doc = "Set the field `code_artifacts`.\n"]
     pub fn set_code_artifacts(
         mut self,
-        v: impl Into<ListField<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl>>,
+        v: impl Into<
+            ListField<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsEl>,
+        >,
     ) -> Self {
         self.code_artifacts = Some(v.into());
         self
@@ -547,7 +660,10 @@ pub struct CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef {
         CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -569,7 +685,10 @@ impl CodegurureviewerRepositoryAssociationS3RepositoryDetailsElRef {
     pub fn code_artifacts(
         &self,
     ) -> ListRef<CodegurureviewerRepositoryAssociationS3RepositoryDetailsElCodeArtifactsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code_artifacts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_artifacts", self.base),
+        )
     }
 }
 
@@ -624,7 +743,10 @@ pub struct CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef {
         CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -639,7 +761,10 @@ impl CodegurureviewerRepositoryAssociationKmsKeyDetailsElRef {
 
     #[doc = "Get a reference to the value of field `encryption_option` after provisioning.\n"]
     pub fn encryption_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_option", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_option", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
@@ -655,7 +780,7 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElBitbucketEl {
     owner: PrimField<String>,
 }
 
-impl CodegurureviewerRepositoryAssociationRepositoryElBitbucketEl { }
+impl CodegurureviewerRepositoryAssociationRepositoryElBitbucketEl {}
 
 impl ToListMappable for CodegurureviewerRepositoryAssociationRepositoryElBitbucketEl {
     type O = BlockAssignable<CodegurureviewerRepositoryAssociationRepositoryElBitbucketEl>;
@@ -694,7 +819,10 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef {
         CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef {
             shared: shared,
             base: base.to_string(),
@@ -709,7 +837,10 @@ impl CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef {
 
     #[doc = "Get a reference to the value of field `connection_arn` after provisioning.\n"]
     pub fn connection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -728,7 +859,7 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElCodecommitEl {
     name: PrimField<String>,
 }
 
-impl CodegurureviewerRepositoryAssociationRepositoryElCodecommitEl { }
+impl CodegurureviewerRepositoryAssociationRepositoryElCodecommitEl {}
 
 impl ToListMappable for CodegurureviewerRepositoryAssociationRepositoryElCodecommitEl {
     type O = BlockAssignable<CodegurureviewerRepositoryAssociationRepositoryElCodecommitEl>;
@@ -759,7 +890,10 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef {
         CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef {
             shared: shared,
             base: base.to_string(),
@@ -785,10 +919,11 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServ
     owner: PrimField<String>,
 }
 
-impl CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl { }
+impl CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl {}
 
 impl ToListMappable for CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl {
-    type O = BlockAssignable<CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl>;
+    type O =
+        BlockAssignable<CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -809,7 +944,9 @@ pub struct BuildCodegurureviewerRepositoryAssociationRepositoryElGithubEnterpris
 }
 
 impl BuildCodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl {
-    pub fn build(self) -> CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl {
+    pub fn build(
+        self,
+    ) -> CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl {
         CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl {
             connection_arn: self.connection_arn,
             name: self.name,
@@ -842,7 +979,10 @@ impl CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerElRe
 
     #[doc = "Get a reference to the value of field `connection_arn` after provisioning.\n"]
     pub fn connection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -862,7 +1002,7 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElS3BucketEl {
     name: PrimField<String>,
 }
 
-impl CodegurureviewerRepositoryAssociationRepositoryElS3BucketEl { }
+impl CodegurureviewerRepositoryAssociationRepositoryElS3BucketEl {}
 
 impl ToListMappable for CodegurureviewerRepositoryAssociationRepositoryElS3BucketEl {
     type O = BlockAssignable<CodegurureviewerRepositoryAssociationRepositoryElS3BucketEl>;
@@ -898,7 +1038,10 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef {
         CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef {
             shared: shared,
             base: base.to_string(),
@@ -939,7 +1082,8 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     codecommit: Option<Vec<CodegurureviewerRepositoryAssociationRepositoryElCodecommitEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    github_enterprise_server: Option<Vec<CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl>>,
+    github_enterprise_server:
+        Option<Vec<CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_bucket: Option<Vec<CodegurureviewerRepositoryAssociationRepositoryElS3BucketEl>>,
     dynamic: CodegurureviewerRepositoryAssociationRepositoryElDynamic,
@@ -954,10 +1098,10 @@ impl CodegurureviewerRepositoryAssociationRepositoryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bitbucket = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bitbucket = Some(d);
-            },
+            }
         }
         self
     }
@@ -970,10 +1114,10 @@ impl CodegurureviewerRepositoryAssociationRepositoryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.codecommit = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.codecommit = Some(d);
-            },
+            }
         }
         self
     }
@@ -981,15 +1125,19 @@ impl CodegurureviewerRepositoryAssociationRepositoryEl {
     #[doc = "Set the field `github_enterprise_server`.\n"]
     pub fn set_github_enterprise_server(
         mut self,
-        v: impl Into<BlockAssignable<CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.github_enterprise_server = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.github_enterprise_server = Some(d);
-            },
+            }
         }
         self
     }
@@ -1002,10 +1150,10 @@ impl CodegurureviewerRepositoryAssociationRepositoryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_bucket = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_bucket = Some(d);
-            },
+            }
         }
         self
     }
@@ -1043,7 +1191,10 @@ pub struct CodegurureviewerRepositoryAssociationRepositoryElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationRepositoryElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationRepositoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationRepositoryElRef {
         CodegurureviewerRepositoryAssociationRepositoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1057,12 +1208,16 @@ impl CodegurureviewerRepositoryAssociationRepositoryElRef {
     }
 
     #[doc = "Get a reference to the value of field `bitbucket` after provisioning.\n"]
-    pub fn bitbucket(&self) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef> {
+    pub fn bitbucket(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElBitbucketElRef> {
         ListRef::new(self.shared().clone(), format!("{}.bitbucket", self.base))
     }
 
     #[doc = "Get a reference to the value of field `codecommit` after provisioning.\n"]
-    pub fn codecommit(&self) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef> {
+    pub fn codecommit(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElCodecommitElRef> {
         ListRef::new(self.shared().clone(), format!("{}.codecommit", self.base))
     }
 
@@ -1070,11 +1225,16 @@ impl CodegurureviewerRepositoryAssociationRepositoryElRef {
     pub fn github_enterprise_server(
         &self,
     ) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElGithubEnterpriseServerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.github_enterprise_server", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.github_enterprise_server", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
-    pub fn s3_bucket(&self) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef> {
+    pub fn s3_bucket(
+        &self,
+    ) -> ListRef<CodegurureviewerRepositoryAssociationRepositoryElS3BucketElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3_bucket", self.base))
     }
 }
@@ -1139,7 +1299,10 @@ pub struct CodegurureviewerRepositoryAssociationTimeoutsElRef {
 }
 
 impl Ref for CodegurureviewerRepositoryAssociationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> CodegurureviewerRepositoryAssociationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodegurureviewerRepositoryAssociationTimeoutsElRef {
         CodegurureviewerRepositoryAssociationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataFsxOntapStorageVirtualMachinesData {
@@ -51,22 +51,24 @@ impl DataFsxOntapStorageVirtualMachines {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataFsxOntapStorageVirtualMachinesFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataFsxOntapStorageVirtualMachinesFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -81,20 +83,26 @@ impl DataFsxOntapStorageVirtualMachines {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataFsxOntapStorageVirtualMachines {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataFsxOntapStorageVirtualMachines { }
+impl Datasource for DataFsxOntapStorageVirtualMachines {}
 
 impl ToListMappable for DataFsxOntapStorageVirtualMachines {
     type O = ListRef<DataFsxOntapStorageVirtualMachinesRef>;
@@ -125,19 +133,20 @@ pub struct BuildDataFsxOntapStorageVirtualMachines {
 
 impl BuildDataFsxOntapStorageVirtualMachines {
     pub fn build(self, stack: &mut Stack) -> DataFsxOntapStorageVirtualMachines {
-        let out = DataFsxOntapStorageVirtualMachines(Rc::new(DataFsxOntapStorageVirtualMachines_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataFsxOntapStorageVirtualMachinesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            DataFsxOntapStorageVirtualMachines(Rc::new(DataFsxOntapStorageVirtualMachines_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataFsxOntapStorageVirtualMachinesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -150,10 +159,7 @@ pub struct DataFsxOntapStorageVirtualMachinesRef {
 
 impl Ref for DataFsxOntapStorageVirtualMachinesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -176,10 +182,12 @@ impl DataFsxOntapStorageVirtualMachinesRef {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -189,7 +197,7 @@ pub struct DataFsxOntapStorageVirtualMachinesFilterEl {
     values: ListField<PrimField<String>>,
 }
 
-impl DataFsxOntapStorageVirtualMachinesFilterEl { }
+impl DataFsxOntapStorageVirtualMachinesFilterEl {}
 
 impl ToListMappable for DataFsxOntapStorageVirtualMachinesFilterEl {
     type O = BlockAssignable<DataFsxOntapStorageVirtualMachinesFilterEl>;

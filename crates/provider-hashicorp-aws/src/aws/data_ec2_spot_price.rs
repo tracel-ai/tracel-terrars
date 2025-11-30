@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2SpotPriceData {
@@ -69,8 +69,7 @@ impl DataEc2SpotPrice {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -81,10 +80,10 @@ impl DataEc2SpotPrice {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -97,7 +96,10 @@ impl DataEc2SpotPrice {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -107,38 +109,56 @@ impl DataEc2SpotPrice {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price` after provisioning.\n"]
     pub fn spot_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price_timestamp` after provisioning.\n"]
     pub fn spot_price_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_price_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_price_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2SpotPriceTimeoutsElRef {
-        DataEc2SpotPriceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEc2SpotPriceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEc2SpotPrice {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2SpotPrice { }
+impl Datasource for DataEc2SpotPrice {}
 
 impl ToListMappable for DataEc2SpotPrice {
     type O = ListRef<DataEc2SpotPriceRef>;
@@ -197,10 +217,7 @@ pub struct DataEc2SpotPriceRef {
 
 impl Ref for DataEc2SpotPriceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -215,7 +232,10 @@ impl DataEc2SpotPriceRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -225,28 +245,42 @@ impl DataEc2SpotPriceRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price` after provisioning.\n"]
     pub fn spot_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price_timestamp` after provisioning.\n"]
     pub fn spot_price_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_price_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_price_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2SpotPriceTimeoutsElRef {
-        DataEc2SpotPriceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEc2SpotPriceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -256,7 +290,7 @@ pub struct DataEc2SpotPriceFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2SpotPriceFilterEl { }
+impl DataEc2SpotPriceFilterEl {}
 
 impl ToListMappable for DataEc2SpotPriceFilterEl {
     type O = BlockAssignable<DataEc2SpotPriceFilterEl>;
@@ -346,7 +380,9 @@ pub struct BuildDataEc2SpotPriceTimeoutsEl {}
 
 impl BuildDataEc2SpotPriceTimeoutsEl {
     pub fn build(self) -> DataEc2SpotPriceTimeoutsEl {
-        DataEc2SpotPriceTimeoutsEl { read: core::default::Default::default() }
+        DataEc2SpotPriceTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

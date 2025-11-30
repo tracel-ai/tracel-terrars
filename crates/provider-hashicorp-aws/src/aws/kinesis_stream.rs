@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct KinesisStreamData {
@@ -81,7 +81,8 @@ impl KinesisStream {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl KinesisStream {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl KinesisStream {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -150,8 +161,7 @@ impl KinesisStream {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -188,14 +198,17 @@ impl KinesisStream {
     }
 
     #[doc = "Set the field `stream_mode_details`.\n"]
-    pub fn set_stream_mode_details(self, v: impl Into<BlockAssignable<KinesisStreamStreamModeDetailsEl>>) -> Self {
+    pub fn set_stream_mode_details(
+        self,
+        v: impl Into<BlockAssignable<KinesisStreamStreamModeDetailsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().stream_mode_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.stream_mode_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -213,12 +226,18 @@ impl KinesisStream {
 
     #[doc = "Get a reference to the value of field `encryption_type` after provisioning.\n"]
     pub fn encryption_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enforce_consumer_deletion` after provisioning.\n"]
     pub fn enforce_consumer_deletion(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enforce_consumer_deletion", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enforce_consumer_deletion", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -228,68 +247,104 @@ impl KinesisStream {
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_record_size_in_kib` after provisioning.\n"]
     pub fn max_record_size_in_kib(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_record_size_in_kib", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_record_size_in_kib", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shard_count` after provisioning.\n"]
     pub fn shard_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shard_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shard_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shard_level_metrics` after provisioning.\n"]
     pub fn shard_level_metrics(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.shard_level_metrics", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.shard_level_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_mode_details` after provisioning.\n"]
     pub fn stream_mode_details(&self) -> ListRef<KinesisStreamStreamModeDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stream_mode_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stream_mode_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KinesisStreamTimeoutsElRef {
-        KinesisStreamTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        KinesisStreamTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for KinesisStream {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for KinesisStream { }
+impl Resource for KinesisStream {}
 
 impl ToListMappable for KinesisStream {
     type O = ListRef<KinesisStreamRef>;
@@ -360,10 +415,7 @@ pub struct KinesisStreamRef {
 
 impl Ref for KinesisStreamRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -383,12 +435,18 @@ impl KinesisStreamRef {
 
     #[doc = "Get a reference to the value of field `encryption_type` after provisioning.\n"]
     pub fn encryption_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enforce_consumer_deletion` after provisioning.\n"]
     pub fn enforce_consumer_deletion(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enforce_consumer_deletion", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enforce_consumer_deletion", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -398,58 +456,90 @@ impl KinesisStreamRef {
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_record_size_in_kib` after provisioning.\n"]
     pub fn max_record_size_in_kib(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_record_size_in_kib", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_record_size_in_kib", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shard_count` after provisioning.\n"]
     pub fn shard_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shard_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shard_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shard_level_metrics` after provisioning.\n"]
     pub fn shard_level_metrics(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.shard_level_metrics", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.shard_level_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_mode_details` after provisioning.\n"]
     pub fn stream_mode_details(&self) -> ListRef<KinesisStreamStreamModeDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stream_mode_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stream_mode_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KinesisStreamTimeoutsElRef {
-        KinesisStreamTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        KinesisStreamTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -458,7 +548,7 @@ pub struct KinesisStreamStreamModeDetailsEl {
     stream_mode: PrimField<String>,
 }
 
-impl KinesisStreamStreamModeDetailsEl { }
+impl KinesisStreamStreamModeDetailsEl {}
 
 impl ToListMappable for KinesisStreamStreamModeDetailsEl {
     type O = BlockAssignable<KinesisStreamStreamModeDetailsEl>;
@@ -479,7 +569,9 @@ pub struct BuildKinesisStreamStreamModeDetailsEl {
 
 impl BuildKinesisStreamStreamModeDetailsEl {
     pub fn build(self) -> KinesisStreamStreamModeDetailsEl {
-        KinesisStreamStreamModeDetailsEl { stream_mode: self.stream_mode }
+        KinesisStreamStreamModeDetailsEl {
+            stream_mode: self.stream_mode,
+        }
     }
 }
 

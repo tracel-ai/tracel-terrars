@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockCustomModelData {
@@ -75,7 +75,8 @@ impl BedrockCustomModel {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl BedrockCustomModel {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl BedrockCustomModel {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -120,8 +131,7 @@ impl BedrockCustomModel {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,14 +144,17 @@ impl BedrockCustomModel {
     }
 
     #[doc = "Set the field `output_data_config`.\n"]
-    pub fn set_output_data_config(self, v: impl Into<BlockAssignable<BedrockCustomModelOutputDataConfigEl>>) -> Self {
+    pub fn set_output_data_config(
+        self,
+        v: impl Into<BlockAssignable<BedrockCustomModelOutputDataConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().output_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.output_data_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -160,10 +173,10 @@ impl BedrockCustomModel {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().training_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.training_data_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -176,55 +189,76 @@ impl BedrockCustomModel {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().validation_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.validation_data_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `vpc_config`.\n"]
-    pub fn set_vpc_config(self, v: impl Into<BlockAssignable<BedrockCustomModelVpcConfigEl>>) -> Self {
+    pub fn set_vpc_config(
+        self,
+        v: impl Into<BlockAssignable<BedrockCustomModelVpcConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `base_model_identifier` after provisioning.\n"]
     pub fn base_model_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_model_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_model_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_model_arn` after provisioning.\n"]
     pub fn custom_model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_model_kms_key_id` after provisioning.\n"]
     pub fn custom_model_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_model_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_model_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_model_name` after provisioning.\n"]
     pub fn custom_model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_model_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customization_type` after provisioning.\n"]
     pub fn customization_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customization_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customization_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hyperparameters` after provisioning.\n"]
     pub fn hyperparameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.hyperparameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.hyperparameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -234,83 +268,128 @@ impl BedrockCustomModel {
 
     #[doc = "Get a reference to the value of field `job_arn` after provisioning.\n"]
     pub fn job_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_name` after provisioning.\n"]
     pub fn job_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_status` after provisioning.\n"]
     pub fn job_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_metrics` after provisioning.\n"]
     pub fn training_metrics(&self) -> ListRef<BedrockCustomModelTrainingMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_metrics` after provisioning.\n"]
     pub fn validation_metrics(&self) -> ListRef<BedrockCustomModelValidationMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_data_config` after provisioning.\n"]
     pub fn output_data_config(&self) -> ListRef<BedrockCustomModelOutputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockCustomModelTimeoutsElRef {
-        BedrockCustomModelTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockCustomModelTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_data_config` after provisioning.\n"]
     pub fn training_data_config(&self) -> ListRef<BedrockCustomModelTrainingDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_data_config` after provisioning.\n"]
     pub fn validation_data_config(&self) -> ListRef<BedrockCustomModelValidationDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<BedrockCustomModelVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockCustomModel {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockCustomModel { }
+impl Resource for BedrockCustomModel {}
 
 impl ToListMappable for BedrockCustomModel {
     type O = ListRef<BedrockCustomModelRef>;
@@ -388,10 +467,7 @@ pub struct BedrockCustomModelRef {
 
 impl Ref for BedrockCustomModelRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -406,32 +482,50 @@ impl BedrockCustomModelRef {
 
     #[doc = "Get a reference to the value of field `base_model_identifier` after provisioning.\n"]
     pub fn base_model_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_model_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_model_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_model_arn` after provisioning.\n"]
     pub fn custom_model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_model_kms_key_id` after provisioning.\n"]
     pub fn custom_model_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_model_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_model_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_model_name` after provisioning.\n"]
     pub fn custom_model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_model_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customization_type` after provisioning.\n"]
     pub fn customization_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customization_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customization_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hyperparameters` after provisioning.\n"]
     pub fn hyperparameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.hyperparameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.hyperparameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -441,73 +535,114 @@ impl BedrockCustomModelRef {
 
     #[doc = "Get a reference to the value of field `job_arn` after provisioning.\n"]
     pub fn job_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_name` after provisioning.\n"]
     pub fn job_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_status` after provisioning.\n"]
     pub fn job_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_metrics` after provisioning.\n"]
     pub fn training_metrics(&self) -> ListRef<BedrockCustomModelTrainingMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_metrics` after provisioning.\n"]
     pub fn validation_metrics(&self) -> ListRef<BedrockCustomModelValidationMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_data_config` after provisioning.\n"]
     pub fn output_data_config(&self) -> ListRef<BedrockCustomModelOutputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockCustomModelTimeoutsElRef {
-        BedrockCustomModelTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockCustomModelTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_data_config` after provisioning.\n"]
     pub fn training_data_config(&self) -> ListRef<BedrockCustomModelTrainingDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_data_config` after provisioning.\n"]
     pub fn validation_data_config(&self) -> ListRef<BedrockCustomModelValidationDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<BedrockCustomModelVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -541,7 +676,9 @@ pub struct BuildBedrockCustomModelTrainingMetricsEl {}
 
 impl BuildBedrockCustomModelTrainingMetricsEl {
     pub fn build(self) -> BedrockCustomModelTrainingMetricsEl {
-        BedrockCustomModelTrainingMetricsEl { training_loss: core::default::Default::default() }
+        BedrockCustomModelTrainingMetricsEl {
+            training_loss: core::default::Default::default(),
+        }
     }
 }
 
@@ -566,7 +703,10 @@ impl BedrockCustomModelTrainingMetricsElRef {
 
     #[doc = "Get a reference to the value of field `training_loss` after provisioning.\n"]
     pub fn training_loss(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.training_loss", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.training_loss", self.base),
+        )
     }
 }
 
@@ -600,7 +740,9 @@ pub struct BuildBedrockCustomModelValidationMetricsEl {}
 
 impl BuildBedrockCustomModelValidationMetricsEl {
     pub fn build(self) -> BedrockCustomModelValidationMetricsEl {
-        BedrockCustomModelValidationMetricsEl { validation_loss: core::default::Default::default() }
+        BedrockCustomModelValidationMetricsEl {
+            validation_loss: core::default::Default::default(),
+        }
     }
 }
 
@@ -625,7 +767,10 @@ impl BedrockCustomModelValidationMetricsElRef {
 
     #[doc = "Get a reference to the value of field `validation_loss` after provisioning.\n"]
     pub fn validation_loss(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_loss", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_loss", self.base),
+        )
     }
 }
 
@@ -634,7 +779,7 @@ pub struct BedrockCustomModelOutputDataConfigEl {
     s3_uri: PrimField<String>,
 }
 
-impl BedrockCustomModelOutputDataConfigEl { }
+impl BedrockCustomModelOutputDataConfigEl {}
 
 impl ToListMappable for BedrockCustomModelOutputDataConfigEl {
     type O = BlockAssignable<BedrockCustomModelOutputDataConfigEl>;
@@ -655,7 +800,9 @@ pub struct BuildBedrockCustomModelOutputDataConfigEl {
 
 impl BuildBedrockCustomModelOutputDataConfigEl {
     pub fn build(self) -> BedrockCustomModelOutputDataConfigEl {
-        BedrockCustomModelOutputDataConfigEl { s3_uri: self.s3_uri }
+        BedrockCustomModelOutputDataConfigEl {
+            s3_uri: self.s3_uri,
+        }
     }
 }
 
@@ -693,15 +840,13 @@ pub struct BedrockCustomModelTimeoutsEl {
 }
 
 impl BedrockCustomModelTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
@@ -750,14 +895,12 @@ impl BedrockCustomModelTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
@@ -768,7 +911,7 @@ pub struct BedrockCustomModelTrainingDataConfigEl {
     s3_uri: PrimField<String>,
 }
 
-impl BedrockCustomModelTrainingDataConfigEl { }
+impl BedrockCustomModelTrainingDataConfigEl {}
 
 impl ToListMappable for BedrockCustomModelTrainingDataConfigEl {
     type O = BlockAssignable<BedrockCustomModelTrainingDataConfigEl>;
@@ -789,7 +932,9 @@ pub struct BuildBedrockCustomModelTrainingDataConfigEl {
 
 impl BuildBedrockCustomModelTrainingDataConfigEl {
     pub fn build(self) -> BedrockCustomModelTrainingDataConfigEl {
-        BedrockCustomModelTrainingDataConfigEl { s3_uri: self.s3_uri }
+        BedrockCustomModelTrainingDataConfigEl {
+            s3_uri: self.s3_uri,
+        }
     }
 }
 
@@ -823,7 +968,7 @@ pub struct BedrockCustomModelValidationDataConfigElValidatorEl {
     s3_uri: PrimField<String>,
 }
 
-impl BedrockCustomModelValidationDataConfigElValidatorEl { }
+impl BedrockCustomModelValidationDataConfigElValidatorEl {}
 
 impl ToListMappable for BedrockCustomModelValidationDataConfigElValidatorEl {
     type O = BlockAssignable<BedrockCustomModelValidationDataConfigElValidatorEl>;
@@ -844,7 +989,9 @@ pub struct BuildBedrockCustomModelValidationDataConfigElValidatorEl {
 
 impl BuildBedrockCustomModelValidationDataConfigElValidatorEl {
     pub fn build(self) -> BedrockCustomModelValidationDataConfigElValidatorEl {
-        BedrockCustomModelValidationDataConfigElValidatorEl { s3_uri: self.s3_uri }
+        BedrockCustomModelValidationDataConfigElValidatorEl {
+            s3_uri: self.s3_uri,
+        }
     }
 }
 
@@ -854,7 +1001,10 @@ pub struct BedrockCustomModelValidationDataConfigElValidatorElRef {
 }
 
 impl Ref for BedrockCustomModelValidationDataConfigElValidatorElRef {
-    fn new(shared: StackShared, base: String) -> BedrockCustomModelValidationDataConfigElValidatorElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockCustomModelValidationDataConfigElValidatorElRef {
         BedrockCustomModelValidationDataConfigElValidatorElRef {
             shared: shared,
             base: base.to_string(),
@@ -894,10 +1044,10 @@ impl BedrockCustomModelValidationDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.validator = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.validator = Some(d);
-            },
+            }
         }
         self
     }
@@ -957,7 +1107,7 @@ pub struct BedrockCustomModelVpcConfigEl {
     subnet_ids: SetField<PrimField<String>>,
 }
 
-impl BedrockCustomModelVpcConfigEl { }
+impl BedrockCustomModelVpcConfigEl {}
 
 impl ToListMappable for BedrockCustomModelVpcConfigEl {
     type O = BlockAssignable<BedrockCustomModelVpcConfigEl>;
@@ -1008,7 +1158,10 @@ impl BedrockCustomModelVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]

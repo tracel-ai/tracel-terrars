@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontResponseHeadersPolicyData {
@@ -61,22 +61,36 @@ impl DataCloudfrontResponseHeadersPolicy {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cors_config` after provisioning.\n"]
     pub fn cors_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cors_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cors_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_headers_config` after provisioning.\n"]
-    pub fn custom_headers_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_headers_config", self.extract_ref()))
+    pub fn custom_headers_config(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -86,34 +100,54 @@ impl DataCloudfrontResponseHeadersPolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remove_headers_config` after provisioning.\n"]
-    pub fn remove_headers_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.remove_headers_config", self.extract_ref()))
+    pub fn remove_headers_config(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.remove_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_headers_config` after provisioning.\n"]
-    pub fn security_headers_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_headers_config", self.extract_ref()))
+    pub fn security_headers_config(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_timing_headers_config` after provisioning.\n"]
     pub fn server_timing_headers_config(
         &self,
     ) -> ListRef<DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_timing_headers_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_timing_headers_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontResponseHeadersPolicy {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontResponseHeadersPolicy { }
+impl Datasource for DataCloudfrontResponseHeadersPolicy {}
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicy {
     type O = ListRef<DataCloudfrontResponseHeadersPolicyRef>;
@@ -144,17 +178,18 @@ pub struct BuildDataCloudfrontResponseHeadersPolicy {
 
 impl BuildDataCloudfrontResponseHeadersPolicy {
     pub fn build(self, stack: &mut Stack) -> DataCloudfrontResponseHeadersPolicy {
-        let out = DataCloudfrontResponseHeadersPolicy(Rc::new(DataCloudfrontResponseHeadersPolicy_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataCloudfrontResponseHeadersPolicyData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                name: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataCloudfrontResponseHeadersPolicy(Rc::new(DataCloudfrontResponseHeadersPolicy_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataCloudfrontResponseHeadersPolicyData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    name: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -167,10 +202,7 @@ pub struct DataCloudfrontResponseHeadersPolicyRef {
 
 impl Ref for DataCloudfrontResponseHeadersPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -190,22 +222,36 @@ impl DataCloudfrontResponseHeadersPolicyRef {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cors_config` after provisioning.\n"]
     pub fn cors_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cors_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cors_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_headers_config` after provisioning.\n"]
-    pub fn custom_headers_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_headers_config", self.extract_ref()))
+    pub fn custom_headers_config(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -215,24 +261,40 @@ impl DataCloudfrontResponseHeadersPolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remove_headers_config` after provisioning.\n"]
-    pub fn remove_headers_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.remove_headers_config", self.extract_ref()))
+    pub fn remove_headers_config(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.remove_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_headers_config` after provisioning.\n"]
-    pub fn security_headers_config(&self) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_headers_config", self.extract_ref()))
+    pub fn security_headers_config(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_timing_headers_config` after provisioning.\n"]
     pub fn server_timing_headers_config(
         &self,
     ) -> ListRef<DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_timing_headers_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_timing_headers_config", self.extract_ref()),
+        )
     }
 }
 
@@ -251,7 +313,8 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl 
 }
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>;
+    type O =
+        BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -265,7 +328,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessCon
 pub struct BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
         DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
             items: core::default::Default::default(),
         }
@@ -315,7 +380,8 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl 
 }
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>;
+    type O =
+        BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -329,7 +395,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessCon
 pub struct BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
         DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
             items: core::default::Default::default(),
         }
@@ -379,7 +447,8 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl 
 }
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>;
+    type O =
+        BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -393,7 +462,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessCon
 pub struct BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
         DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
             items: core::default::Default::default(),
         }
@@ -442,8 +513,12 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl
     }
 }
 
-impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>;
+impl ToListMappable
+    for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl
+{
+    type O = BlockAssignable<
+        DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -457,7 +532,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicyCorsConfigElAccessCon
 pub struct BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
         DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
             items: core::default::Default::default(),
         }
@@ -528,7 +605,9 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_allow_headers`.\n"]
     pub fn set_access_control_allow_headers(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>,
+        >,
     ) -> Self {
         self.access_control_allow_headers = Some(v.into());
         self
@@ -537,7 +616,9 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_allow_methods`.\n"]
     pub fn set_access_control_allow_methods(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>,
+        >,
     ) -> Self {
         self.access_control_allow_methods = Some(v.into());
         self
@@ -546,7 +627,9 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_allow_origins`.\n"]
     pub fn set_access_control_allow_origins(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>,
+        >,
     ) -> Self {
         self.access_control_allow_origins = Some(v.into());
         self
@@ -555,7 +638,9 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_expose_headers`.\n"]
     pub fn set_access_control_expose_headers(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>,
+        >,
     ) -> Self {
         self.access_control_expose_headers = Some(v.into());
         self
@@ -608,7 +693,10 @@ pub struct DataCloudfrontResponseHeadersPolicyCorsConfigElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicyCorsConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicyCorsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicyCorsConfigElRef {
         DataCloudfrontResponseHeadersPolicyCorsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -623,45 +711,70 @@ impl DataCloudfrontResponseHeadersPolicyCorsConfigElRef {
 
     #[doc = "Get a reference to the value of field `access_control_allow_credentials` after provisioning.\n"]
     pub fn access_control_allow_credentials(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_control_allow_credentials", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_credentials", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_allow_headers` after provisioning.\n"]
     pub fn access_control_allow_headers(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_allow_headers", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_headers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_allow_methods` after provisioning.\n"]
     pub fn access_control_allow_methods(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_allow_methods", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_allow_origins` after provisioning.\n"]
     pub fn access_control_allow_origins(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_allow_origins", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_origins", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_expose_headers` after provisioning.\n"]
     pub fn access_control_expose_headers(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_expose_headers", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_expose_headers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_max_age_sec` after provisioning.\n"]
     pub fn access_control_max_age_sec(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_control_max_age_sec", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_control_max_age_sec", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_override` after provisioning.\n"]
     pub fn origin_override(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_override", self.base),
+        )
     }
 }
 
@@ -725,7 +838,10 @@ pub struct DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
         DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
             shared: shared,
             base: base.to_string(),
@@ -787,7 +903,9 @@ pub struct BuildDataCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
     pub fn build(self) -> DataCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
-        DataCloudfrontResponseHeadersPolicyCustomHeadersConfigEl { items: core::default::Default::default() }
+        DataCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
+            items: core::default::Default::default(),
+        }
     }
 }
 
@@ -797,7 +915,10 @@ pub struct DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
         DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -811,7 +932,9 @@ impl DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
-    pub fn items(&self) -> SetRef<DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef> {
+    pub fn items(
+        &self,
+    ) -> SetRef<DataCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
@@ -846,7 +969,9 @@ pub struct BuildDataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl 
 
 impl BuildDataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     pub fn build(self) -> DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
-        DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl { header: core::default::Default::default() }
+        DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
+            header: core::default::Default::default(),
+        }
     }
 }
 
@@ -856,7 +981,10 @@ pub struct DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
         DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
             shared: shared,
             base: base.to_string(),
@@ -908,7 +1036,9 @@ pub struct BuildDataCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
     pub fn build(self) -> DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
-        DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl { items: core::default::Default::default() }
+        DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
+            items: core::default::Default::default(),
+        }
     }
 }
 
@@ -918,7 +1048,10 @@ pub struct DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
         DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -932,7 +1065,9 @@ impl DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
-    pub fn items(&self) -> SetRef<DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef> {
+    pub fn items(
+        &self,
+    ) -> SetRef<DataCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
@@ -959,8 +1094,12 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPo
     }
 }
 
-impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>;
+impl ToListMappable
+    for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl
+{
+    type O = BlockAssignable<
+        DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -971,10 +1110,13 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfig
     }
 }
 
-pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {}
+pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
+}
 
 impl BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
             content_security_policy: core::default::Default::default(),
             override_: core::default::Default::default(),
@@ -1006,7 +1148,10 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPo
 
     #[doc = "Get a reference to the value of field `content_security_policy` after provisioning.\n"]
     pub fn content_security_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.content_security_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.content_security_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
@@ -1029,8 +1174,12 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOption
     }
 }
 
-impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>;
+impl ToListMappable
+    for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl
+{
+    type O = BlockAssignable<
+        DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1044,7 +1193,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfig
 pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
             override_: core::default::Default::default(),
         }
@@ -1102,7 +1253,8 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
 }
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>;
+    type O =
+        BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1180,7 +1332,8 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl 
 }
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>;
+    type O =
+        BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1194,7 +1347,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfig
 pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
             override_: core::default::Default::default(),
             referrer_policy: core::default::Default::default(),
@@ -1231,7 +1386,10 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElR
 
     #[doc = "Get a reference to the value of field `referrer_policy` after provisioning.\n"]
     pub fn referrer_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.referrer_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.referrer_policy", self.base),
+        )
     }
 }
 
@@ -1273,8 +1431,12 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSe
     }
 }
 
-impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl>;
+impl ToListMappable
+    for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl
+{
+    type O = BlockAssignable<
+        DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1285,10 +1447,13 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfig
     }
 }
 
-pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {}
+pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl
+{}
 
 impl BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
             access_control_max_age_sec: core::default::Default::default(),
             include_subdomains: core::default::Default::default(),
@@ -1303,11 +1468,14 @@ pub struct DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTrans
     base: String,
 }
 
-impl Ref for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef {
+impl Ref
+    for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef {
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef
+    {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef {
             shared: shared,
             base: base.to_string(),
@@ -1322,12 +1490,18 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSe
 
     #[doc = "Get a reference to the value of field `access_control_max_age_sec` after provisioning.\n"]
     pub fn access_control_max_age_sec(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_control_max_age_sec", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_control_max_age_sec", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_subdomains` after provisioning.\n"]
     pub fn include_subdomains(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_subdomains", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_subdomains", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
@@ -1380,7 +1554,8 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
 }
 
 impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
-    type O = BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>;
+    type O =
+        BlockAssignable<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1394,7 +1569,9 @@ impl ToListMappable for DataCloudfrontResponseHeadersPolicySecurityHeadersConfig
 pub struct BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {}
 
 impl BuildDataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
-    pub fn build(self) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
+    pub fn build(
+        self,
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
             mode_block: core::default::Default::default(),
             override_: core::default::Default::default(),
@@ -1451,29 +1628,42 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRe
 pub struct DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     content_security_policy: Option<
-        ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>,
+        ListField<
+            DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     content_type_options: Option<
         ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    frame_options: Option<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
+    frame_options:
+        Option<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    referrer_policy: Option<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    strict_transport_security: Option<
-        ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl>,
+    referrer_policy: Option<
+        ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    xss_protection: Option<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
+    strict_transport_security: Option<
+        ListField<
+            DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
+        >,
+    >,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    xss_protection: Option<
+        ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>,
+    >,
 }
 
 impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `content_security_policy`.\n"]
     pub fn set_content_security_policy(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>>,
+        v: impl Into<
+            ListField<
+                DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl,
+            >,
+        >,
     ) -> Self {
         self.content_security_policy = Some(v.into());
         self
@@ -1482,7 +1672,11 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `content_type_options`.\n"]
     pub fn set_content_type_options(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>>,
+        v: impl Into<
+            ListField<
+                DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl,
+            >,
+        >,
     ) -> Self {
         self.content_type_options = Some(v.into());
         self
@@ -1491,7 +1685,9 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `frame_options`.\n"]
     pub fn set_frame_options(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>,
+        >,
     ) -> Self {
         self.frame_options = Some(v.into());
         self
@@ -1500,7 +1696,9 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `referrer_policy`.\n"]
     pub fn set_referrer_policy(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>,
+        >,
     ) -> Self {
         self.referrer_policy = Some(v.into());
         self
@@ -1509,7 +1707,11 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `strict_transport_security`.\n"]
     pub fn set_strict_transport_security(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl>>,
+        v: impl Into<
+            ListField<
+                DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
+            >,
+        >,
     ) -> Self {
         self.strict_transport_security = Some(v.into());
         self
@@ -1518,7 +1720,9 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `xss_protection`.\n"]
     pub fn set_xss_protection(
         mut self,
-        v: impl Into<ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
+        v: impl Into<
+            ListField<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>,
+        >,
     ) -> Self {
         self.xss_protection = Some(v.into());
         self
@@ -1558,7 +1762,10 @@ pub struct DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
         DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1574,41 +1781,66 @@ impl DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
     #[doc = "Get a reference to the value of field `content_security_policy` after provisioning.\n"]
     pub fn content_security_policy(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_security_policy", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_security_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `content_type_options` after provisioning.\n"]
     pub fn content_type_options(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_type_options", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_type_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `frame_options` after provisioning.\n"]
-    pub fn frame_options(&self) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.frame_options", self.base))
+    pub fn frame_options(
+        &self,
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.frame_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `referrer_policy` after provisioning.\n"]
     pub fn referrer_policy(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.referrer_policy", self.base))
+    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.referrer_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `strict_transport_security` after provisioning.\n"]
     pub fn strict_transport_security(
         &self,
-    ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.strict_transport_security", self.base))
+    ) -> ListRef<
+        DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.strict_transport_security", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xss_protection` after provisioning.\n"]
     pub fn xss_protection(
         &self,
     ) -> ListRef<DataCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.xss_protection", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.xss_protection", self.base),
+        )
     }
 }
 
@@ -1663,7 +1895,10 @@ pub struct DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
 }
 
 impl Ref for DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
         DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1683,6 +1918,9 @@ impl DataCloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
 
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_rate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_rate", self.base),
+        )
     }
 }

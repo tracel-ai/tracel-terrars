@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncLocationEfsData {
@@ -71,7 +71,8 @@ impl DatasyncLocationEfs {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl DatasyncLocationEfs {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl DatasyncLocationEfs {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -128,8 +139,7 @@ impl DatasyncLocationEfs {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -154,21 +164,27 @@ impl DatasyncLocationEfs {
     }
 
     #[doc = "Set the field `ec2_config`.\n"]
-    pub fn set_ec2_config(self, v: impl Into<BlockAssignable<DatasyncLocationEfsEc2ConfigEl>>) -> Self {
+    pub fn set_ec2_config(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationEfsEc2ConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ec2_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ec2_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `access_point_arn` after provisioning.\n"]
     pub fn access_point_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_point_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_point_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -178,12 +194,18 @@ impl DatasyncLocationEfs {
 
     #[doc = "Get a reference to the value of field `efs_file_system_arn` after provisioning.\n"]
     pub fn efs_file_system_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.efs_file_system_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.efs_file_system_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_access_role_arn` after provisioning.\n"]
     pub fn file_system_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -193,28 +215,42 @@ impl DatasyncLocationEfs {
 
     #[doc = "Get a reference to the value of field `in_transit_encryption` after provisioning.\n"]
     pub fn in_transit_encryption(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.in_transit_encryption", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.in_transit_encryption", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -224,17 +260,24 @@ impl DatasyncLocationEfs {
 
     #[doc = "Get a reference to the value of field `ec2_config` after provisioning.\n"]
     pub fn ec2_config(&self) -> ListRef<DatasyncLocationEfsEc2ConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ec2_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ec2_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncLocationEfs {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncLocationEfs { }
+impl Resource for DatasyncLocationEfs {}
 
 impl ToListMappable for DatasyncLocationEfs {
     type O = ListRef<DatasyncLocationEfsRef>;
@@ -300,10 +343,7 @@ pub struct DatasyncLocationEfsRef {
 
 impl Ref for DatasyncLocationEfsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -318,7 +358,10 @@ impl DatasyncLocationEfsRef {
 
     #[doc = "Get a reference to the value of field `access_point_arn` after provisioning.\n"]
     pub fn access_point_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_point_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_point_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -328,12 +371,18 @@ impl DatasyncLocationEfsRef {
 
     #[doc = "Get a reference to the value of field `efs_file_system_arn` after provisioning.\n"]
     pub fn efs_file_system_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.efs_file_system_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.efs_file_system_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_access_role_arn` after provisioning.\n"]
     pub fn file_system_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -343,28 +392,42 @@ impl DatasyncLocationEfsRef {
 
     #[doc = "Get a reference to the value of field `in_transit_encryption` after provisioning.\n"]
     pub fn in_transit_encryption(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.in_transit_encryption", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.in_transit_encryption", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -374,7 +437,10 @@ impl DatasyncLocationEfsRef {
 
     #[doc = "Get a reference to the value of field `ec2_config` after provisioning.\n"]
     pub fn ec2_config(&self) -> ListRef<DatasyncLocationEfsEc2ConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ec2_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ec2_config", self.extract_ref()),
+        )
     }
 }
 
@@ -384,7 +450,7 @@ pub struct DatasyncLocationEfsEc2ConfigEl {
     subnet_arn: PrimField<String>,
 }
 
-impl DatasyncLocationEfsEc2ConfigEl { }
+impl DatasyncLocationEfsEc2ConfigEl {}
 
 impl ToListMappable for DatasyncLocationEfsEc2ConfigEl {
     type O = BlockAssignable<DatasyncLocationEfsEc2ConfigEl>;
@@ -435,7 +501,10 @@ impl DatasyncLocationEfsEc2ConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_arns` after provisioning.\n"]
     pub fn security_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_arn` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEbsVolumeData {
@@ -63,8 +63,7 @@ impl DataEbsVolume {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -81,10 +80,10 @@ impl DataEbsVolume {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -102,17 +101,26 @@ impl DataEbsVolume {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encrypted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encrypted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -122,83 +130,128 @@ impl DataEbsVolume {
 
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
     pub fn iops(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iops", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iops", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `most_recent` after provisioning.\n"]
     pub fn most_recent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.most_recent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.most_recent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `multi_attach_enabled` after provisioning.\n"]
     pub fn multi_attach_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multi_attach_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multi_attach_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outpost_arn` after provisioning.\n"]
     pub fn outpost_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outpost_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outpost_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `snapshot_id` after provisioning.\n"]
     pub fn snapshot_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.snapshot_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.snapshot_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throughput` after provisioning.\n"]
     pub fn throughput(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.throughput", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.throughput", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_id` after provisioning.\n"]
     pub fn volume_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_initialization_rate` after provisioning.\n"]
     pub fn volume_initialization_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_initialization_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_initialization_rate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_type` after provisioning.\n"]
     pub fn volume_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEbsVolumeTimeoutsElRef {
-        DataEbsVolumeTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEbsVolumeTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEbsVolume {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEbsVolume { }
+impl Datasource for DataEbsVolume {}
 
 impl ToListMappable for DataEbsVolume {
     type O = ListRef<DataEbsVolumeRef>;
@@ -257,10 +310,7 @@ pub struct DataEbsVolumeRef {
 
 impl Ref for DataEbsVolumeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -280,17 +330,26 @@ impl DataEbsVolumeRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encrypted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encrypted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -300,73 +359,114 @@ impl DataEbsVolumeRef {
 
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
     pub fn iops(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iops", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iops", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `most_recent` after provisioning.\n"]
     pub fn most_recent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.most_recent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.most_recent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `multi_attach_enabled` after provisioning.\n"]
     pub fn multi_attach_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multi_attach_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multi_attach_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outpost_arn` after provisioning.\n"]
     pub fn outpost_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outpost_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outpost_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `snapshot_id` after provisioning.\n"]
     pub fn snapshot_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.snapshot_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.snapshot_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throughput` after provisioning.\n"]
     pub fn throughput(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.throughput", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.throughput", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_id` after provisioning.\n"]
     pub fn volume_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_initialization_rate` after provisioning.\n"]
     pub fn volume_initialization_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_initialization_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_initialization_rate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_type` after provisioning.\n"]
     pub fn volume_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEbsVolumeTimeoutsElRef {
-        DataEbsVolumeTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEbsVolumeTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -376,7 +476,7 @@ pub struct DataEbsVolumeFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEbsVolumeFilterEl { }
+impl DataEbsVolumeFilterEl {}
 
 impl ToListMappable for DataEbsVolumeFilterEl {
     type O = BlockAssignable<DataEbsVolumeFilterEl>;
@@ -466,7 +566,9 @@ pub struct BuildDataEbsVolumeTimeoutsEl {}
 
 impl BuildDataEbsVolumeTimeoutsEl {
     pub fn build(self) -> DataEbsVolumeTimeoutsEl {
-        DataEbsVolumeTimeoutsEl { read: core::default::Default::default() }
+        DataEbsVolumeTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

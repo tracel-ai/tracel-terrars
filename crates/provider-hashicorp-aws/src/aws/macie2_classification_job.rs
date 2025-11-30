@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Macie2ClassificationJobData {
@@ -81,7 +81,8 @@ impl Macie2ClassificationJob {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl Macie2ClassificationJob {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,17 +106,30 @@ impl Macie2ClassificationJob {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
     #[doc = "Set the field `custom_data_identifier_ids`.\n"]
-    pub fn set_custom_data_identifier_ids(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_custom_data_identifier_ids(
+        self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().custom_data_identifier_ids = Some(v.into());
         self
     }
@@ -156,8 +170,7 @@ impl Macie2ClassificationJob {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -182,14 +195,17 @@ impl Macie2ClassificationJob {
     }
 
     #[doc = "Set the field `s3_job_definition`.\n"]
-    pub fn set_s3_job_definition(self, v: impl Into<BlockAssignable<Macie2ClassificationJobS3JobDefinitionEl>>) -> Self {
+    pub fn set_s3_job_definition(
+        self,
+        v: impl Into<BlockAssignable<Macie2ClassificationJobS3JobDefinitionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().s3_job_definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.s3_job_definition = Some(d);
-            },
+            }
         }
         self
     }
@@ -202,10 +218,10 @@ impl Macie2ClassificationJob {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schedule_frequency = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schedule_frequency = Some(d);
-            },
+            }
         }
         self
     }
@@ -218,17 +234,26 @@ impl Macie2ClassificationJob {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_data_identifier_ids` after provisioning.\n"]
     pub fn custom_data_identifier_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_data_identifier_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_data_identifier_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -238,88 +263,136 @@ impl Macie2ClassificationJob {
 
     #[doc = "Get a reference to the value of field `initial_run` after provisioning.\n"]
     pub fn initial_run(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.initial_run", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.initial_run", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_arn` after provisioning.\n"]
     pub fn job_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_id` after provisioning.\n"]
     pub fn job_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_status` after provisioning.\n"]
     pub fn job_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_type` after provisioning.\n"]
     pub fn job_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sampling_percentage` after provisioning.\n"]
     pub fn sampling_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_paused_details` after provisioning.\n"]
     pub fn user_paused_details(&self) -> ListRef<Macie2ClassificationJobUserPausedDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_paused_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_paused_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_job_definition` after provisioning.\n"]
     pub fn s3_job_definition(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_job_definition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_job_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_frequency` after provisioning.\n"]
     pub fn schedule_frequency(&self) -> ListRef<Macie2ClassificationJobScheduleFrequencyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule_frequency", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule_frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Macie2ClassificationJobTimeoutsElRef {
-        Macie2ClassificationJobTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Macie2ClassificationJobTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Macie2ClassificationJob {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Macie2ClassificationJob { }
+impl Resource for Macie2ClassificationJob {}
 
 impl ToListMappable for Macie2ClassificationJob {
     type O = ListRef<Macie2ClassificationJobRef>;
@@ -390,10 +463,7 @@ pub struct Macie2ClassificationJobRef {
 
 impl Ref for Macie2ClassificationJobRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -408,17 +478,26 @@ impl Macie2ClassificationJobRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_data_identifier_ids` after provisioning.\n"]
     pub fn custom_data_identifier_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_data_identifier_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_data_identifier_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -428,78 +507,122 @@ impl Macie2ClassificationJobRef {
 
     #[doc = "Get a reference to the value of field `initial_run` after provisioning.\n"]
     pub fn initial_run(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.initial_run", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.initial_run", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_arn` after provisioning.\n"]
     pub fn job_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_id` after provisioning.\n"]
     pub fn job_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_status` after provisioning.\n"]
     pub fn job_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_type` after provisioning.\n"]
     pub fn job_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sampling_percentage` after provisioning.\n"]
     pub fn sampling_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_paused_details` after provisioning.\n"]
     pub fn user_paused_details(&self) -> ListRef<Macie2ClassificationJobUserPausedDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_paused_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_paused_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_job_definition` after provisioning.\n"]
     pub fn s3_job_definition(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_job_definition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_job_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_frequency` after provisioning.\n"]
     pub fn schedule_frequency(&self) -> ListRef<Macie2ClassificationJobScheduleFrequencyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule_frequency", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule_frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Macie2ClassificationJobTimeoutsElRef {
-        Macie2ClassificationJobTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Macie2ClassificationJobTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -521,7 +644,10 @@ impl Macie2ClassificationJobUserPausedDetailsEl {
     }
 
     #[doc = "Set the field `job_imminent_expiration_health_event_arn`.\n"]
-    pub fn set_job_imminent_expiration_health_event_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_job_imminent_expiration_health_event_arn(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.job_imminent_expiration_health_event_arn = Some(v.into());
         self
     }
@@ -578,22 +704,32 @@ impl Macie2ClassificationJobUserPausedDetailsElRef {
 
     #[doc = "Get a reference to the value of field `job_expires_at` after provisioning.\n"]
     pub fn job_expires_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_expires_at", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_expires_at", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_imminent_expiration_health_event_arn` after provisioning.\n"]
     pub fn job_imminent_expiration_health_event_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_imminent_expiration_health_event_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_imminent_expiration_health_event_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_paused_at` after provisioning.\n"]
     pub fn job_paused_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_paused_at", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_paused_at", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     comparator: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -622,9 +758,12 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimp
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl {
-    type O =
-        BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -635,10 +774,14 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl
+{}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl
+    {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionEl {
             comparator: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -647,16 +790,20 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndE
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef {
+impl Ref
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef {
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef
+    {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef {
             shared: shared,
             base: base.to_string(),
@@ -686,14 +833,17 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimp
 }
 
 #[derive(Serialize)]
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     key: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
 
-impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl {
+impl
+    Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl
+{
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
@@ -722,7 +872,8 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl
+{}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesEl {
     pub fn build(
@@ -735,7 +886,8 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndE
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -808,17 +960,21 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagC
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_values = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -829,10 +985,13 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl
+{}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionEl {
             comparator: core::default::Default::default(),
             tag_values: core::default::Default::default(),
@@ -841,16 +1000,20 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndE
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef {
+impl Ref
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef {
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef
+    {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef {
             shared: shared,
             base: base.to_string(),
@@ -871,7 +1034,7 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagC
     #[doc = "Get a reference to the value of field `tag_values` after provisioning.\n"]
     pub fn tag_values(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesElRef> {
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElTagValuesElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tag_values", self.base))
     }
 }
@@ -913,10 +1076,10 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.simple_criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.simple_criterion = Some(d);
-            },
+            }
         }
         self
     }
@@ -936,17 +1099,18 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_criterion = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl>;
+    type O =
+        BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -994,21 +1158,33 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElRef 
     #[doc = "Get a reference to the value of field `simple_criterion` after provisioning.\n"]
     pub fn simple_criterion(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.simple_criterion", self.base))
+    ) -> ListRef<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElSimpleCriterionElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.simple_criterion", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_criterion` after provisioning.\n"]
     pub fn tag_criterion(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_criterion", self.base))
+    ) -> ListRef<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElTagCriterionElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_criterion", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElDynamic {
-    and: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl>>,
+    and: Option<
+        DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1022,15 +1198,19 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesEl {
     #[doc = "Set the field `and`.\n"]
     pub fn set_and(
         mut self,
-        v: impl Into<BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
@@ -1082,13 +1262,16 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElRef {
     }
 
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
-    pub fn and(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElRef> {
+    pub fn and(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElAndElRef> {
         ListRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     comparator: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1117,9 +1300,12 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimp
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl {
-    type O =
-        BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1130,10 +1316,14 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl
+{}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl
+    {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionEl {
             comparator: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -1142,16 +1332,20 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndE
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef {
+impl Ref
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef {
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef
+    {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1181,14 +1375,17 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimp
 }
 
 #[derive(Serialize)]
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     key: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
 
-impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl {
+impl
+    Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl
+{
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
@@ -1217,7 +1414,8 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl
+{}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesEl {
     pub fn build(
@@ -1230,7 +1428,8 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndE
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1303,17 +1502,21 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagC
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_values = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1324,10 +1527,13 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl
+{}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionEl {
             comparator: core::default::Default::default(),
             tag_values: core::default::Default::default(),
@@ -1336,16 +1542,20 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndE
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef {
+impl Ref
+    for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef {
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef
+    {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1366,7 +1576,7 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagC
     #[doc = "Get a reference to the value of field `tag_values` after provisioning.\n"]
     pub fn tag_values(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesElRef> {
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElTagValuesElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tag_values", self.base))
     }
 }
@@ -1408,10 +1618,10 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.simple_criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.simple_criterion = Some(d);
-            },
+            }
         }
         self
     }
@@ -1431,17 +1641,18 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_criterion = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl>;
+    type O =
+        BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1489,21 +1700,33 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElRef 
     #[doc = "Get a reference to the value of field `simple_criterion` after provisioning.\n"]
     pub fn simple_criterion(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.simple_criterion", self.base))
+    ) -> ListRef<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElSimpleCriterionElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.simple_criterion", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_criterion` after provisioning.\n"]
     pub fn tag_criterion(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_criterion", self.base))
+    ) -> ListRef<
+        Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElTagCriterionElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_criterion", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElDynamic {
-    and: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl>>,
+    and: Option<
+        DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1517,15 +1740,19 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesEl {
     #[doc = "Set the field `and`.\n"]
     pub fn set_and(
         mut self,
-        v: impl Into<BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
@@ -1577,15 +1804,19 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElRef {
     }
 
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
-    pub fn and(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElRef> {
+    pub fn and(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElAndElRef> {
         ListRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElDynamic {
-    excludes: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesEl>>,
-    includes: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesEl>>,
+    excludes:
+        Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesEl>>,
+    includes:
+        Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesEl>>,
 }
 
 #[derive(Serialize)]
@@ -1601,15 +1832,17 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl {
     #[doc = "Set the field `excludes`.\n"]
     pub fn set_excludes(
         mut self,
-        v: impl Into<BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesEl>>,
+        v: impl Into<
+            BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.excludes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.excludes = Some(d);
-            },
+            }
         }
         self
     }
@@ -1617,15 +1850,17 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl {
     #[doc = "Set the field `includes`.\n"]
     pub fn set_includes(
         mut self,
-        v: impl Into<BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesEl>>,
+        v: impl Into<
+            BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.includes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.includes = Some(d);
-            },
+            }
         }
         self
     }
@@ -1661,7 +1896,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef {
         Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef {
             shared: shared,
             base: base.to_string(),
@@ -1675,12 +1913,16 @@ impl Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef {
     }
 
     #[doc = "Get a reference to the value of field `excludes` after provisioning.\n"]
-    pub fn excludes(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElRef> {
+    pub fn excludes(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElExcludesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.excludes", self.base))
     }
 
     #[doc = "Get a reference to the value of field `includes` after provisioning.\n"]
-    pub fn includes(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElRef> {
+    pub fn includes(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElIncludesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.includes", self.base))
     }
 }
@@ -1691,7 +1933,7 @@ pub struct Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl {
     buckets: ListField<PrimField<String>>,
 }
 
-impl Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl { }
+impl Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl {}
 
 impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl {
     type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl>;
@@ -1727,7 +1969,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef {
         Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1781,8 +2026,12 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScope
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1793,10 +2042,13 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElExclude
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {
+}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {
         Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl {
             comparator: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -1844,7 +2096,8 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScope
 }
 
 #[derive(Serialize)]
-pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl {
+pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     key: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1865,9 +2118,12 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTer
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl {
-    type O =
-        BlockAssignable<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1878,10 +2134,16 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElExclude
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl
+{}
 
-impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl {
+impl
+    BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl
+{
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl
+    {
         Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesEl {
             key: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -1889,16 +2151,20 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagSco
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef {
+impl Ref
+    for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef {
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef
+    {
         Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1976,17 +2242,21 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTer
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_values = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2000,7 +2270,9 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElExclude
 pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl {}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl {
         Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl {
             comparator: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -2051,7 +2323,7 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTer
     #[doc = "Get a reference to the value of field `tag_values` after provisioning.\n"]
     pub fn tag_values(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef> {
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElTagValuesElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tag_values", self.base))
     }
 }
@@ -2059,19 +2331,26 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTer
 #[derive(Serialize, Default)]
 struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElDynamic {
     simple_scope_term: Option<
-        DynamicBlock<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl>,
+        DynamicBlock<
+            Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl,
+        >,
     >,
     tag_scope_term: Option<
-        DynamicBlock<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl>,
+        DynamicBlock<
+            Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    simple_scope_term: Option<Vec<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl>>,
+    simple_scope_term: Option<
+        Vec<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tag_scope_term: Option<Vec<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl>>,
+    tag_scope_term:
+        Option<Vec<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl>>,
     dynamic: Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElDynamic,
 }
 
@@ -2079,22 +2358,19 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndEl {
     #[doc = "Set the field `simple_scope_term`.\n"]
     pub fn set_simple_scope_term(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.simple_scope_term = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.simple_scope_term = Some(d);
-            },
+            }
         }
         self
     }
@@ -2102,22 +2378,19 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndEl {
     #[doc = "Set the field `tag_scope_term`.\n"]
     pub fn set_tag_scope_term(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_scope_term = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_scope_term = Some(d);
-            },
+            }
         }
         self
     }
@@ -2153,7 +2426,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef {
         Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef {
             shared: shared,
             base: base.to_string(),
@@ -2169,15 +2445,23 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef {
     #[doc = "Get a reference to the value of field `simple_scope_term` after provisioning.\n"]
     pub fn simple_scope_term(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.simple_scope_term", self.base))
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElSimpleScopeTermElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.simple_scope_term", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_scope_term` after provisioning.\n"]
     pub fn tag_scope_term(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_scope_term", self.base))
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElTagScopeTermElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_scope_term", self.base),
+        )
     }
 }
 
@@ -2202,10 +2486,10 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
@@ -2240,7 +2524,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef {
         Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2254,7 +2541,9 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef {
     }
 
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
-    pub fn and(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef> {
+    pub fn and(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElAndElRef> {
         ListRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
 }
@@ -2289,8 +2578,12 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScope
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2301,10 +2594,13 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElInclude
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {
+}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {
         Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl {
             comparator: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -2352,7 +2648,8 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScope
 }
 
 #[derive(Serialize)]
-pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl {
+pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     key: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2373,9 +2670,12 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTer
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl {
-    type O =
-        BlockAssignable<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2386,10 +2686,16 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElInclude
     }
 }
 
-pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl {}
+pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl
+{}
 
-impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl {
+impl
+    BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl
+{
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl
+    {
         Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesEl {
             key: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -2397,16 +2703,20 @@ impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagSco
     }
 }
 
-pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef {
+pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef {
+impl Ref
+    for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef {
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef
+    {
         Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2484,17 +2794,21 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTer
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_values = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl {
-    type O = BlockAssignable<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl>;
+impl ToListMappable
+    for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl
+{
+    type O = BlockAssignable<
+        Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2508,7 +2822,9 @@ impl ToListMappable for Macie2ClassificationJobS3JobDefinitionElScopingElInclude
 pub struct BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl {}
 
 impl BuildMacie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl {
-    pub fn build(self) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl {
+    pub fn build(
+        self,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl {
         Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl {
             comparator: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -2559,7 +2875,7 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTer
     #[doc = "Get a reference to the value of field `tag_values` after provisioning.\n"]
     pub fn tag_values(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef> {
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElTagValuesElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tag_values", self.base))
     }
 }
@@ -2567,19 +2883,26 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTer
 #[derive(Serialize, Default)]
 struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElDynamic {
     simple_scope_term: Option<
-        DynamicBlock<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl>,
+        DynamicBlock<
+            Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl,
+        >,
     >,
     tag_scope_term: Option<
-        DynamicBlock<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl>,
+        DynamicBlock<
+            Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    simple_scope_term: Option<Vec<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl>>,
+    simple_scope_term: Option<
+        Vec<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tag_scope_term: Option<Vec<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl>>,
+    tag_scope_term:
+        Option<Vec<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl>>,
     dynamic: Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElDynamic,
 }
 
@@ -2587,22 +2910,19 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndEl {
     #[doc = "Set the field `simple_scope_term`.\n"]
     pub fn set_simple_scope_term(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.simple_scope_term = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.simple_scope_term = Some(d);
-            },
+            }
         }
         self
     }
@@ -2610,22 +2930,19 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndEl {
     #[doc = "Set the field `tag_scope_term`.\n"]
     pub fn set_tag_scope_term(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_scope_term = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_scope_term = Some(d);
-            },
+            }
         }
         self
     }
@@ -2661,7 +2978,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef {
         Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef {
             shared: shared,
             base: base.to_string(),
@@ -2677,15 +2997,23 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef {
     #[doc = "Get a reference to the value of field `simple_scope_term` after provisioning.\n"]
     pub fn simple_scope_term(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.simple_scope_term", self.base))
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElSimpleScopeTermElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.simple_scope_term", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_scope_term` after provisioning.\n"]
     pub fn tag_scope_term(
         &self,
-    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_scope_term", self.base))
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElTagScopeTermElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_scope_term", self.base),
+        )
     }
 }
 
@@ -2710,10 +3038,10 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
@@ -2748,7 +3076,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef {
         Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2762,7 +3093,9 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef {
     }
 
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
-    pub fn and(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef> {
+    pub fn and(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElAndElRef> {
         ListRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
 }
@@ -2791,10 +3124,10 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.excludes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.excludes = Some(d);
-            },
+            }
         }
         self
     }
@@ -2807,10 +3140,10 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.includes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.includes = Some(d);
-            },
+            }
         }
         self
     }
@@ -2846,7 +3179,10 @@ pub struct Macie2ClassificationJobS3JobDefinitionElScopingElRef {
 }
 
 impl Ref for Macie2ClassificationJobS3JobDefinitionElScopingElRef {
-    fn new(shared: StackShared, base: String) -> Macie2ClassificationJobS3JobDefinitionElScopingElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2ClassificationJobS3JobDefinitionElScopingElRef {
         Macie2ClassificationJobS3JobDefinitionElScopingElRef {
             shared: shared,
             base: base.to_string(),
@@ -2860,12 +3196,16 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElRef {
     }
 
     #[doc = "Get a reference to the value of field `excludes` after provisioning.\n"]
-    pub fn excludes(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef> {
+    pub fn excludes(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElExcludesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.excludes", self.base))
     }
 
     #[doc = "Get a reference to the value of field `includes` after provisioning.\n"]
-    pub fn includes(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef> {
+    pub fn includes(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElScopingElIncludesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.includes", self.base))
     }
 }
@@ -2873,7 +3213,8 @@ impl Macie2ClassificationJobS3JobDefinitionElScopingElRef {
 #[derive(Serialize, Default)]
 struct Macie2ClassificationJobS3JobDefinitionElDynamic {
     bucket_criteria: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaEl>>,
-    bucket_definitions: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl>>,
+    bucket_definitions:
+        Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsEl>>,
     scoping: Option<DynamicBlock<Macie2ClassificationJobS3JobDefinitionElScopingEl>>,
 }
 
@@ -2897,10 +3238,10 @@ impl Macie2ClassificationJobS3JobDefinitionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bucket_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bucket_criteria = Some(d);
-            },
+            }
         }
         self
     }
@@ -2913,10 +3254,10 @@ impl Macie2ClassificationJobS3JobDefinitionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bucket_definitions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bucket_definitions = Some(d);
-            },
+            }
         }
         self
     }
@@ -2929,10 +3270,10 @@ impl Macie2ClassificationJobS3JobDefinitionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.scoping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.scoping = Some(d);
-            },
+            }
         }
         self
     }
@@ -2983,13 +3324,23 @@ impl Macie2ClassificationJobS3JobDefinitionElRef {
     }
 
     #[doc = "Get a reference to the value of field `bucket_criteria` after provisioning.\n"]
-    pub fn bucket_criteria(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.bucket_criteria", self.base))
+    pub fn bucket_criteria(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketCriteriaElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bucket_criteria", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_definitions` after provisioning.\n"]
-    pub fn bucket_definitions(&self) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.bucket_definitions", self.base))
+    pub fn bucket_definitions(
+        &self,
+    ) -> ListRef<Macie2ClassificationJobS3JobDefinitionElBucketDefinitionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bucket_definitions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scoping` after provisioning.\n"]
@@ -3073,17 +3424,26 @@ impl Macie2ClassificationJobScheduleFrequencyElRef {
 
     #[doc = "Get a reference to the value of field `daily_schedule` after provisioning.\n"]
     pub fn daily_schedule(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.daily_schedule", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.daily_schedule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monthly_schedule` after provisioning.\n"]
     pub fn monthly_schedule(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monthly_schedule", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monthly_schedule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weekly_schedule` after provisioning.\n"]
     pub fn weekly_schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weekly_schedule", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weekly_schedule", self.base),
+        )
     }
 }
 

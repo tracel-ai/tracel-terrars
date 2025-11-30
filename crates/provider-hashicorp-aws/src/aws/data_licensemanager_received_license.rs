@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLicensemanagerReceivedLicenseData {
@@ -49,8 +49,7 @@ impl DataLicensemanagerReceivedLicense {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,27 +57,44 @@ impl DataLicensemanagerReceivedLicense {
 
     #[doc = "Get a reference to the value of field `beneficiary` after provisioning.\n"]
     pub fn beneficiary(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.beneficiary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.beneficiary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `consumption_configuration` after provisioning.\n"]
-    pub fn consumption_configuration(&self) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.consumption_configuration", self.extract_ref()))
+    pub fn consumption_configuration(
+        &self,
+    ) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.consumption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `entitlements` after provisioning.\n"]
     pub fn entitlements(&self) -> SetRef<DataLicensemanagerReceivedLicenseEntitlementsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.entitlements", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.entitlements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `home_region` after provisioning.\n"]
     pub fn home_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.home_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.home_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -88,68 +104,108 @@ impl DataLicensemanagerReceivedLicense {
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> ListRef<DataLicensemanagerReceivedLicenseIssuerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.issuer", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.issuer", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_arn` after provisioning.\n"]
     pub fn license_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_metadata` after provisioning.\n"]
-    pub fn license_metadata(&self) -> SetRef<DataLicensemanagerReceivedLicenseLicenseMetadataElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.license_metadata", self.extract_ref()))
+    pub fn license_metadata(
+        &self,
+    ) -> SetRef<DataLicensemanagerReceivedLicenseLicenseMetadataElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.license_metadata", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_name` after provisioning.\n"]
     pub fn license_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_name` after provisioning.\n"]
     pub fn product_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_sku` after provisioning.\n"]
     pub fn product_sku(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_sku", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_sku", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `received_metadata` after provisioning.\n"]
-    pub fn received_metadata(&self) -> ListRef<DataLicensemanagerReceivedLicenseReceivedMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.received_metadata", self.extract_ref()))
+    pub fn received_metadata(
+        &self,
+    ) -> ListRef<DataLicensemanagerReceivedLicenseReceivedMetadataElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.received_metadata", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validity` after provisioning.\n"]
     pub fn validity(&self) -> ListRef<DataLicensemanagerReceivedLicenseValidityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLicensemanagerReceivedLicense {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLicensemanagerReceivedLicense { }
+impl Datasource for DataLicensemanagerReceivedLicense {}
 
 impl ToListMappable for DataLicensemanagerReceivedLicense {
     type O = ListRef<DataLicensemanagerReceivedLicenseRef>;
@@ -206,10 +262,7 @@ pub struct DataLicensemanagerReceivedLicenseRef {
 
 impl Ref for DataLicensemanagerReceivedLicenseRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -224,27 +277,44 @@ impl DataLicensemanagerReceivedLicenseRef {
 
     #[doc = "Get a reference to the value of field `beneficiary` after provisioning.\n"]
     pub fn beneficiary(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.beneficiary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.beneficiary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `consumption_configuration` after provisioning.\n"]
-    pub fn consumption_configuration(&self) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.consumption_configuration", self.extract_ref()))
+    pub fn consumption_configuration(
+        &self,
+    ) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.consumption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `entitlements` after provisioning.\n"]
     pub fn entitlements(&self) -> SetRef<DataLicensemanagerReceivedLicenseEntitlementsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.entitlements", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.entitlements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `home_region` after provisioning.\n"]
     pub fn home_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.home_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.home_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -254,58 +324,94 @@ impl DataLicensemanagerReceivedLicenseRef {
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> ListRef<DataLicensemanagerReceivedLicenseIssuerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.issuer", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.issuer", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_arn` after provisioning.\n"]
     pub fn license_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_metadata` after provisioning.\n"]
-    pub fn license_metadata(&self) -> SetRef<DataLicensemanagerReceivedLicenseLicenseMetadataElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.license_metadata", self.extract_ref()))
+    pub fn license_metadata(
+        &self,
+    ) -> SetRef<DataLicensemanagerReceivedLicenseLicenseMetadataElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.license_metadata", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `license_name` after provisioning.\n"]
     pub fn license_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_name` after provisioning.\n"]
     pub fn product_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_sku` after provisioning.\n"]
     pub fn product_sku(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_sku", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_sku", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `received_metadata` after provisioning.\n"]
-    pub fn received_metadata(&self) -> ListRef<DataLicensemanagerReceivedLicenseReceivedMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.received_metadata", self.extract_ref()))
+    pub fn received_metadata(
+        &self,
+    ) -> ListRef<DataLicensemanagerReceivedLicenseReceivedMetadataElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.received_metadata", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validity` after provisioning.\n"]
     pub fn validity(&self) -> ListRef<DataLicensemanagerReceivedLicenseValidityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 }
 
@@ -331,8 +437,12 @@ impl DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurat
     }
 }
 
-impl ToListMappable for DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {
-    type O = BlockAssignable<DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl>;
+impl ToListMappable
+    for DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl
+{
+    type O = BlockAssignable<
+        DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -343,10 +453,13 @@ impl ToListMappable for DataLicensemanagerReceivedLicenseConsumptionConfiguratio
     }
 }
 
-pub struct BuildDataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {}
+pub struct BuildDataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {
+}
 
 impl BuildDataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {
-    pub fn build(self) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {
         DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl {
             allow_early_check_in: core::default::Default::default(),
             max_time_to_live_in_minutes: core::default::Default::default(),
@@ -378,12 +491,18 @@ impl DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurat
 
     #[doc = "Get a reference to the value of field `allow_early_check_in` after provisioning.\n"]
     pub fn allow_early_check_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_early_check_in", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_early_check_in", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_time_to_live_in_minutes` after provisioning.\n"]
     pub fn max_time_to_live_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_time_to_live_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_time_to_live_in_minutes", self.base),
+        )
     }
 }
 
@@ -401,8 +520,12 @@ impl DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfi
     }
 }
 
-impl ToListMappable for DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl {
-    type O = BlockAssignable<DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl>;
+impl ToListMappable
+    for DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl
+{
+    type O = BlockAssignable<
+        DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -413,26 +536,33 @@ impl ToListMappable for DataLicensemanagerReceivedLicenseConsumptionConfiguratio
     }
 }
 
-pub struct BuildDataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl {}
+pub struct BuildDataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl
+{}
 
 impl BuildDataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl {
-    pub fn build(self) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl {
         DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl {
             max_time_to_live_in_minutes: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef {
+pub struct DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef {
+impl Ref
+    for DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef {
+    ) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef
+    {
         DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -447,7 +577,10 @@ impl DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfi
 
     #[doc = "Get a reference to the value of field `max_time_to_live_in_minutes` after provisioning.\n"]
     pub fn max_time_to_live_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_time_to_live_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_time_to_live_in_minutes", self.base),
+        )
     }
 }
 
@@ -459,7 +592,9 @@ pub struct DataLicensemanagerReceivedLicenseConsumptionConfigurationEl {
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     provisional_configuration: Option<
-        ListField<DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl>,
+        ListField<
+            DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     renew_type: Option<PrimField<String>>,
@@ -469,7 +604,11 @@ impl DataLicensemanagerReceivedLicenseConsumptionConfigurationEl {
     #[doc = "Set the field `borrow_configuration`.\n"]
     pub fn set_borrow_configuration(
         mut self,
-        v: impl Into<ListField<DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl>>,
+        v: impl Into<
+            ListField<
+                DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationEl,
+            >,
+        >,
     ) -> Self {
         self.borrow_configuration = Some(v.into());
         self
@@ -528,7 +667,10 @@ pub struct DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef {
 }
 
 impl Ref for DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef {
         DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -544,15 +686,24 @@ impl DataLicensemanagerReceivedLicenseConsumptionConfigurationElRef {
     #[doc = "Get a reference to the value of field `borrow_configuration` after provisioning.\n"]
     pub fn borrow_configuration(
         &self,
-    ) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.borrow_configuration", self.base))
+    ) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElBorrowConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.borrow_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisional_configuration` after provisioning.\n"]
     pub fn provisional_configuration(
         &self,
-    ) -> ListRef<DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisional_configuration", self.base))
+    ) -> ListRef<
+        DataLicensemanagerReceivedLicenseConsumptionConfigurationElProvisionalConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisional_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `renew_type` after provisioning.\n"]
@@ -648,7 +799,10 @@ pub struct DataLicensemanagerReceivedLicenseEntitlementsElRef {
 }
 
 impl Ref for DataLicensemanagerReceivedLicenseEntitlementsElRef {
-    fn new(shared: StackShared, base: String) -> DataLicensemanagerReceivedLicenseEntitlementsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLicensemanagerReceivedLicenseEntitlementsElRef {
         DataLicensemanagerReceivedLicenseEntitlementsElRef {
             shared: shared,
             base: base.to_string(),
@@ -663,7 +817,10 @@ impl DataLicensemanagerReceivedLicenseEntitlementsElRef {
 
     #[doc = "Get a reference to the value of field `allow_check_in` after provisioning.\n"]
     pub fn allow_check_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_check_in", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_check_in", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_count` after provisioning.\n"]
@@ -767,7 +924,10 @@ impl DataLicensemanagerReceivedLicenseIssuerElRef {
 
     #[doc = "Get a reference to the value of field `key_fingerprint` after provisioning.\n"]
     pub fn key_fingerprint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_fingerprint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_fingerprint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -832,7 +992,10 @@ pub struct DataLicensemanagerReceivedLicenseLicenseMetadataElRef {
 }
 
 impl Ref for DataLicensemanagerReceivedLicenseLicenseMetadataElRef {
-    fn new(shared: StackShared, base: String) -> DataLicensemanagerReceivedLicenseLicenseMetadataElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLicensemanagerReceivedLicenseLicenseMetadataElRef {
         DataLicensemanagerReceivedLicenseLicenseMetadataElRef {
             shared: shared,
             base: base.to_string(),
@@ -916,7 +1079,10 @@ pub struct DataLicensemanagerReceivedLicenseReceivedMetadataElRef {
 }
 
 impl Ref for DataLicensemanagerReceivedLicenseReceivedMetadataElRef {
-    fn new(shared: StackShared, base: String) -> DataLicensemanagerReceivedLicenseReceivedMetadataElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLicensemanagerReceivedLicenseReceivedMetadataElRef {
         DataLicensemanagerReceivedLicenseReceivedMetadataElRef {
             shared: shared,
             base: base.to_string(),
@@ -931,17 +1097,26 @@ impl DataLicensemanagerReceivedLicenseReceivedMetadataElRef {
 
     #[doc = "Get a reference to the value of field `allowed_operations` after provisioning.\n"]
     pub fn allowed_operations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_operations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_operations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `received_status` after provisioning.\n"]
     pub fn received_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.received_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.received_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `received_status_reason` after provisioning.\n"]
     pub fn received_status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.received_status_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.received_status_reason", self.base),
+        )
     }
 }
 

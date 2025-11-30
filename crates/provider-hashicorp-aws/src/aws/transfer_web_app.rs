@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct TransferWebAppData {
@@ -64,7 +64,8 @@ impl TransferWebApp {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl TransferWebApp {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl TransferWebApp {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,8 +114,7 @@ impl TransferWebApp {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -136,17 +146,20 @@ impl TransferWebApp {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().identity_provider_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.identity_provider_details = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `access_endpoint` after provisioning.\n"]
     pub fn access_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -154,50 +167,74 @@ impl TransferWebApp {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_app_endpoint_policy` after provisioning.\n"]
     pub fn web_app_endpoint_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.web_app_endpoint_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.web_app_endpoint_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_app_id` after provisioning.\n"]
     pub fn web_app_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.web_app_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.web_app_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_app_units` after provisioning.\n"]
     pub fn web_app_units(&self) -> ListRef<TransferWebAppWebAppUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.web_app_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.web_app_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_provider_details` after provisioning.\n"]
     pub fn identity_provider_details(&self) -> ListRef<TransferWebAppIdentityProviderDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.identity_provider_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.identity_provider_details", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for TransferWebApp {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for TransferWebApp { }
+impl Resource for TransferWebApp {}
 
 impl ToListMappable for TransferWebApp {
     type O = ListRef<TransferWebAppRef>;
@@ -257,10 +294,7 @@ pub struct TransferWebAppRef {
 
 impl Ref for TransferWebAppRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -275,7 +309,10 @@ impl TransferWebAppRef {
 
     #[doc = "Get a reference to the value of field `access_endpoint` after provisioning.\n"]
     pub fn access_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -283,40 +320,60 @@ impl TransferWebAppRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_app_endpoint_policy` after provisioning.\n"]
     pub fn web_app_endpoint_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.web_app_endpoint_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.web_app_endpoint_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_app_id` after provisioning.\n"]
     pub fn web_app_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.web_app_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.web_app_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_app_units` after provisioning.\n"]
     pub fn web_app_units(&self) -> ListRef<TransferWebAppWebAppUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.web_app_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.web_app_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_provider_details` after provisioning.\n"]
     pub fn identity_provider_details(&self) -> ListRef<TransferWebAppIdentityProviderDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.identity_provider_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.identity_provider_details", self.extract_ref()),
+        )
     }
 }
 
@@ -350,7 +407,9 @@ pub struct BuildTransferWebAppWebAppUnitsEl {}
 
 impl BuildTransferWebAppWebAppUnitsEl {
     pub fn build(self) -> TransferWebAppWebAppUnitsEl {
-        TransferWebAppWebAppUnitsEl { provisioned: core::default::Default::default() }
+        TransferWebAppWebAppUnitsEl {
+            provisioned: core::default::Default::default(),
+        }
     }
 }
 
@@ -430,7 +489,10 @@ pub struct TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
 }
 
 impl Ref for TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
-    fn new(shared: StackShared, base: String) -> TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
         TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -445,7 +507,10 @@ impl TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
 
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
@@ -461,13 +526,15 @@ impl TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef {
 
 #[derive(Serialize, Default)]
 struct TransferWebAppIdentityProviderDetailsElDynamic {
-    identity_center_config: Option<DynamicBlock<TransferWebAppIdentityProviderDetailsElIdentityCenterConfigEl>>,
+    identity_center_config:
+        Option<DynamicBlock<TransferWebAppIdentityProviderDetailsElIdentityCenterConfigEl>>,
 }
 
 #[derive(Serialize)]
 pub struct TransferWebAppIdentityProviderDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    identity_center_config: Option<Vec<TransferWebAppIdentityProviderDetailsElIdentityCenterConfigEl>>,
+    identity_center_config:
+        Option<Vec<TransferWebAppIdentityProviderDetailsElIdentityCenterConfigEl>>,
     dynamic: TransferWebAppIdentityProviderDetailsElDynamic,
 }
 
@@ -480,10 +547,10 @@ impl TransferWebAppIdentityProviderDetailsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.identity_center_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.identity_center_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -532,8 +599,13 @@ impl TransferWebAppIdentityProviderDetailsElRef {
     }
 
     #[doc = "Get a reference to the value of field `identity_center_config` after provisioning.\n"]
-    pub fn identity_center_config(&self) -> ListRef<TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.identity_center_config", self.base))
+    pub fn identity_center_config(
+        &self,
+    ) -> ListRef<TransferWebAppIdentityProviderDetailsElIdentityCenterConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.identity_center_config", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkmanagerConnectAttachmentData {
@@ -65,7 +65,8 @@ impl NetworkmanagerConnectAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl NetworkmanagerConnectAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl NetworkmanagerConnectAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -117,14 +128,17 @@ impl NetworkmanagerConnectAttachment {
     }
 
     #[doc = "Set the field `options`.\n"]
-    pub fn set_options(self, v: impl Into<BlockAssignable<NetworkmanagerConnectAttachmentOptionsEl>>) -> Self {
+    pub fn set_options(
+        self,
+        v: impl Into<BlockAssignable<NetworkmanagerConnectAttachmentOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.options = Some(d);
-            },
+            }
         }
         self
     }
@@ -142,32 +156,50 @@ impl NetworkmanagerConnectAttachment {
 
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attachment_policy_rule_number` after provisioning.\n"]
     pub fn attachment_policy_rule_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_policy_rule_number", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_policy_rule_number", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attachment_type` after provisioning.\n"]
     pub fn attachment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edge_location` after provisioning.\n"]
     pub fn edge_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edge_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edge_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -177,42 +209,66 @@ impl NetworkmanagerConnectAttachment {
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `segment_name` after provisioning.\n"]
     pub fn segment_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.segment_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.segment_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transport_attachment_id` after provisioning.\n"]
     pub fn transport_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transport_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transport_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<NetworkmanagerConnectAttachmentOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -226,11 +282,15 @@ impl NetworkmanagerConnectAttachment {
 
 impl Referable for NetworkmanagerConnectAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkmanagerConnectAttachment { }
+impl Resource for NetworkmanagerConnectAttachment {}
 
 impl ToListMappable for NetworkmanagerConnectAttachment {
     type O = ListRef<NetworkmanagerConnectAttachmentRef>;
@@ -298,10 +358,7 @@ pub struct NetworkmanagerConnectAttachmentRef {
 
 impl Ref for NetworkmanagerConnectAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -321,32 +378,50 @@ impl NetworkmanagerConnectAttachmentRef {
 
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attachment_policy_rule_number` after provisioning.\n"]
     pub fn attachment_policy_rule_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_policy_rule_number", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_policy_rule_number", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attachment_type` after provisioning.\n"]
     pub fn attachment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edge_location` after provisioning.\n"]
     pub fn edge_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edge_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edge_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -356,42 +431,66 @@ impl NetworkmanagerConnectAttachmentRef {
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `segment_name` after provisioning.\n"]
     pub fn segment_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.segment_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.segment_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transport_attachment_id` after provisioning.\n"]
     pub fn transport_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transport_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transport_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<NetworkmanagerConnectAttachmentOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -433,7 +532,9 @@ pub struct BuildNetworkmanagerConnectAttachmentOptionsEl {}
 
 impl BuildNetworkmanagerConnectAttachmentOptionsEl {
     pub fn build(self) -> NetworkmanagerConnectAttachmentOptionsEl {
-        NetworkmanagerConnectAttachmentOptionsEl { protocol: core::default::Default::default() }
+        NetworkmanagerConnectAttachmentOptionsEl {
+            protocol: core::default::Default::default(),
+        }
     }
 }
 

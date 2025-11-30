@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LaunchTemplateData {
@@ -59,7 +59,8 @@ struct LaunchTemplateData {
     #[serde(skip_serializing_if = "Option::is_none")]
     block_device_mappings: Option<Vec<LaunchTemplateBlockDeviceMappingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_reservation_specification: Option<Vec<LaunchTemplateCapacityReservationSpecificationEl>>,
+    capacity_reservation_specification:
+        Option<Vec<LaunchTemplateCapacityReservationSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     cpu_options: Option<Vec<LaunchTemplateCpuOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -128,7 +129,8 @@ impl LaunchTemplate {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -141,7 +143,7 @@ impl LaunchTemplate {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -152,12 +154,22 @@ impl LaunchTemplate {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -205,7 +217,10 @@ impl LaunchTemplate {
 
     #[doc = "Set the field `instance_initiated_shutdown_behavior`.\n"]
     pub fn set_instance_initiated_shutdown_behavior(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().instance_initiated_shutdown_behavior = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .instance_initiated_shutdown_behavior = Some(v.into());
         self
     }
 
@@ -245,8 +260,7 @@ impl LaunchTemplate {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -289,14 +303,17 @@ impl LaunchTemplate {
     }
 
     #[doc = "Set the field `block_device_mappings`.\n"]
-    pub fn set_block_device_mappings(self, v: impl Into<BlockAssignable<LaunchTemplateBlockDeviceMappingsEl>>) -> Self {
+    pub fn set_block_device_mappings(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateBlockDeviceMappingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().block_device_mappings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.block_device_mappings = Some(d);
-            },
+            }
         }
         self
     }
@@ -309,75 +326,94 @@ impl LaunchTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity_reservation_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.capacity_reservation_specification = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .capacity_reservation_specification = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `cpu_options`.\n"]
-    pub fn set_cpu_options(self, v: impl Into<BlockAssignable<LaunchTemplateCpuOptionsEl>>) -> Self {
+    pub fn set_cpu_options(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateCpuOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cpu_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cpu_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `credit_specification`.\n"]
-    pub fn set_credit_specification(self, v: impl Into<BlockAssignable<LaunchTemplateCreditSpecificationEl>>) -> Self {
+    pub fn set_credit_specification(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateCreditSpecificationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().credit_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.credit_specification = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `enclave_options`.\n"]
-    pub fn set_enclave_options(self, v: impl Into<BlockAssignable<LaunchTemplateEnclaveOptionsEl>>) -> Self {
+    pub fn set_enclave_options(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateEnclaveOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().enclave_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.enclave_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `hibernation_options`.\n"]
-    pub fn set_hibernation_options(self, v: impl Into<BlockAssignable<LaunchTemplateHibernationOptionsEl>>) -> Self {
+    pub fn set_hibernation_options(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateHibernationOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().hibernation_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.hibernation_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `iam_instance_profile`.\n"]
-    pub fn set_iam_instance_profile(self, v: impl Into<BlockAssignable<LaunchTemplateIamInstanceProfileEl>>) -> Self {
+    pub fn set_iam_instance_profile(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateIamInstanceProfileEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().iam_instance_profile = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.iam_instance_profile = Some(d);
-            },
+            }
         }
         self
     }
@@ -390,62 +426,74 @@ impl LaunchTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_market_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_market_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `instance_requirements`.\n"]
-    pub fn set_instance_requirements(self, v: impl Into<BlockAssignable<LaunchTemplateInstanceRequirementsEl>>) -> Self {
+    pub fn set_instance_requirements(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateInstanceRequirementsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_requirements = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_requirements = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `license_specification`.\n"]
-    pub fn set_license_specification(self, v: impl Into<BlockAssignable<LaunchTemplateLicenseSpecificationEl>>) -> Self {
+    pub fn set_license_specification(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateLicenseSpecificationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().license_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.license_specification = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `maintenance_options`.\n"]
-    pub fn set_maintenance_options(self, v: impl Into<BlockAssignable<LaunchTemplateMaintenanceOptionsEl>>) -> Self {
+    pub fn set_maintenance_options(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateMaintenanceOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().maintenance_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.maintenance_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `metadata_options`.\n"]
-    pub fn set_metadata_options(self, v: impl Into<BlockAssignable<LaunchTemplateMetadataOptionsEl>>) -> Self {
+    pub fn set_metadata_options(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateMetadataOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().metadata_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.metadata_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -455,23 +503,26 @@ impl LaunchTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().monitoring = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.monitoring = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `network_interfaces`.\n"]
-    pub fn set_network_interfaces(self, v: impl Into<BlockAssignable<LaunchTemplateNetworkInterfacesEl>>) -> Self {
+    pub fn set_network_interfaces(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateNetworkInterfacesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().network_interfaces = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.network_interfaces = Some(d);
-            },
+            }
         }
         self
     }
@@ -481,10 +532,10 @@ impl LaunchTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().placement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.placement = Some(d);
-            },
+            }
         }
         self
     }
@@ -497,23 +548,26 @@ impl LaunchTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().private_dns_name_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.private_dns_name_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tag_specifications`.\n"]
-    pub fn set_tag_specifications(self, v: impl Into<BlockAssignable<LaunchTemplateTagSpecificationsEl>>) -> Self {
+    pub fn set_tag_specifications(
+        self,
+        v: impl Into<BlockAssignable<LaunchTemplateTagSpecificationsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tag_specifications = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tag_specifications = Some(d);
-            },
+            }
         }
         self
     }
@@ -525,27 +579,42 @@ impl LaunchTemplate {
 
     #[doc = "Get a reference to the value of field `default_version` after provisioning.\n"]
     pub fn default_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disable_api_stop` after provisioning.\n"]
     pub fn disable_api_stop(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_api_stop", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_api_stop", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disable_api_termination` after provisioning.\n"]
     pub fn disable_api_termination(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_api_termination", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_api_termination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_optimized` after provisioning.\n"]
     pub fn ebs_optimized(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_optimized", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_optimized", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -555,173 +624,277 @@ impl LaunchTemplate {
 
     #[doc = "Get a reference to the value of field `image_id` after provisioning.\n"]
     pub fn image_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_initiated_shutdown_behavior` after provisioning.\n"]
     pub fn instance_initiated_shutdown_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_initiated_shutdown_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.instance_initiated_shutdown_behavior",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kernel_id` after provisioning.\n"]
     pub fn kernel_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kernel_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kernel_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_name` after provisioning.\n"]
     pub fn key_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `latest_version` after provisioning.\n"]
     pub fn latest_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.latest_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.latest_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ram_disk_id` after provisioning.\n"]
     pub fn ram_disk_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ram_disk_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ram_disk_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_names` after provisioning.\n"]
     pub fn security_group_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_default_version` after provisioning.\n"]
     pub fn update_default_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_default_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_default_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_data` after provisioning.\n"]
     pub fn user_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_data", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_security_group_ids` after provisioning.\n"]
     pub fn vpc_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_security_group_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_device_mappings` after provisioning.\n"]
     pub fn block_device_mappings(&self) -> ListRef<LaunchTemplateBlockDeviceMappingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.block_device_mappings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.block_device_mappings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_specification` after provisioning.\n"]
-    pub fn capacity_reservation_specification(&self) -> ListRef<LaunchTemplateCapacityReservationSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_specification", self.extract_ref()))
+    pub fn capacity_reservation_specification(
+        &self,
+    ) -> ListRef<LaunchTemplateCapacityReservationSpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_options` after provisioning.\n"]
     pub fn cpu_options(&self) -> ListRef<LaunchTemplateCpuOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cpu_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credit_specification` after provisioning.\n"]
     pub fn credit_specification(&self) -> ListRef<LaunchTemplateCreditSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.credit_specification", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.credit_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enclave_options` after provisioning.\n"]
     pub fn enclave_options(&self) -> ListRef<LaunchTemplateEnclaveOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.enclave_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enclave_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hibernation_options` after provisioning.\n"]
     pub fn hibernation_options(&self) -> ListRef<LaunchTemplateHibernationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hibernation_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hibernation_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_instance_profile` after provisioning.\n"]
     pub fn iam_instance_profile(&self) -> ListRef<LaunchTemplateIamInstanceProfileElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iam_instance_profile", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iam_instance_profile", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_market_options` after provisioning.\n"]
     pub fn instance_market_options(&self) -> ListRef<LaunchTemplateInstanceMarketOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_market_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_market_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_requirements` after provisioning.\n"]
     pub fn instance_requirements(&self) -> ListRef<LaunchTemplateInstanceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_requirements", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_requirements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_options` after provisioning.\n"]
     pub fn maintenance_options(&self) -> ListRef<LaunchTemplateMaintenanceOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maintenance_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maintenance_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata_options` after provisioning.\n"]
     pub fn metadata_options(&self) -> ListRef<LaunchTemplateMetadataOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metadata_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metadata_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring` after provisioning.\n"]
     pub fn monitoring(&self) -> ListRef<LaunchTemplateMonitoringElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interfaces` after provisioning.\n"]
     pub fn network_interfaces(&self) -> ListRef<LaunchTemplateNetworkInterfacesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interfaces", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interfaces", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement` after provisioning.\n"]
     pub fn placement(&self) -> ListRef<LaunchTemplatePlacementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_name_options` after provisioning.\n"]
     pub fn private_dns_name_options(&self) -> ListRef<LaunchTemplatePrivateDnsNameOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.private_dns_name_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_dns_name_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_specifications` after provisioning.\n"]
     pub fn tag_specifications(&self) -> ListRef<LaunchTemplateTagSpecificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_specifications", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_specifications", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for LaunchTemplate {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LaunchTemplate { }
+impl Resource for LaunchTemplate {}
 
 impl ToListMappable for LaunchTemplate {
     type O = ListRef<LaunchTemplateRef>;
@@ -813,10 +986,7 @@ pub struct LaunchTemplateRef {
 
 impl Ref for LaunchTemplateRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -836,27 +1006,42 @@ impl LaunchTemplateRef {
 
     #[doc = "Get a reference to the value of field `default_version` after provisioning.\n"]
     pub fn default_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disable_api_stop` after provisioning.\n"]
     pub fn disable_api_stop(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_api_stop", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_api_stop", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disable_api_termination` after provisioning.\n"]
     pub fn disable_api_termination(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_api_termination", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_api_termination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_optimized` after provisioning.\n"]
     pub fn ebs_optimized(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_optimized", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_optimized", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -866,163 +1051,263 @@ impl LaunchTemplateRef {
 
     #[doc = "Get a reference to the value of field `image_id` after provisioning.\n"]
     pub fn image_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_initiated_shutdown_behavior` after provisioning.\n"]
     pub fn instance_initiated_shutdown_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_initiated_shutdown_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.instance_initiated_shutdown_behavior",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kernel_id` after provisioning.\n"]
     pub fn kernel_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kernel_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kernel_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_name` after provisioning.\n"]
     pub fn key_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `latest_version` after provisioning.\n"]
     pub fn latest_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.latest_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.latest_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ram_disk_id` after provisioning.\n"]
     pub fn ram_disk_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ram_disk_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ram_disk_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_names` after provisioning.\n"]
     pub fn security_group_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_default_version` after provisioning.\n"]
     pub fn update_default_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_default_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_default_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_data` after provisioning.\n"]
     pub fn user_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_data", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_security_group_ids` after provisioning.\n"]
     pub fn vpc_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_security_group_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_device_mappings` after provisioning.\n"]
     pub fn block_device_mappings(&self) -> ListRef<LaunchTemplateBlockDeviceMappingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.block_device_mappings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.block_device_mappings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_specification` after provisioning.\n"]
-    pub fn capacity_reservation_specification(&self) -> ListRef<LaunchTemplateCapacityReservationSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_specification", self.extract_ref()))
+    pub fn capacity_reservation_specification(
+        &self,
+    ) -> ListRef<LaunchTemplateCapacityReservationSpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_options` after provisioning.\n"]
     pub fn cpu_options(&self) -> ListRef<LaunchTemplateCpuOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cpu_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credit_specification` after provisioning.\n"]
     pub fn credit_specification(&self) -> ListRef<LaunchTemplateCreditSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.credit_specification", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.credit_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enclave_options` after provisioning.\n"]
     pub fn enclave_options(&self) -> ListRef<LaunchTemplateEnclaveOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.enclave_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enclave_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hibernation_options` after provisioning.\n"]
     pub fn hibernation_options(&self) -> ListRef<LaunchTemplateHibernationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hibernation_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hibernation_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_instance_profile` after provisioning.\n"]
     pub fn iam_instance_profile(&self) -> ListRef<LaunchTemplateIamInstanceProfileElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iam_instance_profile", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iam_instance_profile", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_market_options` after provisioning.\n"]
     pub fn instance_market_options(&self) -> ListRef<LaunchTemplateInstanceMarketOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_market_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_market_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_requirements` after provisioning.\n"]
     pub fn instance_requirements(&self) -> ListRef<LaunchTemplateInstanceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_requirements", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_requirements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_options` after provisioning.\n"]
     pub fn maintenance_options(&self) -> ListRef<LaunchTemplateMaintenanceOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maintenance_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maintenance_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata_options` after provisioning.\n"]
     pub fn metadata_options(&self) -> ListRef<LaunchTemplateMetadataOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metadata_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metadata_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring` after provisioning.\n"]
     pub fn monitoring(&self) -> ListRef<LaunchTemplateMonitoringElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interfaces` after provisioning.\n"]
     pub fn network_interfaces(&self) -> ListRef<LaunchTemplateNetworkInterfacesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interfaces", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interfaces", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement` after provisioning.\n"]
     pub fn placement(&self) -> ListRef<LaunchTemplatePlacementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_name_options` after provisioning.\n"]
     pub fn private_dns_name_options(&self) -> ListRef<LaunchTemplatePrivateDnsNameOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.private_dns_name_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_dns_name_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_specifications` after provisioning.\n"]
     pub fn tag_specifications(&self) -> ListRef<LaunchTemplateTagSpecificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_specifications", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_specifications", self.extract_ref()),
+        )
     }
 }
 
@@ -1155,7 +1440,10 @@ impl LaunchTemplateBlockDeviceMappingsElEbsElRef {
 
     #[doc = "Get a reference to the value of field `delete_on_termination` after provisioning.\n"]
     pub fn delete_on_termination(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_on_termination", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_on_termination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
@@ -1185,7 +1473,10 @@ impl LaunchTemplateBlockDeviceMappingsElEbsElRef {
 
     #[doc = "Get a reference to the value of field `volume_initialization_rate` after provisioning.\n"]
     pub fn volume_initialization_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_initialization_rate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_initialization_rate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_size` after provisioning.\n"]
@@ -1237,14 +1528,17 @@ impl LaunchTemplateBlockDeviceMappingsEl {
     }
 
     #[doc = "Set the field `ebs`.\n"]
-    pub fn set_ebs(mut self, v: impl Into<BlockAssignable<LaunchTemplateBlockDeviceMappingsElEbsEl>>) -> Self {
+    pub fn set_ebs(
+        mut self,
+        v: impl Into<BlockAssignable<LaunchTemplateBlockDeviceMappingsElEbsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs = Some(d);
-            },
+            }
         }
         self
     }
@@ -1332,14 +1626,21 @@ impl LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl
     }
 
     #[doc = "Set the field `capacity_reservation_resource_group_arn`.\n"]
-    pub fn set_capacity_reservation_resource_group_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_capacity_reservation_resource_group_arn(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.capacity_reservation_resource_group_arn = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl {
-    type O = BlockAssignable<LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl>;
+impl ToListMappable
+    for LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl
+{
+    type O = BlockAssignable<
+        LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1353,7 +1654,9 @@ impl ToListMappable for LaunchTemplateCapacityReservationSpecificationElCapacity
 pub struct BuildLaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl {}
 
 impl BuildLaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl {
-    pub fn build(self) -> LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl {
+    pub fn build(
+        self,
+    ) -> LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl {
         LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl {
             capacity_reservation_id: core::default::Default::default(),
             capacity_reservation_resource_group_arn: core::default::Default::default(),
@@ -1385,12 +1688,18 @@ impl LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl
 
     #[doc = "Get a reference to the value of field `capacity_reservation_id` after provisioning.\n"]
     pub fn capacity_reservation_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_reservation_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_resource_group_arn` after provisioning.\n"]
     pub fn capacity_reservation_resource_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_reservation_resource_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_resource_group_arn", self.base),
+        )
     }
 }
 
@@ -1406,7 +1715,8 @@ pub struct LaunchTemplateCapacityReservationSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     capacity_reservation_preference: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_reservation_target: Option<Vec<LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl>>,
+    capacity_reservation_target:
+        Option<Vec<LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl>>,
     dynamic: LaunchTemplateCapacityReservationSpecificationElDynamic,
 }
 
@@ -1420,15 +1730,19 @@ impl LaunchTemplateCapacityReservationSpecificationEl {
     #[doc = "Set the field `capacity_reservation_target`.\n"]
     pub fn set_capacity_reservation_target(
         mut self,
-        v: impl Into<BlockAssignable<LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl>>,
+        v: impl Into<
+            BlockAssignable<
+                LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_reservation_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_reservation_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -1464,7 +1778,10 @@ pub struct LaunchTemplateCapacityReservationSpecificationElRef {
 }
 
 impl Ref for LaunchTemplateCapacityReservationSpecificationElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateCapacityReservationSpecificationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateCapacityReservationSpecificationElRef {
         LaunchTemplateCapacityReservationSpecificationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1479,14 +1796,21 @@ impl LaunchTemplateCapacityReservationSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `capacity_reservation_preference` after provisioning.\n"]
     pub fn capacity_reservation_preference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_reservation_preference", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_preference", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_target` after provisioning.\n"]
     pub fn capacity_reservation_target(
         &self,
-    ) -> ListRef<LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_target", self.base))
+    ) -> ListRef<LaunchTemplateCapacityReservationSpecificationElCapacityReservationTargetElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_target", self.base),
+        )
     }
 }
 
@@ -1575,7 +1899,10 @@ impl LaunchTemplateCpuOptionsElRef {
 
     #[doc = "Get a reference to the value of field `threads_per_core` after provisioning.\n"]
     pub fn threads_per_core(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threads_per_core", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threads_per_core", self.base),
+        )
     }
 }
 
@@ -1609,7 +1936,9 @@ pub struct BuildLaunchTemplateCreditSpecificationEl {}
 
 impl BuildLaunchTemplateCreditSpecificationEl {
     pub fn build(self) -> LaunchTemplateCreditSpecificationEl {
-        LaunchTemplateCreditSpecificationEl { cpu_credits: core::default::Default::default() }
+        LaunchTemplateCreditSpecificationEl {
+            cpu_credits: core::default::Default::default(),
+        }
     }
 }
 
@@ -1668,7 +1997,9 @@ pub struct BuildLaunchTemplateEnclaveOptionsEl {}
 
 impl BuildLaunchTemplateEnclaveOptionsEl {
     pub fn build(self) -> LaunchTemplateEnclaveOptionsEl {
-        LaunchTemplateEnclaveOptionsEl { enabled: core::default::Default::default() }
+        LaunchTemplateEnclaveOptionsEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -1702,7 +2033,7 @@ pub struct LaunchTemplateHibernationOptionsEl {
     configured: PrimField<bool>,
 }
 
-impl LaunchTemplateHibernationOptionsEl { }
+impl LaunchTemplateHibernationOptionsEl {}
 
 impl ToListMappable for LaunchTemplateHibernationOptionsEl {
     type O = BlockAssignable<LaunchTemplateHibernationOptionsEl>;
@@ -1723,7 +2054,9 @@ pub struct BuildLaunchTemplateHibernationOptionsEl {
 
 impl BuildLaunchTemplateHibernationOptionsEl {
     pub fn build(self) -> LaunchTemplateHibernationOptionsEl {
-        LaunchTemplateHibernationOptionsEl { configured: self.configured }
+        LaunchTemplateHibernationOptionsEl {
+            configured: self.configured,
+        }
     }
 }
 
@@ -1905,7 +2238,10 @@ pub struct LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
 }
 
 impl Ref for LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
         LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1920,12 +2256,18 @@ impl LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
 
     #[doc = "Get a reference to the value of field `block_duration_minutes` after provisioning.\n"]
     pub fn block_duration_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_duration_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_duration_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_interruption_behavior` after provisioning.\n"]
     pub fn instance_interruption_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_interruption_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_interruption_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_price` after provisioning.\n"]
@@ -1935,7 +2277,10 @@ impl LaunchTemplateInstanceMarketOptionsElSpotOptionsElRef {
 
     #[doc = "Get a reference to the value of field `spot_instance_type` after provisioning.\n"]
     pub fn spot_instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
@@ -1973,10 +2318,10 @@ impl LaunchTemplateInstanceMarketOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.spot_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.spot_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -2087,7 +2432,10 @@ pub struct LaunchTemplateInstanceRequirementsElAcceleratorCountElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElAcceleratorCountElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElAcceleratorCountElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElAcceleratorCountElRef {
         LaunchTemplateInstanceRequirementsElAcceleratorCountElRef {
             shared: shared,
             base: base.to_string(),
@@ -2162,7 +2510,10 @@ pub struct LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
         LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
             shared: shared,
             base: base.to_string(),
@@ -2237,7 +2588,10 @@ pub struct LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
         LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2312,7 +2666,10 @@ pub struct LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef {
         LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef {
             shared: shared,
             base: base.to_string(),
@@ -2383,7 +2740,10 @@ pub struct LaunchTemplateInstanceRequirementsElMemoryMibElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElMemoryMibElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElMemoryMibElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElMemoryMibElRef {
         LaunchTemplateInstanceRequirementsElMemoryMibElRef {
             shared: shared,
             base: base.to_string(),
@@ -2458,7 +2818,10 @@ pub struct LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef {
         LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2533,7 +2896,10 @@ pub struct LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef {
         LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef {
             shared: shared,
             base: base.to_string(),
@@ -2608,7 +2974,10 @@ pub struct LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef {
         LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef {
             shared: shared,
             base: base.to_string(),
@@ -2679,7 +3048,10 @@ pub struct LaunchTemplateInstanceRequirementsElVcpuCountElRef {
 }
 
 impl Ref for LaunchTemplateInstanceRequirementsElVcpuCountElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateInstanceRequirementsElVcpuCountElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateInstanceRequirementsElVcpuCountElRef {
         LaunchTemplateInstanceRequirementsElVcpuCountElRef {
             shared: shared,
             base: base.to_string(),
@@ -2706,17 +3078,19 @@ impl LaunchTemplateInstanceRequirementsElVcpuCountElRef {
 #[derive(Serialize, Default)]
 struct LaunchTemplateInstanceRequirementsElDynamic {
     accelerator_count: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElAcceleratorCountEl>>,
-    accelerator_total_memory_mib: Option<
-        DynamicBlock<LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibEl>,
-    >,
-    baseline_ebs_bandwidth_mbps: Option<
-        DynamicBlock<LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsEl>,
-    >,
-    memory_gib_per_vcpu: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuEl>>,
+    accelerator_total_memory_mib:
+        Option<DynamicBlock<LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibEl>>,
+    baseline_ebs_bandwidth_mbps:
+        Option<DynamicBlock<LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsEl>>,
+    memory_gib_per_vcpu:
+        Option<DynamicBlock<LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuEl>>,
     memory_mib: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElMemoryMibEl>>,
-    network_bandwidth_gbps: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsEl>>,
-    network_interface_count: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElNetworkInterfaceCountEl>>,
-    total_local_storage_gb: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElTotalLocalStorageGbEl>>,
+    network_bandwidth_gbps:
+        Option<DynamicBlock<LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsEl>>,
+    network_interface_count:
+        Option<DynamicBlock<LaunchTemplateInstanceRequirementsElNetworkInterfaceCountEl>>,
+    total_local_storage_gb:
+        Option<DynamicBlock<LaunchTemplateInstanceRequirementsElTotalLocalStorageGbEl>>,
     vcpu_count: Option<DynamicBlock<LaunchTemplateInstanceRequirementsElVcpuCountEl>>,
 }
 
@@ -2755,9 +3129,11 @@ pub struct LaunchTemplateInstanceRequirementsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     accelerator_count: Option<Vec<LaunchTemplateInstanceRequirementsElAcceleratorCountEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    accelerator_total_memory_mib: Option<Vec<LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibEl>>,
+    accelerator_total_memory_mib:
+        Option<Vec<LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    baseline_ebs_bandwidth_mbps: Option<Vec<LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsEl>>,
+    baseline_ebs_bandwidth_mbps:
+        Option<Vec<LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     memory_gib_per_vcpu: Option<Vec<LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2765,7 +3141,8 @@ pub struct LaunchTemplateInstanceRequirementsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     network_bandwidth_gbps: Option<Vec<LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_interface_count: Option<Vec<LaunchTemplateInstanceRequirementsElNetworkInterfaceCountEl>>,
+    network_interface_count:
+        Option<Vec<LaunchTemplateInstanceRequirementsElNetworkInterfaceCountEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     total_local_storage_gb: Option<Vec<LaunchTemplateInstanceRequirementsElTotalLocalStorageGbEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2775,7 +3152,10 @@ pub struct LaunchTemplateInstanceRequirementsEl {
 
 impl LaunchTemplateInstanceRequirementsEl {
     #[doc = "Set the field `accelerator_manufacturers`.\n"]
-    pub fn set_accelerator_manufacturers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_accelerator_manufacturers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.accelerator_manufacturers = Some(v.into());
         self
     }
@@ -2817,7 +3197,10 @@ impl LaunchTemplateInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `excluded_instance_types`.\n"]
-    pub fn set_excluded_instance_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_excluded_instance_types(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.excluded_instance_types = Some(v.into());
         self
     }
@@ -2841,13 +3224,19 @@ impl LaunchTemplateInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `max_spot_price_as_percentage_of_optimal_on_demand_price`.\n"]
-    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.max_spot_price_as_percentage_of_optimal_on_demand_price = Some(v.into());
         self
     }
 
     #[doc = "Set the field `on_demand_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_on_demand_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_on_demand_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.on_demand_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -2859,7 +3248,10 @@ impl LaunchTemplateInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `spot_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_spot_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_spot_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.spot_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -2872,10 +3264,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -2888,10 +3280,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_total_memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_total_memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -2904,10 +3296,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.baseline_ebs_bandwidth_mbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.baseline_ebs_bandwidth_mbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -2920,10 +3312,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_gib_per_vcpu = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_gib_per_vcpu = Some(d);
-            },
+            }
         }
         self
     }
@@ -2936,10 +3328,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -2952,10 +3344,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_bandwidth_gbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_bandwidth_gbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -2968,10 +3360,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_interface_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_interface_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -2984,10 +3376,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.total_local_storage_gb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.total_local_storage_gb = Some(d);
-            },
+            }
         }
         self
     }
@@ -3000,10 +3392,10 @@ impl LaunchTemplateInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vcpu_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vcpu_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -3037,7 +3429,8 @@ impl BuildLaunchTemplateInstanceRequirementsEl {
             instance_generations: core::default::Default::default(),
             local_storage: core::default::Default::default(),
             local_storage_types: core::default::Default::default(),
-            max_spot_price_as_percentage_of_optimal_on_demand_price: core::default::Default::default(),
+            max_spot_price_as_percentage_of_optimal_on_demand_price:
+                core::default::Default::default(),
             on_demand_max_price_percentage_over_lowest_price: core::default::Default::default(),
             require_hibernate_support: core::default::Default::default(),
             spot_max_price_percentage_over_lowest_price: core::default::Default::default(),
@@ -3076,22 +3469,34 @@ impl LaunchTemplateInstanceRequirementsElRef {
 
     #[doc = "Get a reference to the value of field `accelerator_manufacturers` after provisioning.\n"]
     pub fn accelerator_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_names` after provisioning.\n"]
     pub fn accelerator_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_types` after provisioning.\n"]
     pub fn accelerator_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_instance_types` after provisioning.\n"]
     pub fn allowed_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bare_metal` after provisioning.\n"]
@@ -3101,84 +3506,128 @@ impl LaunchTemplateInstanceRequirementsElRef {
 
     #[doc = "Get a reference to the value of field `burstable_performance` after provisioning.\n"]
     pub fn burstable_performance(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.burstable_performance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.burstable_performance", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_manufacturers` after provisioning.\n"]
     pub fn cpu_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cpu_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excluded_instance_types` after provisioning.\n"]
     pub fn excluded_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_generations` after provisioning.\n"]
     pub fn instance_generations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_generations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_generations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage` after provisioning.\n"]
     pub fn local_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_storage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage_types` after provisioning.\n"]
     pub fn local_storage_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_storage_types", self.base))
-    }
-
-    #[doc =
-        "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
-    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(
+        SetRef::new(
             self.shared().clone(),
-            format!("{}.max_spot_price_as_percentage_of_optimal_on_demand_price", self.base),
+            format!("{}.local_storage_types", self.base),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
+    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.max_spot_price_as_percentage_of_optimal_on_demand_price",
+                self.base
+            ),
+        )
+    }
+
+    #[doc = "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn on_demand_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.on_demand_max_price_percentage_over_lowest_price", self.base),
+            format!(
+                "{}.on_demand_max_price_percentage_over_lowest_price",
+                self.base
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `require_hibernate_support` after provisioning.\n"]
     pub fn require_hibernate_support(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_hibernate_support", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_hibernate_support", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn spot_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_max_price_percentage_over_lowest_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_max_price_percentage_over_lowest_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_count` after provisioning.\n"]
-    pub fn accelerator_count(&self) -> ListRef<LaunchTemplateInstanceRequirementsElAcceleratorCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_count", self.base))
+    pub fn accelerator_count(
+        &self,
+    ) -> ListRef<LaunchTemplateInstanceRequirementsElAcceleratorCountElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_total_memory_mib` after provisioning.\n"]
     pub fn accelerator_total_memory_mib(
         &self,
     ) -> ListRef<LaunchTemplateInstanceRequirementsElAcceleratorTotalMemoryMibElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_total_memory_mib", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_total_memory_mib", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `baseline_ebs_bandwidth_mbps` after provisioning.\n"]
     pub fn baseline_ebs_bandwidth_mbps(
         &self,
     ) -> ListRef<LaunchTemplateInstanceRequirementsElBaselineEbsBandwidthMbpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_ebs_bandwidth_mbps", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_ebs_bandwidth_mbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_gib_per_vcpu` after provisioning.\n"]
-    pub fn memory_gib_per_vcpu(&self) -> ListRef<LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.memory_gib_per_vcpu", self.base))
+    pub fn memory_gib_per_vcpu(
+        &self,
+    ) -> ListRef<LaunchTemplateInstanceRequirementsElMemoryGibPerVcpuElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_gib_per_vcpu", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_mib` after provisioning.\n"]
@@ -3187,18 +3636,33 @@ impl LaunchTemplateInstanceRequirementsElRef {
     }
 
     #[doc = "Get a reference to the value of field `network_bandwidth_gbps` after provisioning.\n"]
-    pub fn network_bandwidth_gbps(&self) -> ListRef<LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_bandwidth_gbps", self.base))
+    pub fn network_bandwidth_gbps(
+        &self,
+    ) -> ListRef<LaunchTemplateInstanceRequirementsElNetworkBandwidthGbpsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_bandwidth_gbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_count` after provisioning.\n"]
-    pub fn network_interface_count(&self) -> ListRef<LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface_count", self.base))
+    pub fn network_interface_count(
+        &self,
+    ) -> ListRef<LaunchTemplateInstanceRequirementsElNetworkInterfaceCountElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `total_local_storage_gb` after provisioning.\n"]
-    pub fn total_local_storage_gb(&self) -> ListRef<LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.total_local_storage_gb", self.base))
+    pub fn total_local_storage_gb(
+        &self,
+    ) -> ListRef<LaunchTemplateInstanceRequirementsElTotalLocalStorageGbElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.total_local_storage_gb", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vcpu_count` after provisioning.\n"]
@@ -3212,7 +3676,7 @@ pub struct LaunchTemplateLicenseSpecificationEl {
     license_configuration_arn: PrimField<String>,
 }
 
-impl LaunchTemplateLicenseSpecificationEl { }
+impl LaunchTemplateLicenseSpecificationEl {}
 
 impl ToListMappable for LaunchTemplateLicenseSpecificationEl {
     type O = BlockAssignable<LaunchTemplateLicenseSpecificationEl>;
@@ -3233,7 +3697,9 @@ pub struct BuildLaunchTemplateLicenseSpecificationEl {
 
 impl BuildLaunchTemplateLicenseSpecificationEl {
     pub fn build(self) -> LaunchTemplateLicenseSpecificationEl {
-        LaunchTemplateLicenseSpecificationEl { license_configuration_arn: self.license_configuration_arn }
+        LaunchTemplateLicenseSpecificationEl {
+            license_configuration_arn: self.license_configuration_arn,
+        }
     }
 }
 
@@ -3258,7 +3724,10 @@ impl LaunchTemplateLicenseSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `license_configuration_arn` after provisioning.\n"]
     pub fn license_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_configuration_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_configuration_arn", self.base),
+        )
     }
 }
 
@@ -3292,7 +3761,9 @@ pub struct BuildLaunchTemplateMaintenanceOptionsEl {}
 
 impl BuildLaunchTemplateMaintenanceOptionsEl {
     pub fn build(self) -> LaunchTemplateMaintenanceOptionsEl {
-        LaunchTemplateMaintenanceOptionsEl { auto_recovery: core::default::Default::default() }
+        LaunchTemplateMaintenanceOptionsEl {
+            auto_recovery: core::default::Default::default(),
+        }
     }
 }
 
@@ -3317,7 +3788,10 @@ impl LaunchTemplateMaintenanceOptionsElRef {
 
     #[doc = "Get a reference to the value of field `auto_recovery` after provisioning.\n"]
     pub fn auto_recovery(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_recovery", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_recovery", self.base),
+        )
     }
 }
 
@@ -3414,17 +3888,26 @@ impl LaunchTemplateMetadataOptionsElRef {
 
     #[doc = "Get a reference to the value of field `http_endpoint` after provisioning.\n"]
     pub fn http_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_protocol_ipv6` after provisioning.\n"]
     pub fn http_protocol_ipv6(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_protocol_ipv6", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_protocol_ipv6", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_put_response_hop_limit` after provisioning.\n"]
     pub fn http_put_response_hop_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_put_response_hop_limit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_put_response_hop_limit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_tokens` after provisioning.\n"]
@@ -3434,7 +3917,10 @@ impl LaunchTemplateMetadataOptionsElRef {
 
     #[doc = "Get a reference to the value of field `instance_metadata_tags` after provisioning.\n"]
     pub fn instance_metadata_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_metadata_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_metadata_tags", self.base),
+        )
     }
 }
 
@@ -3468,7 +3954,9 @@ pub struct BuildLaunchTemplateMonitoringEl {}
 
 impl BuildLaunchTemplateMonitoringEl {
     pub fn build(self) -> LaunchTemplateMonitoringEl {
-        LaunchTemplateMonitoringEl { enabled: core::default::Default::default() }
+        LaunchTemplateMonitoringEl {
+            enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -3575,12 +4063,18 @@ impl LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `tcp_established_timeout` after provisioning.\n"]
     pub fn tcp_established_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tcp_established_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tcp_established_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `udp_stream_timeout` after provisioning.\n"]
     pub fn udp_stream_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.udp_stream_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.udp_stream_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `udp_timeout` after provisioning.\n"]
@@ -3603,8 +4097,12 @@ impl LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificatio
     }
 }
 
-impl ToListMappable for LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl {
-    type O = BlockAssignable<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl>;
+impl ToListMappable
+    for LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl
+{
+    type O = BlockAssignable<
+        LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3618,7 +4116,9 @@ impl ToListMappable for LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEn
 pub struct BuildLaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl {}
 
 impl BuildLaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl {
-    pub fn build(self) -> LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl {
+    pub fn build(
+        self,
+    ) -> LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl {
         LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl {
             ena_srd_udp_enabled: core::default::Default::default(),
         }
@@ -3649,14 +4149,19 @@ impl LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificatio
 
     #[doc = "Get a reference to the value of field `ena_srd_udp_enabled` after provisioning.\n"]
     pub fn ena_srd_udp_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ena_srd_udp_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ena_srd_udp_enabled", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElDynamic {
     ena_srd_udp_specification: Option<
-        DynamicBlock<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl>,
+        DynamicBlock<
+            LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl,
+        >,
     >,
 }
 
@@ -3665,9 +4170,8 @@ pub struct LaunchTemplateNetworkInterfacesElEnaSrdSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ena_srd_enabled: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ena_srd_udp_specification: Option<
-        Vec<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl>,
-    >,
+    ena_srd_udp_specification:
+        Option<Vec<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl>>,
     dynamic: LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElDynamic,
 }
 
@@ -3681,22 +4185,19 @@ impl LaunchTemplateNetworkInterfacesElEnaSrdSpecificationEl {
     #[doc = "Set the field `ena_srd_udp_specification`.\n"]
     pub fn set_ena_srd_udp_specification(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ena_srd_udp_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ena_srd_udp_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3732,7 +4233,10 @@ pub struct LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef {
 }
 
 impl Ref for LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef {
-    fn new(shared: StackShared, base: String) -> LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef {
         LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef {
             shared: shared,
             base: base.to_string(),
@@ -3747,23 +4251,30 @@ impl LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `ena_srd_enabled` after provisioning.\n"]
     pub fn ena_srd_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ena_srd_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ena_srd_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ena_srd_udp_specification` after provisioning.\n"]
     pub fn ena_srd_udp_specification(
         &self,
-    ) -> ListRef<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ena_srd_udp_specification", self.base))
+    ) -> ListRef<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElEnaSrdUdpSpecificationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ena_srd_udp_specification", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LaunchTemplateNetworkInterfacesElDynamic {
-    connection_tracking_specification: Option<
-        DynamicBlock<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationEl>,
-    >,
-    ena_srd_specification: Option<DynamicBlock<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationEl>>,
+    connection_tracking_specification:
+        Option<DynamicBlock<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationEl>>,
+    ena_srd_specification:
+        Option<DynamicBlock<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationEl>>,
 }
 
 #[derive(Serialize)]
@@ -3809,7 +4320,8 @@ pub struct LaunchTemplateNetworkInterfacesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    connection_tracking_specification: Option<Vec<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationEl>>,
+    connection_tracking_specification:
+        Option<Vec<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     ena_srd_specification: Option<Vec<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationEl>>,
     dynamic: LaunchTemplateNetworkInterfacesElDynamic,
@@ -3939,15 +4451,17 @@ impl LaunchTemplateNetworkInterfacesEl {
     #[doc = "Set the field `connection_tracking_specification`.\n"]
     pub fn set_connection_tracking_specification(
         mut self,
-        v: impl Into<BlockAssignable<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connection_tracking_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connection_tracking_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3960,10 +4474,10 @@ impl LaunchTemplateNetworkInterfacesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ena_srd_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ena_srd_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -4034,17 +4548,26 @@ impl LaunchTemplateNetworkInterfacesElRef {
 
     #[doc = "Get a reference to the value of field `associate_carrier_ip_address` after provisioning.\n"]
     pub fn associate_carrier_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.associate_carrier_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.associate_carrier_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `associate_public_ip_address` after provisioning.\n"]
     pub fn associate_public_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.associate_public_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.associate_public_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_on_termination` after provisioning.\n"]
     pub fn delete_on_termination(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_on_termination", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_on_termination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
@@ -4059,57 +4582,90 @@ impl LaunchTemplateNetworkInterfacesElRef {
 
     #[doc = "Get a reference to the value of field `interface_type` after provisioning.\n"]
     pub fn interface_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interface_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.interface_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_address_count` after provisioning.\n"]
     pub fn ipv4_address_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv4_address_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv4_address_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_addresses` after provisioning.\n"]
     pub fn ipv4_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv4_addresses", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv4_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_prefix_count` after provisioning.\n"]
     pub fn ipv4_prefix_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv4_prefix_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv4_prefix_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_prefixes` after provisioning.\n"]
     pub fn ipv4_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv4_prefixes", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv4_prefixes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_count` after provisioning.\n"]
     pub fn ipv6_address_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_address_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_addresses` after provisioning.\n"]
     pub fn ipv6_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv6_addresses", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_prefix_count` after provisioning.\n"]
     pub fn ipv6_prefix_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_prefix_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_prefix_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_prefixes` after provisioning.\n"]
     pub fn ipv6_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv6_prefixes", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_prefixes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_card_index` after provisioning.\n"]
     pub fn network_card_index(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_card_index", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_card_index", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `primary_ipv6` after provisioning.\n"]
@@ -4119,12 +4675,18 @@ impl LaunchTemplateNetworkInterfacesElRef {
 
     #[doc = "Get a reference to the value of field `private_ip_address` after provisioning.\n"]
     pub fn private_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
@@ -4136,12 +4698,20 @@ impl LaunchTemplateNetworkInterfacesElRef {
     pub fn connection_tracking_specification(
         &self,
     ) -> ListRef<LaunchTemplateNetworkInterfacesElConnectionTrackingSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_tracking_specification", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_tracking_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ena_srd_specification` after provisioning.\n"]
-    pub fn ena_srd_specification(&self) -> ListRef<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ena_srd_specification", self.base))
+    pub fn ena_srd_specification(
+        &self,
+    ) -> ListRef<LaunchTemplateNetworkInterfacesElEnaSrdSpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ena_srd_specification", self.base),
+        )
     }
 }
 
@@ -4279,7 +4849,10 @@ impl LaunchTemplatePlacementElRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
@@ -4299,17 +4872,26 @@ impl LaunchTemplatePlacementElRef {
 
     #[doc = "Get a reference to the value of field `host_resource_group_arn` after provisioning.\n"]
     pub fn host_resource_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.host_resource_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.host_resource_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_number` after provisioning.\n"]
     pub fn partition_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_number", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spread_domain` after provisioning.\n"]
     pub fn spread_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spread_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spread_domain", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tenancy` after provisioning.\n"]
@@ -4336,7 +4918,10 @@ impl LaunchTemplatePrivateDnsNameOptionsEl {
     }
 
     #[doc = "Set the field `enable_resource_name_dns_aaaa_record`.\n"]
-    pub fn set_enable_resource_name_dns_aaaa_record(mut self, v: impl Into<PrimField<bool>>) -> Self {
+    pub fn set_enable_resource_name_dns_aaaa_record(
+        mut self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
         self.enable_resource_name_dns_aaaa_record = Some(v.into());
         self
     }
@@ -4393,17 +4978,26 @@ impl LaunchTemplatePrivateDnsNameOptionsElRef {
 
     #[doc = "Get a reference to the value of field `enable_resource_name_dns_a_record` after provisioning.\n"]
     pub fn enable_resource_name_dns_a_record(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_resource_name_dns_a_record", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_resource_name_dns_a_record", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_resource_name_dns_aaaa_record` after provisioning.\n"]
     pub fn enable_resource_name_dns_aaaa_record(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_resource_name_dns_aaaa_record", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_resource_name_dns_aaaa_record", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hostname_type` after provisioning.\n"]
     pub fn hostname_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hostname_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hostname_type", self.base),
+        )
     }
 }
 
@@ -4473,7 +5067,10 @@ impl LaunchTemplateTagSpecificationsElRef {
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
@@ -4485,7 +5082,8 @@ impl LaunchTemplateTagSpecificationsElRef {
 #[derive(Serialize, Default)]
 struct LaunchTemplateDynamic {
     block_device_mappings: Option<DynamicBlock<LaunchTemplateBlockDeviceMappingsEl>>,
-    capacity_reservation_specification: Option<DynamicBlock<LaunchTemplateCapacityReservationSpecificationEl>>,
+    capacity_reservation_specification:
+        Option<DynamicBlock<LaunchTemplateCapacityReservationSpecificationEl>>,
     cpu_options: Option<DynamicBlock<LaunchTemplateCpuOptionsEl>>,
     credit_specification: Option<DynamicBlock<LaunchTemplateCreditSpecificationEl>>,
     enclave_options: Option<DynamicBlock<LaunchTemplateEnclaveOptionsEl>>,

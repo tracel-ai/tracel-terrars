@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamGroupData {
@@ -54,12 +54,18 @@ impl DataIamGroup {
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -69,22 +75,32 @@ impl DataIamGroup {
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> ListRef<DataIamGroupUsersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.users", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.users", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamGroup {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamGroup { }
+impl Datasource for DataIamGroup {}
 
 impl ToListMappable for DataIamGroup {
     type O = ListRef<DataIamGroupRef>;
@@ -140,10 +156,7 @@ pub struct DataIamGroupRef {
 
 impl Ref for DataIamGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -163,12 +176,18 @@ impl DataIamGroupRef {
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -178,12 +197,18 @@ impl DataIamGroupRef {
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> ListRef<DataIamGroupUsersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.users", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.users", self.extract_ref()),
+        )
     }
 }
 

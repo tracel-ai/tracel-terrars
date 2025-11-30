@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSsoadminApplicationData {
@@ -41,8 +41,7 @@ impl DataSsoadminApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -50,22 +49,34 @@ impl DataSsoadminApplication {
 
     #[doc = "Get a reference to the value of field `application_account` after provisioning.\n"]
     pub fn application_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_provider_arn` after provisioning.\n"]
     pub fn application_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_provider_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_provider_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -75,38 +86,56 @@ impl DataSsoadminApplication {
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `portal_options` after provisioning.\n"]
     pub fn portal_options(&self) -> ListRef<DataSsoadminApplicationPortalOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.portal_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.portal_options", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSsoadminApplication {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSsoadminApplication { }
+impl Datasource for DataSsoadminApplication {}
 
 impl ToListMappable for DataSsoadminApplication {
     type O = ListRef<DataSsoadminApplicationRef>;
@@ -162,10 +191,7 @@ pub struct DataSsoadminApplicationRef {
 
 impl Ref for DataSsoadminApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -180,22 +206,34 @@ impl DataSsoadminApplicationRef {
 
     #[doc = "Get a reference to the value of field `application_account` after provisioning.\n"]
     pub fn application_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_provider_arn` after provisioning.\n"]
     pub fn application_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_provider_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_provider_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -205,28 +243,42 @@ impl DataSsoadminApplicationRef {
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `portal_options` after provisioning.\n"]
     pub fn portal_options(&self) -> ListRef<DataSsoadminApplicationPortalOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.portal_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.portal_options", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 }
 
@@ -281,7 +333,10 @@ pub struct DataSsoadminApplicationPortalOptionsElSignInOptionsElRef {
 }
 
 impl Ref for DataSsoadminApplicationPortalOptionsElSignInOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataSsoadminApplicationPortalOptionsElSignInOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSsoadminApplicationPortalOptionsElSignInOptionsElRef {
         DataSsoadminApplicationPortalOptionsElSignInOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -296,7 +351,10 @@ impl DataSsoadminApplicationPortalOptionsElSignInOptionsElRef {
 
     #[doc = "Get a reference to the value of field `application_url` after provisioning.\n"]
     pub fn application_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_url", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin` after provisioning.\n"]
@@ -373,8 +431,13 @@ impl DataSsoadminApplicationPortalOptionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `sign_in_options` after provisioning.\n"]
-    pub fn sign_in_options(&self) -> ListRef<DataSsoadminApplicationPortalOptionsElSignInOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sign_in_options", self.base))
+    pub fn sign_in_options(
+        &self,
+    ) -> ListRef<DataSsoadminApplicationPortalOptionsElSignInOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sign_in_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `visibility` after provisioning.\n"]

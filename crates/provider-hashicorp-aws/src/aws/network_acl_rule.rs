@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkAclRuleData {
@@ -73,7 +73,8 @@ impl NetworkAclRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -86,7 +87,7 @@ impl NetworkAclRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -97,12 +98,22 @@ impl NetworkAclRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -148,8 +159,7 @@ impl NetworkAclRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -163,27 +173,42 @@ impl NetworkAclRule {
 
     #[doc = "Get a reference to the value of field `cidr_block` after provisioning.\n"]
     pub fn cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `egress` after provisioning.\n"]
     pub fn egress(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.egress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.egress", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `from_port` after provisioning.\n"]
     pub fn from_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.from_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.from_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `icmp_code` after provisioning.\n"]
     pub fn icmp_code(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.icmp_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.icmp_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `icmp_type` after provisioning.\n"]
     pub fn icmp_type(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.icmp_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.icmp_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -193,48 +218,72 @@ impl NetworkAclRule {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_block` after provisioning.\n"]
     pub fn ipv6_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_acl_id` after provisioning.\n"]
     pub fn network_acl_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_acl_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_acl_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_action` after provisioning.\n"]
     pub fn rule_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_number` after provisioning.\n"]
     pub fn rule_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_number", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_number", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `to_port` after provisioning.\n"]
     pub fn to_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.to_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.to_port", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for NetworkAclRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkAclRule { }
+impl Resource for NetworkAclRule {}
 
 impl ToListMappable for NetworkAclRule {
     type O = ListRef<NetworkAclRuleRef>;
@@ -308,10 +357,7 @@ pub struct NetworkAclRuleRef {
 
 impl Ref for NetworkAclRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -326,27 +372,42 @@ impl NetworkAclRuleRef {
 
     #[doc = "Get a reference to the value of field `cidr_block` after provisioning.\n"]
     pub fn cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `egress` after provisioning.\n"]
     pub fn egress(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.egress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.egress", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `from_port` after provisioning.\n"]
     pub fn from_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.from_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.from_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `icmp_code` after provisioning.\n"]
     pub fn icmp_code(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.icmp_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.icmp_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `icmp_type` after provisioning.\n"]
     pub fn icmp_type(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.icmp_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.icmp_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -356,37 +417,57 @@ impl NetworkAclRuleRef {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_block` after provisioning.\n"]
     pub fn ipv6_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_acl_id` after provisioning.\n"]
     pub fn network_acl_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_acl_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_acl_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_action` after provisioning.\n"]
     pub fn rule_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_number` after provisioning.\n"]
     pub fn rule_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_number", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_number", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `to_port` after provisioning.\n"]
     pub fn to_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.to_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.to_port", self.extract_ref()),
+        )
     }
 }

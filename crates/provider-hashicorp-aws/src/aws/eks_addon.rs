@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EksAddonData {
@@ -78,7 +78,8 @@ impl EksAddon {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -91,7 +92,7 @@ impl EksAddon {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -102,12 +103,22 @@ impl EksAddon {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -135,8 +146,7 @@ impl EksAddon {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -173,14 +183,17 @@ impl EksAddon {
     }
 
     #[doc = "Set the field `pod_identity_association`.\n"]
-    pub fn set_pod_identity_association(self, v: impl Into<BlockAssignable<EksAddonPodIdentityAssociationEl>>) -> Self {
+    pub fn set_pod_identity_association(
+        self,
+        v: impl Into<BlockAssignable<EksAddonPodIdentityAssociationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().pod_identity_association = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.pod_identity_association = Some(d);
-            },
+            }
         }
         self
     }
@@ -193,12 +206,18 @@ impl EksAddon {
 
     #[doc = "Get a reference to the value of field `addon_name` after provisioning.\n"]
     pub fn addon_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.addon_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.addon_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `addon_version` after provisioning.\n"]
     pub fn addon_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.addon_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.addon_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -208,17 +227,26 @@ impl EksAddon {
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_values` after provisioning.\n"]
     pub fn configuration_values(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_values", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_values", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -228,58 +256,88 @@ impl EksAddon {
 
     #[doc = "Get a reference to the value of field `modified_at` after provisioning.\n"]
     pub fn modified_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modified_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modified_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preserve` after provisioning.\n"]
     pub fn preserve(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preserve", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preserve", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolve_conflicts_on_create` after provisioning.\n"]
     pub fn resolve_conflicts_on_create(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolve_conflicts_on_create", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolve_conflicts_on_create", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolve_conflicts_on_update` after provisioning.\n"]
     pub fn resolve_conflicts_on_update(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolve_conflicts_on_update", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolve_conflicts_on_update", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_account_role_arn` after provisioning.\n"]
     pub fn service_account_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_account_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_account_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EksAddonTimeoutsElRef {
-        EksAddonTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EksAddonTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EksAddon {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EksAddon { }
+impl Resource for EksAddon {}
 
 impl ToListMappable for EksAddon {
     type O = ListRef<EksAddonRef>;
@@ -351,10 +409,7 @@ pub struct EksAddonRef {
 
 impl Ref for EksAddonRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -369,12 +424,18 @@ impl EksAddonRef {
 
     #[doc = "Get a reference to the value of field `addon_name` after provisioning.\n"]
     pub fn addon_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.addon_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.addon_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `addon_version` after provisioning.\n"]
     pub fn addon_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.addon_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.addon_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -384,17 +445,26 @@ impl EksAddonRef {
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_values` after provisioning.\n"]
     pub fn configuration_values(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_values", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_values", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -404,48 +474,74 @@ impl EksAddonRef {
 
     #[doc = "Get a reference to the value of field `modified_at` after provisioning.\n"]
     pub fn modified_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modified_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modified_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preserve` after provisioning.\n"]
     pub fn preserve(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preserve", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preserve", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolve_conflicts_on_create` after provisioning.\n"]
     pub fn resolve_conflicts_on_create(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolve_conflicts_on_create", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolve_conflicts_on_create", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolve_conflicts_on_update` after provisioning.\n"]
     pub fn resolve_conflicts_on_update(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolve_conflicts_on_update", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolve_conflicts_on_update", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_account_role_arn` after provisioning.\n"]
     pub fn service_account_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_account_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_account_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EksAddonTimeoutsElRef {
-        EksAddonTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EksAddonTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -455,7 +551,7 @@ pub struct EksAddonPodIdentityAssociationEl {
     service_account: PrimField<String>,
 }
 
-impl EksAddonPodIdentityAssociationEl { }
+impl EksAddonPodIdentityAssociationEl {}
 
 impl ToListMappable for EksAddonPodIdentityAssociationEl {
     type O = BlockAssignable<EksAddonPodIdentityAssociationEl>;
@@ -511,7 +607,10 @@ impl EksAddonPodIdentityAssociationElRef {
 
     #[doc = "Get a reference to the value of field `service_account` after provisioning.\n"]
     pub fn service_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_account", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_account", self.base),
+        )
     }
 }
 

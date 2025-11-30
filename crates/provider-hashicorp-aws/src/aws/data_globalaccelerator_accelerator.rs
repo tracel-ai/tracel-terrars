@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataGlobalacceleratorAcceleratorData {
@@ -61,27 +61,42 @@ impl DataGlobalacceleratorAccelerator {
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
     pub fn attributes(&self) -> ListRef<DataGlobalacceleratorAcceleratorAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dual_stack_dns_name` after provisioning.\n"]
     pub fn dual_stack_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dual_stack_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dual_stack_dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,32 +106,48 @@ impl DataGlobalacceleratorAccelerator {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ip_sets` after provisioning.\n"]
     pub fn ip_sets(&self) -> ListRef<DataGlobalacceleratorAcceleratorIpSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ip_sets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ip_sets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataGlobalacceleratorAccelerator {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataGlobalacceleratorAccelerator { }
+impl Datasource for DataGlobalacceleratorAccelerator {}
 
 impl ToListMappable for DataGlobalacceleratorAccelerator {
     type O = ListRef<DataGlobalacceleratorAcceleratorRef>;
@@ -170,10 +201,7 @@ pub struct DataGlobalacceleratorAcceleratorRef {
 
 impl Ref for DataGlobalacceleratorAcceleratorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -193,27 +221,42 @@ impl DataGlobalacceleratorAcceleratorRef {
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
     pub fn attributes(&self) -> ListRef<DataGlobalacceleratorAcceleratorAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dual_stack_dns_name` after provisioning.\n"]
     pub fn dual_stack_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dual_stack_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dual_stack_dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -223,22 +266,34 @@ impl DataGlobalacceleratorAcceleratorRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ip_sets` after provisioning.\n"]
     pub fn ip_sets(&self) -> ListRef<DataGlobalacceleratorAcceleratorIpSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ip_sets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ip_sets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -317,17 +372,26 @@ impl DataGlobalacceleratorAcceleratorAttributesElRef {
 
     #[doc = "Get a reference to the value of field `flow_logs_enabled` after provisioning.\n"]
     pub fn flow_logs_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_logs_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_logs_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flow_logs_s3_bucket` after provisioning.\n"]
     pub fn flow_logs_s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_logs_s3_bucket", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_logs_s3_bucket", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flow_logs_s3_prefix` after provisioning.\n"]
     pub fn flow_logs_s3_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_logs_s3_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_logs_s3_prefix", self.base),
+        )
     }
 }
 

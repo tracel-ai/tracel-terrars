@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppsyncChannelNamespaceData {
@@ -66,7 +66,8 @@ impl AppsyncChannelNamespace {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl AppsyncChannelNamespace {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl AppsyncChannelNamespace {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,8 +116,7 @@ impl AppsyncChannelNamespace {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -119,27 +129,33 @@ impl AppsyncChannelNamespace {
     }
 
     #[doc = "Set the field `handler_configs`.\n"]
-    pub fn set_handler_configs(self, v: impl Into<BlockAssignable<AppsyncChannelNamespaceHandlerConfigsEl>>) -> Self {
+    pub fn set_handler_configs(
+        self,
+        v: impl Into<BlockAssignable<AppsyncChannelNamespaceHandlerConfigsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().handler_configs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.handler_configs = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `publish_auth_mode`.\n"]
-    pub fn set_publish_auth_mode(self, v: impl Into<BlockAssignable<AppsyncChannelNamespacePublishAuthModeEl>>) -> Self {
+    pub fn set_publish_auth_mode(
+        self,
+        v: impl Into<BlockAssignable<AppsyncChannelNamespacePublishAuthModeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().publish_auth_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.publish_auth_mode = Some(d);
-            },
+            }
         }
         self
     }
@@ -152,73 +168,106 @@ impl AppsyncChannelNamespace {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().subscribe_auth_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.subscribe_auth_mode = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `channel_namespace_arn` after provisioning.\n"]
     pub fn channel_namespace_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.channel_namespace_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.channel_namespace_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_handlers` after provisioning.\n"]
     pub fn code_handlers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code_handlers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code_handlers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `handler_configs` after provisioning.\n"]
     pub fn handler_configs(&self) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.handler_configs", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.handler_configs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `publish_auth_mode` after provisioning.\n"]
     pub fn publish_auth_mode(&self) -> ListRef<AppsyncChannelNamespacePublishAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.publish_auth_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.publish_auth_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscribe_auth_mode` after provisioning.\n"]
     pub fn subscribe_auth_mode(&self) -> ListRef<AppsyncChannelNamespaceSubscribeAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subscribe_auth_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subscribe_auth_mode", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppsyncChannelNamespace {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppsyncChannelNamespace { }
+impl Resource for AppsyncChannelNamespace {}
 
 impl ToListMappable for AppsyncChannelNamespace {
     type O = ListRef<AppsyncChannelNamespaceRef>;
@@ -284,10 +333,7 @@ pub struct AppsyncChannelNamespaceRef {
 
 impl Ref for AppsyncChannelNamespaceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -302,53 +348,82 @@ impl AppsyncChannelNamespaceRef {
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `channel_namespace_arn` after provisioning.\n"]
     pub fn channel_namespace_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.channel_namespace_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.channel_namespace_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_handlers` after provisioning.\n"]
     pub fn code_handlers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code_handlers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code_handlers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `handler_configs` after provisioning.\n"]
     pub fn handler_configs(&self) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.handler_configs", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.handler_configs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `publish_auth_mode` after provisioning.\n"]
     pub fn publish_auth_mode(&self) -> ListRef<AppsyncChannelNamespacePublishAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.publish_auth_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.publish_auth_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscribe_auth_mode` after provisioning.\n"]
     pub fn subscribe_auth_mode(&self) -> ListRef<AppsyncChannelNamespaceSubscribeAuthModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subscribe_auth_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subscribe_auth_mode", self.extract_ref()),
+        )
     }
 }
 
@@ -366,8 +441,12 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfig
     }
 }
 
-impl ToListMappable for AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl {
-    type O = BlockAssignable<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl>;
+impl ToListMappable
+    for AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl
+{
+    type O = BlockAssignable<
+        AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -381,7 +460,9 @@ impl ToListMappable for AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegr
 pub struct BuildAppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl {}
 
 impl BuildAppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl {
-    pub fn build(self) -> AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl {
+    pub fn build(
+        self,
+    ) -> AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl {
         AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl {
             invoke_type: core::default::Default::default(),
         }
@@ -427,7 +508,8 @@ struct AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElDynamic {
 pub struct AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationEl {
     data_source_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_config: Option<Vec<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl>>,
+    lambda_config:
+        Option<Vec<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl>>,
     dynamic: AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElDynamic,
 }
 
@@ -435,15 +517,19 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationEl {
     #[doc = "Set the field `lambda_config`.\n"]
     pub fn set_lambda_config(
         mut self,
-        v: impl Into<BlockAssignable<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -482,7 +568,10 @@ pub struct AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef {
 }
 
 impl Ref for AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef {
         AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef {
             shared: shared,
             base: base.to_string(),
@@ -497,20 +586,28 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef {
 
     #[doc = "Get a reference to the value of field `data_source_name` after provisioning.\n"]
     pub fn data_source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_config` after provisioning.\n"]
     pub fn lambda_config(
         &self,
-    ) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_config", self.base))
+    ) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElLambdaConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AppsyncChannelNamespaceHandlerConfigsElOnPublishElDynamic {
-    integration: Option<DynamicBlock<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationEl>>,
+    integration:
+        Option<DynamicBlock<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationEl>>,
 }
 
 #[derive(Serialize)]
@@ -530,10 +627,10 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnPublishEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.integration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.integration = Some(d);
-            },
+            }
         }
         self
     }
@@ -572,7 +669,10 @@ pub struct AppsyncChannelNamespaceHandlerConfigsElOnPublishElRef {
 }
 
 impl Ref for AppsyncChannelNamespaceHandlerConfigsElOnPublishElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncChannelNamespaceHandlerConfigsElOnPublishElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncChannelNamespaceHandlerConfigsElOnPublishElRef {
         AppsyncChannelNamespaceHandlerConfigsElOnPublishElRef {
             shared: shared,
             base: base.to_string(),
@@ -591,7 +691,9 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnPublishElRef {
     }
 
     #[doc = "Get a reference to the value of field `integration` after provisioning.\n"]
-    pub fn integration(&self) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef> {
+    pub fn integration(
+        &self,
+    ) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnPublishElIntegrationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.integration", self.base))
     }
 }
@@ -610,8 +712,12 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConf
     }
 }
 
-impl ToListMappable for AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl {
-    type O = BlockAssignable<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl>;
+impl ToListMappable
+    for AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl
+{
+    type O = BlockAssignable<
+        AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -625,7 +731,9 @@ impl ToListMappable for AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElInte
 pub struct BuildAppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl {}
 
 impl BuildAppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl {
-    pub fn build(self) -> AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl {
+    pub fn build(
+        self,
+    ) -> AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl {
         AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl {
             invoke_type: core::default::Default::default(),
         }
@@ -663,7 +771,9 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConf
 #[derive(Serialize, Default)]
 struct AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElDynamic {
     lambda_config: Option<
-        DynamicBlock<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl>,
+        DynamicBlock<
+            AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl,
+        >,
     >,
 }
 
@@ -671,7 +781,9 @@ struct AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElDynamic 
 pub struct AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationEl {
     data_source_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_config: Option<Vec<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl>>,
+    lambda_config: Option<
+        Vec<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl>,
+    >,
     dynamic: AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElDynamic,
 }
 
@@ -679,22 +791,19 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationEl {
     #[doc = "Set the field `lambda_config`.\n"]
     pub fn set_lambda_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -751,20 +860,28 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElRef {
 
     #[doc = "Get a reference to the value of field `data_source_name` after provisioning.\n"]
     pub fn data_source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_config` after provisioning.\n"]
     pub fn lambda_config(
         &self,
-    ) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_config", self.base))
+    ) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElLambdaConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElDynamic {
-    integration: Option<DynamicBlock<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationEl>>,
+    integration:
+        Option<DynamicBlock<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationEl>>,
 }
 
 #[derive(Serialize)]
@@ -784,10 +901,10 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnSubscribeEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.integration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.integration = Some(d);
-            },
+            }
         }
         self
     }
@@ -826,7 +943,10 @@ pub struct AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElRef {
 }
 
 impl Ref for AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElRef {
         AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElRef {
             shared: shared,
             base: base.to_string(),
@@ -845,7 +965,9 @@ impl AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElRef {
     }
 
     #[doc = "Get a reference to the value of field `integration` after provisioning.\n"]
-    pub fn integration(&self) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElRef> {
+    pub fn integration(
+        &self,
+    ) -> ListRef<AppsyncChannelNamespaceHandlerConfigsElOnSubscribeElIntegrationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.integration", self.base))
     }
 }
@@ -874,10 +996,10 @@ impl AppsyncChannelNamespaceHandlerConfigsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_publish = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_publish = Some(d);
-            },
+            }
         }
         self
     }
@@ -890,10 +1012,10 @@ impl AppsyncChannelNamespaceHandlerConfigsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_subscribe = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_subscribe = Some(d);
-            },
+            }
         }
         self
     }
@@ -958,7 +1080,7 @@ pub struct AppsyncChannelNamespacePublishAuthModeEl {
     auth_type: PrimField<String>,
 }
 
-impl AppsyncChannelNamespacePublishAuthModeEl { }
+impl AppsyncChannelNamespacePublishAuthModeEl {}
 
 impl ToListMappable for AppsyncChannelNamespacePublishAuthModeEl {
     type O = BlockAssignable<AppsyncChannelNamespacePublishAuthModeEl>;
@@ -979,7 +1101,9 @@ pub struct BuildAppsyncChannelNamespacePublishAuthModeEl {
 
 impl BuildAppsyncChannelNamespacePublishAuthModeEl {
     pub fn build(self) -> AppsyncChannelNamespacePublishAuthModeEl {
-        AppsyncChannelNamespacePublishAuthModeEl { auth_type: self.auth_type }
+        AppsyncChannelNamespacePublishAuthModeEl {
+            auth_type: self.auth_type,
+        }
     }
 }
 
@@ -1013,7 +1137,7 @@ pub struct AppsyncChannelNamespaceSubscribeAuthModeEl {
     auth_type: PrimField<String>,
 }
 
-impl AppsyncChannelNamespaceSubscribeAuthModeEl { }
+impl AppsyncChannelNamespaceSubscribeAuthModeEl {}
 
 impl ToListMappable for AppsyncChannelNamespaceSubscribeAuthModeEl {
     type O = BlockAssignable<AppsyncChannelNamespaceSubscribeAuthModeEl>;
@@ -1034,7 +1158,9 @@ pub struct BuildAppsyncChannelNamespaceSubscribeAuthModeEl {
 
 impl BuildAppsyncChannelNamespaceSubscribeAuthModeEl {
     pub fn build(self) -> AppsyncChannelNamespaceSubscribeAuthModeEl {
-        AppsyncChannelNamespaceSubscribeAuthModeEl { auth_type: self.auth_type }
+        AppsyncChannelNamespaceSubscribeAuthModeEl {
+            auth_type: self.auth_type,
+        }
     }
 }
 

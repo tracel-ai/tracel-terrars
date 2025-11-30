@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SagemakerFeatureGroupData {
@@ -74,7 +74,8 @@ impl SagemakerFeatureGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl SagemakerFeatureGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl SagemakerFeatureGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -119,8 +130,7 @@ impl SagemakerFeatureGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -146,10 +156,10 @@ impl SagemakerFeatureGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().feature_definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.feature_definition = Some(d);
-            },
+            }
         }
         self
     }
@@ -162,10 +172,10 @@ impl SagemakerFeatureGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().offline_store_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.offline_store_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,23 +188,26 @@ impl SagemakerFeatureGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().online_store_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.online_store_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `throughput_config`.\n"]
-    pub fn set_throughput_config(self, v: impl Into<BlockAssignable<SagemakerFeatureGroupThroughputConfigEl>>) -> Self {
+    pub fn set_throughput_config(
+        self,
+        v: impl Into<BlockAssignable<SagemakerFeatureGroupThroughputConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().throughput_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.throughput_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -206,17 +219,26 @@ impl SagemakerFeatureGroup {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_time_feature_name` after provisioning.\n"]
     pub fn event_time_feature_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_time_feature_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_time_feature_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `feature_group_name` after provisioning.\n"]
     pub fn feature_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.feature_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.feature_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -226,58 +248,88 @@ impl SagemakerFeatureGroup {
 
     #[doc = "Get a reference to the value of field `record_identifier_feature_name` after provisioning.\n"]
     pub fn record_identifier_feature_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_identifier_feature_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_identifier_feature_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `feature_definition` after provisioning.\n"]
     pub fn feature_definition(&self) -> ListRef<SagemakerFeatureGroupFeatureDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.feature_definition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.feature_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `offline_store_config` after provisioning.\n"]
     pub fn offline_store_config(&self) -> ListRef<SagemakerFeatureGroupOfflineStoreConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.offline_store_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.offline_store_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `online_store_config` after provisioning.\n"]
     pub fn online_store_config(&self) -> ListRef<SagemakerFeatureGroupOnlineStoreConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.online_store_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.online_store_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throughput_config` after provisioning.\n"]
     pub fn throughput_config(&self) -> ListRef<SagemakerFeatureGroupThroughputConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.throughput_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.throughput_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SagemakerFeatureGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SagemakerFeatureGroup { }
+impl Resource for SagemakerFeatureGroup {}
 
 impl ToListMappable for SagemakerFeatureGroup {
     type O = ListRef<SagemakerFeatureGroupRef>;
@@ -352,10 +404,7 @@ pub struct SagemakerFeatureGroupRef {
 
 impl Ref for SagemakerFeatureGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -375,17 +424,26 @@ impl SagemakerFeatureGroupRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_time_feature_name` after provisioning.\n"]
     pub fn event_time_feature_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_time_feature_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_time_feature_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `feature_group_name` after provisioning.\n"]
     pub fn feature_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.feature_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.feature_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -395,48 +453,74 @@ impl SagemakerFeatureGroupRef {
 
     #[doc = "Get a reference to the value of field `record_identifier_feature_name` after provisioning.\n"]
     pub fn record_identifier_feature_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_identifier_feature_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_identifier_feature_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `feature_definition` after provisioning.\n"]
     pub fn feature_definition(&self) -> ListRef<SagemakerFeatureGroupFeatureDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.feature_definition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.feature_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `offline_store_config` after provisioning.\n"]
     pub fn offline_store_config(&self) -> ListRef<SagemakerFeatureGroupOfflineStoreConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.offline_store_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.offline_store_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `online_store_config` after provisioning.\n"]
     pub fn online_store_config(&self) -> ListRef<SagemakerFeatureGroupOnlineStoreConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.online_store_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.online_store_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throughput_config` after provisioning.\n"]
     pub fn throughput_config(&self) -> ListRef<SagemakerFeatureGroupThroughputConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.throughput_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.throughput_config", self.extract_ref()),
+        )
     }
 }
 
@@ -455,7 +539,8 @@ impl SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl {
 }
 
 impl ToListMappable for SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl {
-    type O = BlockAssignable<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>;
+    type O =
+        BlockAssignable<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -506,13 +591,16 @@ impl SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigElRef
 
 #[derive(Serialize, Default)]
 struct SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElDynamic {
-    vector_config: Option<DynamicBlock<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>>,
+    vector_config: Option<
+        DynamicBlock<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct SagemakerFeatureGroupFeatureDefinitionElCollectionConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    vector_config: Option<Vec<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>>,
+    vector_config:
+        Option<Vec<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>>,
     dynamic: SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElDynamic,
 }
 
@@ -520,15 +608,19 @@ impl SagemakerFeatureGroupFeatureDefinitionElCollectionConfigEl {
     #[doc = "Set the field `vector_config`.\n"]
     pub fn set_vector_config(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vector_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vector_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -563,7 +655,10 @@ pub struct SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef {
 }
 
 impl Ref for SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef {
         SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -577,14 +672,20 @@ impl SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `vector_config` after provisioning.\n"]
-    pub fn vector_config(&self) -> ListRef<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vector_config", self.base))
+    pub fn vector_config(
+        &self,
+    ) -> ListRef<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElVectorConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vector_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerFeatureGroupFeatureDefinitionElDynamic {
-    collection_config: Option<DynamicBlock<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigEl>>,
+    collection_config:
+        Option<DynamicBlock<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -627,10 +728,10 @@ impl SagemakerFeatureGroupFeatureDefinitionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.collection_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.collection_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -683,7 +784,10 @@ impl SagemakerFeatureGroupFeatureDefinitionElRef {
 
     #[doc = "Get a reference to the value of field `collection_type` after provisioning.\n"]
     pub fn collection_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collection_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collection_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `feature_name` after provisioning.\n"]
@@ -697,8 +801,13 @@ impl SagemakerFeatureGroupFeatureDefinitionElRef {
     }
 
     #[doc = "Get a reference to the value of field `collection_config` after provisioning.\n"]
-    pub fn collection_config(&self) -> ListRef<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.collection_config", self.base))
+    pub fn collection_config(
+        &self,
+    ) -> ListRef<SagemakerFeatureGroupFeatureDefinitionElCollectionConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.collection_config", self.base),
+        )
     }
 }
 
@@ -762,7 +871,10 @@ pub struct SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef {
 }
 
 impl Ref for SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef {
         SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -847,7 +959,10 @@ pub struct SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
 }
 
 impl Ref for SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
         SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -867,7 +982,10 @@ impl SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
 
     #[doc = "Get a reference to the value of field `resolved_output_s3_uri` after provisioning.\n"]
     pub fn resolved_output_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolved_output_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolved_output_s3_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
@@ -878,8 +996,10 @@ impl SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef {
 
 #[derive(Serialize, Default)]
 struct SagemakerFeatureGroupOfflineStoreConfigElDynamic {
-    data_catalog_config: Option<DynamicBlock<SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigEl>>,
-    s3_storage_config: Option<DynamicBlock<SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigEl>>,
+    data_catalog_config:
+        Option<DynamicBlock<SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigEl>>,
+    s3_storage_config:
+        Option<DynamicBlock<SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -916,10 +1036,10 @@ impl SagemakerFeatureGroupOfflineStoreConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.data_catalog_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.data_catalog_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -932,10 +1052,10 @@ impl SagemakerFeatureGroupOfflineStoreConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_storage_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_storage_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -988,7 +1108,10 @@ impl SagemakerFeatureGroupOfflineStoreConfigElRef {
 
     #[doc = "Get a reference to the value of field `disable_glue_table_creation` after provisioning.\n"]
     pub fn disable_glue_table_creation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_glue_table_creation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_glue_table_creation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_format` after provisioning.\n"]
@@ -997,13 +1120,23 @@ impl SagemakerFeatureGroupOfflineStoreConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `data_catalog_config` after provisioning.\n"]
-    pub fn data_catalog_config(&self) -> ListRef<SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_catalog_config", self.base))
+    pub fn data_catalog_config(
+        &self,
+    ) -> ListRef<SagemakerFeatureGroupOfflineStoreConfigElDataCatalogConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_catalog_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_storage_config` after provisioning.\n"]
-    pub fn s3_storage_config(&self) -> ListRef<SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_storage_config", self.base))
+    pub fn s3_storage_config(
+        &self,
+    ) -> ListRef<SagemakerFeatureGroupOfflineStoreConfigElS3StorageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_storage_config", self.base),
+        )
     }
 }
 
@@ -1037,7 +1170,9 @@ pub struct BuildSagemakerFeatureGroupOnlineStoreConfigElSecurityConfigEl {}
 
 impl BuildSagemakerFeatureGroupOnlineStoreConfigElSecurityConfigEl {
     pub fn build(self) -> SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigEl {
-        SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigEl { kms_key_id: core::default::Default::default() }
+        SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigEl {
+            kms_key_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -1047,7 +1182,10 @@ pub struct SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef {
 }
 
 impl Ref for SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef {
         SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1117,7 +1255,10 @@ pub struct SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef {
 }
 
 impl Ref for SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef {
         SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1181,10 +1322,10 @@ impl SagemakerFeatureGroupOnlineStoreConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.security_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.security_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1197,10 +1338,10 @@ impl SagemakerFeatureGroupOnlineStoreConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ttl_duration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ttl_duration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1253,7 +1394,10 @@ impl SagemakerFeatureGroupOnlineStoreConfigElRef {
 
     #[doc = "Get a reference to the value of field `enable_online_store` after provisioning.\n"]
     pub fn enable_online_store(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_online_store", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_online_store", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_type` after provisioning.\n"]
@@ -1262,12 +1406,19 @@ impl SagemakerFeatureGroupOnlineStoreConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `security_config` after provisioning.\n"]
-    pub fn security_config(&self) -> ListRef<SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_config", self.base))
+    pub fn security_config(
+        &self,
+    ) -> ListRef<SagemakerFeatureGroupOnlineStoreConfigElSecurityConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl_duration` after provisioning.\n"]
-    pub fn ttl_duration(&self) -> ListRef<SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef> {
+    pub fn ttl_duration(
+        &self,
+    ) -> ListRef<SagemakerFeatureGroupOnlineStoreConfigElTtlDurationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.ttl_duration", self.base))
     }
 }
@@ -1347,17 +1498,26 @@ impl SagemakerFeatureGroupThroughputConfigElRef {
 
     #[doc = "Get a reference to the value of field `provisioned_read_capacity_units` after provisioning.\n"]
     pub fn provisioned_read_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_read_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_read_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_write_capacity_units` after provisioning.\n"]
     pub fn provisioned_write_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_write_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_write_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `throughput_mode` after provisioning.\n"]
     pub fn throughput_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.throughput_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.throughput_mode", self.base),
+        )
     }
 }
 

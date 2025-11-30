@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDevopsguruNotificationChannelData {
@@ -46,35 +46,40 @@ impl DataDevopsguruNotificationChannel {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filters`.\n"]
-    pub fn set_filters(self, v: impl Into<BlockAssignable<DataDevopsguruNotificationChannelFiltersEl>>) -> Self {
+    pub fn set_filters(
+        self,
+        v: impl Into<BlockAssignable<DataDevopsguruNotificationChannelFiltersEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filters = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sns`.\n"]
-    pub fn set_sns(self, v: impl Into<BlockAssignable<DataDevopsguruNotificationChannelSnsEl>>) -> Self {
+    pub fn set_sns(
+        self,
+        v: impl Into<BlockAssignable<DataDevopsguruNotificationChannelSnsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sns = Some(d);
-            },
+            }
         }
         self
     }
@@ -84,15 +89,20 @@ impl DataDevopsguruNotificationChannel {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<DataDevopsguruNotificationChannelFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns` after provisioning.\n"]
@@ -103,11 +113,15 @@ impl DataDevopsguruNotificationChannel {
 
 impl Referable for DataDevopsguruNotificationChannel {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDevopsguruNotificationChannel { }
+impl Datasource for DataDevopsguruNotificationChannel {}
 
 impl ToListMappable for DataDevopsguruNotificationChannel {
     type O = ListRef<DataDevopsguruNotificationChannelRef>;
@@ -166,10 +180,7 @@ pub struct DataDevopsguruNotificationChannelRef {
 
 impl Ref for DataDevopsguruNotificationChannelRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -187,15 +198,20 @@ impl DataDevopsguruNotificationChannelRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<DataDevopsguruNotificationChannelFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns` after provisioning.\n"]
@@ -207,7 +223,7 @@ impl DataDevopsguruNotificationChannelRef {
 #[derive(Serialize)]
 pub struct DataDevopsguruNotificationChannelFiltersEl {}
 
-impl DataDevopsguruNotificationChannelFiltersEl { }
+impl DataDevopsguruNotificationChannelFiltersEl {}
 
 impl ToListMappable for DataDevopsguruNotificationChannelFiltersEl {
     type O = BlockAssignable<DataDevopsguruNotificationChannelFiltersEl>;
@@ -250,7 +266,10 @@ impl DataDevopsguruNotificationChannelFiltersElRef {
 
     #[doc = "Get a reference to the value of field `message_types` after provisioning.\n"]
     pub fn message_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.message_types", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.message_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `severities` after provisioning.\n"]
@@ -262,7 +281,7 @@ impl DataDevopsguruNotificationChannelFiltersElRef {
 #[derive(Serialize)]
 pub struct DataDevopsguruNotificationChannelSnsEl {}
 
-impl DataDevopsguruNotificationChannelSnsEl { }
+impl DataDevopsguruNotificationChannelSnsEl {}
 
 impl ToListMappable for DataDevopsguruNotificationChannelSnsEl {
     type O = BlockAssignable<DataDevopsguruNotificationChannelSnsEl>;

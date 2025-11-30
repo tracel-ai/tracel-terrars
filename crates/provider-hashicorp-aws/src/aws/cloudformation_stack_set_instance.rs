@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudformationStackSetInstanceData {
@@ -73,7 +73,8 @@ impl CloudformationStackSetInstance {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -86,7 +87,7 @@ impl CloudformationStackSetInstance {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -97,12 +98,22 @@ impl CloudformationStackSetInstance {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -156,10 +167,10 @@ impl CloudformationStackSetInstance {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().deployment_targets = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.deployment_targets = Some(d);
-            },
+            }
         }
         self
     }
@@ -172,10 +183,10 @@ impl CloudformationStackSetInstance {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().operation_preferences = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.operation_preferences = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,12 +199,18 @@ impl CloudformationStackSetInstance {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `call_as` after provisioning.\n"]
     pub fn call_as(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.call_as", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.call_as", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -203,53 +220,88 @@ impl CloudformationStackSetInstance {
 
     #[doc = "Get a reference to the value of field `organizational_unit_id` after provisioning.\n"]
     pub fn organizational_unit_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organizational_unit_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organizational_unit_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameter_overrides` after provisioning.\n"]
     pub fn parameter_overrides(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameter_overrides", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameter_overrides", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retain_stack` after provisioning.\n"]
     pub fn retain_stack(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retain_stack", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retain_stack", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_id` after provisioning.\n"]
     pub fn stack_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stack_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stack_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `stack_instance_summaries` after provisioning.\nList of stack instances created from an organizational unit deployment target. This will only be populated when `deployment_targets` is set."]
-    pub fn stack_instance_summaries(&self) -> ListRef<CloudformationStackSetInstanceStackInstanceSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stack_instance_summaries", self.extract_ref()))
+    #[doc = "Get a reference to the value of field `stack_instance_summaries` after provisioning.\nList of stack instances created from an organizational unit deployment target. This will only be populated when `deployment_targets` is set."]
+    pub fn stack_instance_summaries(
+        &self,
+    ) -> ListRef<CloudformationStackSetInstanceStackInstanceSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stack_instance_summaries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_set_instance_region` after provisioning.\n"]
     pub fn stack_set_instance_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stack_set_instance_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stack_set_instance_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_set_name` after provisioning.\n"]
     pub fn stack_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stack_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stack_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_targets` after provisioning.\n"]
-    pub fn deployment_targets(&self) -> ListRef<CloudformationStackSetInstanceDeploymentTargetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_targets", self.extract_ref()))
+    pub fn deployment_targets(
+        &self,
+    ) -> ListRef<CloudformationStackSetInstanceDeploymentTargetsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operation_preferences` after provisioning.\n"]
-    pub fn operation_preferences(&self) -> ListRef<CloudformationStackSetInstanceOperationPreferencesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.operation_preferences", self.extract_ref()))
+    pub fn operation_preferences(
+        &self,
+    ) -> ListRef<CloudformationStackSetInstanceOperationPreferencesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.operation_preferences", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -263,11 +315,15 @@ impl CloudformationStackSetInstance {
 
 impl Referable for CloudformationStackSetInstance {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudformationStackSetInstance { }
+impl Resource for CloudformationStackSetInstance {}
 
 impl ToListMappable for CloudformationStackSetInstance {
     type O = ListRef<CloudformationStackSetInstanceRef>;
@@ -334,10 +390,7 @@ pub struct CloudformationStackSetInstanceRef {
 
 impl Ref for CloudformationStackSetInstanceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -352,12 +405,18 @@ impl CloudformationStackSetInstanceRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `call_as` after provisioning.\n"]
     pub fn call_as(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.call_as", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.call_as", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -367,53 +426,88 @@ impl CloudformationStackSetInstanceRef {
 
     #[doc = "Get a reference to the value of field `organizational_unit_id` after provisioning.\n"]
     pub fn organizational_unit_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organizational_unit_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organizational_unit_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameter_overrides` after provisioning.\n"]
     pub fn parameter_overrides(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameter_overrides", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameter_overrides", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retain_stack` after provisioning.\n"]
     pub fn retain_stack(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retain_stack", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retain_stack", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_id` after provisioning.\n"]
     pub fn stack_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stack_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stack_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `stack_instance_summaries` after provisioning.\nList of stack instances created from an organizational unit deployment target. This will only be populated when `deployment_targets` is set."]
-    pub fn stack_instance_summaries(&self) -> ListRef<CloudformationStackSetInstanceStackInstanceSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stack_instance_summaries", self.extract_ref()))
+    #[doc = "Get a reference to the value of field `stack_instance_summaries` after provisioning.\nList of stack instances created from an organizational unit deployment target. This will only be populated when `deployment_targets` is set."]
+    pub fn stack_instance_summaries(
+        &self,
+    ) -> ListRef<CloudformationStackSetInstanceStackInstanceSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stack_instance_summaries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_set_instance_region` after provisioning.\n"]
     pub fn stack_set_instance_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stack_set_instance_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stack_set_instance_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_set_name` after provisioning.\n"]
     pub fn stack_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stack_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stack_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_targets` after provisioning.\n"]
-    pub fn deployment_targets(&self) -> ListRef<CloudformationStackSetInstanceDeploymentTargetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_targets", self.extract_ref()))
+    pub fn deployment_targets(
+        &self,
+    ) -> ListRef<CloudformationStackSetInstanceDeploymentTargetsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operation_preferences` after provisioning.\n"]
-    pub fn operation_preferences(&self) -> ListRef<CloudformationStackSetInstanceOperationPreferencesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.operation_preferences", self.extract_ref()))
+    pub fn operation_preferences(
+        &self,
+    ) -> ListRef<CloudformationStackSetInstanceOperationPreferencesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.operation_preferences", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -485,7 +579,10 @@ pub struct CloudformationStackSetInstanceStackInstanceSummariesElRef {
 }
 
 impl Ref for CloudformationStackSetInstanceStackInstanceSummariesElRef {
-    fn new(shared: StackShared, base: String) -> CloudformationStackSetInstanceStackInstanceSummariesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudformationStackSetInstanceStackInstanceSummariesElRef {
         CloudformationStackSetInstanceStackInstanceSummariesElRef {
             shared: shared,
             base: base.to_string(),
@@ -505,7 +602,10 @@ impl CloudformationStackSetInstanceStackInstanceSummariesElRef {
 
     #[doc = "Get a reference to the value of field `organizational_unit_id` after provisioning.\n"]
     pub fn organizational_unit_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organizational_unit_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organizational_unit_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stack_id` after provisioning.\n"]
@@ -546,7 +646,10 @@ impl CloudformationStackSetInstanceDeploymentTargetsEl {
     }
 
     #[doc = "Set the field `organizational_unit_ids`.\n"]
-    pub fn set_organizational_unit_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_organizational_unit_ids(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.organizational_unit_ids = Some(v.into());
         self
     }
@@ -583,7 +686,10 @@ pub struct CloudformationStackSetInstanceDeploymentTargetsElRef {
 }
 
 impl Ref for CloudformationStackSetInstanceDeploymentTargetsElRef {
-    fn new(shared: StackShared, base: String) -> CloudformationStackSetInstanceDeploymentTargetsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudformationStackSetInstanceDeploymentTargetsElRef {
         CloudformationStackSetInstanceDeploymentTargetsElRef {
             shared: shared,
             base: base.to_string(),
@@ -598,7 +704,10 @@ impl CloudformationStackSetInstanceDeploymentTargetsElRef {
 
     #[doc = "Get a reference to the value of field `account_filter_type` after provisioning.\n"]
     pub fn account_filter_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_filter_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_filter_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accounts` after provisioning.\n"]
@@ -613,7 +722,10 @@ impl CloudformationStackSetInstanceDeploymentTargetsElRef {
 
     #[doc = "Get a reference to the value of field `organizational_unit_ids` after provisioning.\n"]
     pub fn organizational_unit_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.organizational_unit_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.organizational_unit_ids", self.base),
+        )
     }
 }
 
@@ -713,7 +825,10 @@ pub struct CloudformationStackSetInstanceOperationPreferencesElRef {
 }
 
 impl Ref for CloudformationStackSetInstanceOperationPreferencesElRef {
-    fn new(shared: StackShared, base: String) -> CloudformationStackSetInstanceOperationPreferencesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudformationStackSetInstanceOperationPreferencesElRef {
         CloudformationStackSetInstanceOperationPreferencesElRef {
             shared: shared,
             base: base.to_string(),
@@ -728,32 +843,50 @@ impl CloudformationStackSetInstanceOperationPreferencesElRef {
 
     #[doc = "Get a reference to the value of field `concurrency_mode` after provisioning.\n"]
     pub fn concurrency_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.concurrency_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.concurrency_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_tolerance_count` after provisioning.\n"]
     pub fn failure_tolerance_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_tolerance_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_tolerance_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_tolerance_percentage` after provisioning.\n"]
     pub fn failure_tolerance_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_tolerance_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_tolerance_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_concurrent_count` after provisioning.\n"]
     pub fn max_concurrent_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrent_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrent_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_concurrent_percentage` after provisioning.\n"]
     pub fn max_concurrent_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrent_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrent_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region_concurrency_type` after provisioning.\n"]
     pub fn region_concurrency_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region_concurrency_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region_concurrency_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region_order` after provisioning.\n"]
@@ -854,5 +987,6 @@ impl CloudformationStackSetInstanceTimeoutsElRef {
 #[derive(Serialize, Default)]
 struct CloudformationStackSetInstanceDynamic {
     deployment_targets: Option<DynamicBlock<CloudformationStackSetInstanceDeploymentTargetsEl>>,
-    operation_preferences: Option<DynamicBlock<CloudformationStackSetInstanceOperationPreferencesEl>>,
+    operation_preferences:
+        Option<DynamicBlock<CloudformationStackSetInstanceOperationPreferencesEl>>,
 }

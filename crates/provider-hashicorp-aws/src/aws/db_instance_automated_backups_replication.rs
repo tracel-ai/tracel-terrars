@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DbInstanceAutomatedBackupsReplicationData {
@@ -64,7 +64,8 @@ impl DbInstanceAutomatedBackupsReplication {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl DbInstanceAutomatedBackupsReplication {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl DbInstanceAutomatedBackupsReplication {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -115,8 +126,7 @@ impl DbInstanceAutomatedBackupsReplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -129,7 +139,10 @@ impl DbInstanceAutomatedBackupsReplication {
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DbInstanceAutomatedBackupsReplicationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DbInstanceAutomatedBackupsReplicationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -141,28 +154,42 @@ impl DbInstanceAutomatedBackupsReplication {
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pre_signed_url` after provisioning.\n"]
     pub fn pre_signed_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pre_signed_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pre_signed_url", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_db_instance_arn` after provisioning.\n"]
     pub fn source_db_instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_db_instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_db_instance_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -176,11 +203,15 @@ impl DbInstanceAutomatedBackupsReplication {
 
 impl Referable for DbInstanceAutomatedBackupsReplication {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DbInstanceAutomatedBackupsReplication { }
+impl Resource for DbInstanceAutomatedBackupsReplication {}
 
 impl ToListMappable for DbInstanceAutomatedBackupsReplication {
     type O = ListRef<DbInstanceAutomatedBackupsReplicationRef>;
@@ -213,23 +244,25 @@ pub struct BuildDbInstanceAutomatedBackupsReplication {
 
 impl BuildDbInstanceAutomatedBackupsReplication {
     pub fn build(self, stack: &mut Stack) -> DbInstanceAutomatedBackupsReplication {
-        let out = DbInstanceAutomatedBackupsReplication(Rc::new(DbInstanceAutomatedBackupsReplication_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DbInstanceAutomatedBackupsReplicationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                kms_key_id: core::default::Default::default(),
-                pre_signed_url: core::default::Default::default(),
-                region: core::default::Default::default(),
-                retention_period: core::default::Default::default(),
-                source_db_instance_arn: self.source_db_instance_arn,
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = DbInstanceAutomatedBackupsReplication(Rc::new(
+            DbInstanceAutomatedBackupsReplication_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DbInstanceAutomatedBackupsReplicationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    kms_key_id: core::default::Default::default(),
+                    pre_signed_url: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    retention_period: core::default::Default::default(),
+                    source_db_instance_arn: self.source_db_instance_arn,
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -242,10 +275,7 @@ pub struct DbInstanceAutomatedBackupsReplicationRef {
 
 impl Ref for DbInstanceAutomatedBackupsReplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -265,28 +295,42 @@ impl DbInstanceAutomatedBackupsReplicationRef {
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pre_signed_url` after provisioning.\n"]
     pub fn pre_signed_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pre_signed_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pre_signed_url", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_db_instance_arn` after provisioning.\n"]
     pub fn source_db_instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_db_instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_db_instance_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -349,7 +393,10 @@ pub struct DbInstanceAutomatedBackupsReplicationTimeoutsElRef {
 }
 
 impl Ref for DbInstanceAutomatedBackupsReplicationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DbInstanceAutomatedBackupsReplicationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DbInstanceAutomatedBackupsReplicationTimeoutsElRef {
         DbInstanceAutomatedBackupsReplicationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

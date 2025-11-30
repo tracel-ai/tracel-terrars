@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataRoute53ResolverEndpointData {
@@ -53,8 +53,7 @@ impl DataRoute53ResolverEndpoint {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -67,14 +66,17 @@ impl DataRoute53ResolverEndpoint {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataRoute53ResolverEndpointFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataRoute53ResolverEndpointFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -86,7 +88,10 @@ impl DataRoute53ResolverEndpoint {
 
     #[doc = "Get a reference to the value of field `direction` after provisioning.\n"]
     pub fn direction(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.direction", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.direction", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -96,53 +101,80 @@ impl DataRoute53ResolverEndpoint {
 
     #[doc = "Get a reference to the value of field `ip_addresses` after provisioning.\n"]
     pub fn ip_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ip_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ip_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocols` after provisioning.\n"]
     pub fn protocols(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.protocols", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.protocols", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_endpoint_id` after provisioning.\n"]
     pub fn resolver_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_endpoint_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_endpoint_type` after provisioning.\n"]
     pub fn resolver_endpoint_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_endpoint_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_endpoint_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataRoute53ResolverEndpoint {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataRoute53ResolverEndpoint { }
+impl Datasource for DataRoute53ResolverEndpoint {}
 
 impl ToListMappable for DataRoute53ResolverEndpoint {
     type O = ListRef<DataRoute53ResolverEndpointRef>;
@@ -199,10 +231,7 @@ pub struct DataRoute53ResolverEndpointRef {
 
 impl Ref for DataRoute53ResolverEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -222,7 +251,10 @@ impl DataRoute53ResolverEndpointRef {
 
     #[doc = "Get a reference to the value of field `direction` after provisioning.\n"]
     pub fn direction(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.direction", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.direction", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -232,43 +264,66 @@ impl DataRoute53ResolverEndpointRef {
 
     #[doc = "Get a reference to the value of field `ip_addresses` after provisioning.\n"]
     pub fn ip_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ip_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ip_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocols` after provisioning.\n"]
     pub fn protocols(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.protocols", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.protocols", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_endpoint_id` after provisioning.\n"]
     pub fn resolver_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_endpoint_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolver_endpoint_type` after provisioning.\n"]
     pub fn resolver_endpoint_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resolver_endpoint_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resolver_endpoint_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }
 
@@ -278,7 +333,7 @@ pub struct DataRoute53ResolverEndpointFilterEl {
     values: ListField<PrimField<String>>,
 }
 
-impl DataRoute53ResolverEndpointFilterEl { }
+impl DataRoute53ResolverEndpointFilterEl {}
 
 impl ToListMappable for DataRoute53ResolverEndpointFilterEl {
     type O = BlockAssignable<DataRoute53ResolverEndpointFilterEl>;

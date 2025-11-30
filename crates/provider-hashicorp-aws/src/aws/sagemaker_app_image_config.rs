@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SagemakerAppImageConfigData {
@@ -67,7 +67,8 @@ impl SagemakerAppImageConfig {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl SagemakerAppImageConfig {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl SagemakerAppImageConfig {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl SagemakerAppImageConfig {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -133,10 +143,14 @@ impl SagemakerAppImageConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().code_editor_app_image_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.code_editor_app_image_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .code_editor_app_image_config = Some(d);
+            }
         }
         self
     }
@@ -149,10 +163,10 @@ impl SagemakerAppImageConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().jupyter_lab_image_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.jupyter_lab_image_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -165,17 +179,20 @@ impl SagemakerAppImageConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kernel_gateway_image_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kernel_gateway_image_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `app_image_config_name` after provisioning.\n"]
     pub fn app_image_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_image_config_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_image_config_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -188,45 +205,72 @@ impl SagemakerAppImageConfig {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_editor_app_image_config` after provisioning.\n"]
-    pub fn code_editor_app_image_config(&self) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code_editor_app_image_config", self.extract_ref()))
+    pub fn code_editor_app_image_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_editor_app_image_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jupyter_lab_image_config` after provisioning.\n"]
-    pub fn jupyter_lab_image_config(&self) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jupyter_lab_image_config", self.extract_ref()))
+    pub fn jupyter_lab_image_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jupyter_lab_image_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kernel_gateway_image_config` after provisioning.\n"]
-    pub fn kernel_gateway_image_config(&self) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kernel_gateway_image_config", self.extract_ref()))
+    pub fn kernel_gateway_image_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kernel_gateway_image_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SagemakerAppImageConfig {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SagemakerAppImageConfig { }
+impl Resource for SagemakerAppImageConfig {}
 
 impl ToListMappable for SagemakerAppImageConfig {
     type O = ListRef<SagemakerAppImageConfigRef>;
@@ -290,10 +334,7 @@ pub struct SagemakerAppImageConfigRef {
 
 impl Ref for SagemakerAppImageConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -308,7 +349,10 @@ impl SagemakerAppImageConfigRef {
 
     #[doc = "Get a reference to the value of field `app_image_config_name` after provisioning.\n"]
     pub fn app_image_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_image_config_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_image_config_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -321,35 +365,58 @@ impl SagemakerAppImageConfigRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_editor_app_image_config` after provisioning.\n"]
-    pub fn code_editor_app_image_config(&self) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code_editor_app_image_config", self.extract_ref()))
+    pub fn code_editor_app_image_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_editor_app_image_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jupyter_lab_image_config` after provisioning.\n"]
-    pub fn jupyter_lab_image_config(&self) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jupyter_lab_image_config", self.extract_ref()))
+    pub fn jupyter_lab_image_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jupyter_lab_image_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kernel_gateway_image_config` after provisioning.\n"]
-    pub fn kernel_gateway_image_config(&self) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kernel_gateway_image_config", self.extract_ref()))
+    pub fn kernel_gateway_image_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kernel_gateway_image_config", self.extract_ref()),
+        )
     }
 }
 
@@ -377,7 +444,10 @@ impl SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl {
     }
 
     #[doc = "Set the field `container_environment_variables`.\n"]
-    pub fn set_container_environment_variables(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_container_environment_variables(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.container_environment_variables = Some(v.into());
         self
     }
@@ -431,17 +501,26 @@ impl SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigElRef {
 
     #[doc = "Get a reference to the value of field `container_arguments` after provisioning.\n"]
     pub fn container_arguments(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.container_arguments", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_arguments", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_entrypoint` after provisioning.\n"]
     pub fn container_entrypoint(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.container_entrypoint", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_entrypoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_environment_variables` after provisioning.\n"]
     pub fn container_environment_variables(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.container_environment_variables", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.container_environment_variables", self.base),
+        )
     }
 }
 
@@ -539,16 +618,20 @@ impl SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigElRef {
 
 #[derive(Serialize, Default)]
 struct SagemakerAppImageConfigCodeEditorAppImageConfigElDynamic {
-    container_config: Option<DynamicBlock<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl>>,
-    file_system_config: Option<DynamicBlock<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigEl>>,
+    container_config:
+        Option<DynamicBlock<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl>>,
+    file_system_config:
+        Option<DynamicBlock<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigEl>>,
 }
 
 #[derive(Serialize)]
 pub struct SagemakerAppImageConfigCodeEditorAppImageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    container_config: Option<Vec<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl>>,
+    container_config:
+        Option<Vec<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    file_system_config: Option<Vec<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigEl>>,
+    file_system_config:
+        Option<Vec<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigEl>>,
     dynamic: SagemakerAppImageConfigCodeEditorAppImageConfigElDynamic,
 }
 
@@ -556,15 +639,17 @@ impl SagemakerAppImageConfigCodeEditorAppImageConfigEl {
     #[doc = "Set the field `container_config`.\n"]
     pub fn set_container_config(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.container_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.container_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -572,15 +657,17 @@ impl SagemakerAppImageConfigCodeEditorAppImageConfigEl {
     #[doc = "Set the field `file_system_config`.\n"]
     pub fn set_file_system_config(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.file_system_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.file_system_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -616,7 +703,10 @@ pub struct SagemakerAppImageConfigCodeEditorAppImageConfigElRef {
 }
 
 impl Ref for SagemakerAppImageConfigCodeEditorAppImageConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerAppImageConfigCodeEditorAppImageConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerAppImageConfigCodeEditorAppImageConfigElRef {
         SagemakerAppImageConfigCodeEditorAppImageConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -630,13 +720,23 @@ impl SagemakerAppImageConfigCodeEditorAppImageConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `container_config` after provisioning.\n"]
-    pub fn container_config(&self) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.container_config", self.base))
+    pub fn container_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElContainerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_config` after provisioning.\n"]
-    pub fn file_system_config(&self) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.file_system_config", self.base))
+    pub fn file_system_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigCodeEditorAppImageConfigElFileSystemConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.file_system_config", self.base),
+        )
     }
 }
 
@@ -664,7 +764,10 @@ impl SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigEl {
     }
 
     #[doc = "Set the field `container_environment_variables`.\n"]
-    pub fn set_container_environment_variables(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_container_environment_variables(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.container_environment_variables = Some(v.into());
         self
     }
@@ -700,7 +803,10 @@ pub struct SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef {
 }
 
 impl Ref for SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef {
         SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -715,17 +821,26 @@ impl SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef {
 
     #[doc = "Get a reference to the value of field `container_arguments` after provisioning.\n"]
     pub fn container_arguments(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.container_arguments", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_arguments", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_entrypoint` after provisioning.\n"]
     pub fn container_entrypoint(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.container_entrypoint", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_entrypoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_environment_variables` after provisioning.\n"]
     pub fn container_environment_variables(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.container_environment_variables", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.container_environment_variables", self.base),
+        )
     }
 }
 
@@ -789,7 +904,10 @@ pub struct SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef {
 }
 
 impl Ref for SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef {
         SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -820,8 +938,10 @@ impl SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef {
 
 #[derive(Serialize, Default)]
 struct SagemakerAppImageConfigJupyterLabImageConfigElDynamic {
-    container_config: Option<DynamicBlock<SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigEl>>,
-    file_system_config: Option<DynamicBlock<SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigEl>>,
+    container_config:
+        Option<DynamicBlock<SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigEl>>,
+    file_system_config:
+        Option<DynamicBlock<SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -829,7 +949,8 @@ pub struct SagemakerAppImageConfigJupyterLabImageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     container_config: Option<Vec<SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    file_system_config: Option<Vec<SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigEl>>,
+    file_system_config:
+        Option<Vec<SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigEl>>,
     dynamic: SagemakerAppImageConfigJupyterLabImageConfigElDynamic,
 }
 
@@ -842,10 +963,10 @@ impl SagemakerAppImageConfigJupyterLabImageConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.container_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.container_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -858,10 +979,10 @@ impl SagemakerAppImageConfigJupyterLabImageConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.file_system_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.file_system_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -911,13 +1032,23 @@ impl SagemakerAppImageConfigJupyterLabImageConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `container_config` after provisioning.\n"]
-    pub fn container_config(&self) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.container_config", self.base))
+    pub fn container_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElContainerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_config` after provisioning.\n"]
-    pub fn file_system_config(&self) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.file_system_config", self.base))
+    pub fn file_system_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigJupyterLabImageConfigElFileSystemConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.file_system_config", self.base),
+        )
     }
 }
 
@@ -1060,7 +1191,10 @@ pub struct SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef {
 }
 
 impl Ref for SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef {
         SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef {
             shared: shared,
             base: base.to_string(),
@@ -1086,14 +1220,17 @@ impl SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef {
 
 #[derive(Serialize, Default)]
 struct SagemakerAppImageConfigKernelGatewayImageConfigElDynamic {
-    file_system_config: Option<DynamicBlock<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigEl>>,
-    kernel_spec: Option<DynamicBlock<SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecEl>>,
+    file_system_config:
+        Option<DynamicBlock<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigEl>>,
+    kernel_spec:
+        Option<DynamicBlock<SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecEl>>,
 }
 
 #[derive(Serialize)]
 pub struct SagemakerAppImageConfigKernelGatewayImageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    file_system_config: Option<Vec<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigEl>>,
+    file_system_config:
+        Option<Vec<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     kernel_spec: Option<Vec<SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecEl>>,
     dynamic: SagemakerAppImageConfigKernelGatewayImageConfigElDynamic,
@@ -1103,15 +1240,17 @@ impl SagemakerAppImageConfigKernelGatewayImageConfigEl {
     #[doc = "Set the field `file_system_config`.\n"]
     pub fn set_file_system_config(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.file_system_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.file_system_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1124,10 +1263,10 @@ impl SagemakerAppImageConfigKernelGatewayImageConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kernel_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kernel_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -1163,7 +1302,10 @@ pub struct SagemakerAppImageConfigKernelGatewayImageConfigElRef {
 }
 
 impl Ref for SagemakerAppImageConfigKernelGatewayImageConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerAppImageConfigKernelGatewayImageConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerAppImageConfigKernelGatewayImageConfigElRef {
         SagemakerAppImageConfigKernelGatewayImageConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1177,19 +1319,28 @@ impl SagemakerAppImageConfigKernelGatewayImageConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `file_system_config` after provisioning.\n"]
-    pub fn file_system_config(&self) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.file_system_config", self.base))
+    pub fn file_system_config(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElFileSystemConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.file_system_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kernel_spec` after provisioning.\n"]
-    pub fn kernel_spec(&self) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef> {
+    pub fn kernel_spec(
+        &self,
+    ) -> ListRef<SagemakerAppImageConfigKernelGatewayImageConfigElKernelSpecElRef> {
         ListRef::new(self.shared().clone(), format!("{}.kernel_spec", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerAppImageConfigDynamic {
-    code_editor_app_image_config: Option<DynamicBlock<SagemakerAppImageConfigCodeEditorAppImageConfigEl>>,
+    code_editor_app_image_config:
+        Option<DynamicBlock<SagemakerAppImageConfigCodeEditorAppImageConfigEl>>,
     jupyter_lab_image_config: Option<DynamicBlock<SagemakerAppImageConfigJupyterLabImageConfigEl>>,
-    kernel_gateway_image_config: Option<DynamicBlock<SagemakerAppImageConfigKernelGatewayImageConfigEl>>,
+    kernel_gateway_image_config:
+        Option<DynamicBlock<SagemakerAppImageConfigKernelGatewayImageConfigEl>>,
 }

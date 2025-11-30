@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSecretsmanagerSecretVersionData {
@@ -53,8 +53,7 @@ impl DataSecretsmanagerSecretVersion {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -79,7 +78,10 @@ impl DataSecretsmanagerSecretVersion {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -87,50 +89,74 @@ impl DataSecretsmanagerSecretVersion {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_binary` after provisioning.\n"]
     pub fn secret_binary(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_binary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_binary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_id` after provisioning.\n"]
     pub fn secret_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_string` after provisioning.\n"]
     pub fn secret_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_stage` after provisioning.\n"]
     pub fn version_stage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_stage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_stage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_stages` after provisioning.\n"]
     pub fn version_stages(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.version_stages", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.version_stages", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSecretsmanagerSecretVersion {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSecretsmanagerSecretVersion { }
+impl Datasource for DataSecretsmanagerSecretVersion {}
 
 impl ToListMappable for DataSecretsmanagerSecretVersion {
     type O = ListRef<DataSecretsmanagerSecretVersionRef>;
@@ -189,10 +215,7 @@ pub struct DataSecretsmanagerSecretVersionRef {
 
 impl Ref for DataSecretsmanagerSecretVersionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -212,7 +235,10 @@ impl DataSecretsmanagerSecretVersionRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -220,39 +246,59 @@ impl DataSecretsmanagerSecretVersionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_binary` after provisioning.\n"]
     pub fn secret_binary(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_binary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_binary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_id` after provisioning.\n"]
     pub fn secret_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_string` after provisioning.\n"]
     pub fn secret_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_stage` after provisioning.\n"]
     pub fn version_stage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_stage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_stage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_stages` after provisioning.\n"]
     pub fn version_stages(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.version_stages", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.version_stages", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ApprunnerAutoScalingConfigurationVersionData {
@@ -66,7 +66,8 @@ impl ApprunnerAutoScalingConfigurationVersion {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl ApprunnerAutoScalingConfigurationVersion {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl ApprunnerAutoScalingConfigurationVersion {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -123,8 +134,7 @@ impl ApprunnerAutoScalingConfigurationVersion {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -149,17 +159,26 @@ impl ApprunnerAutoScalingConfigurationVersion {
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_name` after provisioning.\n"]
     pub fn auto_scaling_configuration_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_revision` after provisioning.\n"]
     pub fn auto_scaling_configuration_revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `has_associated_service` after provisioning.\n"]
     pub fn has_associated_service(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.has_associated_service", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.has_associated_service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -169,58 +188,88 @@ impl ApprunnerAutoScalingConfigurationVersion {
 
     #[doc = "Get a reference to the value of field `is_default` after provisioning.\n"]
     pub fn is_default(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_default", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_default", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `latest` after provisioning.\n"]
     pub fn latest(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.latest", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.latest", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_concurrency` after provisioning.\n"]
     pub fn max_concurrency(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_size", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ApprunnerAutoScalingConfigurationVersion {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ApprunnerAutoScalingConfigurationVersion { }
+impl Resource for ApprunnerAutoScalingConfigurationVersion {}
 
 impl ToListMappable for ApprunnerAutoScalingConfigurationVersion {
     type O = ListRef<ApprunnerAutoScalingConfigurationVersionRef>;
@@ -253,24 +302,26 @@ pub struct BuildApprunnerAutoScalingConfigurationVersion {
 
 impl BuildApprunnerAutoScalingConfigurationVersion {
     pub fn build(self, stack: &mut Stack) -> ApprunnerAutoScalingConfigurationVersion {
-        let out = ApprunnerAutoScalingConfigurationVersion(Rc::new(ApprunnerAutoScalingConfigurationVersion_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(ApprunnerAutoScalingConfigurationVersionData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                auto_scaling_configuration_name: self.auto_scaling_configuration_name,
-                id: core::default::Default::default(),
-                max_concurrency: core::default::Default::default(),
-                max_size: core::default::Default::default(),
-                min_size: core::default::Default::default(),
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-            }),
-        }));
+        let out = ApprunnerAutoScalingConfigurationVersion(Rc::new(
+            ApprunnerAutoScalingConfigurationVersion_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(ApprunnerAutoScalingConfigurationVersionData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    auto_scaling_configuration_name: self.auto_scaling_configuration_name,
+                    id: core::default::Default::default(),
+                    max_concurrency: core::default::Default::default(),
+                    max_size: core::default::Default::default(),
+                    min_size: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -283,10 +334,7 @@ pub struct ApprunnerAutoScalingConfigurationVersionRef {
 
 impl Ref for ApprunnerAutoScalingConfigurationVersionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -306,17 +354,26 @@ impl ApprunnerAutoScalingConfigurationVersionRef {
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_name` after provisioning.\n"]
     pub fn auto_scaling_configuration_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_revision` after provisioning.\n"]
     pub fn auto_scaling_configuration_revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `has_associated_service` after provisioning.\n"]
     pub fn has_associated_service(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.has_associated_service", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.has_associated_service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -326,47 +383,73 @@ impl ApprunnerAutoScalingConfigurationVersionRef {
 
     #[doc = "Get a reference to the value of field `is_default` after provisioning.\n"]
     pub fn is_default(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_default", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_default", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `latest` after provisioning.\n"]
     pub fn latest(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.latest", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.latest", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_concurrency` after provisioning.\n"]
     pub fn max_concurrency(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_size", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }

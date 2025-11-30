@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EcsClusterCapacityProvidersData {
@@ -22,7 +22,8 @@ struct EcsClusterCapacityProvidersData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_capacity_provider_strategy: Option<Vec<EcsClusterCapacityProvidersDefaultCapacityProviderStrategyEl>>,
+    default_capacity_provider_strategy:
+        Option<Vec<EcsClusterCapacityProvidersDefaultCapacityProviderStrategyEl>>,
     dynamic: EcsClusterCapacityProvidersDynamic,
 }
 
@@ -61,7 +62,8 @@ impl EcsClusterCapacityProviders {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +76,7 @@ impl EcsClusterCapacityProviders {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +87,22 @@ impl EcsClusterCapacityProviders {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +118,7 @@ impl EcsClusterCapacityProviders {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -121,22 +132,32 @@ impl EcsClusterCapacityProviders {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().default_capacity_provider_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.default_capacity_provider_strategy = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .default_capacity_provider_strategy = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `capacity_providers` after provisioning.\n"]
     pub fn capacity_providers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.capacity_providers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -144,20 +165,26 @@ impl EcsClusterCapacityProviders {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EcsClusterCapacityProviders {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EcsClusterCapacityProviders { }
+impl Resource for EcsClusterCapacityProviders {}
 
 impl ToListMappable for EcsClusterCapacityProviders {
     type O = ListRef<EcsClusterCapacityProvidersRef>;
@@ -218,10 +245,7 @@ pub struct EcsClusterCapacityProvidersRef {
 
 impl Ref for EcsClusterCapacityProvidersRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -236,12 +260,18 @@ impl EcsClusterCapacityProvidersRef {
 
     #[doc = "Get a reference to the value of field `capacity_providers` after provisioning.\n"]
     pub fn capacity_providers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.capacity_providers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -249,10 +279,12 @@ impl EcsClusterCapacityProvidersRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -312,7 +344,10 @@ pub struct EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
 }
 
 impl Ref for EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
-    fn new(shared: StackShared, base: String) -> EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
         EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
             shared: shared,
             base: base.to_string(),
@@ -332,7 +367,10 @@ impl EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
 
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -343,7 +381,6 @@ impl EcsClusterCapacityProvidersDefaultCapacityProviderStrategyElRef {
 
 #[derive(Serialize, Default)]
 struct EcsClusterCapacityProvidersDynamic {
-    default_capacity_provider_strategy: Option<
-        DynamicBlock<EcsClusterCapacityProvidersDefaultCapacityProviderStrategyEl>,
-    >,
+    default_capacity_provider_strategy:
+        Option<DynamicBlock<EcsClusterCapacityProvidersDefaultCapacityProviderStrategyEl>>,
 }

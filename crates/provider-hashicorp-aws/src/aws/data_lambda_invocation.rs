@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLambdaInvocationData {
@@ -58,8 +58,7 @@ impl DataLambdaInvocation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -67,7 +66,10 @@ impl DataLambdaInvocation {
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -77,33 +79,48 @@ impl DataLambdaInvocation {
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.qualifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.qualifier", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `result` after provisioning.\n"]
     pub fn result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.result", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.result", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLambdaInvocation {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLambdaInvocation { }
+impl Datasource for DataLambdaInvocation {}
 
 impl ToListMappable for DataLambdaInvocation {
     type O = ListRef<DataLambdaInvocationRef>;
@@ -164,10 +181,7 @@ pub struct DataLambdaInvocationRef {
 
 impl Ref for DataLambdaInvocationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -182,7 +196,10 @@ impl DataLambdaInvocationRef {
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -192,22 +209,33 @@ impl DataLambdaInvocationRef {
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.qualifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.qualifier", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `result` after provisioning.\n"]
     pub fn result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.result", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.result", self.extract_ref()),
+        )
     }
 }

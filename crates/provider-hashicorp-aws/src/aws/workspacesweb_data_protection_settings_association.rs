@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WorkspaceswebDataProtectionSettingsAssociationData {
@@ -27,7 +27,9 @@ struct WorkspaceswebDataProtectionSettingsAssociation_ {
 }
 
 #[derive(Clone)]
-pub struct WorkspaceswebDataProtectionSettingsAssociation(Rc<WorkspaceswebDataProtectionSettingsAssociation_>);
+pub struct WorkspaceswebDataProtectionSettingsAssociation(
+    Rc<WorkspaceswebDataProtectionSettingsAssociation_>,
+);
 
 impl WorkspaceswebDataProtectionSettingsAssociation {
     fn shared(&self) -> &StackShared {
@@ -55,7 +57,8 @@ impl WorkspaceswebDataProtectionSettingsAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -68,7 +71,7 @@ impl WorkspaceswebDataProtectionSettingsAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -79,17 +82,26 @@ impl WorkspaceswebDataProtectionSettingsAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -97,28 +109,40 @@ impl WorkspaceswebDataProtectionSettingsAssociation {
 
     #[doc = "Get a reference to the value of field `data_protection_settings_arn` after provisioning.\n"]
     pub fn data_protection_settings_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_protection_settings_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_protection_settings_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `portal_arn` after provisioning.\n"]
     pub fn portal_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.portal_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.portal_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WorkspaceswebDataProtectionSettingsAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WorkspaceswebDataProtectionSettingsAssociation { }
+impl Resource for WorkspaceswebDataProtectionSettingsAssociation {}
 
 impl ToListMappable for WorkspaceswebDataProtectionSettingsAssociation {
     type O = ListRef<WorkspaceswebDataProtectionSettingsAssociationRef>;
@@ -153,8 +177,8 @@ pub struct BuildWorkspaceswebDataProtectionSettingsAssociation {
 
 impl BuildWorkspaceswebDataProtectionSettingsAssociation {
     pub fn build(self, stack: &mut Stack) -> WorkspaceswebDataProtectionSettingsAssociation {
-        let out =
-            WorkspaceswebDataProtectionSettingsAssociation(Rc::new(WorkspaceswebDataProtectionSettingsAssociation_ {
+        let out = WorkspaceswebDataProtectionSettingsAssociation(Rc::new(
+            WorkspaceswebDataProtectionSettingsAssociation_ {
                 shared: stack.shared.clone(),
                 tf_id: self.tf_id,
                 data: RefCell::new(WorkspaceswebDataProtectionSettingsAssociationData {
@@ -166,7 +190,8 @@ impl BuildWorkspaceswebDataProtectionSettingsAssociation {
                     portal_arn: self.portal_arn,
                     region: core::default::Default::default(),
                 }),
-            }));
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -179,10 +204,7 @@ pub struct WorkspaceswebDataProtectionSettingsAssociationRef {
 
 impl Ref for WorkspaceswebDataProtectionSettingsAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -197,17 +219,25 @@ impl WorkspaceswebDataProtectionSettingsAssociationRef {
 
     #[doc = "Get a reference to the value of field `data_protection_settings_arn` after provisioning.\n"]
     pub fn data_protection_settings_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_protection_settings_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_protection_settings_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `portal_arn` after provisioning.\n"]
     pub fn portal_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.portal_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.portal_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

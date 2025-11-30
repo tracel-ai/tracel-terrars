@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct TranscribeLanguageModelData {
@@ -67,7 +67,8 @@ impl TranscribeLanguageModel {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl TranscribeLanguageModel {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl TranscribeLanguageModel {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl TranscribeLanguageModel {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,14 +136,17 @@ impl TranscribeLanguageModel {
     }
 
     #[doc = "Set the field `input_data_config`.\n"]
-    pub fn set_input_data_config(self, v: impl Into<BlockAssignable<TranscribeLanguageModelInputDataConfigEl>>) -> Self {
+    pub fn set_input_data_config(
+        self,
+        v: impl Into<BlockAssignable<TranscribeLanguageModelInputDataConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().input_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.input_data_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -151,7 +164,10 @@ impl TranscribeLanguageModel {
 
     #[doc = "Get a reference to the value of field `base_model_name` after provisioning.\n"]
     pub fn base_model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_model_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -161,48 +177,72 @@ impl TranscribeLanguageModel {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_name` after provisioning.\n"]
     pub fn model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_data_config` after provisioning.\n"]
     pub fn input_data_config(&self) -> ListRef<TranscribeLanguageModelInputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> TranscribeLanguageModelTimeoutsElRef {
-        TranscribeLanguageModelTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        TranscribeLanguageModelTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for TranscribeLanguageModel {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for TranscribeLanguageModel { }
+impl Resource for TranscribeLanguageModel {}
 
 impl ToListMappable for TranscribeLanguageModel {
     type O = ListRef<TranscribeLanguageModelRef>;
@@ -271,10 +311,7 @@ pub struct TranscribeLanguageModelRef {
 
 impl Ref for TranscribeLanguageModelRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -294,7 +331,10 @@ impl TranscribeLanguageModelRef {
 
     #[doc = "Get a reference to the value of field `base_model_name` after provisioning.\n"]
     pub fn base_model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_model_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -304,38 +344,58 @@ impl TranscribeLanguageModelRef {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_name` after provisioning.\n"]
     pub fn model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_data_config` after provisioning.\n"]
     pub fn input_data_config(&self) -> ListRef<TranscribeLanguageModelInputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> TranscribeLanguageModelTimeoutsElRef {
-        TranscribeLanguageModelTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        TranscribeLanguageModelTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -405,7 +465,10 @@ impl TranscribeLanguageModelInputDataConfigElRef {
 
     #[doc = "Get a reference to the value of field `data_access_role_arn` after provisioning.\n"]
     pub fn data_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_access_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_access_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
@@ -415,7 +478,10 @@ impl TranscribeLanguageModelInputDataConfigElRef {
 
     #[doc = "Get a reference to the value of field `tuning_data_s3_uri` after provisioning.\n"]
     pub fn tuning_data_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tuning_data_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tuning_data_s3_uri", self.base),
+        )
     }
 }
 
@@ -449,7 +515,9 @@ pub struct BuildTranscribeLanguageModelTimeoutsEl {}
 
 impl BuildTranscribeLanguageModelTimeoutsEl {
     pub fn build(self) -> TranscribeLanguageModelTimeoutsEl {
-        TranscribeLanguageModelTimeoutsEl { create: core::default::Default::default() }
+        TranscribeLanguageModelTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 

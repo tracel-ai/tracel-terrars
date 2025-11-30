@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2LocalGatewayRouteTablesData {
@@ -55,8 +55,7 @@ impl DataEc2LocalGatewayRouteTables {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -69,14 +68,17 @@ impl DataEc2LocalGatewayRouteTables {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2LocalGatewayRouteTablesFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2LocalGatewayRouteTablesFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -97,15 +99,20 @@ impl DataEc2LocalGatewayRouteTables {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -119,11 +126,15 @@ impl DataEc2LocalGatewayRouteTables {
 
 impl Referable for DataEc2LocalGatewayRouteTables {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2LocalGatewayRouteTables { }
+impl Datasource for DataEc2LocalGatewayRouteTables {}
 
 impl ToListMappable for DataEc2LocalGatewayRouteTables {
     type O = ListRef<DataEc2LocalGatewayRouteTablesRef>;
@@ -181,10 +192,7 @@ pub struct DataEc2LocalGatewayRouteTablesRef {
 
 impl Ref for DataEc2LocalGatewayRouteTablesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -207,15 +215,20 @@ impl DataEc2LocalGatewayRouteTablesRef {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -233,7 +246,7 @@ pub struct DataEc2LocalGatewayRouteTablesFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2LocalGatewayRouteTablesFilterEl { }
+impl DataEc2LocalGatewayRouteTablesFilterEl {}
 
 impl ToListMappable for DataEc2LocalGatewayRouteTablesFilterEl {
     type O = BlockAssignable<DataEc2LocalGatewayRouteTablesFilterEl>;
@@ -323,7 +336,9 @@ pub struct BuildDataEc2LocalGatewayRouteTablesTimeoutsEl {}
 
 impl BuildDataEc2LocalGatewayRouteTablesTimeoutsEl {
     pub fn build(self) -> DataEc2LocalGatewayRouteTablesTimeoutsEl {
-        DataEc2LocalGatewayRouteTablesTimeoutsEl { read: core::default::Default::default() }
+        DataEc2LocalGatewayRouteTablesTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkfirewallRuleGroupData {
@@ -72,7 +72,8 @@ impl NetworkfirewallRuleGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -85,7 +86,7 @@ impl NetworkfirewallRuleGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -96,12 +97,22 @@ impl NetworkfirewallRuleGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -117,8 +128,7 @@ impl NetworkfirewallRuleGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -150,23 +160,26 @@ impl NetworkfirewallRuleGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().encryption_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.encryption_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `rule_group`.\n"]
-    pub fn set_rule_group(self, v: impl Into<BlockAssignable<NetworkfirewallRuleGroupRuleGroupEl>>) -> Self {
+    pub fn set_rule_group(
+        self,
+        v: impl Into<BlockAssignable<NetworkfirewallRuleGroupRuleGroupEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule_group = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,12 +191,18 @@ impl NetworkfirewallRuleGroup {
 
     #[doc = "Get a reference to the value of field `capacity` after provisioning.\n"]
     pub fn capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -193,58 +212,90 @@ impl NetworkfirewallRuleGroup {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rules` after provisioning.\n"]
     pub fn rules(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rules", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rules", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_token` after provisioning.\n"]
     pub fn update_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(&self) -> ListRef<NetworkfirewallRuleGroupEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+    pub fn encryption_configuration(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_group` after provisioning.\n"]
     pub fn rule_group(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule_group", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule_group", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for NetworkfirewallRuleGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkfirewallRuleGroup { }
+impl Resource for NetworkfirewallRuleGroup {}
 
 impl ToListMappable for NetworkfirewallRuleGroup {
     type O = ListRef<NetworkfirewallRuleGroupRef>;
@@ -315,10 +366,7 @@ pub struct NetworkfirewallRuleGroupRef {
 
 impl Ref for NetworkfirewallRuleGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -338,12 +386,18 @@ impl NetworkfirewallRuleGroupRef {
 
     #[doc = "Get a reference to the value of field `capacity` after provisioning.\n"]
     pub fn capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -353,48 +407,76 @@ impl NetworkfirewallRuleGroupRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rules` after provisioning.\n"]
     pub fn rules(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rules", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rules", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_token` after provisioning.\n"]
     pub fn update_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(&self) -> ListRef<NetworkfirewallRuleGroupEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+    pub fn encryption_configuration(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_group` after provisioning.\n"]
     pub fn rule_group(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule_group", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule_group", self.extract_ref()),
+        )
     }
 }
 
@@ -446,7 +528,10 @@ pub struct NetworkfirewallRuleGroupEncryptionConfigurationElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupEncryptionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupEncryptionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupEncryptionConfigurationElRef {
         NetworkfirewallRuleGroupEncryptionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -475,10 +560,14 @@ pub struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIp
     reference_arn: PrimField<String>,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl { }
+impl NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {}
 
-impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {
-    type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl>;
+impl ToListMappable
+    for NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl
+{
+    type O = BlockAssignable<
+        NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -489,13 +578,16 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetR
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl
+{
     #[doc = ""]
     pub reference_arn: PrimField<String>,
 }
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {
-    pub fn build(self) -> NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {
+    pub fn build(
+        self,
+    ) -> NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {
         NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl {
             reference_arn: self.reference_arn,
         }
@@ -507,11 +599,14 @@ pub struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIp
     base: String,
 }
 
-impl Ref for NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef {
+impl Ref
+    for NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef {
+    ) -> NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef
+    {
         NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef {
             shared: shared,
             base: base.to_string(),
@@ -526,14 +621,19 @@ impl NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetRef
 
     #[doc = "Get a reference to the value of field `reference_arn` after provisioning.\n"]
     pub fn reference_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reference_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reference_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElDynamic {
     ip_set_reference: Option<
-        DynamicBlock<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl>,
+        DynamicBlock<
+            NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl,
+        >,
     >,
 }
 
@@ -541,7 +641,9 @@ struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElDynami
 pub struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl {
     key: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ip_set_reference: Option<Vec<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl>>,
+    ip_set_reference: Option<
+        Vec<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl>,
+    >,
     dynamic: NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElDynamic,
 }
 
@@ -549,22 +651,19 @@ impl NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl {
     #[doc = "Set the field `ip_set_reference`.\n"]
     pub fn set_ip_set_reference(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ip_set_reference = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ip_set_reference = Some(d);
-            },
+            }
         }
         self
     }
@@ -627,20 +726,27 @@ impl NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElRef {
     #[doc = "Get a reference to the value of field `ip_set_reference` after provisioning.\n"]
     pub fn ip_set_reference(
         &self,
-    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ip_set_reference", self.base))
+    ) -> ListRef<
+        NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesElIpSetReferenceElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ip_set_reference", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElDynamic {
-    ip_set_references: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl>>,
+    ip_set_references:
+        Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl>>,
 }
 
 #[derive(Serialize)]
 pub struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    ip_set_references: Option<Vec<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl>>,
+    ip_set_references:
+        Option<Vec<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl>>,
     dynamic: NetworkfirewallRuleGroupRuleGroupElReferenceSetsElDynamic,
 }
 
@@ -648,15 +754,17 @@ impl NetworkfirewallRuleGroupRuleGroupElReferenceSetsEl {
     #[doc = "Set the field `ip_set_references`.\n"]
     pub fn set_ip_set_references(
         mut self,
-        v: impl Into<BlockAssignable<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl>>,
+        v: impl Into<
+            BlockAssignable<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElIpSetReferencesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ip_set_references = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ip_set_references = Some(d);
-            },
+            }
         }
         self
     }
@@ -691,7 +799,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElReferenceSetsElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElReferenceSetsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElReferenceSetsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElReferenceSetsElRef {
         NetworkfirewallRuleGroupRuleGroupElReferenceSetsElRef {
             shared: shared,
             base: base.to_string(),
@@ -710,7 +821,7 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl {
     definition: SetField<PrimField<String>>,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl { }
+impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl {}
 
 impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl {
     type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl>;
@@ -731,7 +842,9 @@ pub struct BuildNetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetE
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl {
     pub fn build(self) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl {
-        NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl { definition: self.definition }
+        NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetEl {
+            definition: self.definition,
+        }
     }
 }
 
@@ -785,10 +898,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ip_set = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ip_set = Some(d);
-            },
+            }
         }
         self
     }
@@ -827,7 +940,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElRef {
         NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElRef {
             shared: shared,
             base: base.to_string(),
@@ -846,7 +962,9 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElRef {
     }
 
     #[doc = "Get a reference to the value of field `ip_set` after provisioning.\n"]
-    pub fn ip_set(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetElRef> {
+    pub fn ip_set(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElIpSetsElIpSetElRef> {
         ListRef::new(self.shared().clone(), format!("{}.ip_set", self.base))
     }
 }
@@ -856,7 +974,7 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl
     definition: SetField<PrimField<String>>,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl { }
+impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl {}
 
 impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl {
     type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl>;
@@ -877,7 +995,9 @@ pub struct BuildNetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPort
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl {
     pub fn build(self) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl {
-        NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl { definition: self.definition }
+        NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl {
+            definition: self.definition,
+        }
     }
 }
 
@@ -911,7 +1031,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetElRef {
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElDynamic {
-    port_set: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl>>,
+    port_set:
+        Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl>>,
 }
 
 #[derive(Serialize)]
@@ -926,15 +1047,17 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsEl {
     #[doc = "Set the field `port_set`.\n"]
     pub fn set_port_set(
         mut self,
-        v: impl Into<BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl>>,
+        v: impl Into<
+            BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.port_set = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.port_set = Some(d);
-            },
+            }
         }
         self
     }
@@ -973,7 +1096,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElRef {
         NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElRef {
             shared: shared,
             base: base.to_string(),
@@ -992,7 +1118,9 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElRef {
     }
 
     #[doc = "Get a reference to the value of field `port_set` after provisioning.\n"]
-    pub fn port_set(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetElRef> {
+    pub fn port_set(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElPortSetsElPortSetElRef> {
         ListRef::new(self.shared().clone(), format!("{}.port_set", self.base))
     }
 }
@@ -1021,10 +1149,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ip_sets = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ip_sets = Some(d);
-            },
+            }
         }
         self
     }
@@ -1037,10 +1165,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRuleVariablesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.port_sets = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.port_sets = Some(d);
-            },
+            }
         }
         self
     }
@@ -1076,7 +1204,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRuleVariablesElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElRuleVariablesElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRuleVariablesElRef {
         NetworkfirewallRuleGroupRuleGroupElRuleVariablesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1097,7 +1228,7 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl {
     targets: SetField<PrimField<String>>,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl { }
+impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl {}
 
 impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl {
     type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl>;
@@ -1154,7 +1285,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListElRef {
 
     #[doc = "Get a reference to the value of field `generated_rules_type` after provisioning.\n"]
     pub fn generated_rules_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.generated_rules_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.generated_rules_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_types` after provisioning.\n"]
@@ -1178,10 +1312,11 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderE
     source_port: PrimField<String>,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl { }
+impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl {}
 
 impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl {
-    type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>;
+    type O =
+        BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1249,7 +1384,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderElRef {
 
     #[doc = "Get a reference to the value of field `destination_port` after provisioning.\n"]
     pub fn destination_port(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `direction` after provisioning.\n"]
@@ -1289,7 +1427,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl 
 }
 
 impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl {
-    type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>;
+    type O =
+        BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1306,7 +1445,9 @@ pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRu
 }
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl {
-    pub fn build(self) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl {
+    pub fn build(
+        self,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl {
         NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl {
             keyword: self.keyword,
             settings: core::default::Default::default(),
@@ -1349,8 +1490,12 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionElR
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElDynamic {
-    header: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>>,
-    rule_option: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>>,
+    header: Option<
+        DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>,
+    >,
+    rule_option: Option<
+        DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1359,7 +1504,8 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     header: Option<Vec<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    rule_option: Option<Vec<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>>,
+    rule_option:
+        Option<Vec<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>>,
     dynamic: NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElDynamic,
 }
 
@@ -1367,15 +1513,17 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleEl {
     #[doc = "Set the field `header`.\n"]
     pub fn set_header(
         mut self,
-        v: impl Into<BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>>,
+        v: impl Into<
+            BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
@@ -1383,15 +1531,19 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleEl {
     #[doc = "Set the field `rule_option`.\n"]
     pub fn set_rule_option(
         mut self,
-        v: impl Into<BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl>>,
+        v: impl Into<
+            BlockAssignable<
+                NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRuleOptionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule_option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule_option = Some(d);
-            },
+            }
         }
         self
     }
@@ -1431,7 +1583,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef {
         NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -1450,13 +1605,16 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
-    pub fn header(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderElRef> {
+    pub fn header(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElHeaderElRef> {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElDimensionEl {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElDimensionEl
+{
     value: PrimField<String>,
 }
 
@@ -1479,7 +1637,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElDimensionEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElDimensionEl
+{
     #[doc = ""]
     pub value: PrimField<String>,
 }
@@ -1494,7 +1653,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElDimensionElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElDimensionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1582,7 +1742,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionEl {}
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionEl
+{}
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionEl {
     pub fn build(
@@ -1595,7 +1756,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElPublishMetricActionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1678,7 +1840,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionEl {}
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionEl
+{}
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionEl {
     pub fn build(
@@ -1691,7 +1854,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElActionDefinitionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1744,7 +1908,9 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCust
     dynamic: NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElDynamic,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionEl {
+impl
+    NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionEl
+{
     #[doc = "Set the field `action_definition`.\n"]
     pub fn set_action_definition(
         mut self,
@@ -1760,10 +1926,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action_definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action_definition = Some(d);
-            },
+            }
         }
         self
     }
@@ -1784,7 +1950,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionEl
+{
     #[doc = ""]
     pub action_name: PrimField<String>,
 }
@@ -1801,7 +1968,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElCustomActionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1839,7 +2007,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationEl {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationEl
+{
     address_definition: PrimField<String>,
 }
 
@@ -1862,7 +2031,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationEl
+{
     #[doc = ""]
     pub address_definition: PrimField<String>,
 }
@@ -1877,7 +2047,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1906,7 +2077,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationPortEl {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationPortEl
+{
     from_port: PrimField<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     to_port: Option<PrimField<f64>>,
@@ -1935,7 +2107,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationPortEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationPortEl
+{
     #[doc = ""]
     pub from_port: PrimField<f64>,
 }
@@ -1951,7 +2124,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationPortElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElDestinationPortElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1985,7 +2159,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourceEl {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourceEl
+{
     address_definition: PrimField<String>,
 }
 
@@ -2008,7 +2183,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourceEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourceEl
+{
     #[doc = ""]
     pub address_definition: PrimField<String>,
 }
@@ -2023,7 +2199,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourceElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourceElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2052,7 +2229,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourcePortEl {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourcePortEl
+{
     from_port: PrimField<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     to_port: Option<PrimField<f64>>,
@@ -2081,7 +2259,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourcePortEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourcePortEl
+{
     #[doc = ""]
     pub from_port: PrimField<f64>,
 }
@@ -2097,7 +2276,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourcePortElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElSourcePortElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2131,7 +2311,8 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElTcpFlagEl {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElTcpFlagEl
+{
     flags: SetField<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     masks: Option<SetField<PrimField<String>>>,
@@ -2160,7 +2341,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElTcpFlagEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElTcpFlagEl
+{
     #[doc = ""]
     pub flags: SetField<PrimField<String>>,
 }
@@ -2176,7 +2358,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElTcpFlagElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElTcpFlagElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2413,7 +2596,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesEl {}
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesEl
+{}
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesEl {
     pub fn build(
@@ -2431,7 +2615,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElMatchAttributesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2520,7 +2705,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionEl
+{
     #[doc = ""]
     pub actions: SetField<PrimField<String>>,
 }
@@ -2537,7 +2723,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRuleDefinitionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2595,7 +2782,9 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCust
     dynamic: NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElDynamic,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleEl {
+impl
+    NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleEl
+{
     #[doc = "Set the field `rule_definition`.\n"]
     pub fn set_rule_definition(
         mut self,
@@ -2611,10 +2800,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule_definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule_definition = Some(d);
-            },
+            }
         }
         self
     }
@@ -2635,7 +2824,8 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleEl {
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleEl
+{
     #[doc = ""]
     pub priority: PrimField<f64>,
 }
@@ -2652,7 +2842,8 @@ impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCusto
     }
 }
 
-pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRef {
+pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElStatelessRuleElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2728,10 +2919,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -2751,17 +2942,21 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.stateless_rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.stateless_rule = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {
-    type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl>;
+impl ToListMappable
+    for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl
+{
+    type O = BlockAssignable<
+        NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2772,10 +2967,13 @@ impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElRulesSourceElStateles
     }
 }
 
-pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {}
+pub struct BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {
+}
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {
-    pub fn build(self) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {
+    pub fn build(
+        self,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {
         NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl {
             custom_action: core::default::Default::default(),
             stateless_rule: core::default::Default::default(),
@@ -2809,10 +3007,14 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActi
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElDynamic {
-    rules_source_list: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl>>,
-    stateful_rule: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleEl>>,
+    rules_source_list:
+        Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl>>,
+    stateful_rule:
+        Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleEl>>,
     stateless_rules_and_custom_actions: Option<
-        DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl>,
+        DynamicBlock<
+            NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl,
+        >,
     >,
 }
 
@@ -2821,7 +3023,8 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     rules_string: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    rules_source_list: Option<Vec<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl>>,
+    rules_source_list:
+        Option<Vec<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     stateful_rule: Option<Vec<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2846,10 +3049,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rules_source_list = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rules_source_list = Some(d);
-            },
+            }
         }
         self
     }
@@ -2862,10 +3065,10 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.stateful_rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.stateful_rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -2873,22 +3076,19 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceEl {
     #[doc = "Set the field `stateless_rules_and_custom_actions`.\n"]
     pub fn set_stateless_rules_and_custom_actions(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.stateless_rules_and_custom_actions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.stateless_rules_and_custom_actions = Some(d);
-            },
+            }
         }
         self
     }
@@ -2926,7 +3126,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElRulesSourceElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElRulesSourceElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElRulesSourceElRef {
         NetworkfirewallRuleGroupRuleGroupElRulesSourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -2945,20 +3148,34 @@ impl NetworkfirewallRuleGroupRuleGroupElRulesSourceElRef {
     }
 
     #[doc = "Get a reference to the value of field `rules_source_list` after provisioning.\n"]
-    pub fn rules_source_list(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rules_source_list", self.base))
+    pub fn rules_source_list(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElRulesSourceListElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rules_source_list", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stateful_rule` after provisioning.\n"]
-    pub fn stateful_rule(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stateful_rule", self.base))
+    pub fn stateful_rule(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatefulRuleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stateful_rule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stateless_rules_and_custom_actions` after provisioning.\n"]
     pub fn stateless_rules_and_custom_actions(
         &self,
-    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stateless_rules_and_custom_actions", self.base))
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRulesSourceElStatelessRulesAndCustomActionsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stateless_rules_and_custom_actions", self.base),
+        )
     }
 }
 
@@ -2967,7 +3184,7 @@ pub struct NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {
     rule_order: PrimField<String>,
 }
 
-impl NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl { }
+impl NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {}
 
 impl ToListMappable for NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {
     type O = BlockAssignable<NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl>;
@@ -2988,7 +3205,9 @@ pub struct BuildNetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {
 
 impl BuildNetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {
     pub fn build(self) -> NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {
-        NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl { rule_order: self.rule_order }
+        NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl {
+            rule_order: self.rule_order,
+        }
     }
 }
 
@@ -2998,7 +3217,10 @@ pub struct NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef {
 }
 
 impl Ref for NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef {
         NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3022,7 +3244,8 @@ struct NetworkfirewallRuleGroupRuleGroupElDynamic {
     reference_sets: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElReferenceSetsEl>>,
     rule_variables: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRuleVariablesEl>>,
     rules_source: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElRulesSourceEl>>,
-    stateful_rule_options: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl>>,
+    stateful_rule_options:
+        Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsEl>>,
 }
 
 #[derive(Serialize)]
@@ -3047,10 +3270,10 @@ impl NetworkfirewallRuleGroupRuleGroupEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.reference_sets = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.reference_sets = Some(d);
-            },
+            }
         }
         self
     }
@@ -3063,10 +3286,10 @@ impl NetworkfirewallRuleGroupRuleGroupEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule_variables = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule_variables = Some(d);
-            },
+            }
         }
         self
     }
@@ -3079,10 +3302,10 @@ impl NetworkfirewallRuleGroupRuleGroupEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rules_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rules_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -3095,10 +3318,10 @@ impl NetworkfirewallRuleGroupRuleGroupEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.stateful_rule_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.stateful_rule_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -3151,12 +3374,18 @@ impl NetworkfirewallRuleGroupRuleGroupElRef {
 
     #[doc = "Get a reference to the value of field `reference_sets` after provisioning.\n"]
     pub fn reference_sets(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElReferenceSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reference_sets", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reference_sets", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_variables` after provisioning.\n"]
     pub fn rule_variables(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElRuleVariablesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule_variables", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule_variables", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rules_source` after provisioning.\n"]
@@ -3165,13 +3394,19 @@ impl NetworkfirewallRuleGroupRuleGroupElRef {
     }
 
     #[doc = "Get a reference to the value of field `stateful_rule_options` after provisioning.\n"]
-    pub fn stateful_rule_options(&self) -> ListRef<NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stateful_rule_options", self.base))
+    pub fn stateful_rule_options(
+        &self,
+    ) -> ListRef<NetworkfirewallRuleGroupRuleGroupElStatefulRuleOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stateful_rule_options", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallRuleGroupDynamic {
-    encryption_configuration: Option<DynamicBlock<NetworkfirewallRuleGroupEncryptionConfigurationEl>>,
+    encryption_configuration:
+        Option<DynamicBlock<NetworkfirewallRuleGroupEncryptionConfigurationEl>>,
     rule_group: Option<DynamicBlock<NetworkfirewallRuleGroupRuleGroupEl>>,
 }

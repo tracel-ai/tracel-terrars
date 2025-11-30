@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct OamLinkData {
@@ -67,7 +67,8 @@ impl OamLink {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl OamLink {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl OamLink {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl OamLink {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,14 +136,17 @@ impl OamLink {
     }
 
     #[doc = "Set the field `link_configuration`.\n"]
-    pub fn set_link_configuration(self, v: impl Into<BlockAssignable<OamLinkLinkConfigurationEl>>) -> Self {
+    pub fn set_link_configuration(
+        self,
+        v: impl Into<BlockAssignable<OamLinkLinkConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().link_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.link_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -156,68 +169,104 @@ impl OamLink {
 
     #[doc = "Get a reference to the value of field `label` after provisioning.\n"]
     pub fn label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `label_template` after provisioning.\n"]
     pub fn label_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.label_template", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.label_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.link_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.link_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sink_arn` after provisioning.\n"]
     pub fn sink_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sink_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sink_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sink_identifier` after provisioning.\n"]
     pub fn sink_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sink_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sink_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `link_configuration` after provisioning.\n"]
     pub fn link_configuration(&self) -> ListRef<OamLinkLinkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.link_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.link_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OamLinkTimeoutsElRef {
-        OamLinkTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        OamLinkTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for OamLink {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for OamLink { }
+impl Resource for OamLink {}
 
 impl ToListMappable for OamLink {
     type O = ListRef<OamLinkRef>;
@@ -286,10 +335,7 @@ pub struct OamLinkRef {
 
 impl Ref for OamLinkRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -314,58 +360,90 @@ impl OamLinkRef {
 
     #[doc = "Get a reference to the value of field `label` after provisioning.\n"]
     pub fn label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `label_template` after provisioning.\n"]
     pub fn label_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.label_template", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.label_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.link_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.link_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sink_arn` after provisioning.\n"]
     pub fn sink_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sink_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sink_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sink_identifier` after provisioning.\n"]
     pub fn sink_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sink_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sink_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `link_configuration` after provisioning.\n"]
     pub fn link_configuration(&self) -> ListRef<OamLinkLinkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.link_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.link_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OamLinkTimeoutsElRef {
-        OamLinkTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        OamLinkTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -374,7 +452,7 @@ pub struct OamLinkLinkConfigurationElLogGroupConfigurationEl {
     filter: PrimField<String>,
 }
 
-impl OamLinkLinkConfigurationElLogGroupConfigurationEl { }
+impl OamLinkLinkConfigurationElLogGroupConfigurationEl {}
 
 impl ToListMappable for OamLinkLinkConfigurationElLogGroupConfigurationEl {
     type O = BlockAssignable<OamLinkLinkConfigurationElLogGroupConfigurationEl>;
@@ -395,7 +473,9 @@ pub struct BuildOamLinkLinkConfigurationElLogGroupConfigurationEl {
 
 impl BuildOamLinkLinkConfigurationElLogGroupConfigurationEl {
     pub fn build(self) -> OamLinkLinkConfigurationElLogGroupConfigurationEl {
-        OamLinkLinkConfigurationElLogGroupConfigurationEl { filter: self.filter }
+        OamLinkLinkConfigurationElLogGroupConfigurationEl {
+            filter: self.filter,
+        }
     }
 }
 
@@ -405,7 +485,10 @@ pub struct OamLinkLinkConfigurationElLogGroupConfigurationElRef {
 }
 
 impl Ref for OamLinkLinkConfigurationElLogGroupConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> OamLinkLinkConfigurationElLogGroupConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OamLinkLinkConfigurationElLogGroupConfigurationElRef {
         OamLinkLinkConfigurationElLogGroupConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -429,7 +512,7 @@ pub struct OamLinkLinkConfigurationElMetricConfigurationEl {
     filter: PrimField<String>,
 }
 
-impl OamLinkLinkConfigurationElMetricConfigurationEl { }
+impl OamLinkLinkConfigurationElMetricConfigurationEl {}
 
 impl ToListMappable for OamLinkLinkConfigurationElMetricConfigurationEl {
     type O = BlockAssignable<OamLinkLinkConfigurationElMetricConfigurationEl>;
@@ -450,7 +533,9 @@ pub struct BuildOamLinkLinkConfigurationElMetricConfigurationEl {
 
 impl BuildOamLinkLinkConfigurationElMetricConfigurationEl {
     pub fn build(self) -> OamLinkLinkConfigurationElMetricConfigurationEl {
-        OamLinkLinkConfigurationElMetricConfigurationEl { filter: self.filter }
+        OamLinkLinkConfigurationElMetricConfigurationEl {
+            filter: self.filter,
+        }
     }
 }
 
@@ -460,7 +545,10 @@ pub struct OamLinkLinkConfigurationElMetricConfigurationElRef {
 }
 
 impl Ref for OamLinkLinkConfigurationElMetricConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> OamLinkLinkConfigurationElMetricConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OamLinkLinkConfigurationElMetricConfigurationElRef {
         OamLinkLinkConfigurationElMetricConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -481,7 +569,8 @@ impl OamLinkLinkConfigurationElMetricConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct OamLinkLinkConfigurationElDynamic {
-    log_group_configuration: Option<DynamicBlock<OamLinkLinkConfigurationElLogGroupConfigurationEl>>,
+    log_group_configuration:
+        Option<DynamicBlock<OamLinkLinkConfigurationElLogGroupConfigurationEl>>,
     metric_configuration: Option<DynamicBlock<OamLinkLinkConfigurationElMetricConfigurationEl>>,
 }
 
@@ -503,10 +592,10 @@ impl OamLinkLinkConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.log_group_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.log_group_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -519,10 +608,10 @@ impl OamLinkLinkConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -572,13 +661,23 @@ impl OamLinkLinkConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `log_group_configuration` after provisioning.\n"]
-    pub fn log_group_configuration(&self) -> ListRef<OamLinkLinkConfigurationElLogGroupConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_group_configuration", self.base))
+    pub fn log_group_configuration(
+        &self,
+    ) -> ListRef<OamLinkLinkConfigurationElLogGroupConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_group_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_configuration` after provisioning.\n"]
-    pub fn metric_configuration(&self) -> ListRef<OamLinkLinkConfigurationElMetricConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_configuration", self.base))
+    pub fn metric_configuration(
+        &self,
+    ) -> ListRef<OamLinkLinkConfigurationElMetricConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_configuration", self.base),
+        )
     }
 }
 

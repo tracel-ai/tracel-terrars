@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecuritylakeSubscriberNotificationData {
@@ -57,7 +57,8 @@ impl SecuritylakeSubscriberNotification {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl SecuritylakeSubscriberNotification {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,17 +82,26 @@ impl SecuritylakeSubscriberNotification {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -105,17 +115,20 @@ impl SecuritylakeSubscriberNotification {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `endpoint_id` after provisioning.\n"]
     pub fn endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -123,35 +136,50 @@ impl SecuritylakeSubscriberNotification {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_endpoint` after provisioning.\n"]
     pub fn subscriber_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_id` after provisioning.\n"]
     pub fn subscriber_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<SecuritylakeSubscriberNotificationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SecuritylakeSubscriberNotification {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecuritylakeSubscriberNotification { }
+impl Resource for SecuritylakeSubscriberNotification {}
 
 impl ToListMappable for SecuritylakeSubscriberNotification {
     type O = ListRef<SecuritylakeSubscriberNotificationRef>;
@@ -184,20 +212,21 @@ pub struct BuildSecuritylakeSubscriberNotification {
 
 impl BuildSecuritylakeSubscriberNotification {
     pub fn build(self, stack: &mut Stack) -> SecuritylakeSubscriberNotification {
-        let out = SecuritylakeSubscriberNotification(Rc::new(SecuritylakeSubscriberNotification_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(SecuritylakeSubscriberNotificationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                region: core::default::Default::default(),
-                subscriber_id: self.subscriber_id,
-                configuration: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            SecuritylakeSubscriberNotification(Rc::new(SecuritylakeSubscriberNotification_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(SecuritylakeSubscriberNotificationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    region: core::default::Default::default(),
+                    subscriber_id: self.subscriber_id,
+                    configuration: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -210,10 +239,7 @@ pub struct SecuritylakeSubscriberNotificationRef {
 
 impl Ref for SecuritylakeSubscriberNotificationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -228,7 +254,10 @@ impl SecuritylakeSubscriberNotificationRef {
 
     #[doc = "Get a reference to the value of field `endpoint_id` after provisioning.\n"]
     pub fn endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -236,25 +265,36 @@ impl SecuritylakeSubscriberNotificationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_endpoint` after provisioning.\n"]
     pub fn subscriber_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_id` after provisioning.\n"]
     pub fn subscriber_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subscriber_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subscriber_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<SecuritylakeSubscriberNotificationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -290,8 +330,12 @@ impl SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigura
     }
 }
 
-impl ToListMappable for SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl {
-    type O = BlockAssignable<SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl>;
+impl ToListMappable
+    for SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl
+{
+    type O = BlockAssignable<
+        SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -310,7 +354,9 @@ pub struct BuildSecuritylakeSubscriberNotificationConfigurationElHttpsNotificati
 }
 
 impl BuildSecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl {
-    pub fn build(self) -> SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl {
+    pub fn build(
+        self,
+    ) -> SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl {
         SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl {
             authorization_api_key_name: core::default::Default::default(),
             authorization_api_key_value: core::default::Default::default(),
@@ -345,12 +391,18 @@ impl SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigura
 
     #[doc = "Get a reference to the value of field `authorization_api_key_name` after provisioning.\n"]
     pub fn authorization_api_key_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_api_key_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_api_key_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorization_api_key_value` after provisioning.\n"]
     pub fn authorization_api_key_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_api_key_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_api_key_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
@@ -365,17 +417,24 @@ impl SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigura
 
     #[doc = "Get a reference to the value of field `target_role_arn` after provisioning.\n"]
     pub fn target_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_role_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {}
 
-impl SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl { }
+impl SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {}
 
-impl ToListMappable for SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {
-    type O = BlockAssignable<SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl>;
+impl ToListMappable
+    for SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl
+{
+    type O = BlockAssignable<
+        SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -389,7 +448,9 @@ impl ToListMappable for SecuritylakeSubscriberNotificationConfigurationElSqsNoti
 pub struct BuildSecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {}
 
 impl BuildSecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {
-    pub fn build(self) -> SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {
+    pub fn build(
+        self,
+    ) -> SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {
         SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl {}
     }
 }
@@ -420,10 +481,14 @@ impl SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurati
 #[derive(Serialize, Default)]
 struct SecuritylakeSubscriberNotificationConfigurationElDynamic {
     https_notification_configuration: Option<
-        DynamicBlock<SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl>,
+        DynamicBlock<
+            SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl,
+        >,
     >,
     sqs_notification_configuration: Option<
-        DynamicBlock<SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl>,
+        DynamicBlock<
+            SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl,
+        >,
     >,
 }
 
@@ -444,22 +509,19 @@ impl SecuritylakeSubscriberNotificationConfigurationEl {
     #[doc = "Set the field `https_notification_configuration`.\n"]
     pub fn set_https_notification_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.https_notification_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.https_notification_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -467,22 +529,19 @@ impl SecuritylakeSubscriberNotificationConfigurationEl {
     #[doc = "Set the field `sqs_notification_configuration`.\n"]
     pub fn set_sqs_notification_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sqs_notification_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sqs_notification_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -518,7 +577,10 @@ pub struct SecuritylakeSubscriberNotificationConfigurationElRef {
 }
 
 impl Ref for SecuritylakeSubscriberNotificationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> SecuritylakeSubscriberNotificationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecuritylakeSubscriberNotificationConfigurationElRef {
         SecuritylakeSubscriberNotificationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -534,15 +596,23 @@ impl SecuritylakeSubscriberNotificationConfigurationElRef {
     #[doc = "Get a reference to the value of field `https_notification_configuration` after provisioning.\n"]
     pub fn https_notification_configuration(
         &self,
-    ) -> ListRef<SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.https_notification_configuration", self.base))
+    ) -> ListRef<SecuritylakeSubscriberNotificationConfigurationElHttpsNotificationConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.https_notification_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_notification_configuration` after provisioning.\n"]
     pub fn sqs_notification_configuration(
         &self,
-    ) -> ListRef<SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_notification_configuration", self.base))
+    ) -> ListRef<SecuritylakeSubscriberNotificationConfigurationElSqsNotificationConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_notification_configuration", self.base),
+        )
     }
 }
 

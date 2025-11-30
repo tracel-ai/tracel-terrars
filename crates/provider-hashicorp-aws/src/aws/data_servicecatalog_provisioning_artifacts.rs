@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataServicecatalogProvisioningArtifactsData {
@@ -59,22 +59,27 @@ impl DataServicecatalogProvisioningArtifacts {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataServicecatalogProvisioningArtifactsTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataServicecatalogProvisioningArtifactsTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -84,20 +89,28 @@ impl DataServicecatalogProvisioningArtifacts {
 
     #[doc = "Get a reference to the value of field `product_id` after provisioning.\n"]
     pub fn product_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioning_artifact_details` after provisioning.\n"]
     pub fn provisioning_artifact_details(
         &self,
     ) -> ListRef<DataServicecatalogProvisioningArtifactsProvisioningArtifactDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioning_artifact_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioning_artifact_details", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -111,11 +124,15 @@ impl DataServicecatalogProvisioningArtifacts {
 
 impl Referable for DataServicecatalogProvisioningArtifacts {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataServicecatalogProvisioningArtifacts { }
+impl Datasource for DataServicecatalogProvisioningArtifacts {}
 
 impl ToListMappable for DataServicecatalogProvisioningArtifacts {
     type O = ListRef<DataServicecatalogProvisioningArtifactsRef>;
@@ -148,20 +165,22 @@ pub struct BuildDataServicecatalogProvisioningArtifacts {
 
 impl BuildDataServicecatalogProvisioningArtifacts {
     pub fn build(self, stack: &mut Stack) -> DataServicecatalogProvisioningArtifacts {
-        let out = DataServicecatalogProvisioningArtifacts(Rc::new(DataServicecatalogProvisioningArtifacts_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataServicecatalogProvisioningArtifactsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                accept_language: core::default::Default::default(),
-                id: core::default::Default::default(),
-                product_id: self.product_id,
-                region: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = DataServicecatalogProvisioningArtifacts(Rc::new(
+            DataServicecatalogProvisioningArtifacts_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataServicecatalogProvisioningArtifactsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    accept_language: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    product_id: self.product_id,
+                    region: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -174,10 +193,7 @@ pub struct DataServicecatalogProvisioningArtifactsRef {
 
 impl Ref for DataServicecatalogProvisioningArtifactsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -192,7 +208,10 @@ impl DataServicecatalogProvisioningArtifactsRef {
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -202,20 +221,28 @@ impl DataServicecatalogProvisioningArtifactsRef {
 
     #[doc = "Get a reference to the value of field `product_id` after provisioning.\n"]
     pub fn product_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioning_artifact_details` after provisioning.\n"]
     pub fn provisioning_artifact_details(
         &self,
     ) -> ListRef<DataServicecatalogProvisioningArtifactsProvisioningArtifactDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioning_artifact_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioning_artifact_details", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -405,7 +432,9 @@ pub struct BuildDataServicecatalogProvisioningArtifactsTimeoutsEl {}
 
 impl BuildDataServicecatalogProvisioningArtifactsTimeoutsEl {
     pub fn build(self) -> DataServicecatalogProvisioningArtifactsTimeoutsEl {
-        DataServicecatalogProvisioningArtifactsTimeoutsEl { read: core::default::Default::default() }
+        DataServicecatalogProvisioningArtifactsTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 
@@ -415,7 +444,10 @@ pub struct DataServicecatalogProvisioningArtifactsTimeoutsElRef {
 }
 
 impl Ref for DataServicecatalogProvisioningArtifactsTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DataServicecatalogProvisioningArtifactsTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataServicecatalogProvisioningArtifactsTimeoutsElRef {
         DataServicecatalogProvisioningArtifactsTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

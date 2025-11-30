@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RedshiftserverlessCustomDomainAssociationData {
@@ -28,7 +28,9 @@ struct RedshiftserverlessCustomDomainAssociation_ {
 }
 
 #[derive(Clone)]
-pub struct RedshiftserverlessCustomDomainAssociation(Rc<RedshiftserverlessCustomDomainAssociation_>);
+pub struct RedshiftserverlessCustomDomainAssociation(
+    Rc<RedshiftserverlessCustomDomainAssociation_>,
+);
 
 impl RedshiftserverlessCustomDomainAssociation {
     fn shared(&self) -> &StackShared {
@@ -56,7 +58,8 @@ impl RedshiftserverlessCustomDomainAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -69,7 +72,7 @@ impl RedshiftserverlessCustomDomainAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -80,17 +83,26 @@ impl RedshiftserverlessCustomDomainAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -98,17 +110,29 @@ impl RedshiftserverlessCustomDomainAssociation {
 
     #[doc = "Get a reference to the value of field `custom_domain_certificate_arn` after provisioning.\n"]
     pub fn custom_domain_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain_certificate_expiry_time` after provisioning.\n"]
     pub fn custom_domain_certificate_expiry_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_certificate_expiry_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.custom_domain_certificate_expiry_time",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain_name` after provisioning.\n"]
     pub fn custom_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -116,25 +140,34 @@ impl RedshiftserverlessCustomDomainAssociation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workgroup_name` after provisioning.\n"]
     pub fn workgroup_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workgroup_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workgroup_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for RedshiftserverlessCustomDomainAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RedshiftserverlessCustomDomainAssociation { }
+impl Resource for RedshiftserverlessCustomDomainAssociation {}
 
 impl ToListMappable for RedshiftserverlessCustomDomainAssociation {
     type O = ListRef<RedshiftserverlessCustomDomainAssociationRef>;
@@ -171,20 +204,22 @@ pub struct BuildRedshiftserverlessCustomDomainAssociation {
 
 impl BuildRedshiftserverlessCustomDomainAssociation {
     pub fn build(self, stack: &mut Stack) -> RedshiftserverlessCustomDomainAssociation {
-        let out = RedshiftserverlessCustomDomainAssociation(Rc::new(RedshiftserverlessCustomDomainAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(RedshiftserverlessCustomDomainAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                custom_domain_certificate_arn: self.custom_domain_certificate_arn,
-                custom_domain_name: self.custom_domain_name,
-                region: core::default::Default::default(),
-                workgroup_name: self.workgroup_name,
-            }),
-        }));
+        let out = RedshiftserverlessCustomDomainAssociation(Rc::new(
+            RedshiftserverlessCustomDomainAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(RedshiftserverlessCustomDomainAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    custom_domain_certificate_arn: self.custom_domain_certificate_arn,
+                    custom_domain_name: self.custom_domain_name,
+                    region: core::default::Default::default(),
+                    workgroup_name: self.workgroup_name,
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -197,10 +232,7 @@ pub struct RedshiftserverlessCustomDomainAssociationRef {
 
 impl Ref for RedshiftserverlessCustomDomainAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -215,17 +247,29 @@ impl RedshiftserverlessCustomDomainAssociationRef {
 
     #[doc = "Get a reference to the value of field `custom_domain_certificate_arn` after provisioning.\n"]
     pub fn custom_domain_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain_certificate_expiry_time` after provisioning.\n"]
     pub fn custom_domain_certificate_expiry_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_certificate_expiry_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.custom_domain_certificate_expiry_time",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain_name` after provisioning.\n"]
     pub fn custom_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -233,14 +277,19 @@ impl RedshiftserverlessCustomDomainAssociationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workgroup_name` after provisioning.\n"]
     pub fn workgroup_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workgroup_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workgroup_name", self.extract_ref()),
+        )
     }
 }

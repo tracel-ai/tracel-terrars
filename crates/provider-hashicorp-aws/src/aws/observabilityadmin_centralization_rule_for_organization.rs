@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ObservabilityadminCentralizationRuleForOrganizationData {
@@ -63,7 +63,8 @@ impl ObservabilityadminCentralizationRuleForOrganization {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +77,7 @@ impl ObservabilityadminCentralizationRuleForOrganization {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,17 +88,26 @@ impl ObservabilityadminCentralizationRuleForOrganization {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -117,49 +127,69 @@ impl ObservabilityadminCentralizationRuleForOrganization {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<ObservabilityadminCentralizationRuleForOrganizationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<ObservabilityadminCentralizationRuleForOrganizationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_arn` after provisioning.\n"]
     pub fn rule_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -173,11 +203,15 @@ impl ObservabilityadminCentralizationRuleForOrganization {
 
 impl Referable for ObservabilityadminCentralizationRuleForOrganization {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ObservabilityadminCentralizationRuleForOrganization { }
+impl Resource for ObservabilityadminCentralizationRuleForOrganization {}
 
 impl ToListMappable for ObservabilityadminCentralizationRuleForOrganization {
     type O = ListRef<ObservabilityadminCentralizationRuleForOrganizationRef>;
@@ -210,25 +244,24 @@ pub struct BuildObservabilityadminCentralizationRuleForOrganization {
 
 impl BuildObservabilityadminCentralizationRuleForOrganization {
     pub fn build(self, stack: &mut Stack) -> ObservabilityadminCentralizationRuleForOrganization {
-        let out =
-            ObservabilityadminCentralizationRuleForOrganization(
-                Rc::new(ObservabilityadminCentralizationRuleForOrganization_ {
-                    shared: stack.shared.clone(),
-                    tf_id: self.tf_id,
-                    data: RefCell::new(ObservabilityadminCentralizationRuleForOrganizationData {
-                        depends_on: core::default::Default::default(),
-                        provider: None,
-                        lifecycle: core::default::Default::default(),
-                        for_each: None,
-                        region: core::default::Default::default(),
-                        rule_name: self.rule_name,
-                        tags: core::default::Default::default(),
-                        rule: core::default::Default::default(),
-                        timeouts: core::default::Default::default(),
-                        dynamic: Default::default(),
-                    }),
+        let out = ObservabilityadminCentralizationRuleForOrganization(Rc::new(
+            ObservabilityadminCentralizationRuleForOrganization_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(ObservabilityadminCentralizationRuleForOrganizationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    region: core::default::Default::default(),
+                    rule_name: self.rule_name,
+                    tags: core::default::Default::default(),
+                    rule: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
                 }),
-            );
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -241,10 +274,7 @@ pub struct ObservabilityadminCentralizationRuleForOrganizationRef {
 
 impl Ref for ObservabilityadminCentralizationRuleForOrganizationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -257,35 +287,52 @@ impl ObservabilityadminCentralizationRuleForOrganizationRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_arn` after provisioning.\n"]
     pub fn rule_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -298,7 +345,8 @@ impl ObservabilityadminCentralizationRuleForOrganizationRef {
 }
 
 #[derive(Serialize)]
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationEl {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -334,7 +382,8 @@ impl ToListMappable for ObservabilityadminCentralizationRuleForOrganizationRuleE
     }
 }
 
-pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationEl {}
+pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationEl
+{}
 
 impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationEl {
     pub fn build(
@@ -347,7 +396,8 @@ impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl
     }
 }
 
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationElRef {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElBackupConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -381,7 +431,8 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDesti
 }
 
 #[derive(Serialize)]
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElLogsEncryptionConfigurationEl {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElLogsEncryptionConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     encryption_conflict_resolution_strategy: Option<PrimField<String>>,
     encryption_strategy: PrimField<String>,
@@ -418,7 +469,8 @@ impl ToListMappable for ObservabilityadminCentralizationRuleForOrganizationRuleE
     }
 }
 
-pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElLogsEncryptionConfigurationEl {
+pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElLogsEncryptionConfigurationEl
+{
     #[doc = ""]
     pub encryption_strategy: PrimField<String>,
 }
@@ -435,7 +487,8 @@ impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl
     }
 }
 
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElLogsEncryptionConfigurationElRef {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElLogsEncryptionConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -567,7 +620,8 @@ impl ToListMappable for ObservabilityadminCentralizationRuleForOrganizationRuleE
     }
 }
 
-pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationEl {}
+pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationEl
+{}
 
 impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationEl {
     pub fn build(
@@ -581,7 +635,8 @@ impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl
     }
 }
 
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElRef {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -658,17 +713,18 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination_logs_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination_logs_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl {
-    type O = BlockAssignable<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>;
+    type O =
+        BlockAssignable<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -734,22 +790,29 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElRef {
         &self,
     ) -> ListRef<
         ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElDestinationLogsConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.destination_logs_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_logs_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl
+{
     encrypted_log_group_strategy: PrimField<String>,
     log_group_selection_criteria: PrimField<String>,
 }
 
-impl ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl { }
+impl ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {}
 
-impl ToListMappable for ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {
-    type O =
-        BlockAssignable<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl>;
+impl ToListMappable
+    for ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl
+{
+    type O = BlockAssignable<
+        ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -760,15 +823,21 @@ impl ToListMappable for ObservabilityadminCentralizationRuleForOrganizationRuleE
     }
 }
 
-pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {
+pub struct BuildObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl
+{
     #[doc = ""]
     pub encrypted_log_group_strategy: PrimField<String>,
     #[doc = ""]
     pub log_group_selection_criteria: PrimField<String>,
 }
 
-impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {
-    pub fn build(self) -> ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {
+impl
+    BuildObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl
+{
+    pub fn build(
+        self,
+    ) -> ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl
+    {
         ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationEl {
             encrypted_log_group_strategy: self.encrypted_log_group_strategy,
             log_group_selection_criteria: self.log_group_selection_criteria,
@@ -776,7 +845,8 @@ impl BuildObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourc
     }
 }
 
-pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationElRef {
+pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -800,12 +870,18 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogs
 
     #[doc = "Get a reference to the value of field `encrypted_log_group_strategy` after provisioning.\n"]
     pub fn encrypted_log_group_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encrypted_log_group_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encrypted_log_group_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_group_selection_criteria` after provisioning.\n"]
     pub fn log_group_selection_criteria(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_selection_criteria", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_selection_criteria", self.base),
+        )
     }
 }
 
@@ -843,10 +919,10 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_logs_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_logs_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -917,21 +993,27 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElRef {
     #[doc = "Get a reference to the value of field `source_logs_configuration` after provisioning.\n"]
     pub fn source_logs_configuration(
         &self,
-    ) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_logs_configuration", self.base))
+    ) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElSourceLogsConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_logs_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct ObservabilityadminCentralizationRuleForOrganizationRuleElDynamic {
-    destination: Option<DynamicBlock<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>>,
+    destination: Option<
+        DynamicBlock<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>,
+    >,
     source: Option<DynamicBlock<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceEl>>,
 }
 
 #[derive(Serialize)]
 pub struct ObservabilityadminCentralizationRuleForOrganizationRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination: Option<Vec<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>>,
+    destination:
+        Option<Vec<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source: Option<Vec<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceEl>>,
     dynamic: ObservabilityadminCentralizationRuleForOrganizationRuleElDynamic,
@@ -941,15 +1023,17 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleEl {
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(
         mut self,
-        v: impl Into<BlockAssignable<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>>,
+        v: impl Into<
+            BlockAssignable<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -962,10 +1046,10 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source = Some(d);
-            },
+            }
         }
         self
     }
@@ -1001,7 +1085,10 @@ pub struct ObservabilityadminCentralizationRuleForOrganizationRuleElRef {
 }
 
 impl Ref for ObservabilityadminCentralizationRuleForOrganizationRuleElRef {
-    fn new(shared: StackShared, base: String) -> ObservabilityadminCentralizationRuleForOrganizationRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ObservabilityadminCentralizationRuleForOrganizationRuleElRef {
         ObservabilityadminCentralizationRuleForOrganizationRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -1015,12 +1102,16 @@ impl ObservabilityadminCentralizationRuleForOrganizationRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
-    pub fn destination(&self) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElRef> {
+    pub fn destination(
+        &self,
+    ) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElDestinationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.destination", self.base))
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
-    pub fn source(&self) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElRef> {
+    pub fn source(
+        &self,
+    ) -> ListRef<ObservabilityadminCentralizationRuleForOrganizationRuleElSourceElRef> {
         ListRef::new(self.shared().clone(), format!("{}.source", self.base))
     }
 }
@@ -1034,15 +1125,13 @@ pub struct ObservabilityadminCentralizationRuleForOrganizationTimeoutsEl {
 }
 
 impl ObservabilityadminCentralizationRuleForOrganizationTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1078,7 +1167,10 @@ pub struct ObservabilityadminCentralizationRuleForOrganizationTimeoutsElRef {
 }
 
 impl Ref for ObservabilityadminCentralizationRuleForOrganizationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> ObservabilityadminCentralizationRuleForOrganizationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ObservabilityadminCentralizationRuleForOrganizationTimeoutsElRef {
         ObservabilityadminCentralizationRuleForOrganizationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1091,14 +1183,12 @@ impl ObservabilityadminCentralizationRuleForOrganizationTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

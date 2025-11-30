@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Ec2TransitGatewayMulticastDomainAssociationData {
@@ -32,7 +32,9 @@ struct Ec2TransitGatewayMulticastDomainAssociation_ {
 }
 
 #[derive(Clone)]
-pub struct Ec2TransitGatewayMulticastDomainAssociation(Rc<Ec2TransitGatewayMulticastDomainAssociation_>);
+pub struct Ec2TransitGatewayMulticastDomainAssociation(
+    Rc<Ec2TransitGatewayMulticastDomainAssociation_>,
+);
 
 impl Ec2TransitGatewayMulticastDomainAssociation {
     fn shared(&self) -> &StackShared {
@@ -60,7 +62,8 @@ impl Ec2TransitGatewayMulticastDomainAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +76,7 @@ impl Ec2TransitGatewayMulticastDomainAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +87,22 @@ impl Ec2TransitGatewayMulticastDomainAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -99,15 +112,17 @@ impl Ec2TransitGatewayMulticastDomainAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<Ec2TransitGatewayMulticastDomainAssociationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<Ec2TransitGatewayMulticastDomainAssociationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -117,25 +132,36 @@ impl Ec2TransitGatewayMulticastDomainAssociation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_multicast_domain_id` after provisioning.\n"]
     pub fn transit_gateway_multicast_domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -149,11 +175,15 @@ impl Ec2TransitGatewayMulticastDomainAssociation {
 
 impl Referable for Ec2TransitGatewayMulticastDomainAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Ec2TransitGatewayMulticastDomainAssociation { }
+impl Resource for Ec2TransitGatewayMulticastDomainAssociation {}
 
 impl ToListMappable for Ec2TransitGatewayMulticastDomainAssociation {
     type O = ListRef<Ec2TransitGatewayMulticastDomainAssociationRef>;
@@ -190,22 +220,24 @@ pub struct BuildEc2TransitGatewayMulticastDomainAssociation {
 
 impl BuildEc2TransitGatewayMulticastDomainAssociation {
     pub fn build(self, stack: &mut Stack) -> Ec2TransitGatewayMulticastDomainAssociation {
-        let out = Ec2TransitGatewayMulticastDomainAssociation(Rc::new(Ec2TransitGatewayMulticastDomainAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(Ec2TransitGatewayMulticastDomainAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                subnet_id: self.subnet_id,
-                transit_gateway_attachment_id: self.transit_gateway_attachment_id,
-                transit_gateway_multicast_domain_id: self.transit_gateway_multicast_domain_id,
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = Ec2TransitGatewayMulticastDomainAssociation(Rc::new(
+            Ec2TransitGatewayMulticastDomainAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(Ec2TransitGatewayMulticastDomainAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    subnet_id: self.subnet_id,
+                    transit_gateway_attachment_id: self.transit_gateway_attachment_id,
+                    transit_gateway_multicast_domain_id: self.transit_gateway_multicast_domain_id,
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -218,10 +250,7 @@ pub struct Ec2TransitGatewayMulticastDomainAssociationRef {
 
 impl Ref for Ec2TransitGatewayMulticastDomainAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -239,25 +268,36 @@ impl Ec2TransitGatewayMulticastDomainAssociationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_multicast_domain_id` after provisioning.\n"]
     pub fn transit_gateway_multicast_domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -320,7 +360,10 @@ pub struct Ec2TransitGatewayMulticastDomainAssociationTimeoutsElRef {
 }
 
 impl Ref for Ec2TransitGatewayMulticastDomainAssociationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> Ec2TransitGatewayMulticastDomainAssociationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2TransitGatewayMulticastDomainAssociationTimeoutsElRef {
         Ec2TransitGatewayMulticastDomainAssociationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ComprehendEntityRecognizerData {
@@ -77,7 +77,8 @@ impl ComprehendEntityRecognizer {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -90,7 +91,7 @@ impl ComprehendEntityRecognizer {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -101,12 +102,22 @@ impl ComprehendEntityRecognizer {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +133,7 @@ impl ComprehendEntityRecognizer {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -167,10 +177,10 @@ impl ComprehendEntityRecognizer {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().input_data_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.input_data_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -182,14 +192,17 @@ impl ComprehendEntityRecognizer {
     }
 
     #[doc = "Set the field `vpc_config`.\n"]
-    pub fn set_vpc_config(self, v: impl Into<BlockAssignable<ComprehendEntityRecognizerVpcConfigEl>>) -> Self {
+    pub fn set_vpc_config(
+        self,
+        v: impl Into<BlockAssignable<ComprehendEntityRecognizerVpcConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -201,7 +214,10 @@ impl ComprehendEntityRecognizer {
 
     #[doc = "Get a reference to the value of field `data_access_role_arn` after provisioning.\n"]
     pub fn data_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -211,53 +227,82 @@ impl ComprehendEntityRecognizer {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_kms_key_id` after provisioning.\n"]
     pub fn model_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name` after provisioning.\n"]
     pub fn version_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name_prefix` after provisioning.\n"]
     pub fn version_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_kms_key_id` after provisioning.\n"]
     pub fn volume_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_data_config` after provisioning.\n"]
     pub fn input_data_config(&self) -> ListRef<ComprehendEntityRecognizerInputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -270,17 +315,24 @@ impl ComprehendEntityRecognizer {
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<ComprehendEntityRecognizerVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ComprehendEntityRecognizer {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ComprehendEntityRecognizer { }
+impl Resource for ComprehendEntityRecognizer {}
 
 impl ToListMappable for ComprehendEntityRecognizer {
     type O = ListRef<ComprehendEntityRecognizerRef>;
@@ -354,10 +406,7 @@ pub struct ComprehendEntityRecognizerRef {
 
 impl Ref for ComprehendEntityRecognizerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -377,7 +426,10 @@ impl ComprehendEntityRecognizerRef {
 
     #[doc = "Get a reference to the value of field `data_access_role_arn` after provisioning.\n"]
     pub fn data_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_access_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_access_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -387,53 +439,82 @@ impl ComprehendEntityRecognizerRef {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_kms_key_id` after provisioning.\n"]
     pub fn model_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name` after provisioning.\n"]
     pub fn version_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_name_prefix` after provisioning.\n"]
     pub fn version_name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_kms_key_id` after provisioning.\n"]
     pub fn volume_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_data_config` after provisioning.\n"]
     pub fn input_data_config(&self) -> ListRef<ComprehendEntityRecognizerInputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -446,7 +527,10 @@ impl ComprehendEntityRecognizerRef {
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<ComprehendEntityRecognizerVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -497,7 +581,10 @@ pub struct ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef {
 }
 
 impl Ref for ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef {
-    fn new(shared: StackShared, base: String) -> ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef {
         ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -599,7 +686,10 @@ pub struct ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
 }
 
 impl Ref for ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
-    fn new(shared: StackShared, base: String) -> ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
         ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
             shared: shared,
             base: base.to_string(),
@@ -614,17 +704,26 @@ impl ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
 
     #[doc = "Get a reference to the value of field `annotation_data_s3_uri` after provisioning.\n"]
     pub fn annotation_data_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.annotation_data_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.annotation_data_s3_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attribute_names` after provisioning.\n"]
     pub fn attribute_names(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.attribute_names", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attribute_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_type` after provisioning.\n"]
     pub fn document_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
@@ -634,7 +733,10 @@ impl ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsElRef {
 
     #[doc = "Get a reference to the value of field `source_documents_s3_uri` after provisioning.\n"]
     pub fn source_documents_s3_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_documents_s3_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_documents_s3_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `split` after provisioning.\n"]
@@ -699,7 +801,10 @@ pub struct ComprehendEntityRecognizerInputDataConfigElDocumentsElRef {
 }
 
 impl Ref for ComprehendEntityRecognizerInputDataConfigElDocumentsElRef {
-    fn new(shared: StackShared, base: String) -> ComprehendEntityRecognizerInputDataConfigElDocumentsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComprehendEntityRecognizerInputDataConfigElDocumentsElRef {
         ComprehendEntityRecognizerInputDataConfigElDocumentsElRef {
             shared: shared,
             base: base.to_string(),
@@ -733,7 +838,7 @@ pub struct ComprehendEntityRecognizerInputDataConfigElEntityListEl {
     s3_uri: PrimField<String>,
 }
 
-impl ComprehendEntityRecognizerInputDataConfigElEntityListEl { }
+impl ComprehendEntityRecognizerInputDataConfigElEntityListEl {}
 
 impl ToListMappable for ComprehendEntityRecognizerInputDataConfigElEntityListEl {
     type O = BlockAssignable<ComprehendEntityRecognizerInputDataConfigElEntityListEl>;
@@ -754,7 +859,9 @@ pub struct BuildComprehendEntityRecognizerInputDataConfigElEntityListEl {
 
 impl BuildComprehendEntityRecognizerInputDataConfigElEntityListEl {
     pub fn build(self) -> ComprehendEntityRecognizerInputDataConfigElEntityListEl {
-        ComprehendEntityRecognizerInputDataConfigElEntityListEl { s3_uri: self.s3_uri }
+        ComprehendEntityRecognizerInputDataConfigElEntityListEl {
+            s3_uri: self.s3_uri,
+        }
     }
 }
 
@@ -764,7 +871,10 @@ pub struct ComprehendEntityRecognizerInputDataConfigElEntityListElRef {
 }
 
 impl Ref for ComprehendEntityRecognizerInputDataConfigElEntityListElRef {
-    fn new(shared: StackShared, base: String) -> ComprehendEntityRecognizerInputDataConfigElEntityListElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComprehendEntityRecognizerInputDataConfigElEntityListElRef {
         ComprehendEntityRecognizerInputDataConfigElEntityListElRef {
             shared: shared,
             base: base.to_string(),
@@ -789,7 +899,7 @@ pub struct ComprehendEntityRecognizerInputDataConfigElEntityTypesEl {
     type_: PrimField<String>,
 }
 
-impl ComprehendEntityRecognizerInputDataConfigElEntityTypesEl { }
+impl ComprehendEntityRecognizerInputDataConfigElEntityTypesEl {}
 
 impl ToListMappable for ComprehendEntityRecognizerInputDataConfigElEntityTypesEl {
     type O = BlockAssignable<ComprehendEntityRecognizerInputDataConfigElEntityTypesEl>;
@@ -820,7 +930,10 @@ pub struct ComprehendEntityRecognizerInputDataConfigElEntityTypesElRef {
 }
 
 impl Ref for ComprehendEntityRecognizerInputDataConfigElEntityTypesElRef {
-    fn new(shared: StackShared, base: String) -> ComprehendEntityRecognizerInputDataConfigElEntityTypesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComprehendEntityRecognizerInputDataConfigElEntityTypesElRef {
         ComprehendEntityRecognizerInputDataConfigElEntityTypesElRef {
             shared: shared,
             base: base.to_string(),
@@ -842,7 +955,8 @@ impl ComprehendEntityRecognizerInputDataConfigElEntityTypesElRef {
 #[derive(Serialize, Default)]
 struct ComprehendEntityRecognizerInputDataConfigElDynamic {
     annotations: Option<DynamicBlock<ComprehendEntityRecognizerInputDataConfigElAnnotationsEl>>,
-    augmented_manifests: Option<DynamicBlock<ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsEl>>,
+    augmented_manifests:
+        Option<DynamicBlock<ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsEl>>,
     documents: Option<DynamicBlock<ComprehendEntityRecognizerInputDataConfigElDocumentsEl>>,
     entity_list: Option<DynamicBlock<ComprehendEntityRecognizerInputDataConfigElEntityListEl>>,
     entity_types: Option<DynamicBlock<ComprehendEntityRecognizerInputDataConfigElEntityTypesEl>>,
@@ -855,7 +969,8 @@ pub struct ComprehendEntityRecognizerInputDataConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     annotations: Option<Vec<ComprehendEntityRecognizerInputDataConfigElAnnotationsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    augmented_manifests: Option<Vec<ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsEl>>,
+    augmented_manifests:
+        Option<Vec<ComprehendEntityRecognizerInputDataConfigElAugmentedManifestsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     documents: Option<Vec<ComprehendEntityRecognizerInputDataConfigElDocumentsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -880,10 +995,10 @@ impl ComprehendEntityRecognizerInputDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.annotations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.annotations = Some(d);
-            },
+            }
         }
         self
     }
@@ -896,10 +1011,10 @@ impl ComprehendEntityRecognizerInputDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.augmented_manifests = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.augmented_manifests = Some(d);
-            },
+            }
         }
         self
     }
@@ -912,10 +1027,10 @@ impl ComprehendEntityRecognizerInputDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.documents = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.documents = Some(d);
-            },
+            }
         }
         self
     }
@@ -928,10 +1043,10 @@ impl ComprehendEntityRecognizerInputDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.entity_list = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.entity_list = Some(d);
-            },
+            }
         }
         self
     }
@@ -944,10 +1059,10 @@ impl ComprehendEntityRecognizerInputDataConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.entity_types = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.entity_types = Some(d);
-            },
+            }
         }
         self
     }
@@ -1006,7 +1121,9 @@ impl ComprehendEntityRecognizerInputDataConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `annotations` after provisioning.\n"]
-    pub fn annotations(&self) -> ListRef<ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef> {
+    pub fn annotations(
+        &self,
+    ) -> ListRef<ComprehendEntityRecognizerInputDataConfigElAnnotationsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.annotations", self.base))
     }
 
@@ -1016,7 +1133,9 @@ impl ComprehendEntityRecognizerInputDataConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `entity_list` after provisioning.\n"]
-    pub fn entity_list(&self) -> ListRef<ComprehendEntityRecognizerInputDataConfigElEntityListElRef> {
+    pub fn entity_list(
+        &self,
+    ) -> ListRef<ComprehendEntityRecognizerInputDataConfigElEntityListElRef> {
         ListRef::new(self.shared().clone(), format!("{}.entity_list", self.base))
     }
 }
@@ -1116,7 +1235,7 @@ pub struct ComprehendEntityRecognizerVpcConfigEl {
     subnets: SetField<PrimField<String>>,
 }
 
-impl ComprehendEntityRecognizerVpcConfigEl { }
+impl ComprehendEntityRecognizerVpcConfigEl {}
 
 impl ToListMappable for ComprehendEntityRecognizerVpcConfigEl {
     type O = BlockAssignable<ComprehendEntityRecognizerVpcConfigEl>;
@@ -1167,7 +1286,10 @@ impl ComprehendEntityRecognizerVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]

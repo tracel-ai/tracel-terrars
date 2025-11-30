@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCanonicalUserIdData {
@@ -48,7 +48,10 @@ impl DataCanonicalUserId {
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -59,11 +62,15 @@ impl DataCanonicalUserId {
 
 impl Referable for DataCanonicalUserId {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCanonicalUserId { }
+impl Datasource for DataCanonicalUserId {}
 
 impl ToListMappable for DataCanonicalUserId {
     type O = ListRef<DataCanonicalUserIdRef>;
@@ -116,10 +123,7 @@ pub struct DataCanonicalUserIdRef {
 
 impl Ref for DataCanonicalUserIdRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -134,7 +138,10 @@ impl DataCanonicalUserIdRef {
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]

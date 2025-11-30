@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentAgentActionGroupData {
@@ -75,7 +75,8 @@ impl BedrockagentAgentActionGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl BedrockagentAgentActionGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl BedrockagentAgentActionGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -132,8 +143,7 @@ impl BedrockagentAgentActionGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -153,23 +163,26 @@ impl BedrockagentAgentActionGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().action_group_executor = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.action_group_executor = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `api_schema`.\n"]
-    pub fn set_api_schema(self, v: impl Into<BlockAssignable<BedrockagentAgentActionGroupApiSchemaEl>>) -> Self {
+    pub fn set_api_schema(
+        self,
+        v: impl Into<BlockAssignable<BedrockagentAgentActionGroupApiSchemaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().api_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.api_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -182,10 +195,10 @@ impl BedrockagentAgentActionGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().function_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.function_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -198,32 +211,50 @@ impl BedrockagentAgentActionGroup {
 
     #[doc = "Get a reference to the value of field `action_group_id` after provisioning.\n"]
     pub fn action_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_group_name` after provisioning.\n"]
     pub fn action_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_group_state` after provisioning.\n"]
     pub fn action_group_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_group_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_group_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_id` after provisioning.\n"]
     pub fn agent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -233,38 +264,60 @@ impl BedrockagentAgentActionGroup {
 
     #[doc = "Get a reference to the value of field `parent_action_group_signature` after provisioning.\n"]
     pub fn parent_action_group_signature(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_action_group_signature", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_action_group_signature", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prepare_agent` after provisioning.\n"]
     pub fn prepare_agent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prepare_agent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prepare_agent", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_resource_in_use_check` after provisioning.\n"]
     pub fn skip_resource_in_use_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_resource_in_use_check", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_resource_in_use_check", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_group_executor` after provisioning.\n"]
-    pub fn action_group_executor(&self) -> ListRef<BedrockagentAgentActionGroupActionGroupExecutorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action_group_executor", self.extract_ref()))
+    pub fn action_group_executor(
+        &self,
+    ) -> ListRef<BedrockagentAgentActionGroupActionGroupExecutorElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action_group_executor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `api_schema` after provisioning.\n"]
     pub fn api_schema(&self) -> ListRef<BedrockagentAgentActionGroupApiSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.api_schema", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.api_schema", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_schema` after provisioning.\n"]
     pub fn function_schema(&self) -> ListRef<BedrockagentAgentActionGroupFunctionSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.function_schema", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.function_schema", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -278,11 +331,15 @@ impl BedrockagentAgentActionGroup {
 
 impl Referable for BedrockagentAgentActionGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentAgentActionGroup { }
+impl Resource for BedrockagentAgentActionGroup {}
 
 impl ToListMappable for BedrockagentAgentActionGroup {
     type O = ListRef<BedrockagentAgentActionGroupRef>;
@@ -355,10 +412,7 @@ pub struct BedrockagentAgentActionGroupRef {
 
 impl Ref for BedrockagentAgentActionGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -373,32 +427,50 @@ impl BedrockagentAgentActionGroupRef {
 
     #[doc = "Get a reference to the value of field `action_group_id` after provisioning.\n"]
     pub fn action_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_group_name` after provisioning.\n"]
     pub fn action_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_group_state` after provisioning.\n"]
     pub fn action_group_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_group_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_group_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_id` after provisioning.\n"]
     pub fn agent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -408,38 +480,60 @@ impl BedrockagentAgentActionGroupRef {
 
     #[doc = "Get a reference to the value of field `parent_action_group_signature` after provisioning.\n"]
     pub fn parent_action_group_signature(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_action_group_signature", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_action_group_signature", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prepare_agent` after provisioning.\n"]
     pub fn prepare_agent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prepare_agent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prepare_agent", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_resource_in_use_check` after provisioning.\n"]
     pub fn skip_resource_in_use_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_resource_in_use_check", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_resource_in_use_check", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_group_executor` after provisioning.\n"]
-    pub fn action_group_executor(&self) -> ListRef<BedrockagentAgentActionGroupActionGroupExecutorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action_group_executor", self.extract_ref()))
+    pub fn action_group_executor(
+        &self,
+    ) -> ListRef<BedrockagentAgentActionGroupActionGroupExecutorElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action_group_executor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `api_schema` after provisioning.\n"]
     pub fn api_schema(&self) -> ListRef<BedrockagentAgentActionGroupApiSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.api_schema", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.api_schema", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_schema` after provisioning.\n"]
     pub fn function_schema(&self) -> ListRef<BedrockagentAgentActionGroupFunctionSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.function_schema", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.function_schema", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -502,7 +596,10 @@ pub struct BedrockagentAgentActionGroupActionGroupExecutorElRef {
 }
 
 impl Ref for BedrockagentAgentActionGroupActionGroupExecutorElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentAgentActionGroupActionGroupExecutorElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentAgentActionGroupActionGroupExecutorElRef {
         BedrockagentAgentActionGroupActionGroupExecutorElRef {
             shared: shared,
             base: base.to_string(),
@@ -517,7 +614,10 @@ impl BedrockagentAgentActionGroupActionGroupExecutorElRef {
 
     #[doc = "Get a reference to the value of field `custom_control` after provisioning.\n"]
     pub fn custom_control(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_control", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_control", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda` after provisioning.\n"]
@@ -592,12 +692,18 @@ impl BedrockagentAgentActionGroupApiSchemaElS3ElRef {
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_object_key` after provisioning.\n"]
     pub fn s3_object_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_object_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_object_key", self.base),
+        )
     }
 }
 
@@ -623,14 +729,17 @@ impl BedrockagentAgentActionGroupApiSchemaEl {
     }
 
     #[doc = "Set the field `s3`.\n"]
-    pub fn set_s3(mut self, v: impl Into<BlockAssignable<BedrockagentAgentActionGroupApiSchemaElS3El>>) -> Self {
+    pub fn set_s3(
+        mut self,
+        v: impl Into<BlockAssignable<BedrockagentAgentActionGroupApiSchemaElS3El>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -715,8 +824,12 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElPar
     }
 }
 
-impl ToListMappable for BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl {
-    type O = BlockAssignable<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl>;
+impl ToListMappable
+    for BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl
+{
+    type O = BlockAssignable<
+        BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -727,7 +840,8 @@ impl ToListMappable for BedrockagentAgentActionGroupFunctionSchemaElMemberFuncti
     }
 }
 
-pub struct BuildBedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl {
+pub struct BuildBedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl
+{
     #[doc = ""]
     pub map_block_key: PrimField<String>,
     #[doc = ""]
@@ -735,7 +849,9 @@ pub struct BuildBedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFun
 }
 
 impl BuildBedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl {
-    pub fn build(self) -> BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl {
         BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl {
             description: core::default::Default::default(),
             map_block_key: self.map_block_key,
@@ -750,11 +866,14 @@ pub struct BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunction
     base: String,
 }
 
-impl Ref for BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersElRef {
+impl Ref
+    for BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersElRef {
+    ) -> BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersElRef
+    {
         BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -774,7 +893,10 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElPar
 
     #[doc = "Get a reference to the value of field `map_block_key` after provisioning.\n"]
     pub fn map_block_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.map_block_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.map_block_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `required` after provisioning.\n"]
@@ -791,7 +913,9 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElPar
 #[derive(Serialize, Default)]
 struct BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElDynamic {
     parameters: Option<
-        DynamicBlock<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl>,
+        DynamicBlock<
+            BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl,
+        >,
     >,
 }
 
@@ -801,7 +925,9 @@ pub struct BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunction
     description: Option<PrimField<String>>,
     name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    parameters: Option<Vec<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl>>,
+    parameters: Option<
+        Vec<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElParametersEl>,
+    >,
     dynamic: BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElDynamic,
 }
 
@@ -827,17 +953,18 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parameters = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl {
-    type O = BlockAssignable<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>;
+    type O =
+        BlockAssignable<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -899,13 +1026,16 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElRef
 
 #[derive(Serialize, Default)]
 struct BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElDynamic {
-    functions: Option<DynamicBlock<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>>,
+    functions: Option<
+        DynamicBlock<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    functions: Option<Vec<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>>,
+    functions:
+        Option<Vec<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>>,
     dynamic: BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElDynamic,
 }
 
@@ -913,15 +1043,19 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsEl {
     #[doc = "Set the field `functions`.\n"]
     pub fn set_functions(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.functions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.functions = Some(d);
-            },
+            }
         }
         self
     }
@@ -956,7 +1090,10 @@ pub struct BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef {
 }
 
 impl Ref for BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef {
         BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -970,14 +1107,17 @@ impl BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `functions` after provisioning.\n"]
-    pub fn functions(&self) -> ListRef<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElRef> {
+    pub fn functions(
+        &self,
+    ) -> ListRef<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElFunctionsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.functions", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentAgentActionGroupFunctionSchemaElDynamic {
-    member_functions: Option<DynamicBlock<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsEl>>,
+    member_functions:
+        Option<DynamicBlock<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsEl>>,
 }
 
 #[derive(Serialize)]
@@ -996,10 +1136,10 @@ impl BedrockagentAgentActionGroupFunctionSchemaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.member_functions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.member_functions = Some(d);
-            },
+            }
         }
         self
     }
@@ -1048,8 +1188,13 @@ impl BedrockagentAgentActionGroupFunctionSchemaElRef {
     }
 
     #[doc = "Get a reference to the value of field `member_functions` after provisioning.\n"]
-    pub fn member_functions(&self) -> ListRef<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.member_functions", self.base))
+    pub fn member_functions(
+        &self,
+    ) -> ListRef<BedrockagentAgentActionGroupFunctionSchemaElMemberFunctionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.member_functions", self.base),
+        )
     }
 }
 
@@ -1062,15 +1207,13 @@ pub struct BedrockagentAgentActionGroupTimeoutsEl {
 }
 
 impl BedrockagentAgentActionGroupTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1119,14 +1262,12 @@ impl BedrockagentAgentActionGroupTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

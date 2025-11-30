@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DynamodbTableData {
@@ -111,7 +111,8 @@ impl DynamodbTable {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -124,7 +125,7 @@ impl DynamodbTable {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -135,12 +136,22 @@ impl DynamodbTable {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -180,8 +191,7 @@ impl DynamodbTable {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -252,88 +262,106 @@ impl DynamodbTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().attribute = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.attribute = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `global_secondary_index`.\n"]
-    pub fn set_global_secondary_index(self, v: impl Into<BlockAssignable<DynamodbTableGlobalSecondaryIndexEl>>) -> Self {
+    pub fn set_global_secondary_index(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableGlobalSecondaryIndexEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().global_secondary_index = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.global_secondary_index = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `global_table_witness`.\n"]
-    pub fn set_global_table_witness(self, v: impl Into<BlockAssignable<DynamodbTableGlobalTableWitnessEl>>) -> Self {
+    pub fn set_global_table_witness(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableGlobalTableWitnessEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().global_table_witness = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.global_table_witness = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `import_table`.\n"]
-    pub fn set_import_table(self, v: impl Into<BlockAssignable<DynamodbTableImportTableEl>>) -> Self {
+    pub fn set_import_table(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableImportTableEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().import_table = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.import_table = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `local_secondary_index`.\n"]
-    pub fn set_local_secondary_index(self, v: impl Into<BlockAssignable<DynamodbTableLocalSecondaryIndexEl>>) -> Self {
+    pub fn set_local_secondary_index(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableLocalSecondaryIndexEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().local_secondary_index = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.local_secondary_index = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `on_demand_throughput`.\n"]
-    pub fn set_on_demand_throughput(self, v: impl Into<BlockAssignable<DynamodbTableOnDemandThroughputEl>>) -> Self {
+    pub fn set_on_demand_throughput(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableOnDemandThroughputEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().on_demand_throughput = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.on_demand_throughput = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `point_in_time_recovery`.\n"]
-    pub fn set_point_in_time_recovery(self, v: impl Into<BlockAssignable<DynamodbTablePointInTimeRecoveryEl>>) -> Self {
+    pub fn set_point_in_time_recovery(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTablePointInTimeRecoveryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().point_in_time_recovery = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.point_in_time_recovery = Some(d);
-            },
+            }
         }
         self
     }
@@ -343,23 +371,26 @@ impl DynamodbTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().replica = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.replica = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `server_side_encryption`.\n"]
-    pub fn set_server_side_encryption(self, v: impl Into<BlockAssignable<DynamodbTableServerSideEncryptionEl>>) -> Self {
+    pub fn set_server_side_encryption(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableServerSideEncryptionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().server_side_encryption = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.server_side_encryption = Some(d);
-            },
+            }
         }
         self
     }
@@ -375,23 +406,26 @@ impl DynamodbTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ttl = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ttl = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `warm_throughput`.\n"]
-    pub fn set_warm_throughput(self, v: impl Into<BlockAssignable<DynamodbTableWarmThroughputEl>>) -> Self {
+    pub fn set_warm_throughput(
+        self,
+        v: impl Into<BlockAssignable<DynamodbTableWarmThroughputEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().warm_throughput = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.warm_throughput = Some(d);
-            },
+            }
         }
         self
     }
@@ -403,17 +437,26 @@ impl DynamodbTable {
 
     #[doc = "Get a reference to the value of field `billing_mode` after provisioning.\n"]
     pub fn billing_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection_enabled` after provisioning.\n"]
     pub fn deletion_protection_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hash_key` after provisioning.\n"]
     pub fn hash_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -423,113 +466,178 @@ impl DynamodbTable {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key` after provisioning.\n"]
     pub fn range_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_capacity` after provisioning.\n"]
     pub fn read_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_capacity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_date_time` after provisioning.\n"]
     pub fn restore_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_date_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_source_name` after provisioning.\n"]
     pub fn restore_source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_source_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_source_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_source_table_arn` after provisioning.\n"]
     pub fn restore_source_table_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_source_table_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_source_table_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_to_latest_time` after provisioning.\n"]
     pub fn restore_to_latest_time(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_to_latest_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_to_latest_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_arn` after provisioning.\n"]
     pub fn stream_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_enabled` after provisioning.\n"]
     pub fn stream_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_label` after provisioning.\n"]
     pub fn stream_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_view_type` after provisioning.\n"]
     pub fn stream_view_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_view_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_view_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_class` after provisioning.\n"]
     pub fn table_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_class", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_class", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_capacity` after provisioning.\n"]
     pub fn write_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.write_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.write_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_table_witness` after provisioning.\n"]
     pub fn global_table_witness(&self) -> ListRef<DynamodbTableGlobalTableWitnessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.global_table_witness", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.global_table_witness", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `import_table` after provisioning.\n"]
     pub fn import_table(&self) -> ListRef<DynamodbTableImportTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.import_table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.import_table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_throughput` after provisioning.\n"]
     pub fn on_demand_throughput(&self) -> ListRef<DynamodbTableOnDemandThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_throughput", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_throughput", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `point_in_time_recovery` after provisioning.\n"]
     pub fn point_in_time_recovery(&self) -> ListRef<DynamodbTablePointInTimeRecoveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.point_in_time_recovery", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.point_in_time_recovery", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption` after provisioning.\n"]
     pub fn server_side_encryption(&self) -> ListRef<DynamodbTableServerSideEncryptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_side_encryption", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DynamodbTableTimeoutsElRef {
-        DynamodbTableTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DynamodbTableTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
@@ -539,17 +647,24 @@ impl DynamodbTable {
 
     #[doc = "Get a reference to the value of field `warm_throughput` after provisioning.\n"]
     pub fn warm_throughput(&self) -> ListRef<DynamodbTableWarmThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.warm_throughput", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.warm_throughput", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DynamodbTable {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DynamodbTable { }
+impl Resource for DynamodbTable {}
 
 impl ToListMappable for DynamodbTable {
     type O = ListRef<DynamodbTableRef>;
@@ -635,10 +750,7 @@ pub struct DynamodbTableRef {
 
 impl Ref for DynamodbTableRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -658,17 +770,26 @@ impl DynamodbTableRef {
 
     #[doc = "Get a reference to the value of field `billing_mode` after provisioning.\n"]
     pub fn billing_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection_enabled` after provisioning.\n"]
     pub fn deletion_protection_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hash_key` after provisioning.\n"]
     pub fn hash_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hash_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hash_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -678,113 +799,178 @@ impl DynamodbTableRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key` after provisioning.\n"]
     pub fn range_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.range_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.range_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_capacity` after provisioning.\n"]
     pub fn read_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_capacity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_date_time` after provisioning.\n"]
     pub fn restore_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_date_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_source_name` after provisioning.\n"]
     pub fn restore_source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_source_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_source_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_source_table_arn` after provisioning.\n"]
     pub fn restore_source_table_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_source_table_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_source_table_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_to_latest_time` after provisioning.\n"]
     pub fn restore_to_latest_time(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_to_latest_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_to_latest_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_arn` after provisioning.\n"]
     pub fn stream_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_enabled` after provisioning.\n"]
     pub fn stream_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_label` after provisioning.\n"]
     pub fn stream_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_view_type` after provisioning.\n"]
     pub fn stream_view_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stream_view_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stream_view_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_class` after provisioning.\n"]
     pub fn table_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_class", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_class", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_capacity` after provisioning.\n"]
     pub fn write_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.write_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.write_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_table_witness` after provisioning.\n"]
     pub fn global_table_witness(&self) -> ListRef<DynamodbTableGlobalTableWitnessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.global_table_witness", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.global_table_witness", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `import_table` after provisioning.\n"]
     pub fn import_table(&self) -> ListRef<DynamodbTableImportTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.import_table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.import_table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_throughput` after provisioning.\n"]
     pub fn on_demand_throughput(&self) -> ListRef<DynamodbTableOnDemandThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_throughput", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_throughput", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `point_in_time_recovery` after provisioning.\n"]
     pub fn point_in_time_recovery(&self) -> ListRef<DynamodbTablePointInTimeRecoveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.point_in_time_recovery", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.point_in_time_recovery", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption` after provisioning.\n"]
     pub fn server_side_encryption(&self) -> ListRef<DynamodbTableServerSideEncryptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_side_encryption", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DynamodbTableTimeoutsElRef {
-        DynamodbTableTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DynamodbTableTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
@@ -794,7 +980,10 @@ impl DynamodbTableRef {
 
     #[doc = "Get a reference to the value of field `warm_throughput` after provisioning.\n"]
     pub fn warm_throughput(&self) -> ListRef<DynamodbTableWarmThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.warm_throughput", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.warm_throughput", self.extract_ref()),
+        )
     }
 }
 
@@ -805,7 +994,7 @@ pub struct DynamodbTableAttributeEl {
     type_: PrimField<String>,
 }
 
-impl DynamodbTableAttributeEl { }
+impl DynamodbTableAttributeEl {}
 
 impl ToListMappable for DynamodbTableAttributeEl {
     type O = BlockAssignable<DynamodbTableAttributeEl>;
@@ -916,7 +1105,10 @@ pub struct DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef {
 }
 
 impl Ref for DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef {
-    fn new(shared: StackShared, base: String) -> DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef {
         DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef {
             shared: shared,
             base: base.to_string(),
@@ -931,12 +1123,18 @@ impl DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef {
 
     #[doc = "Get a reference to the value of field `max_read_request_units` after provisioning.\n"]
     pub fn max_read_request_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_read_request_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_read_request_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_write_request_units` after provisioning.\n"]
     pub fn max_write_request_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_write_request_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_write_request_units", self.base),
+        )
     }
 }
 
@@ -991,7 +1189,10 @@ pub struct DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef {
 }
 
 impl Ref for DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef {
-    fn new(shared: StackShared, base: String) -> DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef {
         DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef {
             shared: shared,
             base: base.to_string(),
@@ -1006,18 +1207,25 @@ impl DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef {
 
     #[doc = "Get a reference to the value of field `read_units_per_second` after provisioning.\n"]
     pub fn read_units_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_units_per_second", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_units_per_second", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_units_per_second` after provisioning.\n"]
     pub fn write_units_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.write_units_per_second", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.write_units_per_second", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct DynamodbTableGlobalSecondaryIndexElDynamic {
-    on_demand_throughput: Option<DynamicBlock<DynamodbTableGlobalSecondaryIndexElOnDemandThroughputEl>>,
+    on_demand_throughput:
+        Option<DynamicBlock<DynamodbTableGlobalSecondaryIndexElOnDemandThroughputEl>>,
     warm_throughput: Option<DynamicBlock<DynamodbTableGlobalSecondaryIndexElWarmThroughputEl>>,
 }
 
@@ -1074,10 +1282,10 @@ impl DynamodbTableGlobalSecondaryIndexEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_demand_throughput = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_demand_throughput = Some(d);
-            },
+            }
         }
         self
     }
@@ -1090,10 +1298,10 @@ impl DynamodbTableGlobalSecondaryIndexEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.warm_throughput = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.warm_throughput = Some(d);
-            },
+            }
         }
         self
     }
@@ -1168,12 +1376,18 @@ impl DynamodbTableGlobalSecondaryIndexElRef {
 
     #[doc = "Get a reference to the value of field `non_key_attributes` after provisioning.\n"]
     pub fn non_key_attributes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.non_key_attributes", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.non_key_attributes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `projection_type` after provisioning.\n"]
     pub fn projection_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.projection_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.projection_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key` after provisioning.\n"]
@@ -1183,22 +1397,38 @@ impl DynamodbTableGlobalSecondaryIndexElRef {
 
     #[doc = "Get a reference to the value of field `read_capacity` after provisioning.\n"]
     pub fn read_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_capacity` after provisioning.\n"]
     pub fn write_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.write_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.write_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_throughput` after provisioning.\n"]
-    pub fn on_demand_throughput(&self) -> ListRef<DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_throughput", self.base))
+    pub fn on_demand_throughput(
+        &self,
+    ) -> ListRef<DynamodbTableGlobalSecondaryIndexElOnDemandThroughputElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_throughput", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warm_throughput` after provisioning.\n"]
-    pub fn warm_throughput(&self) -> ListRef<DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.warm_throughput", self.base))
+    pub fn warm_throughput(
+        &self,
+    ) -> ListRef<DynamodbTableGlobalSecondaryIndexElWarmThroughputElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.warm_throughput", self.base),
+        )
     }
 }
 
@@ -1232,7 +1462,9 @@ pub struct BuildDynamodbTableGlobalTableWitnessEl {}
 
 impl BuildDynamodbTableGlobalTableWitnessEl {
     pub fn build(self) -> DynamodbTableGlobalTableWitnessEl {
-        DynamodbTableGlobalTableWitnessEl { region_name: core::default::Default::default() }
+        DynamodbTableGlobalTableWitnessEl {
+            region_name: core::default::Default::default(),
+        }
     }
 }
 
@@ -1312,7 +1544,10 @@ pub struct DynamodbTableImportTableElInputFormatOptionsElCsvElRef {
 }
 
 impl Ref for DynamodbTableImportTableElInputFormatOptionsElCsvElRef {
-    fn new(shared: StackShared, base: String) -> DynamodbTableImportTableElInputFormatOptionsElCsvElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DynamodbTableImportTableElInputFormatOptionsElCsvElRef {
         DynamodbTableImportTableElInputFormatOptionsElCsvElRef {
             shared: shared,
             base: base.to_string(),
@@ -1357,10 +1592,10 @@ impl DynamodbTableImportTableElInputFormatOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.csv = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.csv = Some(d);
-            },
+            }
         }
         self
     }
@@ -1532,10 +1767,10 @@ impl DynamodbTableImportTableEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_format_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_format_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -1548,10 +1783,10 @@ impl DynamodbTableImportTableEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_bucket_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_bucket_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -1607,7 +1842,10 @@ impl DynamodbTableImportTableElRef {
 
     #[doc = "Get a reference to the value of field `input_compression_type` after provisioning.\n"]
     pub fn input_compression_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_compression_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_compression_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_format` after provisioning.\n"]
@@ -1616,13 +1854,21 @@ impl DynamodbTableImportTableElRef {
     }
 
     #[doc = "Get a reference to the value of field `input_format_options` after provisioning.\n"]
-    pub fn input_format_options(&self) -> ListRef<DynamodbTableImportTableElInputFormatOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_format_options", self.base))
+    pub fn input_format_options(
+        &self,
+    ) -> ListRef<DynamodbTableImportTableElInputFormatOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_format_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_source` after provisioning.\n"]
     pub fn s3_bucket_source(&self) -> ListRef<DynamodbTableImportTableElS3BucketSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_bucket_source", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_source", self.base),
+        )
     }
 }
 
@@ -1701,12 +1947,18 @@ impl DynamodbTableLocalSecondaryIndexElRef {
 
     #[doc = "Get a reference to the value of field `non_key_attributes` after provisioning.\n"]
     pub fn non_key_attributes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.non_key_attributes", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.non_key_attributes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `projection_type` after provisioning.\n"]
     pub fn projection_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.projection_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.projection_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `range_key` after provisioning.\n"]
@@ -1781,12 +2033,18 @@ impl DynamodbTableOnDemandThroughputElRef {
 
     #[doc = "Get a reference to the value of field `max_read_request_units` after provisioning.\n"]
     pub fn max_read_request_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_read_request_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_read_request_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_write_request_units` after provisioning.\n"]
     pub fn max_write_request_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_write_request_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_write_request_units", self.base),
+        )
     }
 }
 
@@ -1857,7 +2115,10 @@ impl DynamodbTablePointInTimeRecoveryElRef {
 
     #[doc = "Get a reference to the value of field `recovery_period_in_days` after provisioning.\n"]
     pub fn recovery_period_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.recovery_period_in_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.recovery_period_in_days", self.base),
+        )
     }
 }
 
@@ -1964,12 +2225,18 @@ impl DynamodbTableReplicaElRef {
 
     #[doc = "Get a reference to the value of field `consistency_mode` after provisioning.\n"]
     pub fn consistency_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.consistency_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.consistency_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection_enabled` after provisioning.\n"]
     pub fn deletion_protection_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
@@ -1979,12 +2246,18 @@ impl DynamodbTableReplicaElRef {
 
     #[doc = "Get a reference to the value of field `point_in_time_recovery` after provisioning.\n"]
     pub fn point_in_time_recovery(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.point_in_time_recovery", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.point_in_time_recovery", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region_name` after provisioning.\n"]
@@ -2229,7 +2502,10 @@ impl DynamodbTableTtlElRef {
 
     #[doc = "Get a reference to the value of field `attribute_name` after provisioning.\n"]
     pub fn attribute_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attribute_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attribute_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
@@ -2304,12 +2580,18 @@ impl DynamodbTableWarmThroughputElRef {
 
     #[doc = "Get a reference to the value of field `read_units_per_second` after provisioning.\n"]
     pub fn read_units_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_units_per_second", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_units_per_second", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_units_per_second` after provisioning.\n"]
     pub fn write_units_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.write_units_per_second", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.write_units_per_second", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlobalacceleratorCustomRoutingListenerData {
@@ -59,7 +59,8 @@ impl GlobalacceleratorCustomRoutingListener {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl GlobalacceleratorCustomRoutingListener {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl GlobalacceleratorCustomRoutingListener {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,23 +117,29 @@ impl GlobalacceleratorCustomRoutingListener {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().port_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.port_range = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<GlobalacceleratorCustomRoutingListenerTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<GlobalacceleratorCustomRoutingListenerTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `accelerator_arn` after provisioning.\n"]
     pub fn accelerator_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accelerator_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accelerator_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -146,11 +163,15 @@ impl GlobalacceleratorCustomRoutingListener {
 
 impl Referable for GlobalacceleratorCustomRoutingListener {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlobalacceleratorCustomRoutingListener { }
+impl Resource for GlobalacceleratorCustomRoutingListener {}
 
 impl ToListMappable for GlobalacceleratorCustomRoutingListener {
     type O = ListRef<GlobalacceleratorCustomRoutingListenerRef>;
@@ -183,21 +204,23 @@ pub struct BuildGlobalacceleratorCustomRoutingListener {
 
 impl BuildGlobalacceleratorCustomRoutingListener {
     pub fn build(self, stack: &mut Stack) -> GlobalacceleratorCustomRoutingListener {
-        let out = GlobalacceleratorCustomRoutingListener(Rc::new(GlobalacceleratorCustomRoutingListener_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(GlobalacceleratorCustomRoutingListenerData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                accelerator_arn: self.accelerator_arn,
-                id: core::default::Default::default(),
-                port_range: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = GlobalacceleratorCustomRoutingListener(Rc::new(
+            GlobalacceleratorCustomRoutingListener_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(GlobalacceleratorCustomRoutingListenerData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    accelerator_arn: self.accelerator_arn,
+                    id: core::default::Default::default(),
+                    port_range: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -210,10 +233,7 @@ pub struct GlobalacceleratorCustomRoutingListenerRef {
 
 impl Ref for GlobalacceleratorCustomRoutingListenerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -228,7 +248,10 @@ impl GlobalacceleratorCustomRoutingListenerRef {
 
     #[doc = "Get a reference to the value of field `accelerator_arn` after provisioning.\n"]
     pub fn accelerator_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accelerator_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accelerator_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -301,7 +324,10 @@ pub struct GlobalacceleratorCustomRoutingListenerPortRangeElRef {
 }
 
 impl Ref for GlobalacceleratorCustomRoutingListenerPortRangeElRef {
-    fn new(shared: StackShared, base: String) -> GlobalacceleratorCustomRoutingListenerPortRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlobalacceleratorCustomRoutingListenerPortRangeElRef {
         GlobalacceleratorCustomRoutingListenerPortRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -385,7 +411,10 @@ pub struct GlobalacceleratorCustomRoutingListenerTimeoutsElRef {
 }
 
 impl Ref for GlobalacceleratorCustomRoutingListenerTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> GlobalacceleratorCustomRoutingListenerTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlobalacceleratorCustomRoutingListenerTimeoutsElRef {
         GlobalacceleratorCustomRoutingListenerTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

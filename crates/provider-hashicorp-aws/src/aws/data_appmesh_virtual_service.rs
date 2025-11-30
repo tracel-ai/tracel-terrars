@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppmeshVirtualServiceData {
@@ -60,8 +60,7 @@ impl DataAppmeshVirtualService {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -80,7 +79,10 @@ impl DataAppmeshVirtualService {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -90,53 +92,80 @@ impl DataAppmeshVirtualService {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshVirtualServiceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppmeshVirtualService {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppmeshVirtualService { }
+impl Datasource for DataAppmeshVirtualService {}
 
 impl ToListMappable for DataAppmeshVirtualService {
     type O = ListRef<DataAppmeshVirtualServiceRef>;
@@ -198,10 +227,7 @@ pub struct DataAppmeshVirtualServiceRef {
 
 impl Ref for DataAppmeshVirtualServiceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -221,7 +247,10 @@ impl DataAppmeshVirtualServiceRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -231,43 +260,66 @@ impl DataAppmeshVirtualServiceRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshVirtualServiceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -313,7 +365,10 @@ pub struct DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef {
 }
 
 impl Ref for DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef {
         DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef {
             shared: shared,
             base: base.to_string(),
@@ -328,7 +383,10 @@ impl DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef {
 
     #[doc = "Get a reference to the value of field `virtual_node_name` after provisioning.\n"]
     pub fn virtual_node_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_node_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_node_name", self.base),
+        )
     }
 }
 
@@ -374,7 +432,10 @@ pub struct DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef {
 }
 
 impl Ref for DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef {
         DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef {
             shared: shared,
             base: base.to_string(),
@@ -389,7 +450,10 @@ impl DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef {
 
     #[doc = "Get a reference to the value of field `virtual_router_name` after provisioning.\n"]
     pub fn virtual_router_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_router_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_router_name", self.base),
+        )
     }
 }
 
@@ -464,13 +528,20 @@ impl DataAppmeshVirtualServiceSpecElProviderElRef {
     }
 
     #[doc = "Get a reference to the value of field `virtual_node` after provisioning.\n"]
-    pub fn virtual_node(&self) -> ListRef<DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef> {
+    pub fn virtual_node(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualServiceSpecElProviderElVirtualNodeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.virtual_node", self.base))
     }
 
     #[doc = "Get a reference to the value of field `virtual_router` after provisioning.\n"]
-    pub fn virtual_router(&self) -> ListRef<DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_router", self.base))
+    pub fn virtual_router(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualServiceSpecElProviderElVirtualRouterElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_router", self.base),
+        )
     }
 }
 
@@ -482,7 +553,10 @@ pub struct DataAppmeshVirtualServiceSpecEl {
 
 impl DataAppmeshVirtualServiceSpecEl {
     #[doc = "Set the field `provider`.\n"]
-    pub fn set_provider(mut self, v: impl Into<ListField<DataAppmeshVirtualServiceSpecElProviderEl>>) -> Self {
+    pub fn set_provider(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualServiceSpecElProviderEl>>,
+    ) -> Self {
         self.provider = Some(v.into());
         self
     }
@@ -504,7 +578,9 @@ pub struct BuildDataAppmeshVirtualServiceSpecEl {}
 
 impl BuildDataAppmeshVirtualServiceSpecEl {
     pub fn build(self) -> DataAppmeshVirtualServiceSpecEl {
-        DataAppmeshVirtualServiceSpecEl { provider: core::default::Default::default() }
+        DataAppmeshVirtualServiceSpecEl {
+            provider: core::default::Default::default(),
+        }
     }
 }
 

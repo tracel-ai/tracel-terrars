@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCognitoUserPoolData {
@@ -41,21 +41,30 @@ impl DataCognitoUserPool {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `account_recovery_setting` after provisioning.\n"]
-    pub fn account_recovery_setting(&self) -> ListRef<DataCognitoUserPoolAccountRecoverySettingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_recovery_setting", self.extract_ref()))
+    pub fn account_recovery_setting(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolAccountRecoverySettingElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_recovery_setting", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `admin_create_user_config` after provisioning.\n"]
-    pub fn admin_create_user_config(&self) -> ListRef<DataCognitoUserPoolAdminCreateUserConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.admin_create_user_config", self.extract_ref()))
+    pub fn admin_create_user_config(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolAdminCreateUserConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.admin_create_user_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -65,42 +74,66 @@ impl DataCognitoUserPool {
 
     #[doc = "Get a reference to the value of field `auto_verified_attributes` after provisioning.\n"]
     pub fn auto_verified_attributes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_verified_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_verified_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain` after provisioning.\n"]
     pub fn custom_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\n"]
     pub fn deletion_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_configuration` after provisioning.\n"]
     pub fn device_configuration(&self) -> ListRef<DataCognitoUserPoolDeviceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.device_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.device_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_configuration` after provisioning.\n"]
     pub fn email_configuration(&self) -> ListRef<DataCognitoUserPoolEmailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.email_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.email_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `estimated_number_of_users` after provisioning.\n"]
     pub fn estimated_number_of_users(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_number_of_users", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_number_of_users", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -110,83 +143,128 @@ impl DataCognitoUserPool {
 
     #[doc = "Get a reference to the value of field `lambda_config` after provisioning.\n"]
     pub fn lambda_config(&self) -> ListRef<DataCognitoUserPoolLambdaConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_date` after provisioning.\n"]
     pub fn last_modified_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mfa_configuration` after provisioning.\n"]
     pub fn mfa_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mfa_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mfa_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_attributes` after provisioning.\n"]
     pub fn schema_attributes(&self) -> ListRef<DataCognitoUserPoolSchemaAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_authentication_message` after provisioning.\n"]
     pub fn sms_authentication_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sms_authentication_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sms_authentication_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_configuration_failure` after provisioning.\n"]
     pub fn sms_configuration_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sms_configuration_failure", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sms_configuration_failure", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_verification_message` after provisioning.\n"]
     pub fn sms_verification_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sms_verification_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sms_verification_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_add_ons` after provisioning.\n"]
     pub fn user_pool_add_ons(&self) -> ListRef<DataCognitoUserPoolUserPoolAddOnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_pool_add_ons", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_add_ons", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_tags` after provisioning.\n"]
     pub fn user_pool_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.user_pool_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `username_attributes` after provisioning.\n"]
     pub fn username_attributes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.username_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.username_attributes", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCognitoUserPool {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCognitoUserPool { }
+impl Datasource for DataCognitoUserPool {}
 
 impl ToListMappable for DataCognitoUserPool {
     type O = ListRef<DataCognitoUserPoolRef>;
@@ -242,10 +320,7 @@ pub struct DataCognitoUserPoolRef {
 
 impl Ref for DataCognitoUserPoolRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,13 +334,23 @@ impl DataCognitoUserPoolRef {
     }
 
     #[doc = "Get a reference to the value of field `account_recovery_setting` after provisioning.\n"]
-    pub fn account_recovery_setting(&self) -> ListRef<DataCognitoUserPoolAccountRecoverySettingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_recovery_setting", self.extract_ref()))
+    pub fn account_recovery_setting(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolAccountRecoverySettingElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_recovery_setting", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `admin_create_user_config` after provisioning.\n"]
-    pub fn admin_create_user_config(&self) -> ListRef<DataCognitoUserPoolAdminCreateUserConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.admin_create_user_config", self.extract_ref()))
+    pub fn admin_create_user_config(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolAdminCreateUserConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.admin_create_user_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -275,42 +360,66 @@ impl DataCognitoUserPoolRef {
 
     #[doc = "Get a reference to the value of field `auto_verified_attributes` after provisioning.\n"]
     pub fn auto_verified_attributes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_verified_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_verified_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_domain` after provisioning.\n"]
     pub fn custom_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\n"]
     pub fn deletion_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_configuration` after provisioning.\n"]
     pub fn device_configuration(&self) -> ListRef<DataCognitoUserPoolDeviceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.device_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.device_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_configuration` after provisioning.\n"]
     pub fn email_configuration(&self) -> ListRef<DataCognitoUserPoolEmailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.email_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.email_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `estimated_number_of_users` after provisioning.\n"]
     pub fn estimated_number_of_users(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_number_of_users", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_number_of_users", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -320,73 +429,114 @@ impl DataCognitoUserPoolRef {
 
     #[doc = "Get a reference to the value of field `lambda_config` after provisioning.\n"]
     pub fn lambda_config(&self) -> ListRef<DataCognitoUserPoolLambdaConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_date` after provisioning.\n"]
     pub fn last_modified_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mfa_configuration` after provisioning.\n"]
     pub fn mfa_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mfa_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mfa_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_attributes` after provisioning.\n"]
     pub fn schema_attributes(&self) -> ListRef<DataCognitoUserPoolSchemaAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_authentication_message` after provisioning.\n"]
     pub fn sms_authentication_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sms_authentication_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sms_authentication_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_configuration_failure` after provisioning.\n"]
     pub fn sms_configuration_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sms_configuration_failure", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sms_configuration_failure", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_verification_message` after provisioning.\n"]
     pub fn sms_verification_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sms_verification_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sms_verification_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_add_ons` after provisioning.\n"]
     pub fn user_pool_add_ons(&self) -> ListRef<DataCognitoUserPoolUserPoolAddOnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_pool_add_ons", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_add_ons", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_tags` after provisioning.\n"]
     pub fn user_pool_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.user_pool_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.user_pool_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `username_attributes` after provisioning.\n"]
     pub fn username_attributes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.username_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.username_attributes", self.extract_ref()),
+        )
     }
 }
 
@@ -441,7 +591,10 @@ pub struct DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef {
 }
 
 impl Ref for DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef {
-    fn new(shared: StackShared, base: String) -> DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef {
         DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef {
             shared: shared,
             base: base.to_string(),
@@ -468,7 +621,8 @@ impl DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef {
 #[derive(Serialize)]
 pub struct DataCognitoUserPoolAccountRecoverySettingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    recovery_mechanism: Option<ListField<DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismEl>>,
+    recovery_mechanism:
+        Option<ListField<DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismEl>>,
 }
 
 impl DataCognitoUserPoolAccountRecoverySettingEl {
@@ -498,7 +652,9 @@ pub struct BuildDataCognitoUserPoolAccountRecoverySettingEl {}
 
 impl BuildDataCognitoUserPoolAccountRecoverySettingEl {
     pub fn build(self) -> DataCognitoUserPoolAccountRecoverySettingEl {
-        DataCognitoUserPoolAccountRecoverySettingEl { recovery_mechanism: core::default::Default::default() }
+        DataCognitoUserPoolAccountRecoverySettingEl {
+            recovery_mechanism: core::default::Default::default(),
+        }
     }
 }
 
@@ -522,8 +678,13 @@ impl DataCognitoUserPoolAccountRecoverySettingElRef {
     }
 
     #[doc = "Get a reference to the value of field `recovery_mechanism` after provisioning.\n"]
-    pub fn recovery_mechanism(&self) -> ListRef<DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recovery_mechanism", self.base))
+    pub fn recovery_mechanism(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolAccountRecoverySettingElRecoveryMechanismElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recovery_mechanism", self.base),
+        )
     }
 }
 
@@ -605,12 +766,18 @@ impl DataCognitoUserPoolAdminCreateUserConfigElInviteMessageTemplateElRef {
 
     #[doc = "Get a reference to the value of field `email_message` after provisioning.\n"]
     pub fn email_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_message", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_subject` after provisioning.\n"]
     pub fn email_subject(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_subject", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_subject", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sms_message` after provisioning.\n"]
@@ -624,7 +791,8 @@ pub struct DataCognitoUserPoolAdminCreateUserConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     allow_admin_create_user_only: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    invite_message_template: Option<ListField<DataCognitoUserPoolAdminCreateUserConfigElInviteMessageTemplateEl>>,
+    invite_message_template:
+        Option<ListField<DataCognitoUserPoolAdminCreateUserConfigElInviteMessageTemplateEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     unused_account_validity_days: Option<PrimField<f64>>,
 }
@@ -697,19 +865,28 @@ impl DataCognitoUserPoolAdminCreateUserConfigElRef {
 
     #[doc = "Get a reference to the value of field `allow_admin_create_user_only` after provisioning.\n"]
     pub fn allow_admin_create_user_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_admin_create_user_only", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_admin_create_user_only", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `invite_message_template` after provisioning.\n"]
     pub fn invite_message_template(
         &self,
     ) -> ListRef<DataCognitoUserPoolAdminCreateUserConfigElInviteMessageTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.invite_message_template", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.invite_message_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unused_account_validity_days` after provisioning.\n"]
     pub fn unused_account_validity_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unused_account_validity_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unused_account_validity_days", self.base),
+        )
     }
 }
 
@@ -729,7 +906,10 @@ impl DataCognitoUserPoolDeviceConfigurationEl {
     }
 
     #[doc = "Set the field `device_only_remembered_on_user_prompt`.\n"]
-    pub fn set_device_only_remembered_on_user_prompt(mut self, v: impl Into<PrimField<bool>>) -> Self {
+    pub fn set_device_only_remembered_on_user_prompt(
+        mut self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
         self.device_only_remembered_on_user_prompt = Some(v.into());
         self
     }
@@ -779,12 +959,18 @@ impl DataCognitoUserPoolDeviceConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `challenge_required_on_new_device` after provisioning.\n"]
     pub fn challenge_required_on_new_device(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.challenge_required_on_new_device", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.challenge_required_on_new_device", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_only_remembered_on_user_prompt` after provisioning.\n"]
     pub fn device_only_remembered_on_user_prompt(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_only_remembered_on_user_prompt", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_only_remembered_on_user_prompt", self.base),
+        )
     }
 }
 
@@ -881,12 +1067,18 @@ impl DataCognitoUserPoolEmailConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `configuration_set` after provisioning.\n"]
     pub fn configuration_set(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_set", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_set", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_sending_account` after provisioning.\n"]
     pub fn email_sending_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_sending_account", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_sending_account", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `from` after provisioning.\n"]
@@ -896,7 +1088,10 @@ impl DataCognitoUserPoolEmailConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `reply_to_email_address` after provisioning.\n"]
     pub fn reply_to_email_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reply_to_email_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reply_to_email_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
@@ -956,7 +1151,10 @@ pub struct DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef {
 }
 
 impl Ref for DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef {
-    fn new(shared: StackShared, base: String) -> DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef {
         DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef {
             shared: shared,
             base: base.to_string(),
@@ -976,7 +1174,10 @@ impl DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef {
 
     #[doc = "Get a reference to the value of field `lambda_version` after provisioning.\n"]
     pub fn lambda_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_version", self.base),
+        )
     }
 }
 
@@ -1031,7 +1232,10 @@ pub struct DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef {
 }
 
 impl Ref for DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef {
-    fn new(shared: StackShared, base: String) -> DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef {
         DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef {
             shared: shared,
             base: base.to_string(),
@@ -1051,7 +1255,10 @@ impl DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef {
 
     #[doc = "Get a reference to the value of field `lambda_version` after provisioning.\n"]
     pub fn lambda_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_version", self.base),
+        )
     }
 }
 
@@ -1106,7 +1313,10 @@ pub struct DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef {
 }
 
 impl Ref for DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef {
         DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1126,7 +1336,10 @@ impl DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef {
 
     #[doc = "Get a reference to the value of field `lambda_version` after provisioning.\n"]
     pub fn lambda_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_version", self.base),
+        )
     }
 }
 
@@ -1155,7 +1368,8 @@ pub struct DataCognitoUserPoolLambdaConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_token_generation: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_token_generation_config: Option<ListField<DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigEl>>,
+    pre_token_generation_config:
+        Option<ListField<DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     user_migration: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1313,27 +1527,46 @@ impl DataCognitoUserPoolLambdaConfigElRef {
 
     #[doc = "Get a reference to the value of field `create_auth_challenge` after provisioning.\n"]
     pub fn create_auth_challenge(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_auth_challenge", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_auth_challenge", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_email_sender` after provisioning.\n"]
-    pub fn custom_email_sender(&self) -> ListRef<DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_email_sender", self.base))
+    pub fn custom_email_sender(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolLambdaConfigElCustomEmailSenderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_email_sender", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_message` after provisioning.\n"]
     pub fn custom_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_message", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_sms_sender` after provisioning.\n"]
-    pub fn custom_sms_sender(&self) -> ListRef<DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_sms_sender", self.base))
+    pub fn custom_sms_sender(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolLambdaConfigElCustomSmsSenderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_sms_sender", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `define_auth_challenge` after provisioning.\n"]
     pub fn define_auth_challenge(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.define_auth_challenge", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.define_auth_challenge", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
@@ -1343,17 +1576,26 @@ impl DataCognitoUserPoolLambdaConfigElRef {
 
     #[doc = "Get a reference to the value of field `post_authentication` after provisioning.\n"]
     pub fn post_authentication(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.post_authentication", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.post_authentication", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `post_confirmation` after provisioning.\n"]
     pub fn post_confirmation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.post_confirmation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.post_confirmation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pre_authentication` after provisioning.\n"]
     pub fn pre_authentication(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pre_authentication", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pre_authentication", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pre_sign_up` after provisioning.\n"]
@@ -1363,22 +1605,36 @@ impl DataCognitoUserPoolLambdaConfigElRef {
 
     #[doc = "Get a reference to the value of field `pre_token_generation` after provisioning.\n"]
     pub fn pre_token_generation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pre_token_generation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pre_token_generation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pre_token_generation_config` after provisioning.\n"]
-    pub fn pre_token_generation_config(&self) -> ListRef<DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pre_token_generation_config", self.base))
+    pub fn pre_token_generation_config(
+        &self,
+    ) -> ListRef<DataCognitoUserPoolLambdaConfigElPreTokenGenerationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pre_token_generation_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_migration` after provisioning.\n"]
     pub fn user_migration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_migration", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_migration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verify_auth_challenge_response` after provisioning.\n"]
     pub fn verify_auth_challenge_response(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verify_auth_challenge_response", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verify_auth_challenge_response", self.base),
+        )
     }
 }
 
@@ -1549,11 +1805,13 @@ pub struct DataCognitoUserPoolSchemaAttributesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    number_attribute_constraints: Option<ListField<DataCognitoUserPoolSchemaAttributesElNumberAttributeConstraintsEl>>,
+    number_attribute_constraints:
+        Option<ListField<DataCognitoUserPoolSchemaAttributesElNumberAttributeConstraintsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     required: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    string_attribute_constraints: Option<ListField<DataCognitoUserPoolSchemaAttributesElStringAttributeConstraintsEl>>,
+    string_attribute_constraints:
+        Option<ListField<DataCognitoUserPoolSchemaAttributesElStringAttributeConstraintsEl>>,
 }
 
 impl DataCognitoUserPoolSchemaAttributesEl {
@@ -1655,12 +1913,18 @@ impl DataCognitoUserPoolSchemaAttributesElRef {
 
     #[doc = "Get a reference to the value of field `attribute_data_type` after provisioning.\n"]
     pub fn attribute_data_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attribute_data_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attribute_data_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `developer_only_attribute` after provisioning.\n"]
     pub fn developer_only_attribute(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.developer_only_attribute", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.developer_only_attribute", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutable` after provisioning.\n"]
@@ -1677,7 +1941,10 @@ impl DataCognitoUserPoolSchemaAttributesElRef {
     pub fn number_attribute_constraints(
         &self,
     ) -> ListRef<DataCognitoUserPoolSchemaAttributesElNumberAttributeConstraintsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.number_attribute_constraints", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.number_attribute_constraints", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `required` after provisioning.\n"]
@@ -1689,7 +1956,10 @@ impl DataCognitoUserPoolSchemaAttributesElRef {
     pub fn string_attribute_constraints(
         &self,
     ) -> ListRef<DataCognitoUserPoolSchemaAttributesElStringAttributeConstraintsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.string_attribute_constraints", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.string_attribute_constraints", self.base),
+        )
     }
 }
 
@@ -1753,16 +2023,18 @@ impl DataCognitoUserPoolUserPoolAddOnsElAdvancedSecurityAdditionalFlowsElRef {
 
     #[doc = "Get a reference to the value of field `custom_auth_mode` after provisioning.\n"]
     pub fn custom_auth_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_auth_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_auth_mode", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataCognitoUserPoolUserPoolAddOnsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    advanced_security_additional_flows: Option<
-        ListField<DataCognitoUserPoolUserPoolAddOnsElAdvancedSecurityAdditionalFlowsEl>,
-    >,
+    advanced_security_additional_flows:
+        Option<ListField<DataCognitoUserPoolUserPoolAddOnsElAdvancedSecurityAdditionalFlowsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     advanced_security_mode: Option<PrimField<String>>,
 }
@@ -1830,11 +2102,17 @@ impl DataCognitoUserPoolUserPoolAddOnsElRef {
     pub fn advanced_security_additional_flows(
         &self,
     ) -> ListRef<DataCognitoUserPoolUserPoolAddOnsElAdvancedSecurityAdditionalFlowsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_security_additional_flows", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_security_additional_flows", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_security_mode` after provisioning.\n"]
     pub fn advanced_security_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.advanced_security_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.advanced_security_mode", self.base),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ApprunnerServiceData {
@@ -75,7 +75,8 @@ impl ApprunnerService {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl ApprunnerService {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl ApprunnerService {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -120,8 +131,7 @@ impl ApprunnerService {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -147,10 +157,10 @@ impl ApprunnerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().encryption_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.encryption_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -163,10 +173,10 @@ impl ApprunnerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().health_check_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.health_check_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -179,10 +189,10 @@ impl ApprunnerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -195,10 +205,10 @@ impl ApprunnerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -211,23 +221,26 @@ impl ApprunnerService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().observability_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.observability_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `source_configuration`.\n"]
-    pub fn set_source_configuration(self, v: impl Into<BlockAssignable<ApprunnerServiceSourceConfigurationEl>>) -> Self {
+    pub fn set_source_configuration(
+        self,
+        v: impl Into<BlockAssignable<ApprunnerServiceSourceConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -239,7 +252,10 @@ impl ApprunnerService {
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_arn` after provisioning.\n"]
     pub fn auto_scaling_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -247,80 +263,128 @@ impl ApprunnerService {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_url` after provisioning.\n"]
     pub fn service_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(&self) -> ListRef<ApprunnerServiceEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+    pub fn encryption_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_configuration` after provisioning.\n"]
-    pub fn health_check_configuration(&self) -> ListRef<ApprunnerServiceHealthCheckConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.health_check_configuration", self.extract_ref()))
+    pub fn health_check_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceHealthCheckConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.health_check_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_configuration` after provisioning.\n"]
     pub fn instance_configuration(&self) -> ListRef<ApprunnerServiceInstanceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<ApprunnerServiceNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `observability_configuration` after provisioning.\n"]
-    pub fn observability_configuration(&self) -> ListRef<ApprunnerServiceObservabilityConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.observability_configuration", self.extract_ref()))
+    pub fn observability_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceObservabilityConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.observability_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(&self) -> ListRef<ApprunnerServiceSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ApprunnerService {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ApprunnerService { }
+impl Resource for ApprunnerService {}
 
 impl ToListMappable for ApprunnerService {
     type O = ListRef<ApprunnerServiceRef>;
@@ -388,10 +452,7 @@ pub struct ApprunnerServiceRef {
 
 impl Ref for ApprunnerServiceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -411,7 +472,10 @@ impl ApprunnerServiceRef {
 
     #[doc = "Get a reference to the value of field `auto_scaling_configuration_arn` after provisioning.\n"]
     pub fn auto_scaling_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_configuration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_configuration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -419,70 +483,114 @@ impl ApprunnerServiceRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_url` after provisioning.\n"]
     pub fn service_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(&self) -> ListRef<ApprunnerServiceEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+    pub fn encryption_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_configuration` after provisioning.\n"]
-    pub fn health_check_configuration(&self) -> ListRef<ApprunnerServiceHealthCheckConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.health_check_configuration", self.extract_ref()))
+    pub fn health_check_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceHealthCheckConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.health_check_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_configuration` after provisioning.\n"]
     pub fn instance_configuration(&self) -> ListRef<ApprunnerServiceInstanceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<ApprunnerServiceNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `observability_configuration` after provisioning.\n"]
-    pub fn observability_configuration(&self) -> ListRef<ApprunnerServiceObservabilityConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.observability_configuration", self.extract_ref()))
+    pub fn observability_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceObservabilityConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.observability_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(&self) -> ListRef<ApprunnerServiceSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -491,7 +599,7 @@ pub struct ApprunnerServiceEncryptionConfigurationEl {
     kms_key: PrimField<String>,
 }
 
-impl ApprunnerServiceEncryptionConfigurationEl { }
+impl ApprunnerServiceEncryptionConfigurationEl {}
 
 impl ToListMappable for ApprunnerServiceEncryptionConfigurationEl {
     type O = BlockAssignable<ApprunnerServiceEncryptionConfigurationEl>;
@@ -512,7 +620,9 @@ pub struct BuildApprunnerServiceEncryptionConfigurationEl {
 
 impl BuildApprunnerServiceEncryptionConfigurationEl {
     pub fn build(self) -> ApprunnerServiceEncryptionConfigurationEl {
-        ApprunnerServiceEncryptionConfigurationEl { kms_key: self.kms_key }
+        ApprunnerServiceEncryptionConfigurationEl {
+            kms_key: self.kms_key,
+        }
     }
 }
 
@@ -643,7 +753,10 @@ impl ApprunnerServiceHealthCheckConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `healthy_threshold` after provisioning.\n"]
     pub fn healthy_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.healthy_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.healthy_threshold", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
@@ -668,7 +781,10 @@ impl ApprunnerServiceHealthCheckConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `unhealthy_threshold` after provisioning.\n"]
     pub fn unhealthy_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unhealthy_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unhealthy_threshold", self.base),
+        )
     }
 }
 
@@ -752,7 +868,10 @@ impl ApprunnerServiceInstanceConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `instance_role_arn` after provisioning.\n"]
     pub fn instance_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
@@ -812,7 +931,10 @@ pub struct ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef {
 }
 
 impl Ref for ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef {
         ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -832,7 +954,10 @@ impl ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `vpc_connector_arn` after provisioning.\n"]
     pub fn vpc_connector_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_connector_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_connector_arn", self.base),
+        )
     }
 }
 
@@ -878,7 +1003,10 @@ pub struct ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef {
 }
 
 impl Ref for ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef {
         ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -893,14 +1021,19 @@ impl ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `is_publicly_accessible` after provisioning.\n"]
     pub fn is_publicly_accessible(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_publicly_accessible", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_publicly_accessible", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct ApprunnerServiceNetworkConfigurationElDynamic {
-    egress_configuration: Option<DynamicBlock<ApprunnerServiceNetworkConfigurationElEgressConfigurationEl>>,
-    ingress_configuration: Option<DynamicBlock<ApprunnerServiceNetworkConfigurationElIngressConfigurationEl>>,
+    egress_configuration:
+        Option<DynamicBlock<ApprunnerServiceNetworkConfigurationElEgressConfigurationEl>>,
+    ingress_configuration:
+        Option<DynamicBlock<ApprunnerServiceNetworkConfigurationElIngressConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -910,7 +1043,8 @@ pub struct ApprunnerServiceNetworkConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     egress_configuration: Option<Vec<ApprunnerServiceNetworkConfigurationElEgressConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ingress_configuration: Option<Vec<ApprunnerServiceNetworkConfigurationElIngressConfigurationEl>>,
+    ingress_configuration:
+        Option<Vec<ApprunnerServiceNetworkConfigurationElIngressConfigurationEl>>,
     dynamic: ApprunnerServiceNetworkConfigurationElDynamic,
 }
 
@@ -929,10 +1063,10 @@ impl ApprunnerServiceNetworkConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.egress_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.egress_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -945,10 +1079,10 @@ impl ApprunnerServiceNetworkConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ingress_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ingress_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1000,17 +1134,30 @@ impl ApprunnerServiceNetworkConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `egress_configuration` after provisioning.\n"]
-    pub fn egress_configuration(&self) -> ListRef<ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.egress_configuration", self.base))
+    pub fn egress_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceNetworkConfigurationElEgressConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.egress_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ingress_configuration` after provisioning.\n"]
-    pub fn ingress_configuration(&self) -> ListRef<ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ingress_configuration", self.base))
+    pub fn ingress_configuration(
+        &self,
+    ) -> ListRef<ApprunnerServiceNetworkConfigurationElIngressConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ingress_configuration", self.base),
+        )
     }
 }
 
@@ -1076,12 +1223,18 @@ impl ApprunnerServiceObservabilityConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `observability_configuration_arn` after provisioning.\n"]
     pub fn observability_configuration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.observability_configuration_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.observability_configuration_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `observability_enabled` after provisioning.\n"]
     pub fn observability_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.observability_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.observability_enabled", self.base),
+        )
     }
 }
 
@@ -1154,17 +1307,24 @@ impl ApprunnerServiceSourceConfigurationElAuthenticationConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `access_role_arn` after provisioning.\n"]
     pub fn access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_arn` after provisioning.\n"]
     pub fn connection_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesEl {
+pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     build_command: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1225,7 +1385,8 @@ impl ToListMappable for ApprunnerServiceSourceConfigurationElCodeRepositoryElCod
     }
 }
 
-pub struct BuildApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesEl {
+pub struct BuildApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesEl
+{
     #[doc = ""]
     pub runtime: PrimField<String>,
 }
@@ -1245,7 +1406,8 @@ impl BuildApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfiguration
     }
 }
 
-pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesElRef {
+pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1333,17 +1495,18 @@ impl ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_configuration_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_configuration_values = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl {
-    type O = BlockAssignable<ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl>;
+    type O =
+        BlockAssignable<ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1393,7 +1556,10 @@ impl ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElRef
 
     #[doc = "Get a reference to the value of field `configuration_source` after provisioning.\n"]
     pub fn configuration_source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_source", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_source", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_configuration_values` after provisioning.\n"]
@@ -1401,8 +1567,11 @@ impl ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElRef
         &self,
     ) -> ListRef<
         ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElCodeConfigurationValuesElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.code_configuration_values", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_configuration_values", self.base),
+        )
     }
 }
 
@@ -1413,10 +1582,11 @@ pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersio
     value: PrimField<String>,
 }
 
-impl ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl { }
+impl ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl {}
 
 impl ToListMappable for ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl {
-    type O = BlockAssignable<ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl>;
+    type O =
+        BlockAssignable<ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1492,9 +1662,11 @@ pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     source_directory: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_configuration: Option<Vec<ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl>>,
+    code_configuration:
+        Option<Vec<ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_code_version: Option<Vec<ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl>>,
+    source_code_version:
+        Option<Vec<ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl>>,
     dynamic: ApprunnerServiceSourceConfigurationElCodeRepositoryElDynamic,
 }
 
@@ -1508,15 +1680,19 @@ impl ApprunnerServiceSourceConfigurationElCodeRepositoryEl {
     #[doc = "Set the field `code_configuration`.\n"]
     pub fn set_code_configuration(
         mut self,
-        v: impl Into<BlockAssignable<ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1524,15 +1700,19 @@ impl ApprunnerServiceSourceConfigurationElCodeRepositoryEl {
     #[doc = "Set the field `source_code_version`.\n"]
     pub fn set_source_code_version(
         mut self,
-        v: impl Into<BlockAssignable<ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl>>,
+        v: impl Into<
+            BlockAssignable<
+                ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_code_version = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_code_version = Some(d);
-            },
+            }
         }
         self
     }
@@ -1573,7 +1753,10 @@ pub struct ApprunnerServiceSourceConfigurationElCodeRepositoryElRef {
 }
 
 impl Ref for ApprunnerServiceSourceConfigurationElCodeRepositoryElRef {
-    fn new(shared: StackShared, base: String) -> ApprunnerServiceSourceConfigurationElCodeRepositoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ApprunnerServiceSourceConfigurationElCodeRepositoryElRef {
         ApprunnerServiceSourceConfigurationElCodeRepositoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1588,26 +1771,38 @@ impl ApprunnerServiceSourceConfigurationElCodeRepositoryElRef {
 
     #[doc = "Get a reference to the value of field `repository_url` after provisioning.\n"]
     pub fn repository_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_url", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_directory` after provisioning.\n"]
     pub fn source_directory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_directory", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_directory", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_configuration` after provisioning.\n"]
     pub fn code_configuration(
         &self,
     ) -> ListRef<ApprunnerServiceSourceConfigurationElCodeRepositoryElCodeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_code_version` after provisioning.\n"]
     pub fn source_code_version(
         &self,
     ) -> ListRef<ApprunnerServiceSourceConfigurationElCodeRepositoryElSourceCodeVersionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_code_version", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_code_version", self.base),
+        )
     }
 }
 
@@ -1631,13 +1826,19 @@ impl ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl 
     }
 
     #[doc = "Set the field `runtime_environment_secrets`.\n"]
-    pub fn set_runtime_environment_secrets(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_runtime_environment_secrets(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.runtime_environment_secrets = Some(v.into());
         self
     }
 
     #[doc = "Set the field `runtime_environment_variables`.\n"]
-    pub fn set_runtime_environment_variables(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_runtime_environment_variables(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.runtime_environment_variables = Some(v.into());
         self
     }
@@ -1650,7 +1851,8 @@ impl ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl 
 }
 
 impl ToListMappable for ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl {
-    type O = BlockAssignable<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl>;
+    type O =
+        BlockAssignable<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1664,7 +1866,9 @@ impl ToListMappable for ApprunnerServiceSourceConfigurationElImageRepositoryElIm
 pub struct BuildApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl {}
 
 impl BuildApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl {
-    pub fn build(self) -> ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl {
+    pub fn build(
+        self,
+    ) -> ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl {
         ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl {
             port: core::default::Default::default(),
             runtime_environment_secrets: core::default::Default::default(),
@@ -1703,17 +1907,26 @@ impl ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationElR
 
     #[doc = "Get a reference to the value of field `runtime_environment_secrets` after provisioning.\n"]
     pub fn runtime_environment_secrets(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.runtime_environment_secrets", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_environment_secrets", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_environment_variables` after provisioning.\n"]
     pub fn runtime_environment_variables(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.runtime_environment_variables", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_environment_variables", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_command` after provisioning.\n"]
     pub fn start_command(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_command", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_command", self.base),
+        )
     }
 }
 
@@ -1729,7 +1942,8 @@ pub struct ApprunnerServiceSourceConfigurationElImageRepositoryEl {
     image_identifier: PrimField<String>,
     image_repository_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    image_configuration: Option<Vec<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl>>,
+    image_configuration:
+        Option<Vec<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl>>,
     dynamic: ApprunnerServiceSourceConfigurationElImageRepositoryElDynamic,
 }
 
@@ -1737,15 +1951,19 @@ impl ApprunnerServiceSourceConfigurationElImageRepositoryEl {
     #[doc = "Set the field `image_configuration`.\n"]
     pub fn set_image_configuration(
         mut self,
-        v: impl Into<BlockAssignable<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.image_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.image_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1787,7 +2005,10 @@ pub struct ApprunnerServiceSourceConfigurationElImageRepositoryElRef {
 }
 
 impl Ref for ApprunnerServiceSourceConfigurationElImageRepositoryElRef {
-    fn new(shared: StackShared, base: String) -> ApprunnerServiceSourceConfigurationElImageRepositoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ApprunnerServiceSourceConfigurationElImageRepositoryElRef {
         ApprunnerServiceSourceConfigurationElImageRepositoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1802,27 +2023,36 @@ impl ApprunnerServiceSourceConfigurationElImageRepositoryElRef {
 
     #[doc = "Get a reference to the value of field `image_identifier` after provisioning.\n"]
     pub fn image_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_repository_type` after provisioning.\n"]
     pub fn image_repository_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_repository_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_repository_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_configuration` after provisioning.\n"]
     pub fn image_configuration(
         &self,
-    ) -> ListRef<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_configuration", self.base))
+    ) -> ListRef<ApprunnerServiceSourceConfigurationElImageRepositoryElImageConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct ApprunnerServiceSourceConfigurationElDynamic {
-    authentication_configuration: Option<
-        DynamicBlock<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationEl>,
-    >,
+    authentication_configuration:
+        Option<DynamicBlock<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationEl>>,
     code_repository: Option<DynamicBlock<ApprunnerServiceSourceConfigurationElCodeRepositoryEl>>,
     image_repository: Option<DynamicBlock<ApprunnerServiceSourceConfigurationElImageRepositoryEl>>,
 }
@@ -1832,7 +2062,8 @@ pub struct ApprunnerServiceSourceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     auto_deployments_enabled: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    authentication_configuration: Option<Vec<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationEl>>,
+    authentication_configuration:
+        Option<Vec<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     code_repository: Option<Vec<ApprunnerServiceSourceConfigurationElCodeRepositoryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1850,15 +2081,17 @@ impl ApprunnerServiceSourceConfigurationEl {
     #[doc = "Set the field `authentication_configuration`.\n"]
     pub fn set_authentication_configuration(
         mut self,
-        v: impl Into<BlockAssignable<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.authentication_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.authentication_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1871,10 +2104,10 @@ impl ApprunnerServiceSourceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_repository = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_repository = Some(d);
-            },
+            }
         }
         self
     }
@@ -1887,10 +2120,10 @@ impl ApprunnerServiceSourceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.image_repository = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.image_repository = Some(d);
-            },
+            }
         }
         self
     }
@@ -1943,24 +2176,40 @@ impl ApprunnerServiceSourceConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `auto_deployments_enabled` after provisioning.\n"]
     pub fn auto_deployments_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_deployments_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_deployments_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authentication_configuration` after provisioning.\n"]
     pub fn authentication_configuration(
         &self,
     ) -> ListRef<ApprunnerServiceSourceConfigurationElAuthenticationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_repository` after provisioning.\n"]
-    pub fn code_repository(&self) -> ListRef<ApprunnerServiceSourceConfigurationElCodeRepositoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code_repository", self.base))
+    pub fn code_repository(
+        &self,
+    ) -> ListRef<ApprunnerServiceSourceConfigurationElCodeRepositoryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_repository", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_repository` after provisioning.\n"]
-    pub fn image_repository(&self) -> ListRef<ApprunnerServiceSourceConfigurationElImageRepositoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_repository", self.base))
+    pub fn image_repository(
+        &self,
+    ) -> ListRef<ApprunnerServiceSourceConfigurationElImageRepositoryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_repository", self.base),
+        )
     }
 }
 

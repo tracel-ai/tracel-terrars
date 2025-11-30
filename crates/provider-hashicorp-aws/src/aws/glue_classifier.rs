@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlueClassifierData {
@@ -65,7 +65,8 @@ impl GlueClassifier {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl GlueClassifier {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl GlueClassifier {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,61 +115,72 @@ impl GlueClassifier {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `csv_classifier`.\n"]
-    pub fn set_csv_classifier(self, v: impl Into<BlockAssignable<GlueClassifierCsvClassifierEl>>) -> Self {
+    pub fn set_csv_classifier(
+        self,
+        v: impl Into<BlockAssignable<GlueClassifierCsvClassifierEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().csv_classifier = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.csv_classifier = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `grok_classifier`.\n"]
-    pub fn set_grok_classifier(self, v: impl Into<BlockAssignable<GlueClassifierGrokClassifierEl>>) -> Self {
+    pub fn set_grok_classifier(
+        self,
+        v: impl Into<BlockAssignable<GlueClassifierGrokClassifierEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().grok_classifier = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.grok_classifier = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `json_classifier`.\n"]
-    pub fn set_json_classifier(self, v: impl Into<BlockAssignable<GlueClassifierJsonClassifierEl>>) -> Self {
+    pub fn set_json_classifier(
+        self,
+        v: impl Into<BlockAssignable<GlueClassifierJsonClassifierEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().json_classifier = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.json_classifier = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `xml_classifier`.\n"]
-    pub fn set_xml_classifier(self, v: impl Into<BlockAssignable<GlueClassifierXmlClassifierEl>>) -> Self {
+    pub fn set_xml_classifier(
+        self,
+        v: impl Into<BlockAssignable<GlueClassifierXmlClassifierEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().xml_classifier = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.xml_classifier = Some(d);
-            },
+            }
         }
         self
     }
@@ -170,43 +192,64 @@ impl GlueClassifier {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `csv_classifier` after provisioning.\n"]
     pub fn csv_classifier(&self) -> ListRef<GlueClassifierCsvClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.csv_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.csv_classifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grok_classifier` after provisioning.\n"]
     pub fn grok_classifier(&self) -> ListRef<GlueClassifierGrokClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.grok_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.grok_classifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `json_classifier` after provisioning.\n"]
     pub fn json_classifier(&self) -> ListRef<GlueClassifierJsonClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.json_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.json_classifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xml_classifier` after provisioning.\n"]
     pub fn xml_classifier(&self) -> ListRef<GlueClassifierXmlClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.xml_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.xml_classifier", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GlueClassifier {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlueClassifier { }
+impl Resource for GlueClassifier {}
 
 impl ToListMappable for GlueClassifier {
     type O = ListRef<GlueClassifierRef>;
@@ -269,10 +312,7 @@ pub struct GlueClassifierRef {
 
 impl Ref for GlueClassifierRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -292,33 +332,50 @@ impl GlueClassifierRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `csv_classifier` after provisioning.\n"]
     pub fn csv_classifier(&self) -> ListRef<GlueClassifierCsvClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.csv_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.csv_classifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grok_classifier` after provisioning.\n"]
     pub fn grok_classifier(&self) -> ListRef<GlueClassifierGrokClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.grok_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.grok_classifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `json_classifier` after provisioning.\n"]
     pub fn json_classifier(&self) -> ListRef<GlueClassifierJsonClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.json_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.json_classifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xml_classifier` after provisioning.\n"]
     pub fn xml_classifier(&self) -> ListRef<GlueClassifierXmlClassifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.xml_classifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.xml_classifier", self.extract_ref()),
+        )
     }
 }
 
@@ -451,22 +508,34 @@ impl GlueClassifierCsvClassifierElRef {
 
     #[doc = "Get a reference to the value of field `allow_single_column` after provisioning.\n"]
     pub fn allow_single_column(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_single_column", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_single_column", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `contains_header` after provisioning.\n"]
     pub fn contains_header(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.contains_header", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.contains_header", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_datatype_configured` after provisioning.\n"]
     pub fn custom_datatype_configured(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_datatype_configured", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_datatype_configured", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_datatypes` after provisioning.\n"]
     pub fn custom_datatypes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_datatypes", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_datatypes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delimiter` after provisioning.\n"]
@@ -476,7 +545,10 @@ impl GlueClassifierCsvClassifierElRef {
 
     #[doc = "Get a reference to the value of field `disable_value_trimming` after provisioning.\n"]
     pub fn disable_value_trimming(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_value_trimming", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_value_trimming", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
@@ -561,12 +633,18 @@ impl GlueClassifierGrokClassifierElRef {
 
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.classification", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.classification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_patterns` after provisioning.\n"]
     pub fn custom_patterns(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_patterns", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_patterns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grok_pattern` after provisioning.\n"]
@@ -580,7 +658,7 @@ pub struct GlueClassifierJsonClassifierEl {
     json_path: PrimField<String>,
 }
 
-impl GlueClassifierJsonClassifierEl { }
+impl GlueClassifierJsonClassifierEl {}
 
 impl ToListMappable for GlueClassifierJsonClassifierEl {
     type O = BlockAssignable<GlueClassifierJsonClassifierEl>;
@@ -601,7 +679,9 @@ pub struct BuildGlueClassifierJsonClassifierEl {
 
 impl BuildGlueClassifierJsonClassifierEl {
     pub fn build(self) -> GlueClassifierJsonClassifierEl {
-        GlueClassifierJsonClassifierEl { json_path: self.json_path }
+        GlueClassifierJsonClassifierEl {
+            json_path: self.json_path,
+        }
     }
 }
 
@@ -636,7 +716,7 @@ pub struct GlueClassifierXmlClassifierEl {
     row_tag: PrimField<String>,
 }
 
-impl GlueClassifierXmlClassifierEl { }
+impl GlueClassifierXmlClassifierEl {}
 
 impl ToListMappable for GlueClassifierXmlClassifierEl {
     type O = BlockAssignable<GlueClassifierXmlClassifierEl>;
@@ -687,7 +767,10 @@ impl GlueClassifierXmlClassifierElRef {
 
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.classification", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.classification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `row_tag` after provisioning.\n"]

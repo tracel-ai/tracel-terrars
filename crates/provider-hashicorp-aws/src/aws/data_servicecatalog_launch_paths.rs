@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataServicecatalogLaunchPathsData {
@@ -59,8 +59,7 @@ impl DataServicecatalogLaunchPaths {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -74,7 +73,10 @@ impl DataServicecatalogLaunchPaths {
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -84,18 +86,26 @@ impl DataServicecatalogLaunchPaths {
 
     #[doc = "Get a reference to the value of field `product_id` after provisioning.\n"]
     pub fn product_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `summaries` after provisioning.\n"]
     pub fn summaries(&self) -> ListRef<DataServicecatalogLaunchPathsSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.summaries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.summaries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -109,11 +119,15 @@ impl DataServicecatalogLaunchPaths {
 
 impl Referable for DataServicecatalogLaunchPaths {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataServicecatalogLaunchPaths { }
+impl Datasource for DataServicecatalogLaunchPaths {}
 
 impl ToListMappable for DataServicecatalogLaunchPaths {
     type O = ListRef<DataServicecatalogLaunchPathsRef>;
@@ -172,10 +186,7 @@ pub struct DataServicecatalogLaunchPathsRef {
 
 impl Ref for DataServicecatalogLaunchPathsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -190,7 +201,10 @@ impl DataServicecatalogLaunchPathsRef {
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -200,18 +214,26 @@ impl DataServicecatalogLaunchPathsRef {
 
     #[doc = "Get a reference to the value of field `product_id` after provisioning.\n"]
     pub fn product_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `summaries` after provisioning.\n"]
     pub fn summaries(&self) -> ListRef<DataServicecatalogLaunchPathsSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.summaries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.summaries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -274,7 +296,10 @@ pub struct DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef {
 }
 
 impl Ref for DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef {
-    fn new(shared: StackShared, base: String) -> DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef {
         DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef {
             shared: shared,
             base: base.to_string(),
@@ -301,7 +326,8 @@ impl DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef {
 #[derive(Serialize)]
 pub struct DataServicecatalogLaunchPathsSummariesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    constraint_summaries: Option<ListField<DataServicecatalogLaunchPathsSummariesElConstraintSummariesEl>>,
+    constraint_summaries:
+        Option<ListField<DataServicecatalogLaunchPathsSummariesElConstraintSummariesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -384,8 +410,13 @@ impl DataServicecatalogLaunchPathsSummariesElRef {
     }
 
     #[doc = "Get a reference to the value of field `constraint_summaries` after provisioning.\n"]
-    pub fn constraint_summaries(&self) -> ListRef<DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.constraint_summaries", self.base))
+    pub fn constraint_summaries(
+        &self,
+    ) -> ListRef<DataServicecatalogLaunchPathsSummariesElConstraintSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.constraint_summaries", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -434,7 +465,9 @@ pub struct BuildDataServicecatalogLaunchPathsTimeoutsEl {}
 
 impl BuildDataServicecatalogLaunchPathsTimeoutsEl {
     pub fn build(self) -> DataServicecatalogLaunchPathsTimeoutsEl {
-        DataServicecatalogLaunchPathsTimeoutsEl { read: core::default::Default::default() }
+        DataServicecatalogLaunchPathsTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

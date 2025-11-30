@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlobalacceleratorCrossAccountAttachmentData {
@@ -59,7 +59,8 @@ impl GlobalacceleratorCrossAccountAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl GlobalacceleratorCrossAccountAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl GlobalacceleratorCrossAccountAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,14 +116,17 @@ impl GlobalacceleratorCrossAccountAttachment {
     }
 
     #[doc = "Set the field `resource`.\n"]
-    pub fn set_resource(self, v: impl Into<BlockAssignable<GlobalacceleratorCrossAccountAttachmentResourceEl>>) -> Self {
+    pub fn set_resource(
+        self,
+        v: impl Into<BlockAssignable<GlobalacceleratorCrossAccountAttachmentResourceEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.resource = Some(d);
-            },
+            }
         }
         self
     }
@@ -124,7 +138,10 @@ impl GlobalacceleratorCrossAccountAttachment {
 
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -134,37 +151,56 @@ impl GlobalacceleratorCrossAccountAttachment {
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principals` after provisioning.\n"]
     pub fn principals(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.principals", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.principals", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GlobalacceleratorCrossAccountAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlobalacceleratorCrossAccountAttachment { }
+impl Resource for GlobalacceleratorCrossAccountAttachment {}
 
 impl ToListMappable for GlobalacceleratorCrossAccountAttachment {
     type O = ListRef<GlobalacceleratorCrossAccountAttachmentRef>;
@@ -197,21 +233,23 @@ pub struct BuildGlobalacceleratorCrossAccountAttachment {
 
 impl BuildGlobalacceleratorCrossAccountAttachment {
     pub fn build(self, stack: &mut Stack) -> GlobalacceleratorCrossAccountAttachment {
-        let out = GlobalacceleratorCrossAccountAttachment(Rc::new(GlobalacceleratorCrossAccountAttachment_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(GlobalacceleratorCrossAccountAttachmentData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                name: self.name,
-                principals: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                resource: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = GlobalacceleratorCrossAccountAttachment(Rc::new(
+            GlobalacceleratorCrossAccountAttachment_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(GlobalacceleratorCrossAccountAttachmentData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    name: self.name,
+                    principals: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    resource: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -224,10 +262,7 @@ pub struct GlobalacceleratorCrossAccountAttachmentRef {
 
 impl Ref for GlobalacceleratorCrossAccountAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -247,7 +282,10 @@ impl GlobalacceleratorCrossAccountAttachmentRef {
 
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -257,27 +295,42 @@ impl GlobalacceleratorCrossAccountAttachmentRef {
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principals` after provisioning.\n"]
     pub fn principals(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.principals", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.principals", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
@@ -341,7 +394,10 @@ pub struct GlobalacceleratorCrossAccountAttachmentResourceElRef {
 }
 
 impl Ref for GlobalacceleratorCrossAccountAttachmentResourceElRef {
-    fn new(shared: StackShared, base: String) -> GlobalacceleratorCrossAccountAttachmentResourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlobalacceleratorCrossAccountAttachmentResourceElRef {
         GlobalacceleratorCrossAccountAttachmentResourceElRef {
             shared: shared,
             base: base.to_string(),

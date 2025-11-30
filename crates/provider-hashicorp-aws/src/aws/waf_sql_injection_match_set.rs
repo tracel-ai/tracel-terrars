@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafSqlInjectionMatchSetData {
@@ -57,7 +57,8 @@ impl WafSqlInjectionMatchSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl WafSqlInjectionMatchSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +82,22 @@ impl WafSqlInjectionMatchSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,10 +115,10 @@ impl WafSqlInjectionMatchSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sql_injection_match_tuples = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sql_injection_match_tuples = Some(d);
-            },
+            }
         }
         self
     }
@@ -124,17 +135,24 @@ impl WafSqlInjectionMatchSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafSqlInjectionMatchSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafSqlInjectionMatchSet { }
+impl Resource for WafSqlInjectionMatchSet {}
 
 impl ToListMappable for WafSqlInjectionMatchSet {
     type O = ListRef<WafSqlInjectionMatchSetRef>;
@@ -193,10 +211,7 @@ pub struct WafSqlInjectionMatchSetRef {
 
 impl Ref for WafSqlInjectionMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -221,7 +236,10 @@ impl WafSqlInjectionMatchSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 }
 
@@ -273,7 +291,10 @@ pub struct WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef {
 }
 
 impl Ref for WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef {
-    fn new(shared: StackShared, base: String) -> WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef {
         WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -299,7 +320,8 @@ impl WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef {
 
 #[derive(Serialize, Default)]
 struct WafSqlInjectionMatchSetSqlInjectionMatchTuplesElDynamic {
-    field_to_match: Option<DynamicBlock<WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchEl>>,
+    field_to_match:
+        Option<DynamicBlock<WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchEl>>,
 }
 
 #[derive(Serialize)]
@@ -319,10 +341,10 @@ impl WafSqlInjectionMatchSetSqlInjectionMatchTuplesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -361,7 +383,10 @@ pub struct WafSqlInjectionMatchSetSqlInjectionMatchTuplesElRef {
 }
 
 impl Ref for WafSqlInjectionMatchSetSqlInjectionMatchTuplesElRef {
-    fn new(shared: StackShared, base: String) -> WafSqlInjectionMatchSetSqlInjectionMatchTuplesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafSqlInjectionMatchSetSqlInjectionMatchTuplesElRef {
         WafSqlInjectionMatchSetSqlInjectionMatchTuplesElRef {
             shared: shared,
             base: base.to_string(),
@@ -376,16 +401,25 @@ impl WafSqlInjectionMatchSetSqlInjectionMatchTuplesElRef {
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
-    pub fn field_to_match(&self) -> ListRef<WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+    pub fn field_to_match(
+        &self,
+    ) -> ListRef<WafSqlInjectionMatchSetSqlInjectionMatchTuplesElFieldToMatchElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct WafSqlInjectionMatchSetDynamic {
-    sql_injection_match_tuples: Option<DynamicBlock<WafSqlInjectionMatchSetSqlInjectionMatchTuplesEl>>,
+    sql_injection_match_tuples:
+        Option<DynamicBlock<WafSqlInjectionMatchSetSqlInjectionMatchTuplesEl>>,
 }

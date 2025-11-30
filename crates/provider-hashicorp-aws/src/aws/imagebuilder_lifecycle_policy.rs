@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ImagebuilderLifecyclePolicyData {
@@ -67,7 +67,8 @@ impl ImagebuilderLifecyclePolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl ImagebuilderLifecyclePolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl ImagebuilderLifecyclePolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl ImagebuilderLifecyclePolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,14 +136,17 @@ impl ImagebuilderLifecyclePolicy {
     }
 
     #[doc = "Set the field `policy_detail`.\n"]
-    pub fn set_policy_detail(self, v: impl Into<BlockAssignable<ImagebuilderLifecyclePolicyPolicyDetailEl>>) -> Self {
+    pub fn set_policy_detail(
+        self,
+        v: impl Into<BlockAssignable<ImagebuilderLifecyclePolicyPolicyDetailEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().policy_detail = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.policy_detail = Some(d);
-            },
+            }
         }
         self
     }
@@ -146,10 +159,10 @@ impl ImagebuilderLifecyclePolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().resource_selection = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.resource_selection = Some(d);
-            },
+            }
         }
         self
     }
@@ -161,12 +174,18 @@ impl ImagebuilderLifecyclePolicy {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -176,48 +195,72 @@ impl ImagebuilderLifecyclePolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_selection` after provisioning.\n"]
     pub fn resource_selection(&self) -> ListRef<ImagebuilderLifecyclePolicyResourceSelectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_selection", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_selection", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ImagebuilderLifecyclePolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ImagebuilderLifecyclePolicy { }
+impl Resource for ImagebuilderLifecyclePolicy {}
 
 impl ToListMappable for ImagebuilderLifecyclePolicy {
     type O = ListRef<ImagebuilderLifecyclePolicyRef>;
@@ -286,10 +329,7 @@ pub struct ImagebuilderLifecyclePolicyRef {
 
 impl Ref for ImagebuilderLifecyclePolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -309,12 +349,18 @@ impl ImagebuilderLifecyclePolicyRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -324,38 +370,58 @@ impl ImagebuilderLifecyclePolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_selection` after provisioning.\n"]
     pub fn resource_selection(&self) -> ListRef<ImagebuilderLifecyclePolicyResourceSelectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_selection", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_selection", self.extract_ref()),
+        )
     }
 }
 
@@ -453,7 +519,8 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesElRef {
 
 #[derive(Serialize, Default)]
 struct ImagebuilderLifecyclePolicyPolicyDetailElActionElDynamic {
-    include_resources: Option<DynamicBlock<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesEl>>,
+    include_resources:
+        Option<DynamicBlock<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesEl>>,
 }
 
 #[derive(Serialize)]
@@ -461,7 +528,8 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElActionEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    include_resources: Option<Vec<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesEl>>,
+    include_resources:
+        Option<Vec<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesEl>>,
     dynamic: ImagebuilderLifecyclePolicyPolicyDetailElActionElDynamic,
 }
 
@@ -469,15 +537,17 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElActionEl {
     #[doc = "Set the field `include_resources`.\n"]
     pub fn set_include_resources(
         mut self,
-        v: impl Into<BlockAssignable<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesEl>>,
+        v: impl Into<
+            BlockAssignable<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.include_resources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.include_resources = Some(d);
-            },
+            }
         }
         self
     }
@@ -516,7 +586,10 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElActionElRef {
 }
 
 impl Ref for ImagebuilderLifecyclePolicyPolicyDetailElActionElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderLifecyclePolicyPolicyDetailElActionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderLifecyclePolicyPolicyDetailElActionElRef {
         ImagebuilderLifecyclePolicyPolicyDetailElActionElRef {
             shared: shared,
             base: base.to_string(),
@@ -535,8 +608,13 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `include_resources` after provisioning.\n"]
-    pub fn include_resources(&self) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.include_resources", self.base))
+    pub fn include_resources(
+        &self,
+    ) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElActionElIncludeResourcesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.include_resources", self.base),
+        )
     }
 }
 
@@ -546,10 +624,14 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLa
     value: PrimField<f64>,
 }
 
-impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl { }
+impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl {}
 
-impl ToListMappable for ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl {
-    type O = BlockAssignable<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl>;
+impl ToListMappable
+    for ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl
+{
+    type O = BlockAssignable<
+        ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -568,7 +650,9 @@ pub struct BuildImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElL
 }
 
 impl BuildImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl {
-    pub fn build(self) -> ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl {
+    pub fn build(
+        self,
+    ) -> ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl {
         ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl {
             unit: self.unit,
             value: self.value,
@@ -627,7 +711,8 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tag_map: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    last_launched: Option<Vec<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl>>,
+    last_launched:
+        Option<Vec<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl>>,
     dynamic: ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElDynamic,
 }
 
@@ -659,15 +744,19 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisEl {
     #[doc = "Set the field `last_launched`.\n"]
     pub fn set_last_launched(
         mut self,
-        v: impl Into<BlockAssignable<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl>>,
+        v: impl Into<
+            BlockAssignable<
+                ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.last_launched = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.last_launched = Some(d);
-            },
+            }
         }
         self
     }
@@ -706,7 +795,10 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
 }
 
 impl Ref for ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
         ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
             shared: shared,
             base: base.to_string(),
@@ -731,7 +823,10 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
 
     #[doc = "Get a reference to the value of field `shared_accounts` after provisioning.\n"]
     pub fn shared_accounts(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.shared_accounts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.shared_accounts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_map` after provisioning.\n"]
@@ -742,8 +837,12 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef {
     #[doc = "Get a reference to the value of field `last_launched` after provisioning.\n"]
     pub fn last_launched(
         &self,
-    ) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.last_launched", self.base))
+    ) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElLastLaunchedElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.last_launched", self.base),
+        )
     }
 }
 
@@ -776,10 +875,10 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.amis = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.amis = Some(d);
-            },
+            }
         }
         self
     }
@@ -815,7 +914,10 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef {
 }
 
 impl Ref for ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef {
         ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef {
             shared: shared,
             base: base.to_string(),
@@ -834,7 +936,9 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef {
     }
 
     #[doc = "Get a reference to the value of field `amis` after provisioning.\n"]
-    pub fn amis(&self) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef> {
+    pub fn amis(
+        &self,
+    ) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElAmisElRef> {
         ListRef::new(self.shared().clone(), format!("{}.amis", self.base))
     }
 }
@@ -900,7 +1004,10 @@ pub struct ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
 }
 
 impl Ref for ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
         ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -915,7 +1022,10 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
 
     #[doc = "Get a reference to the value of field `retain_at_least` after provisioning.\n"]
     pub fn retain_at_least(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retain_at_least", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retain_at_least", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -937,7 +1047,8 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElFilterElRef {
 #[derive(Serialize, Default)]
 struct ImagebuilderLifecyclePolicyPolicyDetailElDynamic {
     action: Option<DynamicBlock<ImagebuilderLifecyclePolicyPolicyDetailElActionEl>>,
-    exclusion_rules: Option<DynamicBlock<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesEl>>,
+    exclusion_rules:
+        Option<DynamicBlock<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesEl>>,
     filter: Option<DynamicBlock<ImagebuilderLifecyclePolicyPolicyDetailElFilterEl>>,
 }
 
@@ -961,10 +1072,10 @@ impl ImagebuilderLifecyclePolicyPolicyDetailEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
@@ -977,10 +1088,10 @@ impl ImagebuilderLifecyclePolicyPolicyDetailEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.exclusion_rules = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.exclusion_rules = Some(d);
-            },
+            }
         }
         self
     }
@@ -993,10 +1104,10 @@ impl ImagebuilderLifecyclePolicyPolicyDetailEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1052,8 +1163,13 @@ impl ImagebuilderLifecyclePolicyPolicyDetailElRef {
     }
 
     #[doc = "Get a reference to the value of field `exclusion_rules` after provisioning.\n"]
-    pub fn exclusion_rules(&self) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.exclusion_rules", self.base))
+    pub fn exclusion_rules(
+        &self,
+    ) -> ListRef<ImagebuilderLifecyclePolicyPolicyDetailElExclusionRulesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.exclusion_rules", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
@@ -1068,7 +1184,7 @@ pub struct ImagebuilderLifecyclePolicyResourceSelectionElRecipeEl {
     semantic_version: PrimField<String>,
 }
 
-impl ImagebuilderLifecyclePolicyResourceSelectionElRecipeEl { }
+impl ImagebuilderLifecyclePolicyResourceSelectionElRecipeEl {}
 
 impl ToListMappable for ImagebuilderLifecyclePolicyResourceSelectionElRecipeEl {
     type O = BlockAssignable<ImagebuilderLifecyclePolicyResourceSelectionElRecipeEl>;
@@ -1104,7 +1220,10 @@ pub struct ImagebuilderLifecyclePolicyResourceSelectionElRecipeElRef {
 }
 
 impl Ref for ImagebuilderLifecyclePolicyResourceSelectionElRecipeElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderLifecyclePolicyResourceSelectionElRecipeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderLifecyclePolicyResourceSelectionElRecipeElRef {
         ImagebuilderLifecyclePolicyResourceSelectionElRecipeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1124,7 +1243,10 @@ impl ImagebuilderLifecyclePolicyResourceSelectionElRecipeElRef {
 
     #[doc = "Get a reference to the value of field `semantic_version` after provisioning.\n"]
     pub fn semantic_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.semantic_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.semantic_version", self.base),
+        )
     }
 }
 
@@ -1157,10 +1279,10 @@ impl ImagebuilderLifecyclePolicyResourceSelectionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.recipe = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.recipe = Some(d);
-            },
+            }
         }
         self
     }

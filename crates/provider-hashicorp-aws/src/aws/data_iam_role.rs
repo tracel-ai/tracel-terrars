@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamRoleData {
@@ -62,17 +62,26 @@ impl DataIamRole {
 
     #[doc = "Get a reference to the value of field `assume_role_policy` after provisioning.\n"]
     pub fn assume_role_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assume_role_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assume_role_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -82,47 +91,72 @@ impl DataIamRole {
 
     #[doc = "Get a reference to the value of field `max_session_duration` after provisioning.\n"]
     pub fn max_session_duration(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_session_duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_session_duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permissions_boundary` after provisioning.\n"]
     pub fn permissions_boundary(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permissions_boundary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permissions_boundary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_last_used` after provisioning.\n"]
     pub fn role_last_used(&self) -> ListRef<DataIamRoleRoleLastUsedElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.role_last_used", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.role_last_used", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unique_id` after provisioning.\n"]
     pub fn unique_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unique_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unique_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamRole {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamRole { }
+impl Datasource for DataIamRole {}
 
 impl ToListMappable for DataIamRole {
     type O = ListRef<DataIamRoleRef>;
@@ -179,10 +213,7 @@ pub struct DataIamRoleRef {
 
 impl Ref for DataIamRoleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -202,17 +233,26 @@ impl DataIamRoleRef {
 
     #[doc = "Get a reference to the value of field `assume_role_policy` after provisioning.\n"]
     pub fn assume_role_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assume_role_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assume_role_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -222,37 +262,58 @@ impl DataIamRoleRef {
 
     #[doc = "Get a reference to the value of field `max_session_duration` after provisioning.\n"]
     pub fn max_session_duration(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_session_duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_session_duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permissions_boundary` after provisioning.\n"]
     pub fn permissions_boundary(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permissions_boundary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permissions_boundary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_last_used` after provisioning.\n"]
     pub fn role_last_used(&self) -> ListRef<DataIamRoleRoleLastUsedElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.role_last_used", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.role_last_used", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unique_id` after provisioning.\n"]
     pub fn unique_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unique_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unique_id", self.extract_ref()),
+        )
     }
 }
 
@@ -322,7 +383,10 @@ impl DataIamRoleRoleLastUsedElRef {
 
     #[doc = "Get a reference to the value of field `last_used_date` after provisioning.\n"]
     pub fn last_used_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_used_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_used_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]

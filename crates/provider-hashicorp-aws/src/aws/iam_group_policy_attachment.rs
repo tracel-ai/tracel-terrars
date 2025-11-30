@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IamGroupPolicyAttachmentData {
@@ -55,7 +55,8 @@ impl IamGroupPolicyAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -68,7 +69,7 @@ impl IamGroupPolicyAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -79,12 +80,22 @@ impl IamGroupPolicyAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -96,7 +107,10 @@ impl IamGroupPolicyAttachment {
 
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
     pub fn group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,17 +120,24 @@ impl IamGroupPolicyAttachment {
 
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_arn", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IamGroupPolicyAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IamGroupPolicyAttachment { }
+impl Resource for IamGroupPolicyAttachment {}
 
 impl ToListMappable for IamGroupPolicyAttachment {
     type O = ListRef<IamGroupPolicyAttachmentRef>;
@@ -176,10 +197,7 @@ pub struct IamGroupPolicyAttachmentRef {
 
 impl Ref for IamGroupPolicyAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -194,7 +212,10 @@ impl IamGroupPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
     pub fn group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -204,6 +225,9 @@ impl IamGroupPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_arn", self.extract_ref()),
+        )
     }
 }

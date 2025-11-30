@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataKmsPublicKeyData {
@@ -57,8 +57,7 @@ impl DataKmsPublicKey {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,17 +70,26 @@ impl DataKmsPublicKey {
 
     #[doc = "Get a reference to the value of field `customer_master_key_spec` after provisioning.\n"]
     pub fn customer_master_key_spec(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_master_key_spec", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_master_key_spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_algorithms` after provisioning.\n"]
     pub fn encryption_algorithms(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_algorithms", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_tokens` after provisioning.\n"]
     pub fn grant_tokens(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.grant_tokens", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.grant_tokens", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,43 +99,64 @@ impl DataKmsPublicKey {
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_usage` after provisioning.\n"]
     pub fn key_usage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_usage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_usage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_key_pem` after provisioning.\n"]
     pub fn public_key_pem(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key_pem", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key_pem", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithms` after provisioning.\n"]
     pub fn signing_algorithms(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.signing_algorithms", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithms", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataKmsPublicKey {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataKmsPublicKey { }
+impl Datasource for DataKmsPublicKey {}
 
 impl ToListMappable for DataKmsPublicKey {
     type O = ListRef<DataKmsPublicKeyRef>;
@@ -185,10 +214,7 @@ pub struct DataKmsPublicKeyRef {
 
 impl Ref for DataKmsPublicKeyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -208,17 +234,26 @@ impl DataKmsPublicKeyRef {
 
     #[doc = "Get a reference to the value of field `customer_master_key_spec` after provisioning.\n"]
     pub fn customer_master_key_spec(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_master_key_spec", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_master_key_spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_algorithms` after provisioning.\n"]
     pub fn encryption_algorithms(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_algorithms", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_tokens` after provisioning.\n"]
     pub fn grant_tokens(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.grant_tokens", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.grant_tokens", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -228,32 +263,49 @@ impl DataKmsPublicKeyRef {
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_usage` after provisioning.\n"]
     pub fn key_usage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_usage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_usage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_key_pem` after provisioning.\n"]
     pub fn public_key_pem(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key_pem", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key_pem", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithms` after provisioning.\n"]
     pub fn signing_algorithms(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.signing_algorithms", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithms", self.extract_ref()),
+        )
     }
 }

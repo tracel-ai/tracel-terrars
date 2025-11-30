@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SagemakerFlowDefinitionData {
@@ -70,7 +70,8 @@ impl SagemakerFlowDefinition {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -83,7 +84,7 @@ impl SagemakerFlowDefinition {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -94,12 +95,22 @@ impl SagemakerFlowDefinition {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -109,8 +120,7 @@ impl SagemakerFlowDefinition {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -136,23 +146,30 @@ impl SagemakerFlowDefinition {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().human_loop_activation_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.human_loop_activation_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .human_loop_activation_config = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `human_loop_config`.\n"]
-    pub fn set_human_loop_config(self, v: impl Into<BlockAssignable<SagemakerFlowDefinitionHumanLoopConfigEl>>) -> Self {
+    pub fn set_human_loop_config(
+        self,
+        v: impl Into<BlockAssignable<SagemakerFlowDefinitionHumanLoopConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().human_loop_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.human_loop_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -165,23 +182,26 @@ impl SagemakerFlowDefinition {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().human_loop_request_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.human_loop_request_source = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `output_config`.\n"]
-    pub fn set_output_config(self, v: impl Into<BlockAssignable<SagemakerFlowDefinitionOutputConfigEl>>) -> Self {
+    pub fn set_output_config(
+        self,
+        v: impl Into<BlockAssignable<SagemakerFlowDefinitionOutputConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().output_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.output_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -193,7 +213,10 @@ impl SagemakerFlowDefinition {
 
     #[doc = "Get a reference to the value of field `flow_definition_name` after provisioning.\n"]
     pub fn flow_definition_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_definition_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_definition_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -201,55 +224,86 @@ impl SagemakerFlowDefinition {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `human_loop_activation_config` after provisioning.\n"]
-    pub fn human_loop_activation_config(&self) -> ListRef<SagemakerFlowDefinitionHumanLoopActivationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_activation_config", self.extract_ref()))
+    pub fn human_loop_activation_config(
+        &self,
+    ) -> ListRef<SagemakerFlowDefinitionHumanLoopActivationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_activation_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `human_loop_config` after provisioning.\n"]
     pub fn human_loop_config(&self) -> ListRef<SagemakerFlowDefinitionHumanLoopConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `human_loop_request_source` after provisioning.\n"]
-    pub fn human_loop_request_source(&self) -> ListRef<SagemakerFlowDefinitionHumanLoopRequestSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_request_source", self.extract_ref()))
+    pub fn human_loop_request_source(
+        &self,
+    ) -> ListRef<SagemakerFlowDefinitionHumanLoopRequestSourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_request_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_config` after provisioning.\n"]
     pub fn output_config(&self) -> ListRef<SagemakerFlowDefinitionOutputConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SagemakerFlowDefinition {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SagemakerFlowDefinition { }
+impl Resource for SagemakerFlowDefinition {}
 
 impl ToListMappable for SagemakerFlowDefinition {
     type O = ListRef<SagemakerFlowDefinitionRef>;
@@ -317,10 +371,7 @@ pub struct SagemakerFlowDefinitionRef {
 
 impl Ref for SagemakerFlowDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -340,7 +391,10 @@ impl SagemakerFlowDefinitionRef {
 
     #[doc = "Get a reference to the value of field `flow_definition_name` after provisioning.\n"]
     pub fn flow_definition_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_definition_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_definition_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -348,45 +402,72 @@ impl SagemakerFlowDefinitionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `human_loop_activation_config` after provisioning.\n"]
-    pub fn human_loop_activation_config(&self) -> ListRef<SagemakerFlowDefinitionHumanLoopActivationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_activation_config", self.extract_ref()))
+    pub fn human_loop_activation_config(
+        &self,
+    ) -> ListRef<SagemakerFlowDefinitionHumanLoopActivationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_activation_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `human_loop_config` after provisioning.\n"]
     pub fn human_loop_config(&self) -> ListRef<SagemakerFlowDefinitionHumanLoopConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `human_loop_request_source` after provisioning.\n"]
-    pub fn human_loop_request_source(&self) -> ListRef<SagemakerFlowDefinitionHumanLoopRequestSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_request_source", self.extract_ref()))
+    pub fn human_loop_request_source(
+        &self,
+    ) -> ListRef<SagemakerFlowDefinitionHumanLoopRequestSourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_request_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_config` after provisioning.\n"]
     pub fn output_config(&self) -> ListRef<SagemakerFlowDefinitionOutputConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_config", self.extract_ref()),
+        )
     }
 }
 
@@ -395,11 +476,14 @@ pub struct SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivation
     human_loop_activation_conditions: PrimField<String>,
 }
 
-impl SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl { }
+impl SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl {}
 
-impl ToListMappable for SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl {
-    type O =
-        BlockAssignable<SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl>;
+impl ToListMappable
+    for SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl
+{
+    type O = BlockAssignable<
+        SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -410,29 +494,37 @@ impl ToListMappable for SagemakerFlowDefinitionHumanLoopActivationConfigElHumanL
     }
 }
 
-pub struct BuildSagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl {
+pub struct BuildSagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl
+{
     #[doc = ""]
     pub human_loop_activation_conditions: PrimField<String>,
 }
 
 impl BuildSagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl {
-    pub fn build(self) -> SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl {
+    pub fn build(
+        self,
+    ) -> SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl
+    {
         SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl {
             human_loop_activation_conditions: self.human_loop_activation_conditions,
         }
     }
 }
 
-pub struct SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef {
+pub struct SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef {
+impl Ref
+    for SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef {
+    ) -> SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef
+    {
         SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -447,14 +539,19 @@ impl SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationCondit
 
     #[doc = "Get a reference to the value of field `human_loop_activation_conditions` after provisioning.\n"]
     pub fn human_loop_activation_conditions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.human_loop_activation_conditions", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.human_loop_activation_conditions", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerFlowDefinitionHumanLoopActivationConfigElDynamic {
     human_loop_activation_conditions_config: Option<
-        DynamicBlock<SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl>,
+        DynamicBlock<
+            SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl,
+        >,
     >,
 }
 
@@ -462,7 +559,9 @@ struct SagemakerFlowDefinitionHumanLoopActivationConfigElDynamic {
 pub struct SagemakerFlowDefinitionHumanLoopActivationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     human_loop_activation_conditions_config: Option<
-        Vec<SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl>,
+        Vec<
+            SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigEl,
+        >,
     >,
     dynamic: SagemakerFlowDefinitionHumanLoopActivationConfigElDynamic,
 }
@@ -483,10 +582,10 @@ impl SagemakerFlowDefinitionHumanLoopActivationConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.human_loop_activation_conditions_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.human_loop_activation_conditions_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -521,7 +620,10 @@ pub struct SagemakerFlowDefinitionHumanLoopActivationConfigElRef {
 }
 
 impl Ref for SagemakerFlowDefinitionHumanLoopActivationConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFlowDefinitionHumanLoopActivationConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFlowDefinitionHumanLoopActivationConfigElRef {
         SagemakerFlowDefinitionHumanLoopActivationConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -537,8 +639,13 @@ impl SagemakerFlowDefinitionHumanLoopActivationConfigElRef {
     #[doc = "Get a reference to the value of field `human_loop_activation_conditions_config` after provisioning.\n"]
     pub fn human_loop_activation_conditions_config(
         &self,
-    ) -> ListRef<SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.human_loop_activation_conditions_config", self.base))
+    ) -> ListRef<
+        SagemakerFlowDefinitionHumanLoopActivationConfigElHumanLoopActivationConditionsConfigElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.human_loop_activation_conditions_config", self.base),
+        )
     }
 }
 
@@ -572,8 +679,12 @@ impl SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInU
     }
 }
 
-impl ToListMappable for SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl {
-    type O = BlockAssignable<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl>;
+impl ToListMappable
+    for SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl
+{
+    type O = BlockAssignable<
+        SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -587,7 +698,9 @@ impl ToListMappable for SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceT
 pub struct BuildSagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl {}
 
 impl BuildSagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl {
-    pub fn build(self) -> SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl {
+    pub fn build(
+        self,
+    ) -> SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl {
         SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl {
             cents: core::default::Default::default(),
             dollars: core::default::Default::default(),
@@ -630,21 +743,28 @@ impl SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInU
 
     #[doc = "Get a reference to the value of field `tenth_fractions_of_a_cent` after provisioning.\n"]
     pub fn tenth_fractions_of_a_cent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tenth_fractions_of_a_cent", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tenth_fractions_of_a_cent", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElDynamic {
     amount_in_usd: Option<
-        DynamicBlock<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl>,
+        DynamicBlock<
+            SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    amount_in_usd: Option<Vec<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl>>,
+    amount_in_usd: Option<
+        Vec<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl>,
+    >,
     dynamic: SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElDynamic,
 }
 
@@ -652,22 +772,19 @@ impl SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl {
     #[doc = "Set the field `amount_in_usd`.\n"]
     pub fn set_amount_in_usd(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.amount_in_usd = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.amount_in_usd = Some(d);
-            },
+            }
         }
         self
     }
@@ -721,16 +838,19 @@ impl SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElRef {
     #[doc = "Get a reference to the value of field `amount_in_usd` after provisioning.\n"]
     pub fn amount_in_usd(
         &self,
-    ) -> ListRef<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.amount_in_usd", self.base))
+    ) -> ListRef<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElAmountInUsdElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.amount_in_usd", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerFlowDefinitionHumanLoopConfigElDynamic {
-    public_workforce_task_price: Option<
-        DynamicBlock<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl>,
-    >,
+    public_workforce_task_price:
+        Option<DynamicBlock<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl>>,
 }
 
 #[derive(Serialize)]
@@ -747,13 +867,17 @@ pub struct SagemakerFlowDefinitionHumanLoopConfigEl {
     task_title: PrimField<String>,
     workteam_arn: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    public_workforce_task_price: Option<Vec<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl>>,
+    public_workforce_task_price:
+        Option<Vec<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl>>,
     dynamic: SagemakerFlowDefinitionHumanLoopConfigElDynamic,
 }
 
 impl SagemakerFlowDefinitionHumanLoopConfigEl {
     #[doc = "Set the field `task_availability_lifetime_in_seconds`.\n"]
-    pub fn set_task_availability_lifetime_in_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_task_availability_lifetime_in_seconds(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.task_availability_lifetime_in_seconds = Some(v.into());
         self
     }
@@ -773,15 +897,17 @@ impl SagemakerFlowDefinitionHumanLoopConfigEl {
     #[doc = "Set the field `public_workforce_task_price`.\n"]
     pub fn set_public_workforce_task_price(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.public_workforce_task_price = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.public_workforce_task_price = Some(d);
-            },
+            }
         }
         self
     }
@@ -850,12 +976,18 @@ impl SagemakerFlowDefinitionHumanLoopConfigElRef {
 
     #[doc = "Get a reference to the value of field `human_task_ui_arn` after provisioning.\n"]
     pub fn human_task_ui_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.human_task_ui_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.human_task_ui_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_availability_lifetime_in_seconds` after provisioning.\n"]
     pub fn task_availability_lifetime_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_availability_lifetime_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_availability_lifetime_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_count` after provisioning.\n"]
@@ -865,17 +997,26 @@ impl SagemakerFlowDefinitionHumanLoopConfigElRef {
 
     #[doc = "Get a reference to the value of field `task_description` after provisioning.\n"]
     pub fn task_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_description", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_description", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_keywords` after provisioning.\n"]
     pub fn task_keywords(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.task_keywords", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.task_keywords", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_time_limit_in_seconds` after provisioning.\n"]
     pub fn task_time_limit_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_time_limit_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_time_limit_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_title` after provisioning.\n"]
@@ -892,7 +1033,10 @@ impl SagemakerFlowDefinitionHumanLoopConfigElRef {
     pub fn public_workforce_task_price(
         &self,
     ) -> ListRef<SagemakerFlowDefinitionHumanLoopConfigElPublicWorkforceTaskPriceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.public_workforce_task_price", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.public_workforce_task_price", self.base),
+        )
     }
 }
 
@@ -901,7 +1045,7 @@ pub struct SagemakerFlowDefinitionHumanLoopRequestSourceEl {
     aws_managed_human_loop_request_source: PrimField<String>,
 }
 
-impl SagemakerFlowDefinitionHumanLoopRequestSourceEl { }
+impl SagemakerFlowDefinitionHumanLoopRequestSourceEl {}
 
 impl ToListMappable for SagemakerFlowDefinitionHumanLoopRequestSourceEl {
     type O = BlockAssignable<SagemakerFlowDefinitionHumanLoopRequestSourceEl>;
@@ -934,7 +1078,10 @@ pub struct SagemakerFlowDefinitionHumanLoopRequestSourceElRef {
 }
 
 impl Ref for SagemakerFlowDefinitionHumanLoopRequestSourceElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerFlowDefinitionHumanLoopRequestSourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerFlowDefinitionHumanLoopRequestSourceElRef {
         SagemakerFlowDefinitionHumanLoopRequestSourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -949,7 +1096,10 @@ impl SagemakerFlowDefinitionHumanLoopRequestSourceElRef {
 
     #[doc = "Get a reference to the value of field `aws_managed_human_loop_request_source` after provisioning.\n"]
     pub fn aws_managed_human_loop_request_source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_managed_human_loop_request_source", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_managed_human_loop_request_source", self.base),
+        )
     }
 }
 
@@ -1020,14 +1170,19 @@ impl SagemakerFlowDefinitionOutputConfigElRef {
 
     #[doc = "Get a reference to the value of field `s3_output_path` after provisioning.\n"]
     pub fn s3_output_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_output_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_output_path", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerFlowDefinitionDynamic {
-    human_loop_activation_config: Option<DynamicBlock<SagemakerFlowDefinitionHumanLoopActivationConfigEl>>,
+    human_loop_activation_config:
+        Option<DynamicBlock<SagemakerFlowDefinitionHumanLoopActivationConfigEl>>,
     human_loop_config: Option<DynamicBlock<SagemakerFlowDefinitionHumanLoopConfigEl>>,
-    human_loop_request_source: Option<DynamicBlock<SagemakerFlowDefinitionHumanLoopRequestSourceEl>>,
+    human_loop_request_source:
+        Option<DynamicBlock<SagemakerFlowDefinitionHumanLoopRequestSourceEl>>,
     output_config: Option<DynamicBlock<SagemakerFlowDefinitionOutputConfigEl>>,
 }

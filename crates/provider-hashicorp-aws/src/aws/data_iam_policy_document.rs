@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamPolicyDocumentData {
@@ -98,14 +98,17 @@ impl DataIamPolicyDocument {
     }
 
     #[doc = "Set the field `statement`.\n"]
-    pub fn set_statement(self, v: impl Into<BlockAssignable<DataIamPolicyDocumentStatementEl>>) -> Self {
+    pub fn set_statement(
+        self,
+        v: impl Into<BlockAssignable<DataIamPolicyDocumentStatementEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().statement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.statement = Some(d);
-            },
+            }
         }
         self
     }
@@ -117,57 +120,88 @@ impl DataIamPolicyDocument {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minified_json` after provisioning.\n"]
     pub fn minified_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minified_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minified_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_json` after provisioning.\n"]
     pub fn override_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.override_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.override_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_policy_documents` after provisioning.\n"]
     pub fn override_policy_documents(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.override_policy_documents", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.override_policy_documents", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_json` after provisioning.\n"]
     pub fn source_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_policy_documents` after provisioning.\n"]
     pub fn source_policy_documents(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.source_policy_documents", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_policy_documents", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statement` after provisioning.\n"]
     pub fn statement(&self) -> ListRef<DataIamPolicyDocumentStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.statement", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamPolicyDocument {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamPolicyDocument { }
+impl Datasource for DataIamPolicyDocument {}
 
 impl ToListMappable for DataIamPolicyDocument {
     type O = ListRef<DataIamPolicyDocumentRef>;
@@ -228,10 +262,7 @@ pub struct DataIamPolicyDocumentRef {
 
 impl Ref for DataIamPolicyDocumentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -251,47 +282,74 @@ impl DataIamPolicyDocumentRef {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minified_json` after provisioning.\n"]
     pub fn minified_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minified_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minified_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_json` after provisioning.\n"]
     pub fn override_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.override_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.override_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_policy_documents` after provisioning.\n"]
     pub fn override_policy_documents(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.override_policy_documents", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.override_policy_documents", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_json` after provisioning.\n"]
     pub fn source_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_policy_documents` after provisioning.\n"]
     pub fn source_policy_documents(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.source_policy_documents", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_policy_documents", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statement` after provisioning.\n"]
     pub fn statement(&self) -> ListRef<DataIamPolicyDocumentStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.statement", self.extract_ref()),
+        )
     }
 }
 
@@ -302,7 +360,7 @@ pub struct DataIamPolicyDocumentStatementElConditionEl {
     variable: PrimField<String>,
 }
 
-impl DataIamPolicyDocumentStatementElConditionEl { }
+impl DataIamPolicyDocumentStatementElConditionEl {}
 
 impl ToListMappable for DataIamPolicyDocumentStatementElConditionEl {
     type O = BlockAssignable<DataIamPolicyDocumentStatementElConditionEl>;
@@ -377,7 +435,7 @@ pub struct DataIamPolicyDocumentStatementElNotPrincipalsEl {
     type_: PrimField<String>,
 }
 
-impl DataIamPolicyDocumentStatementElNotPrincipalsEl { }
+impl DataIamPolicyDocumentStatementElNotPrincipalsEl {}
 
 impl ToListMappable for DataIamPolicyDocumentStatementElNotPrincipalsEl {
     type O = BlockAssignable<DataIamPolicyDocumentStatementElNotPrincipalsEl>;
@@ -413,7 +471,10 @@ pub struct DataIamPolicyDocumentStatementElNotPrincipalsElRef {
 }
 
 impl Ref for DataIamPolicyDocumentStatementElNotPrincipalsElRef {
-    fn new(shared: StackShared, base: String) -> DataIamPolicyDocumentStatementElNotPrincipalsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataIamPolicyDocumentStatementElNotPrincipalsElRef {
         DataIamPolicyDocumentStatementElNotPrincipalsElRef {
             shared: shared,
             base: base.to_string(),
@@ -444,7 +505,7 @@ pub struct DataIamPolicyDocumentStatementElPrincipalsEl {
     type_: PrimField<String>,
 }
 
-impl DataIamPolicyDocumentStatementElPrincipalsEl { }
+impl DataIamPolicyDocumentStatementElPrincipalsEl {}
 
 impl ToListMappable for DataIamPolicyDocumentStatementElPrincipalsEl {
     type O = BlockAssignable<DataIamPolicyDocumentStatementElPrincipalsEl>;
@@ -572,14 +633,17 @@ impl DataIamPolicyDocumentStatementEl {
     }
 
     #[doc = "Set the field `condition`.\n"]
-    pub fn set_condition(mut self, v: impl Into<BlockAssignable<DataIamPolicyDocumentStatementElConditionEl>>) -> Self {
+    pub fn set_condition(
+        mut self,
+        v: impl Into<BlockAssignable<DataIamPolicyDocumentStatementElConditionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -592,10 +656,10 @@ impl DataIamPolicyDocumentStatementEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.not_principals = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.not_principals = Some(d);
-            },
+            }
         }
         self
     }
@@ -608,10 +672,10 @@ impl DataIamPolicyDocumentStatementEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.principals = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.principals = Some(d);
-            },
+            }
         }
         self
     }
@@ -684,7 +748,10 @@ impl DataIamPolicyDocumentStatementElRef {
 
     #[doc = "Get a reference to the value of field `not_resources` after provisioning.\n"]
     pub fn not_resources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.not_resources", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.not_resources", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]

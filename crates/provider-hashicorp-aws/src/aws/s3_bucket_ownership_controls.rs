@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketOwnershipControlsData {
@@ -59,7 +59,8 @@ impl S3BucketOwnershipControls {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl S3BucketOwnershipControls {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl S3BucketOwnershipControls {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,8 +109,7 @@ impl S3BucketOwnershipControls {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -110,17 +120,20 @@ impl S3BucketOwnershipControls {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -128,25 +141,34 @@ impl S3BucketOwnershipControls {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketOwnershipControlsRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketOwnershipControls {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketOwnershipControls { }
+impl Resource for S3BucketOwnershipControls {}
 
 impl ToListMappable for S3BucketOwnershipControls {
     type O = ListRef<S3BucketOwnershipControlsRef>;
@@ -206,10 +228,7 @@ pub struct S3BucketOwnershipControlsRef {
 
 impl Ref for S3BucketOwnershipControlsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -224,7 +243,10 @@ impl S3BucketOwnershipControlsRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -232,15 +254,20 @@ impl S3BucketOwnershipControlsRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketOwnershipControlsRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 }
 
@@ -249,7 +276,7 @@ pub struct S3BucketOwnershipControlsRuleEl {
     object_ownership: PrimField<String>,
 }
 
-impl S3BucketOwnershipControlsRuleEl { }
+impl S3BucketOwnershipControlsRuleEl {}
 
 impl ToListMappable for S3BucketOwnershipControlsRuleEl {
     type O = BlockAssignable<S3BucketOwnershipControlsRuleEl>;
@@ -270,7 +297,9 @@ pub struct BuildS3BucketOwnershipControlsRuleEl {
 
 impl BuildS3BucketOwnershipControlsRuleEl {
     pub fn build(self) -> S3BucketOwnershipControlsRuleEl {
-        S3BucketOwnershipControlsRuleEl { object_ownership: self.object_ownership }
+        S3BucketOwnershipControlsRuleEl {
+            object_ownership: self.object_ownership,
+        }
     }
 }
 
@@ -295,7 +324,10 @@ impl S3BucketOwnershipControlsRuleElRef {
 
     #[doc = "Get a reference to the value of field `object_ownership` after provisioning.\n"]
     pub fn object_ownership(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_ownership", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_ownership", self.base),
+        )
     }
 }
 

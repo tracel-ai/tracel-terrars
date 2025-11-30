@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AutoscalingplansScalingPlanData {
@@ -61,7 +61,8 @@ impl AutoscalingplansScalingPlan {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl AutoscalingplansScalingPlan {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl AutoscalingplansScalingPlan {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,8 +111,7 @@ impl AutoscalingplansScalingPlan {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -115,10 +125,10 @@ impl AutoscalingplansScalingPlan {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().application_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.application_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -131,10 +141,10 @@ impl AutoscalingplansScalingPlan {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scaling_instruction = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scaling_instruction = Some(d);
-            },
+            }
         }
         self
     }
@@ -146,33 +156,48 @@ impl AutoscalingplansScalingPlan {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_plan_version` after provisioning.\n"]
     pub fn scaling_plan_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_plan_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_plan_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_source` after provisioning.\n"]
     pub fn application_source(&self) -> ListRef<AutoscalingplansScalingPlanApplicationSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_source", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AutoscalingplansScalingPlan {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AutoscalingplansScalingPlan { }
+impl Resource for AutoscalingplansScalingPlan {}
 
 impl ToListMappable for AutoscalingplansScalingPlan {
     type O = ListRef<AutoscalingplansScalingPlanRef>;
@@ -233,10 +258,7 @@ pub struct AutoscalingplansScalingPlanRef {
 
 impl Ref for AutoscalingplansScalingPlanRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -256,23 +278,34 @@ impl AutoscalingplansScalingPlanRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_plan_version` after provisioning.\n"]
     pub fn scaling_plan_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_plan_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_plan_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_source` after provisioning.\n"]
     pub fn application_source(&self) -> ListRef<AutoscalingplansScalingPlanApplicationSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_source", self.extract_ref()),
+        )
     }
 }
 
@@ -323,7 +356,10 @@ pub struct AutoscalingplansScalingPlanApplicationSourceElTagFilterElRef {
 }
 
 impl Ref for AutoscalingplansScalingPlanApplicationSourceElTagFilterElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingplansScalingPlanApplicationSourceElTagFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingplansScalingPlanApplicationSourceElTagFilterElRef {
         AutoscalingplansScalingPlanApplicationSourceElTagFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -376,10 +412,10 @@ impl AutoscalingplansScalingPlanApplicationSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -430,7 +466,10 @@ impl AutoscalingplansScalingPlanApplicationSourceElRef {
 
     #[doc = "Get a reference to the value of field `cloudformation_stack_arn` after provisioning.\n"]
     pub fn cloudformation_stack_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudformation_stack_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudformation_stack_arn", self.base),
+        )
     }
 }
 
@@ -459,8 +498,12 @@ impl AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecific
     }
 }
 
-impl ToListMappable for AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl {
-    type O = BlockAssignable<AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl>;
+impl ToListMappable
+    for AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl
+{
+    type O = BlockAssignable<
+        AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -481,7 +524,9 @@ pub struct BuildAutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMet
 }
 
 impl BuildAutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl {
-    pub fn build(self) -> AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl {
         AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl {
             dimensions: core::default::Default::default(),
             metric_name: self.metric_name,
@@ -555,8 +600,12 @@ impl AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecific
     }
 }
 
-impl ToListMappable for AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl {
-    type O = BlockAssignable<AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl>;
+impl ToListMappable
+    for AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl
+{
+    type O = BlockAssignable<
+        AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -573,7 +622,9 @@ pub struct BuildAutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMet
 }
 
 impl BuildAutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl {
-    pub fn build(self) -> AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl {
         AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl {
             predefined_load_metric_type: self.predefined_load_metric_type,
             resource_label: core::default::Default::default(),
@@ -605,17 +656,24 @@ impl AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecific
 
     #[doc = "Get a reference to the value of field `predefined_load_metric_type` after provisioning.\n"]
     pub fn predefined_load_metric_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predefined_load_metric_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predefined_load_metric_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_label` after provisioning.\n"]
     pub fn resource_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_label", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_label", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationEl {
+pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     dimensions: Option<RecField<PrimField<String>>>,
     metric_name: PrimField<String>,
@@ -654,7 +712,8 @@ impl ToListMappable for AutoscalingplansScalingPlanScalingInstructionElTargetTra
     }
 }
 
-pub struct BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationEl {
+pub struct BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationEl
+{
     #[doc = ""]
     pub metric_name: PrimField<String>,
     #[doc = ""]
@@ -677,7 +736,8 @@ impl BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigura
     }
 }
 
-pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationElRef {
+pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -726,7 +786,8 @@ impl AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationE
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationEl {
+pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationEl
+{
     predefined_scaling_metric_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_label: Option<PrimField<String>>,
@@ -755,7 +816,8 @@ impl ToListMappable for AutoscalingplansScalingPlanScalingInstructionElTargetTra
     }
 }
 
-pub struct BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationEl {
+pub struct BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationEl
+{
     #[doc = ""]
     pub predefined_scaling_metric_type: PrimField<String>,
 }
@@ -771,7 +833,8 @@ impl BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigura
     }
 }
 
-pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationElRef {
+pub struct AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -884,10 +947,10 @@ impl AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.customized_scaling_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.customized_scaling_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -907,17 +970,21 @@ impl AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.predefined_scaling_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.predefined_scaling_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl {
-    type O = BlockAssignable<AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl>;
+impl ToListMappable
+    for AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl
+{
+    type O = BlockAssignable<
+        AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -934,7 +1001,9 @@ pub struct BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingCon
 }
 
 impl BuildAutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl {
-    pub fn build(self) -> AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl {
         AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl {
             disable_scale_in: core::default::Default::default(),
             estimated_instance_warmup: core::default::Default::default(),
@@ -972,22 +1041,34 @@ impl AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationE
 
     #[doc = "Get a reference to the value of field `disable_scale_in` after provisioning.\n"]
     pub fn disable_scale_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_scale_in", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_scale_in", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `estimated_instance_warmup` after provisioning.\n"]
     pub fn estimated_instance_warmup(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_instance_warmup", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_instance_warmup", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_in_cooldown` after provisioning.\n"]
     pub fn scale_in_cooldown(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_in_cooldown", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_in_cooldown", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_out_cooldown` after provisioning.\n"]
     pub fn scale_out_cooldown(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_out_cooldown", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_out_cooldown", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_value` after provisioning.\n"]
@@ -1000,8 +1081,11 @@ impl AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationE
         &self,
     ) -> ListRef<
         AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElCustomizedScalingMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.customized_scaling_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customized_scaling_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predefined_scaling_metric_specification` after provisioning.\n"]
@@ -1009,18 +1093,25 @@ impl AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationE
         &self,
     ) -> ListRef<
         AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationElPredefinedScalingMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.predefined_scaling_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predefined_scaling_metric_specification", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AutoscalingplansScalingPlanScalingInstructionElDynamic {
     customized_load_metric_specification: Option<
-        DynamicBlock<AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl>,
+        DynamicBlock<
+            AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl,
+        >,
     >,
     predefined_load_metric_specification: Option<
-        DynamicBlock<AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl>,
+        DynamicBlock<
+            AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl,
+        >,
     >,
     target_tracking_configuration: Option<
         DynamicBlock<AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl>,
@@ -1055,9 +1146,8 @@ pub struct AutoscalingplansScalingPlanScalingInstructionEl {
         Vec<AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    target_tracking_configuration: Option<
-        Vec<AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl>,
-    >,
+    target_tracking_configuration:
+        Option<Vec<AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl>>,
     dynamic: AutoscalingplansScalingPlanScalingInstructionElDynamic,
 }
 
@@ -1069,13 +1159,19 @@ impl AutoscalingplansScalingPlanScalingInstructionEl {
     }
 
     #[doc = "Set the field `predictive_scaling_max_capacity_behavior`.\n"]
-    pub fn set_predictive_scaling_max_capacity_behavior(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_predictive_scaling_max_capacity_behavior(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.predictive_scaling_max_capacity_behavior = Some(v.into());
         self
     }
 
     #[doc = "Set the field `predictive_scaling_max_capacity_buffer`.\n"]
-    pub fn set_predictive_scaling_max_capacity_buffer(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_predictive_scaling_max_capacity_buffer(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.predictive_scaling_max_capacity_buffer = Some(v.into());
         self
     }
@@ -1101,22 +1197,19 @@ impl AutoscalingplansScalingPlanScalingInstructionEl {
     #[doc = "Set the field `customized_load_metric_specification`.\n"]
     pub fn set_customized_load_metric_specification(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.customized_load_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.customized_load_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -1124,22 +1217,19 @@ impl AutoscalingplansScalingPlanScalingInstructionEl {
     #[doc = "Set the field `predefined_load_metric_specification`.\n"]
     pub fn set_predefined_load_metric_specification(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.predefined_load_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.predefined_load_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -1147,15 +1237,19 @@ impl AutoscalingplansScalingPlanScalingInstructionEl {
     #[doc = "Set the field `target_tracking_configuration`.\n"]
     pub fn set_target_tracking_configuration(
         mut self,
-        v: impl Into<BlockAssignable<AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingplansScalingPlanScalingInstructionElTargetTrackingConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_tracking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_tracking_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1214,7 +1308,10 @@ pub struct AutoscalingplansScalingPlanScalingInstructionElRef {
 }
 
 impl Ref for AutoscalingplansScalingPlanScalingInstructionElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingplansScalingPlanScalingInstructionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingplansScalingPlanScalingInstructionElRef {
         AutoscalingplansScalingPlanScalingInstructionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1229,7 +1326,10 @@ impl AutoscalingplansScalingPlanScalingInstructionElRef {
 
     #[doc = "Get a reference to the value of field `disable_dynamic_scaling` after provisioning.\n"]
     pub fn disable_dynamic_scaling(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_dynamic_scaling", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_dynamic_scaling", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
@@ -1244,17 +1344,26 @@ impl AutoscalingplansScalingPlanScalingInstructionElRef {
 
     #[doc = "Get a reference to the value of field `predictive_scaling_max_capacity_behavior` after provisioning.\n"]
     pub fn predictive_scaling_max_capacity_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predictive_scaling_max_capacity_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predictive_scaling_max_capacity_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predictive_scaling_max_capacity_buffer` after provisioning.\n"]
     pub fn predictive_scaling_max_capacity_buffer(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predictive_scaling_max_capacity_buffer", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predictive_scaling_max_capacity_buffer", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predictive_scaling_mode` after provisioning.\n"]
     pub fn predictive_scaling_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predictive_scaling_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predictive_scaling_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
@@ -1264,36 +1373,58 @@ impl AutoscalingplansScalingPlanScalingInstructionElRef {
 
     #[doc = "Get a reference to the value of field `scalable_dimension` after provisioning.\n"]
     pub fn scalable_dimension(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scalable_dimension", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scalable_dimension", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_policy_update_behavior` after provisioning.\n"]
     pub fn scaling_policy_update_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_policy_update_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_policy_update_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduled_action_buffer_time` after provisioning.\n"]
     pub fn scheduled_action_buffer_time(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduled_action_buffer_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduled_action_buffer_time", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_namespace` after provisioning.\n"]
     pub fn service_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_namespace", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customized_load_metric_specification` after provisioning.\n"]
     pub fn customized_load_metric_specification(
         &self,
-    ) -> ListRef<AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.customized_load_metric_specification", self.base))
+    ) -> ListRef<
+        AutoscalingplansScalingPlanScalingInstructionElCustomizedLoadMetricSpecificationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customized_load_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predefined_load_metric_specification` after provisioning.\n"]
     pub fn predefined_load_metric_specification(
         &self,
-    ) -> ListRef<AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.predefined_load_metric_specification", self.base))
+    ) -> ListRef<
+        AutoscalingplansScalingPlanScalingInstructionElPredefinedLoadMetricSpecificationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predefined_load_metric_specification", self.base),
+        )
     }
 }
 

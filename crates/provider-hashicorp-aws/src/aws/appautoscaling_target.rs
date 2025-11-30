@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppautoscalingTargetData {
@@ -69,7 +69,8 @@ impl AppautoscalingTarget {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl AppautoscalingTarget {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl AppautoscalingTarget {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -108,8 +119,7 @@ impl AppautoscalingTarget {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,14 +144,17 @@ impl AppautoscalingTarget {
     }
 
     #[doc = "Set the field `suspended_state`.\n"]
-    pub fn set_suspended_state(self, v: impl Into<BlockAssignable<AppautoscalingTargetSuspendedStateEl>>) -> Self {
+    pub fn set_suspended_state(
+        self,
+        v: impl Into<BlockAssignable<AppautoscalingTargetSuspendedStateEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().suspended_state = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.suspended_state = Some(d);
-            },
+            }
         }
         self
     }
@@ -158,63 +171,96 @@ impl AppautoscalingTarget {
 
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_capacity` after provisioning.\n"]
     pub fn min_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_capacity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
     pub fn resource_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scalable_dimension` after provisioning.\n"]
     pub fn scalable_dimension(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scalable_dimension", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scalable_dimension", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_namespace` after provisioning.\n"]
     pub fn service_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_namespace", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_namespace", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `suspended_state` after provisioning.\n"]
     pub fn suspended_state(&self) -> ListRef<AppautoscalingTargetSuspendedStateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.suspended_state", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.suspended_state", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppautoscalingTarget {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppautoscalingTarget { }
+impl Resource for AppautoscalingTarget {}
 
 impl ToListMappable for AppautoscalingTarget {
     type O = ListRef<AppautoscalingTargetRef>;
@@ -289,10 +335,7 @@ pub struct AppautoscalingTargetRef {
 
 impl Ref for AppautoscalingTargetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -317,53 +360,82 @@ impl AppautoscalingTargetRef {
 
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_capacity` after provisioning.\n"]
     pub fn min_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_capacity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
     pub fn resource_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scalable_dimension` after provisioning.\n"]
     pub fn scalable_dimension(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scalable_dimension", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scalable_dimension", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_namespace` after provisioning.\n"]
     pub fn service_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_namespace", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_namespace", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `suspended_state` after provisioning.\n"]
     pub fn suspended_state(&self) -> ListRef<AppautoscalingTargetSuspendedStateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.suspended_state", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.suspended_state", self.extract_ref()),
+        )
     }
 }
 
@@ -442,17 +514,26 @@ impl AppautoscalingTargetSuspendedStateElRef {
 
     #[doc = "Get a reference to the value of field `dynamic_scaling_in_suspended` after provisioning.\n"]
     pub fn dynamic_scaling_in_suspended(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dynamic_scaling_in_suspended", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dynamic_scaling_in_suspended", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dynamic_scaling_out_suspended` after provisioning.\n"]
     pub fn dynamic_scaling_out_suspended(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dynamic_scaling_out_suspended", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dynamic_scaling_out_suspended", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduled_scaling_suspended` after provisioning.\n"]
     pub fn scheduled_scaling_suspended(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduled_scaling_suspended", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduled_scaling_suspended", self.base),
+        )
     }
 }
 

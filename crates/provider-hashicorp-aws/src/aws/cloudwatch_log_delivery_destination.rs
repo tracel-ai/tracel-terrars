@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchLogDeliveryDestinationData {
@@ -24,7 +24,8 @@ struct CloudwatchLogDeliveryDestinationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    delivery_destination_configuration: Option<Vec<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationEl>>,
+    delivery_destination_configuration:
+        Option<Vec<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationEl>>,
     dynamic: CloudwatchLogDeliveryDestinationDynamic,
 }
 
@@ -63,7 +64,8 @@ impl CloudwatchLogDeliveryDestination {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +78,7 @@ impl CloudwatchLogDeliveryDestination {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +89,22 @@ impl CloudwatchLogDeliveryDestination {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -108,8 +120,7 @@ impl CloudwatchLogDeliveryDestination {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -124,15 +135,21 @@ impl CloudwatchLogDeliveryDestination {
     #[doc = "Set the field `delivery_destination_configuration`.\n"]
     pub fn set_delivery_destination_configuration(
         self,
-        v: impl Into<BlockAssignable<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().delivery_destination_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.delivery_destination_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .delivery_destination_configuration = Some(d);
+            }
         }
         self
     }
@@ -144,50 +161,74 @@ impl CloudwatchLogDeliveryDestination {
 
     #[doc = "Get a reference to the value of field `delivery_destination_type` after provisioning.\n"]
     pub fn delivery_destination_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_destination_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_destination_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_format", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delivery_destination_configuration` after provisioning.\n"]
     pub fn delivery_destination_configuration(
         &self,
     ) -> ListRef<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delivery_destination_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delivery_destination_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchLogDeliveryDestination {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchLogDeliveryDestination { }
+impl Resource for CloudwatchLogDeliveryDestination {}
 
 impl ToListMappable for CloudwatchLogDeliveryDestination {
     type O = ListRef<CloudwatchLogDeliveryDestinationRef>;
@@ -249,10 +290,7 @@ pub struct CloudwatchLogDeliveryDestinationRef {
 
 impl Ref for CloudwatchLogDeliveryDestinationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -272,40 +310,60 @@ impl CloudwatchLogDeliveryDestinationRef {
 
     #[doc = "Get a reference to the value of field `delivery_destination_type` after provisioning.\n"]
     pub fn delivery_destination_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_destination_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_destination_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_format", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delivery_destination_configuration` after provisioning.\n"]
     pub fn delivery_destination_configuration(
         &self,
     ) -> ListRef<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delivery_destination_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delivery_destination_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -369,13 +427,15 @@ impl CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `destination_resource_arn` after provisioning.\n"]
     pub fn destination_resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_resource_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_resource_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudwatchLogDeliveryDestinationDynamic {
-    delivery_destination_configuration: Option<
-        DynamicBlock<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationEl>,
-    >,
+    delivery_destination_configuration:
+        Option<DynamicBlock<CloudwatchLogDeliveryDestinationDeliveryDestinationConfigurationEl>>,
 }

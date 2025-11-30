@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct PipesPipeData {
@@ -85,7 +85,8 @@ impl PipesPipe {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -98,7 +99,7 @@ impl PipesPipe {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -109,12 +110,22 @@ impl PipesPipe {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -160,8 +171,7 @@ impl PipesPipe {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -180,53 +190,65 @@ impl PipesPipe {
     }
 
     #[doc = "Set the field `enrichment_parameters`.\n"]
-    pub fn set_enrichment_parameters(self, v: impl Into<BlockAssignable<PipesPipeEnrichmentParametersEl>>) -> Self {
+    pub fn set_enrichment_parameters(
+        self,
+        v: impl Into<BlockAssignable<PipesPipeEnrichmentParametersEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().enrichment_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.enrichment_parameters = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `log_configuration`.\n"]
-    pub fn set_log_configuration(self, v: impl Into<BlockAssignable<PipesPipeLogConfigurationEl>>) -> Self {
+    pub fn set_log_configuration(
+        self,
+        v: impl Into<BlockAssignable<PipesPipeLogConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().log_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.log_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `source_parameters`.\n"]
-    pub fn set_source_parameters(self, v: impl Into<BlockAssignable<PipesPipeSourceParametersEl>>) -> Self {
+    pub fn set_source_parameters(
+        self,
+        v: impl Into<BlockAssignable<PipesPipeSourceParametersEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source_parameters = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `target_parameters`.\n"]
-    pub fn set_target_parameters(self, v: impl Into<BlockAssignable<PipesPipeTargetParametersEl>>) -> Self {
+    pub fn set_target_parameters(
+        self,
+        v: impl Into<BlockAssignable<PipesPipeTargetParametersEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -244,17 +266,26 @@ impl PipesPipe {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_state` after provisioning.\n"]
     pub fn desired_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enrichment` after provisioning.\n"]
     pub fn enrichment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enrichment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enrichment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -264,83 +295,128 @@ impl PipesPipe {
 
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\n"]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enrichment_parameters` after provisioning.\n"]
     pub fn enrichment_parameters(&self) -> ListRef<PipesPipeEnrichmentParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.enrichment_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enrichment_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(&self) -> ListRef<PipesPipeLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_parameters` after provisioning.\n"]
     pub fn source_parameters(&self) -> ListRef<PipesPipeSourceParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_parameters` after provisioning.\n"]
     pub fn target_parameters(&self) -> ListRef<PipesPipeTargetParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> PipesPipeTimeoutsElRef {
-        PipesPipeTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        PipesPipeTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for PipesPipe {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for PipesPipe { }
+impl Resource for PipesPipe {}
 
 impl ToListMappable for PipesPipe {
     type O = ListRef<PipesPipeRef>;
@@ -418,10 +494,7 @@ pub struct PipesPipeRef {
 
 impl Ref for PipesPipeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -441,17 +514,26 @@ impl PipesPipeRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_state` after provisioning.\n"]
     pub fn desired_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enrichment` after provisioning.\n"]
     pub fn enrichment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enrichment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enrichment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -461,73 +543,114 @@ impl PipesPipeRef {
 
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\n"]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enrichment_parameters` after provisioning.\n"]
     pub fn enrichment_parameters(&self) -> ListRef<PipesPipeEnrichmentParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.enrichment_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enrichment_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(&self) -> ListRef<PipesPipeLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_parameters` after provisioning.\n"]
     pub fn source_parameters(&self) -> ListRef<PipesPipeSourceParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_parameters` after provisioning.\n"]
     pub fn target_parameters(&self) -> ListRef<PipesPipeTargetParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> PipesPipeTimeoutsElRef {
-        PipesPipeTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        PipesPipeTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -555,7 +678,10 @@ impl PipesPipeEnrichmentParametersElHttpParametersEl {
     }
 
     #[doc = "Set the field `query_string_parameters`.\n"]
-    pub fn set_query_string_parameters(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_query_string_parameters(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.query_string_parameters = Some(v.into());
         self
     }
@@ -591,7 +717,10 @@ pub struct PipesPipeEnrichmentParametersElHttpParametersElRef {
 }
 
 impl Ref for PipesPipeEnrichmentParametersElHttpParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeEnrichmentParametersElHttpParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeEnrichmentParametersElHttpParametersElRef {
         PipesPipeEnrichmentParametersElHttpParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -606,17 +735,26 @@ impl PipesPipeEnrichmentParametersElHttpParametersElRef {
 
     #[doc = "Get a reference to the value of field `header_parameters` after provisioning.\n"]
     pub fn header_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.header_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.header_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_parameter_values` after provisioning.\n"]
     pub fn path_parameter_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.path_parameter_values", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.path_parameter_values", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_string_parameters` after provisioning.\n"]
     pub fn query_string_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.query_string_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.query_string_parameters", self.base),
+        )
     }
 }
 
@@ -649,10 +787,10 @@ impl PipesPipeEnrichmentParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -703,12 +841,18 @@ impl PipesPipeEnrichmentParametersElRef {
 
     #[doc = "Get a reference to the value of field `input_template` after provisioning.\n"]
     pub fn input_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_parameters` after provisioning.\n"]
     pub fn http_parameters(&self) -> ListRef<PipesPipeEnrichmentParametersElHttpParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.http_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.http_parameters", self.base),
+        )
     }
 }
 
@@ -717,7 +861,7 @@ pub struct PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {
     log_group_arn: PrimField<String>,
 }
 
-impl PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl { }
+impl PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {}
 
 impl ToListMappable for PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {
     type O = BlockAssignable<PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl>;
@@ -738,7 +882,9 @@ pub struct BuildPipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {
 
 impl BuildPipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {
     pub fn build(self) -> PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {
-        PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl { log_group_arn: self.log_group_arn }
+        PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl {
+            log_group_arn: self.log_group_arn,
+        }
     }
 }
 
@@ -748,7 +894,10 @@ pub struct PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef {
 }
 
 impl Ref for PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef {
         PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -763,7 +912,10 @@ impl PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef {
 
     #[doc = "Get a reference to the value of field `log_group_arn` after provisioning.\n"]
     pub fn log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_arn", self.base),
+        )
     }
 }
 
@@ -772,7 +924,7 @@ pub struct PipesPipeLogConfigurationElFirehoseLogDestinationEl {
     delivery_stream_arn: PrimField<String>,
 }
 
-impl PipesPipeLogConfigurationElFirehoseLogDestinationEl { }
+impl PipesPipeLogConfigurationElFirehoseLogDestinationEl {}
 
 impl ToListMappable for PipesPipeLogConfigurationElFirehoseLogDestinationEl {
     type O = BlockAssignable<PipesPipeLogConfigurationElFirehoseLogDestinationEl>;
@@ -793,7 +945,9 @@ pub struct BuildPipesPipeLogConfigurationElFirehoseLogDestinationEl {
 
 impl BuildPipesPipeLogConfigurationElFirehoseLogDestinationEl {
     pub fn build(self) -> PipesPipeLogConfigurationElFirehoseLogDestinationEl {
-        PipesPipeLogConfigurationElFirehoseLogDestinationEl { delivery_stream_arn: self.delivery_stream_arn }
+        PipesPipeLogConfigurationElFirehoseLogDestinationEl {
+            delivery_stream_arn: self.delivery_stream_arn,
+        }
     }
 }
 
@@ -803,7 +957,10 @@ pub struct PipesPipeLogConfigurationElFirehoseLogDestinationElRef {
 }
 
 impl Ref for PipesPipeLogConfigurationElFirehoseLogDestinationElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeLogConfigurationElFirehoseLogDestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeLogConfigurationElFirehoseLogDestinationElRef {
         PipesPipeLogConfigurationElFirehoseLogDestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -818,7 +975,10 @@ impl PipesPipeLogConfigurationElFirehoseLogDestinationElRef {
 
     #[doc = "Get a reference to the value of field `delivery_stream_arn` after provisioning.\n"]
     pub fn delivery_stream_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream_arn", self.base),
+        )
     }
 }
 
@@ -907,7 +1067,10 @@ impl PipesPipeLogConfigurationElS3LogDestinationElRef {
 
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
@@ -918,8 +1081,10 @@ impl PipesPipeLogConfigurationElS3LogDestinationElRef {
 
 #[derive(Serialize, Default)]
 struct PipesPipeLogConfigurationElDynamic {
-    cloudwatch_logs_log_destination: Option<DynamicBlock<PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl>>,
-    firehose_log_destination: Option<DynamicBlock<PipesPipeLogConfigurationElFirehoseLogDestinationEl>>,
+    cloudwatch_logs_log_destination:
+        Option<DynamicBlock<PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl>>,
+    firehose_log_destination:
+        Option<DynamicBlock<PipesPipeLogConfigurationElFirehoseLogDestinationEl>>,
     s3_log_destination: Option<DynamicBlock<PipesPipeLogConfigurationElS3LogDestinationEl>>,
 }
 
@@ -929,7 +1094,8 @@ pub struct PipesPipeLogConfigurationEl {
     include_execution_data: Option<SetField<PrimField<String>>>,
     level: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_logs_log_destination: Option<Vec<PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl>>,
+    cloudwatch_logs_log_destination:
+        Option<Vec<PipesPipeLogConfigurationElCloudwatchLogsLogDestinationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     firehose_log_destination: Option<Vec<PipesPipeLogConfigurationElFirehoseLogDestinationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -952,10 +1118,10 @@ impl PipesPipeLogConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs_log_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs_log_destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -968,10 +1134,10 @@ impl PipesPipeLogConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose_log_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose_log_destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -984,10 +1150,10 @@ impl PipesPipeLogConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_log_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_log_destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -1044,7 +1210,10 @@ impl PipesPipeLogConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `include_execution_data` after provisioning.\n"]
     pub fn include_execution_data(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.include_execution_data", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.include_execution_data", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `level` after provisioning.\n"]
@@ -1056,17 +1225,28 @@ impl PipesPipeLogConfigurationElRef {
     pub fn cloudwatch_logs_log_destination(
         &self,
     ) -> ListRef<PipesPipeLogConfigurationElCloudwatchLogsLogDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs_log_destination", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs_log_destination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firehose_log_destination` after provisioning.\n"]
-    pub fn firehose_log_destination(&self) -> ListRef<PipesPipeLogConfigurationElFirehoseLogDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.firehose_log_destination", self.base))
+    pub fn firehose_log_destination(
+        &self,
+    ) -> ListRef<PipesPipeLogConfigurationElFirehoseLogDestinationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.firehose_log_destination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_log_destination` after provisioning.\n"]
     pub fn s3_log_destination(&self) -> ListRef<PipesPipeLogConfigurationElS3LogDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_log_destination", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_log_destination", self.base),
+        )
     }
 }
 
@@ -1075,7 +1255,7 @@ pub struct PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl {
     basic_auth: PrimField<String>,
 }
 
-impl PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl { }
+impl PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl {}
 
 impl ToListMappable for PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl {
     type O = BlockAssignable<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl>;
@@ -1096,7 +1276,9 @@ pub struct BuildPipesPipeSourceParametersElActivemqBrokerParametersElCredentials
 
 impl BuildPipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl {
     pub fn build(self) -> PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl {
-        PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl { basic_auth: self.basic_auth }
+        PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl {
+            basic_auth: self.basic_auth,
+        }
     }
 }
 
@@ -1130,7 +1312,8 @@ impl PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsElRef {
 
 #[derive(Serialize, Default)]
 struct PipesPipeSourceParametersElActivemqBrokerParametersElDynamic {
-    credentials: Option<DynamicBlock<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl>>,
+    credentials:
+        Option<DynamicBlock<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl>>,
 }
 
 #[derive(Serialize)]
@@ -1161,15 +1344,17 @@ impl PipesPipeSourceParametersElActivemqBrokerParametersEl {
     #[doc = "Set the field `credentials`.\n"]
     pub fn set_credentials(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.credentials = Some(d);
-            },
+            }
         }
         self
     }
@@ -1210,7 +1395,10 @@ pub struct PipesPipeSourceParametersElActivemqBrokerParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElActivemqBrokerParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElActivemqBrokerParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElActivemqBrokerParametersElRef {
         PipesPipeSourceParametersElActivemqBrokerParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1230,7 +1418,10 @@ impl PipesPipeSourceParametersElActivemqBrokerParametersElRef {
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queue_name` after provisioning.\n"]
@@ -1239,7 +1430,9 @@ impl PipesPipeSourceParametersElActivemqBrokerParametersElRef {
     }
 
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
-    pub fn credentials(&self) -> ListRef<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsElRef> {
+    pub fn credentials(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElActivemqBrokerParametersElCredentialsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.credentials", self.base))
     }
 }
@@ -1259,7 +1452,8 @@ impl PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl {
 }
 
 impl ToListMappable for PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl {
-    type O = BlockAssignable<PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl>;
+    type O =
+        BlockAssignable<PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1331,7 +1525,8 @@ pub struct PipesPipeSourceParametersElDynamodbStreamParametersEl {
     parallelization_factor: Option<PrimField<f64>>,
     starting_position: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    dead_letter_config: Option<Vec<PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl>>,
+    dead_letter_config:
+        Option<Vec<PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl>>,
     dynamic: PipesPipeSourceParametersElDynamodbStreamParametersElDynamic,
 }
 
@@ -1375,15 +1570,19 @@ impl PipesPipeSourceParametersElDynamodbStreamParametersEl {
     #[doc = "Set the field `dead_letter_config`.\n"]
     pub fn set_dead_letter_config(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dead_letter_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dead_letter_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1428,7 +1627,10 @@ pub struct PipesPipeSourceParametersElDynamodbStreamParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElDynamodbStreamParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElDynamodbStreamParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElDynamodbStreamParametersElRef {
         PipesPipeSourceParametersElDynamodbStreamParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1448,39 +1650,60 @@ impl PipesPipeSourceParametersElDynamodbStreamParametersElRef {
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_record_age_in_seconds` after provisioning.\n"]
     pub fn maximum_record_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_record_age_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_record_age_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_partial_batch_item_failure` after provisioning.\n"]
     pub fn on_partial_batch_item_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_partial_batch_item_failure", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_partial_batch_item_failure", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parallelization_factor` after provisioning.\n"]
     pub fn parallelization_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parallelization_factor", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parallelization_factor", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(
         &self,
     ) -> ListRef<PipesPipeSourceParametersElDynamodbStreamParametersElDeadLetterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dead_letter_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dead_letter_config", self.base),
+        )
     }
 }
 
@@ -1489,7 +1712,7 @@ pub struct PipesPipeSourceParametersElFilterCriteriaElFilterEl {
     pattern: PrimField<String>,
 }
 
-impl PipesPipeSourceParametersElFilterCriteriaElFilterEl { }
+impl PipesPipeSourceParametersElFilterCriteriaElFilterEl {}
 
 impl ToListMappable for PipesPipeSourceParametersElFilterCriteriaElFilterEl {
     type O = BlockAssignable<PipesPipeSourceParametersElFilterCriteriaElFilterEl>;
@@ -1510,7 +1733,9 @@ pub struct BuildPipesPipeSourceParametersElFilterCriteriaElFilterEl {
 
 impl BuildPipesPipeSourceParametersElFilterCriteriaElFilterEl {
     pub fn build(self) -> PipesPipeSourceParametersElFilterCriteriaElFilterEl {
-        PipesPipeSourceParametersElFilterCriteriaElFilterEl { pattern: self.pattern }
+        PipesPipeSourceParametersElFilterCriteriaElFilterEl {
+            pattern: self.pattern,
+        }
     }
 }
 
@@ -1520,7 +1745,10 @@ pub struct PipesPipeSourceParametersElFilterCriteriaElFilterElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElFilterCriteriaElFilterElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElFilterCriteriaElFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElFilterCriteriaElFilterElRef {
         PipesPipeSourceParametersElFilterCriteriaElFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1560,10 +1788,10 @@ impl PipesPipeSourceParametersElFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1632,7 +1860,8 @@ impl PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl {
 }
 
 impl ToListMappable for PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl {
-    type O = BlockAssignable<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>;
+    type O =
+        BlockAssignable<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1683,7 +1912,9 @@ impl PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigElRef {
 
 #[derive(Serialize, Default)]
 struct PipesPipeSourceParametersElKinesisStreamParametersElDynamic {
-    dead_letter_config: Option<DynamicBlock<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>>,
+    dead_letter_config: Option<
+        DynamicBlock<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1704,7 +1935,8 @@ pub struct PipesPipeSourceParametersElKinesisStreamParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     starting_position_timestamp: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    dead_letter_config: Option<Vec<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>>,
+    dead_letter_config:
+        Option<Vec<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>>,
     dynamic: PipesPipeSourceParametersElKinesisStreamParametersElDynamic,
 }
 
@@ -1754,15 +1986,17 @@ impl PipesPipeSourceParametersElKinesisStreamParametersEl {
     #[doc = "Set the field `dead_letter_config`.\n"]
     pub fn set_dead_letter_config(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dead_letter_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dead_letter_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1808,7 +2042,10 @@ pub struct PipesPipeSourceParametersElKinesisStreamParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElKinesisStreamParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElKinesisStreamParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElKinesisStreamParametersElRef {
         PipesPipeSourceParametersElKinesisStreamParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1828,44 +2065,68 @@ impl PipesPipeSourceParametersElKinesisStreamParametersElRef {
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_record_age_in_seconds` after provisioning.\n"]
     pub fn maximum_record_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_record_age_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_record_age_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_partial_batch_item_failure` after provisioning.\n"]
     pub fn on_partial_batch_item_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_partial_batch_item_failure", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_partial_batch_item_failure", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parallelization_factor` after provisioning.\n"]
     pub fn parallelization_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parallelization_factor", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parallelization_factor", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position_timestamp` after provisioning.\n"]
     pub fn starting_position_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position_timestamp", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position_timestamp", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(
         &self,
     ) -> ListRef<PipesPipeSourceParametersElKinesisStreamParametersElDeadLetterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dead_letter_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dead_letter_config", self.base),
+        )
     }
 }
 
@@ -1892,7 +2153,8 @@ impl PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {
 }
 
 impl ToListMappable for PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {
-    type O = BlockAssignable<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>;
+    type O =
+        BlockAssignable<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1906,7 +2168,9 @@ impl ToListMappable for PipesPipeSourceParametersElManagedStreamingKafkaParamete
 pub struct BuildPipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {}
 
 impl BuildPipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {
-    pub fn build(self) -> PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {
+    pub fn build(
+        self,
+    ) -> PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {
         PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl {
             client_certificate_tls_auth: core::default::Default::default(),
             sasl_scram_512_auth: core::default::Default::default(),
@@ -1938,18 +2202,26 @@ impl PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsElRe
 
     #[doc = "Get a reference to the value of field `client_certificate_tls_auth` after provisioning.\n"]
     pub fn client_certificate_tls_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_certificate_tls_auth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_certificate_tls_auth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sasl_scram_512_auth` after provisioning.\n"]
     pub fn sasl_scram_512_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sasl_scram_512_auth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sasl_scram_512_auth", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct PipesPipeSourceParametersElManagedStreamingKafkaParametersElDynamic {
-    credentials: Option<DynamicBlock<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>>,
+    credentials: Option<
+        DynamicBlock<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1964,7 +2236,8 @@ pub struct PipesPipeSourceParametersElManagedStreamingKafkaParametersEl {
     starting_position: Option<PrimField<String>>,
     topic_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    credentials: Option<Vec<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>>,
+    credentials:
+        Option<Vec<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>>,
     dynamic: PipesPipeSourceParametersElManagedStreamingKafkaParametersElDynamic,
 }
 
@@ -1996,15 +2269,19 @@ impl PipesPipeSourceParametersElManagedStreamingKafkaParametersEl {
     #[doc = "Set the field `credentials`.\n"]
     pub fn set_credentials(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.credentials = Some(d);
-            },
+            }
         }
         self
     }
@@ -2047,7 +2324,10 @@ pub struct PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
         PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -2067,17 +2347,26 @@ impl PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
 
     #[doc = "Get a reference to the value of field `consumer_group_id` after provisioning.\n"]
     pub fn consumer_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.consumer_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.consumer_group_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topic_name` after provisioning.\n"]
@@ -2086,7 +2375,9 @@ impl PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef {
     }
 
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
-    pub fn credentials(&self) -> ListRef<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsElRef> {
+    pub fn credentials(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElManagedStreamingKafkaParametersElCredentialsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.credentials", self.base))
     }
 }
@@ -2096,7 +2387,7 @@ pub struct PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl {
     basic_auth: PrimField<String>,
 }
 
-impl PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl { }
+impl PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl {}
 
 impl ToListMappable for PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl {
     type O = BlockAssignable<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl>;
@@ -2117,7 +2408,9 @@ pub struct BuildPipesPipeSourceParametersElRabbitmqBrokerParametersElCredentials
 
 impl BuildPipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl {
     pub fn build(self) -> PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl {
-        PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl { basic_auth: self.basic_auth }
+        PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl {
+            basic_auth: self.basic_auth,
+        }
     }
 }
 
@@ -2151,7 +2444,8 @@ impl PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsElRef {
 
 #[derive(Serialize, Default)]
 struct PipesPipeSourceParametersElRabbitmqBrokerParametersElDynamic {
-    credentials: Option<DynamicBlock<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl>>,
+    credentials:
+        Option<DynamicBlock<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl>>,
 }
 
 #[derive(Serialize)]
@@ -2190,15 +2484,17 @@ impl PipesPipeSourceParametersElRabbitmqBrokerParametersEl {
     #[doc = "Set the field `credentials`.\n"]
     pub fn set_credentials(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.credentials = Some(d);
-            },
+            }
         }
         self
     }
@@ -2240,7 +2536,10 @@ pub struct PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
         PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -2260,7 +2559,10 @@ impl PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queue_name` after provisioning.\n"]
@@ -2274,7 +2576,9 @@ impl PipesPipeSourceParametersElRabbitmqBrokerParametersElRef {
     }
 
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
-    pub fn credentials(&self) -> ListRef<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsElRef> {
+    pub fn credentials(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElRabbitmqBrokerParametersElCredentialsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.credentials", self.base))
     }
 }
@@ -2371,17 +2675,26 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsElRef {
 
     #[doc = "Get a reference to the value of field `client_certificate_tls_auth` after provisioning.\n"]
     pub fn client_certificate_tls_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_certificate_tls_auth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_certificate_tls_auth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sasl_scram_256_auth` after provisioning.\n"]
     pub fn sasl_scram_256_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sasl_scram_256_auth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sasl_scram_256_auth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sasl_scram_512_auth` after provisioning.\n"]
     pub fn sasl_scram_512_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sasl_scram_512_auth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sasl_scram_512_auth", self.base),
+        )
     }
 }
 
@@ -2436,7 +2749,10 @@ pub struct PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
         PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -2451,7 +2767,10 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -2462,7 +2781,8 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcElRef {
 
 #[derive(Serialize, Default)]
 struct PipesPipeSourceParametersElSelfManagedKafkaParametersElDynamic {
-    credentials: Option<DynamicBlock<PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsEl>>,
+    credentials:
+        Option<DynamicBlock<PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsEl>>,
     vpc: Option<DynamicBlock<PipesPipeSourceParametersElSelfManagedKafkaParametersElVpcEl>>,
 }
 
@@ -2490,7 +2810,10 @@ pub struct PipesPipeSourceParametersElSelfManagedKafkaParametersEl {
 
 impl PipesPipeSourceParametersElSelfManagedKafkaParametersEl {
     #[doc = "Set the field `additional_bootstrap_servers`.\n"]
-    pub fn set_additional_bootstrap_servers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_additional_bootstrap_servers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.additional_bootstrap_servers = Some(v.into());
         self
     }
@@ -2528,15 +2851,17 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersEl {
     #[doc = "Set the field `credentials`.\n"]
     pub fn set_credentials(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.credentials = Some(d);
-            },
+            }
         }
         self
     }
@@ -2549,10 +2874,10 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vpc = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vpc = Some(d);
-            },
+            }
         }
         self
     }
@@ -2598,7 +2923,10 @@ pub struct PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
         PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -2613,7 +2941,10 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
 
     #[doc = "Get a reference to the value of field `additional_bootstrap_servers` after provisioning.\n"]
     pub fn additional_bootstrap_servers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_bootstrap_servers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_bootstrap_servers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `batch_size` after provisioning.\n"]
@@ -2623,22 +2954,34 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
 
     #[doc = "Get a reference to the value of field `consumer_group_id` after provisioning.\n"]
     pub fn consumer_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.consumer_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.consumer_group_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_root_ca_certificate` after provisioning.\n"]
     pub fn server_root_ca_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_root_ca_certificate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_root_ca_certificate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topic_name` after provisioning.\n"]
@@ -2647,7 +2990,9 @@ impl PipesPipeSourceParametersElSelfManagedKafkaParametersElRef {
     }
 
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
-    pub fn credentials(&self) -> ListRef<PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsElRef> {
+    pub fn credentials(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElSelfManagedKafkaParametersElCredentialsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.credentials", self.base))
     }
 
@@ -2708,7 +3053,10 @@ pub struct PipesPipeSourceParametersElSqsQueueParametersElRef {
 }
 
 impl Ref for PipesPipeSourceParametersElSqsQueueParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeSourceParametersElSqsQueueParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeSourceParametersElSqsQueueParametersElRef {
         PipesPipeSourceParametersElSqsQueueParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -2728,21 +3076,28 @@ impl PipesPipeSourceParametersElSqsQueueParametersElRef {
 
     #[doc = "Get a reference to the value of field `maximum_batching_window_in_seconds` after provisioning.\n"]
     pub fn maximum_batching_window_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_batching_window_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_batching_window_in_seconds", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct PipesPipeSourceParametersElDynamic {
-    activemq_broker_parameters: Option<DynamicBlock<PipesPipeSourceParametersElActivemqBrokerParametersEl>>,
-    dynamodb_stream_parameters: Option<DynamicBlock<PipesPipeSourceParametersElDynamodbStreamParametersEl>>,
+    activemq_broker_parameters:
+        Option<DynamicBlock<PipesPipeSourceParametersElActivemqBrokerParametersEl>>,
+    dynamodb_stream_parameters:
+        Option<DynamicBlock<PipesPipeSourceParametersElDynamodbStreamParametersEl>>,
     filter_criteria: Option<DynamicBlock<PipesPipeSourceParametersElFilterCriteriaEl>>,
-    kinesis_stream_parameters: Option<DynamicBlock<PipesPipeSourceParametersElKinesisStreamParametersEl>>,
-    managed_streaming_kafka_parameters: Option<
-        DynamicBlock<PipesPipeSourceParametersElManagedStreamingKafkaParametersEl>,
-    >,
-    rabbitmq_broker_parameters: Option<DynamicBlock<PipesPipeSourceParametersElRabbitmqBrokerParametersEl>>,
-    self_managed_kafka_parameters: Option<DynamicBlock<PipesPipeSourceParametersElSelfManagedKafkaParametersEl>>,
+    kinesis_stream_parameters:
+        Option<DynamicBlock<PipesPipeSourceParametersElKinesisStreamParametersEl>>,
+    managed_streaming_kafka_parameters:
+        Option<DynamicBlock<PipesPipeSourceParametersElManagedStreamingKafkaParametersEl>>,
+    rabbitmq_broker_parameters:
+        Option<DynamicBlock<PipesPipeSourceParametersElRabbitmqBrokerParametersEl>>,
+    self_managed_kafka_parameters:
+        Option<DynamicBlock<PipesPipeSourceParametersElSelfManagedKafkaParametersEl>>,
     sqs_queue_parameters: Option<DynamicBlock<PipesPipeSourceParametersElSqsQueueParametersEl>>,
 }
 
@@ -2757,11 +3112,13 @@ pub struct PipesPipeSourceParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     kinesis_stream_parameters: Option<Vec<PipesPipeSourceParametersElKinesisStreamParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    managed_streaming_kafka_parameters: Option<Vec<PipesPipeSourceParametersElManagedStreamingKafkaParametersEl>>,
+    managed_streaming_kafka_parameters:
+        Option<Vec<PipesPipeSourceParametersElManagedStreamingKafkaParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     rabbitmq_broker_parameters: Option<Vec<PipesPipeSourceParametersElRabbitmqBrokerParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    self_managed_kafka_parameters: Option<Vec<PipesPipeSourceParametersElSelfManagedKafkaParametersEl>>,
+    self_managed_kafka_parameters:
+        Option<Vec<PipesPipeSourceParametersElSelfManagedKafkaParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     sqs_queue_parameters: Option<Vec<PipesPipeSourceParametersElSqsQueueParametersEl>>,
     dynamic: PipesPipeSourceParametersElDynamic,
@@ -2776,10 +3133,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.activemq_broker_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.activemq_broker_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2792,10 +3149,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dynamodb_stream_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dynamodb_stream_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2808,10 +3165,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter_criteria = Some(d);
-            },
+            }
         }
         self
     }
@@ -2824,10 +3181,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_stream_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_stream_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2840,10 +3197,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.managed_streaming_kafka_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.managed_streaming_kafka_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2856,10 +3213,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rabbitmq_broker_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rabbitmq_broker_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2872,10 +3229,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.self_managed_kafka_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.self_managed_kafka_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2888,10 +3245,10 @@ impl PipesPipeSourceParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sqs_queue_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sqs_queue_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -2947,45 +3304,81 @@ impl PipesPipeSourceParametersElRef {
     }
 
     #[doc = "Get a reference to the value of field `activemq_broker_parameters` after provisioning.\n"]
-    pub fn activemq_broker_parameters(&self) -> ListRef<PipesPipeSourceParametersElActivemqBrokerParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.activemq_broker_parameters", self.base))
+    pub fn activemq_broker_parameters(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElActivemqBrokerParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.activemq_broker_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dynamodb_stream_parameters` after provisioning.\n"]
-    pub fn dynamodb_stream_parameters(&self) -> ListRef<PipesPipeSourceParametersElDynamodbStreamParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dynamodb_stream_parameters", self.base))
+    pub fn dynamodb_stream_parameters(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElDynamodbStreamParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dynamodb_stream_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<PipesPipeSourceParametersElFilterCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_criteria", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_criteria", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream_parameters` after provisioning.\n"]
-    pub fn kinesis_stream_parameters(&self) -> ListRef<PipesPipeSourceParametersElKinesisStreamParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream_parameters", self.base))
+    pub fn kinesis_stream_parameters(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElKinesisStreamParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_streaming_kafka_parameters` after provisioning.\n"]
     pub fn managed_streaming_kafka_parameters(
         &self,
     ) -> ListRef<PipesPipeSourceParametersElManagedStreamingKafkaParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_streaming_kafka_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_streaming_kafka_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rabbitmq_broker_parameters` after provisioning.\n"]
-    pub fn rabbitmq_broker_parameters(&self) -> ListRef<PipesPipeSourceParametersElRabbitmqBrokerParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rabbitmq_broker_parameters", self.base))
+    pub fn rabbitmq_broker_parameters(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElRabbitmqBrokerParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rabbitmq_broker_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_managed_kafka_parameters` after provisioning.\n"]
-    pub fn self_managed_kafka_parameters(&self) -> ListRef<PipesPipeSourceParametersElSelfManagedKafkaParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.self_managed_kafka_parameters", self.base))
+    pub fn self_managed_kafka_parameters(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElSelfManagedKafkaParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.self_managed_kafka_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_queue_parameters` after provisioning.\n"]
-    pub fn sqs_queue_parameters(&self) -> ListRef<PipesPipeSourceParametersElSqsQueueParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_queue_parameters", self.base))
+    pub fn sqs_queue_parameters(
+        &self,
+    ) -> ListRef<PipesPipeSourceParametersElSqsQueueParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_queue_parameters", self.base),
+        )
     }
 }
 
@@ -3019,7 +3412,9 @@ pub struct BuildPipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl
 
 impl BuildPipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl {
     pub fn build(self) -> PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl {
-        PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl { size: core::default::Default::default() }
+        PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl {
+            size: core::default::Default::default(),
+        }
     }
 }
 
@@ -3029,7 +3424,10 @@ pub struct PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef {
         PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -3070,8 +3468,12 @@ impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironm
     }
 }
 
-impl ToListMappable for PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {
-    type O = BlockAssignable<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3082,10 +3484,13 @@ impl ToListMappable for PipesPipeTargetParametersElBatchJobParametersElContainer
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {}
+pub struct BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {
+}
 
 impl BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {
-    pub fn build(self) -> PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {
         PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl {
             name: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -3127,17 +3532,21 @@ impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironm
 }
 
 #[derive(Serialize)]
-pub struct PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {
+pub struct PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
     value: PrimField<String>,
 }
 
-impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl { }
+impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {}
 
-impl ToListMappable for PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {
-    type O =
-        BlockAssignable<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3148,7 +3557,8 @@ impl ToListMappable for PipesPipeTargetParametersElBatchJobParametersElContainer
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {
+pub struct BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
     #[doc = ""]
@@ -3156,7 +3566,10 @@ pub struct BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverride
 }
 
 impl BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {
-    pub fn build(self) -> PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl
+    {
         PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementEl {
             type_: self.type_,
             value: self.value,
@@ -3164,16 +3577,20 @@ impl BuildPipesPipeTargetParametersElBatchJobParametersElContainerOverridesElRes
     }
 }
 
-pub struct PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef {
+pub struct PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef {
+impl Ref
+    for PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef {
+    ) -> PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef
+    {
         PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef {
             shared: shared,
             base: base.to_string(),
@@ -3238,22 +3655,19 @@ impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl {
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.environment = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.environment = Some(d);
-            },
+            }
         }
         self
     }
@@ -3273,10 +3687,10 @@ impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_requirement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_requirement = Some(d);
-            },
+            }
         }
         self
     }
@@ -3337,21 +3751,30 @@ impl PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentElRef> {
+    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElEnvironmentElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.environment", self.base))
     }
 
     #[doc = "Get a reference to the value of field `resource_requirement` after provisioning.\n"]
     pub fn resource_requirement(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_requirement", self.base))
+    ) -> ListRef<
+        PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElResourceRequirementElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_requirement", self.base),
+        )
     }
 }
 
@@ -3406,7 +3829,10 @@ pub struct PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef {
         PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef {
             shared: shared,
             base: base.to_string(),
@@ -3472,7 +3898,10 @@ pub struct PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef {
         PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef {
             shared: shared,
             base: base.to_string(),
@@ -3493,10 +3922,13 @@ impl PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef {
 
 #[derive(Serialize, Default)]
 struct PipesPipeTargetParametersElBatchJobParametersElDynamic {
-    array_properties: Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl>>,
-    container_overrides: Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl>>,
+    array_properties:
+        Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl>>,
+    container_overrides:
+        Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl>>,
     depends_on: Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElDependsOnEl>>,
-    retry_strategy: Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElRetryStrategyEl>>,
+    retry_strategy:
+        Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersElRetryStrategyEl>>,
 }
 
 #[derive(Serialize)]
@@ -3508,7 +3940,8 @@ pub struct PipesPipeTargetParametersElBatchJobParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     array_properties: Option<Vec<PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    container_overrides: Option<Vec<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl>>,
+    container_overrides:
+        Option<Vec<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     depends_on: Option<Vec<PipesPipeTargetParametersElBatchJobParametersElDependsOnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3531,10 +3964,10 @@ impl PipesPipeTargetParametersElBatchJobParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.array_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.array_properties = Some(d);
-            },
+            }
         }
         self
     }
@@ -3542,15 +3975,17 @@ impl PipesPipeTargetParametersElBatchJobParametersEl {
     #[doc = "Set the field `container_overrides`.\n"]
     pub fn set_container_overrides(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.container_overrides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.container_overrides = Some(d);
-            },
+            }
         }
         self
     }
@@ -3563,10 +3998,10 @@ impl PipesPipeTargetParametersElBatchJobParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.depends_on = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.depends_on = Some(d);
-            },
+            }
         }
         self
     }
@@ -3579,10 +4014,10 @@ impl PipesPipeTargetParametersElBatchJobParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.retry_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.retry_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -3628,7 +4063,10 @@ pub struct PipesPipeTargetParametersElBatchJobParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElBatchJobParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElBatchJobParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElBatchJobParametersElRef {
         PipesPipeTargetParametersElBatchJobParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -3643,7 +4081,10 @@ impl PipesPipeTargetParametersElBatchJobParametersElRef {
 
     #[doc = "Get a reference to the value of field `job_definition` after provisioning.\n"]
     pub fn job_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_definition", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_definition", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_name` after provisioning.\n"]
@@ -3657,23 +4098,40 @@ impl PipesPipeTargetParametersElBatchJobParametersElRef {
     }
 
     #[doc = "Get a reference to the value of field `array_properties` after provisioning.\n"]
-    pub fn array_properties(&self) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.array_properties", self.base))
+    pub fn array_properties(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElArrayPropertiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.array_properties", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_overrides` after provisioning.\n"]
-    pub fn container_overrides(&self) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.container_overrides", self.base))
+    pub fn container_overrides(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElContainerOverridesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_overrides", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `depends_on` after provisioning.\n"]
-    pub fn depends_on(&self) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef> {
+    pub fn depends_on(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElDependsOnElRef> {
         ListRef::new(self.shared().clone(), format!("{}.depends_on", self.base))
     }
 
     #[doc = "Get a reference to the value of field `retry_strategy` after provisioning.\n"]
-    pub fn retry_strategy(&self) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_strategy", self.base))
+    pub fn retry_strategy(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElRetryStrategyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_strategy", self.base),
+        )
     }
 }
 
@@ -3728,7 +4186,10 @@ pub struct PipesPipeTargetParametersElCloudwatchLogsParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElCloudwatchLogsParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElCloudwatchLogsParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElCloudwatchLogsParametersElRef {
         PipesPipeTargetParametersElCloudwatchLogsParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -3743,7 +4204,10 @@ impl PipesPipeTargetParametersElCloudwatchLogsParametersElRef {
 
     #[doc = "Get a reference to the value of field `log_stream_name` after provisioning.\n"]
     pub fn log_stream_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_stream_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_stream_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timestamp` after provisioning.\n"]
@@ -3776,7 +4240,8 @@ impl PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl {
 }
 
 impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl {
-    type O = BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl>;
+    type O =
+        BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3831,7 +4296,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyElRef
 
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -3841,7 +4309,8 @@ impl PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyElRef
 }
 
 #[derive(Serialize)]
-pub struct PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     assign_public_ip: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3870,9 +4339,12 @@ impl PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcC
     }
 }
 
-impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl {
-    type O =
-        BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3883,10 +4355,16 @@ impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElNetworkCon
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl {}
+pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl
+{}
 
-impl BuildPipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl {
-    pub fn build(self) -> PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl {
+impl
+    BuildPipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl
+{
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl
+    {
         PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationEl {
             assign_public_ip: core::default::Default::default(),
             security_groups: core::default::Default::default(),
@@ -3895,16 +4373,20 @@ impl BuildPipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAw
     }
 }
 
-pub struct PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef {
+impl Ref
+    for PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef {
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef
+    {
         PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -3919,12 +4401,18 @@ impl PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcC
 
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assign_public_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assign_public_ip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -3965,10 +4453,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_vpc_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_vpc_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4022,13 +4510,17 @@ impl PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElRef {
     #[doc = "Get a reference to the value of field `aws_vpc_configuration` after provisioning.\n"]
     pub fn aws_vpc_configuration(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.aws_vpc_configuration", self.base))
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElAwsVpcConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.aws_vpc_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4049,9 +4541,12 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
     }
 }
 
-impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl {
-    type O =
-        BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4062,10 +4557,16 @@ impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesE
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl {}
+pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl
+{}
 
-impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl {
-    pub fn build(self) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl {
+impl
+    BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl
+{
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl
+    {
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentEl {
             name: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -4073,16 +4574,20 @@ impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOver
     }
 }
 
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef {
+impl Ref
+    for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef {
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef
+    {
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef {
             shared: shared,
             base: base.to_string(),
@@ -4107,13 +4612,14 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
 }
 
 #[derive(Serialize)]
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
     value: PrimField<String>,
 }
 
-impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl { }
+impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl {}
 
 impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl {
     type O =
@@ -4130,7 +4636,8 @@ impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesE
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl {
+pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
     #[doc = ""]
@@ -4148,7 +4655,8 @@ impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOver
     }
 }
 
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileElRef {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4165,7 +4673,9 @@ impl Ref for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerO
     }
 }
 
-impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileElRef {
+impl
+    PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -4182,7 +4692,8 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
 }
 
 #[derive(Serialize)]
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementEl {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
     value: PrimField<String>,
@@ -4205,7 +4716,8 @@ impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesE
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementEl {
+pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
     #[doc = ""]
@@ -4223,7 +4735,8 @@ impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOver
     }
 }
 
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementElRef {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4342,10 +4855,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.environment = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.environment = Some(d);
-            },
+            }
         }
         self
     }
@@ -4365,10 +4878,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.environment_file = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.environment_file = Some(d);
-            },
+            }
         }
         self
     }
@@ -4388,17 +4901,21 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_requirement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_requirement = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl {
-    type O = BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4412,7 +4929,9 @@ impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesE
 pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl {}
 
 impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl {
-    pub fn build(self) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl {
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl {
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl {
             command: core::default::Default::default(),
             cpu: core::default::Default::default(),
@@ -4466,7 +4985,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
 
     #[doc = "Get a reference to the value of field `memory_reservation` after provisioning.\n"]
     pub fn memory_reservation(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_reservation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_reservation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -4477,15 +4999,18 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef> {
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentElRef>{
         ListRef::new(self.shared().clone(), format!("{}.environment", self.base))
     }
 
     #[doc = "Get a reference to the value of field `environment_file` after provisioning.\n"]
     pub fn environment_file(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.environment_file", self.base))
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElEnvironmentFileElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.environment_file", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_requirement` after provisioning.\n"]
@@ -4493,8 +5018,11 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideE
         &self,
     ) -> ListRef<
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElResourceRequirementElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.resource_requirement", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_requirement", self.base),
+        )
     }
 }
 
@@ -4503,10 +5031,14 @@ pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralSto
     size_in_gib: PrimField<f64>,
 }
 
-impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl { }
+impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl {}
 
-impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl {
-    type O = BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4523,8 +5055,12 @@ pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemer
 }
 
 impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl {
-    pub fn build(self) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl {
-        PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl { size_in_gib: self.size_in_gib }
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl {
+        PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl {
+            size_in_gib: self.size_in_gib,
+        }
     }
 }
 
@@ -4578,9 +5114,12 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAccelerat
     }
 }
 
-impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl {
-    type O =
-        BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4591,10 +5130,14 @@ impl ToListMappable for PipesPipeTargetParametersElEcsTaskParametersElOverridesE
     }
 }
 
-pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl {}
+pub struct BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl
+{}
 
 impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl {
-    pub fn build(self) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl {
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl
+    {
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl {
             device_name: core::default::Default::default(),
             device_type: core::default::Default::default(),
@@ -4602,16 +5145,20 @@ impl BuildPipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcce
     }
 }
 
-pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef {
+pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef {
+impl Ref
+    for PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef {
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef
+    {
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef {
             shared: shared,
             base: base.to_string(),
@@ -4644,7 +5191,9 @@ struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElDynamic {
         DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl>,
     >,
     inference_accelerator_override: Option<
-        DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl>,
+        DynamicBlock<
+            PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl,
+        >,
     >,
 }
 
@@ -4659,12 +5208,16 @@ pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     task_role_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    container_override: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl>>,
+    container_override:
+        Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ephemeral_storage: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl>>,
+    ephemeral_storage:
+        Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     inference_accelerator_override: Option<
-        Vec<PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl>,
+        Vec<
+            PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideEl,
+        >,
     >,
     dynamic: PipesPipeTargetParametersElEcsTaskParametersElOverridesElDynamic,
 }
@@ -4697,15 +5250,19 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesEl {
     #[doc = "Set the field `container_override`.\n"]
     pub fn set_container_override(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl>>,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.container_override = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.container_override = Some(d);
-            },
+            }
         }
         self
     }
@@ -4713,15 +5270,19 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesEl {
     #[doc = "Set the field `ephemeral_storage`.\n"]
     pub fn set_ephemeral_storage(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl>>,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ephemeral_storage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ephemeral_storage = Some(d);
-            },
+            }
         }
         self
     }
@@ -4741,10 +5302,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inference_accelerator_override = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inference_accelerator_override = Some(d);
-            },
+            }
         }
         self
     }
@@ -4785,7 +5346,10 @@ pub struct PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
         PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
             shared: shared,
             base: base.to_string(),
@@ -4805,7 +5369,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
@@ -4815,28 +5382,44 @@ impl PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef {
 
     #[doc = "Get a reference to the value of field `task_role_arn` after provisioning.\n"]
     pub fn task_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_override` after provisioning.\n"]
     pub fn container_override(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.container_override", self.base))
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElContainerOverrideElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ephemeral_storage", self.base))
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElEphemeralStorageElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ephemeral_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_accelerator_override` after provisioning.\n"]
     pub fn inference_accelerator_override(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inference_accelerator_override", self.base))
+    ) -> ListRef<
+        PipesPipeTargetParametersElEcsTaskParametersElOverridesElInferenceAcceleratorOverrideElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_accelerator_override", self.base),
+        )
     }
 }
 
@@ -5001,12 +5584,13 @@ struct PipesPipeTargetParametersElEcsTaskParametersElDynamic {
     capacity_provider_strategy: Option<
         DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl>,
     >,
-    network_configuration: Option<
-        DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl>,
-    >,
+    network_configuration:
+        Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl>>,
     overrides: Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElOverridesEl>>,
-    placement_constraint: Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintEl>>,
-    placement_strategy: Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElPlacementStrategyEl>>,
+    placement_constraint:
+        Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintEl>>,
+    placement_strategy:
+        Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersElPlacementStrategyEl>>,
 }
 
 #[derive(Serialize)]
@@ -5031,15 +5615,19 @@ pub struct PipesPipeTargetParametersElEcsTaskParametersEl {
     task_count: Option<PrimField<f64>>,
     task_definition_arn: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_provider_strategy: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl>>,
+    capacity_provider_strategy:
+        Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_configuration: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl>>,
+    network_configuration:
+        Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     overrides: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElOverridesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    placement_constraint: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintEl>>,
+    placement_constraint:
+        Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    placement_strategy: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElPlacementStrategyEl>>,
+    placement_strategy:
+        Option<Vec<PipesPipeTargetParametersElEcsTaskParametersElPlacementStrategyEl>>,
     dynamic: PipesPipeTargetParametersElEcsTaskParametersElDynamic,
 }
 
@@ -5101,15 +5689,19 @@ impl PipesPipeTargetParametersElEcsTaskParametersEl {
     #[doc = "Set the field `capacity_provider_strategy`.\n"]
     pub fn set_capacity_provider_strategy(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl>>,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_provider_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_provider_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -5117,15 +5709,17 @@ impl PipesPipeTargetParametersElEcsTaskParametersEl {
     #[doc = "Set the field `network_configuration`.\n"]
     pub fn set_network_configuration(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5138,10 +5732,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.overrides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.overrides = Some(d);
-            },
+            }
         }
         self
     }
@@ -5149,15 +5743,17 @@ impl PipesPipeTargetParametersElEcsTaskParametersEl {
     #[doc = "Set the field `placement_constraint`.\n"]
     pub fn set_placement_constraint(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintEl>>,
+        v: impl Into<
+            BlockAssignable<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.placement_constraint = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.placement_constraint = Some(d);
-            },
+            }
         }
         self
     }
@@ -5170,10 +5766,10 @@ impl PipesPipeTargetParametersElEcsTaskParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.placement_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.placement_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -5240,12 +5836,18 @@ impl PipesPipeTargetParametersElEcsTaskParametersElRef {
 
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_ecs_managed_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_ecs_managed_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_execute_command", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_execute_command", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
@@ -5260,12 +5862,18 @@ impl PipesPipeTargetParametersElEcsTaskParametersElRef {
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reference_id` after provisioning.\n"]
@@ -5285,25 +5893,36 @@ impl PipesPipeTargetParametersElEcsTaskParametersElRef {
 
     #[doc = "Get a reference to the value of field `task_definition_arn` after provisioning.\n"]
     pub fn task_definition_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_provider_strategy` after provisioning.\n"]
     pub fn capacity_provider_strategy(
         &self,
     ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElCapacityProviderStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_provider_strategy", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
     ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `overrides` after provisioning.\n"]
-    pub fn overrides(&self) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef> {
+    pub fn overrides(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElOverridesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.overrides", self.base))
     }
 
@@ -5311,12 +5930,20 @@ impl PipesPipeTargetParametersElEcsTaskParametersElRef {
     pub fn placement_constraint(
         &self,
     ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElPlacementConstraintElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement_constraint", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement_constraint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_strategy` after provisioning.\n"]
-    pub fn placement_strategy(&self) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElPlacementStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement_strategy", self.base))
+    pub fn placement_strategy(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElPlacementStrategyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement_strategy", self.base),
+        )
     }
 }
 
@@ -5398,7 +6025,10 @@ pub struct PipesPipeTargetParametersElEventbridgeEventBusParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElEventbridgeEventBusParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElEventbridgeEventBusParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElEventbridgeEventBusParametersElRef {
         PipesPipeTargetParametersElEventbridgeEventBusParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -5461,7 +6091,10 @@ impl PipesPipeTargetParametersElHttpParametersEl {
     }
 
     #[doc = "Set the field `query_string_parameters`.\n"]
-    pub fn set_query_string_parameters(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_query_string_parameters(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.query_string_parameters = Some(v.into());
         self
     }
@@ -5512,17 +6145,26 @@ impl PipesPipeTargetParametersElHttpParametersElRef {
 
     #[doc = "Get a reference to the value of field `header_parameters` after provisioning.\n"]
     pub fn header_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.header_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.header_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_parameter_values` after provisioning.\n"]
     pub fn path_parameter_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.path_parameter_values", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.path_parameter_values", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_string_parameters` after provisioning.\n"]
     pub fn query_string_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.query_string_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.query_string_parameters", self.base),
+        )
     }
 }
 
@@ -5531,7 +6173,7 @@ pub struct PipesPipeTargetParametersElKinesisStreamParametersEl {
     partition_key: PrimField<String>,
 }
 
-impl PipesPipeTargetParametersElKinesisStreamParametersEl { }
+impl PipesPipeTargetParametersElKinesisStreamParametersEl {}
 
 impl ToListMappable for PipesPipeTargetParametersElKinesisStreamParametersEl {
     type O = BlockAssignable<PipesPipeTargetParametersElKinesisStreamParametersEl>;
@@ -5552,7 +6194,9 @@ pub struct BuildPipesPipeTargetParametersElKinesisStreamParametersEl {
 
 impl BuildPipesPipeTargetParametersElKinesisStreamParametersEl {
     pub fn build(self) -> PipesPipeTargetParametersElKinesisStreamParametersEl {
-        PipesPipeTargetParametersElKinesisStreamParametersEl { partition_key: self.partition_key }
+        PipesPipeTargetParametersElKinesisStreamParametersEl {
+            partition_key: self.partition_key,
+        }
     }
 }
 
@@ -5562,7 +6206,10 @@ pub struct PipesPipeTargetParametersElKinesisStreamParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElKinesisStreamParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElKinesisStreamParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElKinesisStreamParametersElRef {
         PipesPipeTargetParametersElKinesisStreamParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -5577,7 +6224,10 @@ impl PipesPipeTargetParametersElKinesisStreamParametersElRef {
 
     #[doc = "Get a reference to the value of field `partition_key` after provisioning.\n"]
     pub fn partition_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_key", self.base),
+        )
     }
 }
 
@@ -5586,7 +6236,7 @@ pub struct PipesPipeTargetParametersElLambdaFunctionParametersEl {
     invocation_type: PrimField<String>,
 }
 
-impl PipesPipeTargetParametersElLambdaFunctionParametersEl { }
+impl PipesPipeTargetParametersElLambdaFunctionParametersEl {}
 
 impl ToListMappable for PipesPipeTargetParametersElLambdaFunctionParametersEl {
     type O = BlockAssignable<PipesPipeTargetParametersElLambdaFunctionParametersEl>;
@@ -5607,7 +6257,9 @@ pub struct BuildPipesPipeTargetParametersElLambdaFunctionParametersEl {
 
 impl BuildPipesPipeTargetParametersElLambdaFunctionParametersEl {
     pub fn build(self) -> PipesPipeTargetParametersElLambdaFunctionParametersEl {
-        PipesPipeTargetParametersElLambdaFunctionParametersEl { invocation_type: self.invocation_type }
+        PipesPipeTargetParametersElLambdaFunctionParametersEl {
+            invocation_type: self.invocation_type,
+        }
     }
 }
 
@@ -5617,7 +6269,10 @@ pub struct PipesPipeTargetParametersElLambdaFunctionParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElLambdaFunctionParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElLambdaFunctionParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElLambdaFunctionParametersElRef {
         PipesPipeTargetParametersElLambdaFunctionParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -5632,7 +6287,10 @@ impl PipesPipeTargetParametersElLambdaFunctionParametersElRef {
 
     #[doc = "Get a reference to the value of field `invocation_type` after provisioning.\n"]
     pub fn invocation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invocation_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invocation_type", self.base),
+        )
     }
 }
 
@@ -5714,7 +6372,10 @@ pub struct PipesPipeTargetParametersElRedshiftDataParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElRedshiftDataParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElRedshiftDataParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElRedshiftDataParametersElRef {
         PipesPipeTargetParametersElRedshiftDataParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -5739,7 +6400,10 @@ impl PipesPipeTargetParametersElRedshiftDataParametersElRef {
 
     #[doc = "Get a reference to the value of field `secret_manager_arn` after provisioning.\n"]
     pub fn secret_manager_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_manager_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_manager_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqls` after provisioning.\n"]
@@ -5749,7 +6413,10 @@ impl PipesPipeTargetParametersElRedshiftDataParametersElRef {
 
     #[doc = "Get a reference to the value of field `statement_name` after provisioning.\n"]
     pub fn statement_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statement_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statement_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `with_event` after provisioning.\n"]
@@ -5764,10 +6431,14 @@ pub struct PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParam
     value: PrimField<String>,
 }
 
-impl PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl { }
+impl PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl {}
 
-impl ToListMappable for PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl {
-    type O = BlockAssignable<PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl>;
+impl ToListMappable
+    for PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl
+{
+    type O = BlockAssignable<
+        PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5786,7 +6457,9 @@ pub struct BuildPipesPipeTargetParametersElSagemakerPipelineParametersElPipeline
 }
 
 impl BuildPipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl {
-    pub fn build(self) -> PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl {
+    pub fn build(
+        self,
+    ) -> PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl {
         PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl {
             name: self.name,
             value: self.value,
@@ -5837,7 +6510,8 @@ struct PipesPipeTargetParametersElSagemakerPipelineParametersElDynamic {
 #[derive(Serialize)]
 pub struct PipesPipeTargetParametersElSagemakerPipelineParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pipeline_parameter: Option<Vec<PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl>>,
+    pipeline_parameter:
+        Option<Vec<PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl>>,
     dynamic: PipesPipeTargetParametersElSagemakerPipelineParametersElDynamic,
 }
 
@@ -5845,15 +6519,19 @@ impl PipesPipeTargetParametersElSagemakerPipelineParametersEl {
     #[doc = "Set the field `pipeline_parameter`.\n"]
     pub fn set_pipeline_parameter(
         mut self,
-        v: impl Into<BlockAssignable<PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl>>,
+        v: impl Into<
+            BlockAssignable<
+                PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pipeline_parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pipeline_parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -5888,7 +6566,10 @@ pub struct PipesPipeTargetParametersElSagemakerPipelineParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElSagemakerPipelineParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElSagemakerPipelineParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElSagemakerPipelineParametersElRef {
         PipesPipeTargetParametersElSagemakerPipelineParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -5904,8 +6585,12 @@ impl PipesPipeTargetParametersElSagemakerPipelineParametersElRef {
     #[doc = "Get a reference to the value of field `pipeline_parameter` after provisioning.\n"]
     pub fn pipeline_parameter(
         &self,
-    ) -> ListRef<PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pipeline_parameter", self.base))
+    ) -> ListRef<PipesPipeTargetParametersElSagemakerPipelineParametersElPipelineParameterElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pipeline_parameter", self.base),
+        )
     }
 }
 
@@ -5960,7 +6645,10 @@ pub struct PipesPipeTargetParametersElSqsQueueParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElSqsQueueParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElSqsQueueParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElSqsQueueParametersElRef {
         PipesPipeTargetParametersElSqsQueueParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -5975,12 +6663,18 @@ impl PipesPipeTargetParametersElSqsQueueParametersElRef {
 
     #[doc = "Get a reference to the value of field `message_deduplication_id` after provisioning.\n"]
     pub fn message_deduplication_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_deduplication_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_deduplication_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `message_group_id` after provisioning.\n"]
     pub fn message_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_group_id", self.base),
+        )
     }
 }
 
@@ -5989,7 +6683,7 @@ pub struct PipesPipeTargetParametersElStepFunctionStateMachineParametersEl {
     invocation_type: PrimField<String>,
 }
 
-impl PipesPipeTargetParametersElStepFunctionStateMachineParametersEl { }
+impl PipesPipeTargetParametersElStepFunctionStateMachineParametersEl {}
 
 impl ToListMappable for PipesPipeTargetParametersElStepFunctionStateMachineParametersEl {
     type O = BlockAssignable<PipesPipeTargetParametersElStepFunctionStateMachineParametersEl>;
@@ -6010,7 +6704,9 @@ pub struct BuildPipesPipeTargetParametersElStepFunctionStateMachineParametersEl 
 
 impl BuildPipesPipeTargetParametersElStepFunctionStateMachineParametersEl {
     pub fn build(self) -> PipesPipeTargetParametersElStepFunctionStateMachineParametersEl {
-        PipesPipeTargetParametersElStepFunctionStateMachineParametersEl { invocation_type: self.invocation_type }
+        PipesPipeTargetParametersElStepFunctionStateMachineParametersEl {
+            invocation_type: self.invocation_type,
+        }
     }
 }
 
@@ -6020,7 +6716,10 @@ pub struct PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef {
 }
 
 impl Ref for PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef {
-    fn new(shared: StackShared, base: String) -> PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef {
         PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -6035,27 +6734,33 @@ impl PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef {
 
     #[doc = "Get a reference to the value of field `invocation_type` after provisioning.\n"]
     pub fn invocation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invocation_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invocation_type", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct PipesPipeTargetParametersElDynamic {
     batch_job_parameters: Option<DynamicBlock<PipesPipeTargetParametersElBatchJobParametersEl>>,
-    cloudwatch_logs_parameters: Option<DynamicBlock<PipesPipeTargetParametersElCloudwatchLogsParametersEl>>,
+    cloudwatch_logs_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElCloudwatchLogsParametersEl>>,
     ecs_task_parameters: Option<DynamicBlock<PipesPipeTargetParametersElEcsTaskParametersEl>>,
-    eventbridge_event_bus_parameters: Option<
-        DynamicBlock<PipesPipeTargetParametersElEventbridgeEventBusParametersEl>,
-    >,
+    eventbridge_event_bus_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElEventbridgeEventBusParametersEl>>,
     http_parameters: Option<DynamicBlock<PipesPipeTargetParametersElHttpParametersEl>>,
-    kinesis_stream_parameters: Option<DynamicBlock<PipesPipeTargetParametersElKinesisStreamParametersEl>>,
-    lambda_function_parameters: Option<DynamicBlock<PipesPipeTargetParametersElLambdaFunctionParametersEl>>,
-    redshift_data_parameters: Option<DynamicBlock<PipesPipeTargetParametersElRedshiftDataParametersEl>>,
-    sagemaker_pipeline_parameters: Option<DynamicBlock<PipesPipeTargetParametersElSagemakerPipelineParametersEl>>,
+    kinesis_stream_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElKinesisStreamParametersEl>>,
+    lambda_function_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElLambdaFunctionParametersEl>>,
+    redshift_data_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElRedshiftDataParametersEl>>,
+    sagemaker_pipeline_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElSagemakerPipelineParametersEl>>,
     sqs_queue_parameters: Option<DynamicBlock<PipesPipeTargetParametersElSqsQueueParametersEl>>,
-    step_function_state_machine_parameters: Option<
-        DynamicBlock<PipesPipeTargetParametersElStepFunctionStateMachineParametersEl>,
-    >,
+    step_function_state_machine_parameters:
+        Option<DynamicBlock<PipesPipeTargetParametersElStepFunctionStateMachineParametersEl>>,
 }
 
 #[derive(Serialize)]
@@ -6069,7 +6774,8 @@ pub struct PipesPipeTargetParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ecs_task_parameters: Option<Vec<PipesPipeTargetParametersElEcsTaskParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    eventbridge_event_bus_parameters: Option<Vec<PipesPipeTargetParametersElEventbridgeEventBusParametersEl>>,
+    eventbridge_event_bus_parameters:
+        Option<Vec<PipesPipeTargetParametersElEventbridgeEventBusParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     http_parameters: Option<Vec<PipesPipeTargetParametersElHttpParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6079,11 +6785,13 @@ pub struct PipesPipeTargetParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     redshift_data_parameters: Option<Vec<PipesPipeTargetParametersElRedshiftDataParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    sagemaker_pipeline_parameters: Option<Vec<PipesPipeTargetParametersElSagemakerPipelineParametersEl>>,
+    sagemaker_pipeline_parameters:
+        Option<Vec<PipesPipeTargetParametersElSagemakerPipelineParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     sqs_queue_parameters: Option<Vec<PipesPipeTargetParametersElSqsQueueParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    step_function_state_machine_parameters: Option<Vec<PipesPipeTargetParametersElStepFunctionStateMachineParametersEl>>,
+    step_function_state_machine_parameters:
+        Option<Vec<PipesPipeTargetParametersElStepFunctionStateMachineParametersEl>>,
     dynamic: PipesPipeTargetParametersElDynamic,
 }
 
@@ -6102,10 +6810,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.batch_job_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.batch_job_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6118,10 +6826,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6134,10 +6842,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecs_task_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecs_task_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6150,10 +6858,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.eventbridge_event_bus_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.eventbridge_event_bus_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6166,10 +6874,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6182,10 +6890,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_stream_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_stream_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6198,10 +6906,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6214,10 +6922,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.redshift_data_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.redshift_data_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6230,10 +6938,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sagemaker_pipeline_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sagemaker_pipeline_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6246,10 +6954,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sqs_queue_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sqs_queue_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6262,10 +6970,10 @@ impl PipesPipeTargetParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.step_function_state_machine_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.step_function_state_machine_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -6326,66 +7034,118 @@ impl PipesPipeTargetParametersElRef {
 
     #[doc = "Get a reference to the value of field `input_template` after provisioning.\n"]
     pub fn input_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `batch_job_parameters` after provisioning.\n"]
-    pub fn batch_job_parameters(&self) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.batch_job_parameters", self.base))
+    pub fn batch_job_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElBatchJobParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.batch_job_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs_parameters` after provisioning.\n"]
-    pub fn cloudwatch_logs_parameters(&self) -> ListRef<PipesPipeTargetParametersElCloudwatchLogsParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs_parameters", self.base))
+    pub fn cloudwatch_logs_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElCloudwatchLogsParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_task_parameters` after provisioning.\n"]
-    pub fn ecs_task_parameters(&self) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecs_task_parameters", self.base))
+    pub fn ecs_task_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElEcsTaskParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecs_task_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eventbridge_event_bus_parameters` after provisioning.\n"]
     pub fn eventbridge_event_bus_parameters(
         &self,
     ) -> ListRef<PipesPipeTargetParametersElEventbridgeEventBusParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eventbridge_event_bus_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eventbridge_event_bus_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_parameters` after provisioning.\n"]
     pub fn http_parameters(&self) -> ListRef<PipesPipeTargetParametersElHttpParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.http_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.http_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream_parameters` after provisioning.\n"]
-    pub fn kinesis_stream_parameters(&self) -> ListRef<PipesPipeTargetParametersElKinesisStreamParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream_parameters", self.base))
+    pub fn kinesis_stream_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElKinesisStreamParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_function_parameters` after provisioning.\n"]
-    pub fn lambda_function_parameters(&self) -> ListRef<PipesPipeTargetParametersElLambdaFunctionParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_function_parameters", self.base))
+    pub fn lambda_function_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElLambdaFunctionParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_function_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `redshift_data_parameters` after provisioning.\n"]
-    pub fn redshift_data_parameters(&self) -> ListRef<PipesPipeTargetParametersElRedshiftDataParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.redshift_data_parameters", self.base))
+    pub fn redshift_data_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElRedshiftDataParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.redshift_data_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_pipeline_parameters` after provisioning.\n"]
-    pub fn sagemaker_pipeline_parameters(&self) -> ListRef<PipesPipeTargetParametersElSagemakerPipelineParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sagemaker_pipeline_parameters", self.base))
+    pub fn sagemaker_pipeline_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElSagemakerPipelineParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_pipeline_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_queue_parameters` after provisioning.\n"]
-    pub fn sqs_queue_parameters(&self) -> ListRef<PipesPipeTargetParametersElSqsQueueParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_queue_parameters", self.base))
+    pub fn sqs_queue_parameters(
+        &self,
+    ) -> ListRef<PipesPipeTargetParametersElSqsQueueParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_queue_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step_function_state_machine_parameters` after provisioning.\n"]
     pub fn step_function_state_machine_parameters(
         &self,
     ) -> ListRef<PipesPipeTargetParametersElStepFunctionStateMachineParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.step_function_state_machine_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.step_function_state_machine_parameters", self.base),
+        )
     }
 }
 

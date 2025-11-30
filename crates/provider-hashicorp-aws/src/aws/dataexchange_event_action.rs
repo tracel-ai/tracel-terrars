@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataexchangeEventActionData {
@@ -58,7 +58,8 @@ impl DataexchangeEventAction {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +72,7 @@ impl DataexchangeEventAction {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,31 +83,43 @@ impl DataexchangeEventAction {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(self, v: impl Into<BlockAssignable<DataexchangeEventActionActionEl>>) -> Self {
+    pub fn set_action(
+        self,
+        v: impl Into<BlockAssignable<DataexchangeEventActionActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
@@ -116,10 +129,10 @@ impl DataexchangeEventAction {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().event = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.event = Some(d);
-            },
+            }
         }
         self
     }
@@ -131,7 +144,10 @@ impl DataexchangeEventAction {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -139,35 +155,50 @@ impl DataexchangeEventAction {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataexchangeEventActionActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event` after provisioning.\n"]
     pub fn event(&self) -> ListRef<DataexchangeEventActionEventElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataexchangeEventAction {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DataexchangeEventAction { }
+impl Resource for DataexchangeEventAction {}
 
 impl ToListMappable for DataexchangeEventAction {
     type O = ListRef<DataexchangeEventActionRef>;
@@ -224,10 +255,7 @@ pub struct DataexchangeEventActionRef {
 
 impl Ref for DataexchangeEventActionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -247,7 +275,10 @@ impl DataexchangeEventActionRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -255,25 +286,36 @@ impl DataexchangeEventActionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataexchangeEventActionActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event` after provisioning.\n"]
     pub fn event(&self) -> ListRef<DataexchangeEventActionEventElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event", self.extract_ref()),
+        )
     }
 }
 
@@ -328,7 +370,10 @@ pub struct DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
 }
 
 impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
-    fn new(shared: StackShared, base: String) -> DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
         DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
             shared: shared,
             base: base.to_string(),
@@ -368,7 +413,8 @@ impl DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
 }
 
 impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
-    type O = BlockAssignable<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>;
+    type O =
+        BlockAssignable<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -428,7 +474,8 @@ impl DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationElRef
 
 #[derive(Serialize, Default)]
 struct DataexchangeEventActionActionElExportRevisionToS3ElDynamic {
-    encryption: Option<DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl>>,
+    encryption:
+        Option<DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl>>,
     revision_destination: Option<
         DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>,
     >,
@@ -439,7 +486,8 @@ pub struct DataexchangeEventActionActionElExportRevisionToS3El {
     #[serde(skip_serializing_if = "Option::is_none")]
     encryption: Option<Vec<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    revision_destination: Option<Vec<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>>,
+    revision_destination:
+        Option<Vec<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>>,
     dynamic: DataexchangeEventActionActionElExportRevisionToS3ElDynamic,
 }
 
@@ -452,10 +500,10 @@ impl DataexchangeEventActionActionElExportRevisionToS3El {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.encryption = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.encryption = Some(d);
-            },
+            }
         }
         self
     }
@@ -463,15 +511,19 @@ impl DataexchangeEventActionActionElExportRevisionToS3El {
     #[doc = "Set the field `revision_destination`.\n"]
     pub fn set_revision_destination(
         mut self,
-        v: impl Into<BlockAssignable<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.revision_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.revision_destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -507,7 +559,10 @@ pub struct DataexchangeEventActionActionElExportRevisionToS3ElRef {
 }
 
 impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElRef {
-    fn new(shared: StackShared, base: String) -> DataexchangeEventActionActionElExportRevisionToS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataexchangeEventActionActionElExportRevisionToS3ElRef {
         DataexchangeEventActionActionElExportRevisionToS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -521,7 +576,9 @@ impl DataexchangeEventActionActionElExportRevisionToS3ElRef {
     }
 
     #[doc = "Get a reference to the value of field `encryption` after provisioning.\n"]
-    pub fn encryption(&self) -> ListRef<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef> {
+    pub fn encryption(
+        &self,
+    ) -> ListRef<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.encryption", self.base))
     }
 
@@ -529,13 +586,17 @@ impl DataexchangeEventActionActionElExportRevisionToS3ElRef {
     pub fn revision_destination(
         &self,
     ) -> ListRef<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revision_destination", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revision_destination", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct DataexchangeEventActionActionElDynamic {
-    export_revision_to_s3: Option<DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3El>>,
+    export_revision_to_s3:
+        Option<DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3El>>,
 }
 
 #[derive(Serialize)]
@@ -554,10 +615,10 @@ impl DataexchangeEventActionActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.export_revision_to_s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.export_revision_to_s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -606,8 +667,13 @@ impl DataexchangeEventActionActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `export_revision_to_s3` after provisioning.\n"]
-    pub fn export_revision_to_s3(&self) -> ListRef<DataexchangeEventActionActionElExportRevisionToS3ElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.export_revision_to_s3", self.base))
+    pub fn export_revision_to_s3(
+        &self,
+    ) -> ListRef<DataexchangeEventActionActionElExportRevisionToS3ElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.export_revision_to_s3", self.base),
+        )
     }
 }
 
@@ -616,7 +682,7 @@ pub struct DataexchangeEventActionEventElRevisionPublishedEl {
     data_set_id: PrimField<String>,
 }
 
-impl DataexchangeEventActionEventElRevisionPublishedEl { }
+impl DataexchangeEventActionEventElRevisionPublishedEl {}
 
 impl ToListMappable for DataexchangeEventActionEventElRevisionPublishedEl {
     type O = BlockAssignable<DataexchangeEventActionEventElRevisionPublishedEl>;
@@ -637,7 +703,9 @@ pub struct BuildDataexchangeEventActionEventElRevisionPublishedEl {
 
 impl BuildDataexchangeEventActionEventElRevisionPublishedEl {
     pub fn build(self) -> DataexchangeEventActionEventElRevisionPublishedEl {
-        DataexchangeEventActionEventElRevisionPublishedEl { data_set_id: self.data_set_id }
+        DataexchangeEventActionEventElRevisionPublishedEl {
+            data_set_id: self.data_set_id,
+        }
     }
 }
 
@@ -647,7 +715,10 @@ pub struct DataexchangeEventActionEventElRevisionPublishedElRef {
 }
 
 impl Ref for DataexchangeEventActionEventElRevisionPublishedElRef {
-    fn new(shared: StackShared, base: String) -> DataexchangeEventActionEventElRevisionPublishedElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataexchangeEventActionEventElRevisionPublishedElRef {
         DataexchangeEventActionEventElRevisionPublishedElRef {
             shared: shared,
             base: base.to_string(),
@@ -687,10 +758,10 @@ impl DataexchangeEventActionEventEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.revision_published = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.revision_published = Some(d);
-            },
+            }
         }
         self
     }
@@ -739,8 +810,13 @@ impl DataexchangeEventActionEventElRef {
     }
 
     #[doc = "Get a reference to the value of field `revision_published` after provisioning.\n"]
-    pub fn revision_published(&self) -> ListRef<DataexchangeEventActionEventElRevisionPublishedElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revision_published", self.base))
+    pub fn revision_published(
+        &self,
+    ) -> ListRef<DataexchangeEventActionEventElRevisionPublishedElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revision_published", self.base),
+        )
     }
 }
 

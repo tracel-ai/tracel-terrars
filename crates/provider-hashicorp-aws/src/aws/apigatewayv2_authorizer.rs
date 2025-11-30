@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Apigatewayv2AuthorizerData {
@@ -75,7 +75,8 @@ impl Apigatewayv2Authorizer {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl Apigatewayv2Authorizer {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl Apigatewayv2Authorizer {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -150,22 +161,24 @@ impl Apigatewayv2Authorizer {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `jwt_configuration`.\n"]
-    pub fn set_jwt_configuration(self, v: impl Into<BlockAssignable<Apigatewayv2AuthorizerJwtConfigurationEl>>) -> Self {
+    pub fn set_jwt_configuration(
+        self,
+        v: impl Into<BlockAssignable<Apigatewayv2AuthorizerJwtConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().jwt_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.jwt_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,37 +191,58 @@ impl Apigatewayv2Authorizer {
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_credentials_arn` after provisioning.\n"]
     pub fn authorizer_credentials_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_credentials_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_credentials_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_payload_format_version` after provisioning.\n"]
     pub fn authorizer_payload_format_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_payload_format_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_payload_format_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_result_ttl_in_seconds` after provisioning.\n"]
     pub fn authorizer_result_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_result_ttl_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_result_ttl_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_type` after provisioning.\n"]
     pub fn authorizer_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_uri` after provisioning.\n"]
     pub fn authorizer_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_simple_responses` after provisioning.\n"]
     pub fn enable_simple_responses(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_simple_responses", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_simple_responses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -218,38 +252,56 @@ impl Apigatewayv2Authorizer {
 
     #[doc = "Get a reference to the value of field `identity_sources` after provisioning.\n"]
     pub fn identity_sources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.identity_sources", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.identity_sources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jwt_configuration` after provisioning.\n"]
     pub fn jwt_configuration(&self) -> ListRef<Apigatewayv2AuthorizerJwtConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Apigatewayv2AuthorizerTimeoutsElRef {
-        Apigatewayv2AuthorizerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Apigatewayv2AuthorizerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Apigatewayv2Authorizer {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Apigatewayv2Authorizer { }
+impl Resource for Apigatewayv2Authorizer {}
 
 impl ToListMappable for Apigatewayv2Authorizer {
     type O = ListRef<Apigatewayv2AuthorizerRef>;
@@ -322,10 +374,7 @@ pub struct Apigatewayv2AuthorizerRef {
 
 impl Ref for Apigatewayv2AuthorizerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -340,37 +389,58 @@ impl Apigatewayv2AuthorizerRef {
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_credentials_arn` after provisioning.\n"]
     pub fn authorizer_credentials_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_credentials_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_credentials_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_payload_format_version` after provisioning.\n"]
     pub fn authorizer_payload_format_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_payload_format_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_payload_format_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_result_ttl_in_seconds` after provisioning.\n"]
     pub fn authorizer_result_ttl_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_result_ttl_in_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_result_ttl_in_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_type` after provisioning.\n"]
     pub fn authorizer_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_uri` after provisioning.\n"]
     pub fn authorizer_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_simple_responses` after provisioning.\n"]
     pub fn enable_simple_responses(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_simple_responses", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_simple_responses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -380,28 +450,42 @@ impl Apigatewayv2AuthorizerRef {
 
     #[doc = "Get a reference to the value of field `identity_sources` after provisioning.\n"]
     pub fn identity_sources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.identity_sources", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.identity_sources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jwt_configuration` after provisioning.\n"]
     pub fn jwt_configuration(&self) -> ListRef<Apigatewayv2AuthorizerJwtConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Apigatewayv2AuthorizerTimeoutsElRef {
-        Apigatewayv2AuthorizerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Apigatewayv2AuthorizerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -510,7 +594,9 @@ pub struct BuildApigatewayv2AuthorizerTimeoutsEl {}
 
 impl BuildApigatewayv2AuthorizerTimeoutsEl {
     pub fn build(self) -> Apigatewayv2AuthorizerTimeoutsEl {
-        Apigatewayv2AuthorizerTimeoutsEl { delete: core::default::Default::default() }
+        Apigatewayv2AuthorizerTimeoutsEl {
+            delete: core::default::Default::default(),
+        }
     }
 }
 

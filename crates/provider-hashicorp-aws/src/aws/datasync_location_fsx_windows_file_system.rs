@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncLocationFsxWindowsFileSystemData {
@@ -67,7 +67,8 @@ impl DatasyncLocationFsxWindowsFileSystem {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl DatasyncLocationFsxWindowsFileSystem {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl DatasyncLocationFsxWindowsFileSystem {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl DatasyncLocationFsxWindowsFileSystem {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -144,17 +154,26 @@ impl DatasyncLocationFsxWindowsFileSystem {
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fsx_filesystem_arn` after provisioning.\n"]
     pub fn fsx_filesystem_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fsx_filesystem_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fsx_filesystem_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -164,33 +183,50 @@ impl DatasyncLocationFsxWindowsFileSystem {
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_arns` after provisioning.\n"]
     pub fn security_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -200,17 +236,24 @@ impl DatasyncLocationFsxWindowsFileSystem {
 
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncLocationFsxWindowsFileSystem {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncLocationFsxWindowsFileSystem { }
+impl Resource for DatasyncLocationFsxWindowsFileSystem {}
 
 impl ToListMappable for DatasyncLocationFsxWindowsFileSystem {
     type O = ListRef<DatasyncLocationFsxWindowsFileSystemRef>;
@@ -249,26 +292,27 @@ pub struct BuildDatasyncLocationFsxWindowsFileSystem {
 
 impl BuildDatasyncLocationFsxWindowsFileSystem {
     pub fn build(self, stack: &mut Stack) -> DatasyncLocationFsxWindowsFileSystem {
-        let out = DatasyncLocationFsxWindowsFileSystem(Rc::new(DatasyncLocationFsxWindowsFileSystem_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DatasyncLocationFsxWindowsFileSystemData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                domain: core::default::Default::default(),
-                fsx_filesystem_arn: self.fsx_filesystem_arn,
-                id: core::default::Default::default(),
-                password: self.password,
-                region: core::default::Default::default(),
-                security_group_arns: self.security_group_arns,
-                subdirectory: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-                user: self.user,
-            }),
-        }));
+        let out =
+            DatasyncLocationFsxWindowsFileSystem(Rc::new(DatasyncLocationFsxWindowsFileSystem_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DatasyncLocationFsxWindowsFileSystemData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    domain: core::default::Default::default(),
+                    fsx_filesystem_arn: self.fsx_filesystem_arn,
+                    id: core::default::Default::default(),
+                    password: self.password,
+                    region: core::default::Default::default(),
+                    security_group_arns: self.security_group_arns,
+                    subdirectory: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                    user: self.user,
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -281,10 +325,7 @@ pub struct DatasyncLocationFsxWindowsFileSystemRef {
 
 impl Ref for DatasyncLocationFsxWindowsFileSystemRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -304,17 +345,26 @@ impl DatasyncLocationFsxWindowsFileSystemRef {
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fsx_filesystem_arn` after provisioning.\n"]
     pub fn fsx_filesystem_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fsx_filesystem_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fsx_filesystem_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -324,33 +374,50 @@ impl DatasyncLocationFsxWindowsFileSystemRef {
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_arns` after provisioning.\n"]
     pub fn security_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -360,6 +427,9 @@ impl DatasyncLocationFsxWindowsFileSystemRef {
 
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user", self.extract_ref()),
+        )
     }
 }

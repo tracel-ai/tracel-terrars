@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EmrcontainersJobTemplateData {
@@ -67,7 +67,8 @@ impl EmrcontainersJobTemplate {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl EmrcontainersJobTemplate {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl EmrcontainersJobTemplate {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl EmrcontainersJobTemplate {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -139,10 +149,10 @@ impl EmrcontainersJobTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().job_template_data = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.job_template_data = Some(d);
-            },
+            }
         }
         self
     }
@@ -165,48 +175,72 @@ impl EmrcontainersJobTemplate {
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_template_data` after provisioning.\n"]
     pub fn job_template_data(&self) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.job_template_data", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.job_template_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EmrcontainersJobTemplateTimeoutsElRef {
-        EmrcontainersJobTemplateTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EmrcontainersJobTemplateTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EmrcontainersJobTemplate {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EmrcontainersJobTemplate { }
+impl Resource for EmrcontainersJobTemplate {}
 
 impl ToListMappable for EmrcontainersJobTemplate {
     type O = ListRef<EmrcontainersJobTemplateRef>;
@@ -270,10 +304,7 @@ pub struct EmrcontainersJobTemplateRef {
 
 impl Ref for EmrcontainersJobTemplateRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -298,43 +329,64 @@ impl EmrcontainersJobTemplateRef {
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_template_data` after provisioning.\n"]
     pub fn job_template_data(&self) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.job_template_data", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.job_template_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EmrcontainersJobTemplateTimeoutsElRef {
-        EmrcontainersJobTemplateTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EmrcontainersJobTemplateTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsEl {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     classification: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -370,7 +422,8 @@ impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOv
     }
 }
 
-pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsEl {}
+pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsEl
+{}
 
 impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsEl {
     pub fn build(
@@ -383,7 +436,8 @@ impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElAppli
     }
 }
 
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsElRef {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -461,18 +515,21 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicatio
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.configurations = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl {
-    type O =
-        BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl>;
+impl ToListMappable
+    for EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl
+{
+    type O = BlockAssignable<
+        EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -483,15 +540,19 @@ impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOv
     }
 }
 
-pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl {
+pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl
+{
     #[doc = ""]
     pub classification: PrimField<String>,
 }
 
-impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl {
+impl
+    BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl
+{
     pub fn build(
         self,
-    ) -> EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl {
+    ) -> EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl
+    {
         EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationEl {
             classification: self.classification,
             properties: core::default::Default::default(),
@@ -501,7 +562,8 @@ impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElAppli
     }
 }
 
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElRef {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -518,14 +580,19 @@ impl Ref for EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElAp
     }
 }
 
-impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElRef {
+impl
+    EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.classification", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.classification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
@@ -538,13 +605,17 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicatio
         &self,
     ) -> ListRef<
         EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElConfigurationsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.configurations", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configurations", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationEl {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationEl
+{
     log_group_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     log_stream_name_prefix: Option<PrimField<String>>,
@@ -573,7 +644,8 @@ impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOv
     }
 }
 
-pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationEl {
+pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationEl
+{
     #[doc = ""]
     pub log_group_name: PrimField<String>,
 }
@@ -589,7 +661,8 @@ impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonit
     }
 }
 
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationElRef {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -623,7 +696,8 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoring
 }
 
 #[derive(Serialize)]
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationEl {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationEl
+{
     log_uri: PrimField<String>,
 }
 
@@ -646,7 +720,8 @@ impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOv
     }
 }
 
-pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationEl {
+pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationEl
+{
     #[doc = ""]
     pub log_uri: PrimField<String>,
 }
@@ -661,7 +736,8 @@ impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonit
     }
 }
 
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationElRef {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -744,10 +820,10 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoring
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloud_watch_monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloud_watch_monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -767,18 +843,21 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoring
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl {
-    type O =
-        BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl>;
+impl ToListMappable
+    for EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl
+{
+    type O = BlockAssignable<
+        EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -789,10 +868,16 @@ impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElConfigurationOv
     }
 }
 
-pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl {}
+pub struct BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl
+{}
 
-impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl {
-    pub fn build(self) -> EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl {
+impl
+    BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl
+{
+    pub fn build(
+        self,
+    ) -> EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl
+    {
         EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationEl {
             persistent_app_ui: core::default::Default::default(),
             cloud_watch_monitoring_configuration: core::default::Default::default(),
@@ -802,7 +887,8 @@ impl BuildEmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonit
     }
 }
 
-pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElRef {
+pub struct EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -826,7 +912,10 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoring
 
     #[doc = "Get a reference to the value of field `persistent_app_ui` after provisioning.\n"]
     pub fn persistent_app_ui(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.persistent_app_ui", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.persistent_app_ui", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloud_watch_monitoring_configuration` after provisioning.\n"]
@@ -834,8 +923,11 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoring
         &self,
     ) -> ListRef<
         EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElCloudWatchMonitoringConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_watch_monitoring_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_monitoring_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_monitoring_configuration` after provisioning.\n"]
@@ -843,8 +935,11 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoring
         &self,
     ) -> ListRef<
         EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElS3MonitoringConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.s3_monitoring_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_monitoring_configuration", self.base),
+        )
     }
 }
 
@@ -887,10 +982,10 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.application_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.application_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -910,10 +1005,10 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -968,15 +1063,21 @@ impl EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElRef {
     #[doc = "Get a reference to the value of field `application_configuration` after provisioning.\n"]
     pub fn application_configuration(
         &self,
-    ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_configuration", self.base))
+    ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElApplicationConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_configuration` after provisioning.\n"]
     pub fn monitoring_configuration(
         &self,
-    ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring_configuration", self.base))
+    ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElMonitoringConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring_configuration", self.base),
+        )
     }
 }
 
@@ -1003,7 +1104,8 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl {
 }
 
 impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl {
-    type O = BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl>;
+    type O =
+        BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1054,7 +1156,10 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverElRef 
 
     #[doc = "Get a reference to the value of field `spark_sql_parameters` after provisioning.\n"]
     pub fn spark_sql_parameters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spark_sql_parameters", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spark_sql_parameters", self.base),
+        )
     }
 }
 
@@ -1082,7 +1187,8 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl 
 }
 
 impl ToListMappable for EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl {
-    type O = BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl>;
+    type O =
+        BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1099,7 +1205,9 @@ pub struct BuildEmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJ
 }
 
 impl BuildEmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl {
-    pub fn build(self) -> EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl {
+    pub fn build(
+        self,
+    ) -> EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl {
         EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl {
             entry_point: self.entry_point,
             entry_point_arguments: core::default::Default::default(),
@@ -1137,12 +1245,18 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverElR
 
     #[doc = "Get a reference to the value of field `entry_point_arguments` after provisioning.\n"]
     pub fn entry_point_arguments(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.entry_point_arguments", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.entry_point_arguments", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spark_submit_parameters` after provisioning.\n"]
     pub fn spark_submit_parameters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spark_submit_parameters", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spark_submit_parameters", self.base),
+        )
     }
 }
 
@@ -1159,9 +1273,11 @@ struct EmrcontainersJobTemplateJobTemplateDataElJobDriverElDynamic {
 #[derive(Serialize)]
 pub struct EmrcontainersJobTemplateJobTemplateDataElJobDriverEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    spark_sql_job_driver: Option<Vec<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl>>,
+    spark_sql_job_driver:
+        Option<Vec<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    spark_submit_job_driver: Option<Vec<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl>>,
+    spark_submit_job_driver:
+        Option<Vec<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl>>,
     dynamic: EmrcontainersJobTemplateJobTemplateDataElJobDriverElDynamic,
 }
 
@@ -1169,15 +1285,19 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverEl {
     #[doc = "Set the field `spark_sql_job_driver`.\n"]
     pub fn set_spark_sql_job_driver(
         mut self,
-        v: impl Into<BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.spark_sql_job_driver = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.spark_sql_job_driver = Some(d);
-            },
+            }
         }
         self
     }
@@ -1185,15 +1305,19 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverEl {
     #[doc = "Set the field `spark_submit_job_driver`.\n"]
     pub fn set_spark_submit_job_driver(
         mut self,
-        v: impl Into<BlockAssignable<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.spark_submit_job_driver = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.spark_submit_job_driver = Some(d);
-            },
+            }
         }
         self
     }
@@ -1229,7 +1353,10 @@ pub struct EmrcontainersJobTemplateJobTemplateDataElJobDriverElRef {
 }
 
 impl Ref for EmrcontainersJobTemplateJobTemplateDataElJobDriverElRef {
-    fn new(shared: StackShared, base: String) -> EmrcontainersJobTemplateJobTemplateDataElJobDriverElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrcontainersJobTemplateJobTemplateDataElJobDriverElRef {
         EmrcontainersJobTemplateJobTemplateDataElJobDriverElRef {
             shared: shared,
             base: base.to_string(),
@@ -1246,20 +1373,28 @@ impl EmrcontainersJobTemplateJobTemplateDataElJobDriverElRef {
     pub fn spark_sql_job_driver(
         &self,
     ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSqlJobDriverElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spark_sql_job_driver", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spark_sql_job_driver", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spark_submit_job_driver` after provisioning.\n"]
     pub fn spark_submit_job_driver(
         &self,
-    ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spark_submit_job_driver", self.base))
+    ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElJobDriverElSparkSubmitJobDriverElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spark_submit_job_driver", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrcontainersJobTemplateJobTemplateDataElDynamic {
-    configuration_overrides: Option<DynamicBlock<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesEl>>,
+    configuration_overrides:
+        Option<DynamicBlock<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesEl>>,
     job_driver: Option<DynamicBlock<EmrcontainersJobTemplateJobTemplateDataElJobDriverEl>>,
 }
 
@@ -1270,7 +1405,8 @@ pub struct EmrcontainersJobTemplateJobTemplateDataEl {
     job_tags: Option<RecField<PrimField<String>>>,
     release_label: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    configuration_overrides: Option<Vec<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesEl>>,
+    configuration_overrides:
+        Option<Vec<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     job_driver: Option<Vec<EmrcontainersJobTemplateJobTemplateDataElJobDriverEl>>,
     dynamic: EmrcontainersJobTemplateJobTemplateDataElDynamic,
@@ -1291,10 +1427,10 @@ impl EmrcontainersJobTemplateJobTemplateDataEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.configuration_overrides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.configuration_overrides = Some(d);
-            },
+            }
         }
         self
     }
@@ -1307,10 +1443,10 @@ impl EmrcontainersJobTemplateJobTemplateDataEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.job_driver = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.job_driver = Some(d);
-            },
+            }
         }
         self
     }
@@ -1369,7 +1505,10 @@ impl EmrcontainersJobTemplateJobTemplateDataElRef {
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_tags` after provisioning.\n"]
@@ -1379,14 +1518,20 @@ impl EmrcontainersJobTemplateJobTemplateDataElRef {
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_overrides` after provisioning.\n"]
     pub fn configuration_overrides(
         &self,
     ) -> ListRef<EmrcontainersJobTemplateJobTemplateDataElConfigurationOverridesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_overrides", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_overrides", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_driver` after provisioning.\n"]
@@ -1425,7 +1570,9 @@ pub struct BuildEmrcontainersJobTemplateTimeoutsEl {}
 
 impl BuildEmrcontainersJobTemplateTimeoutsEl {
     pub fn build(self) -> EmrcontainersJobTemplateTimeoutsEl {
-        EmrcontainersJobTemplateTimeoutsEl { delete: core::default::Default::default() }
+        EmrcontainersJobTemplateTimeoutsEl {
+            delete: core::default::Default::default(),
+        }
     }
 }
 

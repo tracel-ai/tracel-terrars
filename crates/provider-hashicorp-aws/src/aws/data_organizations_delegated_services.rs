@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOrganizationsDelegatedServicesData {
@@ -49,12 +49,20 @@ impl DataOrganizationsDelegatedServices {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delegated_services` after provisioning.\n"]
-    pub fn delegated_services(&self) -> SetRef<DataOrganizationsDelegatedServicesDelegatedServicesElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.delegated_services", self.extract_ref()))
+    pub fn delegated_services(
+        &self,
+    ) -> SetRef<DataOrganizationsDelegatedServicesDelegatedServicesElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.delegated_services", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -65,11 +73,15 @@ impl DataOrganizationsDelegatedServices {
 
 impl Referable for DataOrganizationsDelegatedServices {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOrganizationsDelegatedServices { }
+impl Datasource for DataOrganizationsDelegatedServices {}
 
 impl ToListMappable for DataOrganizationsDelegatedServices {
     type O = ListRef<DataOrganizationsDelegatedServicesRef>;
@@ -102,17 +114,18 @@ pub struct BuildDataOrganizationsDelegatedServices {
 
 impl BuildDataOrganizationsDelegatedServices {
     pub fn build(self, stack: &mut Stack) -> DataOrganizationsDelegatedServices {
-        let out = DataOrganizationsDelegatedServices(Rc::new(DataOrganizationsDelegatedServices_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOrganizationsDelegatedServicesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                account_id: self.account_id,
-                id: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataOrganizationsDelegatedServices(Rc::new(DataOrganizationsDelegatedServices_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOrganizationsDelegatedServicesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    account_id: self.account_id,
+                    id: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -125,10 +138,7 @@ pub struct DataOrganizationsDelegatedServicesRef {
 
 impl Ref for DataOrganizationsDelegatedServicesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -143,12 +153,20 @@ impl DataOrganizationsDelegatedServicesRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delegated_services` after provisioning.\n"]
-    pub fn delegated_services(&self) -> SetRef<DataOrganizationsDelegatedServicesDelegatedServicesElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.delegated_services", self.extract_ref()))
+    pub fn delegated_services(
+        &self,
+    ) -> SetRef<DataOrganizationsDelegatedServicesDelegatedServicesElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.delegated_services", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -208,7 +226,10 @@ pub struct DataOrganizationsDelegatedServicesDelegatedServicesElRef {
 }
 
 impl Ref for DataOrganizationsDelegatedServicesDelegatedServicesElRef {
-    fn new(shared: StackShared, base: String) -> DataOrganizationsDelegatedServicesDelegatedServicesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataOrganizationsDelegatedServicesDelegatedServicesElRef {
         DataOrganizationsDelegatedServicesDelegatedServicesElRef {
             shared: shared,
             base: base.to_string(),
@@ -223,11 +244,17 @@ impl DataOrganizationsDelegatedServicesDelegatedServicesElRef {
 
     #[doc = "Get a reference to the value of field `delegation_enabled_date` after provisioning.\n"]
     pub fn delegation_enabled_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delegation_enabled_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delegation_enabled_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_principal` after provisioning.\n"]
     pub fn service_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_principal", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_principal", self.base),
+        )
     }
 }

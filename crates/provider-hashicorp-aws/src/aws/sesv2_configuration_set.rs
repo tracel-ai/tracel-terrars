@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Sesv2ConfigurationSetData {
@@ -73,7 +73,8 @@ impl Sesv2ConfigurationSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -86,7 +87,7 @@ impl Sesv2ConfigurationSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -97,12 +98,22 @@ impl Sesv2ConfigurationSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl Sesv2ConfigurationSet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -132,14 +142,17 @@ impl Sesv2ConfigurationSet {
     }
 
     #[doc = "Set the field `delivery_options`.\n"]
-    pub fn set_delivery_options(self, v: impl Into<BlockAssignable<Sesv2ConfigurationSetDeliveryOptionsEl>>) -> Self {
+    pub fn set_delivery_options(
+        self,
+        v: impl Into<BlockAssignable<Sesv2ConfigurationSetDeliveryOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().delivery_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.delivery_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -152,23 +165,26 @@ impl Sesv2ConfigurationSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().reputation_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.reputation_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sending_options`.\n"]
-    pub fn set_sending_options(self, v: impl Into<BlockAssignable<Sesv2ConfigurationSetSendingOptionsEl>>) -> Self {
+    pub fn set_sending_options(
+        self,
+        v: impl Into<BlockAssignable<Sesv2ConfigurationSetSendingOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sending_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sending_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -181,36 +197,42 @@ impl Sesv2ConfigurationSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().suppression_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.suppression_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tracking_options`.\n"]
-    pub fn set_tracking_options(self, v: impl Into<BlockAssignable<Sesv2ConfigurationSetTrackingOptionsEl>>) -> Self {
+    pub fn set_tracking_options(
+        self,
+        v: impl Into<BlockAssignable<Sesv2ConfigurationSetTrackingOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tracking_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tracking_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `vdm_options`.\n"]
-    pub fn set_vdm_options(self, v: impl Into<BlockAssignable<Sesv2ConfigurationSetVdmOptionsEl>>) -> Self {
+    pub fn set_vdm_options(
+        self,
+        v: impl Into<BlockAssignable<Sesv2ConfigurationSetVdmOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vdm_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vdm_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -222,7 +244,10 @@ impl Sesv2ConfigurationSet {
 
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -230,60 +255,90 @@ impl Sesv2ConfigurationSet {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delivery_options` after provisioning.\n"]
     pub fn delivery_options(&self) -> ListRef<Sesv2ConfigurationSetDeliveryOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delivery_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delivery_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reputation_options` after provisioning.\n"]
     pub fn reputation_options(&self) -> ListRef<Sesv2ConfigurationSetReputationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reputation_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reputation_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sending_options` after provisioning.\n"]
     pub fn sending_options(&self) -> ListRef<Sesv2ConfigurationSetSendingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sending_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sending_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `suppression_options` after provisioning.\n"]
     pub fn suppression_options(&self) -> ListRef<Sesv2ConfigurationSetSuppressionOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.suppression_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.suppression_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tracking_options` after provisioning.\n"]
     pub fn tracking_options(&self) -> ListRef<Sesv2ConfigurationSetTrackingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tracking_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tracking_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vdm_options` after provisioning.\n"]
     pub fn vdm_options(&self) -> ListRef<Sesv2ConfigurationSetVdmOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vdm_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vdm_options", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Sesv2ConfigurationSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Sesv2ConfigurationSet { }
+impl Resource for Sesv2ConfigurationSet {}
 
 impl ToListMappable for Sesv2ConfigurationSet {
     type O = ListRef<Sesv2ConfigurationSetRef>;
@@ -350,10 +405,7 @@ pub struct Sesv2ConfigurationSetRef {
 
 impl Ref for Sesv2ConfigurationSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -373,7 +425,10 @@ impl Sesv2ConfigurationSetRef {
 
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -381,50 +436,76 @@ impl Sesv2ConfigurationSetRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delivery_options` after provisioning.\n"]
     pub fn delivery_options(&self) -> ListRef<Sesv2ConfigurationSetDeliveryOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delivery_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delivery_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reputation_options` after provisioning.\n"]
     pub fn reputation_options(&self) -> ListRef<Sesv2ConfigurationSetReputationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reputation_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reputation_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sending_options` after provisioning.\n"]
     pub fn sending_options(&self) -> ListRef<Sesv2ConfigurationSetSendingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sending_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sending_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `suppression_options` after provisioning.\n"]
     pub fn suppression_options(&self) -> ListRef<Sesv2ConfigurationSetSuppressionOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.suppression_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.suppression_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tracking_options` after provisioning.\n"]
     pub fn tracking_options(&self) -> ListRef<Sesv2ConfigurationSetTrackingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tracking_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tracking_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vdm_options` after provisioning.\n"]
     pub fn vdm_options(&self) -> ListRef<Sesv2ConfigurationSetVdmOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vdm_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vdm_options", self.extract_ref()),
+        )
     }
 }
 
@@ -503,12 +584,18 @@ impl Sesv2ConfigurationSetDeliveryOptionsElRef {
 
     #[doc = "Get a reference to the value of field `max_delivery_seconds` after provisioning.\n"]
     pub fn max_delivery_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_delivery_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_delivery_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sending_pool_name` after provisioning.\n"]
     pub fn sending_pool_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sending_pool_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sending_pool_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_policy` after provisioning.\n"]
@@ -547,7 +634,9 @@ pub struct BuildSesv2ConfigurationSetReputationOptionsEl {}
 
 impl BuildSesv2ConfigurationSetReputationOptionsEl {
     pub fn build(self) -> Sesv2ConfigurationSetReputationOptionsEl {
-        Sesv2ConfigurationSetReputationOptionsEl { reputation_metrics_enabled: core::default::Default::default() }
+        Sesv2ConfigurationSetReputationOptionsEl {
+            reputation_metrics_enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -572,12 +661,18 @@ impl Sesv2ConfigurationSetReputationOptionsElRef {
 
     #[doc = "Get a reference to the value of field `last_fresh_start` after provisioning.\n"]
     pub fn last_fresh_start(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_fresh_start", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_fresh_start", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reputation_metrics_enabled` after provisioning.\n"]
     pub fn reputation_metrics_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reputation_metrics_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reputation_metrics_enabled", self.base),
+        )
     }
 }
 
@@ -611,7 +706,9 @@ pub struct BuildSesv2ConfigurationSetSendingOptionsEl {}
 
 impl BuildSesv2ConfigurationSetSendingOptionsEl {
     pub fn build(self) -> Sesv2ConfigurationSetSendingOptionsEl {
-        Sesv2ConfigurationSetSendingOptionsEl { sending_enabled: core::default::Default::default() }
+        Sesv2ConfigurationSetSendingOptionsEl {
+            sending_enabled: core::default::Default::default(),
+        }
     }
 }
 
@@ -636,7 +733,10 @@ impl Sesv2ConfigurationSetSendingOptionsElRef {
 
     #[doc = "Get a reference to the value of field `sending_enabled` after provisioning.\n"]
     pub fn sending_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sending_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sending_enabled", self.base),
+        )
     }
 }
 
@@ -670,7 +770,9 @@ pub struct BuildSesv2ConfigurationSetSuppressionOptionsEl {}
 
 impl BuildSesv2ConfigurationSetSuppressionOptionsEl {
     pub fn build(self) -> Sesv2ConfigurationSetSuppressionOptionsEl {
-        Sesv2ConfigurationSetSuppressionOptionsEl { suppressed_reasons: core::default::Default::default() }
+        Sesv2ConfigurationSetSuppressionOptionsEl {
+            suppressed_reasons: core::default::Default::default(),
+        }
     }
 }
 
@@ -695,7 +797,10 @@ impl Sesv2ConfigurationSetSuppressionOptionsElRef {
 
     #[doc = "Get a reference to the value of field `suppressed_reasons` after provisioning.\n"]
     pub fn suppressed_reasons(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.suppressed_reasons", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.suppressed_reasons", self.base),
+        )
     }
 }
 
@@ -761,7 +866,10 @@ impl Sesv2ConfigurationSetTrackingOptionsElRef {
 
     #[doc = "Get a reference to the value of field `custom_redirect_domain` after provisioning.\n"]
     pub fn custom_redirect_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_redirect_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_redirect_domain", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `https_policy` after provisioning.\n"]
@@ -800,7 +908,9 @@ pub struct BuildSesv2ConfigurationSetVdmOptionsElDashboardOptionsEl {}
 
 impl BuildSesv2ConfigurationSetVdmOptionsElDashboardOptionsEl {
     pub fn build(self) -> Sesv2ConfigurationSetVdmOptionsElDashboardOptionsEl {
-        Sesv2ConfigurationSetVdmOptionsElDashboardOptionsEl { engagement_metrics: core::default::Default::default() }
+        Sesv2ConfigurationSetVdmOptionsElDashboardOptionsEl {
+            engagement_metrics: core::default::Default::default(),
+        }
     }
 }
 
@@ -810,7 +920,10 @@ pub struct Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef {
 }
 
 impl Ref for Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef {
-    fn new(shared: StackShared, base: String) -> Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef {
         Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -825,7 +938,10 @@ impl Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef {
 
     #[doc = "Get a reference to the value of field `engagement_metrics` after provisioning.\n"]
     pub fn engagement_metrics(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engagement_metrics", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engagement_metrics", self.base),
+        )
     }
 }
 
@@ -871,7 +987,10 @@ pub struct Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef {
 }
 
 impl Ref for Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef {
-    fn new(shared: StackShared, base: String) -> Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef {
         Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -886,7 +1005,10 @@ impl Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef {
 
     #[doc = "Get a reference to the value of field `optimized_shared_delivery` after provisioning.\n"]
     pub fn optimized_shared_delivery(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.optimized_shared_delivery", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.optimized_shared_delivery", self.base),
+        )
     }
 }
 
@@ -914,10 +1036,10 @@ impl Sesv2ConfigurationSetVdmOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dashboard_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dashboard_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -930,10 +1052,10 @@ impl Sesv2ConfigurationSetVdmOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.guardian_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.guardian_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -983,13 +1105,23 @@ impl Sesv2ConfigurationSetVdmOptionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `dashboard_options` after provisioning.\n"]
-    pub fn dashboard_options(&self) -> ListRef<Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dashboard_options", self.base))
+    pub fn dashboard_options(
+        &self,
+    ) -> ListRef<Sesv2ConfigurationSetVdmOptionsElDashboardOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dashboard_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardian_options` after provisioning.\n"]
-    pub fn guardian_options(&self) -> ListRef<Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardian_options", self.base))
+    pub fn guardian_options(
+        &self,
+    ) -> ListRef<Sesv2ConfigurationSetVdmOptionsElGuardianOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardian_options", self.base),
+        )
     }
 }
 

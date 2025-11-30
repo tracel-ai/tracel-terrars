@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSecretsmanagerRandomPasswordData {
@@ -106,8 +106,7 @@ impl DataSecretsmanagerRandomPassword {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -121,27 +120,42 @@ impl DataSecretsmanagerRandomPassword {
 
     #[doc = "Get a reference to the value of field `exclude_characters` after provisioning.\n"]
     pub fn exclude_characters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_characters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_characters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_lowercase` after provisioning.\n"]
     pub fn exclude_lowercase(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_lowercase", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_lowercase", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_numbers` after provisioning.\n"]
     pub fn exclude_numbers(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_numbers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_punctuation` after provisioning.\n"]
     pub fn exclude_punctuation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_punctuation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_punctuation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_uppercase` after provisioning.\n"]
     pub fn exclude_uppercase(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_uppercase", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_uppercase", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -151,38 +165,56 @@ impl DataSecretsmanagerRandomPassword {
 
     #[doc = "Get a reference to the value of field `include_space` after provisioning.\n"]
     pub fn include_space(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_space", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_space", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password_length` after provisioning.\n"]
     pub fn password_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password_length", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `random_password` after provisioning.\n"]
     pub fn random_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.random_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.random_password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_each_included_type` after provisioning.\n"]
     pub fn require_each_included_type(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_each_included_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_each_included_type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSecretsmanagerRandomPassword {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSecretsmanagerRandomPassword { }
+impl Datasource for DataSecretsmanagerRandomPassword {}
 
 impl ToListMappable for DataSecretsmanagerRandomPassword {
     type O = ListRef<DataSecretsmanagerRandomPasswordRef>;
@@ -244,10 +276,7 @@ pub struct DataSecretsmanagerRandomPasswordRef {
 
 impl Ref for DataSecretsmanagerRandomPasswordRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -262,27 +291,42 @@ impl DataSecretsmanagerRandomPasswordRef {
 
     #[doc = "Get a reference to the value of field `exclude_characters` after provisioning.\n"]
     pub fn exclude_characters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_characters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_characters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_lowercase` after provisioning.\n"]
     pub fn exclude_lowercase(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_lowercase", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_lowercase", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_numbers` after provisioning.\n"]
     pub fn exclude_numbers(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_numbers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_punctuation` after provisioning.\n"]
     pub fn exclude_punctuation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_punctuation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_punctuation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_uppercase` after provisioning.\n"]
     pub fn exclude_uppercase(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_uppercase", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_uppercase", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -292,27 +336,41 @@ impl DataSecretsmanagerRandomPasswordRef {
 
     #[doc = "Get a reference to the value of field `include_space` after provisioning.\n"]
     pub fn include_space(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_space", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_space", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password_length` after provisioning.\n"]
     pub fn password_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password_length", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `random_password` after provisioning.\n"]
     pub fn random_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.random_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.random_password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_each_included_type` after provisioning.\n"]
     pub fn require_each_included_type(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_each_included_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_each_included_type", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLakeformationPermissionsData {
@@ -80,8 +80,7 @@ impl DataLakeformationPermissions {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -95,75 +94,90 @@ impl DataLakeformationPermissions {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().data_cells_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.data_cells_filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `data_location`.\n"]
-    pub fn set_data_location(self, v: impl Into<BlockAssignable<DataLakeformationPermissionsDataLocationEl>>) -> Self {
+    pub fn set_data_location(
+        self,
+        v: impl Into<BlockAssignable<DataLakeformationPermissionsDataLocationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().data_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.data_location = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `database`.\n"]
-    pub fn set_database(self, v: impl Into<BlockAssignable<DataLakeformationPermissionsDatabaseEl>>) -> Self {
+    pub fn set_database(
+        self,
+        v: impl Into<BlockAssignable<DataLakeformationPermissionsDatabaseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().database = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.database = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lf_tag`.\n"]
-    pub fn set_lf_tag(self, v: impl Into<BlockAssignable<DataLakeformationPermissionsLfTagEl>>) -> Self {
+    pub fn set_lf_tag(
+        self,
+        v: impl Into<BlockAssignable<DataLakeformationPermissionsLfTagEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lf_tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lf_tag = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lf_tag_policy`.\n"]
-    pub fn set_lf_tag_policy(self, v: impl Into<BlockAssignable<DataLakeformationPermissionsLfTagPolicyEl>>) -> Self {
+    pub fn set_lf_tag_policy(
+        self,
+        v: impl Into<BlockAssignable<DataLakeformationPermissionsLfTagPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lf_tag_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lf_tag_policy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `table`.\n"]
-    pub fn set_table(self, v: impl Into<BlockAssignable<DataLakeformationPermissionsTableEl>>) -> Self {
+    pub fn set_table(
+        self,
+        v: impl Into<BlockAssignable<DataLakeformationPermissionsTableEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().table = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.table = Some(d);
-            },
+            }
         }
         self
     }
@@ -176,22 +190,28 @@ impl DataLakeformationPermissions {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().table_with_columns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.table_with_columns = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_resource` after provisioning.\n"]
     pub fn catalog_resource(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_resource", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_resource", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -201,68 +221,104 @@ impl DataLakeformationPermissions {
 
     #[doc = "Get a reference to the value of field `permissions` after provisioning.\n"]
     pub fn permissions(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permissions_with_grant_option` after provisioning.\n"]
     pub fn permissions_with_grant_option(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.permissions_with_grant_option", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.permissions_with_grant_option", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_cells_filter` after provisioning.\n"]
     pub fn data_cells_filter(&self) -> ListRef<DataLakeformationPermissionsDataCellsFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_cells_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_cells_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_location` after provisioning.\n"]
     pub fn data_location(&self) -> ListRef<DataLakeformationPermissionsDataLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_location", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<DataLakeformationPermissionsDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lf_tag` after provisioning.\n"]
     pub fn lf_tag(&self) -> ListRef<DataLakeformationPermissionsLfTagElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lf_tag", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lf_tag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lf_tag_policy` after provisioning.\n"]
     pub fn lf_tag_policy(&self) -> ListRef<DataLakeformationPermissionsLfTagPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lf_tag_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lf_tag_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table` after provisioning.\n"]
     pub fn table(&self) -> ListRef<DataLakeformationPermissionsTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_with_columns` after provisioning.\n"]
     pub fn table_with_columns(&self) -> ListRef<DataLakeformationPermissionsTableWithColumnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table_with_columns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table_with_columns", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLakeformationPermissions {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLakeformationPermissions { }
+impl Datasource for DataLakeformationPermissions {}
 
 impl ToListMappable for DataLakeformationPermissions {
     type O = ListRef<DataLakeformationPermissionsRef>;
@@ -329,10 +385,7 @@ pub struct DataLakeformationPermissionsRef {
 
 impl Ref for DataLakeformationPermissionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -347,12 +400,18 @@ impl DataLakeformationPermissionsRef {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_resource` after provisioning.\n"]
     pub fn catalog_resource(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_resource", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_resource", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -362,58 +421,90 @@ impl DataLakeformationPermissionsRef {
 
     #[doc = "Get a reference to the value of field `permissions` after provisioning.\n"]
     pub fn permissions(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permissions_with_grant_option` after provisioning.\n"]
     pub fn permissions_with_grant_option(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.permissions_with_grant_option", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.permissions_with_grant_option", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_cells_filter` after provisioning.\n"]
     pub fn data_cells_filter(&self) -> ListRef<DataLakeformationPermissionsDataCellsFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_cells_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_cells_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_location` after provisioning.\n"]
     pub fn data_location(&self) -> ListRef<DataLakeformationPermissionsDataLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_location", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<DataLakeformationPermissionsDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lf_tag` after provisioning.\n"]
     pub fn lf_tag(&self) -> ListRef<DataLakeformationPermissionsLfTagElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lf_tag", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lf_tag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lf_tag_policy` after provisioning.\n"]
     pub fn lf_tag_policy(&self) -> ListRef<DataLakeformationPermissionsLfTagPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lf_tag_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lf_tag_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table` after provisioning.\n"]
     pub fn table(&self) -> ListRef<DataLakeformationPermissionsTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_with_columns` after provisioning.\n"]
     pub fn table_with_columns(&self) -> ListRef<DataLakeformationPermissionsTableWithColumnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.table_with_columns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.table_with_columns", self.extract_ref()),
+        )
     }
 }
 
@@ -425,7 +516,7 @@ pub struct DataLakeformationPermissionsDataCellsFilterEl {
     table_name: PrimField<String>,
 }
 
-impl DataLakeformationPermissionsDataCellsFilterEl { }
+impl DataLakeformationPermissionsDataCellsFilterEl {}
 
 impl ToListMappable for DataLakeformationPermissionsDataCellsFilterEl {
     type O = BlockAssignable<DataLakeformationPermissionsDataCellsFilterEl>;
@@ -482,7 +573,10 @@ impl DataLakeformationPermissionsDataCellsFilterElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -492,7 +586,10 @@ impl DataLakeformationPermissionsDataCellsFilterElRef {
 
     #[doc = "Get a reference to the value of field `table_catalog_id` after provisioning.\n"]
     pub fn table_catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_catalog_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_catalog_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
@@ -729,7 +826,7 @@ pub struct DataLakeformationPermissionsLfTagPolicyElExpressionEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataLakeformationPermissionsLfTagPolicyElExpressionEl { }
+impl DataLakeformationPermissionsLfTagPolicyElExpressionEl {}
 
 impl ToListMappable for DataLakeformationPermissionsLfTagPolicyElExpressionEl {
     type O = BlockAssignable<DataLakeformationPermissionsLfTagPolicyElExpressionEl>;
@@ -765,7 +862,10 @@ pub struct DataLakeformationPermissionsLfTagPolicyElExpressionElRef {
 }
 
 impl Ref for DataLakeformationPermissionsLfTagPolicyElExpressionElRef {
-    fn new(shared: StackShared, base: String) -> DataLakeformationPermissionsLfTagPolicyElExpressionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLakeformationPermissionsLfTagPolicyElExpressionElRef {
         DataLakeformationPermissionsLfTagPolicyElExpressionElRef {
             shared: shared,
             base: base.to_string(),
@@ -819,10 +919,10 @@ impl DataLakeformationPermissionsLfTagPolicyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.expression = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.expression = Some(d);
-            },
+            }
         }
         self
     }
@@ -882,7 +982,10 @@ impl DataLakeformationPermissionsLfTagPolicyElRef {
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 }
 
@@ -971,7 +1074,10 @@ impl DataLakeformationPermissionsTableElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1088,12 +1194,18 @@ impl DataLakeformationPermissionsTableWithColumnsElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excluded_column_names` after provisioning.\n"]
     pub fn excluded_column_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_column_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_column_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataPollyVoicesData {
@@ -67,8 +67,7 @@ impl DataPollyVoices {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -79,17 +78,20 @@ impl DataPollyVoices {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().voices = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.voices = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -99,33 +101,48 @@ impl DataPollyVoices {
 
     #[doc = "Get a reference to the value of field `include_additional_language_codes` after provisioning.\n"]
     pub fn include_additional_language_codes(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_additional_language_codes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_additional_language_codes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `voices` after provisioning.\n"]
     pub fn voices(&self) -> ListRef<DataPollyVoicesVoicesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.voices", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.voices", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataPollyVoices {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataPollyVoices { }
+impl Datasource for DataPollyVoices {}
 
 impl ToListMappable for DataPollyVoices {
     type O = ListRef<DataPollyVoicesRef>;
@@ -183,10 +200,7 @@ pub struct DataPollyVoicesRef {
 
 impl Ref for DataPollyVoicesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -201,7 +215,10 @@ impl DataPollyVoicesRef {
 
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -211,30 +228,41 @@ impl DataPollyVoicesRef {
 
     #[doc = "Get a reference to the value of field `include_additional_language_codes` after provisioning.\n"]
     pub fn include_additional_language_codes(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_additional_language_codes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_additional_language_codes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `voices` after provisioning.\n"]
     pub fn voices(&self) -> ListRef<DataPollyVoicesVoicesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.voices", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.voices", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataPollyVoicesVoicesEl {}
 
-impl DataPollyVoicesVoicesEl { }
+impl DataPollyVoicesVoicesEl {}
 
 impl ToListMappable for DataPollyVoicesVoicesEl {
     type O = BlockAssignable<DataPollyVoicesVoicesEl>;
@@ -277,7 +305,10 @@ impl DataPollyVoicesVoicesElRef {
 
     #[doc = "Get a reference to the value of field `additional_language_codes` after provisioning.\n"]
     pub fn additional_language_codes(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_language_codes", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_language_codes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gender` after provisioning.\n"]
@@ -292,12 +323,18 @@ impl DataPollyVoicesVoicesElRef {
 
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_code", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_code", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `language_name` after provisioning.\n"]
     pub fn language_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.language_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.language_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -307,7 +344,10 @@ impl DataPollyVoicesVoicesElRef {
 
     #[doc = "Get a reference to the value of field `supported_engines` after provisioning.\n"]
     pub fn supported_engines(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.supported_engines", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.supported_engines", self.base),
+        )
     }
 }
 

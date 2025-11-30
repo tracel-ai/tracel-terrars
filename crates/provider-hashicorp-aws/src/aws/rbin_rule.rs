@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RbinRuleData {
@@ -71,7 +71,8 @@ impl RbinRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl RbinRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl RbinRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +121,7 @@ impl RbinRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -130,27 +140,33 @@ impl RbinRule {
     }
 
     #[doc = "Set the field `exclude_resource_tags`.\n"]
-    pub fn set_exclude_resource_tags(self, v: impl Into<BlockAssignable<RbinRuleExcludeResourceTagsEl>>) -> Self {
+    pub fn set_exclude_resource_tags(
+        self,
+        v: impl Into<BlockAssignable<RbinRuleExcludeResourceTagsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().exclude_resource_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.exclude_resource_tags = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lock_configuration`.\n"]
-    pub fn set_lock_configuration(self, v: impl Into<BlockAssignable<RbinRuleLockConfigurationEl>>) -> Self {
+    pub fn set_lock_configuration(
+        self,
+        v: impl Into<BlockAssignable<RbinRuleLockConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lock_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lock_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -160,23 +176,26 @@ impl RbinRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().resource_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.resource_tags = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `retention_period`.\n"]
-    pub fn set_retention_period(self, v: impl Into<BlockAssignable<RbinRuleRetentionPeriodEl>>) -> Self {
+    pub fn set_retention_period(
+        self,
+        v: impl Into<BlockAssignable<RbinRuleRetentionPeriodEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().retention_period = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.retention_period = Some(d);
-            },
+            }
         }
         self
     }
@@ -194,7 +213,10 @@ impl RbinRule {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -204,63 +226,96 @@ impl RbinRule {
 
     #[doc = "Get a reference to the value of field `lock_end_time` after provisioning.\n"]
     pub fn lock_end_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lock_end_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lock_end_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lock_state` after provisioning.\n"]
     pub fn lock_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lock_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lock_state", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lock_configuration` after provisioning.\n"]
     pub fn lock_configuration(&self) -> ListRef<RbinRuleLockConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lock_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lock_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(&self) -> ListRef<RbinRuleRetentionPeriodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retention_period", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RbinRuleTimeoutsElRef {
-        RbinRuleTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        RbinRuleTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for RbinRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RbinRule { }
+impl Resource for RbinRule {}
 
 impl ToListMappable for RbinRule {
     type O = ListRef<RbinRuleRef>;
@@ -326,10 +381,7 @@ pub struct RbinRuleRef {
 
 impl Ref for RbinRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -349,7 +401,10 @@ impl RbinRuleRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -359,53 +414,82 @@ impl RbinRuleRef {
 
     #[doc = "Get a reference to the value of field `lock_end_time` after provisioning.\n"]
     pub fn lock_end_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lock_end_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lock_end_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lock_state` after provisioning.\n"]
     pub fn lock_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lock_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lock_state", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lock_configuration` after provisioning.\n"]
     pub fn lock_configuration(&self) -> ListRef<RbinRuleLockConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lock_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lock_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(&self) -> ListRef<RbinRuleRetentionPeriodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retention_period", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RbinRuleTimeoutsElRef {
-        RbinRuleTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        RbinRuleTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -471,12 +555,18 @@ impl RbinRuleExcludeResourceTagsElRef {
 
     #[doc = "Get a reference to the value of field `resource_tag_key` after provisioning.\n"]
     pub fn resource_tag_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_tag_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tag_value` after provisioning.\n"]
     pub fn resource_tag_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_tag_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_value", self.base),
+        )
     }
 }
 
@@ -486,7 +576,7 @@ pub struct RbinRuleLockConfigurationElUnlockDelayEl {
     unlock_delay_value: PrimField<f64>,
 }
 
-impl RbinRuleLockConfigurationElUnlockDelayEl { }
+impl RbinRuleLockConfigurationElUnlockDelayEl {}
 
 impl ToListMappable for RbinRuleLockConfigurationElUnlockDelayEl {
     type O = BlockAssignable<RbinRuleLockConfigurationElUnlockDelayEl>;
@@ -537,12 +627,18 @@ impl RbinRuleLockConfigurationElUnlockDelayElRef {
 
     #[doc = "Get a reference to the value of field `unlock_delay_unit` after provisioning.\n"]
     pub fn unlock_delay_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unlock_delay_unit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unlock_delay_unit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unlock_delay_value` after provisioning.\n"]
     pub fn unlock_delay_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unlock_delay_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unlock_delay_value", self.base),
+        )
     }
 }
 
@@ -560,14 +656,17 @@ pub struct RbinRuleLockConfigurationEl {
 
 impl RbinRuleLockConfigurationEl {
     #[doc = "Set the field `unlock_delay`.\n"]
-    pub fn set_unlock_delay(mut self, v: impl Into<BlockAssignable<RbinRuleLockConfigurationElUnlockDelayEl>>) -> Self {
+    pub fn set_unlock_delay(
+        mut self,
+        v: impl Into<BlockAssignable<RbinRuleLockConfigurationElUnlockDelayEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.unlock_delay = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.unlock_delay = Some(d);
-            },
+            }
         }
         self
     }
@@ -683,12 +782,18 @@ impl RbinRuleResourceTagsElRef {
 
     #[doc = "Get a reference to the value of field `resource_tag_key` after provisioning.\n"]
     pub fn resource_tag_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_tag_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tag_value` after provisioning.\n"]
     pub fn resource_tag_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_tag_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_value", self.base),
+        )
     }
 }
 
@@ -698,7 +803,7 @@ pub struct RbinRuleRetentionPeriodEl {
     retention_period_value: PrimField<f64>,
 }
 
-impl RbinRuleRetentionPeriodEl { }
+impl RbinRuleRetentionPeriodEl {}
 
 impl ToListMappable for RbinRuleRetentionPeriodEl {
     type O = BlockAssignable<RbinRuleRetentionPeriodEl>;
@@ -749,12 +854,18 @@ impl RbinRuleRetentionPeriodElRef {
 
     #[doc = "Get a reference to the value of field `retention_period_unit` after provisioning.\n"]
     pub fn retention_period_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period_unit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period_unit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period_value` after provisioning.\n"]
     pub fn retention_period_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period_value", self.base),
+        )
     }
 }
 

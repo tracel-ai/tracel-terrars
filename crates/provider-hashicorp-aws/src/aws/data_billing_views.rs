@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBillingViewsData {
@@ -48,22 +48,32 @@ impl DataBillingViews {
 
     #[doc = "Get a reference to the value of field `billing_view` after provisioning.\n"]
     pub fn billing_view(&self) -> ListRef<DataBillingViewsBillingViewElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.billing_view", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.billing_view", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_view_types` after provisioning.\n"]
     pub fn billing_view_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.billing_view_types", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.billing_view_types", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBillingViews {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBillingViews { }
+impl Datasource for DataBillingViews {}
 
 impl ToListMappable for DataBillingViews {
     type O = ListRef<DataBillingViewsRef>;
@@ -116,10 +126,7 @@ pub struct DataBillingViewsRef {
 
 impl Ref for DataBillingViewsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -134,12 +141,18 @@ impl DataBillingViewsRef {
 
     #[doc = "Get a reference to the value of field `billing_view` after provisioning.\n"]
     pub fn billing_view(&self) -> ListRef<DataBillingViewsBillingViewElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.billing_view", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.billing_view", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_view_types` after provisioning.\n"]
     pub fn billing_view_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.billing_view_types", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.billing_view_types", self.extract_ref()),
+        )
     }
 }
 
@@ -241,7 +254,10 @@ impl DataBillingViewsBillingViewElRef {
 
     #[doc = "Get a reference to the value of field `billing_view_type` after provisioning.\n"]
     pub fn billing_view_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_view_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_view_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
@@ -256,6 +272,9 @@ impl DataBillingViewsBillingViewElRef {
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.base),
+        )
     }
 }

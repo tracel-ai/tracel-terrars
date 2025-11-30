@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketInventoryData {
@@ -69,7 +69,8 @@ impl S3BucketInventory {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl S3BucketInventory {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl S3BucketInventory {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -120,22 +131,24 @@ impl S3BucketInventory {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `destination`.\n"]
-    pub fn set_destination(self, v: impl Into<BlockAssignable<S3BucketInventoryDestinationEl>>) -> Self {
+    pub fn set_destination(
+        self,
+        v: impl Into<BlockAssignable<S3BucketInventoryDestinationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -145,10 +158,10 @@ impl S3BucketInventory {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -158,22 +171,28 @@ impl S3BucketInventory {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schedule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schedule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -183,48 +202,72 @@ impl S3BucketInventory {
 
     #[doc = "Get a reference to the value of field `included_object_versions` after provisioning.\n"]
     pub fn included_object_versions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.included_object_versions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.included_object_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `optional_fields` after provisioning.\n"]
     pub fn optional_fields(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.optional_fields", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.optional_fields", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> ListRef<S3BucketInventoryDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketInventoryFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<S3BucketInventoryScheduleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketInventory {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketInventory { }
+impl Resource for S3BucketInventory {}
 
 impl ToListMappable for S3BucketInventory {
     type O = ListRef<S3BucketInventoryRef>;
@@ -294,10 +337,7 @@ pub struct S3BucketInventoryRef {
 
 impl Ref for S3BucketInventoryRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -312,12 +352,18 @@ impl S3BucketInventoryRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -327,38 +373,58 @@ impl S3BucketInventoryRef {
 
     #[doc = "Get a reference to the value of field `included_object_versions` after provisioning.\n"]
     pub fn included_object_versions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.included_object_versions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.included_object_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `optional_fields` after provisioning.\n"]
     pub fn optional_fields(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.optional_fields", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.optional_fields", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> ListRef<S3BucketInventoryDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketInventoryFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<S3BucketInventoryScheduleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 }
 
@@ -367,7 +433,7 @@ pub struct S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {
     key_id: PrimField<String>,
 }
 
-impl S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl { }
+impl S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {}
 
 impl ToListMappable for S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {
     type O = BlockAssignable<S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl>;
@@ -388,7 +454,9 @@ pub struct BuildS3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {
 
 impl BuildS3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {
     pub fn build(self) -> S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {
-        S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl { key_id: self.key_id }
+        S3BucketInventoryDestinationElBucketElEncryptionElSseKmsEl {
+            key_id: self.key_id,
+        }
     }
 }
 
@@ -398,7 +466,10 @@ pub struct S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef {
 }
 
 impl Ref for S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef {
         S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef {
             shared: shared,
             base: base.to_string(),
@@ -420,7 +491,7 @@ impl S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef {
 #[derive(Serialize)]
 pub struct S3BucketInventoryDestinationElBucketElEncryptionElSseS3El {}
 
-impl S3BucketInventoryDestinationElBucketElEncryptionElSseS3El { }
+impl S3BucketInventoryDestinationElBucketElEncryptionElSseS3El {}
 
 impl ToListMappable for S3BucketInventoryDestinationElBucketElEncryptionElSseS3El {
     type O = BlockAssignable<S3BucketInventoryDestinationElBucketElEncryptionElSseS3El>;
@@ -448,7 +519,10 @@ pub struct S3BucketInventoryDestinationElBucketElEncryptionElSseS3ElRef {
 }
 
 impl Ref for S3BucketInventoryDestinationElBucketElEncryptionElSseS3ElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketInventoryDestinationElBucketElEncryptionElSseS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketInventoryDestinationElBucketElEncryptionElSseS3ElRef {
         S3BucketInventoryDestinationElBucketElEncryptionElSseS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -486,10 +560,10 @@ impl S3BucketInventoryDestinationElBucketElEncryptionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sse_kms = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sse_kms = Some(d);
-            },
+            }
         }
         self
     }
@@ -502,10 +576,10 @@ impl S3BucketInventoryDestinationElBucketElEncryptionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sse_s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sse_s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -541,7 +615,10 @@ pub struct S3BucketInventoryDestinationElBucketElEncryptionElRef {
 }
 
 impl Ref for S3BucketInventoryDestinationElBucketElEncryptionElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketInventoryDestinationElBucketElEncryptionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketInventoryDestinationElBucketElEncryptionElRef {
         S3BucketInventoryDestinationElBucketElEncryptionElRef {
             shared: shared,
             base: base.to_string(),
@@ -555,7 +632,9 @@ impl S3BucketInventoryDestinationElBucketElEncryptionElRef {
     }
 
     #[doc = "Get a reference to the value of field `sse_kms` after provisioning.\n"]
-    pub fn sse_kms(&self) -> ListRef<S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef> {
+    pub fn sse_kms(
+        &self,
+    ) -> ListRef<S3BucketInventoryDestinationElBucketElEncryptionElSseKmsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.sse_kms", self.base))
     }
 
@@ -604,10 +683,10 @@ impl S3BucketInventoryDestinationElBucketEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.encryption = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.encryption = Some(d);
-            },
+            }
         }
         self
     }
@@ -704,14 +783,17 @@ pub struct S3BucketInventoryDestinationEl {
 
 impl S3BucketInventoryDestinationEl {
     #[doc = "Set the field `bucket`.\n"]
-    pub fn set_bucket(mut self, v: impl Into<BlockAssignable<S3BucketInventoryDestinationElBucketEl>>) -> Self {
+    pub fn set_bucket(
+        mut self,
+        v: impl Into<BlockAssignable<S3BucketInventoryDestinationElBucketEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bucket = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bucket = Some(d);
-            },
+            }
         }
         self
     }
@@ -795,7 +877,9 @@ pub struct BuildS3BucketInventoryFilterEl {}
 
 impl BuildS3BucketInventoryFilterEl {
     pub fn build(self) -> S3BucketInventoryFilterEl {
-        S3BucketInventoryFilterEl { prefix: core::default::Default::default() }
+        S3BucketInventoryFilterEl {
+            prefix: core::default::Default::default(),
+        }
     }
 }
 
@@ -829,7 +913,7 @@ pub struct S3BucketInventoryScheduleEl {
     frequency: PrimField<String>,
 }
 
-impl S3BucketInventoryScheduleEl { }
+impl S3BucketInventoryScheduleEl {}
 
 impl ToListMappable for S3BucketInventoryScheduleEl {
     type O = BlockAssignable<S3BucketInventoryScheduleEl>;
@@ -850,7 +934,9 @@ pub struct BuildS3BucketInventoryScheduleEl {
 
 impl BuildS3BucketInventoryScheduleEl {
     pub fn build(self) -> S3BucketInventoryScheduleEl {
-        S3BucketInventoryScheduleEl { frequency: self.frequency }
+        S3BucketInventoryScheduleEl {
+            frequency: self.frequency,
+        }
     }
 }
 

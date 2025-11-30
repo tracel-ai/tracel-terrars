@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpcIpamData {
@@ -74,7 +74,8 @@ impl VpcIpam {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl VpcIpam {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl VpcIpam {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -137,8 +148,7 @@ impl VpcIpam {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -163,14 +173,17 @@ impl VpcIpam {
     }
 
     #[doc = "Set the field `operating_regions`.\n"]
-    pub fn set_operating_regions(self, v: impl Into<BlockAssignable<VpcIpamOperatingRegionsEl>>) -> Self {
+    pub fn set_operating_regions(
+        self,
+        v: impl Into<BlockAssignable<VpcIpamOperatingRegionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().operating_regions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.operating_regions = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,30 +201,45 @@ impl VpcIpam {
 
     #[doc = "Get a reference to the value of field `cascade` after provisioning.\n"]
     pub fn cascade(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cascade", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cascade", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_resource_discovery_association_id` after provisioning.\n"]
     pub fn default_resource_discovery_association_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.default_resource_discovery_association_id", self.extract_ref()),
+            format!(
+                "{}.default_resource_discovery_association_id",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `default_resource_discovery_id` after provisioning.\n"]
     pub fn default_resource_discovery_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_resource_discovery_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_resource_discovery_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_private_gua` after provisioning.\n"]
     pub fn enable_private_gua(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_private_gua", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_private_gua", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -221,58 +249,88 @@ impl VpcIpam {
 
     #[doc = "Get a reference to the value of field `metered_account` after provisioning.\n"]
     pub fn metered_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metered_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metered_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_default_scope_id` after provisioning.\n"]
     pub fn private_default_scope_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_default_scope_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_default_scope_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_default_scope_id` after provisioning.\n"]
     pub fn public_default_scope_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_default_scope_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_default_scope_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope_count` after provisioning.\n"]
     pub fn scope_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scope_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scope_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tier` after provisioning.\n"]
     pub fn tier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcIpamTimeoutsElRef {
-        VpcIpamTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpcIpamTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpcIpam {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpcIpam { }
+impl Resource for VpcIpam {}
 
 impl ToListMappable for VpcIpam {
     type O = ListRef<VpcIpamRef>;
@@ -337,10 +395,7 @@ pub struct VpcIpamRef {
 
 impl Ref for VpcIpamRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -360,30 +415,45 @@ impl VpcIpamRef {
 
     #[doc = "Get a reference to the value of field `cascade` after provisioning.\n"]
     pub fn cascade(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cascade", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cascade", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_resource_discovery_association_id` after provisioning.\n"]
     pub fn default_resource_discovery_association_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.default_resource_discovery_association_id", self.extract_ref()),
+            format!(
+                "{}.default_resource_discovery_association_id",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `default_resource_discovery_id` after provisioning.\n"]
     pub fn default_resource_discovery_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_resource_discovery_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_resource_discovery_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_private_gua` after provisioning.\n"]
     pub fn enable_private_gua(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_private_gua", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_private_gua", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -393,48 +463,74 @@ impl VpcIpamRef {
 
     #[doc = "Get a reference to the value of field `metered_account` after provisioning.\n"]
     pub fn metered_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metered_account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metered_account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_default_scope_id` after provisioning.\n"]
     pub fn private_default_scope_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_default_scope_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_default_scope_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_default_scope_id` after provisioning.\n"]
     pub fn public_default_scope_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_default_scope_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_default_scope_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope_count` after provisioning.\n"]
     pub fn scope_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scope_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scope_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tier` after provisioning.\n"]
     pub fn tier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcIpamTimeoutsElRef {
-        VpcIpamTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpcIpamTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -443,7 +539,7 @@ pub struct VpcIpamOperatingRegionsEl {
     region_name: PrimField<String>,
 }
 
-impl VpcIpamOperatingRegionsEl { }
+impl VpcIpamOperatingRegionsEl {}
 
 impl ToListMappable for VpcIpamOperatingRegionsEl {
     type O = BlockAssignable<VpcIpamOperatingRegionsEl>;
@@ -464,7 +560,9 @@ pub struct BuildVpcIpamOperatingRegionsEl {
 
 impl BuildVpcIpamOperatingRegionsEl {
     pub fn build(self) -> VpcIpamOperatingRegionsEl {
-        VpcIpamOperatingRegionsEl { region_name: self.region_name }
+        VpcIpamOperatingRegionsEl {
+            region_name: self.region_name,
+        }
     }
 }
 

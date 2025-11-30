@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketIntelligentTieringConfigurationData {
@@ -64,7 +64,8 @@ impl S3BucketIntelligentTieringConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl S3BucketIntelligentTieringConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl S3BucketIntelligentTieringConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,8 +114,7 @@ impl S3BucketIntelligentTieringConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -117,34 +127,43 @@ impl S3BucketIntelligentTieringConfiguration {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<S3BucketIntelligentTieringConfigurationFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<S3BucketIntelligentTieringConfigurationFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tiering`.\n"]
-    pub fn set_tiering(self, v: impl Into<BlockAssignable<S3BucketIntelligentTieringConfigurationTieringEl>>) -> Self {
+    pub fn set_tiering(
+        self,
+        v: impl Into<BlockAssignable<S3BucketIntelligentTieringConfigurationTieringEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tiering = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tiering = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -154,33 +173,48 @@ impl S3BucketIntelligentTieringConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketIntelligentTieringConfigurationFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketIntelligentTieringConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketIntelligentTieringConfiguration { }
+impl Resource for S3BucketIntelligentTieringConfiguration {}
 
 impl ToListMappable for S3BucketIntelligentTieringConfiguration {
     type O = ListRef<S3BucketIntelligentTieringConfigurationRef>;
@@ -215,24 +249,26 @@ pub struct BuildS3BucketIntelligentTieringConfiguration {
 
 impl BuildS3BucketIntelligentTieringConfiguration {
     pub fn build(self, stack: &mut Stack) -> S3BucketIntelligentTieringConfiguration {
-        let out = S3BucketIntelligentTieringConfiguration(Rc::new(S3BucketIntelligentTieringConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(S3BucketIntelligentTieringConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                bucket: self.bucket,
-                id: core::default::Default::default(),
-                name: self.name,
-                region: core::default::Default::default(),
-                status: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                tiering: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = S3BucketIntelligentTieringConfiguration(Rc::new(
+            S3BucketIntelligentTieringConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(S3BucketIntelligentTieringConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    bucket: self.bucket,
+                    id: core::default::Default::default(),
+                    name: self.name,
+                    region: core::default::Default::default(),
+                    status: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    tiering: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -245,10 +281,7 @@ pub struct S3BucketIntelligentTieringConfigurationRef {
 
 impl Ref for S3BucketIntelligentTieringConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -263,7 +296,10 @@ impl S3BucketIntelligentTieringConfigurationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -273,23 +309,34 @@ impl S3BucketIntelligentTieringConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketIntelligentTieringConfigurationFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 }
 
@@ -344,7 +391,10 @@ pub struct S3BucketIntelligentTieringConfigurationFilterElRef {
 }
 
 impl Ref for S3BucketIntelligentTieringConfigurationFilterElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketIntelligentTieringConfigurationFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketIntelligentTieringConfigurationFilterElRef {
         S3BucketIntelligentTieringConfigurationFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -374,7 +424,7 @@ pub struct S3BucketIntelligentTieringConfigurationTieringEl {
     days: PrimField<f64>,
 }
 
-impl S3BucketIntelligentTieringConfigurationTieringEl { }
+impl S3BucketIntelligentTieringConfigurationTieringEl {}
 
 impl ToListMappable for S3BucketIntelligentTieringConfigurationTieringEl {
     type O = BlockAssignable<S3BucketIntelligentTieringConfigurationTieringEl>;
@@ -410,7 +460,10 @@ pub struct S3BucketIntelligentTieringConfigurationTieringElRef {
 }
 
 impl Ref for S3BucketIntelligentTieringConfigurationTieringElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketIntelligentTieringConfigurationTieringElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketIntelligentTieringConfigurationTieringElRef {
         S3BucketIntelligentTieringConfigurationTieringElRef {
             shared: shared,
             base: base.to_string(),

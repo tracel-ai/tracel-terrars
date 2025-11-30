@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RedshiftdataStatementData {
@@ -74,7 +74,8 @@ impl RedshiftdataStatement {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl RedshiftdataStatement {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl RedshiftdataStatement {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -125,8 +136,7 @@ impl RedshiftdataStatement {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -157,14 +167,17 @@ impl RedshiftdataStatement {
     }
 
     #[doc = "Set the field `parameters`.\n"]
-    pub fn set_parameters(self, v: impl Into<BlockAssignable<RedshiftdataStatementParametersEl>>) -> Self {
+    pub fn set_parameters(
+        self,
+        v: impl Into<BlockAssignable<RedshiftdataStatementParametersEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -177,17 +190,26 @@ impl RedshiftdataStatement {
 
     #[doc = "Get a reference to the value of field `cluster_identifier` after provisioning.\n"]
     pub fn cluster_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `db_user` after provisioning.\n"]
     pub fn db_user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_user", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -195,15 +217,20 @@ impl RedshiftdataStatement {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
@@ -213,37 +240,56 @@ impl RedshiftdataStatement {
 
     #[doc = "Get a reference to the value of field `statement_name` after provisioning.\n"]
     pub fn statement_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statement_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statement_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `with_event` after provisioning.\n"]
     pub fn with_event(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.with_event", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.with_event", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workgroup_name` after provisioning.\n"]
     pub fn workgroup_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workgroup_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workgroup_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> ListRef<RedshiftdataStatementParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RedshiftdataStatementTimeoutsElRef {
-        RedshiftdataStatementTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        RedshiftdataStatementTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for RedshiftdataStatement {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RedshiftdataStatement { }
+impl Resource for RedshiftdataStatement {}
 
 impl ToListMappable for RedshiftdataStatement {
     type O = ListRef<RedshiftdataStatementRef>;
@@ -313,10 +359,7 @@ pub struct RedshiftdataStatementRef {
 
 impl Ref for RedshiftdataStatementRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -331,17 +374,26 @@ impl RedshiftdataStatementRef {
 
     #[doc = "Get a reference to the value of field `cluster_identifier` after provisioning.\n"]
     pub fn cluster_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `db_user` after provisioning.\n"]
     pub fn db_user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_user", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -349,15 +401,20 @@ impl RedshiftdataStatementRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
@@ -367,27 +424,42 @@ impl RedshiftdataStatementRef {
 
     #[doc = "Get a reference to the value of field `statement_name` after provisioning.\n"]
     pub fn statement_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statement_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statement_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `with_event` after provisioning.\n"]
     pub fn with_event(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.with_event", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.with_event", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workgroup_name` after provisioning.\n"]
     pub fn workgroup_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workgroup_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workgroup_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> ListRef<RedshiftdataStatementParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RedshiftdataStatementTimeoutsElRef {
-        RedshiftdataStatementTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        RedshiftdataStatementTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -397,7 +469,7 @@ pub struct RedshiftdataStatementParametersEl {
     value: PrimField<String>,
 }
 
-impl RedshiftdataStatementParametersEl { }
+impl RedshiftdataStatementParametersEl {}
 
 impl ToListMappable for RedshiftdataStatementParametersEl {
     type O = BlockAssignable<RedshiftdataStatementParametersEl>;
@@ -487,7 +559,9 @@ pub struct BuildRedshiftdataStatementTimeoutsEl {}
 
 impl BuildRedshiftdataStatementTimeoutsEl {
     pub fn build(self) -> RedshiftdataStatementTimeoutsEl {
-        RedshiftdataStatementTimeoutsEl { create: core::default::Default::default() }
+        RedshiftdataStatementTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 

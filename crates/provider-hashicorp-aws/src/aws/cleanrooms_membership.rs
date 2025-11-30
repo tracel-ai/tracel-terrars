@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CleanroomsMembershipData {
@@ -62,7 +62,8 @@ impl CleanroomsMembership {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -75,7 +76,7 @@ impl CleanroomsMembership {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -86,17 +87,26 @@ impl CleanroomsMembership {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -116,10 +126,14 @@ impl CleanroomsMembership {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().default_result_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.default_result_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .default_result_configuration = Some(d);
+            }
         }
         self
     }
@@ -132,10 +146,10 @@ impl CleanroomsMembership {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().payment_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.payment_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -147,32 +161,50 @@ impl CleanroomsMembership {
 
     #[doc = "Get a reference to the value of field `collaboration_arn` after provisioning.\n"]
     pub fn collaboration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_creator_account_id` after provisioning.\n"]
     pub fn collaboration_creator_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_creator_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_creator_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_creator_display_name` after provisioning.\n"]
     pub fn collaboration_creator_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_creator_display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_creator_display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_id` after provisioning.\n"]
     pub fn collaboration_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_name` after provisioning.\n"]
     pub fn collaboration_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -182,58 +214,90 @@ impl CleanroomsMembership {
 
     #[doc = "Get a reference to the value of field `member_abilities` after provisioning.\n"]
     pub fn member_abilities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.member_abilities", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.member_abilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_log_status` after provisioning.\n"]
     pub fn query_log_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_log_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_log_status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_result_configuration` after provisioning.\n"]
-    pub fn default_result_configuration(&self) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_result_configuration", self.extract_ref()))
+    pub fn default_result_configuration(
+        &self,
+    ) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_result_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `payment_configuration` after provisioning.\n"]
     pub fn payment_configuration(&self) -> ListRef<CleanroomsMembershipPaymentConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.payment_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.payment_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CleanroomsMembership {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CleanroomsMembership { }
+impl Resource for CleanroomsMembership {}
 
 impl ToListMappable for CleanroomsMembership {
     type O = ListRef<CleanroomsMembershipRef>;
@@ -297,10 +361,7 @@ pub struct CleanroomsMembershipRef {
 
 impl Ref for CleanroomsMembershipRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -320,32 +381,50 @@ impl CleanroomsMembershipRef {
 
     #[doc = "Get a reference to the value of field `collaboration_arn` after provisioning.\n"]
     pub fn collaboration_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_creator_account_id` after provisioning.\n"]
     pub fn collaboration_creator_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_creator_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_creator_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_creator_display_name` after provisioning.\n"]
     pub fn collaboration_creator_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_creator_display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_creator_display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_id` after provisioning.\n"]
     pub fn collaboration_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `collaboration_name` after provisioning.\n"]
     pub fn collaboration_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collaboration_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collaboration_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -355,48 +434,76 @@ impl CleanroomsMembershipRef {
 
     #[doc = "Get a reference to the value of field `member_abilities` after provisioning.\n"]
     pub fn member_abilities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.member_abilities", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.member_abilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_log_status` after provisioning.\n"]
     pub fn query_log_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_log_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_log_status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_result_configuration` after provisioning.\n"]
-    pub fn default_result_configuration(&self) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_result_configuration", self.extract_ref()))
+    pub fn default_result_configuration(
+        &self,
+    ) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_result_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `payment_configuration` after provisioning.\n"]
     pub fn payment_configuration(&self) -> ListRef<CleanroomsMembershipPaymentConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.payment_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.payment_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -417,7 +524,8 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
 }
 
 impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
-    type O = BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>;
+    type O =
+        BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -436,7 +544,9 @@ pub struct BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurat
 }
 
 impl BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
-    pub fn build(self) -> CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
+    pub fn build(
+        self,
+    ) -> CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
         CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
             bucket: self.bucket,
             key_prefix: core::default::Default::default(),
@@ -479,13 +589,18 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRe
 
     #[doc = "Get a reference to the value of field `result_format` after provisioning.\n"]
     pub fn result_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.result_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.result_format", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElDynamic {
-    s3: Option<DynamicBlock<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>>,
+    s3: Option<
+        DynamicBlock<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -499,15 +614,19 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
         mut self,
-        v: impl Into<BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>>,
+        v: impl Into<
+            BlockAssignable<
+                CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -559,16 +678,17 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
-    pub fn s3(&self) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRef> {
+    pub fn s3(
+        &self,
+    ) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipDefaultResultConfigurationElDynamic {
-    output_configuration: Option<
-        DynamicBlock<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>,
-    >,
+    output_configuration:
+        Option<DynamicBlock<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -576,7 +696,8 @@ pub struct CleanroomsMembershipDefaultResultConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     role_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    output_configuration: Option<Vec<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>>,
+    output_configuration:
+        Option<Vec<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>>,
     dynamic: CleanroomsMembershipDefaultResultConfigurationElDynamic,
 }
 
@@ -590,15 +711,17 @@ impl CleanroomsMembershipDefaultResultConfigurationEl {
     #[doc = "Set the field `output_configuration`.\n"]
     pub fn set_output_configuration(
         mut self,
-        v: impl Into<BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.output_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.output_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -634,7 +757,10 @@ pub struct CleanroomsMembershipDefaultResultConfigurationElRef {
 }
 
 impl Ref for CleanroomsMembershipDefaultResultConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CleanroomsMembershipDefaultResultConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CleanroomsMembershipDefaultResultConfigurationElRef {
         CleanroomsMembershipDefaultResultConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -656,7 +782,10 @@ impl CleanroomsMembershipDefaultResultConfigurationElRef {
     pub fn output_configuration(
         &self,
     ) -> ListRef<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_configuration", self.base),
+        )
     }
 }
 
@@ -665,7 +794,7 @@ pub struct CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     is_responsible: PrimField<bool>,
 }
 
-impl CleanroomsMembershipPaymentConfigurationElQueryComputeEl { }
+impl CleanroomsMembershipPaymentConfigurationElQueryComputeEl {}
 
 impl ToListMappable for CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     type O = BlockAssignable<CleanroomsMembershipPaymentConfigurationElQueryComputeEl>;
@@ -686,7 +815,9 @@ pub struct BuildCleanroomsMembershipPaymentConfigurationElQueryComputeEl {
 
 impl BuildCleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     pub fn build(self) -> CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
-        CleanroomsMembershipPaymentConfigurationElQueryComputeEl { is_responsible: self.is_responsible }
+        CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
+            is_responsible: self.is_responsible,
+        }
     }
 }
 
@@ -696,7 +827,10 @@ pub struct CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
 }
 
 impl Ref for CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
-    fn new(shared: StackShared, base: String) -> CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
         CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
             shared: shared,
             base: base.to_string(),
@@ -711,7 +845,10 @@ impl CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
 
     #[doc = "Get a reference to the value of field `is_responsible` after provisioning.\n"]
     pub fn is_responsible(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_responsible", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_responsible", self.base),
+        )
     }
 }
 
@@ -736,10 +873,10 @@ impl CleanroomsMembershipPaymentConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_compute = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_compute = Some(d);
-            },
+            }
         }
         self
     }
@@ -788,13 +925,19 @@ impl CleanroomsMembershipPaymentConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `query_compute` after provisioning.\n"]
-    pub fn query_compute(&self) -> ListRef<CleanroomsMembershipPaymentConfigurationElQueryComputeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_compute", self.base))
+    pub fn query_compute(
+        &self,
+    ) -> ListRef<CleanroomsMembershipPaymentConfigurationElQueryComputeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_compute", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipDynamic {
-    default_result_configuration: Option<DynamicBlock<CleanroomsMembershipDefaultResultConfigurationEl>>,
+    default_result_configuration:
+        Option<DynamicBlock<CleanroomsMembershipDefaultResultConfigurationEl>>,
     payment_configuration: Option<DynamicBlock<CleanroomsMembershipPaymentConfigurationEl>>,
 }

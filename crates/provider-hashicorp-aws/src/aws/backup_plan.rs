@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BackupPlanData {
@@ -65,7 +65,8 @@ impl BackupPlan {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl BackupPlan {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl BackupPlan {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,8 +115,7 @@ impl BackupPlan {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -124,14 +134,17 @@ impl BackupPlan {
     }
 
     #[doc = "Set the field `advanced_backup_setting`.\n"]
-    pub fn set_advanced_backup_setting(self, v: impl Into<BlockAssignable<BackupPlanAdvancedBackupSettingEl>>) -> Self {
+    pub fn set_advanced_backup_setting(
+        self,
+        v: impl Into<BlockAssignable<BackupPlanAdvancedBackupSettingEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().advanced_backup_setting = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.advanced_backup_setting = Some(d);
-            },
+            }
         }
         self
     }
@@ -141,10 +154,10 @@ impl BackupPlan {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -161,38 +174,56 @@ impl BackupPlan {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BackupPlan {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BackupPlan { }
+impl Resource for BackupPlan {}
 
 impl ToListMappable for BackupPlan {
     type O = ListRef<BackupPlanRef>;
@@ -255,10 +286,7 @@ pub struct BackupPlanRef {
 
 impl Ref for BackupPlanRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -283,28 +311,42 @@ impl BackupPlanRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 }
 
@@ -314,7 +356,7 @@ pub struct BackupPlanAdvancedBackupSettingEl {
     resource_type: PrimField<String>,
 }
 
-impl BackupPlanAdvancedBackupSettingEl { }
+impl BackupPlanAdvancedBackupSettingEl {}
 
 impl ToListMappable for BackupPlanAdvancedBackupSettingEl {
     type O = BlockAssignable<BackupPlanAdvancedBackupSettingEl>;
@@ -365,12 +407,18 @@ impl BackupPlanAdvancedBackupSettingElRef {
 
     #[doc = "Get a reference to the value of field `backup_options` after provisioning.\n"]
     pub fn backup_options(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.backup_options", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.backup_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 }
 
@@ -398,7 +446,10 @@ impl BackupPlanRuleElCopyActionElLifecycleEl {
     }
 
     #[doc = "Set the field `opt_in_to_archive_for_supported_resources`.\n"]
-    pub fn set_opt_in_to_archive_for_supported_resources(mut self, v: impl Into<PrimField<bool>>) -> Self {
+    pub fn set_opt_in_to_archive_for_supported_resources(
+        mut self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
         self.opt_in_to_archive_for_supported_resources = Some(v.into());
         self
     }
@@ -449,7 +500,10 @@ impl BackupPlanRuleElCopyActionElLifecycleElRef {
 
     #[doc = "Get a reference to the value of field `cold_storage_after` after provisioning.\n"]
     pub fn cold_storage_after(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cold_storage_after", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cold_storage_after", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_after` after provisioning.\n"]
@@ -459,7 +513,10 @@ impl BackupPlanRuleElCopyActionElLifecycleElRef {
 
     #[doc = "Get a reference to the value of field `opt_in_to_archive_for_supported_resources` after provisioning.\n"]
     pub fn opt_in_to_archive_for_supported_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.opt_in_to_archive_for_supported_resources", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.opt_in_to_archive_for_supported_resources", self.base),
+        )
     }
 }
 
@@ -478,14 +535,17 @@ pub struct BackupPlanRuleElCopyActionEl {
 
 impl BackupPlanRuleElCopyActionEl {
     #[doc = "Set the field `lifecycle`.\n"]
-    pub fn set_lifecycle(mut self, v: impl Into<BlockAssignable<BackupPlanRuleElCopyActionElLifecycleEl>>) -> Self {
+    pub fn set_lifecycle(
+        mut self,
+        v: impl Into<BlockAssignable<BackupPlanRuleElCopyActionElLifecycleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lifecycle = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lifecycle = Some(d);
-            },
+            }
         }
         self
     }
@@ -539,7 +599,10 @@ impl BackupPlanRuleElCopyActionElRef {
 
     #[doc = "Get a reference to the value of field `destination_vault_arn` after provisioning.\n"]
     pub fn destination_vault_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_vault_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_vault_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle` after provisioning.\n"]
@@ -572,7 +635,10 @@ impl BackupPlanRuleElLifecycleEl {
     }
 
     #[doc = "Set the field `opt_in_to_archive_for_supported_resources`.\n"]
-    pub fn set_opt_in_to_archive_for_supported_resources(mut self, v: impl Into<PrimField<bool>>) -> Self {
+    pub fn set_opt_in_to_archive_for_supported_resources(
+        mut self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
         self.opt_in_to_archive_for_supported_resources = Some(v.into());
         self
     }
@@ -623,7 +689,10 @@ impl BackupPlanRuleElLifecycleElRef {
 
     #[doc = "Get a reference to the value of field `cold_storage_after` after provisioning.\n"]
     pub fn cold_storage_after(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cold_storage_after", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cold_storage_after", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_after` after provisioning.\n"]
@@ -633,7 +702,10 @@ impl BackupPlanRuleElLifecycleElRef {
 
     #[doc = "Get a reference to the value of field `opt_in_to_archive_for_supported_resources` after provisioning.\n"]
     pub fn opt_in_to_archive_for_supported_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.opt_in_to_archive_for_supported_resources", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.opt_in_to_archive_for_supported_resources", self.base),
+        )
     }
 }
 
@@ -704,27 +776,33 @@ impl BackupPlanRuleEl {
     }
 
     #[doc = "Set the field `copy_action`.\n"]
-    pub fn set_copy_action(mut self, v: impl Into<BlockAssignable<BackupPlanRuleElCopyActionEl>>) -> Self {
+    pub fn set_copy_action(
+        mut self,
+        v: impl Into<BlockAssignable<BackupPlanRuleElCopyActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.copy_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.copy_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lifecycle`.\n"]
-    pub fn set_lifecycle(mut self, v: impl Into<BlockAssignable<BackupPlanRuleElLifecycleEl>>) -> Self {
+    pub fn set_lifecycle(
+        mut self,
+        v: impl Into<BlockAssignable<BackupPlanRuleElLifecycleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lifecycle = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lifecycle = Some(d);
-            },
+            }
         }
         self
     }
@@ -788,17 +866,26 @@ impl BackupPlanRuleElRef {
 
     #[doc = "Get a reference to the value of field `completion_window` after provisioning.\n"]
     pub fn completion_window(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.completion_window", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.completion_window", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_continuous_backup` after provisioning.\n"]
     pub fn enable_continuous_backup(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_continuous_backup", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_continuous_backup", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recovery_point_tags` after provisioning.\n"]
     pub fn recovery_point_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.recovery_point_tags", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.recovery_point_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
@@ -813,7 +900,10 @@ impl BackupPlanRuleElRef {
 
     #[doc = "Get a reference to the value of field `schedule_expression_timezone` after provisioning.\n"]
     pub fn schedule_expression_timezone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression_timezone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression_timezone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_window` after provisioning.\n"]
@@ -823,7 +913,10 @@ impl BackupPlanRuleElRef {
 
     #[doc = "Get a reference to the value of field `target_vault_name` after provisioning.\n"]
     pub fn target_vault_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_vault_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_vault_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle` after provisioning.\n"]

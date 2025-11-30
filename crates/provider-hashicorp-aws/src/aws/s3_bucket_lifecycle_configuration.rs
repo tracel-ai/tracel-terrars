@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketLifecycleConfigurationData {
@@ -63,7 +63,8 @@ impl S3BucketLifecycleConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +77,7 @@ impl S3BucketLifecycleConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +88,22 @@ impl S3BucketLifecycleConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -102,28 +113,36 @@ impl S3BucketLifecycleConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `transition_default_minimum_object_size`.\n"]
-    pub fn set_transition_default_minimum_object_size(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().transition_default_minimum_object_size = Some(v.into());
+    pub fn set_transition_default_minimum_object_size(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .transition_default_minimum_object_size = Some(v.into());
         self
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(self, v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleEl>>) -> Self {
+    pub fn set_rule(
+        self,
+        v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -136,12 +155,18 @@ impl S3BucketLifecycleConfiguration {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expected_bucket_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expected_bucket_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -149,23 +174,31 @@ impl S3BucketLifecycleConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transition_default_minimum_object_size` after provisioning.\n"]
     pub fn transition_default_minimum_object_size(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.transition_default_minimum_object_size", self.extract_ref()),
+            format!(
+                "{}.transition_default_minimum_object_size",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketLifecycleConfigurationRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -179,11 +212,15 @@ impl S3BucketLifecycleConfiguration {
 
 impl Referable for S3BucketLifecycleConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketLifecycleConfiguration { }
+impl Resource for S3BucketLifecycleConfiguration {}
 
 impl ToListMappable for S3BucketLifecycleConfiguration {
     type O = ListRef<S3BucketLifecycleConfigurationRef>;
@@ -245,10 +282,7 @@ pub struct S3BucketLifecycleConfigurationRef {
 
 impl Ref for S3BucketLifecycleConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -263,12 +297,18 @@ impl S3BucketLifecycleConfigurationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expected_bucket_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expected_bucket_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -276,23 +316,31 @@ impl S3BucketLifecycleConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transition_default_minimum_object_size` after provisioning.\n"]
     pub fn transition_default_minimum_object_size(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.transition_default_minimum_object_size", self.extract_ref()),
+            format!(
+                "{}.transition_default_minimum_object_size",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketLifecycleConfigurationRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -364,7 +412,10 @@ impl S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadElRef {
 
     #[doc = "Get a reference to the value of field `days_after_initiation` after provisioning.\n"]
     pub fn days_after_initiation(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.days_after_initiation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.days_after_initiation", self.base),
+        )
     }
 }
 
@@ -428,7 +479,10 @@ pub struct S3BucketLifecycleConfigurationRuleElExpirationElRef {
 }
 
 impl Ref for S3BucketLifecycleConfigurationRuleElExpirationElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketLifecycleConfigurationRuleElExpirationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketLifecycleConfigurationRuleElExpirationElRef {
         S3BucketLifecycleConfigurationRuleElExpirationElRef {
             shared: shared,
             base: base.to_string(),
@@ -453,7 +507,10 @@ impl S3BucketLifecycleConfigurationRuleElExpirationElRef {
 
     #[doc = "Get a reference to the value of field `expired_object_delete_marker` after provisioning.\n"]
     pub fn expired_object_delete_marker(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expired_object_delete_marker", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expired_object_delete_marker", self.base),
+        )
     }
 }
 
@@ -526,7 +583,10 @@ pub struct S3BucketLifecycleConfigurationRuleElFilterElAndElRef {
 }
 
 impl Ref for S3BucketLifecycleConfigurationRuleElFilterElAndElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketLifecycleConfigurationRuleElFilterElAndElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketLifecycleConfigurationRuleElFilterElAndElRef {
         S3BucketLifecycleConfigurationRuleElFilterElAndElRef {
             shared: shared,
             base: base.to_string(),
@@ -541,12 +601,18 @@ impl S3BucketLifecycleConfigurationRuleElFilterElAndElRef {
 
     #[doc = "Get a reference to the value of field `object_size_greater_than` after provisioning.\n"]
     pub fn object_size_greater_than(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_size_greater_than", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_size_greater_than", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `object_size_less_than` after provisioning.\n"]
     pub fn object_size_less_than(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_size_less_than", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_size_less_than", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
@@ -566,7 +632,7 @@ pub struct S3BucketLifecycleConfigurationRuleElFilterElTagEl {
     value: PrimField<String>,
 }
 
-impl S3BucketLifecycleConfigurationRuleElFilterElTagEl { }
+impl S3BucketLifecycleConfigurationRuleElFilterElTagEl {}
 
 impl ToListMappable for S3BucketLifecycleConfigurationRuleElFilterElTagEl {
     type O = BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterElTagEl>;
@@ -602,7 +668,10 @@ pub struct S3BucketLifecycleConfigurationRuleElFilterElTagElRef {
 }
 
 impl Ref for S3BucketLifecycleConfigurationRuleElFilterElTagElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketLifecycleConfigurationRuleElFilterElTagElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketLifecycleConfigurationRuleElFilterElTagElRef {
         S3BucketLifecycleConfigurationRuleElFilterElTagElRef {
             shared: shared,
             base: base.to_string(),
@@ -667,27 +736,33 @@ impl S3BucketLifecycleConfigurationRuleElFilterEl {
     }
 
     #[doc = "Set the field `and`.\n"]
-    pub fn set_and(mut self, v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterElAndEl>>) -> Self {
+    pub fn set_and(
+        mut self,
+        v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterElAndEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tag`.\n"]
-    pub fn set_tag(mut self, v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterElTagEl>>) -> Self {
+    pub fn set_tag(
+        mut self,
+        v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterElTagEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag = Some(d);
-            },
+            }
         }
         self
     }
@@ -741,12 +816,18 @@ impl S3BucketLifecycleConfigurationRuleElFilterElRef {
 
     #[doc = "Get a reference to the value of field `object_size_greater_than` after provisioning.\n"]
     pub fn object_size_greater_than(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_size_greater_than", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_size_greater_than", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `object_size_less_than` after provisioning.\n"]
     pub fn object_size_less_than(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_size_less_than", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_size_less_than", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
@@ -830,12 +911,18 @@ impl S3BucketLifecycleConfigurationRuleElNoncurrentVersionExpirationElRef {
 
     #[doc = "Get a reference to the value of field `newer_noncurrent_versions` after provisioning.\n"]
     pub fn newer_noncurrent_versions(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.newer_noncurrent_versions", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.newer_noncurrent_versions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `noncurrent_days` after provisioning.\n"]
     pub fn noncurrent_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.noncurrent_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.noncurrent_days", self.base),
+        )
     }
 }
 
@@ -908,17 +995,26 @@ impl S3BucketLifecycleConfigurationRuleElNoncurrentVersionTransitionElRef {
 
     #[doc = "Get a reference to the value of field `newer_noncurrent_versions` after provisioning.\n"]
     pub fn newer_noncurrent_versions(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.newer_noncurrent_versions", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.newer_noncurrent_versions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `noncurrent_days` after provisioning.\n"]
     pub fn noncurrent_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.noncurrent_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.noncurrent_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_class", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_class", self.base),
+        )
     }
 }
 
@@ -978,7 +1074,10 @@ pub struct S3BucketLifecycleConfigurationRuleElTransitionElRef {
 }
 
 impl Ref for S3BucketLifecycleConfigurationRuleElTransitionElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketLifecycleConfigurationRuleElTransitionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketLifecycleConfigurationRuleElTransitionElRef {
         S3BucketLifecycleConfigurationRuleElTransitionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1003,23 +1102,23 @@ impl S3BucketLifecycleConfigurationRuleElTransitionElRef {
 
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_class", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_class", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct S3BucketLifecycleConfigurationRuleElDynamic {
-    abort_incomplete_multipart_upload: Option<
-        DynamicBlock<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>,
-    >,
+    abort_incomplete_multipart_upload:
+        Option<DynamicBlock<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>>,
     expiration: Option<DynamicBlock<S3BucketLifecycleConfigurationRuleElExpirationEl>>,
     filter: Option<DynamicBlock<S3BucketLifecycleConfigurationRuleElFilterEl>>,
-    noncurrent_version_expiration: Option<
-        DynamicBlock<S3BucketLifecycleConfigurationRuleElNoncurrentVersionExpirationEl>,
-    >,
-    noncurrent_version_transition: Option<
-        DynamicBlock<S3BucketLifecycleConfigurationRuleElNoncurrentVersionTransitionEl>,
-    >,
+    noncurrent_version_expiration:
+        Option<DynamicBlock<S3BucketLifecycleConfigurationRuleElNoncurrentVersionExpirationEl>>,
+    noncurrent_version_transition:
+        Option<DynamicBlock<S3BucketLifecycleConfigurationRuleElNoncurrentVersionTransitionEl>>,
     transition: Option<DynamicBlock<S3BucketLifecycleConfigurationRuleElTransitionEl>>,
 }
 
@@ -1030,15 +1129,18 @@ pub struct S3BucketLifecycleConfigurationRuleEl {
     prefix: Option<PrimField<String>>,
     status: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    abort_incomplete_multipart_upload: Option<Vec<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>>,
+    abort_incomplete_multipart_upload:
+        Option<Vec<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     expiration: Option<Vec<S3BucketLifecycleConfigurationRuleElExpirationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     filter: Option<Vec<S3BucketLifecycleConfigurationRuleElFilterEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    noncurrent_version_expiration: Option<Vec<S3BucketLifecycleConfigurationRuleElNoncurrentVersionExpirationEl>>,
+    noncurrent_version_expiration:
+        Option<Vec<S3BucketLifecycleConfigurationRuleElNoncurrentVersionExpirationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    noncurrent_version_transition: Option<Vec<S3BucketLifecycleConfigurationRuleElNoncurrentVersionTransitionEl>>,
+    noncurrent_version_transition:
+        Option<Vec<S3BucketLifecycleConfigurationRuleElNoncurrentVersionTransitionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     transition: Option<Vec<S3BucketLifecycleConfigurationRuleElTransitionEl>>,
     dynamic: S3BucketLifecycleConfigurationRuleElDynamic,
@@ -1054,15 +1156,17 @@ impl S3BucketLifecycleConfigurationRuleEl {
     #[doc = "Set the field `abort_incomplete_multipart_upload`.\n"]
     pub fn set_abort_incomplete_multipart_upload(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>>,
+        v: impl Into<
+            BlockAssignable<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.abort_incomplete_multipart_upload = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.abort_incomplete_multipart_upload = Some(d);
-            },
+            }
         }
         self
     }
@@ -1075,23 +1179,26 @@ impl S3BucketLifecycleConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.expiration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.expiration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(mut self, v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterEl>>) -> Self {
+    pub fn set_filter(
+        mut self,
+        v: impl Into<BlockAssignable<S3BucketLifecycleConfigurationRuleElFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1104,10 +1211,10 @@ impl S3BucketLifecycleConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.noncurrent_version_expiration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.noncurrent_version_expiration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1120,10 +1227,10 @@ impl S3BucketLifecycleConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.noncurrent_version_transition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.noncurrent_version_transition = Some(d);
-            },
+            }
         }
         self
     }
@@ -1136,10 +1243,10 @@ impl S3BucketLifecycleConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.transition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.transition = Some(d);
-            },
+            }
         }
         self
     }
@@ -1219,7 +1326,10 @@ impl S3BucketLifecycleConfigurationRuleElRef {
     pub fn abort_incomplete_multipart_upload(
         &self,
     ) -> ListRef<S3BucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.abort_incomplete_multipart_upload", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.abort_incomplete_multipart_upload", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
@@ -1236,7 +1346,10 @@ impl S3BucketLifecycleConfigurationRuleElRef {
     pub fn noncurrent_version_expiration(
         &self,
     ) -> ListRef<S3BucketLifecycleConfigurationRuleElNoncurrentVersionExpirationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.noncurrent_version_expiration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.noncurrent_version_expiration", self.base),
+        )
     }
 }
 
@@ -1249,15 +1362,13 @@ pub struct S3BucketLifecycleConfigurationTimeoutsEl {
 }
 
 impl S3BucketLifecycleConfigurationTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1306,14 +1417,12 @@ impl S3BucketLifecycleConfigurationTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

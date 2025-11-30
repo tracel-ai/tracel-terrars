@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudtrailData {
@@ -88,7 +88,8 @@ impl Cloudtrail {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -101,7 +102,7 @@ impl Cloudtrail {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -112,12 +113,22 @@ impl Cloudtrail {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -175,8 +186,7 @@ impl Cloudtrail {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -207,40 +217,49 @@ impl Cloudtrail {
     }
 
     #[doc = "Set the field `advanced_event_selector`.\n"]
-    pub fn set_advanced_event_selector(self, v: impl Into<BlockAssignable<CloudtrailAdvancedEventSelectorEl>>) -> Self {
+    pub fn set_advanced_event_selector(
+        self,
+        v: impl Into<BlockAssignable<CloudtrailAdvancedEventSelectorEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().advanced_event_selector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.advanced_event_selector = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `event_selector`.\n"]
-    pub fn set_event_selector(self, v: impl Into<BlockAssignable<CloudtrailEventSelectorEl>>) -> Self {
+    pub fn set_event_selector(
+        self,
+        v: impl Into<BlockAssignable<CloudtrailEventSelectorEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().event_selector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.event_selector = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `insight_selector`.\n"]
-    pub fn set_insight_selector(self, v: impl Into<BlockAssignable<CloudtrailInsightSelectorEl>>) -> Self {
+    pub fn set_insight_selector(
+        self,
+        v: impl Into<BlockAssignable<CloudtrailInsightSelectorEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().insight_selector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.insight_selector = Some(d);
-            },
+            }
         }
         self
     }
@@ -252,27 +271,42 @@ impl Cloudtrail {
 
     #[doc = "Get a reference to the value of field `cloud_watch_logs_group_arn` after provisioning.\n"]
     pub fn cloud_watch_logs_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_watch_logs_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_logs_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloud_watch_logs_role_arn` after provisioning.\n"]
     pub fn cloud_watch_logs_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_watch_logs_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_logs_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_log_file_validation` after provisioning.\n"]
     pub fn enable_log_file_validation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_log_file_validation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_log_file_validation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_logging` after provisioning.\n"]
     pub fn enable_logging(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_logging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_logging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `home_region` after provisioning.\n"]
     pub fn home_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.home_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.home_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -282,83 +316,128 @@ impl Cloudtrail {
 
     #[doc = "Get a reference to the value of field `include_global_service_events` after provisioning.\n"]
     pub fn include_global_service_events(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_global_service_events", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_global_service_events", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_multi_region_trail` after provisioning.\n"]
     pub fn is_multi_region_trail(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_multi_region_trail", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_multi_region_trail", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_organization_trail` after provisioning.\n"]
     pub fn is_organization_trail(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_organization_trail", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_organization_trail", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_key_prefix` after provisioning.\n"]
     pub fn s3_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_key_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_key_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_name` after provisioning.\n"]
     pub fn sns_topic_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_event_selector` after provisioning.\n"]
     pub fn advanced_event_selector(&self) -> ListRef<CloudtrailAdvancedEventSelectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_event_selector", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_event_selector", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_selector` after provisioning.\n"]
     pub fn event_selector(&self) -> ListRef<CloudtrailEventSelectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_selector", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_selector", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Cloudtrail {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Cloudtrail { }
+impl Resource for Cloudtrail {}
 
 impl ToListMappable for Cloudtrail {
     type O = ListRef<CloudtrailRef>;
@@ -435,10 +514,7 @@ pub struct CloudtrailRef {
 
 impl Ref for CloudtrailRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -458,27 +534,42 @@ impl CloudtrailRef {
 
     #[doc = "Get a reference to the value of field `cloud_watch_logs_group_arn` after provisioning.\n"]
     pub fn cloud_watch_logs_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_watch_logs_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_logs_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloud_watch_logs_role_arn` after provisioning.\n"]
     pub fn cloud_watch_logs_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_watch_logs_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_logs_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_log_file_validation` after provisioning.\n"]
     pub fn enable_log_file_validation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_log_file_validation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_log_file_validation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_logging` after provisioning.\n"]
     pub fn enable_logging(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_logging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_logging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `home_region` after provisioning.\n"]
     pub fn home_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.home_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.home_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -488,73 +579,114 @@ impl CloudtrailRef {
 
     #[doc = "Get a reference to the value of field `include_global_service_events` after provisioning.\n"]
     pub fn include_global_service_events(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_global_service_events", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_global_service_events", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_multi_region_trail` after provisioning.\n"]
     pub fn is_multi_region_trail(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_multi_region_trail", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_multi_region_trail", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_organization_trail` after provisioning.\n"]
     pub fn is_organization_trail(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_organization_trail", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_organization_trail", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_key_prefix` after provisioning.\n"]
     pub fn s3_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_key_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_key_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_name` after provisioning.\n"]
     pub fn sns_topic_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_event_selector` after provisioning.\n"]
     pub fn advanced_event_selector(&self) -> ListRef<CloudtrailAdvancedEventSelectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_event_selector", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_event_selector", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_selector` after provisioning.\n"]
     pub fn event_selector(&self) -> ListRef<CloudtrailEventSelectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_selector", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_selector", self.extract_ref()),
+        )
     }
 }
 
@@ -650,7 +782,10 @@ pub struct CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
 }
 
 impl Ref for CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
-    fn new(shared: StackShared, base: String) -> CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
         CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
             shared: shared,
             base: base.to_string(),
@@ -680,7 +815,10 @@ impl CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
 
     #[doc = "Get a reference to the value of field `not_ends_with` after provisioning.\n"]
     pub fn not_ends_with(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.not_ends_with", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.not_ends_with", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_equals` after provisioning.\n"]
@@ -690,7 +828,10 @@ impl CloudtrailAdvancedEventSelectorElFieldSelectorElRef {
 
     #[doc = "Get a reference to the value of field `not_starts_with` after provisioning.\n"]
     pub fn not_starts_with(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.not_starts_with", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.not_starts_with", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `starts_with` after provisioning.\n"]
@@ -728,10 +869,10 @@ impl CloudtrailAdvancedEventSelectorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_selector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_selector = Some(d);
-            },
+            }
         }
         self
     }
@@ -793,7 +934,7 @@ pub struct CloudtrailEventSelectorElDataResourceEl {
     values: ListField<PrimField<String>>,
 }
 
-impl CloudtrailEventSelectorElDataResourceEl { }
+impl CloudtrailEventSelectorElDataResourceEl {}
 
 impl ToListMappable for CloudtrailEventSelectorElDataResourceEl {
     type O = BlockAssignable<CloudtrailEventSelectorElDataResourceEl>;
@@ -873,7 +1014,10 @@ pub struct CloudtrailEventSelectorEl {
 
 impl CloudtrailEventSelectorEl {
     #[doc = "Set the field `exclude_management_event_sources`.\n"]
-    pub fn set_exclude_management_event_sources(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_exclude_management_event_sources(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.exclude_management_event_sources = Some(v.into());
         self
     }
@@ -891,14 +1035,17 @@ impl CloudtrailEventSelectorEl {
     }
 
     #[doc = "Set the field `data_resource`.\n"]
-    pub fn set_data_resource(mut self, v: impl Into<BlockAssignable<CloudtrailEventSelectorElDataResourceEl>>) -> Self {
+    pub fn set_data_resource(
+        mut self,
+        v: impl Into<BlockAssignable<CloudtrailEventSelectorElDataResourceEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.data_resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.data_resource = Some(d);
-            },
+            }
         }
         self
     }
@@ -951,22 +1098,34 @@ impl CloudtrailEventSelectorElRef {
 
     #[doc = "Get a reference to the value of field `exclude_management_event_sources` after provisioning.\n"]
     pub fn exclude_management_event_sources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.exclude_management_event_sources", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.exclude_management_event_sources", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_management_events` after provisioning.\n"]
     pub fn include_management_events(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_management_events", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_management_events", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_write_type` after provisioning.\n"]
     pub fn read_write_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_write_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_write_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_resource` after provisioning.\n"]
     pub fn data_resource(&self) -> ListRef<CloudtrailEventSelectorElDataResourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_resource", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_resource", self.base),
+        )
     }
 }
 
@@ -975,7 +1134,7 @@ pub struct CloudtrailInsightSelectorEl {
     insight_type: PrimField<String>,
 }
 
-impl CloudtrailInsightSelectorEl { }
+impl CloudtrailInsightSelectorEl {}
 
 impl ToListMappable for CloudtrailInsightSelectorEl {
     type O = BlockAssignable<CloudtrailInsightSelectorEl>;
@@ -996,7 +1155,9 @@ pub struct BuildCloudtrailInsightSelectorEl {
 
 impl BuildCloudtrailInsightSelectorEl {
     pub fn build(self) -> CloudtrailInsightSelectorEl {
-        CloudtrailInsightSelectorEl { insight_type: self.insight_type }
+        CloudtrailInsightSelectorEl {
+            insight_type: self.insight_type,
+        }
     }
 }
 

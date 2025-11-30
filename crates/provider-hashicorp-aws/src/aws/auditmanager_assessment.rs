@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AuditmanagerAssessmentData {
@@ -23,7 +23,8 @@ struct AuditmanagerAssessmentData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    assessment_reports_destination: Option<Vec<AuditmanagerAssessmentAssessmentReportsDestinationEl>>,
+    assessment_reports_destination:
+        Option<Vec<AuditmanagerAssessmentAssessmentReportsDestinationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     roles: Option<Vec<AuditmanagerAssessmentRolesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -66,7 +67,8 @@ impl AuditmanagerAssessment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +81,7 @@ impl AuditmanagerAssessment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +92,22 @@ impl AuditmanagerAssessment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,8 +117,7 @@ impl AuditmanagerAssessment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,10 +137,14 @@ impl AuditmanagerAssessment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().assessment_reports_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.assessment_reports_destination = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .assessment_reports_destination = Some(d);
+            }
         }
         self
     }
@@ -139,10 +154,10 @@ impl AuditmanagerAssessment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().roles = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.roles = Some(d);
-            },
+            }
         }
         self
     }
@@ -152,10 +167,10 @@ impl AuditmanagerAssessment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scope = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scope = Some(d);
-            },
+            }
         }
         self
     }
@@ -167,12 +182,18 @@ impl AuditmanagerAssessment {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `framework_id` after provisioning.\n"]
     pub fn framework_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.framework_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.framework_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -182,53 +203,82 @@ impl AuditmanagerAssessment {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles_all` after provisioning.\n"]
     pub fn roles_all(&self) -> ListRef<AuditmanagerAssessmentRolesAllElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.roles_all", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.roles_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `assessment_reports_destination` after provisioning.\n"]
-    pub fn assessment_reports_destination(&self) -> ListRef<AuditmanagerAssessmentAssessmentReportsDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.assessment_reports_destination", self.extract_ref()))
+    pub fn assessment_reports_destination(
+        &self,
+    ) -> ListRef<AuditmanagerAssessmentAssessmentReportsDestinationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.assessment_reports_destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<AuditmanagerAssessmentScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AuditmanagerAssessment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AuditmanagerAssessment { }
+impl Resource for AuditmanagerAssessment {}
 
 impl ToListMappable for AuditmanagerAssessment {
     type O = ListRef<AuditmanagerAssessmentRef>;
@@ -294,10 +344,7 @@ pub struct AuditmanagerAssessmentRef {
 
 impl Ref for AuditmanagerAssessmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -317,12 +364,18 @@ impl AuditmanagerAssessmentRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `framework_id` after provisioning.\n"]
     pub fn framework_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.framework_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.framework_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -332,43 +385,68 @@ impl AuditmanagerAssessmentRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles_all` after provisioning.\n"]
     pub fn roles_all(&self) -> ListRef<AuditmanagerAssessmentRolesAllElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.roles_all", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.roles_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `assessment_reports_destination` after provisioning.\n"]
-    pub fn assessment_reports_destination(&self) -> ListRef<AuditmanagerAssessmentAssessmentReportsDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.assessment_reports_destination", self.extract_ref()))
+    pub fn assessment_reports_destination(
+        &self,
+    ) -> ListRef<AuditmanagerAssessmentAssessmentReportsDestinationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.assessment_reports_destination", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<AuditmanagerAssessmentScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 }
 
@@ -453,7 +531,7 @@ pub struct AuditmanagerAssessmentAssessmentReportsDestinationEl {
     destination_type: PrimField<String>,
 }
 
-impl AuditmanagerAssessmentAssessmentReportsDestinationEl { }
+impl AuditmanagerAssessmentAssessmentReportsDestinationEl {}
 
 impl ToListMappable for AuditmanagerAssessmentAssessmentReportsDestinationEl {
     type O = BlockAssignable<AuditmanagerAssessmentAssessmentReportsDestinationEl>;
@@ -489,7 +567,10 @@ pub struct AuditmanagerAssessmentAssessmentReportsDestinationElRef {
 }
 
 impl Ref for AuditmanagerAssessmentAssessmentReportsDestinationElRef {
-    fn new(shared: StackShared, base: String) -> AuditmanagerAssessmentAssessmentReportsDestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AuditmanagerAssessmentAssessmentReportsDestinationElRef {
         AuditmanagerAssessmentAssessmentReportsDestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -509,7 +590,10 @@ impl AuditmanagerAssessmentAssessmentReportsDestinationElRef {
 
     #[doc = "Get a reference to the value of field `destination_type` after provisioning.\n"]
     pub fn destination_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_type", self.base),
+        )
     }
 }
 
@@ -519,7 +603,7 @@ pub struct AuditmanagerAssessmentRolesEl {
     role_type: PrimField<String>,
 }
 
-impl AuditmanagerAssessmentRolesEl { }
+impl AuditmanagerAssessmentRolesEl {}
 
 impl ToListMappable for AuditmanagerAssessmentRolesEl {
     type O = BlockAssignable<AuditmanagerAssessmentRolesEl>;
@@ -584,7 +668,7 @@ pub struct AuditmanagerAssessmentScopeElAwsAccountsEl {
     id: PrimField<String>,
 }
 
-impl AuditmanagerAssessmentScopeElAwsAccountsEl { }
+impl AuditmanagerAssessmentScopeElAwsAccountsEl {}
 
 impl ToListMappable for AuditmanagerAssessmentScopeElAwsAccountsEl {
     type O = BlockAssignable<AuditmanagerAssessmentScopeElAwsAccountsEl>;
@@ -639,7 +723,7 @@ pub struct AuditmanagerAssessmentScopeElAwsServicesEl {
     service_name: PrimField<String>,
 }
 
-impl AuditmanagerAssessmentScopeElAwsServicesEl { }
+impl AuditmanagerAssessmentScopeElAwsServicesEl {}
 
 impl ToListMappable for AuditmanagerAssessmentScopeElAwsServicesEl {
     type O = BlockAssignable<AuditmanagerAssessmentScopeElAwsServicesEl>;
@@ -660,7 +744,9 @@ pub struct BuildAuditmanagerAssessmentScopeElAwsServicesEl {
 
 impl BuildAuditmanagerAssessmentScopeElAwsServicesEl {
     pub fn build(self) -> AuditmanagerAssessmentScopeElAwsServicesEl {
-        AuditmanagerAssessmentScopeElAwsServicesEl { service_name: self.service_name }
+        AuditmanagerAssessmentScopeElAwsServicesEl {
+            service_name: self.service_name,
+        }
     }
 }
 
@@ -713,10 +799,10 @@ impl AuditmanagerAssessmentScopeEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_accounts = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_accounts = Some(d);
-            },
+            }
         }
         self
     }
@@ -729,10 +815,10 @@ impl AuditmanagerAssessmentScopeEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_services = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_services = Some(d);
-            },
+            }
         }
         self
     }
@@ -784,7 +870,8 @@ impl AuditmanagerAssessmentScopeElRef {
 
 #[derive(Serialize, Default)]
 struct AuditmanagerAssessmentDynamic {
-    assessment_reports_destination: Option<DynamicBlock<AuditmanagerAssessmentAssessmentReportsDestinationEl>>,
+    assessment_reports_destination:
+        Option<DynamicBlock<AuditmanagerAssessmentAssessmentReportsDestinationEl>>,
     roles: Option<DynamicBlock<AuditmanagerAssessmentRolesEl>>,
     scope: Option<DynamicBlock<AuditmanagerAssessmentScopeEl>>,
 }

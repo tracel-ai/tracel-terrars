@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AcmCertificateData {
@@ -82,7 +82,8 @@ impl AcmCertificate {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -95,7 +96,7 @@ impl AcmCertificate {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -106,12 +107,22 @@ impl AcmCertificate {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -163,8 +174,7 @@ impl AcmCertificate {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -199,23 +209,26 @@ impl AcmCertificate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `validation_option`.\n"]
-    pub fn set_validation_option(self, v: impl Into<BlockAssignable<AcmCertificateValidationOptionEl>>) -> Self {
+    pub fn set_validation_option(
+        self,
+        v: impl Into<BlockAssignable<AcmCertificateValidationOptionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().validation_option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.validation_option = Some(d);
-            },
+            }
         }
         self
     }
@@ -227,32 +240,50 @@ impl AcmCertificate {
 
     #[doc = "Get a reference to the value of field `certificate_authority_arn` after provisioning.\n"]
     pub fn certificate_authority_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_authority_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_body` after provisioning.\n"]
     pub fn certificate_body(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_body", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_body", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_validation_options` after provisioning.\n"]
     pub fn domain_validation_options(&self) -> SetRef<AcmCertificateDomainValidationOptionsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.domain_validation_options", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.domain_validation_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `early_renewal_duration` after provisioning.\n"]
     pub fn early_renewal_duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.early_renewal_duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.early_renewal_duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -262,93 +293,144 @@ impl AcmCertificate {
 
     #[doc = "Get a reference to the value of field `key_algorithm` after provisioning.\n"]
     pub fn key_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_algorithm", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_algorithm", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_before", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pending_renewal` after provisioning.\n"]
     pub fn pending_renewal(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pending_renewal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pending_renewal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_key", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `renewal_eligibility` after provisioning.\n"]
     pub fn renewal_eligibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.renewal_eligibility", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.renewal_eligibility", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `renewal_summary` after provisioning.\n"]
     pub fn renewal_summary(&self) -> ListRef<AcmCertificateRenewalSummaryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.renewal_summary", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.renewal_summary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subject_alternative_names` after provisioning.\n"]
     pub fn subject_alternative_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subject_alternative_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subject_alternative_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_emails` after provisioning.\n"]
     pub fn validation_emails(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_emails", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_emails", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_method` after provisioning.\n"]
     pub fn validation_method(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_method", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_method", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<AcmCertificateOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.options", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AcmCertificate {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AcmCertificate { }
+impl Resource for AcmCertificate {}
 
 impl ToListMappable for AcmCertificate {
     type O = ListRef<AcmCertificateRef>;
@@ -417,10 +499,7 @@ pub struct AcmCertificateRef {
 
 impl Ref for AcmCertificateRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -440,32 +519,50 @@ impl AcmCertificateRef {
 
     #[doc = "Get a reference to the value of field `certificate_authority_arn` after provisioning.\n"]
     pub fn certificate_authority_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_authority_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_body` after provisioning.\n"]
     pub fn certificate_body(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_body", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_body", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_validation_options` after provisioning.\n"]
     pub fn domain_validation_options(&self) -> SetRef<AcmCertificateDomainValidationOptionsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.domain_validation_options", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.domain_validation_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `early_renewal_duration` after provisioning.\n"]
     pub fn early_renewal_duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.early_renewal_duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.early_renewal_duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -475,83 +572,130 @@ impl AcmCertificateRef {
 
     #[doc = "Get a reference to the value of field `key_algorithm` after provisioning.\n"]
     pub fn key_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_algorithm", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_algorithm", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_before", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pending_renewal` after provisioning.\n"]
     pub fn pending_renewal(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pending_renewal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pending_renewal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_key", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `renewal_eligibility` after provisioning.\n"]
     pub fn renewal_eligibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.renewal_eligibility", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.renewal_eligibility", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `renewal_summary` after provisioning.\n"]
     pub fn renewal_summary(&self) -> ListRef<AcmCertificateRenewalSummaryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.renewal_summary", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.renewal_summary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subject_alternative_names` after provisioning.\n"]
     pub fn subject_alternative_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subject_alternative_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subject_alternative_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_emails` after provisioning.\n"]
     pub fn validation_emails(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_emails", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_emails", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_method` after provisioning.\n"]
     pub fn validation_method(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_method", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_method", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<AcmCertificateOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.options", self.extract_ref()),
+        )
     }
 }
 
@@ -644,17 +788,26 @@ impl AcmCertificateDomainValidationOptionsElRef {
 
     #[doc = "Get a reference to the value of field `resource_record_name` after provisioning.\n"]
     pub fn resource_record_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_record_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_record_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_record_type` after provisioning.\n"]
     pub fn resource_record_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_record_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_record_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_record_value` after provisioning.\n"]
     pub fn resource_record_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_record_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_record_value", self.base),
+        )
     }
 }
 
@@ -733,12 +886,18 @@ impl AcmCertificateRenewalSummaryElRef {
 
     #[doc = "Get a reference to the value of field `renewal_status` after provisioning.\n"]
     pub fn renewal_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.renewal_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.renewal_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `renewal_status_reason` after provisioning.\n"]
     pub fn renewal_status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.renewal_status_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.renewal_status_reason", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
@@ -757,7 +916,10 @@ pub struct AcmCertificateOptionsEl {
 
 impl AcmCertificateOptionsEl {
     #[doc = "Set the field `certificate_transparency_logging_preference`.\n"]
-    pub fn set_certificate_transparency_logging_preference(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_certificate_transparency_logging_preference(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.certificate_transparency_logging_preference = Some(v.into());
         self
     }
@@ -813,7 +975,10 @@ impl AcmCertificateOptionsElRef {
 
     #[doc = "Get a reference to the value of field `certificate_transparency_logging_preference` after provisioning.\n"]
     pub fn certificate_transparency_logging_preference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_transparency_logging_preference", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_transparency_logging_preference", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `export` after provisioning.\n"]
@@ -828,7 +993,7 @@ pub struct AcmCertificateValidationOptionEl {
     validation_domain: PrimField<String>,
 }
 
-impl AcmCertificateValidationOptionEl { }
+impl AcmCertificateValidationOptionEl {}
 
 impl ToListMappable for AcmCertificateValidationOptionEl {
     type O = BlockAssignable<AcmCertificateValidationOptionEl>;
@@ -884,7 +1049,10 @@ impl AcmCertificateValidationOptionElRef {
 
     #[doc = "Get a reference to the value of field `validation_domain` after provisioning.\n"]
     pub fn validation_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_domain", self.base),
+        )
     }
 }
 

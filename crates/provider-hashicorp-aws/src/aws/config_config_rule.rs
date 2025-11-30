@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ConfigConfigRuleData {
@@ -73,7 +73,8 @@ impl ConfigConfigRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -86,7 +87,7 @@ impl ConfigConfigRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -97,12 +98,22 @@ impl ConfigConfigRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -130,8 +141,7 @@ impl ConfigConfigRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -150,14 +160,17 @@ impl ConfigConfigRule {
     }
 
     #[doc = "Set the field `evaluation_mode`.\n"]
-    pub fn set_evaluation_mode(self, v: impl Into<BlockAssignable<ConfigConfigRuleEvaluationModeEl>>) -> Self {
+    pub fn set_evaluation_mode(
+        self,
+        v: impl Into<BlockAssignable<ConfigConfigRuleEvaluationModeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().evaluation_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.evaluation_mode = Some(d);
-            },
+            }
         }
         self
     }
@@ -167,10 +180,10 @@ impl ConfigConfigRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scope = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scope = Some(d);
-            },
+            }
         }
         self
     }
@@ -180,10 +193,10 @@ impl ConfigConfigRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source = Some(d);
-            },
+            }
         }
         self
     }
@@ -195,7 +208,10 @@ impl ConfigConfigRule {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -205,58 +221,88 @@ impl ConfigConfigRule {
 
     #[doc = "Get a reference to the value of field `input_parameters` after provisioning.\n"]
     pub fn input_parameters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_parameters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_execution_frequency` after provisioning.\n"]
     pub fn maximum_execution_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_execution_frequency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_execution_frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_id` after provisioning.\n"]
     pub fn rule_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<ConfigConfigRuleScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<ConfigConfigRuleSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ConfigConfigRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ConfigConfigRule { }
+impl Resource for ConfigConfigRule {}
 
 impl ToListMappable for ConfigConfigRule {
     type O = ListRef<ConfigConfigRuleRef>;
@@ -323,10 +369,7 @@ pub struct ConfigConfigRuleRef {
 
 impl Ref for ConfigConfigRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -346,7 +389,10 @@ impl ConfigConfigRuleRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -356,48 +402,74 @@ impl ConfigConfigRuleRef {
 
     #[doc = "Get a reference to the value of field `input_parameters` after provisioning.\n"]
     pub fn input_parameters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_parameters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_execution_frequency` after provisioning.\n"]
     pub fn maximum_execution_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_execution_frequency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_execution_frequency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_id` after provisioning.\n"]
     pub fn rule_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<ConfigConfigRuleScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<ConfigConfigRuleSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 }
 
@@ -431,7 +503,9 @@ pub struct BuildConfigConfigRuleEvaluationModeEl {}
 
 impl BuildConfigConfigRuleEvaluationModeEl {
     pub fn build(self) -> ConfigConfigRuleEvaluationModeEl {
-        ConfigConfigRuleEvaluationModeEl { mode: core::default::Default::default() }
+        ConfigConfigRuleEvaluationModeEl {
+            mode: core::default::Default::default(),
+        }
     }
 }
 
@@ -480,7 +554,10 @@ impl ConfigConfigRuleScopeEl {
     }
 
     #[doc = "Set the field `compliance_resource_types`.\n"]
-    pub fn set_compliance_resource_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_compliance_resource_types(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.compliance_resource_types = Some(v.into());
         self
     }
@@ -544,12 +621,18 @@ impl ConfigConfigRuleScopeElRef {
 
     #[doc = "Get a reference to the value of field `compliance_resource_id` after provisioning.\n"]
     pub fn compliance_resource_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compliance_resource_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compliance_resource_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compliance_resource_types` after provisioning.\n"]
     pub fn compliance_resource_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.compliance_resource_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.compliance_resource_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_key` after provisioning.\n"]
@@ -629,12 +712,18 @@ impl ConfigConfigRuleSourceElCustomPolicyDetailsElRef {
 
     #[doc = "Get a reference to the value of field `enable_debug_log_delivery` after provisioning.\n"]
     pub fn enable_debug_log_delivery(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_debug_log_delivery", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_debug_log_delivery", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_runtime` after provisioning.\n"]
     pub fn policy_runtime(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_runtime", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_runtime", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_text` after provisioning.\n"]
@@ -723,7 +812,10 @@ impl ConfigConfigRuleSourceElSourceDetailElRef {
 
     #[doc = "Get a reference to the value of field `maximum_execution_frequency` after provisioning.\n"]
     pub fn maximum_execution_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_execution_frequency", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_execution_frequency", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `message_type` after provisioning.\n"]
@@ -765,23 +857,26 @@ impl ConfigConfigRuleSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_policy_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_policy_details = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `source_detail`.\n"]
-    pub fn set_source_detail(mut self, v: impl Into<BlockAssignable<ConfigConfigRuleSourceElSourceDetailEl>>) -> Self {
+    pub fn set_source_detail(
+        mut self,
+        v: impl Into<BlockAssignable<ConfigConfigRuleSourceElSourceDetailEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_detail = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_detail = Some(d);
-            },
+            }
         }
         self
     }
@@ -842,12 +937,20 @@ impl ConfigConfigRuleSourceElRef {
 
     #[doc = "Get a reference to the value of field `source_identifier` after provisioning.\n"]
     pub fn source_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_policy_details` after provisioning.\n"]
-    pub fn custom_policy_details(&self) -> ListRef<ConfigConfigRuleSourceElCustomPolicyDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_policy_details", self.base))
+    pub fn custom_policy_details(
+        &self,
+    ) -> ListRef<ConfigConfigRuleSourceElCustomPolicyDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_policy_details", self.base),
+        )
     }
 }
 

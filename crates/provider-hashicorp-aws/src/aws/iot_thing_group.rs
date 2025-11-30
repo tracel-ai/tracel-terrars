@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IotThingGroupData {
@@ -65,7 +65,8 @@ impl IotThingGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl IotThingGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl IotThingGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +121,7 @@ impl IotThingGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,10 +144,10 @@ impl IotThingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.properties = Some(d);
-            },
+            }
         }
         self
     }
@@ -154,53 +164,80 @@ impl IotThingGroup {
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
     pub fn metadata(&self) -> ListRef<IotThingGroupMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metadata", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metadata", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_group_name` after provisioning.\n"]
     pub fn parent_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_group_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
     pub fn properties(&self) -> ListRef<IotThingGroupPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.properties", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IotThingGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IotThingGroup { }
+impl Resource for IotThingGroup {}
 
 impl ToListMappable for IotThingGroup {
     type O = ListRef<IotThingGroupRef>;
@@ -263,10 +300,7 @@ pub struct IotThingGroupRef {
 
 impl Ref for IotThingGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -291,43 +325,66 @@ impl IotThingGroupRef {
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
     pub fn metadata(&self) -> ListRef<IotThingGroupMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metadata", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metadata", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_group_name` after provisioning.\n"]
     pub fn parent_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_group_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
     pub fn properties(&self) -> ListRef<IotThingGroupPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.properties", self.extract_ref()),
+        )
     }
 }
 
@@ -484,17 +541,26 @@ impl IotThingGroupMetadataElRef {
 
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_group_name` after provisioning.\n"]
     pub fn parent_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_to_parent_groups` after provisioning.\n"]
     pub fn root_to_parent_groups(&self) -> ListRef<IotThingGroupMetadataElRootToParentGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.root_to_parent_groups", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.root_to_parent_groups", self.base),
+        )
     }
 }
 
@@ -528,7 +594,9 @@ pub struct BuildIotThingGroupPropertiesElAttributePayloadEl {}
 
 impl BuildIotThingGroupPropertiesElAttributePayloadEl {
     pub fn build(self) -> IotThingGroupPropertiesElAttributePayloadEl {
-        IotThingGroupPropertiesElAttributePayloadEl { attributes: core::default::Default::default() }
+        IotThingGroupPropertiesElAttributePayloadEl {
+            attributes: core::default::Default::default(),
+        }
     }
 }
 
@@ -586,10 +654,10 @@ impl IotThingGroupPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.attribute_payload = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.attribute_payload = Some(d);
-            },
+            }
         }
         self
     }
@@ -645,7 +713,10 @@ impl IotThingGroupPropertiesElRef {
 
     #[doc = "Get a reference to the value of field `attribute_payload` after provisioning.\n"]
     pub fn attribute_payload(&self) -> ListRef<IotThingGroupPropertiesElAttributePayloadElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attribute_payload", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attribute_payload", self.base),
+        )
     }
 }
 

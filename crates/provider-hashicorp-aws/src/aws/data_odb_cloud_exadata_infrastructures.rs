@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOdbCloudExadataInfrastructuresData {
@@ -40,35 +40,42 @@ impl DataOdbCloudExadataInfrastructures {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `cloud_exadata_infrastructures` after provisioning.\nList of Cloud Exadata Infrastructures. Returns basic information about the Cloud Exadata Infrastructures."]
+    #[doc = "Get a reference to the value of field `cloud_exadata_infrastructures` after provisioning.\nList of Cloud Exadata Infrastructures. Returns basic information about the Cloud Exadata Infrastructures."]
     pub fn cloud_exadata_infrastructures(
         &self,
     ) -> ListRef<DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_exadata_infrastructures", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_exadata_infrastructures", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOdbCloudExadataInfrastructures {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOdbCloudExadataInfrastructures { }
+impl Datasource for DataOdbCloudExadataInfrastructures {}
 
 impl ToListMappable for DataOdbCloudExadataInfrastructures {
     type O = ListRef<DataOdbCloudExadataInfrastructuresRef>;
@@ -99,16 +106,17 @@ pub struct BuildDataOdbCloudExadataInfrastructures {
 
 impl BuildDataOdbCloudExadataInfrastructures {
     pub fn build(self, stack: &mut Stack) -> DataOdbCloudExadataInfrastructures {
-        let out = DataOdbCloudExadataInfrastructures(Rc::new(DataOdbCloudExadataInfrastructures_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOdbCloudExadataInfrastructuresData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataOdbCloudExadataInfrastructures(Rc::new(DataOdbCloudExadataInfrastructures_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOdbCloudExadataInfrastructuresData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    region: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -121,10 +129,7 @@ pub struct DataOdbCloudExadataInfrastructuresRef {
 
 impl Ref for DataOdbCloudExadataInfrastructuresRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -137,18 +142,22 @@ impl DataOdbCloudExadataInfrastructuresRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `cloud_exadata_infrastructures` after provisioning.\nList of Cloud Exadata Infrastructures. Returns basic information about the Cloud Exadata Infrastructures."]
+    #[doc = "Get a reference to the value of field `cloud_exadata_infrastructures` after provisioning.\nList of Cloud Exadata Infrastructures. Returns basic information about the Cloud Exadata Infrastructures."]
     pub fn cloud_exadata_infrastructures(
         &self,
     ) -> ListRef<DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_exadata_infrastructures", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_exadata_infrastructures", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -239,7 +248,10 @@ pub struct DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef {
 }
 
 impl Ref for DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef {
-    fn new(shared: StackShared, base: String) -> DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef {
         DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef {
             shared: shared,
             base: base.to_string(),
@@ -269,7 +281,10 @@ impl DataOdbCloudExadataInfrastructuresCloudExadataInfrastructuresElRef {
 
     #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\n"]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oci_url` after provisioning.\n"]

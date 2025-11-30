@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ShieldProtectionGroupData {
@@ -64,7 +64,8 @@ impl ShieldProtectionGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl ShieldProtectionGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl ShieldProtectionGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -129,7 +140,10 @@ impl ShieldProtectionGroup {
 
     #[doc = "Get a reference to the value of field `aggregation` after provisioning.\n"]
     pub fn aggregation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aggregation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aggregation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -139,47 +153,72 @@ impl ShieldProtectionGroup {
 
     #[doc = "Get a reference to the value of field `members` after provisioning.\n"]
     pub fn members(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.members", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.members", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pattern", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pattern", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_group_arn` after provisioning.\n"]
     pub fn protection_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_group_id` after provisioning.\n"]
     pub fn protection_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ShieldProtectionGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ShieldProtectionGroup { }
+impl Resource for ShieldProtectionGroup {}
 
 impl ToListMappable for ShieldProtectionGroup {
     type O = ListRef<ShieldProtectionGroupRef>;
@@ -246,10 +285,7 @@ pub struct ShieldProtectionGroupRef {
 
 impl Ref for ShieldProtectionGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -264,7 +300,10 @@ impl ShieldProtectionGroupRef {
 
     #[doc = "Get a reference to the value of field `aggregation` after provisioning.\n"]
     pub fn aggregation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aggregation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aggregation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -274,36 +313,57 @@ impl ShieldProtectionGroupRef {
 
     #[doc = "Get a reference to the value of field `members` after provisioning.\n"]
     pub fn members(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.members", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.members", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pattern", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pattern", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_group_arn` after provisioning.\n"]
     pub fn protection_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protection_group_id` after provisioning.\n"]
     pub fn protection_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protection_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protection_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontLogDeliveryCanonicalUserIdData {
@@ -61,17 +61,24 @@ impl DataCloudfrontLogDeliveryCanonicalUserId {
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontLogDeliveryCanonicalUserId {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontLogDeliveryCanonicalUserId { }
+impl Datasource for DataCloudfrontLogDeliveryCanonicalUserId {}
 
 impl ToListMappable for DataCloudfrontLogDeliveryCanonicalUserId {
     type O = ListRef<DataCloudfrontLogDeliveryCanonicalUserIdRef>;
@@ -102,17 +109,19 @@ pub struct BuildDataCloudfrontLogDeliveryCanonicalUserId {
 
 impl BuildDataCloudfrontLogDeliveryCanonicalUserId {
     pub fn build(self, stack: &mut Stack) -> DataCloudfrontLogDeliveryCanonicalUserId {
-        let out = DataCloudfrontLogDeliveryCanonicalUserId(Rc::new(DataCloudfrontLogDeliveryCanonicalUserId_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataCloudfrontLogDeliveryCanonicalUserIdData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out = DataCloudfrontLogDeliveryCanonicalUserId(Rc::new(
+            DataCloudfrontLogDeliveryCanonicalUserId_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataCloudfrontLogDeliveryCanonicalUserIdData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -125,10 +134,7 @@ pub struct DataCloudfrontLogDeliveryCanonicalUserIdRef {
 
 impl Ref for DataCloudfrontLogDeliveryCanonicalUserIdRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -148,6 +154,9 @@ impl DataCloudfrontLogDeliveryCanonicalUserIdRef {
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

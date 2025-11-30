@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53recoverycontrolconfigSafetyRuleData {
@@ -69,7 +69,8 @@ impl Route53recoverycontrolconfigSafetyRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl Route53recoverycontrolconfigSafetyRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl Route53recoverycontrolconfigSafetyRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -146,10 +157,10 @@ impl Route53recoverycontrolconfigSafetyRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -161,17 +172,26 @@ impl Route53recoverycontrolconfigSafetyRule {
 
     #[doc = "Get a reference to the value of field `asserted_controls` after provisioning.\n"]
     pub fn asserted_controls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.asserted_controls", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.asserted_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `control_panel_arn` after provisioning.\n"]
     pub fn control_panel_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.control_panel_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.control_panel_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gating_controls` after provisioning.\n"]
     pub fn gating_controls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.gating_controls", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.gating_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -181,47 +201,72 @@ impl Route53recoverycontrolconfigSafetyRule {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_controls` after provisioning.\n"]
     pub fn target_controls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.target_controls", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_period_ms` after provisioning.\n"]
     pub fn wait_period_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_period_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_period_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_config` after provisioning.\n"]
     pub fn rule_config(&self) -> ListRef<Route53recoverycontrolconfigSafetyRuleRuleConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53recoverycontrolconfigSafetyRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53recoverycontrolconfigSafetyRule { }
+impl Resource for Route53recoverycontrolconfigSafetyRule {}
 
 impl ToListMappable for Route53recoverycontrolconfigSafetyRule {
     type O = ListRef<Route53recoverycontrolconfigSafetyRuleRef>;
@@ -258,27 +303,29 @@ pub struct BuildRoute53recoverycontrolconfigSafetyRule {
 
 impl BuildRoute53recoverycontrolconfigSafetyRule {
     pub fn build(self, stack: &mut Stack) -> Route53recoverycontrolconfigSafetyRule {
-        let out = Route53recoverycontrolconfigSafetyRule(Rc::new(Route53recoverycontrolconfigSafetyRule_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(Route53recoverycontrolconfigSafetyRuleData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                asserted_controls: core::default::Default::default(),
-                control_panel_arn: self.control_panel_arn,
-                gating_controls: core::default::Default::default(),
-                id: core::default::Default::default(),
-                name: self.name,
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-                target_controls: core::default::Default::default(),
-                wait_period_ms: self.wait_period_ms,
-                rule_config: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = Route53recoverycontrolconfigSafetyRule(Rc::new(
+            Route53recoverycontrolconfigSafetyRule_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(Route53recoverycontrolconfigSafetyRuleData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    asserted_controls: core::default::Default::default(),
+                    control_panel_arn: self.control_panel_arn,
+                    gating_controls: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    name: self.name,
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                    target_controls: core::default::Default::default(),
+                    wait_period_ms: self.wait_period_ms,
+                    rule_config: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -291,10 +338,7 @@ pub struct Route53recoverycontrolconfigSafetyRuleRef {
 
 impl Ref for Route53recoverycontrolconfigSafetyRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -314,17 +358,26 @@ impl Route53recoverycontrolconfigSafetyRuleRef {
 
     #[doc = "Get a reference to the value of field `asserted_controls` after provisioning.\n"]
     pub fn asserted_controls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.asserted_controls", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.asserted_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `control_panel_arn` after provisioning.\n"]
     pub fn control_panel_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.control_panel_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.control_panel_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gating_controls` after provisioning.\n"]
     pub fn gating_controls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.gating_controls", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.gating_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -334,37 +387,58 @@ impl Route53recoverycontrolconfigSafetyRuleRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_controls` after provisioning.\n"]
     pub fn target_controls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.target_controls", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_controls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_period_ms` after provisioning.\n"]
     pub fn wait_period_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_period_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_period_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_config` after provisioning.\n"]
     pub fn rule_config(&self) -> ListRef<Route53recoverycontrolconfigSafetyRuleRuleConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule_config", self.extract_ref()),
+        )
     }
 }
 
@@ -376,7 +450,7 @@ pub struct Route53recoverycontrolconfigSafetyRuleRuleConfigEl {
     type_: PrimField<String>,
 }
 
-impl Route53recoverycontrolconfigSafetyRuleRuleConfigEl { }
+impl Route53recoverycontrolconfigSafetyRuleRuleConfigEl {}
 
 impl ToListMappable for Route53recoverycontrolconfigSafetyRuleRuleConfigEl {
     type O = BlockAssignable<Route53recoverycontrolconfigSafetyRuleRuleConfigEl>;
@@ -415,7 +489,10 @@ pub struct Route53recoverycontrolconfigSafetyRuleRuleConfigElRef {
 }
 
 impl Ref for Route53recoverycontrolconfigSafetyRuleRuleConfigElRef {
-    fn new(shared: StackShared, base: String) -> Route53recoverycontrolconfigSafetyRuleRuleConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Route53recoverycontrolconfigSafetyRuleRuleConfigElRef {
         Route53recoverycontrolconfigSafetyRuleRuleConfigElRef {
             shared: shared,
             base: base.to_string(),

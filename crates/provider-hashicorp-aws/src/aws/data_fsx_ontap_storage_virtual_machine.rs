@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataFsxOntapStorageVirtualMachineData {
@@ -53,8 +53,7 @@ impl DataFsxOntapStorageVirtualMachine {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -67,14 +66,17 @@ impl DataFsxOntapStorageVirtualMachine {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataFsxOntapStorageVirtualMachineFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataFsxOntapStorageVirtualMachineFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -83,7 +85,10 @@ impl DataFsxOntapStorageVirtualMachine {
     pub fn active_directory_configuration(
         &self,
     ) -> ListRef<DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.active_directory_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.active_directory_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -93,17 +98,26 @@ impl DataFsxOntapStorageVirtualMachine {
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoints` after provisioning.\n"]
     pub fn endpoints(&self) -> ListRef<DataFsxOntapStorageVirtualMachineEndpointsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoints", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -113,48 +127,74 @@ impl DataFsxOntapStorageVirtualMachine {
 
     #[doc = "Get a reference to the value of field `lifecycle_status` after provisioning.\n"]
     pub fn lifecycle_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_transition_reason` after provisioning.\n"]
-    pub fn lifecycle_transition_reason(&self) -> SetRef<DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.lifecycle_transition_reason", self.extract_ref()))
+    pub fn lifecycle_transition_reason(
+        &self,
+    ) -> SetRef<DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_transition_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subtype` after provisioning.\n"]
     pub fn subtype(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subtype", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subtype", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uuid` after provisioning.\n"]
     pub fn uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uuid", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataFsxOntapStorageVirtualMachine {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataFsxOntapStorageVirtualMachine { }
+impl Datasource for DataFsxOntapStorageVirtualMachine {}
 
 impl ToListMappable for DataFsxOntapStorageVirtualMachine {
     type O = ListRef<DataFsxOntapStorageVirtualMachineRef>;
@@ -211,10 +251,7 @@ pub struct DataFsxOntapStorageVirtualMachineRef {
 
 impl Ref for DataFsxOntapStorageVirtualMachineRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -231,7 +268,10 @@ impl DataFsxOntapStorageVirtualMachineRef {
     pub fn active_directory_configuration(
         &self,
     ) -> ListRef<DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.active_directory_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.active_directory_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -241,17 +281,26 @@ impl DataFsxOntapStorageVirtualMachineRef {
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoints` after provisioning.\n"]
     pub fn endpoints(&self) -> ListRef<DataFsxOntapStorageVirtualMachineEndpointsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoints", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -261,43 +310,66 @@ impl DataFsxOntapStorageVirtualMachineRef {
 
     #[doc = "Get a reference to the value of field `lifecycle_status` after provisioning.\n"]
     pub fn lifecycle_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_transition_reason` after provisioning.\n"]
-    pub fn lifecycle_transition_reason(&self) -> SetRef<DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.lifecycle_transition_reason", self.extract_ref()))
+    pub fn lifecycle_transition_reason(
+        &self,
+    ) -> SetRef<DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_transition_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subtype` after provisioning.\n"]
     pub fn subtype(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subtype", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subtype", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uuid` after provisioning.\n"]
     pub fn uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uuid", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationEl {
+pub struct DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     dns_ips: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -357,7 +429,8 @@ impl ToListMappable for DataFsxOntapStorageVirtualMachineActiveDirectoryConfigur
     }
 }
 
-pub struct BuildDataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationEl {}
+pub struct BuildDataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationEl
+{}
 
 impl BuildDataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationEl {
     pub fn build(
@@ -373,7 +446,8 @@ impl BuildDataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfMan
     }
 }
 
-pub struct DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationElRef {
+pub struct DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -486,7 +560,10 @@ pub struct DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef {
 }
 
 impl Ref for DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef {
         DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -509,8 +586,11 @@ impl DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElRef {
         &self,
     ) -> ListRef<
         DataFsxOntapStorageVirtualMachineActiveDirectoryConfigurationElSelfManagedActiveDirectoryConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.self_managed_active_directory_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.self_managed_active_directory_configuration", self.base),
+        )
     }
 }
 
@@ -565,7 +645,10 @@ pub struct DataFsxOntapStorageVirtualMachineEndpointsElIscsiElRef {
 }
 
 impl Ref for DataFsxOntapStorageVirtualMachineEndpointsElIscsiElRef {
-    fn new(shared: StackShared, base: String) -> DataFsxOntapStorageVirtualMachineEndpointsElIscsiElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataFsxOntapStorageVirtualMachineEndpointsElIscsiElRef {
         DataFsxOntapStorageVirtualMachineEndpointsElIscsiElRef {
             shared: shared,
             base: base.to_string(),
@@ -640,7 +723,10 @@ pub struct DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef {
 }
 
 impl Ref for DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef {
-    fn new(shared: StackShared, base: String) -> DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef {
         DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef {
             shared: shared,
             base: base.to_string(),
@@ -715,7 +801,10 @@ pub struct DataFsxOntapStorageVirtualMachineEndpointsElNfsElRef {
 }
 
 impl Ref for DataFsxOntapStorageVirtualMachineEndpointsElNfsElRef {
-    fn new(shared: StackShared, base: String) -> DataFsxOntapStorageVirtualMachineEndpointsElNfsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataFsxOntapStorageVirtualMachineEndpointsElNfsElRef {
         DataFsxOntapStorageVirtualMachineEndpointsElNfsElRef {
             shared: shared,
             base: base.to_string(),
@@ -790,7 +879,10 @@ pub struct DataFsxOntapStorageVirtualMachineEndpointsElSmbElRef {
 }
 
 impl Ref for DataFsxOntapStorageVirtualMachineEndpointsElSmbElRef {
-    fn new(shared: StackShared, base: String) -> DataFsxOntapStorageVirtualMachineEndpointsElSmbElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataFsxOntapStorageVirtualMachineEndpointsElSmbElRef {
         DataFsxOntapStorageVirtualMachineEndpointsElSmbElRef {
             shared: shared,
             base: base.to_string(),
@@ -828,7 +920,10 @@ pub struct DataFsxOntapStorageVirtualMachineEndpointsEl {
 
 impl DataFsxOntapStorageVirtualMachineEndpointsEl {
     #[doc = "Set the field `iscsi`.\n"]
-    pub fn set_iscsi(mut self, v: impl Into<ListField<DataFsxOntapStorageVirtualMachineEndpointsElIscsiEl>>) -> Self {
+    pub fn set_iscsi(
+        mut self,
+        v: impl Into<ListField<DataFsxOntapStorageVirtualMachineEndpointsElIscsiEl>>,
+    ) -> Self {
         self.iscsi = Some(v.into());
         self
     }
@@ -843,13 +938,19 @@ impl DataFsxOntapStorageVirtualMachineEndpointsEl {
     }
 
     #[doc = "Set the field `nfs`.\n"]
-    pub fn set_nfs(mut self, v: impl Into<ListField<DataFsxOntapStorageVirtualMachineEndpointsElNfsEl>>) -> Self {
+    pub fn set_nfs(
+        mut self,
+        v: impl Into<ListField<DataFsxOntapStorageVirtualMachineEndpointsElNfsEl>>,
+    ) -> Self {
         self.nfs = Some(v.into());
         self
     }
 
     #[doc = "Set the field `smb`.\n"]
-    pub fn set_smb(mut self, v: impl Into<ListField<DataFsxOntapStorageVirtualMachineEndpointsElSmbEl>>) -> Self {
+    pub fn set_smb(
+        mut self,
+        v: impl Into<ListField<DataFsxOntapStorageVirtualMachineEndpointsElSmbEl>>,
+    ) -> Self {
         self.smb = Some(v.into());
         self
     }
@@ -905,7 +1006,9 @@ impl DataFsxOntapStorageVirtualMachineEndpointsElRef {
     }
 
     #[doc = "Get a reference to the value of field `management` after provisioning.\n"]
-    pub fn management(&self) -> ListRef<DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef> {
+    pub fn management(
+        &self,
+    ) -> ListRef<DataFsxOntapStorageVirtualMachineEndpointsElManagementElRef> {
         ListRef::new(self.shared().clone(), format!("{}.management", self.base))
     }
 
@@ -950,7 +1053,9 @@ pub struct BuildDataFsxOntapStorageVirtualMachineLifecycleTransitionReasonEl {}
 
 impl BuildDataFsxOntapStorageVirtualMachineLifecycleTransitionReasonEl {
     pub fn build(self) -> DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonEl {
-        DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonEl { message: core::default::Default::default() }
+        DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonEl {
+            message: core::default::Default::default(),
+        }
     }
 }
 
@@ -960,7 +1065,10 @@ pub struct DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef {
 }
 
 impl Ref for DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef {
-    fn new(shared: StackShared, base: String) -> DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef {
         DataFsxOntapStorageVirtualMachineLifecycleTransitionReasonElRef {
             shared: shared,
             base: base.to_string(),
@@ -985,7 +1093,7 @@ pub struct DataFsxOntapStorageVirtualMachineFilterEl {
     values: ListField<PrimField<String>>,
 }
 
-impl DataFsxOntapStorageVirtualMachineFilterEl { }
+impl DataFsxOntapStorageVirtualMachineFilterEl {}
 
 impl ToListMappable for DataFsxOntapStorageVirtualMachineFilterEl {
     type O = BlockAssignable<DataFsxOntapStorageVirtualMachineFilterEl>;

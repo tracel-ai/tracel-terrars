@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontFieldLevelEncryptionProfileData {
@@ -59,7 +59,8 @@ impl CloudfrontFieldLevelEncryptionProfile {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl CloudfrontFieldLevelEncryptionProfile {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl CloudfrontFieldLevelEncryptionProfile {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,10 +123,10 @@ impl CloudfrontFieldLevelEncryptionProfile {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().encryption_entities = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.encryption_entities = Some(d);
-            },
+            }
         }
         self
     }
@@ -127,17 +138,26 @@ impl CloudfrontFieldLevelEncryptionProfile {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -147,22 +167,34 @@ impl CloudfrontFieldLevelEncryptionProfile {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_entities` after provisioning.\n"]
-    pub fn encryption_entities(&self) -> ListRef<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_entities", self.extract_ref()))
+    pub fn encryption_entities(
+        &self,
+    ) -> ListRef<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_entities", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontFieldLevelEncryptionProfile {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontFieldLevelEncryptionProfile { }
+impl Resource for CloudfrontFieldLevelEncryptionProfile {}
 
 impl ToListMappable for CloudfrontFieldLevelEncryptionProfile {
     type O = ListRef<CloudfrontFieldLevelEncryptionProfileRef>;
@@ -195,21 +227,23 @@ pub struct BuildCloudfrontFieldLevelEncryptionProfile {
 
 impl BuildCloudfrontFieldLevelEncryptionProfile {
     pub fn build(self, stack: &mut Stack) -> CloudfrontFieldLevelEncryptionProfile {
-        let out = CloudfrontFieldLevelEncryptionProfile(Rc::new(CloudfrontFieldLevelEncryptionProfile_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(CloudfrontFieldLevelEncryptionProfileData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                comment: core::default::Default::default(),
-                id: core::default::Default::default(),
-                name: self.name,
-                encryption_entities: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = CloudfrontFieldLevelEncryptionProfile(Rc::new(
+            CloudfrontFieldLevelEncryptionProfile_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(CloudfrontFieldLevelEncryptionProfileData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    comment: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    name: self.name,
+                    encryption_entities: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -222,10 +256,7 @@ pub struct CloudfrontFieldLevelEncryptionProfileRef {
 
 impl Ref for CloudfrontFieldLevelEncryptionProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -245,17 +276,26 @@ impl CloudfrontFieldLevelEncryptionProfileRef {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -265,12 +305,20 @@ impl CloudfrontFieldLevelEncryptionProfileRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_entities` after provisioning.\n"]
-    pub fn encryption_entities(&self) -> ListRef<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_entities", self.extract_ref()))
+    pub fn encryption_entities(
+        &self,
+    ) -> ListRef<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_entities", self.extract_ref()),
+        )
     }
 }
 
@@ -288,8 +336,12 @@ impl CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatter
     }
 }
 
-impl ToListMappable for CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl {
-    type O = BlockAssignable<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl>;
+impl ToListMappable
+    for CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl
+{
+    type O = BlockAssignable<
+        CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -303,7 +355,9 @@ impl ToListMappable for CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesE
 pub struct BuildCloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl {}
 
 impl BuildCloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl {
-    pub fn build(self) -> CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl {
         CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl {
             items: core::default::Default::default(),
         }
@@ -341,7 +395,9 @@ impl CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatter
 #[derive(Serialize, Default)]
 struct CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElDynamic {
     field_patterns: Option<
-        DynamicBlock<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl>,
+        DynamicBlock<
+            CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl,
+        >,
     >,
 }
 
@@ -350,7 +406,9 @@ pub struct CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsEl {
     provider_id: PrimField<String>,
     public_key_id: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    field_patterns: Option<Vec<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl>>,
+    field_patterns: Option<
+        Vec<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl>,
+    >,
     dynamic: CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElDynamic,
 }
 
@@ -358,22 +416,19 @@ impl CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsEl {
     #[doc = "Set the field `field_patterns`.\n"]
     pub fn set_field_patterns(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_patterns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_patterns = Some(d);
-            },
+            }
         }
         self
     }
@@ -415,7 +470,10 @@ pub struct CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElRef {
 }
 
 impl Ref for CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElRef {
         CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElRef {
             shared: shared,
             base: base.to_string(),
@@ -435,14 +493,21 @@ impl CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElRef {
 
     #[doc = "Get a reference to the value of field `public_key_id` after provisioning.\n"]
     pub fn public_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_patterns` after provisioning.\n"]
     pub fn field_patterns(
         &self,
-    ) -> ListRef<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_patterns", self.base))
+    ) -> ListRef<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElItemsElFieldPatternsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_patterns", self.base),
+        )
     }
 }
 
@@ -467,10 +532,10 @@ impl CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.items = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.items = Some(d);
-            },
+            }
         }
         self
     }
@@ -505,7 +570,10 @@ pub struct CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef {
 }
 
 impl Ref for CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef {
         CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -521,5 +589,6 @@ impl CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesElRef {
 
 #[derive(Serialize, Default)]
 struct CloudfrontFieldLevelEncryptionProfileDynamic {
-    encryption_entities: Option<DynamicBlock<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesEl>>,
+    encryption_entities:
+        Option<DynamicBlock<CloudfrontFieldLevelEncryptionProfileEncryptionEntitiesEl>>,
 }

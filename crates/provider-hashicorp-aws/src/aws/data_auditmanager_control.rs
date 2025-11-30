@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAuditmanagerControlData {
@@ -43,8 +43,7 @@ impl DataAuditmanagerControl {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -52,12 +51,18 @@ impl DataAuditmanagerControl {
 
     #[doc = "Get a reference to the value of field `action_plan_instructions` after provisioning.\n"]
     pub fn action_plan_instructions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_plan_instructions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_plan_instructions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_plan_title` after provisioning.\n"]
     pub fn action_plan_title(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_plan_title", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_plan_title", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -66,13 +71,21 @@ impl DataAuditmanagerControl {
     }
 
     #[doc = "Get a reference to the value of field `control_mapping_sources` after provisioning.\n"]
-    pub fn control_mapping_sources(&self) -> ListRef<DataAuditmanagerControlControlMappingSourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.control_mapping_sources", self.extract_ref()))
+    pub fn control_mapping_sources(
+        &self,
+    ) -> ListRef<DataAuditmanagerControlControlMappingSourcesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.control_mapping_sources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -82,38 +95,56 @@ impl DataAuditmanagerControl {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `testing_information` after provisioning.\n"]
     pub fn testing_information(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.testing_information", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.testing_information", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAuditmanagerControl {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAuditmanagerControl { }
+impl Datasource for DataAuditmanagerControl {}
 
 impl ToListMappable for DataAuditmanagerControl {
     type O = ListRef<DataAuditmanagerControlRef>;
@@ -172,10 +203,7 @@ pub struct DataAuditmanagerControlRef {
 
 impl Ref for DataAuditmanagerControlRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -190,12 +218,18 @@ impl DataAuditmanagerControlRef {
 
     #[doc = "Get a reference to the value of field `action_plan_instructions` after provisioning.\n"]
     pub fn action_plan_instructions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_plan_instructions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_plan_instructions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action_plan_title` after provisioning.\n"]
     pub fn action_plan_title(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_plan_title", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_plan_title", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -204,13 +238,21 @@ impl DataAuditmanagerControlRef {
     }
 
     #[doc = "Get a reference to the value of field `control_mapping_sources` after provisioning.\n"]
-    pub fn control_mapping_sources(&self) -> ListRef<DataAuditmanagerControlControlMappingSourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.control_mapping_sources", self.extract_ref()))
+    pub fn control_mapping_sources(
+        &self,
+    ) -> ListRef<DataAuditmanagerControlControlMappingSourcesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.control_mapping_sources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -220,28 +262,42 @@ impl DataAuditmanagerControlRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `testing_information` after provisioning.\n"]
     pub fn testing_information(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.testing_information", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.testing_information", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
@@ -296,7 +352,10 @@ pub struct DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef {
 }
 
 impl Ref for DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef {
-    fn new(shared: StackShared, base: String) -> DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef {
         DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef {
             shared: shared,
             base: base.to_string(),
@@ -311,12 +370,18 @@ impl DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef {
 
     #[doc = "Get a reference to the value of field `keyword_input_type` after provisioning.\n"]
     pub fn keyword_input_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.keyword_input_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.keyword_input_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `keyword_value` after provisioning.\n"]
     pub fn keyword_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.keyword_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.keyword_value", self.base),
+        )
     }
 }
 
@@ -329,7 +394,8 @@ pub struct DataAuditmanagerControlControlMappingSourcesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     source_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_keyword: Option<ListField<DataAuditmanagerControlControlMappingSourcesElSourceKeywordEl>>,
+    source_keyword:
+        Option<ListField<DataAuditmanagerControlControlMappingSourcesElSourceKeywordEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -443,12 +509,18 @@ impl DataAuditmanagerControlControlMappingSourcesElRef {
 
     #[doc = "Get a reference to the value of field `source_description` after provisioning.\n"]
     pub fn source_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_description", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_description", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_frequency` after provisioning.\n"]
     pub fn source_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_frequency", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_frequency", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_id` after provisioning.\n"]
@@ -457,8 +529,13 @@ impl DataAuditmanagerControlControlMappingSourcesElRef {
     }
 
     #[doc = "Get a reference to the value of field `source_keyword` after provisioning.\n"]
-    pub fn source_keyword(&self) -> ListRef<DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_keyword", self.base))
+    pub fn source_keyword(
+        &self,
+    ) -> ListRef<DataAuditmanagerControlControlMappingSourcesElSourceKeywordElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_keyword", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_name` after provisioning.\n"]
@@ -468,7 +545,10 @@ impl DataAuditmanagerControlControlMappingSourcesElRef {
 
     #[doc = "Get a reference to the value of field `source_set_up_option` after provisioning.\n"]
     pub fn source_set_up_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_set_up_option", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_set_up_option", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_type` after provisioning.\n"]
@@ -478,6 +558,9 @@ impl DataAuditmanagerControlControlMappingSourcesElRef {
 
     #[doc = "Get a reference to the value of field `troubleshooting_text` after provisioning.\n"]
     pub fn troubleshooting_text(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.troubleshooting_text", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.troubleshooting_text", self.base),
+        )
     }
 }

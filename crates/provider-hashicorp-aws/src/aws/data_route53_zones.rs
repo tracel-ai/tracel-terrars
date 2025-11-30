@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataRoute53ZonesData {
@@ -51,11 +51,15 @@ impl DataRoute53Zones {
 
 impl Referable for DataRoute53Zones {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataRoute53Zones { }
+impl Datasource for DataRoute53Zones {}
 
 impl ToListMappable for DataRoute53Zones {
     type O = ListRef<DataRoute53ZonesRef>;
@@ -107,10 +111,7 @@ pub struct DataRoute53ZonesRef {
 
 impl Ref for DataRoute53ZonesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SpotFleetRequestData {
@@ -108,7 +108,8 @@ impl SpotFleetRequest {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -121,7 +122,7 @@ impl SpotFleetRequest {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -132,12 +133,22 @@ impl SpotFleetRequest {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -207,8 +218,7 @@ impl SpotFleetRequest {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -281,14 +291,17 @@ impl SpotFleetRequest {
     }
 
     #[doc = "Set the field `launch_specification`.\n"]
-    pub fn set_launch_specification(self, v: impl Into<BlockAssignable<SpotFleetRequestLaunchSpecificationEl>>) -> Self {
+    pub fn set_launch_specification(
+        self,
+        v: impl Into<BlockAssignable<SpotFleetRequestLaunchSpecificationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().launch_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.launch_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -301,10 +314,10 @@ impl SpotFleetRequest {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().launch_template_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.launch_template_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -317,10 +330,10 @@ impl SpotFleetRequest {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().spot_maintenance_strategies = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.spot_maintenance_strategies = Some(d);
-            },
+            }
         }
         self
     }
@@ -333,32 +346,50 @@ impl SpotFleetRequest {
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_token` after provisioning.\n"]
     pub fn client_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excess_capacity_termination_policy` after provisioning.\n"]
     pub fn excess_capacity_termination_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.excess_capacity_termination_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.excess_capacity_termination_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_type` after provisioning.\n"]
     pub fn fleet_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fleet_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fleet_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_fleet_role` after provisioning.\n"]
     pub fn iam_fleet_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_fleet_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_fleet_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -368,123 +399,194 @@ impl SpotFleetRequest {
 
     #[doc = "Get a reference to the value of field `instance_interruption_behaviour` after provisioning.\n"]
     pub fn instance_interruption_behaviour(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_interruption_behaviour", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_interruption_behaviour", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_pools_to_use_count` after provisioning.\n"]
     pub fn instance_pools_to_use_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_pools_to_use_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_pools_to_use_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancers` after provisioning.\n"]
     pub fn load_balancers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.load_balancers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_allocation_strategy` after provisioning.\n"]
     pub fn on_demand_allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_allocation_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_allocation_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_max_total_price` after provisioning.\n"]
     pub fn on_demand_max_total_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_max_total_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_max_total_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_target_capacity` after provisioning.\n"]
     pub fn on_demand_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_target_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_target_capacity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replace_unhealthy_instances` after provisioning.\n"]
     pub fn replace_unhealthy_instances(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replace_unhealthy_instances", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replace_unhealthy_instances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price` after provisioning.\n"]
     pub fn spot_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_request_state` after provisioning.\n"]
     pub fn spot_request_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_request_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_request_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity` after provisioning.\n"]
     pub fn target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity_unit_type` after provisioning.\n"]
     pub fn target_capacity_unit_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_capacity_unit_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_capacity_unit_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_group_arns` after provisioning.\n"]
     pub fn target_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.target_group_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.target_group_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances_on_delete` after provisioning.\n"]
     pub fn terminate_instances_on_delete(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances_on_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances_on_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances_with_expiration` after provisioning.\n"]
     pub fn terminate_instances_with_expiration(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances_with_expiration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances_with_expiration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_from` after provisioning.\n"]
     pub fn valid_from(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_from", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_from", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
     pub fn valid_until(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_until", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_until", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_fulfillment` after provisioning.\n"]
     pub fn wait_for_fulfillment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_fulfillment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_fulfillment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_maintenance_strategies` after provisioning.\n"]
-    pub fn spot_maintenance_strategies(&self) -> ListRef<SpotFleetRequestSpotMaintenanceStrategiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spot_maintenance_strategies", self.extract_ref()))
+    pub fn spot_maintenance_strategies(
+        &self,
+    ) -> ListRef<SpotFleetRequestSpotMaintenanceStrategiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spot_maintenance_strategies", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SpotFleetRequestTimeoutsElRef {
-        SpotFleetRequestTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        SpotFleetRequestTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SpotFleetRequest {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SpotFleetRequest { }
+impl Resource for SpotFleetRequest {}
 
 impl ToListMappable for SpotFleetRequest {
     type O = ListRef<SpotFleetRequestRef>;
@@ -571,10 +673,7 @@ pub struct SpotFleetRequestRef {
 
 impl Ref for SpotFleetRequestRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -589,32 +688,50 @@ impl SpotFleetRequestRef {
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_token` after provisioning.\n"]
     pub fn client_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excess_capacity_termination_policy` after provisioning.\n"]
     pub fn excess_capacity_termination_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.excess_capacity_termination_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.excess_capacity_termination_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_type` after provisioning.\n"]
     pub fn fleet_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fleet_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fleet_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_fleet_role` after provisioning.\n"]
     pub fn iam_fleet_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_fleet_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_fleet_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -624,113 +741,180 @@ impl SpotFleetRequestRef {
 
     #[doc = "Get a reference to the value of field `instance_interruption_behaviour` after provisioning.\n"]
     pub fn instance_interruption_behaviour(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_interruption_behaviour", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_interruption_behaviour", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_pools_to_use_count` after provisioning.\n"]
     pub fn instance_pools_to_use_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_pools_to_use_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_pools_to_use_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancers` after provisioning.\n"]
     pub fn load_balancers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.load_balancers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_allocation_strategy` after provisioning.\n"]
     pub fn on_demand_allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_allocation_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_allocation_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_max_total_price` after provisioning.\n"]
     pub fn on_demand_max_total_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_max_total_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_max_total_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_target_capacity` after provisioning.\n"]
     pub fn on_demand_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_target_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_target_capacity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replace_unhealthy_instances` after provisioning.\n"]
     pub fn replace_unhealthy_instances(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replace_unhealthy_instances", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replace_unhealthy_instances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price` after provisioning.\n"]
     pub fn spot_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_request_state` after provisioning.\n"]
     pub fn spot_request_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_request_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_request_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity` after provisioning.\n"]
     pub fn target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity_unit_type` after provisioning.\n"]
     pub fn target_capacity_unit_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_capacity_unit_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_capacity_unit_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_group_arns` after provisioning.\n"]
     pub fn target_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.target_group_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.target_group_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances_on_delete` after provisioning.\n"]
     pub fn terminate_instances_on_delete(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances_on_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances_on_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances_with_expiration` after provisioning.\n"]
     pub fn terminate_instances_with_expiration(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances_with_expiration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances_with_expiration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_from` after provisioning.\n"]
     pub fn valid_from(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_from", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_from", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
     pub fn valid_until(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_until", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_until", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_fulfillment` after provisioning.\n"]
     pub fn wait_for_fulfillment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_fulfillment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_fulfillment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_maintenance_strategies` after provisioning.\n"]
-    pub fn spot_maintenance_strategies(&self) -> ListRef<SpotFleetRequestSpotMaintenanceStrategiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spot_maintenance_strategies", self.extract_ref()))
+    pub fn spot_maintenance_strategies(
+        &self,
+    ) -> ListRef<SpotFleetRequestSpotMaintenanceStrategiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spot_maintenance_strategies", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SpotFleetRequestTimeoutsElRef {
-        SpotFleetRequestTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        SpotFleetRequestTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -844,7 +1028,10 @@ pub struct SpotFleetRequestLaunchSpecificationElEbsBlockDeviceElRef {
 }
 
 impl Ref for SpotFleetRequestLaunchSpecificationElEbsBlockDeviceElRef {
-    fn new(shared: StackShared, base: String) -> SpotFleetRequestLaunchSpecificationElEbsBlockDeviceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SpotFleetRequestLaunchSpecificationElEbsBlockDeviceElRef {
         SpotFleetRequestLaunchSpecificationElEbsBlockDeviceElRef {
             shared: shared,
             base: base.to_string(),
@@ -859,7 +1046,10 @@ impl SpotFleetRequestLaunchSpecificationElEbsBlockDeviceElRef {
 
     #[doc = "Get a reference to the value of field `delete_on_termination` after provisioning.\n"]
     pub fn delete_on_termination(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_on_termination", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_on_termination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_name` after provisioning.\n"]
@@ -909,7 +1099,7 @@ pub struct SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl {
     virtual_name: PrimField<String>,
 }
 
-impl SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl { }
+impl SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl {}
 
 impl ToListMappable for SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl {
     type O = BlockAssignable<SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl>;
@@ -945,7 +1135,10 @@ pub struct SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceElRef {
 }
 
 impl Ref for SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceElRef {
-    fn new(shared: StackShared, base: String) -> SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceElRef {
         SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1065,7 +1258,10 @@ pub struct SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
 }
 
 impl Ref for SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
-    fn new(shared: StackShared, base: String) -> SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
         SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1080,7 +1276,10 @@ impl SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
 
     #[doc = "Get a reference to the value of field `delete_on_termination` after provisioning.\n"]
     pub fn delete_on_termination(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_on_termination", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_on_termination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
@@ -1117,7 +1316,8 @@ impl SpotFleetRequestLaunchSpecificationElRootBlockDeviceElRef {
 #[derive(Serialize, Default)]
 struct SpotFleetRequestLaunchSpecificationElDynamic {
     ebs_block_device: Option<DynamicBlock<SpotFleetRequestLaunchSpecificationElEbsBlockDeviceEl>>,
-    ephemeral_block_device: Option<DynamicBlock<SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl>>,
+    ephemeral_block_device:
+        Option<DynamicBlock<SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl>>,
     root_block_device: Option<DynamicBlock<SpotFleetRequestLaunchSpecificationElRootBlockDeviceEl>>,
 }
 
@@ -1158,7 +1358,8 @@ pub struct SpotFleetRequestLaunchSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ebs_block_device: Option<Vec<SpotFleetRequestLaunchSpecificationElEbsBlockDeviceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ephemeral_block_device: Option<Vec<SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl>>,
+    ephemeral_block_device:
+        Option<Vec<SpotFleetRequestLaunchSpecificationElEphemeralBlockDeviceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     root_block_device: Option<Vec<SpotFleetRequestLaunchSpecificationElRootBlockDeviceEl>>,
     dynamic: SpotFleetRequestLaunchSpecificationElDynamic,
@@ -1263,10 +1464,10 @@ impl SpotFleetRequestLaunchSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_block_device = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_block_device = Some(d);
-            },
+            }
         }
         self
     }
@@ -1279,10 +1480,10 @@ impl SpotFleetRequestLaunchSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ephemeral_block_device = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ephemeral_block_device = Some(d);
-            },
+            }
         }
         self
     }
@@ -1295,10 +1496,10 @@ impl SpotFleetRequestLaunchSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.root_block_device = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.root_block_device = Some(d);
-            },
+            }
         }
         self
     }
@@ -1377,32 +1578,50 @@ impl SpotFleetRequestLaunchSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `associate_public_ip_address` after provisioning.\n"]
     pub fn associate_public_ip_address(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.associate_public_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.associate_public_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_optimized` after provisioning.\n"]
     pub fn ebs_optimized(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_optimized", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_optimized", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_instance_profile` after provisioning.\n"]
     pub fn iam_instance_profile(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_instance_profile", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_instance_profile", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_instance_profile_arn` after provisioning.\n"]
     pub fn iam_instance_profile_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_instance_profile_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_instance_profile_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_name` after provisioning.\n"]
@@ -1417,12 +1636,18 @@ impl SpotFleetRequestLaunchSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `placement_group` after provisioning.\n"]
     pub fn placement_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.placement_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.placement_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_tenancy` after provisioning.\n"]
     pub fn placement_tenancy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.placement_tenancy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.placement_tenancy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_price` after provisioning.\n"]
@@ -1447,12 +1672,18 @@ impl SpotFleetRequestLaunchSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `vpc_security_group_ids` after provisioning.\n"]
     pub fn vpc_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 }
 
@@ -1549,7 +1780,8 @@ impl SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1570,9 +1802,12 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcce
     }
 }
 
-impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl {
-    type O =
-        BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl>;
+impl ToListMappable
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl
+{
+    type O = BlockAssignable<
+        SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1583,10 +1818,16 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl
+{}
 
-impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl {
-    pub fn build(self) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl {
+impl
+    BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl
+{
+    pub fn build(
+        self,
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl
+    {
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1594,16 +1835,20 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef {
+impl Ref
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef {
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef
+    {
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef {
             shared: shared,
             base: base.to_string(),
@@ -1628,7 +1873,8 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcce
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1664,7 +1910,8 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
     pub fn build(
@@ -1677,7 +1924,8 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1711,7 +1959,8 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcce
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1747,7 +1996,8 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
     pub fn build(
@@ -1760,7 +2010,8 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1794,7 +2045,8 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBase
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1815,9 +2067,12 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemo
     }
 }
 
-impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl {
-    type O =
-        BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl>;
+impl ToListMappable
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl
+{
+    type O = BlockAssignable<
+        SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1828,10 +2083,16 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl
+{}
 
-impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl {
-    pub fn build(self) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl {
+impl
+    BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl
+{
+    pub fn build(
+        self,
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl
+    {
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1839,16 +2100,20 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef {
+impl Ref
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef {
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef
+    {
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef {
             shared: shared,
             base: base.to_string(),
@@ -1894,8 +2159,12 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemo
     }
 }
 
-impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl {
-    type O = BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl>;
+impl ToListMappable
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl
+{
+    type O = BlockAssignable<
+        SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1906,10 +2175,13 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl {
-    pub fn build(self) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl {
+    pub fn build(
+        self,
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl {
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1951,7 +2223,8 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemo
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1987,7 +2260,8 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsEl {
     pub fn build(
@@ -2000,7 +2274,8 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2017,7 +2292,9 @@ impl Ref for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequiremen
     }
 }
 
-impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsElRef {
+impl
+    SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -2034,14 +2311,17 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetw
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     min: Option<PrimField<f64>>,
 }
 
-impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl {
+impl
+    SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl
+{
     #[doc = "Set the field `max`.\n"]
     pub fn set_max(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max = Some(v.into());
@@ -2070,7 +2350,8 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountEl {
     pub fn build(
@@ -2083,7 +2364,8 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2117,7 +2399,8 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetw
 }
 
 #[derive(Serialize)]
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2138,7 +2421,9 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTota
     }
 }
 
-impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl {
+impl ToListMappable
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl
+{
     type O =
         BlockAssignable<
             SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl,
@@ -2153,7 +2438,8 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbEl {
     pub fn build(
@@ -2166,7 +2452,8 @@ impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsE
     }
 }
 
-pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbElRef {
+pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2183,7 +2470,9 @@ impl Ref for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequiremen
     }
 }
 
-impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbElRef {
+impl
+    SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -2221,8 +2510,12 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpu
     }
 }
 
-impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl {
-    type O = BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl>;
+impl ToListMappable
+    for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl
+{
+    type O = BlockAssignable<
+        SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2233,10 +2526,13 @@ impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanc
     }
 }
 
-pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl {}
+pub struct BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl
+{}
 
 impl BuildSpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl {
-    pub fn build(self) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl {
+    pub fn build(
+        self,
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl {
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -2379,7 +2675,10 @@ pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirements
 
 impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
     #[doc = "Set the field `accelerator_manufacturers`.\n"]
-    pub fn set_accelerator_manufacturers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_accelerator_manufacturers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.accelerator_manufacturers = Some(v.into());
         self
     }
@@ -2421,7 +2720,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `excluded_instance_types`.\n"]
-    pub fn set_excluded_instance_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_excluded_instance_types(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.excluded_instance_types = Some(v.into());
         self
     }
@@ -2445,7 +2747,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `on_demand_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_on_demand_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_on_demand_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.on_demand_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -2457,7 +2762,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `spot_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_spot_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_spot_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.spot_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -2477,10 +2785,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -2500,10 +2808,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_total_memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_total_memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -2523,10 +2831,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.baseline_ebs_bandwidth_mbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.baseline_ebs_bandwidth_mbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -2546,10 +2854,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_gib_per_vcpu = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_gib_per_vcpu = Some(d);
-            },
+            }
         }
         self
     }
@@ -2557,22 +2865,19 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
     #[doc = "Set the field `memory_mib`.\n"]
     pub fn set_memory_mib(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -2592,10 +2897,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_bandwidth_gbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_bandwidth_gbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -2615,10 +2920,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_interface_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_interface_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -2638,10 +2943,10 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.total_local_storage_gb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.total_local_storage_gb = Some(d);
-            },
+            }
         }
         self
     }
@@ -2649,29 +2954,27 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
     #[doc = "Set the field `vcpu_count`.\n"]
     pub fn set_vcpu_count(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vcpu_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vcpu_count = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl {
-    type O = BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl>;
+    type O =
+        BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2739,22 +3042,34 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElRef 
 
     #[doc = "Get a reference to the value of field `accelerator_manufacturers` after provisioning.\n"]
     pub fn accelerator_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_names` after provisioning.\n"]
     pub fn accelerator_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_types` after provisioning.\n"]
     pub fn accelerator_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_instance_types` after provisioning.\n"]
     pub fn allowed_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bare_metal` after provisioning.\n"]
@@ -2764,58 +3079,87 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElRef 
 
     #[doc = "Get a reference to the value of field `burstable_performance` after provisioning.\n"]
     pub fn burstable_performance(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.burstable_performance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.burstable_performance", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_manufacturers` after provisioning.\n"]
     pub fn cpu_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cpu_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excluded_instance_types` after provisioning.\n"]
     pub fn excluded_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_generations` after provisioning.\n"]
     pub fn instance_generations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_generations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_generations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage` after provisioning.\n"]
     pub fn local_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_storage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage_types` after provisioning.\n"]
     pub fn local_storage_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_storage_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.local_storage_types", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn on_demand_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.on_demand_max_price_percentage_over_lowest_price", self.base),
+            format!(
+                "{}.on_demand_max_price_percentage_over_lowest_price",
+                self.base
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `require_hibernate_support` after provisioning.\n"]
     pub fn require_hibernate_support(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_hibernate_support", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_hibernate_support", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn spot_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_max_price_percentage_over_lowest_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_max_price_percentage_over_lowest_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_count` after provisioning.\n"]
     pub fn accelerator_count(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_count", self.base))
+    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorCountElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_total_memory_mib` after provisioning.\n"]
@@ -2823,8 +3167,11 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElRef 
         &self,
     ) -> ListRef<
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElAcceleratorTotalMemoryMibElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_total_memory_mib", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_total_memory_mib", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `baseline_ebs_bandwidth_mbps` after provisioning.\n"]
@@ -2832,49 +3179,68 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElRef 
         &self,
     ) -> ListRef<
         SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_ebs_bandwidth_mbps", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_ebs_bandwidth_mbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_gib_per_vcpu` after provisioning.\n"]
     pub fn memory_gib_per_vcpu(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.memory_gib_per_vcpu", self.base))
+    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryGibPerVcpuElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_gib_per_vcpu", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_mib` after provisioning.\n"]
     pub fn memory_mib(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibElRef> {
+    ) -> ListRef<
+        SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElMemoryMibElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.memory_mib", self.base))
     }
 
     #[doc = "Get a reference to the value of field `network_bandwidth_gbps` after provisioning.\n"]
     pub fn network_bandwidth_gbps(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_bandwidth_gbps", self.base))
+    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkBandwidthGbpsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_bandwidth_gbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_count` after provisioning.\n"]
     pub fn network_interface_count(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface_count", self.base))
+    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElNetworkInterfaceCountElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `total_local_storage_gb` after provisioning.\n"]
     pub fn total_local_storage_gb(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.total_local_storage_gb", self.base))
+    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElTotalLocalStorageGbElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.total_local_storage_gb", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vcpu_count` after provisioning.\n"]
     pub fn vcpu_count(
         &self,
-    ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountElRef> {
+    ) -> ListRef<
+        SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElVcpuCountElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.vcpu_count", self.base))
     }
 }
@@ -2901,7 +3267,8 @@ pub struct SpotFleetRequestLaunchTemplateConfigElOverridesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     weighted_capacity: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    instance_requirements: Option<Vec<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl>>,
+    instance_requirements:
+        Option<Vec<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl>>,
     dynamic: SpotFleetRequestLaunchTemplateConfigElOverridesElDynamic,
 }
 
@@ -2945,15 +3312,19 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesEl {
     #[doc = "Set the field `instance_requirements`.\n"]
     pub fn set_instance_requirements(
         mut self,
-        v: impl Into<BlockAssignable<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_requirements = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_requirements = Some(d);
-            },
+            }
         }
         self
     }
@@ -2994,7 +3365,10 @@ pub struct SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
 }
 
 impl Ref for SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
-    fn new(shared: StackShared, base: String) -> SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
         SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
             shared: shared,
             base: base.to_string(),
@@ -3009,12 +3383,18 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
@@ -3034,29 +3414,35 @@ impl SpotFleetRequestLaunchTemplateConfigElOverridesElRef {
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_requirements` after provisioning.\n"]
     pub fn instance_requirements(
         &self,
     ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElOverridesElInstanceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_requirements", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_requirements", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SpotFleetRequestLaunchTemplateConfigElDynamic {
-    launch_template_specification: Option<
-        DynamicBlock<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationEl>,
-    >,
+    launch_template_specification:
+        Option<DynamicBlock<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
     overrides: Option<DynamicBlock<SpotFleetRequestLaunchTemplateConfigElOverridesEl>>,
 }
 
 #[derive(Serialize)]
 pub struct SpotFleetRequestLaunchTemplateConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    launch_template_specification: Option<Vec<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
+    launch_template_specification:
+        Option<Vec<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     overrides: Option<Vec<SpotFleetRequestLaunchTemplateConfigElOverridesEl>>,
     dynamic: SpotFleetRequestLaunchTemplateConfigElDynamic,
@@ -3066,15 +3452,17 @@ impl SpotFleetRequestLaunchTemplateConfigEl {
     #[doc = "Set the field `launch_template_specification`.\n"]
     pub fn set_launch_template_specification(
         mut self,
-        v: impl Into<BlockAssignable<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_template_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_template_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3087,10 +3475,10 @@ impl SpotFleetRequestLaunchTemplateConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.overrides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.overrides = Some(d);
-            },
+            }
         }
         self
     }
@@ -3143,7 +3531,10 @@ impl SpotFleetRequestLaunchTemplateConfigElRef {
     pub fn launch_template_specification(
         &self,
     ) -> ListRef<SpotFleetRequestLaunchTemplateConfigElLaunchTemplateSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template_specification", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_specification", self.base),
+        )
     }
 }
 
@@ -3189,7 +3580,10 @@ pub struct SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef {
 }
 
 impl Ref for SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef {
-    fn new(shared: StackShared, base: String) -> SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef {
         SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef {
             shared: shared,
             base: base.to_string(),
@@ -3204,13 +3598,17 @@ impl SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef {
 
     #[doc = "Get a reference to the value of field `replacement_strategy` after provisioning.\n"]
     pub fn replacement_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replacement_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replacement_strategy", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SpotFleetRequestSpotMaintenanceStrategiesElDynamic {
-    capacity_rebalance: Option<DynamicBlock<SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceEl>>,
+    capacity_rebalance:
+        Option<DynamicBlock<SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceEl>>,
 }
 
 #[derive(Serialize)]
@@ -3229,10 +3627,10 @@ impl SpotFleetRequestSpotMaintenanceStrategiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_rebalance = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_rebalance = Some(d);
-            },
+            }
         }
         self
     }
@@ -3281,8 +3679,13 @@ impl SpotFleetRequestSpotMaintenanceStrategiesElRef {
     }
 
     #[doc = "Get a reference to the value of field `capacity_rebalance` after provisioning.\n"]
-    pub fn capacity_rebalance(&self) -> ListRef<SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_rebalance", self.base))
+    pub fn capacity_rebalance(
+        &self,
+    ) -> ListRef<SpotFleetRequestSpotMaintenanceStrategiesElCapacityRebalanceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_rebalance", self.base),
+        )
     }
 }
 

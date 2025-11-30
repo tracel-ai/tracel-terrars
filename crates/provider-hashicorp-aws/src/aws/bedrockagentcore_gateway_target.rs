@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentcoreGatewayTargetData {
@@ -21,7 +21,8 @@ struct BedrockagentcoreGatewayTargetData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    credential_provider_configuration: Option<Vec<BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl>>,
+    credential_provider_configuration:
+        Option<Vec<BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     target_configuration: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -64,7 +65,8 @@ impl BedrockagentcoreGatewayTarget {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +79,7 @@ impl BedrockagentcoreGatewayTarget {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +90,22 @@ impl BedrockagentcoreGatewayTarget {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,8 +115,7 @@ impl BedrockagentcoreGatewayTarget {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -118,10 +129,14 @@ impl BedrockagentcoreGatewayTarget {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().credential_provider_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.credential_provider_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .credential_provider_configuration = Some(d);
+            }
         }
         self
     }
@@ -134,10 +149,10 @@ impl BedrockagentcoreGatewayTarget {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -150,40 +165,62 @@ impl BedrockagentcoreGatewayTarget {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_identifier` after provisioning.\n"]
     pub fn gateway_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_provider_configuration` after provisioning.\n"]
     pub fn credential_provider_configuration(
         &self,
     ) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.credential_provider_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.credential_provider_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_configuration` after provisioning.\n"]
-    pub fn target_configuration(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_configuration", self.extract_ref()))
+    pub fn target_configuration(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -197,11 +234,15 @@ impl BedrockagentcoreGatewayTarget {
 
 impl Referable for BedrockagentcoreGatewayTarget {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentcoreGatewayTarget { }
+impl Resource for BedrockagentcoreGatewayTarget {}
 
 impl ToListMappable for BedrockagentcoreGatewayTarget {
     type O = ListRef<BedrockagentcoreGatewayTargetRef>;
@@ -266,10 +307,7 @@ pub struct BedrockagentcoreGatewayTargetRef {
 
 impl Ref for BedrockagentcoreGatewayTargetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -284,40 +322,62 @@ impl BedrockagentcoreGatewayTargetRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_identifier` after provisioning.\n"]
     pub fn gateway_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_provider_configuration` after provisioning.\n"]
     pub fn credential_provider_configuration(
         &self,
     ) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.credential_provider_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.credential_provider_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_configuration` after provisioning.\n"]
-    pub fn target_configuration(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_configuration", self.extract_ref()))
+    pub fn target_configuration(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -361,7 +421,8 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl {
 }
 
 impl ToListMappable for BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>;
+    type O =
+        BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -412,17 +473,26 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyElRef {
 
     #[doc = "Get a reference to the value of field `credential_location` after provisioning.\n"]
     pub fn credential_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_parameter_name` after provisioning.\n"]
     pub fn credential_parameter_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_parameter_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_parameter_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credential_prefix` after provisioning.\n"]
     pub fn credential_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_arn` after provisioning.\n"]
@@ -434,10 +504,14 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyElRef {
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {}
 
-impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl { }
+impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {}
 
-impl ToListMappable for BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl>;
+impl ToListMappable
+    for BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -451,7 +525,9 @@ impl ToListMappable for BedrockagentcoreGatewayTargetCredentialProviderConfigura
 pub struct BuildBedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {}
 
 impl BuildBedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl {}
     }
 }
@@ -548,7 +624,10 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthElRef {
 
     #[doc = "Get a reference to the value of field `custom_parameters` after provisioning.\n"]
     pub fn custom_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.custom_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.custom_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_arn` after provisioning.\n"]
@@ -564,11 +643,16 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayTargetCredentialProviderConfigurationElDynamic {
-    api_key: Option<DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>>,
-    gateway_iam_role: Option<
-        DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl>,
+    api_key: Option<
+        DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>,
     >,
-    oauth: Option<DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthEl>>,
+    gateway_iam_role: Option<
+        DynamicBlock<
+            BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl,
+        >,
+    >,
+    oauth:
+        Option<DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthEl>>,
 }
 
 #[derive(Serialize)]
@@ -576,7 +660,8 @@ pub struct BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     api_key: Option<Vec<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    gateway_iam_role: Option<Vec<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl>>,
+    gateway_iam_role:
+        Option<Vec<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     oauth: Option<Vec<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthEl>>,
     dynamic: BedrockagentcoreGatewayTargetCredentialProviderConfigurationElDynamic,
@@ -586,15 +671,17 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl {
     #[doc = "Set the field `api_key`.\n"]
     pub fn set_api_key(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.api_key = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.api_key = Some(d);
-            },
+            }
         }
         self
     }
@@ -602,22 +689,19 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl {
     #[doc = "Set the field `gateway_iam_role`.\n"]
     pub fn set_gateway_iam_role(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.gateway_iam_role = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.gateway_iam_role = Some(d);
-            },
+            }
         }
         self
     }
@@ -625,15 +709,17 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl {
     #[doc = "Set the field `oauth`.\n"]
     pub fn set_oauth(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth = Some(d);
-            },
+            }
         }
         self
     }
@@ -670,7 +756,10 @@ pub struct BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef {
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -684,25 +773,34 @@ impl BedrockagentcoreGatewayTargetCredentialProviderConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `api_key` after provisioning.\n"]
-    pub fn api_key(&self) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyElRef> {
+    pub fn api_key(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElApiKeyElRef> {
         ListRef::new(self.shared().clone(), format!("{}.api_key", self.base))
     }
 
     #[doc = "Get a reference to the value of field `gateway_iam_role` after provisioning.\n"]
     pub fn gateway_iam_role(
         &self,
-    ) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.gateway_iam_role", self.base))
+    ) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElGatewayIamRoleElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.gateway_iam_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth` after provisioning.\n"]
-    pub fn oauth(&self) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthElRef> {
+    pub fn oauth(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetCredentialProviderConfigurationElOauthElRef> {
         ListRef::new(self.shared().clone(), format!("{}.oauth", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElItemsEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElItemsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -748,7 +846,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -766,7 +865,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -810,7 +910,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElPropertyEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElPropertyEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -865,7 +966,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -887,7 +989,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1044,7 +1147,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -1063,7 +1167,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1106,7 +1211,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElItemsEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElItemsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1152,7 +1258,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -1170,7 +1277,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1214,7 +1322,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElPropertyEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElPropertyEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1269,7 +1378,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -1291,7 +1401,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1448,7 +1559,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -1467,7 +1579,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1510,7 +1623,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElPropertyEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElPropertyEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1565,7 +1679,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -1587,7 +1702,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1753,7 +1869,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -1776,7 +1893,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1932,7 +2050,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -1951,7 +2070,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1994,7 +2114,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElItemsEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElItemsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2040,7 +2161,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2058,7 +2180,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2102,7 +2225,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElPropertyEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElPropertyEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2157,7 +2281,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -2179,7 +2304,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2336,7 +2462,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2355,7 +2482,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2398,7 +2526,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElItemsEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElItemsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2444,7 +2573,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2462,7 +2592,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2506,7 +2637,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElPropertyEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElPropertyEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2561,7 +2693,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -2583,7 +2716,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2740,7 +2874,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2759,7 +2894,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElItemsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2802,7 +2938,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElPropertyEl {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElPropertyEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2857,7 +2994,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -2879,7 +3017,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3045,7 +3184,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -3068,7 +3208,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElPropertyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3224,7 +3365,8 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -3243,7 +3385,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3330,10 +3473,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -3353,18 +3496,21 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.output_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.output_schema = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl {
-    type O =
-        BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl>;
+impl ToListMappable
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3375,15 +3521,21 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl
+{
     #[doc = ""]
     pub description: PrimField<String>,
     #[doc = ""]
     pub name: PrimField<String>,
 }
 
-impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl {
+impl
+    BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl
+{
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl
+    {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadEl {
             description: self.description,
             name: self.name,
@@ -3394,7 +3546,8 @@ impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSch
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3431,7 +3584,7 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
         &self,
     ) -> ListRef<
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElInputSchemaElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.input_schema", self.base))
     }
 
@@ -3440,8 +3593,11 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
         &self,
     ) -> ListRef<
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElOutputSchemaElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.output_schema", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_schema", self.base),
+        )
     }
 }
 
@@ -3467,8 +3623,12 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
     }
 }
 
-impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El>;
+impl ToListMappable
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El
+{
+    type O = BlockAssignable<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3482,7 +3642,9 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
 pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El {}
 
 impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El {
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El {
             bucket_owner_account_id: core::default::Default::default(),
             uri: core::default::Default::default(),
@@ -3514,7 +3676,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
 
     #[doc = "Get a reference to the value of field `bucket_owner_account_id` after provisioning.\n"]
     pub fn bucket_owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_account_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -3558,10 +3723,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inline_payload = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inline_payload = Some(d);
-            },
+            }
         }
         self
     }
@@ -3569,29 +3734,30 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3El,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl>;
+impl ToListMappable
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3605,7 +3771,9 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElL
 pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl {}
 
 impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl {
             inline_payload: core::default::Default::default(),
             s3: core::default::Default::default(),
@@ -3639,26 +3807,35 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl
     #[doc = "Get a reference to the value of field `inline_payload` after provisioning.\n"]
     pub fn inline_payload(
         &self,
-    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inline_payload", self.base))
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElInlinePayloadElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inline_payload", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
-    pub fn s3(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3ElRef> {
+    pub fn s3(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElS3ElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElDynamic {
-    tool_schema: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl>>,
+    tool_schema: Option<
+        DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaEl {
     lambda_arn: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tool_schema: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl>>,
+    tool_schema:
+        Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl>>,
     dynamic: BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElDynamic,
 }
 
@@ -3666,15 +3843,19 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaEl {
     #[doc = "Set the field `tool_schema`.\n"]
     pub fn set_tool_schema(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tool_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tool_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -3713,7 +3894,10 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef {
             shared: shared,
             base: base.to_string(),
@@ -3732,7 +3916,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef {
     }
 
     #[doc = "Get a reference to the value of field `tool_schema` after provisioning.\n"]
-    pub fn tool_schema(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElRef> {
+    pub fn tool_schema(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElToolSchemaElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.tool_schema", self.base))
     }
 }
@@ -3742,7 +3929,7 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl {
     endpoint: PrimField<String>,
 }
 
-impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl { }
+impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl {}
 
 impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl {
     type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl>;
@@ -3763,7 +3950,9 @@ pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServer
 
 impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl {
     pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl {
-        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl { endpoint: self.endpoint }
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl {
+            endpoint: self.endpoint,
+        }
     }
 }
 
@@ -3800,10 +3989,14 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaE
     payload: PrimField<String>,
 }
 
-impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl { }
+impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {}
 
-impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl>;
+impl ToListMappable
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3814,29 +4007,36 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElO
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl
+{
     #[doc = ""]
     pub payload: PrimField<String>,
 }
 
 impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl {
             payload: self.payload,
         }
     }
 }
 
-pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef {
+pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef {
+impl Ref
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef {
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef
+    {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef {
             shared: shared,
             base: base.to_string(),
@@ -3878,7 +4078,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El 
 }
 
 impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El>;
+    type O =
+        BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3892,7 +4093,9 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElO
 pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El {}
 
 impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El {
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El {
             bucket_owner_account_id: core::default::Default::default(),
             uri: core::default::Default::default(),
@@ -3924,7 +4127,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3ElR
 
     #[doc = "Get a reference to the value of field `bucket_owner_account_id` after provisioning.\n"]
     pub fn bucket_owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_account_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -3936,15 +4142,21 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3ElR
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElDynamic {
     inline_payload: Option<
-        DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl>,
+        DynamicBlock<
+            BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl,
+        >,
     >,
-    s3: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El>>,
+    s3: Option<
+        DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    inline_payload: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl>>,
+    inline_payload: Option<
+        Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El>>,
     dynamic: BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElDynamic,
@@ -3966,10 +4178,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inline_payload = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inline_payload = Some(d);
-            },
+            }
         }
         self
     }
@@ -3977,22 +4189,27 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl {
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3El,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>;
+    type O =
+        BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4040,12 +4257,20 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElRef {
     #[doc = "Get a reference to the value of field `inline_payload` after provisioning.\n"]
     pub fn inline_payload(
         &self,
-    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inline_payload", self.base))
+    ) -> ListRef<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElInlinePayloadElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inline_payload", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
-    pub fn s3(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3ElRef> {
+    pub fn s3(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElS3ElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
@@ -4055,10 +4280,14 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElI
     payload: PrimField<String>,
 }
 
-impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl { }
+impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {}
 
-impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl>;
+impl ToListMappable
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl
+{
+    type O = BlockAssignable<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4069,14 +4298,19 @@ impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElS
     }
 }
 
-pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {
+pub struct BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl
+{
     #[doc = ""]
     pub payload: PrimField<String>,
 }
 
 impl BuildBedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {
-    pub fn build(self) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {
-        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl { payload: self.payload }
+    pub fn build(
+        self,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl {
+            payload: self.payload,
+        }
     }
 }
 
@@ -4085,11 +4319,14 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElI
     base: String,
 }
 
-impl Ref for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef {
+impl Ref
+    for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef {
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef
+    {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef {
             shared: shared,
             base: base.to_string(),
@@ -4131,7 +4368,8 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El {
 }
 
 impl ToListMappable for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El {
-    type O = BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El>;
+    type O =
+        BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4177,7 +4415,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3ElRef
 
     #[doc = "Get a reference to the value of field `bucket_owner_account_id` after provisioning.\n"]
     pub fn bucket_owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_account_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -4189,15 +4430,21 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3ElRef
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElDynamic {
     inline_payload: Option<
-        DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl>,
+        DynamicBlock<
+            BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl,
+        >,
     >,
-    s3: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El>>,
+    s3: Option<
+        DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    inline_payload: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl>>,
+    inline_payload: Option<
+        Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El>>,
     dynamic: BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElDynamic,
@@ -4207,22 +4454,19 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl {
     #[doc = "Set the field `inline_payload`.\n"]
     pub fn set_inline_payload(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inline_payload = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inline_payload = Some(d);
-            },
+            }
         }
         self
     }
@@ -4230,15 +4474,19 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl {
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3El,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -4293,12 +4541,19 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElRef {
     #[doc = "Get a reference to the value of field `inline_payload` after provisioning.\n"]
     pub fn inline_payload(
         &self,
-    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inline_payload", self.base))
+    ) -> ListRef<
+        BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElInlinePayloadElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inline_payload", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
-    pub fn s3(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3ElRef> {
+    pub fn s3(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElS3ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
@@ -4306,9 +4561,13 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElRef {
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElDynamic {
     lambda: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaEl>>,
-    mcp_server: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl>>,
-    open_api_schema: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>>,
-    smithy_model: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl>>,
+    mcp_server:
+        Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl>>,
+    open_api_schema: Option<
+        DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>,
+    >,
+    smithy_model:
+        Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl>>,
 }
 
 #[derive(Serialize)]
@@ -4318,7 +4577,8 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     mcp_server: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    open_api_schema: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>>,
+    open_api_schema:
+        Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     smithy_model: Option<Vec<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl>>,
     dynamic: BedrockagentcoreGatewayTargetTargetConfigurationElMcpElDynamic,
@@ -4333,10 +4593,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda = Some(d);
-            },
+            }
         }
         self
     }
@@ -4344,15 +4604,17 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpEl {
     #[doc = "Set the field `mcp_server`.\n"]
     pub fn set_mcp_server(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mcp_server = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mcp_server = Some(d);
-            },
+            }
         }
         self
     }
@@ -4360,15 +4622,17 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpEl {
     #[doc = "Set the field `open_api_schema`.\n"]
     pub fn set_open_api_schema(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.open_api_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.open_api_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -4376,15 +4640,17 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpEl {
     #[doc = "Set the field `smithy_model`.\n"]
     pub fn set_smithy_model(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.smithy_model = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.smithy_model = Some(d);
-            },
+            }
         }
         self
     }
@@ -4422,7 +4688,10 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElMcpElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayTargetTargetConfigurationElMcpElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElMcpElRef {
         BedrockagentcoreGatewayTargetTargetConfigurationElMcpElRef {
             shared: shared,
             base: base.to_string(),
@@ -4436,22 +4705,33 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationElMcpElRef {
     }
 
     #[doc = "Get a reference to the value of field `lambda` after provisioning.\n"]
-    pub fn lambda(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef> {
+    pub fn lambda(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElLambdaElRef> {
         ListRef::new(self.shared().clone(), format!("{}.lambda", self.base))
     }
 
     #[doc = "Get a reference to the value of field `mcp_server` after provisioning.\n"]
-    pub fn mcp_server(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerElRef> {
+    pub fn mcp_server(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElMcpServerElRef> {
         ListRef::new(self.shared().clone(), format!("{}.mcp_server", self.base))
     }
 
     #[doc = "Get a reference to the value of field `open_api_schema` after provisioning.\n"]
-    pub fn open_api_schema(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.open_api_schema", self.base))
+    pub fn open_api_schema(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElOpenApiSchemaElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.open_api_schema", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `smithy_model` after provisioning.\n"]
-    pub fn smithy_model(&self) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElRef> {
+    pub fn smithy_model(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayTargetTargetConfigurationElMcpElSmithyModelElRef> {
         ListRef::new(self.shared().clone(), format!("{}.smithy_model", self.base))
     }
 }
@@ -4477,10 +4757,10 @@ impl BedrockagentcoreGatewayTargetTargetConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mcp = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mcp = Some(d);
-            },
+            }
         }
         self
     }
@@ -4515,7 +4795,10 @@ pub struct BedrockagentcoreGatewayTargetTargetConfigurationElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayTargetTargetConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayTargetTargetConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayTargetTargetConfigurationElRef {
         BedrockagentcoreGatewayTargetTargetConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -4545,22 +4828,19 @@ pub struct BedrockagentcoreGatewayTargetTimeoutsEl {
 }
 
 impl BedrockagentcoreGatewayTargetTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -4610,20 +4890,17 @@ impl BedrockagentcoreGatewayTargetTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
@@ -4631,8 +4908,7 @@ impl BedrockagentcoreGatewayTargetTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayTargetDynamic {
-    credential_provider_configuration: Option<
-        DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl>,
-    >,
+    credential_provider_configuration:
+        Option<DynamicBlock<BedrockagentcoreGatewayTargetCredentialProviderConfigurationEl>>,
     target_configuration: Option<DynamicBlock<BedrockagentcoreGatewayTargetTargetConfigurationEl>>,
 }

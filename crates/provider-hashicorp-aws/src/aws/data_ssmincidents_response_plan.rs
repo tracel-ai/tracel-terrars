@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSsmincidentsResponsePlanData {
@@ -51,8 +51,7 @@ impl DataSsmincidentsResponsePlan {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,7 +65,10 @@ impl DataSsmincidentsResponsePlan {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataSsmincidentsResponsePlanActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -76,17 +78,26 @@ impl DataSsmincidentsResponsePlan {
 
     #[doc = "Get a reference to the value of field `chat_channel` after provisioning.\n"]
     pub fn chat_channel(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.chat_channel", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.chat_channel", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engagements` after provisioning.\n"]
     pub fn engagements(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.engagements", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.engagements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -96,38 +107,56 @@ impl DataSsmincidentsResponsePlan {
 
     #[doc = "Get a reference to the value of field `incident_template` after provisioning.\n"]
     pub fn incident_template(&self) -> ListRef<DataSsmincidentsResponsePlanIncidentTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.incident_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.incident_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `integration` after provisioning.\n"]
     pub fn integration(&self) -> ListRef<DataSsmincidentsResponsePlanIntegrationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.integration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.integration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSsmincidentsResponsePlan {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSsmincidentsResponsePlan { }
+impl Datasource for DataSsmincidentsResponsePlan {}
 
 impl ToListMappable for DataSsmincidentsResponsePlan {
     type O = ListRef<DataSsmincidentsResponsePlanRef>;
@@ -185,10 +214,7 @@ pub struct DataSsmincidentsResponsePlanRef {
 
 impl Ref for DataSsmincidentsResponsePlanRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -203,7 +229,10 @@ impl DataSsmincidentsResponsePlanRef {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataSsmincidentsResponsePlanActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -213,17 +242,26 @@ impl DataSsmincidentsResponsePlanRef {
 
     #[doc = "Get a reference to the value of field `chat_channel` after provisioning.\n"]
     pub fn chat_channel(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.chat_channel", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.chat_channel", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engagements` after provisioning.\n"]
     pub fn engagements(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.engagements", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.engagements", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -233,28 +271,42 @@ impl DataSsmincidentsResponsePlanRef {
 
     #[doc = "Get a reference to the value of field `incident_template` after provisioning.\n"]
     pub fn incident_template(&self) -> ListRef<DataSsmincidentsResponsePlanIncidentTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.incident_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.incident_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `integration` after provisioning.\n"]
     pub fn integration(&self) -> ListRef<DataSsmincidentsResponsePlanIntegrationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.integration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.integration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -309,7 +361,10 @@ pub struct DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
 }
 
 impl Ref for DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
-    fn new(shared: StackShared, base: String) -> DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
         DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -423,7 +478,10 @@ pub struct DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
 }
 
 impl Ref for DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
-    fn new(shared: StackShared, base: String) -> DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
         DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
             shared: shared,
             base: base.to_string(),
@@ -438,21 +496,32 @@ impl DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
 
     #[doc = "Get a reference to the value of field `document_name` after provisioning.\n"]
     pub fn document_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_version` after provisioning.\n"]
     pub fn document_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dynamic_parameters` after provisioning.\n"]
     pub fn dynamic_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.dynamic_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.dynamic_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameter` after provisioning.\n"]
-    pub fn parameter(&self) -> SetRef<DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef> {
+    pub fn parameter(
+        &self,
+    ) -> SetRef<DataSsmincidentsResponsePlanActionElSsmAutomationElParameterElRef> {
         SetRef::new(self.shared().clone(), format!("{}.parameter", self.base))
     }
 
@@ -463,7 +532,10 @@ impl DataSsmincidentsResponsePlanActionElSsmAutomationElRef {
 
     #[doc = "Get a reference to the value of field `target_account` after provisioning.\n"]
     pub fn target_account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_account", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_account", self.base),
+        )
     }
 }
 
@@ -500,7 +572,9 @@ pub struct BuildDataSsmincidentsResponsePlanActionEl {}
 
 impl BuildDataSsmincidentsResponsePlanActionEl {
     pub fn build(self) -> DataSsmincidentsResponsePlanActionEl {
-        DataSsmincidentsResponsePlanActionEl { ssm_automation: core::default::Default::default() }
+        DataSsmincidentsResponsePlanActionEl {
+            ssm_automation: core::default::Default::default(),
+        }
     }
 }
 
@@ -524,8 +598,13 @@ impl DataSsmincidentsResponsePlanActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `ssm_automation` after provisioning.\n"]
-    pub fn ssm_automation(&self) -> ListRef<DataSsmincidentsResponsePlanActionElSsmAutomationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ssm_automation", self.base))
+    pub fn ssm_automation(
+        &self,
+    ) -> ListRef<DataSsmincidentsResponsePlanActionElSsmAutomationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ssm_automation", self.base),
+        )
     }
 }
 
@@ -589,7 +668,10 @@ impl DataSsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef {
 
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_arn", self.base),
+        )
     }
 }
 
@@ -602,7 +684,8 @@ pub struct DataSsmincidentsResponsePlanIncidentTemplateEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     incident_tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    notification_target: Option<SetField<DataSsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl>>,
+    notification_target:
+        Option<SetField<DataSsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     summary: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -698,7 +781,10 @@ impl DataSsmincidentsResponsePlanIncidentTemplateElRef {
 
     #[doc = "Get a reference to the value of field `dedupe_string` after provisioning.\n"]
     pub fn dedupe_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dedupe_string", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dedupe_string", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `impact` after provisioning.\n"]
@@ -708,12 +794,20 @@ impl DataSsmincidentsResponsePlanIncidentTemplateElRef {
 
     #[doc = "Get a reference to the value of field `incident_tags` after provisioning.\n"]
     pub fn incident_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.incident_tags", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.incident_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_target` after provisioning.\n"]
-    pub fn notification_target(&self) -> SetRef<DataSsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.notification_target", self.base))
+    pub fn notification_target(
+        &self,
+    ) -> SetRef<DataSsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.notification_target", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `summary` after provisioning.\n"]
@@ -787,7 +881,10 @@ pub struct DataSsmincidentsResponsePlanIntegrationElPagerdutyElRef {
 }
 
 impl Ref for DataSsmincidentsResponsePlanIntegrationElPagerdutyElRef {
-    fn new(shared: StackShared, base: String) -> DataSsmincidentsResponsePlanIntegrationElPagerdutyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSsmincidentsResponsePlanIntegrationElPagerdutyElRef {
         DataSsmincidentsResponsePlanIntegrationElPagerdutyElRef {
             shared: shared,
             base: base.to_string(),
@@ -849,7 +946,9 @@ pub struct BuildDataSsmincidentsResponsePlanIntegrationEl {}
 
 impl BuildDataSsmincidentsResponsePlanIntegrationEl {
     pub fn build(self) -> DataSsmincidentsResponsePlanIntegrationEl {
-        DataSsmincidentsResponsePlanIntegrationEl { pagerduty: core::default::Default::default() }
+        DataSsmincidentsResponsePlanIntegrationEl {
+            pagerduty: core::default::Default::default(),
+        }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncLocationNfsData {
@@ -66,7 +66,8 @@ impl DatasyncLocationNfs {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl DatasyncLocationNfs {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl DatasyncLocationNfs {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,8 +116,7 @@ impl DatasyncLocationNfs {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -125,27 +135,33 @@ impl DatasyncLocationNfs {
     }
 
     #[doc = "Set the field `mount_options`.\n"]
-    pub fn set_mount_options(self, v: impl Into<BlockAssignable<DatasyncLocationNfsMountOptionsEl>>) -> Self {
+    pub fn set_mount_options(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationNfsMountOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().mount_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.mount_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `on_prem_config`.\n"]
-    pub fn set_on_prem_config(self, v: impl Into<BlockAssignable<DatasyncLocationNfsOnPremConfigEl>>) -> Self {
+    pub fn set_on_prem_config(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationNfsOnPremConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().on_prem_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.on_prem_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -160,30 +176,44 @@ impl DatasyncLocationNfs {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_hostname` after provisioning.\n"]
     pub fn server_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_hostname", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_hostname", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -193,22 +223,32 @@ impl DatasyncLocationNfs {
 
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(&self) -> ListRef<DatasyncLocationNfsMountOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mount_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mount_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_prem_config` after provisioning.\n"]
     pub fn on_prem_config(&self) -> ListRef<DatasyncLocationNfsOnPremConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_prem_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_prem_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncLocationNfs {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncLocationNfs { }
+impl Resource for DatasyncLocationNfs {}
 
 impl ToListMappable for DatasyncLocationNfs {
     type O = ListRef<DatasyncLocationNfsRef>;
@@ -274,10 +314,7 @@ pub struct DatasyncLocationNfsRef {
 
 impl Ref for DatasyncLocationNfsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -300,30 +337,44 @@ impl DatasyncLocationNfsRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_hostname` after provisioning.\n"]
     pub fn server_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_hostname", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_hostname", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -333,12 +384,18 @@ impl DatasyncLocationNfsRef {
 
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(&self) -> ListRef<DatasyncLocationNfsMountOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mount_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mount_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_prem_config` after provisioning.\n"]
     pub fn on_prem_config(&self) -> ListRef<DatasyncLocationNfsOnPremConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_prem_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_prem_config", self.extract_ref()),
+        )
     }
 }
 
@@ -372,7 +429,9 @@ pub struct BuildDatasyncLocationNfsMountOptionsEl {}
 
 impl BuildDatasyncLocationNfsMountOptionsEl {
     pub fn build(self) -> DatasyncLocationNfsMountOptionsEl {
-        DatasyncLocationNfsMountOptionsEl { version: core::default::Default::default() }
+        DatasyncLocationNfsMountOptionsEl {
+            version: core::default::Default::default(),
+        }
     }
 }
 
@@ -406,7 +465,7 @@ pub struct DatasyncLocationNfsOnPremConfigEl {
     agent_arns: SetField<PrimField<String>>,
 }
 
-impl DatasyncLocationNfsOnPremConfigEl { }
+impl DatasyncLocationNfsOnPremConfigEl {}
 
 impl ToListMappable for DatasyncLocationNfsOnPremConfigEl {
     type O = BlockAssignable<DatasyncLocationNfsOnPremConfigEl>;
@@ -427,7 +486,9 @@ pub struct BuildDatasyncLocationNfsOnPremConfigEl {
 
 impl BuildDatasyncLocationNfsOnPremConfigEl {
     pub fn build(self) -> DatasyncLocationNfsOnPremConfigEl {
-        DatasyncLocationNfsOnPremConfigEl { agent_arns: self.agent_arns }
+        DatasyncLocationNfsOnPremConfigEl {
+            agent_arns: self.agent_arns,
+        }
     }
 }
 

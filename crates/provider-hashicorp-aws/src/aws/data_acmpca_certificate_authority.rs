@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAcmpcaCertificateAuthorityData {
@@ -51,8 +51,7 @@ impl DataAcmpcaCertificateAuthority {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,17 +70,26 @@ impl DataAcmpcaCertificateAuthority {
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_signing_request` after provisioning.\n"]
     pub fn certificate_signing_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_signing_request", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_signing_request", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,63 +99,98 @@ impl DataAcmpcaCertificateAuthority {
 
     #[doc = "Get a reference to the value of field `key_storage_security_standard` after provisioning.\n"]
     pub fn key_storage_security_standard(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_storage_security_standard", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_storage_security_standard", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_before", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revocation_configuration` after provisioning.\n"]
-    pub fn revocation_configuration(&self) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revocation_configuration", self.extract_ref()))
+    pub fn revocation_configuration(
+        &self,
+    ) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revocation_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `serial` after provisioning.\n"]
     pub fn serial(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.serial", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.serial", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `usage_mode` after provisioning.\n"]
     pub fn usage_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.usage_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.usage_mode", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAcmpcaCertificateAuthority {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAcmpcaCertificateAuthority { }
+impl Datasource for DataAcmpcaCertificateAuthority {}
 
 impl ToListMappable for DataAcmpcaCertificateAuthority {
     type O = ListRef<DataAcmpcaCertificateAuthorityRef>;
@@ -205,10 +248,7 @@ pub struct DataAcmpcaCertificateAuthorityRef {
 
 impl Ref for DataAcmpcaCertificateAuthorityRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -228,17 +268,26 @@ impl DataAcmpcaCertificateAuthorityRef {
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_signing_request` after provisioning.\n"]
     pub fn certificate_signing_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_signing_request", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_signing_request", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -248,53 +297,84 @@ impl DataAcmpcaCertificateAuthorityRef {
 
     #[doc = "Get a reference to the value of field `key_storage_security_standard` after provisioning.\n"]
     pub fn key_storage_security_standard(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_storage_security_standard", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_storage_security_standard", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_before", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revocation_configuration` after provisioning.\n"]
-    pub fn revocation_configuration(&self) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revocation_configuration", self.extract_ref()))
+    pub fn revocation_configuration(
+        &self,
+    ) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revocation_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `serial` after provisioning.\n"]
     pub fn serial(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.serial", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.serial", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `usage_mode` after provisioning.\n"]
     pub fn usage_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.usage_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.usage_mode", self.extract_ref()),
+        )
     }
 }
 
@@ -345,7 +425,8 @@ impl DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {
 }
 
 impl ToListMappable for DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {
-    type O = BlockAssignable<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>;
+    type O =
+        BlockAssignable<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -359,7 +440,9 @@ impl ToListMappable for DataAcmpcaCertificateAuthorityRevocationConfigurationElC
 pub struct BuildDataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {}
 
 impl BuildDataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {
-    pub fn build(self) -> DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {
         DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl {
             custom_cname: core::default::Default::default(),
             enabled: core::default::Default::default(),
@@ -404,17 +487,26 @@ impl DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationElRe
 
     #[doc = "Get a reference to the value of field `expiration_in_days` after provisioning.\n"]
     pub fn expiration_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration_in_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expiration_in_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_object_acl` after provisioning.\n"]
     pub fn s3_object_acl(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_object_acl", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_object_acl", self.base),
+        )
     }
 }
 
@@ -441,7 +533,8 @@ impl DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl 
 }
 
 impl ToListMappable for DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
-    type O = BlockAssignable<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>;
+    type O =
+        BlockAssignable<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -455,7 +548,9 @@ impl ToListMappable for DataAcmpcaCertificateAuthorityRevocationConfigurationElO
 pub struct BuildDataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {}
 
 impl BuildDataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
-    pub fn build(self) -> DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
         DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
             enabled: core::default::Default::default(),
             ocsp_custom_cname: core::default::Default::default(),
@@ -492,23 +587,32 @@ impl DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationElR
 
     #[doc = "Get a reference to the value of field `ocsp_custom_cname` after provisioning.\n"]
     pub fn ocsp_custom_cname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ocsp_custom_cname", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ocsp_custom_cname", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataAcmpcaCertificateAuthorityRevocationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    crl_configuration: Option<ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
+    crl_configuration: Option<
+        ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ocsp_configuration: Option<ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>>,
+    ocsp_configuration: Option<
+        ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>,
+    >,
 }
 
 impl DataAcmpcaCertificateAuthorityRevocationConfigurationEl {
     #[doc = "Set the field `crl_configuration`.\n"]
     pub fn set_crl_configuration(
         mut self,
-        v: impl Into<ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
+        v: impl Into<
+            ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>,
+        >,
     ) -> Self {
         self.crl_configuration = Some(v.into());
         self
@@ -517,7 +621,9 @@ impl DataAcmpcaCertificateAuthorityRevocationConfigurationEl {
     #[doc = "Set the field `ocsp_configuration`.\n"]
     pub fn set_ocsp_configuration(
         mut self,
-        v: impl Into<ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>>,
+        v: impl Into<
+            ListField<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>,
+        >,
     ) -> Self {
         self.ocsp_configuration = Some(v.into());
         self
@@ -553,7 +659,10 @@ pub struct DataAcmpcaCertificateAuthorityRevocationConfigurationElRef {
 }
 
 impl Ref for DataAcmpcaCertificateAuthorityRevocationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataAcmpcaCertificateAuthorityRevocationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAcmpcaCertificateAuthorityRevocationConfigurationElRef {
         DataAcmpcaCertificateAuthorityRevocationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -570,13 +679,20 @@ impl DataAcmpcaCertificateAuthorityRevocationConfigurationElRef {
     pub fn crl_configuration(
         &self,
     ) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crl_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crl_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ocsp_configuration` after provisioning.\n"]
     pub fn ocsp_configuration(
         &self,
-    ) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ocsp_configuration", self.base))
+    ) -> ListRef<DataAcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ocsp_configuration", self.base),
+        )
     }
 }

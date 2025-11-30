@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RedshiftScheduledActionData {
@@ -69,7 +69,8 @@ impl RedshiftScheduledAction {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl RedshiftScheduledAction {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl RedshiftScheduledAction {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -126,8 +137,7 @@ impl RedshiftScheduledAction {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -140,36 +150,51 @@ impl RedshiftScheduledAction {
     }
 
     #[doc = "Set the field `target_action`.\n"]
-    pub fn set_target_action(self, v: impl Into<BlockAssignable<RedshiftScheduledActionTargetActionEl>>) -> Self {
+    pub fn set_target_action(
+        self,
+        v: impl Into<BlockAssignable<RedshiftScheduledActionTargetActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_role` after provisioning.\n"]
     pub fn iam_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -179,38 +204,56 @@ impl RedshiftScheduledAction {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_action` after provisioning.\n"]
     pub fn target_action(&self) -> ListRef<RedshiftScheduledActionTargetActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_action", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for RedshiftScheduledAction {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RedshiftScheduledAction { }
+impl Resource for RedshiftScheduledAction {}
 
 impl ToListMappable for RedshiftScheduledAction {
     type O = ListRef<RedshiftScheduledActionRef>;
@@ -280,10 +323,7 @@ pub struct RedshiftScheduledActionRef {
 
 impl Ref for RedshiftScheduledActionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -298,22 +338,34 @@ impl RedshiftScheduledActionRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_role` after provisioning.\n"]
     pub fn iam_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -323,28 +375,42 @@ impl RedshiftScheduledActionRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_action` after provisioning.\n"]
     pub fn target_action(&self) -> ListRef<RedshiftScheduledActionTargetActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_action", self.extract_ref()),
+        )
     }
 }
 
@@ -353,7 +419,7 @@ pub struct RedshiftScheduledActionTargetActionElPauseClusterEl {
     cluster_identifier: PrimField<String>,
 }
 
-impl RedshiftScheduledActionTargetActionElPauseClusterEl { }
+impl RedshiftScheduledActionTargetActionElPauseClusterEl {}
 
 impl ToListMappable for RedshiftScheduledActionTargetActionElPauseClusterEl {
     type O = BlockAssignable<RedshiftScheduledActionTargetActionElPauseClusterEl>;
@@ -374,7 +440,9 @@ pub struct BuildRedshiftScheduledActionTargetActionElPauseClusterEl {
 
 impl BuildRedshiftScheduledActionTargetActionElPauseClusterEl {
     pub fn build(self) -> RedshiftScheduledActionTargetActionElPauseClusterEl {
-        RedshiftScheduledActionTargetActionElPauseClusterEl { cluster_identifier: self.cluster_identifier }
+        RedshiftScheduledActionTargetActionElPauseClusterEl {
+            cluster_identifier: self.cluster_identifier,
+        }
     }
 }
 
@@ -384,7 +452,10 @@ pub struct RedshiftScheduledActionTargetActionElPauseClusterElRef {
 }
 
 impl Ref for RedshiftScheduledActionTargetActionElPauseClusterElRef {
-    fn new(shared: StackShared, base: String) -> RedshiftScheduledActionTargetActionElPauseClusterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RedshiftScheduledActionTargetActionElPauseClusterElRef {
         RedshiftScheduledActionTargetActionElPauseClusterElRef {
             shared: shared,
             base: base.to_string(),
@@ -399,7 +470,10 @@ impl RedshiftScheduledActionTargetActionElPauseClusterElRef {
 
     #[doc = "Get a reference to the value of field `cluster_identifier` after provisioning.\n"]
     pub fn cluster_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_identifier", self.base),
+        )
     }
 }
 
@@ -477,7 +551,10 @@ pub struct RedshiftScheduledActionTargetActionElResizeClusterElRef {
 }
 
 impl Ref for RedshiftScheduledActionTargetActionElResizeClusterElRef {
-    fn new(shared: StackShared, base: String) -> RedshiftScheduledActionTargetActionElResizeClusterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RedshiftScheduledActionTargetActionElResizeClusterElRef {
         RedshiftScheduledActionTargetActionElResizeClusterElRef {
             shared: shared,
             base: base.to_string(),
@@ -497,7 +574,10 @@ impl RedshiftScheduledActionTargetActionElResizeClusterElRef {
 
     #[doc = "Get a reference to the value of field `cluster_identifier` after provisioning.\n"]
     pub fn cluster_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_type` after provisioning.\n"]
@@ -512,7 +592,10 @@ impl RedshiftScheduledActionTargetActionElResizeClusterElRef {
 
     #[doc = "Get a reference to the value of field `number_of_nodes` after provisioning.\n"]
     pub fn number_of_nodes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_nodes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_nodes", self.base),
+        )
     }
 }
 
@@ -521,7 +604,7 @@ pub struct RedshiftScheduledActionTargetActionElResumeClusterEl {
     cluster_identifier: PrimField<String>,
 }
 
-impl RedshiftScheduledActionTargetActionElResumeClusterEl { }
+impl RedshiftScheduledActionTargetActionElResumeClusterEl {}
 
 impl ToListMappable for RedshiftScheduledActionTargetActionElResumeClusterEl {
     type O = BlockAssignable<RedshiftScheduledActionTargetActionElResumeClusterEl>;
@@ -542,7 +625,9 @@ pub struct BuildRedshiftScheduledActionTargetActionElResumeClusterEl {
 
 impl BuildRedshiftScheduledActionTargetActionElResumeClusterEl {
     pub fn build(self) -> RedshiftScheduledActionTargetActionElResumeClusterEl {
-        RedshiftScheduledActionTargetActionElResumeClusterEl { cluster_identifier: self.cluster_identifier }
+        RedshiftScheduledActionTargetActionElResumeClusterEl {
+            cluster_identifier: self.cluster_identifier,
+        }
     }
 }
 
@@ -552,7 +637,10 @@ pub struct RedshiftScheduledActionTargetActionElResumeClusterElRef {
 }
 
 impl Ref for RedshiftScheduledActionTargetActionElResumeClusterElRef {
-    fn new(shared: StackShared, base: String) -> RedshiftScheduledActionTargetActionElResumeClusterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> RedshiftScheduledActionTargetActionElResumeClusterElRef {
         RedshiftScheduledActionTargetActionElResumeClusterElRef {
             shared: shared,
             base: base.to_string(),
@@ -567,7 +655,10 @@ impl RedshiftScheduledActionTargetActionElResumeClusterElRef {
 
     #[doc = "Get a reference to the value of field `cluster_identifier` after provisioning.\n"]
     pub fn cluster_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_identifier", self.base),
+        )
     }
 }
 
@@ -598,10 +689,10 @@ impl RedshiftScheduledActionTargetActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pause_cluster = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pause_cluster = Some(d);
-            },
+            }
         }
         self
     }
@@ -614,10 +705,10 @@ impl RedshiftScheduledActionTargetActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resize_cluster = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resize_cluster = Some(d);
-            },
+            }
         }
         self
     }
@@ -630,10 +721,10 @@ impl RedshiftScheduledActionTargetActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resume_cluster = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resume_cluster = Some(d);
-            },
+            }
         }
         self
     }
@@ -685,17 +776,30 @@ impl RedshiftScheduledActionTargetActionElRef {
 
     #[doc = "Get a reference to the value of field `pause_cluster` after provisioning.\n"]
     pub fn pause_cluster(&self) -> ListRef<RedshiftScheduledActionTargetActionElPauseClusterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pause_cluster", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pause_cluster", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resize_cluster` after provisioning.\n"]
-    pub fn resize_cluster(&self) -> ListRef<RedshiftScheduledActionTargetActionElResizeClusterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resize_cluster", self.base))
+    pub fn resize_cluster(
+        &self,
+    ) -> ListRef<RedshiftScheduledActionTargetActionElResizeClusterElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resize_cluster", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resume_cluster` after provisioning.\n"]
-    pub fn resume_cluster(&self) -> ListRef<RedshiftScheduledActionTargetActionElResumeClusterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resume_cluster", self.base))
+    pub fn resume_cluster(
+        &self,
+    ) -> ListRef<RedshiftScheduledActionTargetActionElResumeClusterElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resume_cluster", self.base),
+        )
     }
 }
 

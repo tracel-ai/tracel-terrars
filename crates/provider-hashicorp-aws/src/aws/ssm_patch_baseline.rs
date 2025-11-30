@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SsmPatchBaselineData {
@@ -83,7 +83,8 @@ impl SsmPatchBaseline {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -96,7 +97,7 @@ impl SsmPatchBaseline {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -107,12 +108,22 @@ impl SsmPatchBaseline {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -130,13 +141,22 @@ impl SsmPatchBaseline {
 
     #[doc = "Set the field `approved_patches_enable_non_security`.\n"]
     pub fn set_approved_patches_enable_non_security(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().approved_patches_enable_non_security = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .approved_patches_enable_non_security = Some(v.into());
         self
     }
 
     #[doc = "Set the field `available_security_updates_compliance_status`.\n"]
-    pub fn set_available_security_updates_compliance_status(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().available_security_updates_compliance_status = Some(v.into());
+    pub fn set_available_security_updates_compliance_status(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .available_security_updates_compliance_status = Some(v.into());
         self
     }
 
@@ -158,8 +178,7 @@ impl SsmPatchBaseline {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -190,27 +209,33 @@ impl SsmPatchBaseline {
     }
 
     #[doc = "Set the field `approval_rule`.\n"]
-    pub fn set_approval_rule(self, v: impl Into<BlockAssignable<SsmPatchBaselineApprovalRuleEl>>) -> Self {
+    pub fn set_approval_rule(
+        self,
+        v: impl Into<BlockAssignable<SsmPatchBaselineApprovalRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().approval_rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.approval_rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `global_filter`.\n"]
-    pub fn set_global_filter(self, v: impl Into<BlockAssignable<SsmPatchBaselineGlobalFilterEl>>) -> Self {
+    pub fn set_global_filter(
+        self,
+        v: impl Into<BlockAssignable<SsmPatchBaselineGlobalFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().global_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.global_filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -220,27 +245,39 @@ impl SsmPatchBaseline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `approved_patches` after provisioning.\n"]
     pub fn approved_patches(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.approved_patches", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.approved_patches", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approved_patches_compliance_level` after provisioning.\n"]
     pub fn approved_patches_compliance_level(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approved_patches_compliance_level", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.approved_patches_compliance_level", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approved_patches_enable_non_security` after provisioning.\n"]
     pub fn approved_patches_enable_non_security(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approved_patches_enable_non_security", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.approved_patches_enable_non_security",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -248,18 +285,23 @@ impl SsmPatchBaseline {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `available_security_updates_compliance_status` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `available_security_updates_compliance_status` after provisioning.\n"]
     pub fn available_security_updates_compliance_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.available_security_updates_compliance_status", self.extract_ref()),
+            format!(
+                "{}.available_security_updates_compliance_status",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -269,68 +311,104 @@ impl SsmPatchBaseline {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operating_system` after provisioning.\n"]
     pub fn operating_system(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operating_system", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.operating_system", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rejected_patches` after provisioning.\n"]
     pub fn rejected_patches(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.rejected_patches", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.rejected_patches", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rejected_patches_action` after provisioning.\n"]
     pub fn rejected_patches_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rejected_patches_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rejected_patches_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approval_rule` after provisioning.\n"]
     pub fn approval_rule(&self) -> ListRef<SsmPatchBaselineApprovalRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.approval_rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.approval_rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_filter` after provisioning.\n"]
     pub fn global_filter(&self) -> ListRef<SsmPatchBaselineGlobalFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.global_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.global_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<SsmPatchBaselineSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SsmPatchBaseline {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SsmPatchBaseline { }
+impl Resource for SsmPatchBaseline {}
 
 impl ToListMappable for SsmPatchBaseline {
     type O = ListRef<SsmPatchBaselineRef>;
@@ -402,10 +480,7 @@ pub struct SsmPatchBaselineRef {
 
 impl Ref for SsmPatchBaselineRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -420,17 +495,29 @@ impl SsmPatchBaselineRef {
 
     #[doc = "Get a reference to the value of field `approved_patches` after provisioning.\n"]
     pub fn approved_patches(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.approved_patches", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.approved_patches", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approved_patches_compliance_level` after provisioning.\n"]
     pub fn approved_patches_compliance_level(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approved_patches_compliance_level", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.approved_patches_compliance_level", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approved_patches_enable_non_security` after provisioning.\n"]
     pub fn approved_patches_enable_non_security(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approved_patches_enable_non_security", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.approved_patches_enable_non_security",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -438,18 +525,23 @@ impl SsmPatchBaselineRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `available_security_updates_compliance_status` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `available_security_updates_compliance_status` after provisioning.\n"]
     pub fn available_security_updates_compliance_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.available_security_updates_compliance_status", self.extract_ref()),
+            format!(
+                "{}.available_security_updates_compliance_status",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -459,58 +551,90 @@ impl SsmPatchBaselineRef {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operating_system` after provisioning.\n"]
     pub fn operating_system(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operating_system", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.operating_system", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rejected_patches` after provisioning.\n"]
     pub fn rejected_patches(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.rejected_patches", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.rejected_patches", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rejected_patches_action` after provisioning.\n"]
     pub fn rejected_patches_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rejected_patches_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rejected_patches_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approval_rule` after provisioning.\n"]
     pub fn approval_rule(&self) -> ListRef<SsmPatchBaselineApprovalRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.approval_rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.approval_rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_filter` after provisioning.\n"]
     pub fn global_filter(&self) -> ListRef<SsmPatchBaselineGlobalFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.global_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.global_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<SsmPatchBaselineSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 }
 
@@ -520,7 +644,7 @@ pub struct SsmPatchBaselineApprovalRuleElPatchFilterEl {
     values: ListField<PrimField<String>>,
 }
 
-impl SsmPatchBaselineApprovalRuleElPatchFilterEl { }
+impl SsmPatchBaselineApprovalRuleElPatchFilterEl {}
 
 impl ToListMappable for SsmPatchBaselineApprovalRuleElPatchFilterEl {
     type O = BlockAssignable<SsmPatchBaselineApprovalRuleElPatchFilterEl>;
@@ -633,10 +757,10 @@ impl SsmPatchBaselineApprovalRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.patch_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.patch_filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -690,22 +814,34 @@ impl SsmPatchBaselineApprovalRuleElRef {
 
     #[doc = "Get a reference to the value of field `approve_after_days` after provisioning.\n"]
     pub fn approve_after_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approve_after_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.approve_after_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `approve_until_date` after provisioning.\n"]
     pub fn approve_until_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approve_until_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.approve_until_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compliance_level` after provisioning.\n"]
     pub fn compliance_level(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compliance_level", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compliance_level", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_non_security` after provisioning.\n"]
     pub fn enable_non_security(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_non_security", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_non_security", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `patch_filter` after provisioning.\n"]
@@ -720,7 +856,7 @@ pub struct SsmPatchBaselineGlobalFilterEl {
     values: ListField<PrimField<String>>,
 }
 
-impl SsmPatchBaselineGlobalFilterEl { }
+impl SsmPatchBaselineGlobalFilterEl {}
 
 impl ToListMappable for SsmPatchBaselineGlobalFilterEl {
     type O = BlockAssignable<SsmPatchBaselineGlobalFilterEl>;
@@ -787,7 +923,7 @@ pub struct SsmPatchBaselineSourceEl {
     products: ListField<PrimField<String>>,
 }
 
-impl SsmPatchBaselineSourceEl { }
+impl SsmPatchBaselineSourceEl {}
 
 impl ToListMappable for SsmPatchBaselineSourceEl {
     type O = BlockAssignable<SsmPatchBaselineSourceEl>;
@@ -841,7 +977,10 @@ impl SsmPatchBaselineSourceElRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Ec2NetworkInsightsAnalysisData {
@@ -64,7 +64,8 @@ impl Ec2NetworkInsightsAnalysis {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl Ec2NetworkInsightsAnalysis {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl Ec2NetworkInsightsAnalysis {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -109,8 +120,7 @@ impl Ec2NetworkInsightsAnalysis {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -135,8 +145,13 @@ impl Ec2NetworkInsightsAnalysis {
     }
 
     #[doc = "Get a reference to the value of field `alternate_path_hints` after provisioning.\n"]
-    pub fn alternate_path_hints(&self) -> ListRef<Ec2NetworkInsightsAnalysisAlternatePathHintsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alternate_path_hints", self.extract_ref()))
+    pub fn alternate_path_hints(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisAlternatePathHintsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alternate_path_hints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -146,17 +161,28 @@ impl Ec2NetworkInsightsAnalysis {
 
     #[doc = "Get a reference to the value of field `explanations` after provisioning.\n"]
     pub fn explanations(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.explanations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.explanations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_in_arns` after provisioning.\n"]
     pub fn filter_in_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.filter_in_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.filter_in_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward_path_components` after provisioning.\n"]
-    pub fn forward_path_components(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.forward_path_components", self.extract_ref()))
+    pub fn forward_path_components(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.forward_path_components", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -166,68 +192,106 @@ impl Ec2NetworkInsightsAnalysis {
 
     #[doc = "Get a reference to the value of field `network_insights_path_id` after provisioning.\n"]
     pub fn network_insights_path_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_insights_path_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_insights_path_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_found` after provisioning.\n"]
     pub fn path_found(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.path_found", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.path_found", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `return_path_components` after provisioning.\n"]
-    pub fn return_path_components(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.return_path_components", self.extract_ref()))
+    pub fn return_path_components(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.return_path_components", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_date` after provisioning.\n"]
     pub fn start_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_completion` after provisioning.\n"]
     pub fn wait_for_completion(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_completion", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_completion", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warning_message` after provisioning.\n"]
     pub fn warning_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warning_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warning_message", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Ec2NetworkInsightsAnalysis {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Ec2NetworkInsightsAnalysis { }
+impl Resource for Ec2NetworkInsightsAnalysis {}
 
 impl ToListMappable for Ec2NetworkInsightsAnalysis {
     type O = ListRef<Ec2NetworkInsightsAnalysisRef>;
@@ -289,10 +353,7 @@ pub struct Ec2NetworkInsightsAnalysisRef {
 
 impl Ref for Ec2NetworkInsightsAnalysisRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -306,8 +367,13 @@ impl Ec2NetworkInsightsAnalysisRef {
     }
 
     #[doc = "Get a reference to the value of field `alternate_path_hints` after provisioning.\n"]
-    pub fn alternate_path_hints(&self) -> ListRef<Ec2NetworkInsightsAnalysisAlternatePathHintsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alternate_path_hints", self.extract_ref()))
+    pub fn alternate_path_hints(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisAlternatePathHintsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alternate_path_hints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -317,17 +383,28 @@ impl Ec2NetworkInsightsAnalysisRef {
 
     #[doc = "Get a reference to the value of field `explanations` after provisioning.\n"]
     pub fn explanations(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.explanations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.explanations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_in_arns` after provisioning.\n"]
     pub fn filter_in_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.filter_in_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.filter_in_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward_path_components` after provisioning.\n"]
-    pub fn forward_path_components(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.forward_path_components", self.extract_ref()))
+    pub fn forward_path_components(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.forward_path_components", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -337,58 +414,92 @@ impl Ec2NetworkInsightsAnalysisRef {
 
     #[doc = "Get a reference to the value of field `network_insights_path_id` after provisioning.\n"]
     pub fn network_insights_path_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_insights_path_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_insights_path_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_found` after provisioning.\n"]
     pub fn path_found(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.path_found", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.path_found", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `return_path_components` after provisioning.\n"]
-    pub fn return_path_components(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.return_path_components", self.extract_ref()))
+    pub fn return_path_components(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.return_path_components", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_date` after provisioning.\n"]
     pub fn start_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_completion` after provisioning.\n"]
     pub fn wait_for_completion(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_completion", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_completion", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warning_message` after provisioning.\n"]
     pub fn warning_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warning_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warning_message", self.extract_ref()),
+        )
     }
 }
 
@@ -458,7 +569,10 @@ impl Ec2NetworkInsightsAnalysisAlternatePathHintsElRef {
 
     #[doc = "Get a reference to the value of field `component_arn` after provisioning.\n"]
     pub fn component_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.component_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.component_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `component_id` after provisioning.\n"]
@@ -607,7 +721,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef {
         Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -721,7 +838,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElAclRuleElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElAclRuleElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElAclRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElAclRuleElRef {
         Ec2NetworkInsightsAnalysisExplanationsElAclRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -745,7 +865,9 @@ impl Ec2NetworkInsightsAnalysisExplanationsElAclRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
-    pub fn port_range(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef> {
+    pub fn port_range(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElAclRuleElPortRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 
@@ -825,7 +947,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElAttachedToElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElAttachedToElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElAttachedToElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElAttachedToElRef {
         Ec2NetworkInsightsAnalysisExplanationsElAttachedToElRef {
             shared: shared,
             base: base.to_string(),
@@ -923,12 +1048,18 @@ impl Ec2NetworkInsightsAnalysisExplanationsElClassicLoadBalancerListenerElRef {
 
     #[doc = "Get a reference to the value of field `instance_port` after provisioning.\n"]
     pub fn instance_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_port` after provisioning.\n"]
     pub fn load_balancer_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_port", self.base),
+        )
     }
 }
 
@@ -992,7 +1123,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElComponentElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElComponentElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElComponentElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElComponentElRef {
         Ec2NetworkInsightsAnalysisExplanationsElComponentElRef {
             shared: shared,
             base: base.to_string(),
@@ -1081,7 +1215,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef {
         Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef {
             shared: shared,
             base: base.to_string(),
@@ -1170,7 +1307,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElDestinationElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElDestinationElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElDestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElDestinationElRef {
         Ec2NetworkInsightsAnalysisExplanationsElDestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1259,7 +1399,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef {
         Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -1440,7 +1583,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef {
         Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef {
             shared: shared,
             base: base.to_string(),
@@ -1529,7 +1675,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef {
         Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef {
             shared: shared,
             base: base.to_string(),
@@ -1802,7 +1951,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElNatGatewayElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElNatGatewayElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElNatGatewayElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElNatGatewayElRef {
         Ec2NetworkInsightsAnalysisExplanationsElNatGatewayElRef {
             shared: shared,
             base: base.to_string(),
@@ -1891,7 +2043,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef {
         Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1971,7 +2126,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElPortRangesElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElPortRangesElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElPortRangesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElPortRangesElRef {
         Ec2NetworkInsightsAnalysisExplanationsElPortRangesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2055,7 +2213,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElPrefixListElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElPrefixListElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElPrefixListElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElPrefixListElRef {
         Ec2NetworkInsightsAnalysisExplanationsElPrefixListElRef {
             shared: shared,
             base: base.to_string(),
@@ -2144,7 +2305,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElRouteTableElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElRouteTableElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElRouteTableElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElRouteTableElRef {
         Ec2NetworkInsightsAnalysisExplanationsElRouteTableElRef {
             shared: shared,
             base: base.to_string(),
@@ -2296,7 +2460,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
         Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
             shared: shared,
             base: base.to_string(),
@@ -2311,17 +2478,26 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `destination_cidr` after provisioning.\n"]
     pub fn destination_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_prefix_list_id` after provisioning.\n"]
     pub fn destination_prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `egress_only_internet_gateway_id` after provisioning.\n"]
     pub fn egress_only_internet_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.egress_only_internet_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.egress_only_internet_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
@@ -2336,12 +2512,18 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `nat_gateway_id` after provisioning.\n"]
     pub fn nat_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.nat_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.nat_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin` after provisioning.\n"]
@@ -2351,12 +2533,18 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_peering_connection_id` after provisioning.\n"]
     pub fn vpc_peering_connection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_peering_connection_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_peering_connection_id", self.base),
+        )
     }
 }
 
@@ -2420,7 +2608,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef {
         Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef {
             shared: shared,
             base: base.to_string(),
@@ -2472,7 +2663,8 @@ impl Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeEl {
 }
 
 impl ToListMappable for Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeEl>;
+    type O =
+        BlockAssignable<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2534,7 +2726,8 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     direction: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    port_range: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeEl>>,
+    port_range:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix_list_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2617,7 +2810,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
         Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -2641,13 +2837,18 @@ impl Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
-    pub fn port_range(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeElRef> {
+    pub fn port_range(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElPortRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -2657,7 +2858,10 @@ impl Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef {
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.base),
+        )
     }
 }
 
@@ -2721,7 +2925,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef {
         Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2810,7 +3017,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSourceVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElSourceVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElSourceVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElSourceVpcElRef {
         Ec2NetworkInsightsAnalysisExplanationsElSourceVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -2899,7 +3109,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSubnetElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElSubnetElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElSubnetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElSubnetElRef {
         Ec2NetworkInsightsAnalysisExplanationsElSubnetElRef {
             shared: shared,
             base: base.to_string(),
@@ -2988,7 +3201,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef {
         Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef {
             shared: shared,
             base: base.to_string(),
@@ -3077,7 +3293,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef {
         Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef {
             shared: shared,
             base: base.to_string(),
@@ -3353,7 +3572,8 @@ impl Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteEl {
 }
 
 impl ToListMappable for Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteEl>;
+    type O =
+        BlockAssignable<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3404,17 +3624,26 @@ impl Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteElRef 
 
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_cidr` after provisioning.\n"]
     pub fn destination_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
@@ -3424,7 +3653,10 @@ impl Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteElRef 
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `route_origin` after provisioning.\n"]
@@ -3587,7 +3819,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef {
         Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef {
             shared: shared,
             base: base.to_string(),
@@ -3676,7 +3911,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef {
         Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3765,7 +4003,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef {
         Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3854,7 +4095,10 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsElVpnGatewayElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisExplanationsElVpnGatewayElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisExplanationsElVpnGatewayElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisExplanationsElVpnGatewayElRef {
         Ec2NetworkInsightsAnalysisExplanationsElVpnGatewayElRef {
             shared: shared,
             base: base.to_string(),
@@ -3900,9 +4144,8 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cidrs: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    classic_load_balancer_listener: Option<
-        ListField<Ec2NetworkInsightsAnalysisExplanationsElClassicLoadBalancerListenerEl>,
-    >,
+    classic_load_balancer_listener:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElClassicLoadBalancerListenerEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     component: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElComponentEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3914,13 +4157,13 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     direction: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    elastic_load_balancer_listener: Option<
-        ListField<Ec2NetworkInsightsAnalysisExplanationsElElasticLoadBalancerListenerEl>,
-    >,
+    elastic_load_balancer_listener:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElElasticLoadBalancerListenerEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     explanation_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ingress_route_table: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableEl>>,
+    ingress_route_table:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     internet_gateway: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3928,9 +4171,11 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     load_balancer_listener_port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    load_balancer_target_group: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElLoadBalancerTargetGroupEl>>,
+    load_balancer_target_group:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElLoadBalancerTargetGroupEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    load_balancer_target_groups: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElLoadBalancerTargetGroupsEl>>,
+    load_balancer_target_groups:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElLoadBalancerTargetGroupsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     load_balancer_target_port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3938,7 +4183,8 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     nat_gateway: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElNatGatewayEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_interface: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceEl>>,
+    network_interface:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     packet_field: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3956,7 +4202,8 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     security_group: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    security_group_rule: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleEl>>,
+    security_group_rule:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     security_groups: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3966,23 +4213,26 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSubnetEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    subnet_route_table: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableEl>>,
+    subnet_route_table:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     transit_gateway: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    transit_gateway_attachment: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayAttachmentEl>>,
+    transit_gateway_attachment:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayAttachmentEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    transit_gateway_route_table: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableEl>>,
+    transit_gateway_route_table:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    transit_gateway_route_table_route: Option<
-        ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteEl>,
-    >,
+    transit_gateway_route_table_route:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     vpc: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpcEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     vpc_endpoint: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    vpc_peering_connection: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionEl>>,
+    vpc_peering_connection:
+        Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     vpn_connection: Option<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3991,13 +4241,19 @@ pub struct Ec2NetworkInsightsAnalysisExplanationsEl {
 
 impl Ec2NetworkInsightsAnalysisExplanationsEl {
     #[doc = "Set the field `acl`.\n"]
-    pub fn set_acl(mut self, v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElAclEl>>) -> Self {
+    pub fn set_acl(
+        mut self,
+        v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElAclEl>>,
+    ) -> Self {
         self.acl = Some(v.into());
         self
     }
 
     #[doc = "Set the field `acl_rule`.\n"]
-    pub fn set_acl_rule(mut self, v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElAclRuleEl>>) -> Self {
+    pub fn set_acl_rule(
+        mut self,
+        v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElAclRuleEl>>,
+    ) -> Self {
         self.acl_rule = Some(v.into());
         self
     }
@@ -4276,7 +4532,10 @@ impl Ec2NetworkInsightsAnalysisExplanationsEl {
     }
 
     #[doc = "Set the field `subnet`.\n"]
-    pub fn set_subnet(mut self, v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElSubnetEl>>) -> Self {
+    pub fn set_subnet(
+        mut self,
+        v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElSubnetEl>>,
+    ) -> Self {
         self.subnet = Some(v.into());
         self
     }
@@ -4327,7 +4586,10 @@ impl Ec2NetworkInsightsAnalysisExplanationsEl {
     }
 
     #[doc = "Set the field `vpc`.\n"]
-    pub fn set_vpc(mut self, v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpcEl>>) -> Self {
+    pub fn set_vpc(
+        mut self,
+        v: impl Into<ListField<Ec2NetworkInsightsAnalysisExplanationsElVpcEl>>,
+    ) -> Self {
         self.vpc = Some(v.into());
         self
     }
@@ -4484,7 +4746,10 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.availability_zones", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidrs` after provisioning.\n"]
@@ -4496,7 +4761,10 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     pub fn classic_load_balancer_listener(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElClassicLoadBalancerListenerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.classic_load_balancer_listener", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.classic_load_balancer_listener", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
@@ -4505,8 +4773,13 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `customer_gateway` after provisioning.\n"]
-    pub fn customer_gateway(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.customer_gateway", self.base))
+    pub fn customer_gateway(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElCustomerGatewayElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
@@ -4515,8 +4788,13 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `destination_vpc` after provisioning.\n"]
-    pub fn destination_vpc(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_vpc", self.base))
+    pub fn destination_vpc(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElDestinationVpcElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_vpc", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `direction` after provisioning.\n"]
@@ -4528,56 +4806,90 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     pub fn elastic_load_balancer_listener(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElElasticLoadBalancerListenerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.elastic_load_balancer_listener", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.elastic_load_balancer_listener", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `explanation_code` after provisioning.\n"]
     pub fn explanation_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.explanation_code", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.explanation_code", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ingress_route_table` after provisioning.\n"]
-    pub fn ingress_route_table(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ingress_route_table", self.base))
+    pub fn ingress_route_table(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElIngressRouteTableElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ingress_route_table", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `internet_gateway` after provisioning.\n"]
-    pub fn internet_gateway(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.internet_gateway", self.base))
+    pub fn internet_gateway(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElInternetGatewayElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.internet_gateway", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_listener_port` after provisioning.\n"]
     pub fn load_balancer_listener_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_listener_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_listener_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_target_group` after provisioning.\n"]
     pub fn load_balancer_target_group(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElLoadBalancerTargetGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.load_balancer_target_group", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_target_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_target_groups` after provisioning.\n"]
     pub fn load_balancer_target_groups(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElLoadBalancerTargetGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.load_balancer_target_groups", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_target_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_target_port` after provisioning.\n"]
     pub fn load_balancer_target_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_target_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_target_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `missing_component` after provisioning.\n"]
     pub fn missing_component(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.missing_component", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.missing_component", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `nat_gateway` after provisioning.\n"]
@@ -4586,8 +4898,13 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `network_interface` after provisioning.\n"]
-    pub fn network_interface(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface", self.base))
+    pub fn network_interface(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElNetworkInterfaceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `packet_field` after provisioning.\n"]
@@ -4621,23 +4938,43 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `route_table_route` after provisioning.\n"]
-    pub fn route_table_route(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.route_table_route", self.base))
+    pub fn route_table_route(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElRouteTableRouteElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.route_table_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group` after provisioning.\n"]
-    pub fn security_group(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group", self.base))
+    pub fn security_group(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_rule` after provisioning.\n"]
-    pub fn security_group_rule(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_rule", self.base))
+    pub fn security_group_rule(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupRuleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_rule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
-    pub fn security_groups(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+    pub fn security_groups(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSecurityGroupsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_vpc` after provisioning.\n"]
@@ -4656,34 +4993,53 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `subnet_route_table` after provisioning.\n"]
-    pub fn subnet_route_table(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subnet_route_table", self.base))
+    pub fn subnet_route_table(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElSubnetRouteTableElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_route_table", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway` after provisioning.\n"]
-    pub fn transit_gateway(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway", self.base))
+    pub fn transit_gateway(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment` after provisioning.\n"]
     pub fn transit_gateway_attachment(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayAttachmentElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_attachment", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_route_table` after provisioning.\n"]
     pub fn transit_gateway_route_table(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_route_table", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_route_table", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_route` after provisioning.\n"]
     pub fn transit_gateway_route_table_route(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElTransitGatewayRouteTableRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_route_table_route", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_route_table_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc` after provisioning.\n"]
@@ -4692,18 +5048,30 @@ impl Ec2NetworkInsightsAnalysisExplanationsElRef {
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint` after provisioning.\n"]
-    pub fn vpc_endpoint(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef> {
+    pub fn vpc_endpoint(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElVpcEndpointElRef> {
         ListRef::new(self.shared().clone(), format!("{}.vpc_endpoint", self.base))
     }
 
     #[doc = "Get a reference to the value of field `vpc_peering_connection` after provisioning.\n"]
-    pub fn vpc_peering_connection(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_peering_connection", self.base))
+    pub fn vpc_peering_connection(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElVpcPeeringConnectionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_peering_connection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpn_connection` after provisioning.\n"]
-    pub fn vpn_connection(&self) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpn_connection", self.base))
+    pub fn vpn_connection(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisExplanationsElVpnConnectionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpn_connection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpn_gateway` after provisioning.\n"]
@@ -4797,7 +5165,8 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     egress: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    port_range: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElPortRangeEl>>,
+    port_range:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElPortRangeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     protocol: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4880,7 +5249,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -4904,7 +5276,9 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
-    pub fn port_range(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElPortRangeElRef> {
+    pub fn port_range(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElPortRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 
@@ -4954,8 +5328,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElCompone
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4969,7 +5347,9 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditio
 pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl {}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl {
             arn: core::default::Default::default(),
             id: core::default::Default::default(),
@@ -5021,7 +5401,9 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsEl 
     #[serde(skip_serializing_if = "Option::is_none")]
     additional_detail_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    component: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl>>,
+    component: Option<
+        ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl>,
+    >,
 }
 
 impl Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsEl {
@@ -5034,7 +5416,11 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsEl {
     #[doc = "Set the field `component`.\n"]
     pub fn set_component(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentEl,
+            >,
+        >,
     ) -> Self {
         self.component = Some(v.into());
         self
@@ -5088,13 +5474,17 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElRef {
 
     #[doc = "Get a reference to the value of field `additional_detail_type` after provisioning.\n"]
     pub fn additional_detail_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_detail_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_detail_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
     pub fn component(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentElRef> {
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElComponentElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.component", self.base))
     }
 }
@@ -5159,7 +5549,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef {
             shared: shared,
             base: base.to_string(),
@@ -5248,7 +5641,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef {
             shared: shared,
             base: base.to_string(),
@@ -5391,9 +5787,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestination
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl {
-    type O =
-        BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5404,10 +5803,14 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElInbound
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl
+    {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -5415,16 +5818,20 @@ impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestin
     }
 }
 
-pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef {
+pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef {
+impl Ref
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef {
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef
+    {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef {
             shared: shared,
             base: base.to_string(),
@@ -5470,8 +5877,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortR
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5482,10 +5893,13 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElInbound
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -5532,7 +5946,9 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderEl {
     destination_addresses: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     destination_port_ranges: Option<
-        ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl>,
+        ListField<
+            Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     protocol: Option<PrimField<String>>,
@@ -5540,7 +5956,9 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderEl {
     source_addresses: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_port_ranges: Option<
-        ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl>,
+        ListField<
+            Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl,
+        >,
     >,
 }
 
@@ -5582,7 +6000,11 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderEl {
     #[doc = "Set the field `source_port_ranges`.\n"]
     pub fn set_source_port_ranges(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesEl,
+            >,
+        >,
     ) -> Self {
         self.source_port_ranges = Some(v.into());
         self
@@ -5621,7 +6043,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -5636,14 +6061,22 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `destination_addresses` after provisioning.\n"]
     pub fn destination_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port_ranges` after provisioning.\n"]
     pub fn destination_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElDestinationPortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_port_ranges", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -5653,19 +6086,28 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `source_addresses` after provisioning.\n"]
     pub fn source_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.source_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_port_ranges` after provisioning.\n"]
     pub fn source_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElSourcePortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_port_ranges", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl {
+pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     from: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5686,9 +6128,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinatio
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl {
-    type O =
-        BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5699,10 +6144,14 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboun
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl
+    {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -5710,16 +6159,20 @@ impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDesti
     }
 }
 
-pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
+pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
+impl Ref
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef
+    {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
             shared: shared,
             base: base.to_string(),
@@ -5765,8 +6218,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePort
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5777,10 +6234,13 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboun
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -5793,11 +6253,14 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSour
     base: String,
 }
 
-impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef {
+impl Ref
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef {
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef
+    {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef {
             shared: shared,
             base: base.to_string(),
@@ -5877,7 +6340,11 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderEl {
     #[doc = "Set the field `source_port_ranges`.\n"]
     pub fn set_source_port_ranges(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesEl,
+            >,
+        >,
     ) -> Self {
         self.source_port_ranges = Some(v.into());
         self
@@ -5934,14 +6401,22 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `destination_addresses` after provisioning.\n"]
     pub fn destination_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port_ranges` after provisioning.\n"]
     pub fn destination_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElDestinationPortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_port_ranges", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -5951,14 +6426,22 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `source_addresses` after provisioning.\n"]
     pub fn source_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.source_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_port_ranges` after provisioning.\n"]
     pub fn source_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElSourcePortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_port_ranges", self.base),
+        )
     }
 }
 
@@ -6103,17 +6586,26 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `destination_cidr` after provisioning.\n"]
     pub fn destination_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_prefix_list_id` after provisioning.\n"]
     pub fn destination_prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `egress_only_internet_gateway_id` after provisioning.\n"]
     pub fn egress_only_internet_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.egress_only_internet_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.egress_only_internet_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
@@ -6128,12 +6620,18 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `nat_gateway_id` after provisioning.\n"]
     pub fn nat_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.nat_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.nat_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin` after provisioning.\n"]
@@ -6143,12 +6641,18 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_peering_connection_id` after provisioning.\n"]
     pub fn vpc_peering_connection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_peering_connection_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_peering_connection_id", self.base),
+        )
     }
 }
 
@@ -6174,8 +6678,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRan
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -6189,7 +6697,9 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurit
 pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl {}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -6237,7 +6747,9 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleEl 
     #[serde(skip_serializing_if = "Option::is_none")]
     direction: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    port_range: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl>>,
+    port_range: Option<
+        ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix_list_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6262,7 +6774,11 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleEl {
     #[doc = "Set the field `port_range`.\n"]
     pub fn set_port_range(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeEl,
+            >,
+        >,
     ) -> Self {
         self.port_range = Some(v.into());
         self
@@ -6349,13 +6865,17 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElRef {
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
     pub fn port_range(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeElRef> {
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElPortRangeElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -6365,7 +6885,10 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElRef {
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.base),
+        )
     }
 }
 
@@ -6429,7 +6952,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -6518,7 +7044,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElSubnetElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElSubnetElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElSubnetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElSubnetElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElSubnetElRef {
             shared: shared,
             base: base.to_string(),
@@ -6701,8 +7230,12 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRo
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -6713,10 +7246,13 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisForwardPathComponentsElTransit
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {}
+pub struct BuildEc2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {
+}
 
 impl BuildEc2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl {
             attachment_id: core::default::Default::default(),
             destination_cidr: core::default::Default::default(),
@@ -6753,17 +7289,26 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRo
 
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_cidr` after provisioning.\n"]
     pub fn destination_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
@@ -6773,7 +7318,10 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRo
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `route_origin` after provisioning.\n"]
@@ -6847,7 +7395,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -6881,21 +7432,27 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     acl_rule: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    additional_details: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsEl>>,
+    additional_details:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     attached_to: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     component: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_vpc: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElDestinationVpcEl>>,
+    destination_vpc:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElDestinationVpcEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    inbound_header: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderEl>>,
+    inbound_header:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    outbound_header: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderEl>>,
+    outbound_header:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    route_table_route: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteEl>>,
+    route_table_route:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    security_group_rule: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleEl>>,
+    security_group_rule:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     sequence_number: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6903,7 +7460,8 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElSubnetEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    transit_gateway: Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayEl>>,
+    transit_gateway:
+        Option<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     transit_gateway_route_table_route: Option<
         ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl>,
@@ -7030,14 +7588,21 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsEl {
     #[doc = "Set the field `transit_gateway_route_table_route`.\n"]
     pub fn set_transit_gateway_route_table_route(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteEl,
+            >,
+        >,
     ) -> Self {
         self.transit_gateway_route_table_route = Some(v.into());
         self
     }
 
     #[doc = "Set the field `vpc`.\n"]
-    pub fn set_vpc(mut self, v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcEl>>) -> Self {
+    pub fn set_vpc(
+        mut self,
+        v: impl Into<ListField<Ec2NetworkInsightsAnalysisForwardPathComponentsElVpcEl>>,
+    ) -> Self {
         self.vpc = Some(v.into());
         self
     }
@@ -7085,7 +7650,10 @@ pub struct Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
         Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
             shared: shared,
             base: base.to_string(),
@@ -7099,59 +7667,98 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
     }
 
     #[doc = "Get a reference to the value of field `acl_rule` after provisioning.\n"]
-    pub fn acl_rule(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef> {
+    pub fn acl_rule(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAclRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.acl_rule", self.base))
     }
 
     #[doc = "Get a reference to the value of field `additional_details` after provisioning.\n"]
-    pub fn additional_details(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_details", self.base))
+    pub fn additional_details(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAdditionalDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attached_to` after provisioning.\n"]
-    pub fn attached_to(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef> {
+    pub fn attached_to(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElAttachedToElRef> {
         ListRef::new(self.shared().clone(), format!("{}.attached_to", self.base))
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
-    pub fn component(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef> {
+    pub fn component(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElComponentElRef> {
         ListRef::new(self.shared().clone(), format!("{}.component", self.base))
     }
 
     #[doc = "Get a reference to the value of field `destination_vpc` after provisioning.\n"]
-    pub fn destination_vpc(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElDestinationVpcElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_vpc", self.base))
+    pub fn destination_vpc(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElDestinationVpcElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_vpc", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inbound_header` after provisioning.\n"]
-    pub fn inbound_header(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inbound_header", self.base))
+    pub fn inbound_header(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElInboundHeaderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inbound_header", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outbound_header` after provisioning.\n"]
-    pub fn outbound_header(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.outbound_header", self.base))
+    pub fn outbound_header(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElOutboundHeaderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.outbound_header", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `route_table_route` after provisioning.\n"]
-    pub fn route_table_route(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.route_table_route", self.base))
+    pub fn route_table_route(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElRouteTableRouteElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.route_table_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_rule` after provisioning.\n"]
     pub fn security_group_rule(
         &self,
     ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElSecurityGroupRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_rule", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_rule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sequence_number` after provisioning.\n"]
     pub fn sequence_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sequence_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sequence_number", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_vpc` after provisioning.\n"]
-    pub fn source_vpc(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef> {
+    pub fn source_vpc(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElSourceVpcElRef> {
         ListRef::new(self.shared().clone(), format!("{}.source_vpc", self.base))
     }
 
@@ -7161,15 +7768,24 @@ impl Ec2NetworkInsightsAnalysisForwardPathComponentsElRef {
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway` after provisioning.\n"]
-    pub fn transit_gateway(&self) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway", self.base))
+    pub fn transit_gateway(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_route` after provisioning.\n"]
     pub fn transit_gateway_route_table_route(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_route_table_route", self.base))
+    ) -> ListRef<Ec2NetworkInsightsAnalysisForwardPathComponentsElTransitGatewayRouteTableRouteElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_route_table_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc` after provisioning.\n"]
@@ -7263,7 +7879,8 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     egress: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    port_range: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElPortRangeEl>>,
+    port_range:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElPortRangeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     protocol: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7346,7 +7963,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -7370,7 +7990,9 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
-    pub fn port_range(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElPortRangeElRef> {
+    pub fn port_range(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElPortRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 
@@ -7420,8 +8042,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponen
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -7435,7 +8061,9 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElAddition
 pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl {}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl {
             arn: core::default::Default::default(),
             id: core::default::Default::default(),
@@ -7487,7 +8115,9 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     additional_detail_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    component: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl>>,
+    component: Option<
+        ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl>,
+    >,
 }
 
 impl Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsEl {
@@ -7500,7 +8130,11 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsEl {
     #[doc = "Set the field `component`.\n"]
     pub fn set_component(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentEl,
+            >,
+        >,
     ) -> Self {
         self.component = Some(v.into());
         self
@@ -7554,13 +8188,17 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElRef {
 
     #[doc = "Get a reference to the value of field `additional_detail_type` after provisioning.\n"]
     pub fn additional_detail_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_detail_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_detail_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
     pub fn component(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentElRef> {
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElComponentElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.component", self.base))
     }
 }
@@ -7625,7 +8263,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef {
             shared: shared,
             base: base.to_string(),
@@ -7714,7 +8355,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef {
             shared: shared,
             base: base.to_string(),
@@ -7803,7 +8447,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -7854,8 +8501,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationP
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -7866,10 +8517,14 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundH
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl
+    {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -7877,16 +8532,20 @@ impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestina
     }
 }
 
-pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef {
+pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef {
+impl Ref
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef {
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef
+    {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef {
             shared: shared,
             base: base.to_string(),
@@ -7932,8 +8591,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRa
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -7944,10 +8607,13 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundH
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {
+}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -7994,7 +8660,9 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderEl {
     destination_addresses: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     destination_port_ranges: Option<
-        ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl>,
+        ListField<
+            Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     protocol: Option<PrimField<String>>,
@@ -8002,7 +8670,9 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderEl {
     source_addresses: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_port_ranges: Option<
-        ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl>,
+        ListField<
+            Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl,
+        >,
     >,
 }
 
@@ -8044,7 +8714,11 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderEl {
     #[doc = "Set the field `source_port_ranges`.\n"]
     pub fn set_source_port_ranges(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesEl,
+            >,
+        >,
     ) -> Self {
         self.source_port_ranges = Some(v.into());
         self
@@ -8083,7 +8757,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -8098,14 +8775,22 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `destination_addresses` after provisioning.\n"]
     pub fn destination_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port_ranges` after provisioning.\n"]
     pub fn destination_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElDestinationPortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_port_ranges", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -8115,14 +8800,21 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `source_addresses` after provisioning.\n"]
     pub fn source_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.source_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_port_ranges` after provisioning.\n"]
     pub fn source_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_port_ranges", self.base))
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElSourcePortRangesElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_port_ranges", self.base),
+        )
     }
 }
 
@@ -8148,9 +8840,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestination
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl {
-    type O =
-        BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -8161,10 +8856,14 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutbound
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl
+    {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -8172,16 +8871,20 @@ impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestin
     }
 }
 
-pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
+pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
+impl Ref
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef
+    {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef {
             shared: shared,
             base: base.to_string(),
@@ -8227,8 +8930,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortR
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -8239,10 +8946,13 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutbound
     }
 }
 
-pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl {}
+pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl
+{}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -8289,7 +8999,9 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderEl {
     destination_addresses: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     destination_port_ranges: Option<
-        ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl>,
+        ListField<
+            Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     protocol: Option<PrimField<String>>,
@@ -8297,7 +9009,9 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderEl {
     source_addresses: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_port_ranges: Option<
-        ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl>,
+        ListField<
+            Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl,
+        >,
     >,
 }
 
@@ -8339,7 +9053,11 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderEl {
     #[doc = "Set the field `source_port_ranges`.\n"]
     pub fn set_source_port_ranges(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesEl,
+            >,
+        >,
     ) -> Self {
         self.source_port_ranges = Some(v.into());
         self
@@ -8378,7 +9096,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -8393,14 +9114,22 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `destination_addresses` after provisioning.\n"]
     pub fn destination_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_port_ranges` after provisioning.\n"]
     pub fn destination_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElDestinationPortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_port_ranges", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -8410,14 +9139,22 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef {
 
     #[doc = "Get a reference to the value of field `source_addresses` after provisioning.\n"]
     pub fn source_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.source_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_port_ranges` after provisioning.\n"]
     pub fn source_port_ranges(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_port_ranges", self.base))
+    ) -> ListRef<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElSourcePortRangesElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_port_ranges", self.base),
+        )
     }
 }
 
@@ -8562,17 +9299,26 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `destination_cidr` after provisioning.\n"]
     pub fn destination_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_prefix_list_id` after provisioning.\n"]
     pub fn destination_prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `egress_only_internet_gateway_id` after provisioning.\n"]
     pub fn egress_only_internet_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.egress_only_internet_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.egress_only_internet_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
@@ -8587,12 +9333,18 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `nat_gateway_id` after provisioning.\n"]
     pub fn nat_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.nat_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.nat_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin` after provisioning.\n"]
@@ -8602,12 +9354,18 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteElRef {
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_peering_connection_id` after provisioning.\n"]
     pub fn vpc_peering_connection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_peering_connection_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_peering_connection_id", self.base),
+        )
     }
 }
 
@@ -8633,8 +9391,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRang
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -8648,7 +9410,9 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurity
 pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl {}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl {
             from: core::default::Default::default(),
             to: core::default::Default::default(),
@@ -8696,7 +9460,9 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     direction: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    port_range: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl>>,
+    port_range: Option<
+        ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix_list_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -8721,7 +9487,11 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleEl {
     #[doc = "Set the field `port_range`.\n"]
     pub fn set_port_range(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeEl,
+            >,
+        >,
     ) -> Self {
         self.port_range = Some(v.into());
         self
@@ -8808,13 +9578,17 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElRef {
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
     pub fn port_range(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeElRef> {
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElPortRangeElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
@@ -8824,7 +9598,10 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElRef {
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.base),
+        )
     }
 }
 
@@ -8888,7 +9665,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -8977,7 +9757,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElSubnetElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElSubnetElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElSubnetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElSubnetElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElSubnetElRef {
             shared: shared,
             base: base.to_string(),
@@ -9066,7 +9849,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef {
             shared: shared,
             base: base.to_string(),
@@ -9157,8 +9943,12 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRou
     }
 }
 
-impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl {
-    type O = BlockAssignable<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl>;
+impl ToListMappable
+    for Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl
+{
+    type O = BlockAssignable<
+        Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -9172,7 +9962,9 @@ impl ToListMappable for Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitG
 pub struct BuildEc2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl {}
 
 impl BuildEc2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl {
-    pub fn build(self) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl {
+    pub fn build(
+        self,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl {
             attachment_id: core::default::Default::default(),
             destination_cidr: core::default::Default::default(),
@@ -9209,17 +10001,26 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRou
 
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_cidr` after provisioning.\n"]
     pub fn destination_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prefix_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
@@ -9229,7 +10030,10 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRou
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `route_origin` after provisioning.\n"]
@@ -9303,7 +10107,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -9337,21 +10144,27 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     acl_rule: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    additional_details: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsEl>>,
+    additional_details:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     attached_to: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     component: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_vpc: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcEl>>,
+    destination_vpc:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    inbound_header: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderEl>>,
+    inbound_header:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    outbound_header: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderEl>>,
+    outbound_header:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    route_table_route: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteEl>>,
+    route_table_route:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    security_group_rule: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleEl>>,
+    security_group_rule:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     sequence_number: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -9359,7 +10172,8 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElSubnetEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    transit_gateway: Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayEl>>,
+    transit_gateway:
+        Option<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     transit_gateway_route_table_route: Option<
         ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl>,
@@ -9486,14 +10300,21 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsEl {
     #[doc = "Set the field `transit_gateway_route_table_route`.\n"]
     pub fn set_transit_gateway_route_table_route(
         mut self,
-        v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl>>,
+        v: impl Into<
+            ListField<
+                Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteEl,
+            >,
+        >,
     ) -> Self {
         self.transit_gateway_route_table_route = Some(v.into());
         self
     }
 
     #[doc = "Set the field `vpc`.\n"]
-    pub fn set_vpc(mut self, v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcEl>>) -> Self {
+    pub fn set_vpc(
+        mut self,
+        v: impl Into<ListField<Ec2NetworkInsightsAnalysisReturnPathComponentsElVpcEl>>,
+    ) -> Self {
         self.vpc = Some(v.into());
         self
     }
@@ -9541,7 +10362,10 @@ pub struct Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
 }
 
 impl Ref for Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
-    fn new(shared: StackShared, base: String) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
         Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
             shared: shared,
             base: base.to_string(),
@@ -9555,57 +10379,98 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
     }
 
     #[doc = "Get a reference to the value of field `acl_rule` after provisioning.\n"]
-    pub fn acl_rule(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef> {
+    pub fn acl_rule(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAclRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.acl_rule", self.base))
     }
 
     #[doc = "Get a reference to the value of field `additional_details` after provisioning.\n"]
-    pub fn additional_details(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_details", self.base))
+    pub fn additional_details(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAdditionalDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attached_to` after provisioning.\n"]
-    pub fn attached_to(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef> {
+    pub fn attached_to(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElAttachedToElRef> {
         ListRef::new(self.shared().clone(), format!("{}.attached_to", self.base))
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
-    pub fn component(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef> {
+    pub fn component(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElComponentElRef> {
         ListRef::new(self.shared().clone(), format!("{}.component", self.base))
     }
 
     #[doc = "Get a reference to the value of field `destination_vpc` after provisioning.\n"]
-    pub fn destination_vpc(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_vpc", self.base))
+    pub fn destination_vpc(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElDestinationVpcElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_vpc", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inbound_header` after provisioning.\n"]
-    pub fn inbound_header(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inbound_header", self.base))
+    pub fn inbound_header(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElInboundHeaderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inbound_header", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outbound_header` after provisioning.\n"]
-    pub fn outbound_header(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.outbound_header", self.base))
+    pub fn outbound_header(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElOutboundHeaderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.outbound_header", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `route_table_route` after provisioning.\n"]
-    pub fn route_table_route(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.route_table_route", self.base))
+    pub fn route_table_route(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElRouteTableRouteElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.route_table_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_rule` after provisioning.\n"]
-    pub fn security_group_rule(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_rule", self.base))
+    pub fn security_group_rule(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElSecurityGroupRuleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_rule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sequence_number` after provisioning.\n"]
     pub fn sequence_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sequence_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sequence_number", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_vpc` after provisioning.\n"]
-    pub fn source_vpc(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef> {
+    pub fn source_vpc(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElSourceVpcElRef> {
         ListRef::new(self.shared().clone(), format!("{}.source_vpc", self.base))
     }
 
@@ -9615,15 +10480,24 @@ impl Ec2NetworkInsightsAnalysisReturnPathComponentsElRef {
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway` after provisioning.\n"]
-    pub fn transit_gateway(&self) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway", self.base))
+    pub fn transit_gateway(
+        &self,
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_route` after provisioning.\n"]
     pub fn transit_gateway_route_table_route(
         &self,
-    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_route_table_route", self.base))
+    ) -> ListRef<Ec2NetworkInsightsAnalysisReturnPathComponentsElTransitGatewayRouteTableRouteElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_route_table_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc` after provisioning.\n"]

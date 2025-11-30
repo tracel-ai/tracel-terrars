@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ImagebuilderContainerRecipeData {
@@ -82,7 +82,8 @@ impl ImagebuilderContainerRecipe {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -95,7 +96,7 @@ impl ImagebuilderContainerRecipe {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -106,12 +107,22 @@ impl ImagebuilderContainerRecipe {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -151,8 +162,7 @@ impl ImagebuilderContainerRecipe {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -177,14 +187,17 @@ impl ImagebuilderContainerRecipe {
     }
 
     #[doc = "Set the field `component`.\n"]
-    pub fn set_component(self, v: impl Into<BlockAssignable<ImagebuilderContainerRecipeComponentEl>>) -> Self {
+    pub fn set_component(
+        self,
+        v: impl Into<BlockAssignable<ImagebuilderContainerRecipeComponentEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().component = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.component = Some(d);
-            },
+            }
         }
         self
     }
@@ -197,10 +210,10 @@ impl ImagebuilderContainerRecipe {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -213,10 +226,10 @@ impl ImagebuilderContainerRecipe {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_repository = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_repository = Some(d);
-            },
+            }
         }
         self
     }
@@ -228,32 +241,50 @@ impl ImagebuilderContainerRecipe {
 
     #[doc = "Get a reference to the value of field `container_type` after provisioning.\n"]
     pub fn container_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dockerfile_template_data` after provisioning.\n"]
     pub fn dockerfile_template_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dockerfile_template_data", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dockerfile_template_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dockerfile_template_uri` after provisioning.\n"]
     pub fn dockerfile_template_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dockerfile_template_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dockerfile_template_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encrypted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encrypted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -263,83 +294,130 @@ impl ImagebuilderContainerRecipe {
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_image` after provisioning.\n"]
     pub fn parent_image(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_image", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_image", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_override` after provisioning.\n"]
     pub fn platform_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_override", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_override", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `working_directory` after provisioning.\n"]
     pub fn working_directory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.working_directory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.working_directory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
     pub fn component(&self) -> ListRef<ImagebuilderContainerRecipeComponentElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.component", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.component", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_configuration` after provisioning.\n"]
-    pub fn instance_configuration(&self) -> ListRef<ImagebuilderContainerRecipeInstanceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_configuration", self.extract_ref()))
+    pub fn instance_configuration(
+        &self,
+    ) -> ListRef<ImagebuilderContainerRecipeInstanceConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_repository` after provisioning.\n"]
     pub fn target_repository(&self) -> ListRef<ImagebuilderContainerRecipeTargetRepositoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_repository", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_repository", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ImagebuilderContainerRecipe {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ImagebuilderContainerRecipe { }
+impl Resource for ImagebuilderContainerRecipe {}
 
 impl ToListMappable for ImagebuilderContainerRecipe {
     type O = ListRef<ImagebuilderContainerRecipeRef>;
@@ -418,10 +496,7 @@ pub struct ImagebuilderContainerRecipeRef {
 
 impl Ref for ImagebuilderContainerRecipeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -441,32 +516,50 @@ impl ImagebuilderContainerRecipeRef {
 
     #[doc = "Get a reference to the value of field `container_type` after provisioning.\n"]
     pub fn container_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dockerfile_template_data` after provisioning.\n"]
     pub fn dockerfile_template_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dockerfile_template_data", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dockerfile_template_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dockerfile_template_uri` after provisioning.\n"]
     pub fn dockerfile_template_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dockerfile_template_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dockerfile_template_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encrypted", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encrypted", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -476,73 +569,116 @@ impl ImagebuilderContainerRecipeRef {
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_image` after provisioning.\n"]
     pub fn parent_image(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_image", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_image", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_override` after provisioning.\n"]
     pub fn platform_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_override", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_override", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `working_directory` after provisioning.\n"]
     pub fn working_directory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.working_directory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.working_directory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `component` after provisioning.\n"]
     pub fn component(&self) -> ListRef<ImagebuilderContainerRecipeComponentElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.component", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.component", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_configuration` after provisioning.\n"]
-    pub fn instance_configuration(&self) -> ListRef<ImagebuilderContainerRecipeInstanceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_configuration", self.extract_ref()))
+    pub fn instance_configuration(
+        &self,
+    ) -> ListRef<ImagebuilderContainerRecipeInstanceConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_repository` after provisioning.\n"]
     pub fn target_repository(&self) -> ListRef<ImagebuilderContainerRecipeTargetRepositoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_repository", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_repository", self.extract_ref()),
+        )
     }
 }
 
@@ -552,7 +688,7 @@ pub struct ImagebuilderContainerRecipeComponentElParameterEl {
     value: PrimField<String>,
 }
 
-impl ImagebuilderContainerRecipeComponentElParameterEl { }
+impl ImagebuilderContainerRecipeComponentElParameterEl {}
 
 impl ToListMappable for ImagebuilderContainerRecipeComponentElParameterEl {
     type O = BlockAssignable<ImagebuilderContainerRecipeComponentElParameterEl>;
@@ -588,7 +724,10 @@ pub struct ImagebuilderContainerRecipeComponentElParameterElRef {
 }
 
 impl Ref for ImagebuilderContainerRecipeComponentElParameterElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderContainerRecipeComponentElParameterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderContainerRecipeComponentElParameterElRef {
         ImagebuilderContainerRecipeComponentElParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -634,10 +773,10 @@ impl ImagebuilderContainerRecipeComponentEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -691,7 +830,10 @@ impl ImagebuilderContainerRecipeComponentElRef {
 
     #[doc = "Get a reference to the value of field `component_arn` after provisioning.\n"]
     pub fn component_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.component_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.component_arn", self.base),
+        )
     }
 }
 
@@ -765,8 +907,12 @@ impl ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl
     }
 }
 
-impl ToListMappable for ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl {
-    type O = BlockAssignable<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl>;
+impl ToListMappable
+    for ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl
+{
+    type O = BlockAssignable<
+        ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -780,7 +926,9 @@ impl ToListMappable for ImagebuilderContainerRecipeInstanceConfigurationElBlockD
 pub struct BuildImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl {}
 
 impl BuildImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl {
-    pub fn build(self) -> ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl {
+    pub fn build(
+        self,
+    ) -> ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl {
         ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl {
             delete_on_termination: core::default::Default::default(),
             encrypted: core::default::Default::default(),
@@ -818,7 +966,10 @@ impl ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl
 
     #[doc = "Get a reference to the value of field `delete_on_termination` after provisioning.\n"]
     pub fn delete_on_termination(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_on_termination", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_on_termination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
@@ -859,7 +1010,9 @@ impl ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl
 
 #[derive(Serialize, Default)]
 struct ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElDynamic {
-    ebs: Option<DynamicBlock<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl>>,
+    ebs: Option<
+        DynamicBlock<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -897,22 +1050,27 @@ impl ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl {
     #[doc = "Set the field `ebs`.\n"]
     pub fn set_ebs(
         mut self,
-        v: impl Into<BlockAssignable<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl {
-    type O = BlockAssignable<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl>;
+    type O =
+        BlockAssignable<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -975,7 +1133,10 @@ impl ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElRef {
     }
 
     #[doc = "Get a reference to the value of field `ebs` after provisioning.\n"]
-    pub fn ebs(&self) -> ListRef<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsElRef> {
+    pub fn ebs(
+        &self,
+    ) -> ListRef<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingElEbsElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.ebs", self.base))
     }
 }
@@ -992,7 +1153,8 @@ pub struct ImagebuilderContainerRecipeInstanceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     image: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    block_device_mapping: Option<Vec<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl>>,
+    block_device_mapping:
+        Option<Vec<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl>>,
     dynamic: ImagebuilderContainerRecipeInstanceConfigurationElDynamic,
 }
 
@@ -1006,15 +1168,17 @@ impl ImagebuilderContainerRecipeInstanceConfigurationEl {
     #[doc = "Set the field `block_device_mapping`.\n"]
     pub fn set_block_device_mapping(
         mut self,
-        v: impl Into<BlockAssignable<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl>>,
+        v: impl Into<
+            BlockAssignable<ImagebuilderContainerRecipeInstanceConfigurationElBlockDeviceMappingEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.block_device_mapping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.block_device_mapping = Some(d);
-            },
+            }
         }
         self
     }
@@ -1050,7 +1214,10 @@ pub struct ImagebuilderContainerRecipeInstanceConfigurationElRef {
 }
 
 impl Ref for ImagebuilderContainerRecipeInstanceConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> ImagebuilderContainerRecipeInstanceConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ImagebuilderContainerRecipeInstanceConfigurationElRef {
         ImagebuilderContainerRecipeInstanceConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1075,7 +1242,7 @@ pub struct ImagebuilderContainerRecipeTargetRepositoryEl {
     service: PrimField<String>,
 }
 
-impl ImagebuilderContainerRecipeTargetRepositoryEl { }
+impl ImagebuilderContainerRecipeTargetRepositoryEl {}
 
 impl ToListMappable for ImagebuilderContainerRecipeTargetRepositoryEl {
     type O = BlockAssignable<ImagebuilderContainerRecipeTargetRepositoryEl>;
@@ -1126,7 +1293,10 @@ impl ImagebuilderContainerRecipeTargetRepositoryElRef {
 
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]
@@ -1138,6 +1308,7 @@ impl ImagebuilderContainerRecipeTargetRepositoryElRef {
 #[derive(Serialize, Default)]
 struct ImagebuilderContainerRecipeDynamic {
     component: Option<DynamicBlock<ImagebuilderContainerRecipeComponentEl>>,
-    instance_configuration: Option<DynamicBlock<ImagebuilderContainerRecipeInstanceConfigurationEl>>,
+    instance_configuration:
+        Option<DynamicBlock<ImagebuilderContainerRecipeInstanceConfigurationEl>>,
     target_repository: Option<DynamicBlock<ImagebuilderContainerRecipeTargetRepositoryEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketLoggingData {
@@ -65,7 +65,8 @@ impl S3BucketLogging {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl S3BucketLogging {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl S3BucketLogging {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,22 +121,24 @@ impl S3BucketLogging {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `target_grant`.\n"]
-    pub fn set_target_grant(self, v: impl Into<BlockAssignable<S3BucketLoggingTargetGrantEl>>) -> Self {
+    pub fn set_target_grant(
+        self,
+        v: impl Into<BlockAssignable<S3BucketLoggingTargetGrantEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_grant = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_grant = Some(d);
-            },
+            }
         }
         self
     }
@@ -138,22 +151,28 @@ impl S3BucketLogging {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_object_key_format = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_object_key_format = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expected_bucket_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expected_bucket_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -161,35 +180,50 @@ impl S3BucketLogging {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_bucket` after provisioning.\n"]
     pub fn target_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_prefix` after provisioning.\n"]
     pub fn target_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_object_key_format` after provisioning.\n"]
     pub fn target_object_key_format(&self) -> ListRef<S3BucketLoggingTargetObjectKeyFormatElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_object_key_format", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_object_key_format", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketLogging {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketLogging { }
+impl Resource for S3BucketLogging {}
 
 impl ToListMappable for S3BucketLogging {
     type O = ListRef<S3BucketLoggingRef>;
@@ -257,10 +291,7 @@ pub struct S3BucketLoggingRef {
 
 impl Ref for S3BucketLoggingRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -275,12 +306,18 @@ impl S3BucketLoggingRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expected_bucket_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expected_bucket_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -288,25 +325,36 @@ impl S3BucketLoggingRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_bucket` after provisioning.\n"]
     pub fn target_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_prefix` after provisioning.\n"]
     pub fn target_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_object_key_format` after provisioning.\n"]
     pub fn target_object_key_format(&self) -> ListRef<S3BucketLoggingTargetObjectKeyFormatElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_object_key_format", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_object_key_format", self.extract_ref()),
+        )
     }
 }
 
@@ -396,7 +444,10 @@ impl S3BucketLoggingTargetGrantElGranteeElRef {
 
     #[doc = "Get a reference to the value of field `email_address` after provisioning.\n"]
     pub fn email_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -430,14 +481,17 @@ pub struct S3BucketLoggingTargetGrantEl {
 
 impl S3BucketLoggingTargetGrantEl {
     #[doc = "Set the field `grantee`.\n"]
-    pub fn set_grantee(mut self, v: impl Into<BlockAssignable<S3BucketLoggingTargetGrantElGranteeEl>>) -> Self {
+    pub fn set_grantee(
+        mut self,
+        v: impl Into<BlockAssignable<S3BucketLoggingTargetGrantElGranteeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.grantee = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.grantee = Some(d);
-            },
+            }
         }
         self
     }
@@ -505,7 +559,7 @@ pub struct S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl {
     partition_date_source: PrimField<String>,
 }
 
-impl S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl { }
+impl S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl {}
 
 impl ToListMappable for S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl {
     type O = BlockAssignable<S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl>;
@@ -538,7 +592,10 @@ pub struct S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef {
 }
 
 impl Ref for S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef {
         S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef {
             shared: shared,
             base: base.to_string(),
@@ -553,14 +610,17 @@ impl S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef {
 
     #[doc = "Get a reference to the value of field `partition_date_source` after provisioning.\n"]
     pub fn partition_date_source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_date_source", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_date_source", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct S3BucketLoggingTargetObjectKeyFormatElSimplePrefixEl {}
 
-impl S3BucketLoggingTargetObjectKeyFormatElSimplePrefixEl { }
+impl S3BucketLoggingTargetObjectKeyFormatElSimplePrefixEl {}
 
 impl ToListMappable for S3BucketLoggingTargetObjectKeyFormatElSimplePrefixEl {
     type O = BlockAssignable<S3BucketLoggingTargetObjectKeyFormatElSimplePrefixEl>;
@@ -588,7 +648,10 @@ pub struct S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef {
 }
 
 impl Ref for S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef {
         S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef {
             shared: shared,
             base: base.to_string(),
@@ -604,7 +667,8 @@ impl S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef {
 
 #[derive(Serialize, Default)]
 struct S3BucketLoggingTargetObjectKeyFormatElDynamic {
-    partitioned_prefix: Option<DynamicBlock<S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl>>,
+    partitioned_prefix:
+        Option<DynamicBlock<S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixEl>>,
     simple_prefix: Option<DynamicBlock<S3BucketLoggingTargetObjectKeyFormatElSimplePrefixEl>>,
 }
 
@@ -626,10 +690,10 @@ impl S3BucketLoggingTargetObjectKeyFormatEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.partitioned_prefix = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.partitioned_prefix = Some(d);
-            },
+            }
         }
         self
     }
@@ -642,10 +706,10 @@ impl S3BucketLoggingTargetObjectKeyFormatEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.simple_prefix = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.simple_prefix = Some(d);
-            },
+            }
         }
         self
     }
@@ -695,13 +759,23 @@ impl S3BucketLoggingTargetObjectKeyFormatElRef {
     }
 
     #[doc = "Get a reference to the value of field `partitioned_prefix` after provisioning.\n"]
-    pub fn partitioned_prefix(&self) -> ListRef<S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.partitioned_prefix", self.base))
+    pub fn partitioned_prefix(
+        &self,
+    ) -> ListRef<S3BucketLoggingTargetObjectKeyFormatElPartitionedPrefixElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partitioned_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `simple_prefix` after provisioning.\n"]
-    pub fn simple_prefix(&self) -> ListRef<S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.simple_prefix", self.base))
+    pub fn simple_prefix(
+        &self,
+    ) -> ListRef<S3BucketLoggingTargetObjectKeyFormatElSimplePrefixElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.simple_prefix", self.base),
+        )
     }
 }
 

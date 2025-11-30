@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamSamlProviderData {
@@ -62,7 +62,10 @@ impl DataIamSamlProvider {
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -72,32 +75,48 @@ impl DataIamSamlProvider {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_metadata_document` after provisioning.\n"]
     pub fn saml_metadata_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.saml_metadata_document", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.saml_metadata_document", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
     pub fn valid_until(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_until", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_until", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamSamlProvider {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamSamlProvider { }
+impl Datasource for DataIamSamlProvider {}
 
 impl ToListMappable for DataIamSamlProvider {
     type O = ListRef<DataIamSamlProviderRef>;
@@ -154,10 +173,7 @@ pub struct DataIamSamlProviderRef {
 
 impl Ref for DataIamSamlProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -177,7 +193,10 @@ impl DataIamSamlProviderRef {
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -187,21 +206,33 @@ impl DataIamSamlProviderRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_metadata_document` after provisioning.\n"]
     pub fn saml_metadata_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.saml_metadata_document", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.saml_metadata_document", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
     pub fn valid_until(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_until", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_until", self.extract_ref()),
+        )
     }
 }

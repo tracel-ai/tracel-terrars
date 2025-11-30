@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Sesv2AccountVdmAttributesData {
@@ -61,7 +61,8 @@ impl Sesv2AccountVdmAttributes {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl Sesv2AccountVdmAttributes {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl Sesv2AccountVdmAttributes {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,8 +111,7 @@ impl Sesv2AccountVdmAttributes {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -115,10 +125,10 @@ impl Sesv2AccountVdmAttributes {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dashboard_attributes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dashboard_attributes = Some(d);
-            },
+            }
         }
         self
     }
@@ -131,10 +141,10 @@ impl Sesv2AccountVdmAttributes {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().guardian_attributes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.guardian_attributes = Some(d);
-            },
+            }
         }
         self
     }
@@ -144,35 +154,52 @@ impl Sesv2AccountVdmAttributes {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vdm_enabled` after provisioning.\n"]
     pub fn vdm_enabled(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vdm_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vdm_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dashboard_attributes` after provisioning.\n"]
-    pub fn dashboard_attributes(&self) -> ListRef<Sesv2AccountVdmAttributesDashboardAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dashboard_attributes", self.extract_ref()))
+    pub fn dashboard_attributes(
+        &self,
+    ) -> ListRef<Sesv2AccountVdmAttributesDashboardAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dashboard_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardian_attributes` after provisioning.\n"]
     pub fn guardian_attributes(&self) -> ListRef<Sesv2AccountVdmAttributesGuardianAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardian_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardian_attributes", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Sesv2AccountVdmAttributes {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Sesv2AccountVdmAttributes { }
+impl Resource for Sesv2AccountVdmAttributes {}
 
 impl ToListMappable for Sesv2AccountVdmAttributes {
     type O = ListRef<Sesv2AccountVdmAttributesRef>;
@@ -233,10 +260,7 @@ pub struct Sesv2AccountVdmAttributesRef {
 
 impl Ref for Sesv2AccountVdmAttributesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -254,25 +278,38 @@ impl Sesv2AccountVdmAttributesRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vdm_enabled` after provisioning.\n"]
     pub fn vdm_enabled(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vdm_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vdm_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dashboard_attributes` after provisioning.\n"]
-    pub fn dashboard_attributes(&self) -> ListRef<Sesv2AccountVdmAttributesDashboardAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dashboard_attributes", self.extract_ref()))
+    pub fn dashboard_attributes(
+        &self,
+    ) -> ListRef<Sesv2AccountVdmAttributesDashboardAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dashboard_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardian_attributes` after provisioning.\n"]
     pub fn guardian_attributes(&self) -> ListRef<Sesv2AccountVdmAttributesGuardianAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardian_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardian_attributes", self.extract_ref()),
+        )
     }
 }
 
@@ -306,7 +343,9 @@ pub struct BuildSesv2AccountVdmAttributesDashboardAttributesEl {}
 
 impl BuildSesv2AccountVdmAttributesDashboardAttributesEl {
     pub fn build(self) -> Sesv2AccountVdmAttributesDashboardAttributesEl {
-        Sesv2AccountVdmAttributesDashboardAttributesEl { engagement_metrics: core::default::Default::default() }
+        Sesv2AccountVdmAttributesDashboardAttributesEl {
+            engagement_metrics: core::default::Default::default(),
+        }
     }
 }
 
@@ -331,7 +370,10 @@ impl Sesv2AccountVdmAttributesDashboardAttributesElRef {
 
     #[doc = "Get a reference to the value of field `engagement_metrics` after provisioning.\n"]
     pub fn engagement_metrics(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engagement_metrics", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engagement_metrics", self.base),
+        )
     }
 }
 
@@ -392,7 +434,10 @@ impl Sesv2AccountVdmAttributesGuardianAttributesElRef {
 
     #[doc = "Get a reference to the value of field `optimized_shared_delivery` after provisioning.\n"]
     pub fn optimized_shared_delivery(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.optimized_shared_delivery", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.optimized_shared_delivery", self.base),
+        )
     }
 }
 

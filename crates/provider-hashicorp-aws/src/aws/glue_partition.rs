@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GluePartitionData {
@@ -65,7 +65,8 @@ impl GluePartition {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl GluePartition {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl GluePartition {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -116,39 +127,50 @@ impl GluePartition {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `storage_descriptor`.\n"]
-    pub fn set_storage_descriptor(self, v: impl Into<BlockAssignable<GluePartitionStorageDescriptorEl>>) -> Self {
+    pub fn set_storage_descriptor(
+        self,
+        v: impl Into<BlockAssignable<GluePartitionStorageDescriptorEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().storage_descriptor = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.storage_descriptor = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -158,48 +180,72 @@ impl GluePartition {
 
     #[doc = "Get a reference to the value of field `last_accessed_time` after provisioning.\n"]
     pub fn last_accessed_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_accessed_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_accessed_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_analyzed_time` after provisioning.\n"]
     pub fn last_analyzed_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_analyzed_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_analyzed_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_values` after provisioning.\n"]
     pub fn partition_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.partition_values", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partition_values", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_descriptor` after provisioning.\n"]
     pub fn storage_descriptor(&self) -> ListRef<GluePartitionStorageDescriptorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_descriptor", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_descriptor", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GluePartition {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GluePartition { }
+impl Resource for GluePartition {}
 
 impl ToListMappable for GluePartition {
     type O = ListRef<GluePartitionRef>;
@@ -267,10 +313,7 @@ pub struct GluePartitionRef {
 
 impl Ref for GluePartitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -285,17 +328,26 @@ impl GluePartitionRef {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -305,38 +357,58 @@ impl GluePartitionRef {
 
     #[doc = "Get a reference to the value of field `last_accessed_time` after provisioning.\n"]
     pub fn last_accessed_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_accessed_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_accessed_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_analyzed_time` after provisioning.\n"]
     pub fn last_analyzed_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_analyzed_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_analyzed_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_values` after provisioning.\n"]
     pub fn partition_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.partition_values", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partition_values", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_descriptor` after provisioning.\n"]
     pub fn storage_descriptor(&self) -> ListRef<GluePartitionStorageDescriptorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_descriptor", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_descriptor", self.extract_ref()),
+        )
     }
 }
 
@@ -510,7 +582,10 @@ impl GluePartitionStorageDescriptorElSerDeInfoElRef {
 
     #[doc = "Get a reference to the value of field `serialization_library` after provisioning.\n"]
     pub fn serialization_library(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.serialization_library", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.serialization_library", self.base),
+        )
     }
 }
 
@@ -532,7 +607,10 @@ impl GluePartitionStorageDescriptorElSkewedInfoEl {
     }
 
     #[doc = "Set the field `skewed_column_value_location_maps`.\n"]
-    pub fn set_skewed_column_value_location_maps(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_skewed_column_value_location_maps(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.skewed_column_value_location_maps = Some(v.into());
         self
     }
@@ -589,17 +667,26 @@ impl GluePartitionStorageDescriptorElSkewedInfoElRef {
 
     #[doc = "Get a reference to the value of field `skewed_column_names` after provisioning.\n"]
     pub fn skewed_column_names(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.skewed_column_names", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.skewed_column_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skewed_column_value_location_maps` after provisioning.\n"]
     pub fn skewed_column_value_location_maps(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.skewed_column_value_location_maps", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.skewed_column_value_location_maps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skewed_column_values` after provisioning.\n"]
     pub fn skewed_column_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.skewed_column_values", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.skewed_column_values", self.base),
+        )
     }
 }
 
@@ -609,7 +696,7 @@ pub struct GluePartitionStorageDescriptorElSortColumnsEl {
     sort_order: PrimField<f64>,
 }
 
-impl GluePartitionStorageDescriptorElSortColumnsEl { }
+impl GluePartitionStorageDescriptorElSortColumnsEl {}
 
 impl ToListMappable for GluePartitionStorageDescriptorElSortColumnsEl {
     type O = BlockAssignable<GluePartitionStorageDescriptorElSortColumnsEl>;
@@ -764,14 +851,17 @@ impl GluePartitionStorageDescriptorEl {
     }
 
     #[doc = "Set the field `columns`.\n"]
-    pub fn set_columns(mut self, v: impl Into<BlockAssignable<GluePartitionStorageDescriptorElColumnsEl>>) -> Self {
+    pub fn set_columns(
+        mut self,
+        v: impl Into<BlockAssignable<GluePartitionStorageDescriptorElColumnsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.columns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.columns = Some(d);
-            },
+            }
         }
         self
     }
@@ -784,10 +874,10 @@ impl GluePartitionStorageDescriptorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ser_de_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ser_de_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -800,10 +890,10 @@ impl GluePartitionStorageDescriptorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.skewed_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.skewed_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -816,10 +906,10 @@ impl GluePartitionStorageDescriptorEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sort_columns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sort_columns = Some(d);
-            },
+            }
         }
         self
     }
@@ -881,12 +971,18 @@ impl GluePartitionStorageDescriptorElRef {
 
     #[doc = "Get a reference to the value of field `additional_locations` after provisioning.\n"]
     pub fn additional_locations(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_locations", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_locations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_columns` after provisioning.\n"]
     pub fn bucket_columns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.bucket_columns", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bucket_columns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compressed` after provisioning.\n"]
@@ -906,12 +1002,18 @@ impl GluePartitionStorageDescriptorElRef {
 
     #[doc = "Get a reference to the value of field `number_of_buckets` after provisioning.\n"]
     pub fn number_of_buckets(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_buckets", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_buckets", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
@@ -921,7 +1023,10 @@ impl GluePartitionStorageDescriptorElRef {
 
     #[doc = "Get a reference to the value of field `stored_as_sub_directories` after provisioning.\n"]
     pub fn stored_as_sub_directories(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stored_as_sub_directories", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stored_as_sub_directories", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `columns` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockModelInvocationLoggingConfigurationData {
@@ -28,7 +28,9 @@ struct BedrockModelInvocationLoggingConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct BedrockModelInvocationLoggingConfiguration(Rc<BedrockModelInvocationLoggingConfiguration_>);
+pub struct BedrockModelInvocationLoggingConfiguration(
+    Rc<BedrockModelInvocationLoggingConfiguration_>,
+);
 
 impl BedrockModelInvocationLoggingConfiguration {
     fn shared(&self) -> &StackShared {
@@ -56,7 +58,8 @@ impl BedrockModelInvocationLoggingConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -69,7 +72,7 @@ impl BedrockModelInvocationLoggingConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -80,17 +83,26 @@ impl BedrockModelInvocationLoggingConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -104,10 +116,10 @@ impl BedrockModelInvocationLoggingConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().logging_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.logging_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -117,25 +129,36 @@ impl BedrockModelInvocationLoggingConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
-    pub fn logging_config(&self) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_config", self.extract_ref()))
+    pub fn logging_config(
+        &self,
+    ) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockModelInvocationLoggingConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockModelInvocationLoggingConfiguration { }
+impl Resource for BedrockModelInvocationLoggingConfiguration {}
 
 impl ToListMappable for BedrockModelInvocationLoggingConfiguration {
     type O = ListRef<BedrockModelInvocationLoggingConfigurationRef>;
@@ -166,19 +189,21 @@ pub struct BuildBedrockModelInvocationLoggingConfiguration {
 
 impl BuildBedrockModelInvocationLoggingConfiguration {
     pub fn build(self, stack: &mut Stack) -> BedrockModelInvocationLoggingConfiguration {
-        let out = BedrockModelInvocationLoggingConfiguration(Rc::new(BedrockModelInvocationLoggingConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(BedrockModelInvocationLoggingConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                region: core::default::Default::default(),
-                logging_config: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = BedrockModelInvocationLoggingConfiguration(Rc::new(
+            BedrockModelInvocationLoggingConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(BedrockModelInvocationLoggingConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    region: core::default::Default::default(),
+                    logging_config: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -191,10 +216,7 @@ pub struct BedrockModelInvocationLoggingConfigurationRef {
 
 impl Ref for BedrockModelInvocationLoggingConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -212,20 +234,28 @@ impl BedrockModelInvocationLoggingConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
-    pub fn logging_config(&self) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_config", self.extract_ref()))
+    pub fn logging_config(
+        &self,
+    ) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_config", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigEl {
+pub struct BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -261,7 +291,8 @@ impl ToListMappable for BedrockModelInvocationLoggingConfigurationLoggingConfigE
     }
 }
 
-pub struct BuildBedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigEl {}
+pub struct BuildBedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigEl
+{}
 
 impl BuildBedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigEl {
     pub fn build(
@@ -274,7 +305,8 @@ impl BuildBedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchCon
     }
 }
 
-pub struct BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigElRef {
+pub struct BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -357,17 +389,21 @@ impl BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.large_data_delivery_s3_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.large_data_delivery_s3_config = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl {
-    type O = BlockAssignable<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl>;
+impl ToListMappable
+    for BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl
+{
+    type O = BlockAssignable<
+        BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -381,7 +417,9 @@ impl ToListMappable for BedrockModelInvocationLoggingConfigurationLoggingConfigE
 pub struct BuildBedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl {}
 
 impl BuildBedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl {
-    pub fn build(self) -> BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl {
+    pub fn build(
+        self,
+    ) -> BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl {
         BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl {
             log_group_name: core::default::Default::default(),
             role_arn: core::default::Default::default(),
@@ -415,7 +453,10 @@ impl BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -428,8 +469,11 @@ impl BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl
         &self,
     ) -> ListRef<
         BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElLargeDataDeliveryS3ConfigElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.large_data_delivery_s3_config", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.large_data_delivery_s3_config", self.base),
+        )
     }
 }
 
@@ -516,7 +560,8 @@ struct BedrockModelInvocationLoggingConfigurationLoggingConfigElDynamic {
     cloudwatch_config: Option<
         DynamicBlock<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl>,
     >,
-    s3_config: Option<DynamicBlock<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigEl>>,
+    s3_config:
+        Option<DynamicBlock<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -530,7 +575,8 @@ pub struct BedrockModelInvocationLoggingConfigurationLoggingConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     video_data_delivery_enabled: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_config: Option<Vec<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl>>,
+    cloudwatch_config:
+        Option<Vec<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_config: Option<Vec<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigEl>>,
     dynamic: BedrockModelInvocationLoggingConfigurationLoggingConfigElDynamic,
@@ -564,15 +610,19 @@ impl BedrockModelInvocationLoggingConfigurationLoggingConfigEl {
     #[doc = "Set the field `cloudwatch_config`.\n"]
     pub fn set_cloudwatch_config(
         mut self,
-        v: impl Into<BlockAssignable<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -580,15 +630,17 @@ impl BedrockModelInvocationLoggingConfigurationLoggingConfigEl {
     #[doc = "Set the field `s3_config`.\n"]
     pub fn set_s3_config(
         mut self,
-        v: impl Into<BlockAssignable<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -628,7 +680,10 @@ pub struct BedrockModelInvocationLoggingConfigurationLoggingConfigElRef {
 }
 
 impl Ref for BedrockModelInvocationLoggingConfigurationLoggingConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockModelInvocationLoggingConfigurationLoggingConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockModelInvocationLoggingConfigurationLoggingConfigElRef {
         BedrockModelInvocationLoggingConfigurationLoggingConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -643,33 +698,51 @@ impl BedrockModelInvocationLoggingConfigurationLoggingConfigElRef {
 
     #[doc = "Get a reference to the value of field `embedding_data_delivery_enabled` after provisioning.\n"]
     pub fn embedding_data_delivery_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.embedding_data_delivery_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.embedding_data_delivery_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_data_delivery_enabled` after provisioning.\n"]
     pub fn image_data_delivery_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_data_delivery_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_data_delivery_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text_data_delivery_enabled` after provisioning.\n"]
     pub fn text_data_delivery_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_data_delivery_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_data_delivery_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `video_data_delivery_enabled` after provisioning.\n"]
     pub fn video_data_delivery_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.video_data_delivery_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.video_data_delivery_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_config` after provisioning.\n"]
     pub fn cloudwatch_config(
         &self,
-    ) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_config", self.base))
+    ) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElCloudwatchConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_config` after provisioning.\n"]
-    pub fn s3_config(&self) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigElRef> {
+    pub fn s3_config(
+        &self,
+    ) -> ListRef<BedrockModelInvocationLoggingConfigurationLoggingConfigElS3ConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3_config", self.base))
     }
 }

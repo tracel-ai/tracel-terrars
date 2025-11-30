@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53RecordData {
@@ -86,7 +86,8 @@ impl Route53Record {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -99,7 +100,7 @@ impl Route53Record {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -110,12 +111,22 @@ impl Route53Record {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -166,23 +177,26 @@ impl Route53Record {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().alias = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.alias = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `cidr_routing_policy`.\n"]
-    pub fn set_cidr_routing_policy(self, v: impl Into<BlockAssignable<Route53RecordCidrRoutingPolicyEl>>) -> Self {
+    pub fn set_cidr_routing_policy(
+        self,
+        v: impl Into<BlockAssignable<Route53RecordCidrRoutingPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cidr_routing_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cidr_routing_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -195,10 +209,10 @@ impl Route53Record {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().failover_routing_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.failover_routing_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -211,10 +225,10 @@ impl Route53Record {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().geolocation_routing_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.geolocation_routing_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -227,23 +241,26 @@ impl Route53Record {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().geoproximity_routing_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.geoproximity_routing_policy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `latency_routing_policy`.\n"]
-    pub fn set_latency_routing_policy(self, v: impl Into<BlockAssignable<Route53RecordLatencyRoutingPolicyEl>>) -> Self {
+    pub fn set_latency_routing_policy(
+        self,
+        v: impl Into<BlockAssignable<Route53RecordLatencyRoutingPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().latency_routing_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.latency_routing_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -262,27 +279,36 @@ impl Route53Record {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().weighted_routing_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.weighted_routing_policy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `allow_overwrite` after provisioning.\n"]
     pub fn allow_overwrite(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_overwrite", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_overwrite", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fqdn` after provisioning.\n"]
     pub fn fqdn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fqdn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fqdn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_id` after provisioning.\n"]
     pub fn health_check_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -292,22 +318,34 @@ impl Route53Record {
 
     #[doc = "Get a reference to the value of field `multivalue_answer_routing_policy` after provisioning.\n"]
     pub fn multivalue_answer_routing_policy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multivalue_answer_routing_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multivalue_answer_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `records` after provisioning.\n"]
     pub fn records(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.records", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.records", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `set_identifier` after provisioning.\n"]
     pub fn set_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.set_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.set_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
@@ -317,62 +355,100 @@ impl Route53Record {
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zone_id` after provisioning.\n"]
     pub fn zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> ListRef<Route53RecordAliasElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alias", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_routing_policy` after provisioning.\n"]
     pub fn cidr_routing_policy(&self) -> ListRef<Route53RecordCidrRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failover_routing_policy` after provisioning.\n"]
     pub fn failover_routing_policy(&self) -> ListRef<Route53RecordFailoverRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.failover_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.failover_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `geolocation_routing_policy` after provisioning.\n"]
-    pub fn geolocation_routing_policy(&self) -> ListRef<Route53RecordGeolocationRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.geolocation_routing_policy", self.extract_ref()))
+    pub fn geolocation_routing_policy(
+        &self,
+    ) -> ListRef<Route53RecordGeolocationRoutingPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.geolocation_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `geoproximity_routing_policy` after provisioning.\n"]
-    pub fn geoproximity_routing_policy(&self) -> ListRef<Route53RecordGeoproximityRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.geoproximity_routing_policy", self.extract_ref()))
+    pub fn geoproximity_routing_policy(
+        &self,
+    ) -> ListRef<Route53RecordGeoproximityRoutingPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.geoproximity_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `latency_routing_policy` after provisioning.\n"]
     pub fn latency_routing_policy(&self) -> ListRef<Route53RecordLatencyRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.latency_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.latency_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Route53RecordTimeoutsElRef {
-        Route53RecordTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Route53RecordTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_routing_policy` after provisioning.\n"]
     pub fn weighted_routing_policy(&self) -> ListRef<Route53RecordWeightedRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.weighted_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.weighted_routing_policy", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53Record {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53Record { }
+impl Resource for Route53Record {}
 
 impl ToListMappable for Route53Record {
     type O = ListRef<Route53RecordRef>;
@@ -450,10 +526,7 @@ pub struct Route53RecordRef {
 
 impl Ref for Route53RecordRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -468,17 +541,26 @@ impl Route53RecordRef {
 
     #[doc = "Get a reference to the value of field `allow_overwrite` after provisioning.\n"]
     pub fn allow_overwrite(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_overwrite", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_overwrite", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fqdn` after provisioning.\n"]
     pub fn fqdn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fqdn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fqdn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_id` after provisioning.\n"]
     pub fn health_check_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -488,22 +570,34 @@ impl Route53RecordRef {
 
     #[doc = "Get a reference to the value of field `multivalue_answer_routing_policy` after provisioning.\n"]
     pub fn multivalue_answer_routing_policy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multivalue_answer_routing_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multivalue_answer_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `records` after provisioning.\n"]
     pub fn records(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.records", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.records", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `set_identifier` after provisioning.\n"]
     pub fn set_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.set_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.set_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
@@ -513,52 +607,86 @@ impl Route53RecordRef {
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zone_id` after provisioning.\n"]
     pub fn zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> ListRef<Route53RecordAliasElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alias", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_routing_policy` after provisioning.\n"]
     pub fn cidr_routing_policy(&self) -> ListRef<Route53RecordCidrRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failover_routing_policy` after provisioning.\n"]
     pub fn failover_routing_policy(&self) -> ListRef<Route53RecordFailoverRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.failover_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.failover_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `geolocation_routing_policy` after provisioning.\n"]
-    pub fn geolocation_routing_policy(&self) -> ListRef<Route53RecordGeolocationRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.geolocation_routing_policy", self.extract_ref()))
+    pub fn geolocation_routing_policy(
+        &self,
+    ) -> ListRef<Route53RecordGeolocationRoutingPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.geolocation_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `geoproximity_routing_policy` after provisioning.\n"]
-    pub fn geoproximity_routing_policy(&self) -> ListRef<Route53RecordGeoproximityRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.geoproximity_routing_policy", self.extract_ref()))
+    pub fn geoproximity_routing_policy(
+        &self,
+    ) -> ListRef<Route53RecordGeoproximityRoutingPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.geoproximity_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `latency_routing_policy` after provisioning.\n"]
     pub fn latency_routing_policy(&self) -> ListRef<Route53RecordLatencyRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.latency_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.latency_routing_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Route53RecordTimeoutsElRef {
-        Route53RecordTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Route53RecordTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_routing_policy` after provisioning.\n"]
     pub fn weighted_routing_policy(&self) -> ListRef<Route53RecordWeightedRoutingPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.weighted_routing_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.weighted_routing_policy", self.extract_ref()),
+        )
     }
 }
 
@@ -569,7 +697,7 @@ pub struct Route53RecordAliasEl {
     zone_id: PrimField<String>,
 }
 
-impl Route53RecordAliasEl { }
+impl Route53RecordAliasEl {}
 
 impl ToListMappable for Route53RecordAliasEl {
     type O = BlockAssignable<Route53RecordAliasEl>;
@@ -623,7 +751,10 @@ impl Route53RecordAliasElRef {
 
     #[doc = "Get a reference to the value of field `evaluate_target_health` after provisioning.\n"]
     pub fn evaluate_target_health(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluate_target_health", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.evaluate_target_health", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -643,7 +774,7 @@ pub struct Route53RecordCidrRoutingPolicyEl {
     location_name: PrimField<String>,
 }
 
-impl Route53RecordCidrRoutingPolicyEl { }
+impl Route53RecordCidrRoutingPolicyEl {}
 
 impl ToListMappable for Route53RecordCidrRoutingPolicyEl {
     type O = BlockAssignable<Route53RecordCidrRoutingPolicyEl>;
@@ -694,12 +825,18 @@ impl Route53RecordCidrRoutingPolicyElRef {
 
     #[doc = "Get a reference to the value of field `collection_id` after provisioning.\n"]
     pub fn collection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collection_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collection_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location_name` after provisioning.\n"]
     pub fn location_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_name", self.base),
+        )
     }
 }
 
@@ -709,7 +846,7 @@ pub struct Route53RecordFailoverRoutingPolicyEl {
     type_: PrimField<String>,
 }
 
-impl Route53RecordFailoverRoutingPolicyEl { }
+impl Route53RecordFailoverRoutingPolicyEl {}
 
 impl ToListMappable for Route53RecordFailoverRoutingPolicyEl {
     type O = BlockAssignable<Route53RecordFailoverRoutingPolicyEl>;
@@ -854,7 +991,7 @@ pub struct Route53RecordGeoproximityRoutingPolicyElCoordinatesEl {
     longitude: PrimField<String>,
 }
 
-impl Route53RecordGeoproximityRoutingPolicyElCoordinatesEl { }
+impl Route53RecordGeoproximityRoutingPolicyElCoordinatesEl {}
 
 impl ToListMappable for Route53RecordGeoproximityRoutingPolicyElCoordinatesEl {
     type O = BlockAssignable<Route53RecordGeoproximityRoutingPolicyElCoordinatesEl>;
@@ -890,7 +1027,10 @@ pub struct Route53RecordGeoproximityRoutingPolicyElCoordinatesElRef {
 }
 
 impl Ref for Route53RecordGeoproximityRoutingPolicyElCoordinatesElRef {
-    fn new(shared: StackShared, base: String) -> Route53RecordGeoproximityRoutingPolicyElCoordinatesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Route53RecordGeoproximityRoutingPolicyElCoordinatesElRef {
         Route53RecordGeoproximityRoutingPolicyElCoordinatesElRef {
             shared: shared,
             base: base.to_string(),
@@ -959,10 +1099,10 @@ impl Route53RecordGeoproximityRoutingPolicyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.coordinates = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.coordinates = Some(d);
-            },
+            }
         }
         self
     }
@@ -1025,7 +1165,10 @@ impl Route53RecordGeoproximityRoutingPolicyElRef {
 
     #[doc = "Get a reference to the value of field `local_zone_group` after provisioning.\n"]
     pub fn local_zone_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_zone_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_zone_group", self.base),
+        )
     }
 }
 
@@ -1034,7 +1177,7 @@ pub struct Route53RecordLatencyRoutingPolicyEl {
     region: PrimField<String>,
 }
 
-impl Route53RecordLatencyRoutingPolicyEl { }
+impl Route53RecordLatencyRoutingPolicyEl {}
 
 impl ToListMappable for Route53RecordLatencyRoutingPolicyEl {
     type O = BlockAssignable<Route53RecordLatencyRoutingPolicyEl>;
@@ -1055,7 +1198,9 @@ pub struct BuildRoute53RecordLatencyRoutingPolicyEl {
 
 impl BuildRoute53RecordLatencyRoutingPolicyEl {
     pub fn build(self) -> Route53RecordLatencyRoutingPolicyEl {
-        Route53RecordLatencyRoutingPolicyEl { region: self.region }
+        Route53RecordLatencyRoutingPolicyEl {
+            region: self.region,
+        }
     }
 }
 
@@ -1178,7 +1323,7 @@ pub struct Route53RecordWeightedRoutingPolicyEl {
     weight: PrimField<f64>,
 }
 
-impl Route53RecordWeightedRoutingPolicyEl { }
+impl Route53RecordWeightedRoutingPolicyEl {}
 
 impl ToListMappable for Route53RecordWeightedRoutingPolicyEl {
     type O = BlockAssignable<Route53RecordWeightedRoutingPolicyEl>;
@@ -1199,7 +1344,9 @@ pub struct BuildRoute53RecordWeightedRoutingPolicyEl {
 
 impl BuildRoute53RecordWeightedRoutingPolicyEl {
     pub fn build(self) -> Route53RecordWeightedRoutingPolicyEl {
-        Route53RecordWeightedRoutingPolicyEl { weight: self.weight }
+        Route53RecordWeightedRoutingPolicyEl {
+            weight: self.weight,
+        }
     }
 }
 

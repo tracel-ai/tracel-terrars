@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AuditmanagerOrganizationAdminAccountRegistrationData {
@@ -26,7 +26,9 @@ struct AuditmanagerOrganizationAdminAccountRegistration_ {
 }
 
 #[derive(Clone)]
-pub struct AuditmanagerOrganizationAdminAccountRegistration(Rc<AuditmanagerOrganizationAdminAccountRegistration_>);
+pub struct AuditmanagerOrganizationAdminAccountRegistration(
+    Rc<AuditmanagerOrganizationAdminAccountRegistration_>,
+);
 
 impl AuditmanagerOrganizationAdminAccountRegistration {
     fn shared(&self) -> &StackShared {
@@ -54,7 +56,8 @@ impl AuditmanagerOrganizationAdminAccountRegistration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -67,7 +70,7 @@ impl AuditmanagerOrganizationAdminAccountRegistration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -78,17 +81,26 @@ impl AuditmanagerOrganizationAdminAccountRegistration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -96,7 +108,10 @@ impl AuditmanagerOrganizationAdminAccountRegistration {
 
     #[doc = "Get a reference to the value of field `admin_account_id` after provisioning.\n"]
     pub fn admin_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.admin_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.admin_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,23 +121,32 @@ impl AuditmanagerOrganizationAdminAccountRegistration {
 
     #[doc = "Get a reference to the value of field `organization_id` after provisioning.\n"]
     pub fn organization_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AuditmanagerOrganizationAdminAccountRegistration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AuditmanagerOrganizationAdminAccountRegistration { }
+impl Resource for AuditmanagerOrganizationAdminAccountRegistration {}
 
 impl ToListMappable for AuditmanagerOrganizationAdminAccountRegistration {
     type O = ListRef<AuditmanagerOrganizationAdminAccountRegistrationRef>;
@@ -155,21 +179,20 @@ pub struct BuildAuditmanagerOrganizationAdminAccountRegistration {
 
 impl BuildAuditmanagerOrganizationAdminAccountRegistration {
     pub fn build(self, stack: &mut Stack) -> AuditmanagerOrganizationAdminAccountRegistration {
-        let out =
-            AuditmanagerOrganizationAdminAccountRegistration(
-                Rc::new(AuditmanagerOrganizationAdminAccountRegistration_ {
-                    shared: stack.shared.clone(),
-                    tf_id: self.tf_id,
-                    data: RefCell::new(AuditmanagerOrganizationAdminAccountRegistrationData {
-                        depends_on: core::default::Default::default(),
-                        provider: None,
-                        lifecycle: core::default::Default::default(),
-                        for_each: None,
-                        admin_account_id: self.admin_account_id,
-                        region: core::default::Default::default(),
-                    }),
+        let out = AuditmanagerOrganizationAdminAccountRegistration(Rc::new(
+            AuditmanagerOrganizationAdminAccountRegistration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(AuditmanagerOrganizationAdminAccountRegistrationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    admin_account_id: self.admin_account_id,
+                    region: core::default::Default::default(),
                 }),
-            );
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -182,10 +205,7 @@ pub struct AuditmanagerOrganizationAdminAccountRegistrationRef {
 
 impl Ref for AuditmanagerOrganizationAdminAccountRegistrationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -200,7 +220,10 @@ impl AuditmanagerOrganizationAdminAccountRegistrationRef {
 
     #[doc = "Get a reference to the value of field `admin_account_id` after provisioning.\n"]
     pub fn admin_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.admin_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.admin_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -210,12 +233,17 @@ impl AuditmanagerOrganizationAdminAccountRegistrationRef {
 
     #[doc = "Get a reference to the value of field `organization_id` after provisioning.\n"]
     pub fn organization_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct MskClusterData {
@@ -83,7 +83,8 @@ impl MskCluster {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -96,7 +97,7 @@ impl MskCluster {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -107,12 +108,22 @@ impl MskCluster {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -128,8 +139,7 @@ impl MskCluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -154,53 +164,65 @@ impl MskCluster {
     }
 
     #[doc = "Set the field `broker_node_group_info`.\n"]
-    pub fn set_broker_node_group_info(self, v: impl Into<BlockAssignable<MskClusterBrokerNodeGroupInfoEl>>) -> Self {
+    pub fn set_broker_node_group_info(
+        self,
+        v: impl Into<BlockAssignable<MskClusterBrokerNodeGroupInfoEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().broker_node_group_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.broker_node_group_info = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `client_authentication`.\n"]
-    pub fn set_client_authentication(self, v: impl Into<BlockAssignable<MskClusterClientAuthenticationEl>>) -> Self {
+    pub fn set_client_authentication(
+        self,
+        v: impl Into<BlockAssignable<MskClusterClientAuthenticationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().client_authentication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.client_authentication = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `configuration_info`.\n"]
-    pub fn set_configuration_info(self, v: impl Into<BlockAssignable<MskClusterConfigurationInfoEl>>) -> Self {
+    pub fn set_configuration_info(
+        self,
+        v: impl Into<BlockAssignable<MskClusterConfigurationInfoEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration_info = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `encryption_info`.\n"]
-    pub fn set_encryption_info(self, v: impl Into<BlockAssignable<MskClusterEncryptionInfoEl>>) -> Self {
+    pub fn set_encryption_info(
+        self,
+        v: impl Into<BlockAssignable<MskClusterEncryptionInfoEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().encryption_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.encryption_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -210,23 +232,26 @@ impl MskCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().logging_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.logging_info = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `open_monitoring`.\n"]
-    pub fn set_open_monitoring(self, v: impl Into<BlockAssignable<MskClusterOpenMonitoringEl>>) -> Self {
+    pub fn set_open_monitoring(
+        self,
+        v: impl Into<BlockAssignable<MskClusterOpenMonitoringEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().open_monitoring = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.open_monitoring = Some(d);
-            },
+            }
         }
         self
     }
@@ -236,10 +261,10 @@ impl MskCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rebalancing = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rebalancing = Some(d);
-            },
+            }
         }
         self
     }
@@ -257,53 +282,79 @@ impl MskCluster {
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers` after provisioning.\n"]
     pub fn bootstrap_brokers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_public_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_iam(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_iam", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_iam",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_scram(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_scram", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_scram",
+                self.extract_ref()
+            ),
         )
     }
 
@@ -311,28 +362,43 @@ impl MskCluster {
     pub fn bootstrap_brokers_vpc_connectivity_tls(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_tls", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_tls",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_uuid` after provisioning.\n"]
     pub fn cluster_uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_uuid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `current_version` after provisioning.\n"]
     pub fn current_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.current_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.current_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enhanced_monitoring` after provisioning.\n"]
     pub fn enhanced_monitoring(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enhanced_monitoring", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enhanced_monitoring", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -342,93 +408,144 @@ impl MskCluster {
 
     #[doc = "Get a reference to the value of field `kafka_version` after provisioning.\n"]
     pub fn kafka_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kafka_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kafka_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `number_of_broker_nodes` after provisioning.\n"]
     pub fn number_of_broker_nodes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_broker_nodes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_broker_nodes", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_mode` after provisioning.\n"]
     pub fn storage_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zookeeper_connect_string` after provisioning.\n"]
     pub fn zookeeper_connect_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zookeeper_connect_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zookeeper_connect_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zookeeper_connect_string_tls` after provisioning.\n"]
     pub fn zookeeper_connect_string_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zookeeper_connect_string_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zookeeper_connect_string_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `broker_node_group_info` after provisioning.\n"]
     pub fn broker_node_group_info(&self) -> ListRef<MskClusterBrokerNodeGroupInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.broker_node_group_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.broker_node_group_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_authentication` after provisioning.\n"]
     pub fn client_authentication(&self) -> ListRef<MskClusterClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_info` after provisioning.\n"]
     pub fn configuration_info(&self) -> ListRef<MskClusterConfigurationInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_info` after provisioning.\n"]
     pub fn encryption_info(&self) -> ListRef<MskClusterEncryptionInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_info` after provisioning.\n"]
     pub fn logging_info(&self) -> ListRef<MskClusterLoggingInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `open_monitoring` after provisioning.\n"]
     pub fn open_monitoring(&self) -> ListRef<MskClusterOpenMonitoringElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.open_monitoring", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.open_monitoring", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rebalancing` after provisioning.\n"]
     pub fn rebalancing(&self) -> ListRef<MskClusterRebalancingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rebalancing", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rebalancing", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskClusterTimeoutsElRef {
-        MskClusterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        MskClusterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for MskCluster {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for MskCluster { }
+impl Resource for MskCluster {}
 
 impl ToListMappable for MskCluster {
     type O = ListRef<MskClusterRef>;
@@ -505,10 +622,7 @@ pub struct MskClusterRef {
 
 impl Ref for MskClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -528,53 +642,79 @@ impl MskClusterRef {
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers` after provisioning.\n"]
     pub fn bootstrap_brokers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_public_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_iam(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_iam", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_iam",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_scram(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_scram", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_scram",
+                self.extract_ref()
+            ),
         )
     }
 
@@ -582,28 +722,43 @@ impl MskClusterRef {
     pub fn bootstrap_brokers_vpc_connectivity_tls(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_tls", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_tls",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_uuid` after provisioning.\n"]
     pub fn cluster_uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_uuid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `current_version` after provisioning.\n"]
     pub fn current_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.current_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.current_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enhanced_monitoring` after provisioning.\n"]
     pub fn enhanced_monitoring(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enhanced_monitoring", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enhanced_monitoring", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -613,83 +768,130 @@ impl MskClusterRef {
 
     #[doc = "Get a reference to the value of field `kafka_version` after provisioning.\n"]
     pub fn kafka_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kafka_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kafka_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `number_of_broker_nodes` after provisioning.\n"]
     pub fn number_of_broker_nodes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_broker_nodes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_broker_nodes", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_mode` after provisioning.\n"]
     pub fn storage_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zookeeper_connect_string` after provisioning.\n"]
     pub fn zookeeper_connect_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zookeeper_connect_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zookeeper_connect_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zookeeper_connect_string_tls` after provisioning.\n"]
     pub fn zookeeper_connect_string_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zookeeper_connect_string_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zookeeper_connect_string_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `broker_node_group_info` after provisioning.\n"]
     pub fn broker_node_group_info(&self) -> ListRef<MskClusterBrokerNodeGroupInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.broker_node_group_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.broker_node_group_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_authentication` after provisioning.\n"]
     pub fn client_authentication(&self) -> ListRef<MskClusterClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_info` after provisioning.\n"]
     pub fn configuration_info(&self) -> ListRef<MskClusterConfigurationInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_info` after provisioning.\n"]
     pub fn encryption_info(&self) -> ListRef<MskClusterEncryptionInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_info` after provisioning.\n"]
     pub fn logging_info(&self) -> ListRef<MskClusterLoggingInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `open_monitoring` after provisioning.\n"]
     pub fn open_monitoring(&self) -> ListRef<MskClusterOpenMonitoringElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.open_monitoring", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.open_monitoring", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rebalancing` after provisioning.\n"]
     pub fn rebalancing(&self) -> ListRef<MskClusterRebalancingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rebalancing", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rebalancing", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskClusterTimeoutsElRef {
-        MskClusterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        MskClusterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -723,7 +925,9 @@ pub struct BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl 
 
 impl BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl {
     pub fn build(self) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl {
-        MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl { type_: core::default::Default::default() }
+        MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl {
+            type_: core::default::Default::default(),
+        }
     }
 }
 
@@ -733,7 +937,10 @@ pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef {
 }
 
 impl Ref for MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef {
         MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef {
             shared: shared,
             base: base.to_string(),
@@ -753,14 +960,17 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef {
 }
 
 #[derive(Serialize)]
-pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl {
+pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     iam: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     scram: Option<PrimField<bool>>,
 }
 
-impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl {
+impl
+    MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl
+{
     #[doc = "Set the field `iam`.\n"]
     pub fn set_iam(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.iam = Some(v.into());
@@ -789,7 +999,8 @@ impl ToListMappable for MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConn
     }
 }
 
-pub struct BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl {}
+pub struct BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl
+{}
 
 impl BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslEl {
     pub fn build(
@@ -802,7 +1013,8 @@ impl BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClie
     }
 }
 
-pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslElRef {
+pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -873,18 +1085,21 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAut
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sasl = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sasl = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl {
-    type O =
-        BlockAssignable<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl>;
+impl ToListMappable
+    for MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl
+{
+    type O = BlockAssignable<
+        MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -895,10 +1110,14 @@ impl ToListMappable for MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConn
     }
 }
 
-pub struct BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl {}
+pub struct BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl
+{}
 
 impl BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl {
-    pub fn build(self) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl {
+    pub fn build(
+        self,
+    ) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl
+    {
         MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationEl {
             tls: core::default::Default::default(),
             sasl: core::default::Default::default(),
@@ -907,16 +1126,20 @@ impl BuildMskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClie
     }
 }
 
-pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef {
+pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef {
+impl Ref
+    for MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef {
+    ) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef
+    {
         MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef {
             shared: shared,
             base: base.to_string(),
@@ -937,7 +1160,7 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAut
     #[doc = "Get a reference to the value of field `sasl` after provisioning.\n"]
     pub fn sasl(
         &self,
-    ) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslElRef> {
+    ) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElSaslElRef>{
         ListRef::new(self.shared().clone(), format!("{}.sasl", self.base))
     }
 }
@@ -974,10 +1197,10 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.client_authentication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.client_authentication = Some(d);
-            },
+            }
         }
         self
     }
@@ -1031,15 +1254,22 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElRef {
     #[doc = "Get a reference to the value of field `client_authentication` after provisioning.\n"]
     pub fn client_authentication(
         &self,
-    ) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_authentication", self.base))
+    ) -> ListRef<
+        MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElClientAuthenticationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_authentication", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElDynamic {
-    public_access: Option<DynamicBlock<MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl>>,
-    vpc_connectivity: Option<DynamicBlock<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl>>,
+    public_access:
+        Option<DynamicBlock<MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl>>,
+    vpc_connectivity:
+        Option<DynamicBlock<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl>>,
 }
 
 #[derive(Serialize)]
@@ -1047,7 +1277,8 @@ pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     public_access: Option<Vec<MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    vpc_connectivity: Option<Vec<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl>>,
+    vpc_connectivity:
+        Option<Vec<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl>>,
     dynamic: MskClusterBrokerNodeGroupInfoElConnectivityInfoElDynamic,
 }
 
@@ -1060,10 +1291,10 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.public_access = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.public_access = Some(d);
-            },
+            }
         }
         self
     }
@@ -1071,15 +1302,17 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoEl {
     #[doc = "Set the field `vpc_connectivity`.\n"]
     pub fn set_vpc_connectivity(
         mut self,
-        v: impl Into<BlockAssignable<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl>>,
+        v: impl Into<
+            BlockAssignable<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vpc_connectivity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vpc_connectivity = Some(d);
-            },
+            }
         }
         self
     }
@@ -1115,7 +1348,10 @@ pub struct MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef {
 }
 
 impl Ref for MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef {
         MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1129,13 +1365,23 @@ impl MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef {
     }
 
     #[doc = "Get a reference to the value of field `public_access` after provisioning.\n"]
-    pub fn public_access(&self) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.public_access", self.base))
+    pub fn public_access(
+        &self,
+    ) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElPublicAccessElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.public_access", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_connectivity` after provisioning.\n"]
-    pub fn vpc_connectivity(&self) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_connectivity", self.base))
+    pub fn vpc_connectivity(
+        &self,
+    ) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElVpcConnectivityElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_connectivity", self.base),
+        )
     }
 }
 
@@ -1161,8 +1407,12 @@ impl MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThro
     }
 }
 
-impl ToListMappable for MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl {
-    type O = BlockAssignable<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl>;
+impl ToListMappable
+    for MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl
+{
+    type O = BlockAssignable<
+        MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1173,10 +1423,13 @@ impl ToListMappable for MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageIn
     }
 }
 
-pub struct BuildMskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl {}
+pub struct BuildMskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl
+{}
 
 impl BuildMskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl {
-    pub fn build(self) -> MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl {
+    pub fn build(
+        self,
+    ) -> MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl {
         MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl {
             enabled: core::default::Default::default(),
             volume_throughput: core::default::Default::default(),
@@ -1189,11 +1442,14 @@ pub struct MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvision
     base: String,
 }
 
-impl Ref for MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef {
+impl Ref
+    for MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef {
+    ) -> MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef
+    {
         MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef {
             shared: shared,
             base: base.to_string(),
@@ -1213,14 +1469,19 @@ impl MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThro
 
     #[doc = "Get a reference to the value of field `volume_throughput` after provisioning.\n"]
     pub fn volume_throughput(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_throughput", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_throughput", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElDynamic {
     provisioned_throughput: Option<
-        DynamicBlock<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl>,
+        DynamicBlock<
+            MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl,
+        >,
     >,
 }
 
@@ -1245,22 +1506,19 @@ impl MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoEl {
     #[doc = "Set the field `provisioned_throughput`.\n"]
     pub fn set_provisioned_throughput(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.provisioned_throughput = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.provisioned_throughput = Some(d);
-            },
+            }
         }
         self
     }
@@ -1296,7 +1554,10 @@ pub struct MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef {
 }
 
 impl Ref for MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef {
         MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1317,14 +1578,20 @@ impl MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef {
     #[doc = "Get a reference to the value of field `provisioned_throughput` after provisioning.\n"]
     pub fn provisioned_throughput(
         &self,
-    ) -> ListRef<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioned_throughput", self.base))
+    ) -> ListRef<
+        MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElProvisionedThroughputElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioned_throughput", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct MskClusterBrokerNodeGroupInfoElStorageInfoElDynamic {
-    ebs_storage_info: Option<DynamicBlock<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoEl>>,
+    ebs_storage_info:
+        Option<DynamicBlock<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoEl>>,
 }
 
 #[derive(Serialize)]
@@ -1343,10 +1610,10 @@ impl MskClusterBrokerNodeGroupInfoElStorageInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_storage_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_storage_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -1395,8 +1662,13 @@ impl MskClusterBrokerNodeGroupInfoElStorageInfoElRef {
     }
 
     #[doc = "Get a reference to the value of field `ebs_storage_info` after provisioning.\n"]
-    pub fn ebs_storage_info(&self) -> ListRef<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ebs_storage_info", self.base))
+    pub fn ebs_storage_info(
+        &self,
+    ) -> ListRef<MskClusterBrokerNodeGroupInfoElStorageInfoElEbsStorageInfoElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ebs_storage_info", self.base),
+        )
     }
 }
 
@@ -1435,10 +1707,10 @@ impl MskClusterBrokerNodeGroupInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connectivity_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connectivity_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -1451,10 +1723,10 @@ impl MskClusterBrokerNodeGroupInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.storage_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.storage_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -1516,27 +1788,44 @@ impl MskClusterBrokerNodeGroupInfoElRef {
 
     #[doc = "Get a reference to the value of field `az_distribution` after provisioning.\n"]
     pub fn az_distribution(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.az_distribution", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.az_distribution", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_subnets` after provisioning.\n"]
     pub fn client_subnets(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.client_subnets", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.client_subnets", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connectivity_info` after provisioning.\n"]
-    pub fn connectivity_info(&self) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connectivity_info", self.base))
+    pub fn connectivity_info(
+        &self,
+    ) -> ListRef<MskClusterBrokerNodeGroupInfoElConnectivityInfoElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connectivity_info", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_info` after provisioning.\n"]
@@ -1628,7 +1917,10 @@ pub struct MskClusterClientAuthenticationElTlsEl {
 
 impl MskClusterClientAuthenticationElTlsEl {
     #[doc = "Set the field `certificate_authority_arns`.\n"]
-    pub fn set_certificate_authority_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_certificate_authority_arns(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.certificate_authority_arns = Some(v.into());
         self
     }
@@ -1650,7 +1942,9 @@ pub struct BuildMskClusterClientAuthenticationElTlsEl {}
 
 impl BuildMskClusterClientAuthenticationElTlsEl {
     pub fn build(self) -> MskClusterClientAuthenticationElTlsEl {
-        MskClusterClientAuthenticationElTlsEl { certificate_authority_arns: core::default::Default::default() }
+        MskClusterClientAuthenticationElTlsEl {
+            certificate_authority_arns: core::default::Default::default(),
+        }
     }
 }
 
@@ -1675,7 +1969,10 @@ impl MskClusterClientAuthenticationElTlsElRef {
 
     #[doc = "Get a reference to the value of field `certificate_authority_arns` after provisioning.\n"]
     pub fn certificate_authority_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.certificate_authority_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority_arns", self.base),
+        )
     }
 }
 
@@ -1704,27 +2001,33 @@ impl MskClusterClientAuthenticationEl {
     }
 
     #[doc = "Set the field `sasl`.\n"]
-    pub fn set_sasl(mut self, v: impl Into<BlockAssignable<MskClusterClientAuthenticationElSaslEl>>) -> Self {
+    pub fn set_sasl(
+        mut self,
+        v: impl Into<BlockAssignable<MskClusterClientAuthenticationElSaslEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sasl = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sasl = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tls`.\n"]
-    pub fn set_tls(mut self, v: impl Into<BlockAssignable<MskClusterClientAuthenticationElTlsEl>>) -> Self {
+    pub fn set_tls(
+        mut self,
+        v: impl Into<BlockAssignable<MskClusterClientAuthenticationElTlsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tls = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tls = Some(d);
-            },
+            }
         }
         self
     }
@@ -1776,7 +2079,10 @@ impl MskClusterClientAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `unauthenticated` after provisioning.\n"]
     pub fn unauthenticated(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unauthenticated", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unauthenticated", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sasl` after provisioning.\n"]
@@ -1796,7 +2102,7 @@ pub struct MskClusterConfigurationInfoEl {
     revision: PrimField<f64>,
 }
 
-impl MskClusterConfigurationInfoEl { }
+impl MskClusterConfigurationInfoEl {}
 
 impl ToListMappable for MskClusterConfigurationInfoEl {
     type O = BlockAssignable<MskClusterConfigurationInfoEl>;
@@ -1907,7 +2213,10 @@ pub struct MskClusterEncryptionInfoElEncryptionInTransitElRef {
 }
 
 impl Ref for MskClusterEncryptionInfoElEncryptionInTransitElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterEncryptionInfoElEncryptionInTransitElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterEncryptionInfoElEncryptionInTransitElRef {
         MskClusterEncryptionInfoElEncryptionInTransitElRef {
             shared: shared,
             base: base.to_string(),
@@ -1922,7 +2231,10 @@ impl MskClusterEncryptionInfoElEncryptionInTransitElRef {
 
     #[doc = "Get a reference to the value of field `client_broker` after provisioning.\n"]
     pub fn client_broker(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_broker", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_broker", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `in_cluster` after provisioning.\n"]
@@ -1960,10 +2272,10 @@ impl MskClusterEncryptionInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.encryption_in_transit = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.encryption_in_transit = Some(d);
-            },
+            }
         }
         self
     }
@@ -2014,12 +2326,20 @@ impl MskClusterEncryptionInfoElRef {
 
     #[doc = "Get a reference to the value of field `encryption_at_rest_kms_key_arn` after provisioning.\n"]
     pub fn encryption_at_rest_kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_at_rest_kms_key_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_at_rest_kms_key_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_in_transit` after provisioning.\n"]
-    pub fn encryption_in_transit(&self) -> ListRef<MskClusterEncryptionInfoElEncryptionInTransitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_in_transit", self.base))
+    pub fn encryption_in_transit(
+        &self,
+    ) -> ListRef<MskClusterEncryptionInfoElEncryptionInTransitElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_in_transit", self.base),
+        )
     }
 }
 
@@ -2070,7 +2390,10 @@ pub struct MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef {
 }
 
 impl Ref for MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef {
         MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2156,7 +2479,10 @@ impl MskClusterLoggingInfoElBrokerLogsElFirehoseElRef {
 
     #[doc = "Get a reference to the value of field `delivery_stream` after provisioning.\n"]
     pub fn delivery_stream(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
@@ -2277,36 +2603,42 @@ impl MskClusterLoggingInfoElBrokerLogsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `firehose`.\n"]
-    pub fn set_firehose(mut self, v: impl Into<BlockAssignable<MskClusterLoggingInfoElBrokerLogsElFirehoseEl>>) -> Self {
+    pub fn set_firehose(
+        mut self,
+        v: impl Into<BlockAssignable<MskClusterLoggingInfoElBrokerLogsElFirehoseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `s3`.\n"]
-    pub fn set_s3(mut self, v: impl Into<BlockAssignable<MskClusterLoggingInfoElBrokerLogsElS3El>>) -> Self {
+    pub fn set_s3(
+        mut self,
+        v: impl Into<BlockAssignable<MskClusterLoggingInfoElBrokerLogsElS3El>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -2357,8 +2689,13 @@ impl MskClusterLoggingInfoElBrokerLogsElRef {
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
-    pub fn cloudwatch_logs(&self) -> ListRef<MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs", self.base))
+    pub fn cloudwatch_logs(
+        &self,
+    ) -> ListRef<MskClusterLoggingInfoElBrokerLogsElCloudwatchLogsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firehose` after provisioning.\n"]
@@ -2386,14 +2723,17 @@ pub struct MskClusterLoggingInfoEl {
 
 impl MskClusterLoggingInfoEl {
     #[doc = "Set the field `broker_logs`.\n"]
-    pub fn set_broker_logs(mut self, v: impl Into<BlockAssignable<MskClusterLoggingInfoElBrokerLogsEl>>) -> Self {
+    pub fn set_broker_logs(
+        mut self,
+        v: impl Into<BlockAssignable<MskClusterLoggingInfoElBrokerLogsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.broker_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.broker_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -2452,7 +2792,7 @@ pub struct MskClusterOpenMonitoringElPrometheusElJmxExporterEl {
     enabled_in_broker: PrimField<bool>,
 }
 
-impl MskClusterOpenMonitoringElPrometheusElJmxExporterEl { }
+impl MskClusterOpenMonitoringElPrometheusElJmxExporterEl {}
 
 impl ToListMappable for MskClusterOpenMonitoringElPrometheusElJmxExporterEl {
     type O = BlockAssignable<MskClusterOpenMonitoringElPrometheusElJmxExporterEl>;
@@ -2473,7 +2813,9 @@ pub struct BuildMskClusterOpenMonitoringElPrometheusElJmxExporterEl {
 
 impl BuildMskClusterOpenMonitoringElPrometheusElJmxExporterEl {
     pub fn build(self) -> MskClusterOpenMonitoringElPrometheusElJmxExporterEl {
-        MskClusterOpenMonitoringElPrometheusElJmxExporterEl { enabled_in_broker: self.enabled_in_broker }
+        MskClusterOpenMonitoringElPrometheusElJmxExporterEl {
+            enabled_in_broker: self.enabled_in_broker,
+        }
     }
 }
 
@@ -2483,7 +2825,10 @@ pub struct MskClusterOpenMonitoringElPrometheusElJmxExporterElRef {
 }
 
 impl Ref for MskClusterOpenMonitoringElPrometheusElJmxExporterElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterOpenMonitoringElPrometheusElJmxExporterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterOpenMonitoringElPrometheusElJmxExporterElRef {
         MskClusterOpenMonitoringElPrometheusElJmxExporterElRef {
             shared: shared,
             base: base.to_string(),
@@ -2498,7 +2843,10 @@ impl MskClusterOpenMonitoringElPrometheusElJmxExporterElRef {
 
     #[doc = "Get a reference to the value of field `enabled_in_broker` after provisioning.\n"]
     pub fn enabled_in_broker(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled_in_broker", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled_in_broker", self.base),
+        )
     }
 }
 
@@ -2507,7 +2855,7 @@ pub struct MskClusterOpenMonitoringElPrometheusElNodeExporterEl {
     enabled_in_broker: PrimField<bool>,
 }
 
-impl MskClusterOpenMonitoringElPrometheusElNodeExporterEl { }
+impl MskClusterOpenMonitoringElPrometheusElNodeExporterEl {}
 
 impl ToListMappable for MskClusterOpenMonitoringElPrometheusElNodeExporterEl {
     type O = BlockAssignable<MskClusterOpenMonitoringElPrometheusElNodeExporterEl>;
@@ -2528,7 +2876,9 @@ pub struct BuildMskClusterOpenMonitoringElPrometheusElNodeExporterEl {
 
 impl BuildMskClusterOpenMonitoringElPrometheusElNodeExporterEl {
     pub fn build(self) -> MskClusterOpenMonitoringElPrometheusElNodeExporterEl {
-        MskClusterOpenMonitoringElPrometheusElNodeExporterEl { enabled_in_broker: self.enabled_in_broker }
+        MskClusterOpenMonitoringElPrometheusElNodeExporterEl {
+            enabled_in_broker: self.enabled_in_broker,
+        }
     }
 }
 
@@ -2538,7 +2888,10 @@ pub struct MskClusterOpenMonitoringElPrometheusElNodeExporterElRef {
 }
 
 impl Ref for MskClusterOpenMonitoringElPrometheusElNodeExporterElRef {
-    fn new(shared: StackShared, base: String) -> MskClusterOpenMonitoringElPrometheusElNodeExporterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskClusterOpenMonitoringElPrometheusElNodeExporterElRef {
         MskClusterOpenMonitoringElPrometheusElNodeExporterElRef {
             shared: shared,
             base: base.to_string(),
@@ -2553,7 +2906,10 @@ impl MskClusterOpenMonitoringElPrometheusElNodeExporterElRef {
 
     #[doc = "Get a reference to the value of field `enabled_in_broker` after provisioning.\n"]
     pub fn enabled_in_broker(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled_in_broker", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled_in_broker", self.base),
+        )
     }
 }
 
@@ -2581,10 +2937,10 @@ impl MskClusterOpenMonitoringElPrometheusEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.jmx_exporter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.jmx_exporter = Some(d);
-            },
+            }
         }
         self
     }
@@ -2597,10 +2953,10 @@ impl MskClusterOpenMonitoringElPrometheusEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.node_exporter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.node_exporter = Some(d);
-            },
+            }
         }
         self
     }
@@ -2655,8 +3011,13 @@ impl MskClusterOpenMonitoringElPrometheusElRef {
     }
 
     #[doc = "Get a reference to the value of field `node_exporter` after provisioning.\n"]
-    pub fn node_exporter(&self) -> ListRef<MskClusterOpenMonitoringElPrometheusElNodeExporterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.node_exporter", self.base))
+    pub fn node_exporter(
+        &self,
+    ) -> ListRef<MskClusterOpenMonitoringElPrometheusElNodeExporterElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.node_exporter", self.base),
+        )
     }
 }
 
@@ -2674,14 +3035,17 @@ pub struct MskClusterOpenMonitoringEl {
 
 impl MskClusterOpenMonitoringEl {
     #[doc = "Set the field `prometheus`.\n"]
-    pub fn set_prometheus(mut self, v: impl Into<BlockAssignable<MskClusterOpenMonitoringElPrometheusEl>>) -> Self {
+    pub fn set_prometheus(
+        mut self,
+        v: impl Into<BlockAssignable<MskClusterOpenMonitoringElPrometheusEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prometheus = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prometheus = Some(d);
-            },
+            }
         }
         self
     }
@@ -2740,7 +3104,7 @@ pub struct MskClusterRebalancingEl {
     status: PrimField<String>,
 }
 
-impl MskClusterRebalancingEl { }
+impl MskClusterRebalancingEl {}
 
 impl ToListMappable for MskClusterRebalancingEl {
     type O = BlockAssignable<MskClusterRebalancingEl>;
@@ -2761,7 +3125,9 @@ pub struct BuildMskClusterRebalancingEl {
 
 impl BuildMskClusterRebalancingEl {
     pub fn build(self) -> MskClusterRebalancingEl {
-        MskClusterRebalancingEl { status: self.status }
+        MskClusterRebalancingEl {
+            status: self.status,
+        }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IamPolicyAttachmentData {
@@ -61,7 +61,8 @@ impl IamPolicyAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl IamPolicyAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl IamPolicyAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -120,7 +131,10 @@ impl IamPolicyAttachment {
 
     #[doc = "Get a reference to the value of field `groups` after provisioning.\n"]
     pub fn groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.groups", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -130,32 +144,48 @@ impl IamPolicyAttachment {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles` after provisioning.\n"]
     pub fn roles(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.roles", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.roles", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.users", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.users", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IamPolicyAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IamPolicyAttachment { }
+impl Resource for IamPolicyAttachment {}
 
 impl ToListMappable for IamPolicyAttachment {
     type O = ListRef<IamPolicyAttachmentRef>;
@@ -218,10 +248,7 @@ pub struct IamPolicyAttachmentRef {
 
 impl Ref for IamPolicyAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -236,7 +263,10 @@ impl IamPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `groups` after provisioning.\n"]
     pub fn groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.groups", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -246,21 +276,33 @@ impl IamPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles` after provisioning.\n"]
     pub fn roles(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.roles", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.roles", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.users", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.users", self.extract_ref()),
+        )
     }
 }

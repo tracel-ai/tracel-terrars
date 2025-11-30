@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppflowConnectorProfileData {
@@ -65,7 +65,8 @@ impl AppflowConnectorProfile {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl AppflowConnectorProfile {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl AppflowConnectorProfile {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -116,8 +127,7 @@ impl AppflowConnectorProfile {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,10 +141,10 @@ impl AppflowConnectorProfile {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().connector_profile_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.connector_profile_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -146,22 +156,34 @@ impl AppflowConnectorProfile {
 
     #[doc = "Get a reference to the value of field `connection_mode` after provisioning.\n"]
     pub fn connection_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_label` after provisioning.\n"]
     pub fn connector_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connector_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connector_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_type` after provisioning.\n"]
     pub fn connector_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connector_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connector_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credentials_arn` after provisioning.\n"]
     pub fn credentials_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credentials_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -171,33 +193,50 @@ impl AppflowConnectorProfile {
 
     #[doc = "Get a reference to the value of field `kms_arn` after provisioning.\n"]
     pub fn kms_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_profile_config` after provisioning.\n"]
-    pub fn connector_profile_config(&self) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connector_profile_config", self.extract_ref()))
+    pub fn connector_profile_config(
+        &self,
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connector_profile_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppflowConnectorProfile {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppflowConnectorProfile { }
+impl Resource for AppflowConnectorProfile {}
 
 impl ToListMappable for AppflowConnectorProfile {
     type O = ListRef<AppflowConnectorProfileRef>;
@@ -265,10 +304,7 @@ pub struct AppflowConnectorProfileRef {
 
 impl Ref for AppflowConnectorProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -288,22 +324,34 @@ impl AppflowConnectorProfileRef {
 
     #[doc = "Get a reference to the value of field `connection_mode` after provisioning.\n"]
     pub fn connection_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_label` after provisioning.\n"]
     pub fn connector_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connector_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connector_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_type` after provisioning.\n"]
     pub fn connector_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connector_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connector_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `credentials_arn` after provisioning.\n"]
     pub fn credentials_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credentials_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -313,23 +361,36 @@ impl AppflowConnectorProfileRef {
 
     #[doc = "Get a reference to the value of field `kms_arn` after provisioning.\n"]
     pub fn kms_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_profile_config` after provisioning.\n"]
-    pub fn connector_profile_config(&self) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connector_profile_config", self.extract_ref()))
+    pub fn connector_profile_config(
+        &self,
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connector_profile_config", self.extract_ref()),
+        )
     }
 }
 
@@ -339,11 +400,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     secret_key: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -354,7 +418,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl
+{
     #[doc = ""]
     pub api_key: PrimField<String>,
     #[doc = ""]
@@ -362,7 +427,10 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeEl {
             api_key: self.api_key,
             secret_key: self.secret_key,
@@ -370,16 +438,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef {
             shared: shared,
             base: base.to_string(),
@@ -404,7 +476,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyEl
+{
     api_key: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     api_secret_key: Option<PrimField<String>>,
@@ -433,7 +506,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyEl
+{
     #[doc = ""]
     pub api_key: PrimField<String>,
 }
@@ -449,7 +523,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -483,7 +558,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicEl
+{
     password: PrimField<String>,
     username: PrimField<String>,
 }
@@ -505,7 +581,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicEl
+{
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
@@ -523,7 +600,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -557,7 +635,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     credentials_map: Option<RecField<PrimField<String>>>,
     custom_authentication_type: PrimField<String>,
@@ -586,7 +665,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomEl
+{
     #[doc = ""]
     pub custom_authentication_type: PrimField<String>,
 }
@@ -602,7 +682,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -636,7 +717,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -672,7 +754,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestEl {
     pub fn build(
@@ -685,7 +768,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -810,7 +894,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2El {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2El
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2El {
     pub fn build(
@@ -827,7 +912,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -941,10 +1027,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.api_key = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.api_key = Some(d);
-            },
+            }
         }
         self
     }
@@ -964,10 +1050,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.basic = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.basic = Some(d);
-            },
+            }
         }
         self
     }
@@ -987,10 +1073,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom = Some(d);
-            },
+            }
         }
         self
     }
@@ -1010,10 +1096,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth2 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth2 = Some(d);
-            },
+            }
         }
         self
     }
@@ -1034,7 +1120,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorEl
+{
     #[doc = ""]
     pub authentication_type: PrimField<String>,
 }
@@ -1054,7 +1141,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1071,14 +1159,19 @@ impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCred
     }
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElRef {
+impl
+    AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `api_key` after provisioning.\n"]
@@ -1086,7 +1179,7 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElApiKeyElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.api_key", self.base))
     }
 
@@ -1095,7 +1188,7 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElBasicElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.basic", self.base))
     }
 
@@ -1104,7 +1197,7 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElCustomElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.custom", self.base))
     }
 
@@ -1113,7 +1206,7 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElOauth2ElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.oauth2", self.base))
     }
 }
@@ -1124,10 +1217,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     application_key: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1138,7 +1235,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl
+{
     #[doc = ""]
     pub api_key: PrimField<String>,
     #[doc = ""]
@@ -1146,7 +1244,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogEl {
             api_key: self.api_key,
             application_key: self.application_key,
@@ -1154,16 +1254,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef {
             shared: shared,
             base: base.to_string(),
@@ -1183,7 +1287,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `application_key` after provisioning.\n"]
     pub fn application_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_key", self.base),
+        )
     }
 }
 
@@ -1192,11 +1299,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     api_token: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1207,29 +1317,37 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl
+{
     #[doc = ""]
     pub api_token: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceEl {
             api_token: self.api_token,
         }
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1249,7 +1367,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1285,7 +1404,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestEl {
     pub fn build(
@@ -1298,7 +1418,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1385,10 +1506,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_request = Some(d);
-            },
+            }
         }
         self
     }
@@ -1409,7 +1530,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsEl
+{
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
@@ -1431,7 +1553,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1448,7 +1571,9 @@ impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCred
     }
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElRef {
+impl
+    AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1465,12 +1590,18 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `refresh_token` after provisioning.\n"]
     pub fn refresh_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_token", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_token", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_request` after provisioning.\n"]
@@ -1478,13 +1609,17 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElOauthRequestElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_request", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_request", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1520,7 +1655,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestEl {
     pub fn build(
@@ -1533,7 +1669,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1616,18 +1753,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_request = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1638,10 +1778,14 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeEl {
             access_token: core::default::Default::default(),
             refresh_token: core::default::Default::default(),
@@ -1651,16 +1795,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1680,7 +1828,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `refresh_token` after provisioning.\n"]
     pub fn refresh_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_token", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_token", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_request` after provisioning.\n"]
@@ -1688,24 +1839,31 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElOauthRequestElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_request", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_request", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl
+{
     access_key_id: PrimField<String>,
     datakey: PrimField<String>,
     secret_access_key: PrimField<String>,
     user_id: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1716,7 +1874,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl
+{
     #[doc = ""]
     pub access_key_id: PrimField<String>,
     #[doc = ""]
@@ -1728,7 +1887,10 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusEl {
             access_key_id: self.access_key_id,
             datakey: self.datakey,
@@ -1738,16 +1900,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef {
             shared: shared,
             base: base.to_string(),
@@ -1762,7 +1928,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `access_key_id` after provisioning.\n"]
     pub fn access_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datakey` after provisioning.\n"]
@@ -1772,7 +1941,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `secret_access_key` after provisioning.\n"]
     pub fn secret_access_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_access_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_access_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
@@ -1782,7 +1954,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1818,7 +1991,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestEl {
     pub fn build(
@@ -1831,7 +2005,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1908,17 +2083,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_request = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1929,7 +2108,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl
+{
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
@@ -1937,7 +2117,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoEl {
             access_token: core::default::Default::default(),
             client_id: self.client_id,
@@ -1948,16 +2130,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1982,7 +2168,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_request` after provisioning.\n"]
@@ -1990,8 +2179,11 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElOauthRequestElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_request", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_request", self.base),
+        )
     }
 }
 
@@ -2001,10 +2193,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     username: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2015,7 +2211,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl
+{
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
@@ -2023,7 +2220,10 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftEl {
             password: self.password,
             username: self.username,
@@ -2031,16 +2231,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef {
             shared: shared,
             base: base.to_string(),
@@ -2065,7 +2269,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2101,7 +2306,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestEl {
     pub fn build(
@@ -2114,7 +2320,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2221,18 +2428,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_request = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2243,10 +2453,14 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceEl {
             access_token: core::default::Default::default(),
             client_credentials_arn: core::default::Default::default(),
@@ -2259,16 +2473,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef {
             shared: shared,
             base: base.to_string(),
@@ -2288,7 +2506,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `client_credentials_arn` after provisioning.\n"]
     pub fn client_credentials_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_credentials_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_credentials_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jwt_token` after provisioning.\n"]
@@ -2298,12 +2519,18 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `oauth2_grant_type` after provisioning.\n"]
     pub fn oauth2_grant_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oauth2_grant_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oauth2_grant_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `refresh_token` after provisioning.\n"]
     pub fn refresh_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_token", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_token", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_request` after provisioning.\n"]
@@ -2311,13 +2538,17 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElOauthRequestElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_request", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_request", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsEl
+{
     password: PrimField<String>,
     username: PrimField<String>,
 }
@@ -2339,7 +2570,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsEl
+{
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
@@ -2357,7 +2589,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2391,7 +2624,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2427,7 +2661,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestEl {
     pub fn build(
@@ -2440,7 +2675,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2551,7 +2787,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsEl
+{
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
@@ -2573,7 +2810,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2670,10 +2908,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.basic_auth_credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.basic_auth_credentials = Some(d);
-            },
+            }
         }
         self
     }
@@ -2693,17 +2931,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_credentials = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2714,10 +2956,14 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataEl {
             basic_auth_credentials: core::default::Default::default(),
             oauth_credentials: core::default::Default::default(),
@@ -2726,16 +2972,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef {
             shared: shared,
             base: base.to_string(),
@@ -2753,8 +3003,11 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElBasicAuthCredentialsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.basic_auth_credentials", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.basic_auth_credentials", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_credentials` after provisioning.\n"]
@@ -2762,22 +3015,29 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElOauthCredentialsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_credentials", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_credentials", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl
+{
     password: PrimField<String>,
     username: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2788,7 +3048,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl
+{
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
@@ -2796,7 +3057,10 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowEl {
             password: self.password,
             username: self.username,
@@ -2804,16 +3068,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef {
             shared: shared,
             base: base.to_string(),
@@ -2842,10 +3110,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     api_key: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2856,29 +3128,37 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl
+{
     #[doc = ""]
     pub api_key: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularEl {
             api_key: self.api_key,
         }
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef {
             shared: shared,
             base: base.to_string(),
@@ -2898,7 +3178,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2934,7 +3215,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestEl {
     pub fn build(
@@ -2947,7 +3229,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3024,17 +3307,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_request = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3045,7 +3332,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl
+{
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
@@ -3053,7 +3341,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl {
             access_token: core::default::Default::default(),
             client_id: self.client_id,
@@ -3069,11 +3359,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef {
             shared: shared,
             base: base.to_string(),
@@ -3098,7 +3391,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_request` after provisioning.\n"]
@@ -3106,8 +3402,11 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElOauthRequestElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_request", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_request", self.base),
+        )
     }
 }
 
@@ -3117,11 +3416,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     username: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3132,7 +3434,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl
+{
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
@@ -3140,7 +3443,10 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeEl {
             password: self.password,
             username: self.username,
@@ -3148,16 +3454,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3182,15 +3492,19 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl
+{
     api_secret_key: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3201,29 +3515,37 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl
+{
     #[doc = ""]
     pub api_secret_key: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroEl {
             api_secret_key: self.api_secret_key,
         }
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef {
             shared: shared,
             base: base.to_string(),
@@ -3238,7 +3560,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `api_secret_key` after provisioning.\n"]
     pub fn api_secret_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_secret_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_secret_key", self.base),
+        )
     }
 }
 
@@ -3248,10 +3573,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     username: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3262,7 +3591,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl
+{
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
@@ -3270,7 +3600,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl {
             password: self.password,
             username: self.username,
@@ -3283,11 +3615,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCreden
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef {
             shared: shared,
             base: base.to_string(),
@@ -3312,7 +3647,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auth_code: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3348,7 +3684,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestEl {
     pub fn build(
@@ -3361,7 +3698,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3438,17 +3776,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_request = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3459,7 +3801,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl
+{
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
@@ -3467,7 +3810,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileC
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskEl {
             access_token: core::default::Default::default(),
             client_id: self.client_id,
@@ -3478,16 +3823,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredent
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef {
             shared: shared,
             base: base.to_string(),
@@ -3512,7 +3861,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_request` after provisioning.\n"]
@@ -3520,8 +3872,11 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElOauthRequestElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_request", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_request", self.base),
+        )
     }
 }
 
@@ -3640,10 +3995,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.amplitude = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.amplitude = Some(d);
-            },
+            }
         }
         self
     }
@@ -3663,10 +4018,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_connector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_connector = Some(d);
-            },
+            }
         }
         self
     }
@@ -3686,10 +4041,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.datadog = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.datadog = Some(d);
-            },
+            }
         }
         self
     }
@@ -3709,10 +4064,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dynatrace = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dynatrace = Some(d);
-            },
+            }
         }
         self
     }
@@ -3732,10 +4087,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.google_analytics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.google_analytics = Some(d);
-            },
+            }
         }
         self
     }
@@ -3755,10 +4110,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.honeycode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.honeycode = Some(d);
-            },
+            }
         }
         self
     }
@@ -3778,10 +4133,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.infor_nexus = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.infor_nexus = Some(d);
-            },
+            }
         }
         self
     }
@@ -3801,10 +4156,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.marketo = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.marketo = Some(d);
-            },
+            }
         }
         self
     }
@@ -3824,10 +4179,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.redshift = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.redshift = Some(d);
-            },
+            }
         }
         self
     }
@@ -3847,10 +4202,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.salesforce = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.salesforce = Some(d);
-            },
+            }
         }
         self
     }
@@ -3870,10 +4225,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sapo_data = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sapo_data = Some(d);
-            },
+            }
         }
         self
     }
@@ -3893,10 +4248,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.service_now = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.service_now = Some(d);
-            },
+            }
         }
         self
     }
@@ -3916,10 +4271,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.singular = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.singular = Some(d);
-            },
+            }
         }
         self
     }
@@ -3927,22 +4282,19 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
     #[doc = "Set the field `slack`.\n"]
     pub fn set_slack(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.slack = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.slack = Some(d);
-            },
+            }
         }
         self
     }
@@ -3962,10 +4314,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.snowflake = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.snowflake = Some(d);
-            },
+            }
         }
         self
     }
@@ -3985,10 +4337,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.trendmicro = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.trendmicro = Some(d);
-            },
+            }
         }
         self
     }
@@ -3996,22 +4348,19 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
     #[doc = "Set the field `veeva`.\n"]
     pub fn set_veeva(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.veeva = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.veeva = Some(d);
-            },
+            }
         }
         self
     }
@@ -4031,17 +4380,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.zendesk = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.zendesk = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4055,7 +4408,9 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
 pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl {}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl {
             amplitude: core::default::Default::default(),
             custom_connector: core::default::Default::default(),
@@ -4105,137 +4460,180 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsE
     #[doc = "Get a reference to the value of field `amplitude` after provisioning.\n"]
     pub fn amplitude(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElAmplitudeElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.amplitude", self.base))
     }
 
     #[doc = "Get a reference to the value of field `custom_connector` after provisioning.\n"]
     pub fn custom_connector(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_connector", self.base))
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElCustomConnectorElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_connector", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datadog` after provisioning.\n"]
     pub fn datadog(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDatadogElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.datadog", self.base))
     }
 
     #[doc = "Get a reference to the value of field `dynatrace` after provisioning.\n"]
     pub fn dynatrace(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElDynatraceElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.dynatrace", self.base))
     }
 
     #[doc = "Get a reference to the value of field `google_analytics` after provisioning.\n"]
     pub fn google_analytics(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.google_analytics", self.base))
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElGoogleAnalyticsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.google_analytics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `honeycode` after provisioning.\n"]
     pub fn honeycode(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElHoneycodeElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.honeycode", self.base))
     }
 
     #[doc = "Get a reference to the value of field `infor_nexus` after provisioning.\n"]
     pub fn infor_nexus(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElInforNexusElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.infor_nexus", self.base))
     }
 
     #[doc = "Get a reference to the value of field `marketo` after provisioning.\n"]
     pub fn marketo(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElMarketoElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.marketo", self.base))
     }
 
     #[doc = "Get a reference to the value of field `redshift` after provisioning.\n"]
     pub fn redshift(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRedshiftElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.redshift", self.base))
     }
 
     #[doc = "Get a reference to the value of field `salesforce` after provisioning.\n"]
     pub fn salesforce(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSalesforceElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.salesforce", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sapo_data` after provisioning.\n"]
     pub fn sapo_data(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSapoDataElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.sapo_data", self.base))
     }
 
     #[doc = "Get a reference to the value of field `service_now` after provisioning.\n"]
     pub fn service_now(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElServiceNowElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.service_now", self.base))
     }
 
     #[doc = "Get a reference to the value of field `singular` after provisioning.\n"]
     pub fn singular(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSingularElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.singular", self.base))
     }
 
     #[doc = "Get a reference to the value of field `slack` after provisioning.\n"]
     pub fn slack(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSlackElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.slack", self.base))
     }
 
     #[doc = "Get a reference to the value of field `snowflake` after provisioning.\n"]
     pub fn snowflake(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElSnowflakeElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.snowflake", self.base))
     }
 
     #[doc = "Get a reference to the value of field `trendmicro` after provisioning.\n"]
     pub fn trendmicro(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElTrendmicroElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.trendmicro", self.base))
     }
 
     #[doc = "Get a reference to the value of field `veeva` after provisioning.\n"]
     pub fn veeva(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElVeevaElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.veeva", self.base))
     }
 
     #[doc = "Get a reference to the value of field `zendesk` after provisioning.\n"]
     pub fn zendesk(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElZendeskElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.zendesk", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {}
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {
+}
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4246,24 +4644,32 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeEl {}
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef {
             shared: shared,
             base: base.to_string(),
@@ -4278,7 +4684,8 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesEl
+{
     oauth2_grant_type: PrimField<String>,
     token_url: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4308,7 +4715,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesEl
+{
     #[doc = ""]
     pub oauth2_grant_type: PrimField<String>,
     #[doc = ""]
@@ -4327,7 +4735,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4409,16 +4818,18 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth2_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth2_properties = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorEl {
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorEl
+{
     type O =
         BlockAssignable<
             AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorEl,
@@ -4433,7 +4844,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorEl {
     pub fn build(
@@ -4447,7 +4859,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4464,14 +4877,19 @@ impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProp
     }
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElRef {
+impl
+    AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `profile_properties` after provisioning.\n"]
     pub fn profile_properties(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.profile_properties", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.profile_properties", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth2_properties` after provisioning.\n"]
@@ -4479,8 +4897,11 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElOauth2PropertiesElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth2_properties", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth2_properties", self.base),
+        )
     }
 }
 
@@ -4489,10 +4910,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4503,13 +4928,16 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl
+{
     #[doc = ""]
     pub instance_url: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogEl {
             instance_url: self.instance_url,
         }
@@ -4521,11 +4949,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef {
             shared: shared,
             base: base.to_string(),
@@ -4549,10 +4980,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4563,29 +4998,37 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl
+{
     #[doc = ""]
     pub instance_url: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceEl {
             instance_url: self.instance_url,
         }
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef {
             shared: shared,
             base: base.to_string(),
@@ -4605,11 +5048,14 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl {}
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl
+{}
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl {
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl
+{
     type O =
         BlockAssignable<
             AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl,
@@ -4624,7 +5070,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsEl {
     pub fn build(
@@ -4634,7 +5081,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4651,19 +5099,26 @@ impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProp
     }
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsElRef {
+impl
+    AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {}
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {
+}
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4674,24 +5129,32 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeEl {}
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef {
             shared: shared,
             base: base.to_string(),
@@ -4710,11 +5173,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4725,29 +5191,37 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl
+{
     #[doc = ""]
     pub instance_url: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusEl {
             instance_url: self.instance_url,
         }
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef {
             shared: shared,
             base: base.to_string(),
@@ -4771,10 +5245,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4785,13 +5263,16 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl
+{
     #[doc = ""]
     pub instance_url: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoEl {
             instance_url: self.instance_url,
         }
@@ -4803,11 +5284,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef {
             shared: shared,
             base: base.to_string(),
@@ -4874,8 +5358,12 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4886,7 +5374,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl
+{
     #[doc = ""]
     pub bucket_name: PrimField<String>,
     #[doc = ""]
@@ -4894,7 +5383,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileP
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftEl {
             bucket_name: self.bucket_name,
             bucket_prefix: core::default::Default::default(),
@@ -4907,16 +5398,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef {
             shared: shared,
             base: base.to_string(),
@@ -4936,22 +5431,34 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_identifier` after provisioning.\n"]
     pub fn cluster_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_api_role_arn` after provisioning.\n"]
     pub fn data_api_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_api_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_api_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_url` after provisioning.\n"]
@@ -4989,15 +5496,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
     }
 
     #[doc = "Set the field `use_privatelink_for_metadata_and_authorization`.\n"]
-    pub fn set_use_privatelink_for_metadata_and_authorization(mut self, v: impl Into<PrimField<bool>>) -> Self {
+    pub fn set_use_privatelink_for_metadata_and_authorization(
+        mut self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
         self.use_privatelink_for_metadata_and_authorization = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5008,10 +5521,14 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceEl {
             instance_url: core::default::Default::default(),
             is_sandbox_environment: core::default::Default::default(),
@@ -5020,16 +5537,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef {
             shared: shared,
             base: base.to_string(),
@@ -5049,18 +5570,27 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 
     #[doc = "Get a reference to the value of field `is_sandbox_environment` after provisioning.\n"]
     pub fn is_sandbox_environment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_sandbox_environment", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_sandbox_environment", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `use_privatelink_for_metadata_and_authorization` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `use_privatelink_for_metadata_and_authorization` after provisioning.\n"]
     pub fn use_privatelink_for_metadata_and_authorization(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.use_privatelink_for_metadata_and_authorization", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.use_privatelink_for_metadata_and_authorization",
+                self.base
+            ),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesEl {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesEl
+{
     auth_code_url: PrimField<String>,
     oauth_scopes: ListField<PrimField<String>>,
     token_url: PrimField<String>,
@@ -5083,7 +5613,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesEl
+{
     #[doc = ""]
     pub auth_code_url: PrimField<String>,
     #[doc = ""]
@@ -5104,7 +5635,8 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -5196,17 +5728,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.oauth_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.oauth_properties = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5217,7 +5753,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl
+{
     #[doc = ""]
     pub application_host_url: PrimField<String>,
     #[doc = ""]
@@ -5229,7 +5766,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileP
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataEl {
             application_host_url: self.application_host_url,
             application_service_path: self.application_service_path,
@@ -5243,16 +5782,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef {
             shared: shared,
             base: base.to_string(),
@@ -5267,22 +5810,34 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 
     #[doc = "Get a reference to the value of field `application_host_url` after provisioning.\n"]
     pub fn application_host_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_host_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_host_url", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_service_path` after provisioning.\n"]
     pub fn application_service_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_service_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_service_path", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_number` after provisioning.\n"]
     pub fn client_number(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_number", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logon_language` after provisioning.\n"]
     pub fn logon_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.logon_language", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.logon_language", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port_number` after provisioning.\n"]
@@ -5292,7 +5847,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 
     #[doc = "Get a reference to the value of field `private_link_service_name` after provisioning.\n"]
     pub fn private_link_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_link_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_link_service_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oauth_properties` after provisioning.\n"]
@@ -5300,8 +5858,11 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         &self,
     ) -> ListRef<
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElOauthPropertiesElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.oauth_properties", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oauth_properties", self.base),
+        )
     }
 }
 
@@ -5310,11 +5871,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5325,29 +5889,37 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl
+{
     #[doc = ""]
     pub instance_url: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowEl {
             instance_url: self.instance_url,
         }
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef {
             shared: shared,
             base: base.to_string(),
@@ -5367,12 +5939,17 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {}
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {
+}
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5383,24 +5960,31 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularEl {}
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef {
             shared: shared,
             base: base.to_string(),
@@ -5419,10 +6003,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5439,7 +6027,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileP
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl {
             instance_url: self.instance_url,
         }
@@ -5515,8 +6105,12 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5527,7 +6121,8 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl
+{
     #[doc = ""]
     pub bucket_name: PrimField<String>,
     #[doc = ""]
@@ -5537,7 +6132,10 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileP
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeEl {
             account_name: core::default::Default::default(),
             bucket_name: self.bucket_name,
@@ -5550,16 +6148,20 @@ impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropert
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef {
             shared: shared,
             base: base.to_string(),
@@ -5584,12 +6186,18 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_link_service_name` after provisioning.\n"]
     pub fn private_link_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_link_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_link_service_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
@@ -5609,13 +6217,17 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
 }
 
 #[derive(Serialize)]
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {}
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl
+{}
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {
-    type O =
-        BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5626,24 +6238,32 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {}
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl
+{}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroEl {}
     }
 }
 
-pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef {
+pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef {
             shared: shared,
             base: base.to_string(),
@@ -5662,10 +6282,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5682,7 +6306,9 @@ pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfileP
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl {
             instance_url: self.instance_url,
         }
@@ -5722,10 +6348,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     instance_url: PrimField<String>,
 }
 
-impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl { }
+impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {}
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5736,13 +6366,16 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
     }
 }
 
-pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {
+pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl
+{
     #[doc = ""]
     pub instance_url: PrimField<String>,
 }
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskEl {
             instance_url: self.instance_url,
         }
@@ -5754,11 +6387,14 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElConnectorProfileProper
     base: String,
 }
 
-impl Ref for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef {
+impl Ref
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef {
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef
+    {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef {
             shared: shared,
             base: base.to_string(),
@@ -5892,10 +6528,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.amplitude = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.amplitude = Some(d);
-            },
+            }
         }
         self
     }
@@ -5915,10 +6551,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_connector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_connector = Some(d);
-            },
+            }
         }
         self
     }
@@ -5938,10 +6574,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.datadog = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.datadog = Some(d);
-            },
+            }
         }
         self
     }
@@ -5961,10 +6597,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dynatrace = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dynatrace = Some(d);
-            },
+            }
         }
         self
     }
@@ -5984,10 +6620,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.google_analytics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.google_analytics = Some(d);
-            },
+            }
         }
         self
     }
@@ -6007,10 +6643,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.honeycode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.honeycode = Some(d);
-            },
+            }
         }
         self
     }
@@ -6030,10 +6666,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.infor_nexus = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.infor_nexus = Some(d);
-            },
+            }
         }
         self
     }
@@ -6053,10 +6689,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.marketo = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.marketo = Some(d);
-            },
+            }
         }
         self
     }
@@ -6076,10 +6712,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.redshift = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.redshift = Some(d);
-            },
+            }
         }
         self
     }
@@ -6099,10 +6735,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.salesforce = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.salesforce = Some(d);
-            },
+            }
         }
         self
     }
@@ -6122,10 +6758,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sapo_data = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sapo_data = Some(d);
-            },
+            }
         }
         self
     }
@@ -6145,10 +6781,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.service_now = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.service_now = Some(d);
-            },
+            }
         }
         self
     }
@@ -6168,10 +6804,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.singular = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.singular = Some(d);
-            },
+            }
         }
         self
     }
@@ -6179,22 +6815,19 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
     #[doc = "Set the field `slack`.\n"]
     pub fn set_slack(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.slack = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.slack = Some(d);
-            },
+            }
         }
         self
     }
@@ -6214,10 +6847,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.snowflake = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.snowflake = Some(d);
-            },
+            }
         }
         self
     }
@@ -6237,10 +6870,10 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.trendmicro = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.trendmicro = Some(d);
-            },
+            }
         }
         self
     }
@@ -6248,22 +6881,19 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
     #[doc = "Set the field `veeva`.\n"]
     pub fn set_veeva(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.veeva = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.veeva = Some(d);
-            },
+            }
         }
         self
     }
@@ -6283,17 +6913,21 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.zendesk = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.zendesk = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl {
-    type O = BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl>;
+impl ToListMappable
+    for AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
+{
+    type O = BlockAssignable<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -6307,7 +6941,9 @@ impl ToListMappable for AppflowConnectorProfileConnectorProfileConfigElConnector
 pub struct BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl {}
 
 impl BuildAppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl {
-    pub fn build(self) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl {
+    pub fn build(
+        self,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl {
         AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl {
             amplitude: core::default::Default::default(),
             custom_connector: core::default::Default::default(),
@@ -6357,126 +6993,164 @@ impl AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl
     #[doc = "Get a reference to the value of field `amplitude` after provisioning.\n"]
     pub fn amplitude(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElAmplitudeElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.amplitude", self.base))
     }
 
     #[doc = "Get a reference to the value of field `custom_connector` after provisioning.\n"]
     pub fn custom_connector(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_connector", self.base))
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElCustomConnectorElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_connector", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datadog` after provisioning.\n"]
     pub fn datadog(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDatadogElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.datadog", self.base))
     }
 
     #[doc = "Get a reference to the value of field `dynatrace` after provisioning.\n"]
     pub fn dynatrace(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElDynatraceElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.dynatrace", self.base))
     }
 
     #[doc = "Get a reference to the value of field `google_analytics` after provisioning.\n"]
     pub fn google_analytics(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.google_analytics", self.base))
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElGoogleAnalyticsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.google_analytics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `honeycode` after provisioning.\n"]
     pub fn honeycode(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElHoneycodeElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.honeycode", self.base))
     }
 
     #[doc = "Get a reference to the value of field `infor_nexus` after provisioning.\n"]
     pub fn infor_nexus(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElInforNexusElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.infor_nexus", self.base))
     }
 
     #[doc = "Get a reference to the value of field `marketo` after provisioning.\n"]
     pub fn marketo(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElMarketoElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.marketo", self.base))
     }
 
     #[doc = "Get a reference to the value of field `redshift` after provisioning.\n"]
     pub fn redshift(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRedshiftElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.redshift", self.base))
     }
 
     #[doc = "Get a reference to the value of field `salesforce` after provisioning.\n"]
     pub fn salesforce(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSalesforceElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.salesforce", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sapo_data` after provisioning.\n"]
     pub fn sapo_data(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSapoDataElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.sapo_data", self.base))
     }
 
     #[doc = "Get a reference to the value of field `service_now` after provisioning.\n"]
     pub fn service_now(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElServiceNowElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.service_now", self.base))
     }
 
     #[doc = "Get a reference to the value of field `singular` after provisioning.\n"]
     pub fn singular(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSingularElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.singular", self.base))
     }
 
     #[doc = "Get a reference to the value of field `slack` after provisioning.\n"]
     pub fn slack(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSlackElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.slack", self.base))
     }
 
     #[doc = "Get a reference to the value of field `snowflake` after provisioning.\n"]
     pub fn snowflake(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElSnowflakeElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.snowflake", self.base))
     }
 
     #[doc = "Get a reference to the value of field `trendmicro` after provisioning.\n"]
     pub fn trendmicro(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElTrendmicroElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.trendmicro", self.base))
     }
 
     #[doc = "Get a reference to the value of field `veeva` after provisioning.\n"]
     pub fn veeva(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElVeevaElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.veeva", self.base))
     }
 
     #[doc = "Get a reference to the value of field `zendesk` after provisioning.\n"]
     pub fn zendesk(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef> {
+    ) -> ListRef<
+        AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElZendeskElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.zendesk", self.base))
     }
 }
@@ -6494,13 +7168,11 @@ struct AppflowConnectorProfileConnectorProfileConfigElDynamic {
 #[derive(Serialize)]
 pub struct AppflowConnectorProfileConnectorProfileConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    connector_profile_credentials: Option<
-        Vec<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl>,
-    >,
+    connector_profile_credentials:
+        Option<Vec<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    connector_profile_properties: Option<
-        Vec<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl>,
-    >,
+    connector_profile_properties:
+        Option<Vec<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl>>,
     dynamic: AppflowConnectorProfileConnectorProfileConfigElDynamic,
 }
 
@@ -6508,15 +7180,19 @@ impl AppflowConnectorProfileConnectorProfileConfigEl {
     #[doc = "Set the field `connector_profile_credentials`.\n"]
     pub fn set_connector_profile_credentials(
         mut self,
-        v: impl Into<BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connector_profile_credentials = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connector_profile_credentials = Some(d);
-            },
+            }
         }
         self
     }
@@ -6524,15 +7200,19 @@ impl AppflowConnectorProfileConnectorProfileConfigEl {
     #[doc = "Set the field `connector_profile_properties`.\n"]
     pub fn set_connector_profile_properties(
         mut self,
-        v: impl Into<BlockAssignable<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connector_profile_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connector_profile_properties = Some(d);
-            },
+            }
         }
         self
     }
@@ -6568,7 +7248,10 @@ pub struct AppflowConnectorProfileConnectorProfileConfigElRef {
 }
 
 impl Ref for AppflowConnectorProfileConnectorProfileConfigElRef {
-    fn new(shared: StackShared, base: String) -> AppflowConnectorProfileConnectorProfileConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppflowConnectorProfileConnectorProfileConfigElRef {
         AppflowConnectorProfileConnectorProfileConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -6584,15 +7267,23 @@ impl AppflowConnectorProfileConnectorProfileConfigElRef {
     #[doc = "Get a reference to the value of field `connector_profile_credentials` after provisioning.\n"]
     pub fn connector_profile_credentials(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connector_profile_credentials", self.base))
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfileCredentialsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connector_profile_credentials", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connector_profile_properties` after provisioning.\n"]
     pub fn connector_profile_properties(
         &self,
-    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connector_profile_properties", self.base))
+    ) -> ListRef<AppflowConnectorProfileConnectorProfileConfigElConnectorProfilePropertiesElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connector_profile_properties", self.base),
+        )
     }
 }
 

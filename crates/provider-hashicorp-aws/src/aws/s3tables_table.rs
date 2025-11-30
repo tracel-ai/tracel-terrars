@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3tablesTableData {
@@ -66,7 +66,8 @@ impl S3tablesTable {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl S3tablesTable {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,29 +91,44 @@ impl S3tablesTable {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
     #[doc = "Set the field `encryption_configuration`.\n"]
-    pub fn set_encryption_configuration(self, v: impl Into<S3tablesTableEncryptionConfiguration>) -> Self {
+    pub fn set_encryption_configuration(
+        self,
+        v: impl Into<S3tablesTableEncryptionConfiguration>,
+    ) -> Self {
         self.0.data.borrow_mut().encryption_configuration = Some(v.into());
         self
     }
 
     #[doc = "Set the field `maintenance_configuration`.\n"]
-    pub fn set_maintenance_configuration(self, v: impl Into<S3tablesTableMaintenanceConfiguration>) -> Self {
+    pub fn set_maintenance_configuration(
+        self,
+        v: impl Into<S3tablesTableMaintenanceConfiguration>,
+    ) -> Self {
         self.0.data.borrow_mut().maintenance_configuration = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -129,10 +145,10 @@ impl S3tablesTable {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().metadata = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.metadata = Some(d);
-            },
+            }
         }
         self
     }
@@ -144,12 +160,18 @@ impl S3tablesTable {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
@@ -162,7 +184,10 @@ impl S3tablesTable {
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.format", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_configuration` after provisioning.\n"]
@@ -175,83 +200,128 @@ impl S3tablesTable {
 
     #[doc = "Get a reference to the value of field `metadata_location` after provisioning.\n"]
     pub fn metadata_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metadata_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metadata_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `modified_at` after provisioning.\n"]
     pub fn modified_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modified_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modified_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `modified_by` after provisioning.\n"]
     pub fn modified_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modified_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modified_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_bucket_arn` after provisioning.\n"]
     pub fn table_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_bucket_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_bucket_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_token` after provisioning.\n"]
     pub fn version_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warehouse_location` after provisioning.\n"]
     pub fn warehouse_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warehouse_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warehouse_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
     pub fn metadata(&self) -> ListRef<S3tablesTableMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metadata", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metadata", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3tablesTable {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3tablesTable { }
+impl Resource for S3tablesTable {}
 
 impl ToListMappable for S3tablesTable {
     type O = ListRef<S3tablesTableRef>;
@@ -322,10 +392,7 @@ pub struct S3tablesTableRef {
 
 impl Ref for S3tablesTableRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -345,12 +412,18 @@ impl S3tablesTableRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
@@ -363,7 +436,10 @@ impl S3tablesTableRef {
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.format", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.format", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_configuration` after provisioning.\n"]
@@ -376,73 +452,114 @@ impl S3tablesTableRef {
 
     #[doc = "Get a reference to the value of field `metadata_location` after provisioning.\n"]
     pub fn metadata_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metadata_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metadata_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `modified_at` after provisioning.\n"]
     pub fn modified_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modified_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modified_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `modified_by` after provisioning.\n"]
     pub fn modified_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modified_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modified_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_bucket_arn` after provisioning.\n"]
     pub fn table_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_bucket_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_bucket_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_token` after provisioning.\n"]
     pub fn version_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warehouse_location` after provisioning.\n"]
     pub fn warehouse_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warehouse_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warehouse_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
     pub fn metadata(&self) -> ListRef<S3tablesTableMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metadata", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metadata", self.extract_ref()),
+        )
     }
 }
 
@@ -517,7 +634,10 @@ impl S3tablesTableEncryptionConfigurationRef {
 
     #[doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"]
     pub fn sse_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sse_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sse_algorithm", self.base),
+        )
     }
 }
 
@@ -563,7 +683,10 @@ pub struct S3tablesTableMaintenanceConfigurationIcebergCompactionSettingsRef {
 }
 
 impl Ref for S3tablesTableMaintenanceConfigurationIcebergCompactionSettingsRef {
-    fn new(shared: StackShared, base: String) -> S3tablesTableMaintenanceConfigurationIcebergCompactionSettingsRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3tablesTableMaintenanceConfigurationIcebergCompactionSettingsRef {
         S3tablesTableMaintenanceConfigurationIcebergCompactionSettingsRef {
             shared: shared,
             base: base.to_string(),
@@ -578,7 +701,10 @@ impl S3tablesTableMaintenanceConfigurationIcebergCompactionSettingsRef {
 
     #[doc = "Get a reference to the value of field `target_file_size_mb` after provisioning.\n"]
     pub fn target_file_size_mb(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_file_size_mb", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_file_size_mb", self.base),
+        )
     }
 }
 
@@ -592,7 +718,10 @@ pub struct S3tablesTableMaintenanceConfigurationIcebergCompaction {
 
 impl S3tablesTableMaintenanceConfigurationIcebergCompaction {
     #[doc = "Set the field `settings`.\n"]
-    pub fn set_settings(mut self, v: impl Into<S3tablesTableMaintenanceConfigurationIcebergCompactionSettings>) -> Self {
+    pub fn set_settings(
+        mut self,
+        v: impl Into<S3tablesTableMaintenanceConfigurationIcebergCompactionSettings>,
+    ) -> Self {
         self.settings = Some(v.into());
         self
     }
@@ -633,7 +762,10 @@ pub struct S3tablesTableMaintenanceConfigurationIcebergCompactionRef {
 }
 
 impl Ref for S3tablesTableMaintenanceConfigurationIcebergCompactionRef {
-    fn new(shared: StackShared, base: String) -> S3tablesTableMaintenanceConfigurationIcebergCompactionRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3tablesTableMaintenanceConfigurationIcebergCompactionRef {
         S3tablesTableMaintenanceConfigurationIcebergCompactionRef {
             shared: shared,
             base: base.to_string(),
@@ -683,7 +815,8 @@ impl S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettings {
 }
 
 impl ToListMappable for S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettings {
-    type O = BlockAssignable<S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettings>;
+    type O =
+        BlockAssignable<S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettings>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -729,12 +862,18 @@ impl S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettingsRef {
 
     #[doc = "Get a reference to the value of field `max_snapshot_age_hours` after provisioning.\n"]
     pub fn max_snapshot_age_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_snapshot_age_hours", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_snapshot_age_hours", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_snapshots_to_keep` after provisioning.\n"]
     pub fn min_snapshots_to_keep(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_snapshots_to_keep", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_snapshots_to_keep", self.base),
+        )
     }
 }
 
@@ -792,7 +931,10 @@ pub struct S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
 }
 
 impl Ref for S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
-    fn new(shared: StackShared, base: String) -> S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
         S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
             shared: shared,
             base: base.to_string(),
@@ -806,7 +948,9 @@ impl S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
     }
 
     #[doc = "Get a reference to the value of field `settings` after provisioning.\n"]
-    pub fn settings(&self) -> S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettingsRef {
+    pub fn settings(
+        &self,
+    ) -> S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettingsRef {
         S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementSettingsRef::new(
             self.shared().clone(),
             format!("{}.settings", self.base),
@@ -824,7 +968,8 @@ pub struct S3tablesTableMaintenanceConfiguration {
     #[serde(skip_serializing_if = "Option::is_none")]
     iceberg_compaction: Option<S3tablesTableMaintenanceConfigurationIcebergCompaction>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    iceberg_snapshot_management: Option<S3tablesTableMaintenanceConfigurationIcebergSnapshotManagement>,
+    iceberg_snapshot_management:
+        Option<S3tablesTableMaintenanceConfigurationIcebergSnapshotManagement>,
 }
 
 impl S3tablesTableMaintenanceConfiguration {
@@ -898,7 +1043,9 @@ impl S3tablesTableMaintenanceConfigurationRef {
     }
 
     #[doc = "Get a reference to the value of field `iceberg_snapshot_management` after provisioning.\n"]
-    pub fn iceberg_snapshot_management(&self) -> S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
+    pub fn iceberg_snapshot_management(
+        &self,
+    ) -> S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef {
         S3tablesTableMaintenanceConfigurationIcebergSnapshotManagementRef::new(
             self.shared().clone(),
             format!("{}.iceberg_snapshot_management", self.base),
@@ -916,8 +1063,7 @@ pub struct S3tablesTableMetadataElIcebergElSchemaElFieldEl {
 }
 
 impl S3tablesTableMetadataElIcebergElSchemaElFieldEl {
-    #[doc =
-        "Set the field `required`.\nA Boolean value that specifies whether values are required for each row in this field. Default: false."]
+    #[doc = "Set the field `required`.\nA Boolean value that specifies whether values are required for each row in this field. Default: false."]
     pub fn set_required(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.required = Some(v.into());
         self
@@ -959,7 +1105,10 @@ pub struct S3tablesTableMetadataElIcebergElSchemaElFieldElRef {
 }
 
 impl Ref for S3tablesTableMetadataElIcebergElSchemaElFieldElRef {
-    fn new(shared: StackShared, base: String) -> S3tablesTableMetadataElIcebergElSchemaElFieldElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3tablesTableMetadataElIcebergElSchemaElFieldElRef {
         S3tablesTableMetadataElIcebergElSchemaElFieldElRef {
             shared: shared,
             base: base.to_string(),
@@ -977,14 +1126,12 @@ impl S3tablesTableMetadataElIcebergElSchemaElFieldElRef {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `required` after provisioning.\nA Boolean value that specifies whether values are required for each row in this field. Default: false."]
+    #[doc = "Get a reference to the value of field `required` after provisioning.\nA Boolean value that specifies whether values are required for each row in this field. Default: false."]
     pub fn required(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.required", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `type_` after provisioning.\nThe field type. S3 Tables supports all Apache Iceberg primitive types."]
+    #[doc = "Get a reference to the value of field `type_` after provisioning.\nThe field type. S3 Tables supports all Apache Iceberg primitive types."]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
@@ -1004,14 +1151,17 @@ pub struct S3tablesTableMetadataElIcebergElSchemaEl {
 
 impl S3tablesTableMetadataElIcebergElSchemaEl {
     #[doc = "Set the field `field`.\n"]
-    pub fn set_field(mut self, v: impl Into<BlockAssignable<S3tablesTableMetadataElIcebergElSchemaElFieldEl>>) -> Self {
+    pub fn set_field(
+        mut self,
+        v: impl Into<BlockAssignable<S3tablesTableMetadataElIcebergElSchemaElFieldEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field = Some(d);
-            },
+            }
         }
         self
     }
@@ -1079,14 +1229,17 @@ pub struct S3tablesTableMetadataElIcebergEl {
 
 impl S3tablesTableMetadataElIcebergEl {
     #[doc = "Set the field `schema`.\n"]
-    pub fn set_schema(mut self, v: impl Into<BlockAssignable<S3tablesTableMetadataElIcebergElSchemaEl>>) -> Self {
+    pub fn set_schema(
+        mut self,
+        v: impl Into<BlockAssignable<S3tablesTableMetadataElIcebergElSchemaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -1154,14 +1307,17 @@ pub struct S3tablesTableMetadataEl {
 
 impl S3tablesTableMetadataEl {
     #[doc = "Set the field `iceberg`.\n"]
-    pub fn set_iceberg(mut self, v: impl Into<BlockAssignable<S3tablesTableMetadataElIcebergEl>>) -> Self {
+    pub fn set_iceberg(
+        mut self,
+        v: impl Into<BlockAssignable<S3tablesTableMetadataElIcebergEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.iceberg = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.iceberg = Some(d);
-            },
+            }
         }
         self
     }

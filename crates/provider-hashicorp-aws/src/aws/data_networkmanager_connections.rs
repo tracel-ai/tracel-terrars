@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataNetworkmanagerConnectionsData {
@@ -65,12 +65,18 @@ impl DataNetworkmanagerConnections {
 
     #[doc = "Get a reference to the value of field `device_id` after provisioning.\n"]
     pub fn device_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_network_id` after provisioning.\n"]
     pub fn global_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -85,17 +91,24 @@ impl DataNetworkmanagerConnections {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataNetworkmanagerConnections {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataNetworkmanagerConnections { }
+impl Datasource for DataNetworkmanagerConnections {}
 
 impl ToListMappable for DataNetworkmanagerConnections {
     type O = ListRef<DataNetworkmanagerConnectionsRef>;
@@ -153,10 +166,7 @@ pub struct DataNetworkmanagerConnectionsRef {
 
 impl Ref for DataNetworkmanagerConnectionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -171,12 +181,18 @@ impl DataNetworkmanagerConnectionsRef {
 
     #[doc = "Get a reference to the value of field `device_id` after provisioning.\n"]
     pub fn device_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_network_id` after provisioning.\n"]
     pub fn global_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -191,6 +207,9 @@ impl DataNetworkmanagerConnectionsRef {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }

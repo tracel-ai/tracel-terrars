@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SesReceiptRuleData {
@@ -82,7 +82,8 @@ impl SesReceiptRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -95,7 +96,7 @@ impl SesReceiptRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -106,12 +107,22 @@ impl SesReceiptRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -139,8 +150,7 @@ impl SesReceiptRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -159,40 +169,49 @@ impl SesReceiptRule {
     }
 
     #[doc = "Set the field `add_header_action`.\n"]
-    pub fn set_add_header_action(self, v: impl Into<BlockAssignable<SesReceiptRuleAddHeaderActionEl>>) -> Self {
+    pub fn set_add_header_action(
+        self,
+        v: impl Into<BlockAssignable<SesReceiptRuleAddHeaderActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().add_header_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.add_header_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `bounce_action`.\n"]
-    pub fn set_bounce_action(self, v: impl Into<BlockAssignable<SesReceiptRuleBounceActionEl>>) -> Self {
+    pub fn set_bounce_action(
+        self,
+        v: impl Into<BlockAssignable<SesReceiptRuleBounceActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().bounce_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.bounce_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lambda_action`.\n"]
-    pub fn set_lambda_action(self, v: impl Into<BlockAssignable<SesReceiptRuleLambdaActionEl>>) -> Self {
+    pub fn set_lambda_action(
+        self,
+        v: impl Into<BlockAssignable<SesReceiptRuleLambdaActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lambda_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lambda_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -202,10 +221,10 @@ impl SesReceiptRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().s3_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.s3_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -215,43 +234,52 @@ impl SesReceiptRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sns_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sns_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `stop_action`.\n"]
-    pub fn set_stop_action(self, v: impl Into<BlockAssignable<SesReceiptRuleStopActionEl>>) -> Self {
+    pub fn set_stop_action(
+        self,
+        v: impl Into<BlockAssignable<SesReceiptRuleStopActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().stop_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.stop_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `workmail_action`.\n"]
-    pub fn set_workmail_action(self, v: impl Into<BlockAssignable<SesReceiptRuleWorkmailActionEl>>) -> Self {
+    pub fn set_workmail_action(
+        self,
+        v: impl Into<BlockAssignable<SesReceiptRuleWorkmailActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().workmail_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.workmail_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `after` after provisioning.\n"]
     pub fn after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -261,7 +289,10 @@ impl SesReceiptRule {
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -271,43 +302,64 @@ impl SesReceiptRule {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recipients` after provisioning.\n"]
     pub fn recipients(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.recipients", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.recipients", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_set_name` after provisioning.\n"]
     pub fn rule_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scan_enabled` after provisioning.\n"]
     pub fn scan_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_policy` after provisioning.\n"]
     pub fn tls_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tls_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tls_policy", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SesReceiptRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SesReceiptRule { }
+impl Resource for SesReceiptRule {}
 
 impl ToListMappable for SesReceiptRule {
     type O = ListRef<SesReceiptRuleRef>;
@@ -381,10 +433,7 @@ pub struct SesReceiptRuleRef {
 
 impl Ref for SesReceiptRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -399,7 +448,10 @@ impl SesReceiptRuleRef {
 
     #[doc = "Get a reference to the value of field `after` after provisioning.\n"]
     pub fn after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -409,7 +461,10 @@ impl SesReceiptRuleRef {
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -419,33 +474,50 @@ impl SesReceiptRuleRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recipients` after provisioning.\n"]
     pub fn recipients(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.recipients", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.recipients", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_set_name` after provisioning.\n"]
     pub fn rule_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scan_enabled` after provisioning.\n"]
     pub fn scan_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_policy` after provisioning.\n"]
     pub fn tls_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tls_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tls_policy", self.extract_ref()),
+        )
     }
 }
 
@@ -456,7 +528,7 @@ pub struct SesReceiptRuleAddHeaderActionEl {
     position: PrimField<f64>,
 }
 
-impl SesReceiptRuleAddHeaderActionEl { }
+impl SesReceiptRuleAddHeaderActionEl {}
 
 impl ToListMappable for SesReceiptRuleAddHeaderActionEl {
     type O = BlockAssignable<SesReceiptRuleAddHeaderActionEl>;
@@ -622,7 +694,10 @@ impl SesReceiptRuleBounceActionElRef {
 
     #[doc = "Get a reference to the value of field `smtp_reply_code` after provisioning.\n"]
     pub fn smtp_reply_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.smtp_reply_code", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.smtp_reply_code", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
@@ -716,7 +791,10 @@ impl SesReceiptRuleLambdaActionElRef {
 
     #[doc = "Get a reference to the value of field `invocation_type` after provisioning.\n"]
     pub fn invocation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invocation_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invocation_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
@@ -838,7 +916,10 @@ impl SesReceiptRuleS3ActionElRef {
 
     #[doc = "Get a reference to the value of field `object_key_prefix` after provisioning.\n"]
     pub fn object_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_key_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_key_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
@@ -1078,7 +1159,10 @@ impl SesReceiptRuleWorkmailActionElRef {
 
     #[doc = "Get a reference to the value of field `organization_arn` after provisioning.\n"]
     pub fn organization_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]

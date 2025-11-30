@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct FisExperimentTemplateData {
@@ -29,7 +29,8 @@ struct FisExperimentTemplateData {
     #[serde(skip_serializing_if = "Option::is_none")]
     experiment_options: Option<Vec<FisExperimentTemplateExperimentOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    experiment_report_configuration: Option<Vec<FisExperimentTemplateExperimentReportConfigurationEl>>,
+    experiment_report_configuration:
+        Option<Vec<FisExperimentTemplateExperimentReportConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     log_configuration: Option<Vec<FisExperimentTemplateLogConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -76,7 +77,8 @@ impl FisExperimentTemplate {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -89,7 +91,7 @@ impl FisExperimentTemplate {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -100,12 +102,22 @@ impl FisExperimentTemplate {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -115,8 +127,7 @@ impl FisExperimentTemplate {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -139,10 +150,10 @@ impl FisExperimentTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
@@ -155,10 +166,10 @@ impl FisExperimentTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().experiment_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.experiment_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -171,36 +182,46 @@ impl FisExperimentTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().experiment_report_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.experiment_report_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .experiment_report_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `log_configuration`.\n"]
-    pub fn set_log_configuration(self, v: impl Into<BlockAssignable<FisExperimentTemplateLogConfigurationEl>>) -> Self {
+    pub fn set_log_configuration(
+        self,
+        v: impl Into<BlockAssignable<FisExperimentTemplateLogConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().log_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.log_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `stop_condition`.\n"]
-    pub fn set_stop_condition(self, v: impl Into<BlockAssignable<FisExperimentTemplateStopConditionEl>>) -> Self {
+    pub fn set_stop_condition(
+        self,
+        v: impl Into<BlockAssignable<FisExperimentTemplateStopConditionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().stop_condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.stop_condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -210,10 +231,10 @@ impl FisExperimentTemplate {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target = Some(d);
-            },
+            }
         }
         self
     }
@@ -226,7 +247,10 @@ impl FisExperimentTemplate {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -234,55 +258,84 @@ impl FisExperimentTemplate {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `experiment_options` after provisioning.\n"]
     pub fn experiment_options(&self) -> ListRef<FisExperimentTemplateExperimentOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.experiment_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.experiment_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `experiment_report_configuration` after provisioning.\n"]
-    pub fn experiment_report_configuration(&self) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.experiment_report_configuration", self.extract_ref()))
+    pub fn experiment_report_configuration(
+        &self,
+    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.experiment_report_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(&self) -> ListRef<FisExperimentTemplateLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FisExperimentTemplateTimeoutsElRef {
-        FisExperimentTemplateTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        FisExperimentTemplateTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for FisExperimentTemplate {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for FisExperimentTemplate { }
+impl Resource for FisExperimentTemplate {}
 
 impl ToListMappable for FisExperimentTemplate {
     type O = ListRef<FisExperimentTemplateRef>;
@@ -353,10 +406,7 @@ pub struct FisExperimentTemplateRef {
 
 impl Ref for FisExperimentTemplateRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -371,7 +421,10 @@ impl FisExperimentTemplateRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -379,45 +432,70 @@ impl FisExperimentTemplateRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `experiment_options` after provisioning.\n"]
     pub fn experiment_options(&self) -> ListRef<FisExperimentTemplateExperimentOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.experiment_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.experiment_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `experiment_report_configuration` after provisioning.\n"]
-    pub fn experiment_report_configuration(&self) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.experiment_report_configuration", self.extract_ref()))
+    pub fn experiment_report_configuration(
+        &self,
+    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.experiment_report_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(&self) -> ListRef<FisExperimentTemplateLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FisExperimentTemplateTimeoutsElRef {
-        FisExperimentTemplateTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        FisExperimentTemplateTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -427,7 +505,7 @@ pub struct FisExperimentTemplateActionElParameterEl {
     value: PrimField<String>,
 }
 
-impl FisExperimentTemplateActionElParameterEl { }
+impl FisExperimentTemplateActionElParameterEl {}
 
 impl ToListMappable for FisExperimentTemplateActionElParameterEl {
     type O = BlockAssignable<FisExperimentTemplateActionElParameterEl>;
@@ -493,7 +571,7 @@ pub struct FisExperimentTemplateActionElTargetEl {
     value: PrimField<String>,
 }
 
-impl FisExperimentTemplateActionElTargetEl { }
+impl FisExperimentTemplateActionElTargetEl {}
 
 impl ToListMappable for FisExperimentTemplateActionElTargetEl {
     type O = BlockAssignable<FisExperimentTemplateActionElTargetEl>;
@@ -588,27 +666,33 @@ impl FisExperimentTemplateActionEl {
     }
 
     #[doc = "Set the field `parameter`.\n"]
-    pub fn set_parameter(mut self, v: impl Into<BlockAssignable<FisExperimentTemplateActionElParameterEl>>) -> Self {
+    pub fn set_parameter(
+        mut self,
+        v: impl Into<BlockAssignable<FisExperimentTemplateActionElParameterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parameter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `target`.\n"]
-    pub fn set_target(mut self, v: impl Into<BlockAssignable<FisExperimentTemplateActionElTargetEl>>) -> Self {
+    pub fn set_target(
+        mut self,
+        v: impl Into<BlockAssignable<FisExperimentTemplateActionElTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target = Some(d);
-            },
+            }
         }
         self
     }
@@ -758,12 +842,18 @@ impl FisExperimentTemplateExperimentOptionsElRef {
 
     #[doc = "Get a reference to the value of field `account_targeting` after provisioning.\n"]
     pub fn account_targeting(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_targeting", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_targeting", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `empty_target_resolution_mode` after provisioning.\n"]
     pub fn empty_target_resolution_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.empty_target_resolution_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.empty_target_resolution_mode", self.base),
+        )
     }
 }
 
@@ -781,8 +871,12 @@ impl FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatch
     }
 }
 
-impl ToListMappable for FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl {
-    type O = BlockAssignable<FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl>;
+impl ToListMappable
+    for FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl
+{
+    type O = BlockAssignable<
+        FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -793,26 +887,34 @@ impl ToListMappable for FisExperimentTemplateExperimentReportConfigurationElData
     }
 }
 
-pub struct BuildFisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl {}
+pub struct BuildFisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl
+{}
 
 impl BuildFisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl {
-    pub fn build(self) -> FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl {
+    pub fn build(
+        self,
+    ) -> FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl
+    {
         FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl {
             dashboard_arn: core::default::Default::default(),
         }
     }
 }
 
-pub struct FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef {
+pub struct FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef {
+impl Ref
+    for FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef {
+    ) -> FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef
+    {
         FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef {
             shared: shared,
             base: base.to_string(),
@@ -827,14 +929,19 @@ impl FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatch
 
     #[doc = "Get a reference to the value of field `dashboard_arn` after provisioning.\n"]
     pub fn dashboard_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dashboard_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dashboard_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct FisExperimentTemplateExperimentReportConfigurationElDataSourcesElDynamic {
     cloudwatch_dashboard: Option<
-        DynamicBlock<FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl>,
+        DynamicBlock<
+            FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardEl,
+        >,
     >,
 }
 
@@ -863,10 +970,10 @@ impl FisExperimentTemplateExperimentReportConfigurationElDataSourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_dashboard = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_dashboard = Some(d);
-            },
+            }
         }
         self
     }
@@ -920,8 +1027,13 @@ impl FisExperimentTemplateExperimentReportConfigurationElDataSourcesElRef {
     #[doc = "Get a reference to the value of field `cloudwatch_dashboard` after provisioning.\n"]
     pub fn cloudwatch_dashboard(
         &self,
-    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_dashboard", self.base))
+    ) -> ListRef<
+        FisExperimentTemplateExperimentReportConfigurationElDataSourcesElCloudwatchDashboardElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_dashboard", self.base),
+        )
     }
 }
 
@@ -940,8 +1052,12 @@ impl FisExperimentTemplateExperimentReportConfigurationElOutputsElS3Configuratio
     }
 }
 
-impl ToListMappable for FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl {
-    type O = BlockAssignable<FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl>;
+impl ToListMappable
+    for FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl
+{
+    type O = BlockAssignable<
+        FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -958,7 +1074,9 @@ pub struct BuildFisExperimentTemplateExperimentReportConfigurationElOutputsElS3C
 }
 
 impl BuildFisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl {
-    pub fn build(self) -> FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl {
+    pub fn build(
+        self,
+    ) -> FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl {
         FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl {
             bucket_name: self.bucket_name,
             prefix: core::default::Default::default(),
@@ -1002,14 +1120,17 @@ impl FisExperimentTemplateExperimentReportConfigurationElOutputsElS3Configuratio
 #[derive(Serialize, Default)]
 struct FisExperimentTemplateExperimentReportConfigurationElOutputsElDynamic {
     s3_configuration: Option<
-        DynamicBlock<FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl>,
+        DynamicBlock<
+            FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct FisExperimentTemplateExperimentReportConfigurationElOutputsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3_configuration: Option<Vec<FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl>>,
+    s3_configuration:
+        Option<Vec<FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl>>,
     dynamic: FisExperimentTemplateExperimentReportConfigurationElOutputsElDynamic,
 }
 
@@ -1017,22 +1138,19 @@ impl FisExperimentTemplateExperimentReportConfigurationElOutputsEl {
     #[doc = "Set the field `s3_configuration`.\n"]
     pub fn set_s3_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1067,7 +1185,10 @@ pub struct FisExperimentTemplateExperimentReportConfigurationElOutputsElRef {
 }
 
 impl Ref for FisExperimentTemplateExperimentReportConfigurationElOutputsElRef {
-    fn new(shared: StackShared, base: String) -> FisExperimentTemplateExperimentReportConfigurationElOutputsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FisExperimentTemplateExperimentReportConfigurationElOutputsElRef {
         FisExperimentTemplateExperimentReportConfigurationElOutputsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1083,14 +1204,19 @@ impl FisExperimentTemplateExperimentReportConfigurationElOutputsElRef {
     #[doc = "Get a reference to the value of field `s3_configuration` after provisioning.\n"]
     pub fn s3_configuration(
         &self,
-    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_configuration", self.base))
+    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElOutputsElS3ConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct FisExperimentTemplateExperimentReportConfigurationElDynamic {
-    data_sources: Option<DynamicBlock<FisExperimentTemplateExperimentReportConfigurationElDataSourcesEl>>,
+    data_sources:
+        Option<DynamicBlock<FisExperimentTemplateExperimentReportConfigurationElDataSourcesEl>>,
     outputs: Option<DynamicBlock<FisExperimentTemplateExperimentReportConfigurationElOutputsEl>>,
 }
 
@@ -1128,10 +1254,10 @@ impl FisExperimentTemplateExperimentReportConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.data_sources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.data_sources = Some(d);
-            },
+            }
         }
         self
     }
@@ -1144,10 +1270,10 @@ impl FisExperimentTemplateExperimentReportConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.outputs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.outputs = Some(d);
-            },
+            }
         }
         self
     }
@@ -1185,7 +1311,10 @@ pub struct FisExperimentTemplateExperimentReportConfigurationElRef {
 }
 
 impl Ref for FisExperimentTemplateExperimentReportConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> FisExperimentTemplateExperimentReportConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FisExperimentTemplateExperimentReportConfigurationElRef {
         FisExperimentTemplateExperimentReportConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1200,21 +1329,31 @@ impl FisExperimentTemplateExperimentReportConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `post_experiment_duration` after provisioning.\n"]
     pub fn post_experiment_duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.post_experiment_duration", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.post_experiment_duration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pre_experiment_duration` after provisioning.\n"]
     pub fn pre_experiment_duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pre_experiment_duration", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pre_experiment_duration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_sources` after provisioning.\n"]
-    pub fn data_sources(&self) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElDataSourcesElRef> {
+    pub fn data_sources(
+        &self,
+    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElDataSourcesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.data_sources", self.base))
     }
 
     #[doc = "Get a reference to the value of field `outputs` after provisioning.\n"]
-    pub fn outputs(&self) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElOutputsElRef> {
+    pub fn outputs(
+        &self,
+    ) -> ListRef<FisExperimentTemplateExperimentReportConfigurationElOutputsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.outputs", self.base))
     }
 }
@@ -1224,7 +1363,7 @@ pub struct FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl 
     log_group_arn: PrimField<String>,
 }
 
-impl FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl { }
+impl FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl {}
 
 impl ToListMappable for FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl {
     type O = BlockAssignable<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>;
@@ -1245,7 +1384,9 @@ pub struct BuildFisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurati
 
 impl BuildFisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl {
     pub fn build(self) -> FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl {
-        FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl { log_group_arn: self.log_group_arn }
+        FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl {
+            log_group_arn: self.log_group_arn,
+        }
     }
 }
 
@@ -1273,7 +1414,10 @@ impl FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `log_group_arn` after provisioning.\n"]
     pub fn log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_arn", self.base),
+        )
     }
 }
 
@@ -1324,7 +1468,10 @@ pub struct FisExperimentTemplateLogConfigurationElS3ConfigurationElRef {
 }
 
 impl Ref for FisExperimentTemplateLogConfigurationElS3ConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> FisExperimentTemplateLogConfigurationElS3ConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FisExperimentTemplateLogConfigurationElS3ConfigurationElRef {
         FisExperimentTemplateLogConfigurationElS3ConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1350,17 +1497,18 @@ impl FisExperimentTemplateLogConfigurationElS3ConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct FisExperimentTemplateLogConfigurationElDynamic {
-    cloudwatch_logs_configuration: Option<
-        DynamicBlock<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>,
-    >,
-    s3_configuration: Option<DynamicBlock<FisExperimentTemplateLogConfigurationElS3ConfigurationEl>>,
+    cloudwatch_logs_configuration:
+        Option<DynamicBlock<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>>,
+    s3_configuration:
+        Option<DynamicBlock<FisExperimentTemplateLogConfigurationElS3ConfigurationEl>>,
 }
 
 #[derive(Serialize)]
 pub struct FisExperimentTemplateLogConfigurationEl {
     log_schema_version: PrimField<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_logs_configuration: Option<Vec<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>>,
+    cloudwatch_logs_configuration:
+        Option<Vec<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_configuration: Option<Vec<FisExperimentTemplateLogConfigurationElS3ConfigurationEl>>,
     dynamic: FisExperimentTemplateLogConfigurationElDynamic,
@@ -1370,15 +1518,17 @@ impl FisExperimentTemplateLogConfigurationEl {
     #[doc = "Set the field `cloudwatch_logs_configuration`.\n"]
     pub fn set_cloudwatch_logs_configuration(
         mut self,
-        v: impl Into<BlockAssignable<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1391,10 +1541,10 @@ impl FisExperimentTemplateLogConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1449,19 +1599,30 @@ impl FisExperimentTemplateLogConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `log_schema_version` after provisioning.\n"]
     pub fn log_schema_version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_schema_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_schema_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs_configuration` after provisioning.\n"]
     pub fn cloudwatch_logs_configuration(
         &self,
     ) -> ListRef<FisExperimentTemplateLogConfigurationElCloudwatchLogsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_configuration` after provisioning.\n"]
-    pub fn s3_configuration(&self) -> ListRef<FisExperimentTemplateLogConfigurationElS3ConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_configuration", self.base))
+    pub fn s3_configuration(
+        &self,
+    ) -> ListRef<FisExperimentTemplateLogConfigurationElS3ConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_configuration", self.base),
+        )
     }
 }
 
@@ -1542,7 +1703,7 @@ pub struct FisExperimentTemplateTargetElFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl FisExperimentTemplateTargetElFilterEl { }
+impl FisExperimentTemplateTargetElFilterEl {}
 
 impl ToListMappable for FisExperimentTemplateTargetElFilterEl {
     type O = BlockAssignable<FisExperimentTemplateTargetElFilterEl>;
@@ -1608,7 +1769,7 @@ pub struct FisExperimentTemplateTargetElResourceTagEl {
     value: PrimField<String>,
 }
 
-impl FisExperimentTemplateTargetElResourceTagEl { }
+impl FisExperimentTemplateTargetElResourceTagEl {}
 
 impl ToListMappable for FisExperimentTemplateTargetElResourceTagEl {
     type O = BlockAssignable<FisExperimentTemplateTargetElResourceTagEl>;
@@ -1704,14 +1865,17 @@ impl FisExperimentTemplateTargetEl {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(mut self, v: impl Into<BlockAssignable<FisExperimentTemplateTargetElFilterEl>>) -> Self {
+    pub fn set_filter(
+        mut self,
+        v: impl Into<BlockAssignable<FisExperimentTemplateTargetElFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1724,10 +1888,10 @@ impl FisExperimentTemplateTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_tag = Some(d);
-            },
+            }
         }
         self
     }
@@ -1800,17 +1964,26 @@ impl FisExperimentTemplateTargetElRef {
 
     #[doc = "Get a reference to the value of field `resource_arns` after provisioning.\n"]
     pub fn resource_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `selection_mode` after provisioning.\n"]
     pub fn selection_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.selection_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.selection_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
@@ -1912,7 +2085,8 @@ impl FisExperimentTemplateTimeoutsElRef {
 struct FisExperimentTemplateDynamic {
     action: Option<DynamicBlock<FisExperimentTemplateActionEl>>,
     experiment_options: Option<DynamicBlock<FisExperimentTemplateExperimentOptionsEl>>,
-    experiment_report_configuration: Option<DynamicBlock<FisExperimentTemplateExperimentReportConfigurationEl>>,
+    experiment_report_configuration:
+        Option<DynamicBlock<FisExperimentTemplateExperimentReportConfigurationEl>>,
     log_configuration: Option<DynamicBlock<FisExperimentTemplateLogConfigurationEl>>,
     stop_condition: Option<DynamicBlock<FisExperimentTemplateStopConditionEl>>,
     target: Option<DynamicBlock<FisExperimentTemplateTargetEl>>,

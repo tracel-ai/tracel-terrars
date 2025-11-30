@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBedrockCustomModelData {
@@ -41,8 +41,7 @@ impl DataBedrockCustomModel {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -50,17 +49,26 @@ impl DataBedrockCustomModel {
 
     #[doc = "Get a reference to the value of field `base_model_arn` after provisioning.\n"]
     pub fn base_model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hyperparameters` after provisioning.\n"]
     pub fn hyperparameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.hyperparameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.hyperparameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -70,83 +78,130 @@ impl DataBedrockCustomModel {
 
     #[doc = "Get a reference to the value of field `job_arn` after provisioning.\n"]
     pub fn job_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_name` after provisioning.\n"]
     pub fn job_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_tags` after provisioning.\n"]
     pub fn job_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.job_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.job_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_arn` after provisioning.\n"]
     pub fn model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
     pub fn model_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_kms_key_arn` after provisioning.\n"]
     pub fn model_kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_name` after provisioning.\n"]
     pub fn model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_tags` after provisioning.\n"]
     pub fn model_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.model_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.model_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_data_config` after provisioning.\n"]
     pub fn output_data_config(&self) -> ListRef<DataBedrockCustomModelOutputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_data_config", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_data_config` after provisioning.\n"]
     pub fn training_data_config(&self) -> ListRef<DataBedrockCustomModelTrainingDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_metrics` after provisioning.\n"]
     pub fn training_metrics(&self) -> ListRef<DataBedrockCustomModelTrainingMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_data_config` after provisioning.\n"]
-    pub fn validation_data_config(&self) -> ListRef<DataBedrockCustomModelValidationDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_data_config", self.extract_ref()))
+    pub fn validation_data_config(
+        &self,
+    ) -> ListRef<DataBedrockCustomModelValidationDataConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_metrics` after provisioning.\n"]
     pub fn validation_metrics(&self) -> ListRef<DataBedrockCustomModelValidationMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_metrics", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBedrockCustomModel {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBedrockCustomModel { }
+impl Datasource for DataBedrockCustomModel {}
 
 impl ToListMappable for DataBedrockCustomModel {
     type O = ListRef<DataBedrockCustomModelRef>;
@@ -202,10 +257,7 @@ pub struct DataBedrockCustomModelRef {
 
 impl Ref for DataBedrockCustomModelRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -220,17 +272,26 @@ impl DataBedrockCustomModelRef {
 
     #[doc = "Get a reference to the value of field `base_model_arn` after provisioning.\n"]
     pub fn base_model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hyperparameters` after provisioning.\n"]
     pub fn hyperparameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.hyperparameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.hyperparameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -240,73 +301,116 @@ impl DataBedrockCustomModelRef {
 
     #[doc = "Get a reference to the value of field `job_arn` after provisioning.\n"]
     pub fn job_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_name` after provisioning.\n"]
     pub fn job_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_tags` after provisioning.\n"]
     pub fn job_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.job_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.job_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_arn` after provisioning.\n"]
     pub fn model_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
     pub fn model_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_kms_key_arn` after provisioning.\n"]
     pub fn model_kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_name` after provisioning.\n"]
     pub fn model_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.model_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.model_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_tags` after provisioning.\n"]
     pub fn model_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.model_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.model_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_data_config` after provisioning.\n"]
     pub fn output_data_config(&self) -> ListRef<DataBedrockCustomModelOutputDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_data_config", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_data_config` after provisioning.\n"]
     pub fn training_data_config(&self) -> ListRef<DataBedrockCustomModelTrainingDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_data_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `training_metrics` after provisioning.\n"]
     pub fn training_metrics(&self) -> ListRef<DataBedrockCustomModelTrainingMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.training_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.training_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_data_config` after provisioning.\n"]
-    pub fn validation_data_config(&self) -> ListRef<DataBedrockCustomModelValidationDataConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_data_config", self.extract_ref()))
+    pub fn validation_data_config(
+        &self,
+    ) -> ListRef<DataBedrockCustomModelValidationDataConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_data_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_metrics` after provisioning.\n"]
     pub fn validation_metrics(&self) -> ListRef<DataBedrockCustomModelValidationMetricsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_metrics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_metrics", self.extract_ref()),
+        )
     }
 }
 
@@ -340,7 +444,9 @@ pub struct BuildDataBedrockCustomModelOutputDataConfigEl {}
 
 impl BuildDataBedrockCustomModelOutputDataConfigEl {
     pub fn build(self) -> DataBedrockCustomModelOutputDataConfigEl {
-        DataBedrockCustomModelOutputDataConfigEl { s3_uri: core::default::Default::default() }
+        DataBedrockCustomModelOutputDataConfigEl {
+            s3_uri: core::default::Default::default(),
+        }
     }
 }
 
@@ -399,7 +505,9 @@ pub struct BuildDataBedrockCustomModelTrainingDataConfigEl {}
 
 impl BuildDataBedrockCustomModelTrainingDataConfigEl {
     pub fn build(self) -> DataBedrockCustomModelTrainingDataConfigEl {
-        DataBedrockCustomModelTrainingDataConfigEl { s3_uri: core::default::Default::default() }
+        DataBedrockCustomModelTrainingDataConfigEl {
+            s3_uri: core::default::Default::default(),
+        }
     }
 }
 
@@ -458,7 +566,9 @@ pub struct BuildDataBedrockCustomModelTrainingMetricsEl {}
 
 impl BuildDataBedrockCustomModelTrainingMetricsEl {
     pub fn build(self) -> DataBedrockCustomModelTrainingMetricsEl {
-        DataBedrockCustomModelTrainingMetricsEl { training_loss: core::default::Default::default() }
+        DataBedrockCustomModelTrainingMetricsEl {
+            training_loss: core::default::Default::default(),
+        }
     }
 }
 
@@ -483,7 +593,10 @@ impl DataBedrockCustomModelTrainingMetricsElRef {
 
     #[doc = "Get a reference to the value of field `training_loss` after provisioning.\n"]
     pub fn training_loss(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.training_loss", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.training_loss", self.base),
+        )
     }
 }
 
@@ -517,7 +630,9 @@ pub struct BuildDataBedrockCustomModelValidationDataConfigElValidatorEl {}
 
 impl BuildDataBedrockCustomModelValidationDataConfigElValidatorEl {
     pub fn build(self) -> DataBedrockCustomModelValidationDataConfigElValidatorEl {
-        DataBedrockCustomModelValidationDataConfigElValidatorEl { s3_uri: core::default::Default::default() }
+        DataBedrockCustomModelValidationDataConfigElValidatorEl {
+            s3_uri: core::default::Default::default(),
+        }
     }
 }
 
@@ -527,7 +642,10 @@ pub struct DataBedrockCustomModelValidationDataConfigElValidatorElRef {
 }
 
 impl Ref for DataBedrockCustomModelValidationDataConfigElValidatorElRef {
-    fn new(shared: StackShared, base: String) -> DataBedrockCustomModelValidationDataConfigElValidatorElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBedrockCustomModelValidationDataConfigElValidatorElRef {
         DataBedrockCustomModelValidationDataConfigElValidatorElRef {
             shared: shared,
             base: base.to_string(),
@@ -579,7 +697,9 @@ pub struct BuildDataBedrockCustomModelValidationDataConfigEl {}
 
 impl BuildDataBedrockCustomModelValidationDataConfigEl {
     pub fn build(self) -> DataBedrockCustomModelValidationDataConfigEl {
-        DataBedrockCustomModelValidationDataConfigEl { validator: core::default::Default::default() }
+        DataBedrockCustomModelValidationDataConfigEl {
+            validator: core::default::Default::default(),
+        }
     }
 }
 
@@ -638,7 +758,9 @@ pub struct BuildDataBedrockCustomModelValidationMetricsEl {}
 
 impl BuildDataBedrockCustomModelValidationMetricsEl {
     pub fn build(self) -> DataBedrockCustomModelValidationMetricsEl {
-        DataBedrockCustomModelValidationMetricsEl { validation_loss: core::default::Default::default() }
+        DataBedrockCustomModelValidationMetricsEl {
+            validation_loss: core::default::Default::default(),
+        }
     }
 }
 
@@ -663,6 +785,9 @@ impl DataBedrockCustomModelValidationMetricsElRef {
 
     #[doc = "Get a reference to the value of field `validation_loss` after provisioning.\n"]
     pub fn validation_loss(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_loss", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_loss", self.base),
+        )
     }
 }

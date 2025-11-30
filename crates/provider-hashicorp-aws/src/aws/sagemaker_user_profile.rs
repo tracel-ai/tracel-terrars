@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SagemakerUserProfileData {
@@ -68,7 +68,8 @@ impl SagemakerUserProfile {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +82,7 @@ impl SagemakerUserProfile {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +93,22 @@ impl SagemakerUserProfile {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -107,8 +118,7 @@ impl SagemakerUserProfile {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -139,14 +149,17 @@ impl SagemakerUserProfile {
     }
 
     #[doc = "Set the field `user_settings`.\n"]
-    pub fn set_user_settings(self, v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsEl>>) -> Self {
+    pub fn set_user_settings(
+        self,
+        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().user_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.user_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -158,12 +171,18 @@ impl SagemakerUserProfile {
 
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `home_efs_file_system_uid` after provisioning.\n"]
     pub fn home_efs_file_system_uid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.home_efs_file_system_uid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.home_efs_file_system_uid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -171,50 +190,74 @@ impl SagemakerUserProfile {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_sign_on_user_identifier` after provisioning.\n"]
     pub fn single_sign_on_user_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_sign_on_user_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_sign_on_user_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_sign_on_user_value` after provisioning.\n"]
     pub fn single_sign_on_user_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_sign_on_user_value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_sign_on_user_value", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_profile_name` after provisioning.\n"]
     pub fn user_profile_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_profile_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_profile_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_settings` after provisioning.\n"]
     pub fn user_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SagemakerUserProfile {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SagemakerUserProfile { }
+impl Resource for SagemakerUserProfile {}
 
 impl ToListMappable for SagemakerUserProfile {
     type O = ListRef<SagemakerUserProfileRef>;
@@ -281,10 +324,7 @@ pub struct SagemakerUserProfileRef {
 
 impl Ref for SagemakerUserProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -304,12 +344,18 @@ impl SagemakerUserProfileRef {
 
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `home_efs_file_system_uid` after provisioning.\n"]
     pub fn home_efs_file_system_uid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.home_efs_file_system_uid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.home_efs_file_system_uid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -317,40 +363,60 @@ impl SagemakerUserProfileRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_sign_on_user_identifier` after provisioning.\n"]
     pub fn single_sign_on_user_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_sign_on_user_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_sign_on_user_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_sign_on_user_value` after provisioning.\n"]
     pub fn single_sign_on_user_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_sign_on_user_value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_sign_on_user_value", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_profile_name` after provisioning.\n"]
     pub fn user_profile_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_profile_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_profile_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_settings` after provisioning.\n"]
     pub fn user_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_settings", self.extract_ref()),
+        )
     }
 }
 
@@ -368,8 +434,12 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -383,7 +453,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElDir
 pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl {
             status: core::default::Default::default(),
         }
@@ -440,8 +512,12 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsE
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -455,7 +531,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmr
 pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl {
             execution_role_arn: core::default::Default::default(),
             status: core::default::Default::default(),
@@ -487,7 +565,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsE
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -510,8 +591,12 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -525,7 +610,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElGen
 pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl {
             amazon_bedrock_role_arn: core::default::Default::default(),
         }
@@ -556,7 +643,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl
 
     #[doc = "Get a reference to the value of field `amazon_bedrock_role_arn` after provisioning.\n"]
     pub fn amazon_bedrock_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.amazon_bedrock_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.amazon_bedrock_role_arn", self.base),
+        )
     }
 }
 
@@ -583,8 +673,12 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthS
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -595,13 +689,16 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElIde
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl {
+pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl
+{
     #[doc = ""]
     pub secret_arn: PrimField<String>,
 }
 
 impl BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl {
             data_source_name: core::default::Default::default(),
             secret_arn: self.secret_arn,
@@ -615,11 +712,14 @@ pub struct SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProvider
     base: String,
 }
 
-impl Ref for SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef {
+impl Ref
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef {
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef
+    {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -634,7 +734,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthS
 
     #[doc = "Get a reference to the value of field `data_source_name` after provisioning.\n"]
     pub fn data_source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
@@ -722,7 +825,10 @@ pub struct SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSet
 
 impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {
     #[doc = "Set the field `cross_account_model_register_role_arn`.\n"]
-    pub fn set_cross_account_model_register_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_cross_account_model_register_role_arn(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.cross_account_model_register_role_arn = Some(v.into());
         self
     }
@@ -734,8 +840,12 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsE
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -749,7 +859,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElMod
 pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl {
             cross_account_model_register_role_arn: core::default::Default::default(),
             status: core::default::Default::default(),
@@ -781,7 +893,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsE
 
     #[doc = "Get a reference to the value of field `cross_account_model_register_role_arn` after provisioning.\n"]
     pub fn cross_account_model_register_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cross_account_model_register_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cross_account_model_register_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -812,8 +927,12 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingS
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -824,10 +943,13 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElTim
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl
+{}
 
 impl BuildSagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl {
             amazon_forecast_role_arn: core::default::Default::default(),
             status: core::default::Default::default(),
@@ -840,11 +962,14 @@ pub struct SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForeca
     base: String,
 }
 
-impl Ref for SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef {
+impl Ref
+    for SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef {
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef
+    {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -859,7 +984,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingS
 
     #[doc = "Get a reference to the value of field `amazon_forecast_role_arn` after provisioning.\n"]
     pub fn amazon_forecast_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.amazon_forecast_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.amazon_forecast_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -891,7 +1019,8 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl {
 }
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl>;
+    type O =
+        BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -937,12 +1066,18 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsElRef
 
     #[doc = "Get a reference to the value of field `s3_artifact_path` after provisioning.\n"]
     pub fn s3_artifact_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_artifact_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_artifact_path", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_kms_key_id` after provisioning.\n"]
     pub fn s3_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_kms_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_kms_key_id", self.base),
+        )
     }
 }
 
@@ -958,14 +1093,19 @@ struct SagemakerUserProfileUserSettingsElCanvasAppSettingsElDynamic {
         DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl>,
     >,
     identity_provider_oauth_settings: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl,
+        >,
     >,
-    kendra_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsEl>>,
+    kendra_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsEl>>,
     model_register_settings: Option<
         DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl>,
     >,
     time_series_forecasting_settings: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl,
+        >,
     >,
     workspace_settings: Option<
         DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl>,
@@ -975,25 +1115,31 @@ struct SagemakerUserProfileUserSettingsElCanvasAppSettingsElDynamic {
 #[derive(Serialize)]
 pub struct SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    direct_deploy_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl>>,
+    direct_deploy_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    emr_serverless_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl>>,
+    emr_serverless_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    generative_ai_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl>>,
+    generative_ai_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     identity_provider_oauth_settings: Option<
         Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    kendra_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsEl>>,
+    kendra_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    model_register_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl>>,
+    model_register_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     time_series_forecasting_settings: Option<
         Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    workspace_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl>>,
+    workspace_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl>>,
     dynamic: SagemakerUserProfileUserSettingsElCanvasAppSettingsElDynamic,
 }
 
@@ -1001,15 +1147,19 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[doc = "Set the field `direct_deploy_settings`.\n"]
     pub fn set_direct_deploy_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.direct_deploy_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.direct_deploy_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1017,15 +1167,19 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[doc = "Set the field `emr_serverless_settings`.\n"]
     pub fn set_emr_serverless_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.emr_serverless_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.emr_serverless_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1033,15 +1187,19 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[doc = "Set the field `generative_ai_settings`.\n"]
     pub fn set_generative_ai_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.generative_ai_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.generative_ai_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1061,10 +1219,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.identity_provider_oauth_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.identity_provider_oauth_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1072,15 +1230,17 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[doc = "Set the field `kendra_settings`.\n"]
     pub fn set_kendra_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kendra_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kendra_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1088,15 +1248,19 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[doc = "Set the field `model_register_settings`.\n"]
     pub fn set_model_register_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.model_register_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.model_register_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1116,10 +1280,10 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.time_series_forecasting_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.time_series_forecasting_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1127,15 +1291,19 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsEl {
     #[doc = "Set the field `workspace_settings`.\n"]
     pub fn set_workspace_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.workspace_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.workspace_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -1177,7 +1345,10 @@ pub struct SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef {
         SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1193,60 +1364,95 @@ impl SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef {
     #[doc = "Get a reference to the value of field `direct_deploy_settings` after provisioning.\n"]
     pub fn direct_deploy_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.direct_deploy_settings", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElDirectDeploySettingsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.direct_deploy_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `emr_serverless_settings` after provisioning.\n"]
     pub fn emr_serverless_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.emr_serverless_settings", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElEmrServerlessSettingsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.emr_serverless_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `generative_ai_settings` after provisioning.\n"]
     pub fn generative_ai_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.generative_ai_settings", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElGenerativeAiSettingsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.generative_ai_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_provider_oauth_settings` after provisioning.\n"]
     pub fn identity_provider_oauth_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.identity_provider_oauth_settings", self.base))
+    ) -> ListRef<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElIdentityProviderOauthSettingsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.identity_provider_oauth_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kendra_settings` after provisioning.\n"]
-    pub fn kendra_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kendra_settings", self.base))
+    pub fn kendra_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElKendraSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kendra_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_register_settings` after provisioning.\n"]
     pub fn model_register_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.model_register_settings", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElModelRegisterSettingsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.model_register_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_series_forecasting_settings` after provisioning.\n"]
     pub fn time_series_forecasting_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.time_series_forecasting_settings", self.base))
+    ) -> ListRef<
+        SagemakerUserProfileUserSettingsElCanvasAppSettingsElTimeSeriesForecastingSettingsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.time_series_forecasting_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workspace_settings` after provisioning.\n"]
     pub fn workspace_settings(
         &self,
     ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElWorkspaceSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.workspace_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.workspace_settings", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl {
+pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     idle_timeout_in_minutes: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1257,7 +1463,9 @@ pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycle
     min_idle_timeout_in_minutes: Option<PrimField<f64>>,
 }
 
-impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl {
+impl
+    SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl
+{
     #[doc = "Set the field `idle_timeout_in_minutes`.\n"]
     pub fn set_idle_timeout_in_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.idle_timeout_in_minutes = Some(v.into());
@@ -1298,7 +1506,8 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsE
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl
+{}
 
 impl BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsEl {
     pub fn build(
@@ -1313,7 +1522,8 @@ impl BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleM
     }
 }
 
-pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsElRef {
+pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1388,17 +1598,21 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManage
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.idle_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.idle_settings = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1409,10 +1623,13 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsE
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {
+}
 
 impl BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {
         SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl {
             idle_settings: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1445,8 +1662,11 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManage
     #[doc = "Get a reference to the value of field `idle_settings` after provisioning.\n"]
     pub fn idle_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.idle_settings", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElIdleSettingsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.idle_settings", self.base),
+        )
     }
 }
 
@@ -1467,7 +1687,8 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl {
 }
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>;
+    type O =
+        BlockAssignable<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1519,7 +1740,10 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageElRef {
 
     #[doc = "Get a reference to the value of field `app_image_config_name` after provisioning.\n"]
     pub fn app_image_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_image_config_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_image_config_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_name` after provisioning.\n"]
@@ -1529,7 +1753,10 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageElRef {
 
     #[doc = "Get a reference to the value of field `image_version_number` after provisioning.\n"]
     pub fn image_version_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_version_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_version_number", self.base),
+        )
     }
 }
 
@@ -1579,8 +1806,12 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpe
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1594,7 +1825,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsE
 pub struct BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl {
         SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl {
             instance_type: core::default::Default::default(),
             lifecycle_config_arn: core::default::Default::default(),
@@ -1629,38 +1862,59 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpe
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arn` after provisioning.\n"]
     pub fn lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_arn` after provisioning.\n"]
     pub fn sagemaker_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_alias` after provisioning.\n"]
     pub fn sagemaker_image_version_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_alias", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_alias", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_arn` after provisioning.\n"]
     pub fn sagemaker_image_version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDynamic {
     app_lifecycle_management: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl,
+        >,
     >,
-    custom_image: Option<DynamicBlock<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>>,
+    custom_image: Option<
+        DynamicBlock<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>,
+    >,
     default_resource_spec: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl,
+        >,
     >,
 }
 
@@ -1675,9 +1929,11 @@ pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl {
         Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_image: Option<Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>>,
+    custom_image:
+        Option<Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_resource_spec: Option<Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl>>,
+    default_resource_spec:
+        Option<Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl>>,
     dynamic: SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDynamic,
 }
 
@@ -1697,22 +1953,19 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl {
     #[doc = "Set the field `app_lifecycle_management`.\n"]
     pub fn set_app_lifecycle_management(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.app_lifecycle_management = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.app_lifecycle_management = Some(d);
-            },
+            }
         }
         self
     }
@@ -1720,15 +1973,17 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl {
     #[doc = "Set the field `custom_image`.\n"]
     pub fn set_custom_image(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_image = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_image = Some(d);
-            },
+            }
         }
         self
     }
@@ -1736,22 +1991,19 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl {
     #[doc = "Set the field `default_resource_spec`.\n"]
     pub fn set_default_resource_spec(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_resource_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_resource_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -1790,7 +2042,10 @@ pub struct SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef {
         SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1805,31 +2060,47 @@ impl SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef {
 
     #[doc = "Get a reference to the value of field `built_in_lifecycle_config_arn` after provisioning.\n"]
     pub fn built_in_lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.built_in_lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.built_in_lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arns` after provisioning.\n"]
     pub fn lifecycle_config_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.lifecycle_config_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `app_lifecycle_management` after provisioning.\n"]
     pub fn app_lifecycle_management(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.app_lifecycle_management", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElAppLifecycleManagementElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.app_lifecycle_management", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_image` after provisioning.\n"]
-    pub fn custom_image(&self) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageElRef> {
+    pub fn custom_image(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElCustomImageElRef> {
         ListRef::new(self.shared().clone(), format!("{}.custom_image", self.base))
     }
 
     #[doc = "Get a reference to the value of field `default_resource_spec` after provisioning.\n"]
     pub fn default_resource_spec(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_resource_spec", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElDefaultResourceSpecElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_resource_spec", self.base),
+        )
     }
 }
 
@@ -1848,8 +2119,12 @@ impl SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConf
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1866,7 +2141,9 @@ pub struct BuildSagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFil
 }
 
 impl BuildSagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl {
         SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl {
             file_system_id: self.file_system_id,
             file_system_path: core::default::Default::default(),
@@ -1898,26 +2175,36 @@ impl SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConf
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_path` after provisioning.\n"]
     pub fn file_system_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_path", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElCustomFileSystemConfigElDynamic {
     efs_file_system_config: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct SagemakerUserProfileUserSettingsElCustomFileSystemConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    efs_file_system_config: Option<Vec<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl>>,
+    efs_file_system_config: Option<
+        Vec<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl>,
+    >,
     dynamic: SagemakerUserProfileUserSettingsElCustomFileSystemConfigElDynamic,
 }
 
@@ -1925,22 +2212,19 @@ impl SagemakerUserProfileUserSettingsElCustomFileSystemConfigEl {
     #[doc = "Set the field `efs_file_system_config`.\n"]
     pub fn set_efs_file_system_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.efs_file_system_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.efs_file_system_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1975,7 +2259,10 @@ pub struct SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef {
         SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1991,8 +2278,12 @@ impl SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef {
     #[doc = "Get a reference to the value of field `efs_file_system_config` after provisioning.\n"]
     pub fn efs_file_system_config(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.efs_file_system_config", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElEfsFileSystemConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_file_system_config", self.base),
+        )
     }
 }
 
@@ -2002,7 +2293,7 @@ pub struct SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl {
     uid: PrimField<f64>,
 }
 
-impl SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl { }
+impl SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl {}
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl {
     type O = BlockAssignable<SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl>;
@@ -2038,7 +2329,10 @@ pub struct SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef {
         SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2063,7 +2357,8 @@ impl SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef {
 }
 
 #[derive(Serialize)]
-pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl {
+pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     idle_timeout_in_minutes: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2074,7 +2369,9 @@ pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycle
     min_idle_timeout_in_minutes: Option<PrimField<f64>>,
 }
 
-impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl {
+impl
+    SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl
+{
     #[doc = "Set the field `idle_timeout_in_minutes`.\n"]
     pub fn set_idle_timeout_in_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.idle_timeout_in_minutes = Some(v.into());
@@ -2115,7 +2412,8 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsE
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl
+{}
 
 impl BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsEl {
     pub fn build(
@@ -2130,7 +2428,8 @@ impl BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleM
     }
 }
 
-pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsElRef {
+pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2205,17 +2504,21 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManage
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.idle_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.idle_settings = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2226,10 +2529,13 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsE
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {
+}
 
 impl BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {
         SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl {
             idle_settings: core::default::Default::default(),
             dynamic: Default::default(),
@@ -2262,8 +2568,11 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManage
     #[doc = "Get a reference to the value of field `idle_settings` after provisioning.\n"]
     pub fn idle_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.idle_settings", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElIdleSettingsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.idle_settings", self.base),
+        )
     }
 }
 
@@ -2272,10 +2581,11 @@ pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeReposito
     repository_url: PrimField<String>,
 }
 
-impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl { }
+impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl {}
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>;
+    type O =
+        BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2292,7 +2602,9 @@ pub struct BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRep
 }
 
 impl BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl {
         SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl {
             repository_url: self.repository_url,
         }
@@ -2323,7 +2635,10 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryElRe
 
     #[doc = "Get a reference to the value of field `repository_url` after provisioning.\n"]
     pub fn repository_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_url", self.base),
+        )
     }
 }
 
@@ -2344,7 +2659,8 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl {
 }
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>;
+    type O =
+        BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2396,7 +2712,10 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageElRef {
 
     #[doc = "Get a reference to the value of field `app_image_config_name` after provisioning.\n"]
     pub fn app_image_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_image_config_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_image_config_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_name` after provisioning.\n"]
@@ -2406,7 +2725,10 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageElRef {
 
     #[doc = "Get a reference to the value of field `image_version_number` after provisioning.\n"]
     pub fn image_version_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_version_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_version_number", self.base),
+        )
     }
 }
 
@@ -2456,8 +2778,12 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpe
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2471,7 +2797,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsE
 pub struct BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl {
         SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl {
             instance_type: core::default::Default::default(),
             lifecycle_config_arn: core::default::Default::default(),
@@ -2506,27 +2834,42 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpe
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arn` after provisioning.\n"]
     pub fn lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_arn` after provisioning.\n"]
     pub fn sagemaker_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_alias` after provisioning.\n"]
     pub fn sagemaker_image_version_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_alias", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_alias", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_arn` after provisioning.\n"]
     pub fn sagemaker_image_version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_arn", self.base),
+        )
     }
 }
 
@@ -2553,7 +2896,8 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl {
 }
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>;
+    type O =
+        BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2599,26 +2943,42 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsElRef {
 
     #[doc = "Get a reference to the value of field `assumable_role_arns` after provisioning.\n"]
     pub fn assumable_role_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.assumable_role_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.assumable_role_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arns` after provisioning.\n"]
     pub fn execution_role_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.execution_role_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arns", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDynamic {
     app_lifecycle_management: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl,
+        >,
     >,
-    code_repository: Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>>,
-    custom_image: Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>>,
+    code_repository: Option<
+        DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>,
+    >,
+    custom_image: Option<
+        DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>,
+    >,
     default_resource_spec: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl,
+        >,
     >,
-    emr_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>>,
+    emr_settings: Option<
+        DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -2632,13 +2992,17 @@ pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl {
         Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_repository: Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>>,
+    code_repository:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_image: Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>>,
+    custom_image:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_resource_spec: Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl>>,
+    default_resource_spec:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    emr_settings: Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>>,
+    emr_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>>,
     dynamic: SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDynamic,
 }
 
@@ -2658,22 +3022,19 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl {
     #[doc = "Set the field `app_lifecycle_management`.\n"]
     pub fn set_app_lifecycle_management(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.app_lifecycle_management = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.app_lifecycle_management = Some(d);
-            },
+            }
         }
         self
     }
@@ -2681,15 +3042,19 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl {
     #[doc = "Set the field `code_repository`.\n"]
     pub fn set_code_repository(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCodeRepositoryEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_repository = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_repository = Some(d);
-            },
+            }
         }
         self
     }
@@ -2697,15 +3062,17 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl {
     #[doc = "Set the field `custom_image`.\n"]
     pub fn set_custom_image(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_image = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_image = Some(d);
-            },
+            }
         }
         self
     }
@@ -2713,22 +3080,19 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl {
     #[doc = "Set the field `default_resource_spec`.\n"]
     pub fn set_default_resource_spec(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_resource_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_resource_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -2736,15 +3100,17 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl {
     #[doc = "Set the field `emr_settings`.\n"]
     pub fn set_emr_settings(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.emr_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.emr_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -2785,7 +3151,10 @@ pub struct SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef {
         SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2800,35 +3169,53 @@ impl SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef {
 
     #[doc = "Get a reference to the value of field `built_in_lifecycle_config_arn` after provisioning.\n"]
     pub fn built_in_lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.built_in_lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.built_in_lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arns` after provisioning.\n"]
     pub fn lifecycle_config_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.lifecycle_config_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `app_lifecycle_management` after provisioning.\n"]
     pub fn app_lifecycle_management(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.app_lifecycle_management", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElAppLifecycleManagementElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.app_lifecycle_management", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_image` after provisioning.\n"]
-    pub fn custom_image(&self) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageElRef> {
+    pub fn custom_image(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElCustomImageElRef> {
         ListRef::new(self.shared().clone(), format!("{}.custom_image", self.base))
     }
 
     #[doc = "Get a reference to the value of field `default_resource_spec` after provisioning.\n"]
     pub fn default_resource_spec(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_resource_spec", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElDefaultResourceSpecElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_resource_spec", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `emr_settings` after provisioning.\n"]
-    pub fn emr_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsElRef> {
+    pub fn emr_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElEmrSettingsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.emr_settings", self.base))
     }
 }
@@ -2838,10 +3225,14 @@ pub struct SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepos
     repository_url: PrimField<String>,
 }
 
-impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl { }
+impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl {}
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2858,7 +3249,9 @@ pub struct BuildSagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCode
 }
 
 impl BuildSagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl {
         SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl {
             repository_url: self.repository_url,
         }
@@ -2889,7 +3282,10 @@ impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryE
 
     #[doc = "Get a reference to the value of field `repository_url` after provisioning.\n"]
     pub fn repository_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_url", self.base),
+        )
     }
 }
 
@@ -2939,8 +3335,12 @@ impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResource
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2951,10 +3351,13 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElJupyterServerAppSettin
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {
+}
 
 impl BuildSagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {
         SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl {
             instance_type: core::default::Default::default(),
             lifecycle_config_arn: core::default::Default::default(),
@@ -2989,27 +3392,42 @@ impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResource
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arn` after provisioning.\n"]
     pub fn lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_arn` after provisioning.\n"]
     pub fn sagemaker_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_alias` after provisioning.\n"]
     pub fn sagemaker_image_version_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_alias", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_alias", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_arn` after provisioning.\n"]
     pub fn sagemaker_image_version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_arn", self.base),
+        )
     }
 }
 
@@ -3019,7 +3437,9 @@ struct SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDynamic {
         DynamicBlock<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl>,
     >,
     default_resource_spec: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl,
+        >,
     >,
 }
 
@@ -3028,9 +3448,12 @@ pub struct SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lifecycle_config_arns: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_repository: Option<Vec<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl>>,
+    code_repository:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_resource_spec: Option<Vec<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl>>,
+    default_resource_spec: Option<
+        Vec<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl>,
+    >,
     dynamic: SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDynamic,
 }
 
@@ -3044,15 +3467,19 @@ impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl {
     #[doc = "Set the field `code_repository`.\n"]
     pub fn set_code_repository(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElCodeRepositoryEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_repository = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_repository = Some(d);
-            },
+            }
         }
         self
     }
@@ -3060,22 +3487,19 @@ impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl {
     #[doc = "Set the field `default_resource_spec`.\n"]
     pub fn set_default_resource_spec(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_resource_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_resource_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -3112,7 +3536,10 @@ pub struct SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef {
         SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3127,14 +3554,21 @@ impl SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef {
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arns` after provisioning.\n"]
     pub fn lifecycle_config_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.lifecycle_config_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_resource_spec` after provisioning.\n"]
     pub fn default_resource_spec(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_resource_spec", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElDefaultResourceSpecElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_resource_spec", self.base),
+        )
     }
 }
 
@@ -3155,7 +3589,8 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl {
 }
 
 impl ToListMappable for SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>;
+    type O =
+        BlockAssignable<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3174,7 +3609,9 @@ pub struct BuildSagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCust
 }
 
 impl BuildSagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl {
         SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl {
             app_image_config_name: self.app_image_config_name,
             image_name: self.image_name,
@@ -3207,7 +3644,10 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageElRe
 
     #[doc = "Get a reference to the value of field `app_image_config_name` after provisioning.\n"]
     pub fn app_image_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_image_config_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_image_config_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_name` after provisioning.\n"]
@@ -3217,7 +3657,10 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageElRe
 
     #[doc = "Get a reference to the value of field `image_version_number` after provisioning.\n"]
     pub fn image_version_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_version_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_version_number", self.base),
+        )
     }
 }
 
@@ -3267,8 +3710,12 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResource
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3279,10 +3726,13 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElKernelGatewayAppSettin
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {}
+pub struct BuildSagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {
+}
 
 impl BuildSagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {
         SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl {
             instance_type: core::default::Default::default(),
             lifecycle_config_arn: core::default::Default::default(),
@@ -3317,35 +3767,54 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResource
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arn` after provisioning.\n"]
     pub fn lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_arn` after provisioning.\n"]
     pub fn sagemaker_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_alias` after provisioning.\n"]
     pub fn sagemaker_image_version_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_alias", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_alias", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_arn` after provisioning.\n"]
     pub fn sagemaker_image_version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDynamic {
-    custom_image: Option<DynamicBlock<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>>,
+    custom_image: Option<
+        DynamicBlock<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>,
+    >,
     default_resource_spec: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl,
+        >,
     >,
 }
 
@@ -3354,9 +3823,12 @@ pub struct SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lifecycle_config_arns: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_image: Option<Vec<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>>,
+    custom_image:
+        Option<Vec<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_resource_spec: Option<Vec<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl>>,
+    default_resource_spec: Option<
+        Vec<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl>,
+    >,
     dynamic: SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDynamic,
 }
 
@@ -3370,15 +3842,19 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl {
     #[doc = "Set the field `custom_image`.\n"]
     pub fn set_custom_image(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_image = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_image = Some(d);
-            },
+            }
         }
         self
     }
@@ -3386,22 +3862,19 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl {
     #[doc = "Set the field `default_resource_spec`.\n"]
     pub fn set_default_resource_spec(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_resource_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_resource_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -3438,7 +3911,10 @@ pub struct SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef {
         SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3453,19 +3929,28 @@ impl SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef {
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arns` after provisioning.\n"]
     pub fn lifecycle_config_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.lifecycle_config_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_image` after provisioning.\n"]
-    pub fn custom_image(&self) -> ListRef<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageElRef> {
+    pub fn custom_image(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElCustomImageElRef> {
         ListRef::new(self.shared().clone(), format!("{}.custom_image", self.base))
     }
 
     #[doc = "Get a reference to the value of field `default_resource_spec` after provisioning.\n"]
     pub fn default_resource_spec(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_resource_spec", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElDefaultResourceSpecElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_resource_spec", self.base),
+        )
     }
 }
 
@@ -3538,7 +4023,10 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageElRef {
 
     #[doc = "Get a reference to the value of field `app_image_config_name` after provisioning.\n"]
     pub fn app_image_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_image_config_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_image_config_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_name` after provisioning.\n"]
@@ -3548,7 +4036,10 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageElRef {
 
     #[doc = "Get a reference to the value of field `image_version_number` after provisioning.\n"]
     pub fn image_version_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_version_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_version_number", self.base),
+        )
     }
 }
 
@@ -3598,8 +4089,12 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecE
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3613,7 +4108,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElRSessionAppSettingsElD
 pub struct BuildSagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl {
         SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl {
             instance_type: core::default::Default::default(),
             lifecycle_config_arn: core::default::Default::default(),
@@ -3648,33 +4145,49 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecE
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arn` after provisioning.\n"]
     pub fn lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_arn` after provisioning.\n"]
     pub fn sagemaker_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_alias` after provisioning.\n"]
     pub fn sagemaker_image_version_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_alias", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_alias", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_arn` after provisioning.\n"]
     pub fn sagemaker_image_version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElRSessionAppSettingsElDynamic {
-    custom_image: Option<DynamicBlock<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageEl>>,
+    custom_image:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageEl>>,
     default_resource_spec: Option<
         DynamicBlock<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl>,
     >,
@@ -3685,7 +4198,8 @@ pub struct SagemakerUserProfileUserSettingsElRSessionAppSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     custom_image: Option<Vec<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_resource_spec: Option<Vec<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl>>,
+    default_resource_spec:
+        Option<Vec<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl>>,
     dynamic: SagemakerUserProfileUserSettingsElRSessionAppSettingsElDynamic,
 }
 
@@ -3693,15 +4207,17 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsEl {
     #[doc = "Set the field `custom_image`.\n"]
     pub fn set_custom_image(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageEl>>,
+        v: impl Into<
+            BlockAssignable<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_image = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_image = Some(d);
-            },
+            }
         }
         self
     }
@@ -3709,15 +4225,19 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsEl {
     #[doc = "Set the field `default_resource_spec`.\n"]
     pub fn set_default_resource_spec(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_resource_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_resource_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -3753,7 +4273,10 @@ pub struct SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef {
         SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3767,15 +4290,21 @@ impl SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef {
     }
 
     #[doc = "Get a reference to the value of field `custom_image` after provisioning.\n"]
-    pub fn custom_image(&self) -> ListRef<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageElRef> {
+    pub fn custom_image(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElRSessionAppSettingsElCustomImageElRef> {
         ListRef::new(self.shared().clone(), format!("{}.custom_image", self.base))
     }
 
     #[doc = "Get a reference to the value of field `default_resource_spec` after provisioning.\n"]
     pub fn default_resource_spec(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_resource_spec", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElRSessionAppSettingsElDefaultResourceSpecElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_resource_spec", self.base),
+        )
     }
 }
 
@@ -3830,7 +4359,10 @@ pub struct SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef {
         SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3845,7 +4377,10 @@ impl SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef {
 
     #[doc = "Get a reference to the value of field `access_status` after provisioning.\n"]
     pub fn access_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_group` after provisioning.\n"]
@@ -3914,7 +4449,10 @@ pub struct SagemakerUserProfileUserSettingsElSharingSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElSharingSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElSharingSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElSharingSettingsElRef {
         SagemakerUserProfileUserSettingsElSharingSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3929,17 +4467,26 @@ impl SagemakerUserProfileUserSettingsElSharingSettingsElRef {
 
     #[doc = "Get a reference to the value of field `notebook_output_option` after provisioning.\n"]
     pub fn notebook_output_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notebook_output_option", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notebook_output_option", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_kms_key_id` after provisioning.\n"]
     pub fn s3_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_kms_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_kms_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_output_path` after provisioning.\n"]
     pub fn s3_output_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_output_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_output_path", self.base),
+        )
     }
 }
 
@@ -3949,10 +4496,14 @@ pub struct SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsSto
     maximum_ebs_volume_size_in_gb: PrimField<f64>,
 }
 
-impl SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl { }
+impl SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {}
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3963,7 +4514,8 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElSpaceStorageSettingsEl
     }
 }
 
-pub struct BuildSagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {
+pub struct BuildSagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl
+{
     #[doc = ""]
     pub default_ebs_volume_size_in_gb: PrimField<f64>,
     #[doc = ""]
@@ -3971,7 +4523,9 @@ pub struct BuildSagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultE
 }
 
 impl BuildSagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {
         SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl {
             default_ebs_volume_size_in_gb: self.default_ebs_volume_size_in_gb,
             maximum_ebs_volume_size_in_gb: self.maximum_ebs_volume_size_in_gb,
@@ -3984,11 +4538,14 @@ pub struct SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsSto
     base: String,
 }
 
-impl Ref for SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef {
+impl Ref
+    for SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef {
+    ) -> SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef
+    {
         SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -4003,19 +4560,27 @@ impl SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSe
 
     #[doc = "Get a reference to the value of field `default_ebs_volume_size_in_gb` after provisioning.\n"]
     pub fn default_ebs_volume_size_in_gb(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_ebs_volume_size_in_gb", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_ebs_volume_size_in_gb", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_ebs_volume_size_in_gb` after provisioning.\n"]
     pub fn maximum_ebs_volume_size_in_gb(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_ebs_volume_size_in_gb", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_ebs_volume_size_in_gb", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDynamic {
     default_ebs_storage_settings: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl,
+        >,
     >,
 }
 
@@ -4032,22 +4597,19 @@ impl SagemakerUserProfileUserSettingsElSpaceStorageSettingsEl {
     #[doc = "Set the field `default_ebs_storage_settings`.\n"]
     pub fn set_default_ebs_storage_settings(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_ebs_storage_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_ebs_storage_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4082,7 +4644,10 @@ pub struct SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef {
         SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -4098,8 +4663,13 @@ impl SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef {
     #[doc = "Get a reference to the value of field `default_ebs_storage_settings` after provisioning.\n"]
     pub fn default_ebs_storage_settings(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_ebs_storage_settings", self.base))
+    ) -> ListRef<
+        SagemakerUserProfileUserSettingsElSpaceStorageSettingsElDefaultEbsStorageSettingsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_ebs_storage_settings", self.base),
+        )
     }
 }
 
@@ -4163,7 +4733,10 @@ pub struct SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef {
         SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -4178,17 +4751,26 @@ impl SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef {
 
     #[doc = "Get a reference to the value of field `hidden_app_types` after provisioning.\n"]
     pub fn hidden_app_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.hidden_app_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.hidden_app_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hidden_instance_types` after provisioning.\n"]
     pub fn hidden_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.hidden_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.hidden_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hidden_ml_tools` after provisioning.\n"]
     pub fn hidden_ml_tools(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.hidden_ml_tools", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.hidden_ml_tools", self.base),
+        )
     }
 }
 
@@ -4238,8 +4820,12 @@ impl SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSp
     }
 }
 
-impl ToListMappable for SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl {
-    type O = BlockAssignable<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl>;
+impl ToListMappable
+    for SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl
+{
+    type O = BlockAssignable<
+        SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4253,7 +4839,9 @@ impl ToListMappable for SagemakerUserProfileUserSettingsElTensorBoardAppSettings
 pub struct BuildSagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl {}
 
 impl BuildSagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl {
-    pub fn build(self) -> SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl {
+    pub fn build(
+        self,
+    ) -> SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl {
         SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl {
             instance_type: core::default::Default::default(),
             lifecycle_config_arn: core::default::Default::default(),
@@ -4288,41 +4876,60 @@ impl SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSp
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_config_arn` after provisioning.\n"]
     pub fn lifecycle_config_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_config_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_config_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_arn` after provisioning.\n"]
     pub fn sagemaker_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_alias` after provisioning.\n"]
     pub fn sagemaker_image_version_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_alias", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_alias", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_image_version_arn` after provisioning.\n"]
     pub fn sagemaker_image_version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sagemaker_image_version_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_image_version_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDynamic {
     default_resource_spec: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl>,
+        DynamicBlock<
+            SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct SagemakerUserProfileUserSettingsElTensorBoardAppSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    default_resource_spec: Option<Vec<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl>>,
+    default_resource_spec: Option<
+        Vec<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl>,
+    >,
     dynamic: SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDynamic,
 }
 
@@ -4330,22 +4937,19 @@ impl SagemakerUserProfileUserSettingsElTensorBoardAppSettingsEl {
     #[doc = "Set the field `default_resource_spec`.\n"]
     pub fn set_default_resource_spec(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.default_resource_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.default_resource_spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -4380,7 +4984,10 @@ pub struct SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef {
 }
 
 impl Ref for SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef {
         SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef {
             shared: shared,
             base: base.to_string(),
@@ -4396,28 +5003,42 @@ impl SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef {
     #[doc = "Get a reference to the value of field `default_resource_spec` after provisioning.\n"]
     pub fn default_resource_spec(
         &self,
-    ) -> ListRef<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_resource_spec", self.base))
+    ) -> ListRef<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElDefaultResourceSpecElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_resource_spec", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerUserProfileUserSettingsElDynamic {
-    canvas_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsEl>>,
-    code_editor_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl>>,
-    custom_file_system_config: Option<DynamicBlock<SagemakerUserProfileUserSettingsElCustomFileSystemConfigEl>>,
-    custom_posix_user_config: Option<DynamicBlock<SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl>>,
-    jupyter_lab_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl>>,
-    jupyter_server_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl>>,
-    kernel_gateway_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl>>,
-    r_session_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElRSessionAppSettingsEl>>,
-    r_studio_server_pro_app_settings: Option<
-        DynamicBlock<SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsEl>,
-    >,
+    canvas_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElCanvasAppSettingsEl>>,
+    code_editor_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl>>,
+    custom_file_system_config:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElCustomFileSystemConfigEl>>,
+    custom_posix_user_config:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl>>,
+    jupyter_lab_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl>>,
+    jupyter_server_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl>>,
+    kernel_gateway_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl>>,
+    r_session_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElRSessionAppSettingsEl>>,
+    r_studio_server_pro_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsEl>>,
     sharing_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElSharingSettingsEl>>,
-    space_storage_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElSpaceStorageSettingsEl>>,
-    studio_web_portal_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElStudioWebPortalSettingsEl>>,
-    tensor_board_app_settings: Option<DynamicBlock<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsEl>>,
+    space_storage_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElSpaceStorageSettingsEl>>,
+    studio_web_portal_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElStudioWebPortalSettingsEl>>,
+    tensor_board_app_settings:
+        Option<DynamicBlock<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsEl>>,
 }
 
 #[derive(Serialize)]
@@ -4434,29 +5055,38 @@ pub struct SagemakerUserProfileUserSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     canvas_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElCanvasAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_editor_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl>>,
+    code_editor_app_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_file_system_config: Option<Vec<SagemakerUserProfileUserSettingsElCustomFileSystemConfigEl>>,
+    custom_file_system_config:
+        Option<Vec<SagemakerUserProfileUserSettingsElCustomFileSystemConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_posix_user_config: Option<Vec<SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl>>,
+    custom_posix_user_config:
+        Option<Vec<SagemakerUserProfileUserSettingsElCustomPosixUserConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    jupyter_lab_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl>>,
+    jupyter_lab_app_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    jupyter_server_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl>>,
+    jupyter_server_app_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    kernel_gateway_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl>>,
+    kernel_gateway_app_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     r_session_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElRSessionAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    r_studio_server_pro_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsEl>>,
+    r_studio_server_pro_app_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     sharing_settings: Option<Vec<SagemakerUserProfileUserSettingsElSharingSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     space_storage_settings: Option<Vec<SagemakerUserProfileUserSettingsElSpaceStorageSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    studio_web_portal_settings: Option<Vec<SagemakerUserProfileUserSettingsElStudioWebPortalSettingsEl>>,
+    studio_web_portal_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElStudioWebPortalSettingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tensor_board_app_settings: Option<Vec<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsEl>>,
+    tensor_board_app_settings:
+        Option<Vec<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsEl>>,
     dynamic: SagemakerUserProfileUserSettingsElDynamic,
 }
 
@@ -4493,10 +5123,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.canvas_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.canvas_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4509,10 +5139,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_editor_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_editor_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4525,10 +5155,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_file_system_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_file_system_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -4541,10 +5171,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_posix_user_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_posix_user_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -4557,10 +5187,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.jupyter_lab_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.jupyter_lab_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4573,10 +5203,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.jupyter_server_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.jupyter_server_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4589,10 +5219,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kernel_gateway_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kernel_gateway_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4605,10 +5235,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.r_session_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.r_session_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4621,10 +5251,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.r_studio_server_pro_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.r_studio_server_pro_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4637,10 +5267,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sharing_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sharing_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4653,10 +5283,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.space_storage_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.space_storage_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4669,10 +5299,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.studio_web_portal_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.studio_web_portal_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4685,10 +5315,10 @@ impl SagemakerUserProfileUserSettingsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tensor_board_app_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tensor_board_app_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -4758,98 +5388,172 @@ impl SagemakerUserProfileUserSettingsElRef {
 
     #[doc = "Get a reference to the value of field `auto_mount_home_efs` after provisioning.\n"]
     pub fn auto_mount_home_efs(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_mount_home_efs", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_mount_home_efs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_landing_uri` after provisioning.\n"]
     pub fn default_landing_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_landing_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_landing_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `studio_web_portal` after provisioning.\n"]
     pub fn studio_web_portal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.studio_web_portal", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.studio_web_portal", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `canvas_app_settings` after provisioning.\n"]
-    pub fn canvas_app_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.canvas_app_settings", self.base))
+    pub fn canvas_app_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCanvasAppSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.canvas_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_editor_app_settings` after provisioning.\n"]
-    pub fn code_editor_app_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.code_editor_app_settings", self.base))
+    pub fn code_editor_app_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCodeEditorAppSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.code_editor_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_file_system_config` after provisioning.\n"]
-    pub fn custom_file_system_config(&self) -> ListRef<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_file_system_config", self.base))
+    pub fn custom_file_system_config(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCustomFileSystemConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_file_system_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_posix_user_config` after provisioning.\n"]
-    pub fn custom_posix_user_config(&self) -> ListRef<SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_posix_user_config", self.base))
+    pub fn custom_posix_user_config(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElCustomPosixUserConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_posix_user_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jupyter_lab_app_settings` after provisioning.\n"]
-    pub fn jupyter_lab_app_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jupyter_lab_app_settings", self.base))
+    pub fn jupyter_lab_app_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterLabAppSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jupyter_lab_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jupyter_server_app_settings` after provisioning.\n"]
     pub fn jupyter_server_app_settings(
         &self,
     ) -> ListRef<SagemakerUserProfileUserSettingsElJupyterServerAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jupyter_server_app_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jupyter_server_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kernel_gateway_app_settings` after provisioning.\n"]
     pub fn kernel_gateway_app_settings(
         &self,
     ) -> ListRef<SagemakerUserProfileUserSettingsElKernelGatewayAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kernel_gateway_app_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kernel_gateway_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `r_session_app_settings` after provisioning.\n"]
-    pub fn r_session_app_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.r_session_app_settings", self.base))
+    pub fn r_session_app_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElRSessionAppSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.r_session_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `r_studio_server_pro_app_settings` after provisioning.\n"]
     pub fn r_studio_server_pro_app_settings(
         &self,
     ) -> ListRef<SagemakerUserProfileUserSettingsElRStudioServerProAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.r_studio_server_pro_app_settings", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.r_studio_server_pro_app_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sharing_settings` after provisioning.\n"]
-    pub fn sharing_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElSharingSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sharing_settings", self.base))
+    pub fn sharing_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElSharingSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sharing_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `space_storage_settings` after provisioning.\n"]
-    pub fn space_storage_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.space_storage_settings", self.base))
+    pub fn space_storage_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElSpaceStorageSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.space_storage_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `studio_web_portal_settings` after provisioning.\n"]
-    pub fn studio_web_portal_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.studio_web_portal_settings", self.base))
+    pub fn studio_web_portal_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElStudioWebPortalSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.studio_web_portal_settings", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tensor_board_app_settings` after provisioning.\n"]
-    pub fn tensor_board_app_settings(&self) -> ListRef<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tensor_board_app_settings", self.base))
+    pub fn tensor_board_app_settings(
+        &self,
+    ) -> ListRef<SagemakerUserProfileUserSettingsElTensorBoardAppSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tensor_board_app_settings", self.base),
+        )
     }
 }
 

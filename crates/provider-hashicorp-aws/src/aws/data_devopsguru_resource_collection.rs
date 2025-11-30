@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDevopsguruResourceCollectionData {
@@ -42,8 +42,7 @@ impl DataDevopsguruResourceCollection {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -51,7 +50,10 @@ impl DataDevopsguruResourceCollection {
 
     #[doc = "Get a reference to the value of field `cloudformation` after provisioning.\n"]
     pub fn cloudformation(&self) -> ListRef<DataDevopsguruResourceCollectionCloudformationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudformation", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudformation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -59,30 +61,42 @@ impl DataDevopsguruResourceCollection {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataDevopsguruResourceCollectionTagsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDevopsguruResourceCollection {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDevopsguruResourceCollection { }
+impl Datasource for DataDevopsguruResourceCollection {}
 
 impl ToListMappable for DataDevopsguruResourceCollection {
     type O = ListRef<DataDevopsguruResourceCollectionRef>;
@@ -138,10 +152,7 @@ pub struct DataDevopsguruResourceCollectionRef {
 
 impl Ref for DataDevopsguruResourceCollectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -156,7 +167,10 @@ impl DataDevopsguruResourceCollectionRef {
 
     #[doc = "Get a reference to the value of field `cloudformation` after provisioning.\n"]
     pub fn cloudformation(&self) -> ListRef<DataDevopsguruResourceCollectionCloudformationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudformation", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudformation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -164,20 +178,28 @@ impl DataDevopsguruResourceCollectionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataDevopsguruResourceCollectionTagsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
@@ -211,7 +233,9 @@ pub struct BuildDataDevopsguruResourceCollectionCloudformationEl {}
 
 impl BuildDataDevopsguruResourceCollectionCloudformationEl {
     pub fn build(self) -> DataDevopsguruResourceCollectionCloudformationEl {
-        DataDevopsguruResourceCollectionCloudformationEl { stack_names: core::default::Default::default() }
+        DataDevopsguruResourceCollectionCloudformationEl {
+            stack_names: core::default::Default::default(),
+        }
     }
 }
 
@@ -221,7 +245,10 @@ pub struct DataDevopsguruResourceCollectionCloudformationElRef {
 }
 
 impl Ref for DataDevopsguruResourceCollectionCloudformationElRef {
-    fn new(shared: StackShared, base: String) -> DataDevopsguruResourceCollectionCloudformationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataDevopsguruResourceCollectionCloudformationElRef {
         DataDevopsguruResourceCollectionCloudformationElRef {
             shared: shared,
             base: base.to_string(),
@@ -306,7 +333,10 @@ impl DataDevopsguruResourceCollectionTagsElRef {
 
     #[doc = "Get a reference to the value of field `app_boundary_key` after provisioning.\n"]
     pub fn app_boundary_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_boundary_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_boundary_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_values` after provisioning.\n"]

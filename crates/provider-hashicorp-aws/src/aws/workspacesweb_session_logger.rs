@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WorkspaceswebSessionLoggerData {
@@ -66,7 +66,8 @@ impl WorkspaceswebSessionLogger {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl WorkspaceswebSessionLogger {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,17 +91,30 @@ impl WorkspaceswebSessionLogger {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
     #[doc = "Set the field `additional_encryption_context`.\n"]
-    pub fn set_additional_encryption_context(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_additional_encryption_context(
+        self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().additional_encryption_context = Some(v.into());
         self
     }
@@ -117,8 +131,7 @@ impl WorkspaceswebSessionLogger {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,14 +144,17 @@ impl WorkspaceswebSessionLogger {
     }
 
     #[doc = "Set the field `event_filter`.\n"]
-    pub fn set_event_filter(self, v: impl Into<BlockAssignable<WorkspaceswebSessionLoggerEventFilterEl>>) -> Self {
+    pub fn set_event_filter(
+        self,
+        v: impl Into<BlockAssignable<WorkspaceswebSessionLoggerEventFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().event_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.event_filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -151,73 +167,106 @@ impl WorkspaceswebSessionLogger {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().log_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.log_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.additional_encryption_context", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.additional_encryption_context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.associated_portal_arns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associated_portal_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_managed_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_logger_arn` after provisioning.\n"]
     pub fn session_logger_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_logger_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_logger_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_filter` after provisioning.\n"]
     pub fn event_filter(&self) -> ListRef<WorkspaceswebSessionLoggerEventFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(&self) -> ListRef<WorkspaceswebSessionLoggerLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WorkspaceswebSessionLogger {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WorkspaceswebSessionLogger { }
+impl Resource for WorkspaceswebSessionLogger {}
 
 impl ToListMappable for WorkspaceswebSessionLogger {
     type O = ListRef<WorkspaceswebSessionLoggerRef>;
@@ -278,10 +327,7 @@ pub struct WorkspaceswebSessionLoggerRef {
 
 impl Ref for WorkspaceswebSessionLoggerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -296,60 +342,89 @@ impl WorkspaceswebSessionLoggerRef {
 
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.additional_encryption_context", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.additional_encryption_context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.associated_portal_arns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associated_portal_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_managed_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_logger_arn` after provisioning.\n"]
     pub fn session_logger_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_logger_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_logger_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_filter` after provisioning.\n"]
     pub fn event_filter(&self) -> ListRef<WorkspaceswebSessionLoggerEventFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(&self) -> ListRef<WorkspaceswebSessionLoggerLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct WorkspaceswebSessionLoggerEventFilterElAllEl {}
 
-impl WorkspaceswebSessionLoggerEventFilterElAllEl { }
+impl WorkspaceswebSessionLoggerEventFilterElAllEl {}
 
 impl ToListMappable for WorkspaceswebSessionLoggerEventFilterElAllEl {
     type O = BlockAssignable<WorkspaceswebSessionLoggerEventFilterElAllEl>;
@@ -413,14 +488,17 @@ impl WorkspaceswebSessionLoggerEventFilterEl {
     }
 
     #[doc = "Set the field `all`.\n"]
-    pub fn set_all(mut self, v: impl Into<BlockAssignable<WorkspaceswebSessionLoggerEventFilterElAllEl>>) -> Self {
+    pub fn set_all(
+        mut self,
+        v: impl Into<BlockAssignable<WorkspaceswebSessionLoggerEventFilterElAllEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.all = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.all = Some(d);
-            },
+            }
         }
         self
     }
@@ -544,7 +622,10 @@ pub struct WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
 }
 
 impl Ref for WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
-    fn new(shared: StackShared, base: String) -> WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
         WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -569,7 +650,10 @@ impl WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
 
     #[doc = "Get a reference to the value of field `folder_structure` after provisioning.\n"]
     pub fn folder_structure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.folder_structure", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.folder_structure", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_prefix` after provisioning.\n"]
@@ -579,7 +663,10 @@ impl WorkspaceswebSessionLoggerLogConfigurationElS3ElRef {
 
     #[doc = "Get a reference to the value of field `log_file_format` after provisioning.\n"]
     pub fn log_file_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_file_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_file_format", self.base),
+        )
     }
 }
 
@@ -597,14 +684,17 @@ pub struct WorkspaceswebSessionLoggerLogConfigurationEl {
 
 impl WorkspaceswebSessionLoggerLogConfigurationEl {
     #[doc = "Set the field `s3`.\n"]
-    pub fn set_s3(mut self, v: impl Into<BlockAssignable<WorkspaceswebSessionLoggerLogConfigurationElS3El>>) -> Self {
+    pub fn set_s3(
+        mut self,
+        v: impl Into<BlockAssignable<WorkspaceswebSessionLoggerLogConfigurationElS3El>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }

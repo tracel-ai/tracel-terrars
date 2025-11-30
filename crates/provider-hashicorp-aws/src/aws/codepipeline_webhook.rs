@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodepipelineWebhookData {
@@ -68,7 +68,8 @@ impl CodepipelineWebhook {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +82,7 @@ impl CodepipelineWebhook {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +93,22 @@ impl CodepipelineWebhook {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -107,8 +118,7 @@ impl CodepipelineWebhook {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,10 +144,14 @@ impl CodepipelineWebhook {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().authentication_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.authentication_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .authentication_configuration = Some(d);
+            }
         }
         self
     }
@@ -147,10 +161,10 @@ impl CodepipelineWebhook {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -162,7 +176,10 @@ impl CodepipelineWebhook {
 
     #[doc = "Get a reference to the value of field `authentication` after provisioning.\n"]
     pub fn authentication(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -172,33 +189,50 @@ impl CodepipelineWebhook {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_action` after provisioning.\n"]
     pub fn target_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_pipeline` after provisioning.\n"]
     pub fn target_pipeline(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_pipeline", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_pipeline", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -207,18 +241,27 @@ impl CodepipelineWebhook {
     }
 
     #[doc = "Get a reference to the value of field `authentication_configuration` after provisioning.\n"]
-    pub fn authentication_configuration(&self) -> ListRef<CodepipelineWebhookAuthenticationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_configuration", self.extract_ref()))
+    pub fn authentication_configuration(
+        &self,
+    ) -> ListRef<CodepipelineWebhookAuthenticationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodepipelineWebhook {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodepipelineWebhook { }
+impl Resource for CodepipelineWebhook {}
 
 impl ToListMappable for CodepipelineWebhook {
     type O = ListRef<CodepipelineWebhookRef>;
@@ -290,10 +333,7 @@ pub struct CodepipelineWebhookRef {
 
 impl Ref for CodepipelineWebhookRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -313,7 +353,10 @@ impl CodepipelineWebhookRef {
 
     #[doc = "Get a reference to the value of field `authentication` after provisioning.\n"]
     pub fn authentication(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -323,33 +366,50 @@ impl CodepipelineWebhookRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_action` after provisioning.\n"]
     pub fn target_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_pipeline` after provisioning.\n"]
     pub fn target_pipeline(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_pipeline", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_pipeline", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -358,8 +418,13 @@ impl CodepipelineWebhookRef {
     }
 
     #[doc = "Get a reference to the value of field `authentication_configuration` after provisioning.\n"]
-    pub fn authentication_configuration(&self) -> ListRef<CodepipelineWebhookAuthenticationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_configuration", self.extract_ref()))
+    pub fn authentication_configuration(
+        &self,
+    ) -> ListRef<CodepipelineWebhookAuthenticationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -414,7 +479,10 @@ pub struct CodepipelineWebhookAuthenticationConfigurationElRef {
 }
 
 impl Ref for CodepipelineWebhookAuthenticationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineWebhookAuthenticationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineWebhookAuthenticationConfigurationElRef {
         CodepipelineWebhookAuthenticationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -429,7 +497,10 @@ impl CodepipelineWebhookAuthenticationConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `allowed_ip_range` after provisioning.\n"]
     pub fn allowed_ip_range(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allowed_ip_range", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allowed_ip_range", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_token` after provisioning.\n"]
@@ -444,7 +515,7 @@ pub struct CodepipelineWebhookFilterEl {
     match_equals: PrimField<String>,
 }
 
-impl CodepipelineWebhookFilterEl { }
+impl CodepipelineWebhookFilterEl {}
 
 impl ToListMappable for CodepipelineWebhookFilterEl {
     type O = BlockAssignable<CodepipelineWebhookFilterEl>;
@@ -506,6 +577,7 @@ impl CodepipelineWebhookFilterElRef {
 
 #[derive(Serialize, Default)]
 struct CodepipelineWebhookDynamic {
-    authentication_configuration: Option<DynamicBlock<CodepipelineWebhookAuthenticationConfigurationEl>>,
+    authentication_configuration:
+        Option<DynamicBlock<CodepipelineWebhookAuthenticationConfigurationEl>>,
     filter: Option<DynamicBlock<CodepipelineWebhookFilterEl>>,
 }

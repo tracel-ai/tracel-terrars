@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LexIntentData {
@@ -81,7 +81,8 @@ impl LexIntent {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl LexIntent {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl LexIntent {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -138,8 +149,7 @@ impl LexIntent {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -152,79 +162,97 @@ impl LexIntent {
     }
 
     #[doc = "Set the field `conclusion_statement`.\n"]
-    pub fn set_conclusion_statement(self, v: impl Into<BlockAssignable<LexIntentConclusionStatementEl>>) -> Self {
+    pub fn set_conclusion_statement(
+        self,
+        v: impl Into<BlockAssignable<LexIntentConclusionStatementEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().conclusion_statement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.conclusion_statement = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `confirmation_prompt`.\n"]
-    pub fn set_confirmation_prompt(self, v: impl Into<BlockAssignable<LexIntentConfirmationPromptEl>>) -> Self {
+    pub fn set_confirmation_prompt(
+        self,
+        v: impl Into<BlockAssignable<LexIntentConfirmationPromptEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().confirmation_prompt = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.confirmation_prompt = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dialog_code_hook`.\n"]
-    pub fn set_dialog_code_hook(self, v: impl Into<BlockAssignable<LexIntentDialogCodeHookEl>>) -> Self {
+    pub fn set_dialog_code_hook(
+        self,
+        v: impl Into<BlockAssignable<LexIntentDialogCodeHookEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dialog_code_hook = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dialog_code_hook = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `follow_up_prompt`.\n"]
-    pub fn set_follow_up_prompt(self, v: impl Into<BlockAssignable<LexIntentFollowUpPromptEl>>) -> Self {
+    pub fn set_follow_up_prompt(
+        self,
+        v: impl Into<BlockAssignable<LexIntentFollowUpPromptEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().follow_up_prompt = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.follow_up_prompt = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `fulfillment_activity`.\n"]
-    pub fn set_fulfillment_activity(self, v: impl Into<BlockAssignable<LexIntentFulfillmentActivityEl>>) -> Self {
+    pub fn set_fulfillment_activity(
+        self,
+        v: impl Into<BlockAssignable<LexIntentFulfillmentActivityEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().fulfillment_activity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.fulfillment_activity = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `rejection_statement`.\n"]
-    pub fn set_rejection_statement(self, v: impl Into<BlockAssignable<LexIntentRejectionStatementEl>>) -> Self {
+    pub fn set_rejection_statement(
+        self,
+        v: impl Into<BlockAssignable<LexIntentRejectionStatementEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rejection_statement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rejection_statement = Some(d);
-            },
+            }
         }
         self
     }
@@ -234,10 +262,10 @@ impl LexIntent {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().slot = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.slot = Some(d);
-            },
+            }
         }
         self
     }
@@ -255,22 +283,34 @@ impl LexIntent {
 
     #[doc = "Get a reference to the value of field `checksum` after provisioning.\n"]
     pub fn checksum(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checksum", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checksum", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_version` after provisioning.\n"]
     pub fn create_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -280,78 +320,120 @@ impl LexIntent {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_intent_signature` after provisioning.\n"]
     pub fn parent_intent_signature(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_intent_signature", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_intent_signature", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sample_utterances` after provisioning.\n"]
     pub fn sample_utterances(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.sample_utterances", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.sample_utterances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `conclusion_statement` after provisioning.\n"]
     pub fn conclusion_statement(&self) -> ListRef<LexIntentConclusionStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.conclusion_statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.conclusion_statement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `confirmation_prompt` after provisioning.\n"]
     pub fn confirmation_prompt(&self) -> ListRef<LexIntentConfirmationPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.confirmation_prompt", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.confirmation_prompt", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dialog_code_hook` after provisioning.\n"]
     pub fn dialog_code_hook(&self) -> ListRef<LexIntentDialogCodeHookElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dialog_code_hook", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dialog_code_hook", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `follow_up_prompt` after provisioning.\n"]
     pub fn follow_up_prompt(&self) -> ListRef<LexIntentFollowUpPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.follow_up_prompt", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.follow_up_prompt", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fulfillment_activity` after provisioning.\n"]
     pub fn fulfillment_activity(&self) -> ListRef<LexIntentFulfillmentActivityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fulfillment_activity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fulfillment_activity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rejection_statement` after provisioning.\n"]
     pub fn rejection_statement(&self) -> ListRef<LexIntentRejectionStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rejection_statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rejection_statement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LexIntentTimeoutsElRef {
-        LexIntentTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        LexIntentTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for LexIntent {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LexIntent { }
+impl Resource for LexIntent {}
 
 impl ToListMappable for LexIntent {
     type O = ListRef<LexIntentRef>;
@@ -422,10 +504,7 @@ pub struct LexIntentRef {
 
 impl Ref for LexIntentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -445,22 +524,34 @@ impl LexIntentRef {
 
     #[doc = "Get a reference to the value of field `checksum` after provisioning.\n"]
     pub fn checksum(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checksum", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checksum", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_version` after provisioning.\n"]
     pub fn create_version(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -470,68 +561,106 @@ impl LexIntentRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parent_intent_signature` after provisioning.\n"]
     pub fn parent_intent_signature(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_intent_signature", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_intent_signature", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sample_utterances` after provisioning.\n"]
     pub fn sample_utterances(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.sample_utterances", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.sample_utterances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `conclusion_statement` after provisioning.\n"]
     pub fn conclusion_statement(&self) -> ListRef<LexIntentConclusionStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.conclusion_statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.conclusion_statement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `confirmation_prompt` after provisioning.\n"]
     pub fn confirmation_prompt(&self) -> ListRef<LexIntentConfirmationPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.confirmation_prompt", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.confirmation_prompt", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dialog_code_hook` after provisioning.\n"]
     pub fn dialog_code_hook(&self) -> ListRef<LexIntentDialogCodeHookElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dialog_code_hook", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dialog_code_hook", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `follow_up_prompt` after provisioning.\n"]
     pub fn follow_up_prompt(&self) -> ListRef<LexIntentFollowUpPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.follow_up_prompt", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.follow_up_prompt", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fulfillment_activity` after provisioning.\n"]
     pub fn fulfillment_activity(&self) -> ListRef<LexIntentFulfillmentActivityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fulfillment_activity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fulfillment_activity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rejection_statement` after provisioning.\n"]
     pub fn rejection_statement(&self) -> ListRef<LexIntentRejectionStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rejection_statement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rejection_statement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LexIntentTimeoutsElRef {
-        LexIntentTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        LexIntentTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -637,14 +766,17 @@ impl LexIntentConclusionStatementEl {
     }
 
     #[doc = "Set the field `message`.\n"]
-    pub fn set_message(mut self, v: impl Into<BlockAssignable<LexIntentConclusionStatementElMessageEl>>) -> Self {
+    pub fn set_message(
+        mut self,
+        v: impl Into<BlockAssignable<LexIntentConclusionStatementElMessageEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -695,7 +827,10 @@ impl LexIntentConclusionStatementElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -802,14 +937,17 @@ impl LexIntentConfirmationPromptEl {
     }
 
     #[doc = "Set the field `message`.\n"]
-    pub fn set_message(mut self, v: impl Into<BlockAssignable<LexIntentConfirmationPromptElMessageEl>>) -> Self {
+    pub fn set_message(
+        mut self,
+        v: impl Into<BlockAssignable<LexIntentConfirmationPromptElMessageEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -869,7 +1007,10 @@ impl LexIntentConfirmationPromptElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -879,7 +1020,7 @@ pub struct LexIntentDialogCodeHookEl {
     uri: PrimField<String>,
 }
 
-impl LexIntentDialogCodeHookEl { }
+impl LexIntentDialogCodeHookEl {}
 
 impl ToListMappable for LexIntentDialogCodeHookEl {
     type O = BlockAssignable<LexIntentDialogCodeHookEl>;
@@ -930,7 +1071,10 @@ impl LexIntentDialogCodeHookElRef {
 
     #[doc = "Get a reference to the value of field `message_version` after provisioning.\n"]
     pub fn message_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -1042,14 +1186,17 @@ impl LexIntentFollowUpPromptElPromptEl {
     }
 
     #[doc = "Set the field `message`.\n"]
-    pub fn set_message(mut self, v: impl Into<BlockAssignable<LexIntentFollowUpPromptElPromptElMessageEl>>) -> Self {
+    pub fn set_message(
+        mut self,
+        v: impl Into<BlockAssignable<LexIntentFollowUpPromptElPromptElMessageEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -1109,7 +1256,10 @@ impl LexIntentFollowUpPromptElPromptElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -1164,7 +1314,10 @@ pub struct LexIntentFollowUpPromptElRejectionStatementElMessageElRef {
 }
 
 impl Ref for LexIntentFollowUpPromptElRejectionStatementElMessageElRef {
-    fn new(shared: StackShared, base: String) -> LexIntentFollowUpPromptElRejectionStatementElMessageElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LexIntentFollowUpPromptElRejectionStatementElMessageElRef {
         LexIntentFollowUpPromptElRejectionStatementElMessageElRef {
             shared: shared,
             base: base.to_string(),
@@ -1222,10 +1375,10 @@ impl LexIntentFollowUpPromptElRejectionStatementEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -1276,7 +1429,10 @@ impl LexIntentFollowUpPromptElRejectionStatementElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -1297,14 +1453,17 @@ pub struct LexIntentFollowUpPromptEl {
 
 impl LexIntentFollowUpPromptEl {
     #[doc = "Set the field `prompt`.\n"]
-    pub fn set_prompt(mut self, v: impl Into<BlockAssignable<LexIntentFollowUpPromptElPromptEl>>) -> Self {
+    pub fn set_prompt(
+        mut self,
+        v: impl Into<BlockAssignable<LexIntentFollowUpPromptElPromptEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prompt = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prompt = Some(d);
-            },
+            }
         }
         self
     }
@@ -1317,10 +1476,10 @@ impl LexIntentFollowUpPromptEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rejection_statement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rejection_statement = Some(d);
-            },
+            }
         }
         self
     }
@@ -1376,7 +1535,10 @@ impl LexIntentFollowUpPromptElRef {
 
     #[doc = "Get a reference to the value of field `rejection_statement` after provisioning.\n"]
     pub fn rejection_statement(&self) -> ListRef<LexIntentFollowUpPromptElRejectionStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rejection_statement", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rejection_statement", self.base),
+        )
     }
 }
 
@@ -1386,7 +1548,7 @@ pub struct LexIntentFulfillmentActivityElCodeHookEl {
     uri: PrimField<String>,
 }
 
-impl LexIntentFulfillmentActivityElCodeHookEl { }
+impl LexIntentFulfillmentActivityElCodeHookEl {}
 
 impl ToListMappable for LexIntentFulfillmentActivityElCodeHookEl {
     type O = BlockAssignable<LexIntentFulfillmentActivityElCodeHookEl>;
@@ -1437,7 +1599,10 @@ impl LexIntentFulfillmentActivityElCodeHookElRef {
 
     #[doc = "Get a reference to the value of field `message_version` after provisioning.\n"]
     pub fn message_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -1462,14 +1627,17 @@ pub struct LexIntentFulfillmentActivityEl {
 
 impl LexIntentFulfillmentActivityEl {
     #[doc = "Set the field `code_hook`.\n"]
-    pub fn set_code_hook(mut self, v: impl Into<BlockAssignable<LexIntentFulfillmentActivityElCodeHookEl>>) -> Self {
+    pub fn set_code_hook(
+        mut self,
+        v: impl Into<BlockAssignable<LexIntentFulfillmentActivityElCodeHookEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_hook = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_hook = Some(d);
-            },
+            }
         }
         self
     }
@@ -1634,14 +1802,17 @@ impl LexIntentRejectionStatementEl {
     }
 
     #[doc = "Set the field `message`.\n"]
-    pub fn set_message(mut self, v: impl Into<BlockAssignable<LexIntentRejectionStatementElMessageEl>>) -> Self {
+    pub fn set_message(
+        mut self,
+        v: impl Into<BlockAssignable<LexIntentRejectionStatementElMessageEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -1692,7 +1863,10 @@ impl LexIntentRejectionStatementElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -1747,7 +1921,10 @@ pub struct LexIntentSlotElValueElicitationPromptElMessageElRef {
 }
 
 impl Ref for LexIntentSlotElValueElicitationPromptElMessageElRef {
-    fn new(shared: StackShared, base: String) -> LexIntentSlotElValueElicitationPromptElMessageElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LexIntentSlotElValueElicitationPromptElMessageElRef {
         LexIntentSlotElValueElicitationPromptElMessageElRef {
             shared: shared,
             base: base.to_string(),
@@ -1806,10 +1983,10 @@ impl LexIntentSlotElValueElicitationPromptEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -1869,7 +2046,10 @@ impl LexIntentSlotElValueElicitationPromptElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 }
 
@@ -1937,10 +2117,10 @@ impl LexIntentSlotEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.value_elicitation_prompt = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.value_elicitation_prompt = Some(d);
-            },
+            }
         }
         self
     }
@@ -2020,17 +2200,26 @@ impl LexIntentSlotElRef {
 
     #[doc = "Get a reference to the value of field `response_card` after provisioning.\n"]
     pub fn response_card(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_card", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_card", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sample_utterances` after provisioning.\n"]
     pub fn sample_utterances(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.sample_utterances", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sample_utterances", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `slot_constraint` after provisioning.\n"]
     pub fn slot_constraint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.slot_constraint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.slot_constraint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `slot_type` after provisioning.\n"]
@@ -2040,12 +2229,18 @@ impl LexIntentSlotElRef {
 
     #[doc = "Get a reference to the value of field `slot_type_version` after provisioning.\n"]
     pub fn slot_type_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.slot_type_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.slot_type_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value_elicitation_prompt` after provisioning.\n"]
     pub fn value_elicitation_prompt(&self) -> ListRef<LexIntentSlotElValueElicitationPromptElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.value_elicitation_prompt", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.value_elicitation_prompt", self.base),
+        )
     }
 }
 

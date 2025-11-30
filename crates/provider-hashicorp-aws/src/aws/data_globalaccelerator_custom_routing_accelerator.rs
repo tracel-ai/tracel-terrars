@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataGlobalacceleratorCustomRoutingAcceleratorData {
@@ -29,7 +29,9 @@ struct DataGlobalacceleratorCustomRoutingAccelerator_ {
 }
 
 #[derive(Clone)]
-pub struct DataGlobalacceleratorCustomRoutingAccelerator(Rc<DataGlobalacceleratorCustomRoutingAccelerator_>);
+pub struct DataGlobalacceleratorCustomRoutingAccelerator(
+    Rc<DataGlobalacceleratorCustomRoutingAccelerator_>,
+);
 
 impl DataGlobalacceleratorCustomRoutingAccelerator {
     fn shared(&self) -> &StackShared {
@@ -76,23 +78,37 @@ impl DataGlobalacceleratorCustomRoutingAccelerator {
     }
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
-    pub fn attributes(&self) -> ListRef<DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attributes", self.extract_ref()))
+    pub fn attributes(
+        &self,
+    ) -> ListRef<DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -102,32 +118,48 @@ impl DataGlobalacceleratorCustomRoutingAccelerator {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ip_sets` after provisioning.\n"]
     pub fn ip_sets(&self) -> ListRef<DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ip_sets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ip_sets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataGlobalacceleratorCustomRoutingAccelerator {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataGlobalacceleratorCustomRoutingAccelerator { }
+impl Datasource for DataGlobalacceleratorCustomRoutingAccelerator {}
 
 impl ToListMappable for DataGlobalacceleratorCustomRoutingAccelerator {
     type O = ListRef<DataGlobalacceleratorCustomRoutingAcceleratorRef>;
@@ -158,8 +190,8 @@ pub struct BuildDataGlobalacceleratorCustomRoutingAccelerator {
 
 impl BuildDataGlobalacceleratorCustomRoutingAccelerator {
     pub fn build(self, stack: &mut Stack) -> DataGlobalacceleratorCustomRoutingAccelerator {
-        let out =
-            DataGlobalacceleratorCustomRoutingAccelerator(Rc::new(DataGlobalacceleratorCustomRoutingAccelerator_ {
+        let out = DataGlobalacceleratorCustomRoutingAccelerator(Rc::new(
+            DataGlobalacceleratorCustomRoutingAccelerator_ {
                 shared: stack.shared.clone(),
                 tf_id: self.tf_id,
                 data: RefCell::new(DataGlobalacceleratorCustomRoutingAcceleratorData {
@@ -171,7 +203,8 @@ impl BuildDataGlobalacceleratorCustomRoutingAccelerator {
                     name: core::default::Default::default(),
                     tags: core::default::Default::default(),
                 }),
-            }));
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -184,10 +217,7 @@ pub struct DataGlobalacceleratorCustomRoutingAcceleratorRef {
 
 impl Ref for DataGlobalacceleratorCustomRoutingAcceleratorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -206,23 +236,37 @@ impl DataGlobalacceleratorCustomRoutingAcceleratorRef {
     }
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
-    pub fn attributes(&self) -> ListRef<DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attributes", self.extract_ref()))
+    pub fn attributes(
+        &self,
+    ) -> ListRef<DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -232,22 +276,34 @@ impl DataGlobalacceleratorCustomRoutingAcceleratorRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ip_sets` after provisioning.\n"]
     pub fn ip_sets(&self) -> ListRef<DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ip_sets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ip_sets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -311,7 +367,10 @@ pub struct DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef {
 }
 
 impl Ref for DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef {
-    fn new(shared: StackShared, base: String) -> DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef {
         DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef {
             shared: shared,
             base: base.to_string(),
@@ -326,17 +385,26 @@ impl DataGlobalacceleratorCustomRoutingAcceleratorAttributesElRef {
 
     #[doc = "Get a reference to the value of field `flow_logs_enabled` after provisioning.\n"]
     pub fn flow_logs_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_logs_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_logs_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flow_logs_s3_bucket` after provisioning.\n"]
     pub fn flow_logs_s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_logs_s3_bucket", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_logs_s3_bucket", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flow_logs_s3_prefix` after provisioning.\n"]
     pub fn flow_logs_s3_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flow_logs_s3_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flow_logs_s3_prefix", self.base),
+        )
     }
 }
 
@@ -391,7 +459,10 @@ pub struct DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef {
 }
 
 impl Ref for DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef {
-    fn new(shared: StackShared, base: String) -> DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef {
         DataGlobalacceleratorCustomRoutingAcceleratorIpSetsElRef {
             shared: shared,
             base: base.to_string(),

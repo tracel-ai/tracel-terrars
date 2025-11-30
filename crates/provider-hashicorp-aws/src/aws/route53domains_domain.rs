@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53domainsDomainData {
@@ -81,7 +81,8 @@ impl Route53domainsDomain {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl Route53domainsDomain {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl Route53domainsDomain {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -127,7 +138,10 @@ impl Route53domainsDomain {
     }
 
     #[doc = "Set the field `billing_contact`.\n"]
-    pub fn set_billing_contact(self, v: impl Into<ListField<Route53domainsDomainBillingContactEl>>) -> Self {
+    pub fn set_billing_contact(
+        self,
+        v: impl Into<ListField<Route53domainsDomainBillingContactEl>>,
+    ) -> Self {
         self.0.data.borrow_mut().billing_contact = Some(v.into());
         self
     }
@@ -145,7 +159,10 @@ impl Route53domainsDomain {
     }
 
     #[doc = "Set the field `name_server`.\n"]
-    pub fn set_name_server(self, v: impl Into<ListField<Route53domainsDomainNameServerEl>>) -> Self {
+    pub fn set_name_server(
+        self,
+        v: impl Into<ListField<Route53domainsDomainNameServerEl>>,
+    ) -> Self {
         self.0.data.borrow_mut().name_server = Some(v.into());
         self
     }
@@ -175,40 +192,49 @@ impl Route53domainsDomain {
     }
 
     #[doc = "Set the field `admin_contact`.\n"]
-    pub fn set_admin_contact(self, v: impl Into<BlockAssignable<Route53domainsDomainAdminContactEl>>) -> Self {
+    pub fn set_admin_contact(
+        self,
+        v: impl Into<BlockAssignable<Route53domainsDomainAdminContactEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().admin_contact = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.admin_contact = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `registrant_contact`.\n"]
-    pub fn set_registrant_contact(self, v: impl Into<BlockAssignable<Route53domainsDomainRegistrantContactEl>>) -> Self {
+    pub fn set_registrant_contact(
+        self,
+        v: impl Into<BlockAssignable<Route53domainsDomainRegistrantContactEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().registrant_contact = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.registrant_contact = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tech_contact`.\n"]
-    pub fn set_tech_contact(self, v: impl Into<BlockAssignable<Route53domainsDomainTechContactEl>>) -> Self {
+    pub fn set_tech_contact(
+        self,
+        v: impl Into<BlockAssignable<Route53domainsDomainTechContactEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tech_contact = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tech_contact = Some(d);
-            },
+            }
         }
         self
     }
@@ -221,142 +247,224 @@ impl Route53domainsDomain {
 
     #[doc = "Get a reference to the value of field `abuse_contact_email` after provisioning.\n"]
     pub fn abuse_contact_email(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.abuse_contact_email", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.abuse_contact_email", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `abuse_contact_phone` after provisioning.\n"]
     pub fn abuse_contact_phone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.abuse_contact_phone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.abuse_contact_phone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `admin_privacy` after provisioning.\n"]
     pub fn admin_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.admin_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.admin_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_renew` after provisioning.\n"]
     pub fn auto_renew(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_renew", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_renew", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_contact` after provisioning.\n"]
     pub fn billing_contact(&self) -> ListRef<Route53domainsDomainBillingContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.billing_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.billing_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_privacy` after provisioning.\n"]
     pub fn billing_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `duration_in_years` after provisioning.\n"]
     pub fn duration_in_years(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.duration_in_years", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.duration_in_years", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expiration_date` after provisioning.\n"]
     pub fn expiration_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expiration_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_server` after provisioning.\n"]
     pub fn name_server(&self) -> ListRef<Route53domainsDomainNameServerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.name_server", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.name_server", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrant_privacy` after provisioning.\n"]
     pub fn registrant_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registrant_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registrant_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrar_name` after provisioning.\n"]
     pub fn registrar_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registrar_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registrar_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrar_url` after provisioning.\n"]
     pub fn registrar_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registrar_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registrar_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_list` after provisioning.\n"]
     pub fn status_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.status_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.status_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tech_privacy` after provisioning.\n"]
     pub fn tech_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tech_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tech_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transfer_lock` after provisioning.\n"]
     pub fn transfer_lock(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transfer_lock", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transfer_lock", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_date` after provisioning.\n"]
     pub fn updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `whois_server` after provisioning.\n"]
     pub fn whois_server(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.whois_server", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.whois_server", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `admin_contact` after provisioning.\n"]
     pub fn admin_contact(&self) -> ListRef<Route53domainsDomainAdminContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.admin_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.admin_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrant_contact` after provisioning.\n"]
     pub fn registrant_contact(&self) -> ListRef<Route53domainsDomainRegistrantContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.registrant_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.registrant_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tech_contact` after provisioning.\n"]
     pub fn tech_contact(&self) -> ListRef<Route53domainsDomainTechContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tech_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tech_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Route53domainsDomainTimeoutsElRef {
-        Route53domainsDomainTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Route53domainsDomainTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53domainsDomain {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53domainsDomain { }
+impl Resource for Route53domainsDomain {}
 
 impl ToListMappable for Route53domainsDomain {
     type O = ListRef<Route53domainsDomainRef>;
@@ -427,10 +535,7 @@ pub struct Route53domainsDomainRef {
 
 impl Ref for Route53domainsDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -445,132 +550,210 @@ impl Route53domainsDomainRef {
 
     #[doc = "Get a reference to the value of field `abuse_contact_email` after provisioning.\n"]
     pub fn abuse_contact_email(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.abuse_contact_email", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.abuse_contact_email", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `abuse_contact_phone` after provisioning.\n"]
     pub fn abuse_contact_phone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.abuse_contact_phone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.abuse_contact_phone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `admin_privacy` after provisioning.\n"]
     pub fn admin_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.admin_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.admin_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_renew` after provisioning.\n"]
     pub fn auto_renew(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_renew", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_renew", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_contact` after provisioning.\n"]
     pub fn billing_contact(&self) -> ListRef<Route53domainsDomainBillingContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.billing_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.billing_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_privacy` after provisioning.\n"]
     pub fn billing_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `duration_in_years` after provisioning.\n"]
     pub fn duration_in_years(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.duration_in_years", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.duration_in_years", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expiration_date` after provisioning.\n"]
     pub fn expiration_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expiration_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_server` after provisioning.\n"]
     pub fn name_server(&self) -> ListRef<Route53domainsDomainNameServerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.name_server", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.name_server", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrant_privacy` after provisioning.\n"]
     pub fn registrant_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registrant_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registrant_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrar_name` after provisioning.\n"]
     pub fn registrar_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registrar_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registrar_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrar_url` after provisioning.\n"]
     pub fn registrar_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registrar_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registrar_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_list` after provisioning.\n"]
     pub fn status_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.status_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.status_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tech_privacy` after provisioning.\n"]
     pub fn tech_privacy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tech_privacy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tech_privacy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transfer_lock` after provisioning.\n"]
     pub fn transfer_lock(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transfer_lock", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transfer_lock", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_date` after provisioning.\n"]
     pub fn updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `whois_server` after provisioning.\n"]
     pub fn whois_server(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.whois_server", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.whois_server", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `admin_contact` after provisioning.\n"]
     pub fn admin_contact(&self) -> ListRef<Route53domainsDomainAdminContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.admin_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.admin_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registrant_contact` after provisioning.\n"]
     pub fn registrant_contact(&self) -> ListRef<Route53domainsDomainRegistrantContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.registrant_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.registrant_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tech_contact` after provisioning.\n"]
     pub fn tech_contact(&self) -> ListRef<Route53domainsDomainTechContactElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tech_contact", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tech_contact", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Route53domainsDomainTimeoutsElRef {
-        Route53domainsDomainTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Route53domainsDomainTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -625,7 +808,10 @@ pub struct Route53domainsDomainBillingContactElExtraParamElRef {
 }
 
 impl Ref for Route53domainsDomainBillingContactElExtraParamElRef {
-    fn new(shared: StackShared, base: String) -> Route53domainsDomainBillingContactElExtraParamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Route53domainsDomainBillingContactElExtraParamElRef {
         Route53domainsDomainBillingContactElExtraParamElRef {
             shared: shared,
             base: base.to_string(),
@@ -719,7 +905,10 @@ impl Route53domainsDomainBillingContactEl {
     }
 
     #[doc = "Set the field `extra_param`.\n"]
-    pub fn set_extra_param(mut self, v: impl Into<ListField<Route53domainsDomainBillingContactElExtraParamEl>>) -> Self {
+    pub fn set_extra_param(
+        mut self,
+        v: impl Into<ListField<Route53domainsDomainBillingContactElExtraParamEl>>,
+    ) -> Self {
         self.extra_param = Some(v.into());
         self
     }
@@ -823,12 +1012,18 @@ impl Route53domainsDomainBillingContactElRef {
 
     #[doc = "Get a reference to the value of field `address_line_1` after provisioning.\n"]
     pub fn address_line_1(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_1", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_1", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `address_line_2` after provisioning.\n"]
     pub fn address_line_2(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_2", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_2", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `city` after provisioning.\n"]
@@ -873,7 +1068,10 @@ impl Route53domainsDomainBillingContactElRef {
 
     #[doc = "Get a reference to the value of field `organization_name` after provisioning.\n"]
     pub fn organization_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
@@ -973,7 +1171,7 @@ pub struct Route53domainsDomainAdminContactElExtraParamEl {
     value: PrimField<String>,
 }
 
-impl Route53domainsDomainAdminContactElExtraParamEl { }
+impl Route53domainsDomainAdminContactElExtraParamEl {}
 
 impl ToListMappable for Route53domainsDomainAdminContactElExtraParamEl {
     type O = BlockAssignable<Route53domainsDomainAdminContactElExtraParamEl>;
@@ -1158,10 +1356,10 @@ impl Route53domainsDomainAdminContactEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.extra_param = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.extra_param = Some(d);
-            },
+            }
         }
         self
     }
@@ -1224,12 +1422,18 @@ impl Route53domainsDomainAdminContactElRef {
 
     #[doc = "Get a reference to the value of field `address_line_1` after provisioning.\n"]
     pub fn address_line_1(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_1", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_1", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `address_line_2` after provisioning.\n"]
     pub fn address_line_2(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_2", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_2", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `city` after provisioning.\n"]
@@ -1269,7 +1473,10 @@ impl Route53domainsDomainAdminContactElRef {
 
     #[doc = "Get a reference to the value of field `organization_name` after provisioning.\n"]
     pub fn organization_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
@@ -1299,7 +1506,7 @@ pub struct Route53domainsDomainRegistrantContactElExtraParamEl {
     value: PrimField<String>,
 }
 
-impl Route53domainsDomainRegistrantContactElExtraParamEl { }
+impl Route53domainsDomainRegistrantContactElExtraParamEl {}
 
 impl ToListMappable for Route53domainsDomainRegistrantContactElExtraParamEl {
     type O = BlockAssignable<Route53domainsDomainRegistrantContactElExtraParamEl>;
@@ -1335,7 +1542,10 @@ pub struct Route53domainsDomainRegistrantContactElExtraParamElRef {
 }
 
 impl Ref for Route53domainsDomainRegistrantContactElExtraParamElRef {
-    fn new(shared: StackShared, base: String) -> Route53domainsDomainRegistrantContactElExtraParamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Route53domainsDomainRegistrantContactElExtraParamElRef {
         Route53domainsDomainRegistrantContactElExtraParamElRef {
             shared: shared,
             base: base.to_string(),
@@ -1484,10 +1694,10 @@ impl Route53domainsDomainRegistrantContactEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.extra_param = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.extra_param = Some(d);
-            },
+            }
         }
         self
     }
@@ -1550,12 +1760,18 @@ impl Route53domainsDomainRegistrantContactElRef {
 
     #[doc = "Get a reference to the value of field `address_line_1` after provisioning.\n"]
     pub fn address_line_1(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_1", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_1", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `address_line_2` after provisioning.\n"]
     pub fn address_line_2(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_2", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_2", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `city` after provisioning.\n"]
@@ -1595,7 +1811,10 @@ impl Route53domainsDomainRegistrantContactElRef {
 
     #[doc = "Get a reference to the value of field `organization_name` after provisioning.\n"]
     pub fn organization_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
@@ -1625,7 +1844,7 @@ pub struct Route53domainsDomainTechContactElExtraParamEl {
     value: PrimField<String>,
 }
 
-impl Route53domainsDomainTechContactElExtraParamEl { }
+impl Route53domainsDomainTechContactElExtraParamEl {}
 
 impl ToListMappable for Route53domainsDomainTechContactElExtraParamEl {
     type O = BlockAssignable<Route53domainsDomainTechContactElExtraParamEl>;
@@ -1810,10 +2029,10 @@ impl Route53domainsDomainTechContactEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.extra_param = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.extra_param = Some(d);
-            },
+            }
         }
         self
     }
@@ -1876,12 +2095,18 @@ impl Route53domainsDomainTechContactElRef {
 
     #[doc = "Get a reference to the value of field `address_line_1` after provisioning.\n"]
     pub fn address_line_1(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_1", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_1", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `address_line_2` after provisioning.\n"]
     pub fn address_line_2(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.address_line_2", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.address_line_2", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `city` after provisioning.\n"]
@@ -1921,7 +2146,10 @@ impl Route53domainsDomainTechContactElRef {
 
     #[doc = "Get a reference to the value of field `organization_name` after provisioning.\n"]
     pub fn organization_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organization_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organization_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
@@ -1956,22 +2184,19 @@ pub struct Route53domainsDomainTimeoutsEl {
 }
 
 impl Route53domainsDomainTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -2021,20 +2246,17 @@ impl Route53domainsDomainTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

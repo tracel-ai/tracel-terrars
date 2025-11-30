@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DirectoryServiceDirectoryData {
@@ -84,7 +84,8 @@ impl DirectoryServiceDirectory {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -97,7 +98,7 @@ impl DirectoryServiceDirectory {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -108,12 +109,22 @@ impl DirectoryServiceDirectory {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,7 +142,10 @@ impl DirectoryServiceDirectory {
 
     #[doc = "Set the field `desired_number_of_domain_controllers`.\n"]
     pub fn set_desired_number_of_domain_controllers(self, v: impl Into<PrimField<f64>>) -> Self {
-        self.0.data.borrow_mut().desired_number_of_domain_controllers = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .desired_number_of_domain_controllers = Some(v.into());
         self
     }
 
@@ -153,8 +167,7 @@ impl DirectoryServiceDirectory {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -198,10 +211,10 @@ impl DirectoryServiceDirectory {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().connect_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.connect_settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -213,51 +226,78 @@ impl DirectoryServiceDirectory {
     }
 
     #[doc = "Set the field `vpc_settings`.\n"]
-    pub fn set_vpc_settings(self, v: impl Into<BlockAssignable<DirectoryServiceDirectoryVpcSettingsEl>>) -> Self {
+    pub fn set_vpc_settings(
+        self,
+        v: impl Into<BlockAssignable<DirectoryServiceDirectoryVpcSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_settings = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `access_url` after provisioning.\n"]
     pub fn access_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_number_of_domain_controllers` after provisioning.\n"]
     pub fn desired_number_of_domain_controllers(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_number_of_domain_controllers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.desired_number_of_domain_controllers",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_ip_addresses` after provisioning.\n"]
     pub fn dns_ip_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.dns_ip_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.dns_ip_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edition` after provisioning.\n"]
     pub fn edition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_sso` after provisioning.\n"]
     pub fn enable_sso(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_sso", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_sso", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -267,53 +307,82 @@ impl DirectoryServiceDirectory {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `short_name` after provisioning.\n"]
     pub fn short_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.short_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.short_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connect_settings` after provisioning.\n"]
     pub fn connect_settings(&self) -> ListRef<DirectoryServiceDirectoryConnectSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connect_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connect_settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -326,17 +395,24 @@ impl DirectoryServiceDirectory {
 
     #[doc = "Get a reference to the value of field `vpc_settings` after provisioning.\n"]
     pub fn vpc_settings(&self) -> ListRef<DirectoryServiceDirectoryVpcSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DirectoryServiceDirectory {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DirectoryServiceDirectory { }
+impl Resource for DirectoryServiceDirectory {}
 
 impl ToListMappable for DirectoryServiceDirectory {
     type O = ListRef<DirectoryServiceDirectoryRef>;
@@ -411,10 +487,7 @@ pub struct DirectoryServiceDirectoryRef {
 
 impl Ref for DirectoryServiceDirectoryRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -429,37 +502,61 @@ impl DirectoryServiceDirectoryRef {
 
     #[doc = "Get a reference to the value of field `access_url` after provisioning.\n"]
     pub fn access_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_number_of_domain_controllers` after provisioning.\n"]
     pub fn desired_number_of_domain_controllers(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_number_of_domain_controllers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.desired_number_of_domain_controllers",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_ip_addresses` after provisioning.\n"]
     pub fn dns_ip_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.dns_ip_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.dns_ip_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edition` after provisioning.\n"]
     pub fn edition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_sso` after provisioning.\n"]
     pub fn enable_sso(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_sso", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_sso", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -469,53 +566,82 @@ impl DirectoryServiceDirectoryRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `short_name` after provisioning.\n"]
     pub fn short_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.short_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.short_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connect_settings` after provisioning.\n"]
     pub fn connect_settings(&self) -> ListRef<DirectoryServiceDirectoryConnectSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connect_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connect_settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -528,7 +654,10 @@ impl DirectoryServiceDirectoryRef {
 
     #[doc = "Get a reference to the value of field `vpc_settings` after provisioning.\n"]
     pub fn vpc_settings(&self) -> ListRef<DirectoryServiceDirectoryVpcSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_settings", self.extract_ref()),
+        )
     }
 }
 
@@ -540,7 +669,7 @@ pub struct DirectoryServiceDirectoryConnectSettingsEl {
     vpc_id: PrimField<String>,
 }
 
-impl DirectoryServiceDirectoryConnectSettingsEl { }
+impl DirectoryServiceDirectoryConnectSettingsEl {}
 
 impl ToListMappable for DirectoryServiceDirectoryConnectSettingsEl {
     type O = BlockAssignable<DirectoryServiceDirectoryConnectSettingsEl>;
@@ -597,7 +726,10 @@ impl DirectoryServiceDirectoryConnectSettingsElRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connect_ips` after provisioning.\n"]
@@ -607,12 +739,18 @@ impl DirectoryServiceDirectoryConnectSettingsElRef {
 
     #[doc = "Get a reference to the value of field `customer_dns_ips` after provisioning.\n"]
     pub fn customer_dns_ips(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.customer_dns_ips", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.customer_dns_ips", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_username` after provisioning.\n"]
     pub fn customer_username(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_username", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_username", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
@@ -721,7 +859,7 @@ pub struct DirectoryServiceDirectoryVpcSettingsEl {
     vpc_id: PrimField<String>,
 }
 
-impl DirectoryServiceDirectoryVpcSettingsEl { }
+impl DirectoryServiceDirectoryVpcSettingsEl {}
 
 impl ToListMappable for DirectoryServiceDirectoryVpcSettingsEl {
     type O = BlockAssignable<DirectoryServiceDirectoryVpcSettingsEl>;
@@ -772,7 +910,10 @@ impl DirectoryServiceDirectoryVpcSettingsElRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]

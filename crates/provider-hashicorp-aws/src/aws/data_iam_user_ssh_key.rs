@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamUserSshKeyData {
@@ -51,12 +51,18 @@ impl DataIamUserSshKey {
 
     #[doc = "Get a reference to the value of field `encoding` after provisioning.\n"]
     pub fn encoding(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encoding", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encoding", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fingerprint` after provisioning.\n"]
     pub fn fingerprint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fingerprint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fingerprint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -66,32 +72,48 @@ impl DataIamUserSshKey {
 
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ssh_public_key_id` after provisioning.\n"]
     pub fn ssh_public_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssh_public_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssh_public_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.username", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.username", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamUserSshKey {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamUserSshKey { }
+impl Datasource for DataIamUserSshKey {}
 
 impl ToListMappable for DataIamUserSshKey {
     type O = ListRef<DataIamUserSshKeyRef>;
@@ -153,10 +175,7 @@ pub struct DataIamUserSshKeyRef {
 
 impl Ref for DataIamUserSshKeyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -171,12 +190,18 @@ impl DataIamUserSshKeyRef {
 
     #[doc = "Get a reference to the value of field `encoding` after provisioning.\n"]
     pub fn encoding(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encoding", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encoding", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fingerprint` after provisioning.\n"]
     pub fn fingerprint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fingerprint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fingerprint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -186,21 +211,33 @@ impl DataIamUserSshKeyRef {
 
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ssh_public_key_id` after provisioning.\n"]
     pub fn ssh_public_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssh_public_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssh_public_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.username", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.username", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontResponseHeadersPolicyData {
@@ -28,7 +28,8 @@ struct CloudfrontResponseHeadersPolicyData {
     #[serde(skip_serializing_if = "Option::is_none")]
     security_headers_config: Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    server_timing_headers_config: Option<Vec<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>>,
+    server_timing_headers_config:
+        Option<Vec<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>>,
     dynamic: CloudfrontResponseHeadersPolicyDynamic,
 }
 
@@ -67,7 +68,8 @@ impl CloudfrontResponseHeadersPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +82,7 @@ impl CloudfrontResponseHeadersPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +93,22 @@ impl CloudfrontResponseHeadersPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -113,14 +125,17 @@ impl CloudfrontResponseHeadersPolicy {
     }
 
     #[doc = "Set the field `cors_config`.\n"]
-    pub fn set_cors_config(self, v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigEl>>) -> Self {
+    pub fn set_cors_config(
+        self,
+        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cors_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cors_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -133,10 +148,10 @@ impl CloudfrontResponseHeadersPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().custom_headers_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.custom_headers_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -149,10 +164,10 @@ impl CloudfrontResponseHeadersPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().remove_headers_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.remove_headers_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -165,10 +180,10 @@ impl CloudfrontResponseHeadersPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().security_headers_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.security_headers_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -181,10 +196,14 @@ impl CloudfrontResponseHeadersPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().server_timing_headers_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.server_timing_headers_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .server_timing_headers_config = Some(d);
+            }
         }
         self
     }
@@ -196,12 +215,18 @@ impl CloudfrontResponseHeadersPolicy {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -211,42 +236,72 @@ impl CloudfrontResponseHeadersPolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cors_config` after provisioning.\n"]
     pub fn cors_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cors_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cors_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_headers_config` after provisioning.\n"]
-    pub fn custom_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_headers_config", self.extract_ref()))
+    pub fn custom_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remove_headers_config` after provisioning.\n"]
-    pub fn remove_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.remove_headers_config", self.extract_ref()))
+    pub fn remove_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.remove_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_headers_config` after provisioning.\n"]
-    pub fn security_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_headers_config", self.extract_ref()))
+    pub fn security_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_timing_headers_config` after provisioning.\n"]
-    pub fn server_timing_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_timing_headers_config", self.extract_ref()))
+    pub fn server_timing_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_timing_headers_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontResponseHeadersPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontResponseHeadersPolicy { }
+impl Resource for CloudfrontResponseHeadersPolicy {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicy {
     type O = ListRef<CloudfrontResponseHeadersPolicyRef>;
@@ -310,10 +365,7 @@ pub struct CloudfrontResponseHeadersPolicyRef {
 
 impl Ref for CloudfrontResponseHeadersPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -333,12 +385,18 @@ impl CloudfrontResponseHeadersPolicyRef {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -348,32 +406,58 @@ impl CloudfrontResponseHeadersPolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cors_config` after provisioning.\n"]
     pub fn cors_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cors_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cors_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_headers_config` after provisioning.\n"]
-    pub fn custom_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_headers_config", self.extract_ref()))
+    pub fn custom_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remove_headers_config` after provisioning.\n"]
-    pub fn remove_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.remove_headers_config", self.extract_ref()))
+    pub fn remove_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.remove_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_headers_config` after provisioning.\n"]
-    pub fn security_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_headers_config", self.extract_ref()))
+    pub fn security_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_headers_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_timing_headers_config` after provisioning.\n"]
-    pub fn server_timing_headers_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_timing_headers_config", self.extract_ref()))
+    pub fn server_timing_headers_config(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.server_timing_headers_config", self.extract_ref()),
+        )
     }
 }
 
@@ -392,7 +476,8 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
 }
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>;
+    type O =
+        BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -456,7 +541,8 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
 }
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>;
+    type O =
+        BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -520,7 +606,8 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
 }
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>;
+    type O =
+        BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -584,7 +671,8 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
 }
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>;
+    type O =
+        BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -656,13 +744,17 @@ pub struct CloudfrontResponseHeadersPolicyCorsConfigEl {
     access_control_max_age_sec: Option<PrimField<f64>>,
     origin_override: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_control_allow_headers: Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>>,
+    access_control_allow_headers:
+        Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_control_allow_methods: Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>>,
+    access_control_allow_methods:
+        Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_control_allow_origins: Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>>,
+    access_control_allow_origins:
+        Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_control_expose_headers: Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>>,
+    access_control_expose_headers:
+        Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>>,
     dynamic: CloudfrontResponseHeadersPolicyCorsConfigElDynamic,
 }
 
@@ -676,15 +768,17 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_allow_headers`.\n"]
     pub fn set_access_control_allow_headers(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_control_allow_headers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_control_allow_headers = Some(d);
-            },
+            }
         }
         self
     }
@@ -692,15 +786,17 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_allow_methods`.\n"]
     pub fn set_access_control_allow_methods(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_control_allow_methods = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_control_allow_methods = Some(d);
-            },
+            }
         }
         self
     }
@@ -708,15 +804,17 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_allow_origins`.\n"]
     pub fn set_access_control_allow_origins(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_control_allow_origins = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_control_allow_origins = Some(d);
-            },
+            }
         }
         self
     }
@@ -724,15 +822,19 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_expose_headers`.\n"]
     pub fn set_access_control_expose_headers(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_control_expose_headers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_control_expose_headers = Some(d);
-            },
+            }
         }
         self
     }
@@ -793,45 +895,66 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
 
     #[doc = "Get a reference to the value of field `access_control_allow_credentials` after provisioning.\n"]
     pub fn access_control_allow_credentials(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_control_allow_credentials", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_credentials", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_max_age_sec` after provisioning.\n"]
     pub fn access_control_max_age_sec(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_control_max_age_sec", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_control_max_age_sec", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_override` after provisioning.\n"]
     pub fn origin_override(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_allow_headers` after provisioning.\n"]
     pub fn access_control_allow_headers(
         &self,
     ) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_allow_headers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_headers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_allow_methods` after provisioning.\n"]
     pub fn access_control_allow_methods(
         &self,
     ) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_allow_methods", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_allow_origins` after provisioning.\n"]
     pub fn access_control_allow_origins(
         &self,
     ) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_allow_origins", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_allow_origins", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_expose_headers` after provisioning.\n"]
     pub fn access_control_expose_headers(
         &self,
     ) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_expose_headers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_expose_headers", self.base),
+        )
     }
 }
 
@@ -843,7 +966,7 @@ pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     value: PrimField<String>,
 }
 
-impl CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl { }
+impl CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl>;
@@ -882,7 +1005,10 @@ pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
 }
 
 impl Ref for CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
         CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
             shared: shared,
             base: base.to_string(),
@@ -932,10 +1058,10 @@ impl CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.items = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.items = Some(d);
-            },
+            }
         }
         self
     }
@@ -970,7 +1096,10 @@ pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
 }
 
 impl Ref for CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
         CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -989,7 +1118,7 @@ pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     header: PrimField<String>,
 }
 
-impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl { }
+impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl>;
@@ -1010,7 +1139,9 @@ pub struct BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
 
 impl BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
-        CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl { header: self.header }
+        CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
+            header: self.header,
+        }
     }
 }
 
@@ -1020,7 +1151,10 @@ pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
 }
 
 impl Ref for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
         CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1060,10 +1194,10 @@ impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.items = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.items = Some(d);
-            },
+            }
         }
         self
     }
@@ -1098,7 +1232,10 @@ pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
 }
 
 impl Ref for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
         CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1119,10 +1256,14 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurity
     override_: PrimField<bool>,
 }
 
-impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl { }
+impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {}
 
-impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>;
+impl ToListMappable
+    for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl
+{
+    type O = BlockAssignable<
+        CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1141,7 +1282,9 @@ pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSec
 }
 
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
-    pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
             content_security_policy: self.content_security_policy,
             override_: self.override_,
@@ -1173,7 +1316,10 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicy
 
     #[doc = "Get a reference to the value of field `content_security_policy` after provisioning.\n"]
     pub fn content_security_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.content_security_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.content_security_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
@@ -1188,10 +1334,11 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOpti
     override_: PrimField<bool>,
 }
 
-impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl { }
+impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>;
+    type O =
+        BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1208,8 +1355,12 @@ pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTyp
 }
 
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
-    pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
-        CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl { override_: self.override_ }
+    pub fn build(
+        self,
+    ) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
+        CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
+            override_: self.override_,
+        }
     }
 }
 
@@ -1248,7 +1399,7 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl 
     override_: PrimField<bool>,
 }
 
-impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl { }
+impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>;
@@ -1318,10 +1469,11 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyE
     referrer_policy: PrimField<String>,
 }
 
-impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl { }
+impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>;
+    type O =
+        BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1377,7 +1529,10 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef {
 
     #[doc = "Get a reference to the value of field `referrer_policy` after provisioning.\n"]
     pub fn referrer_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.referrer_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.referrer_policy", self.base),
+        )
     }
 }
 
@@ -1406,8 +1561,12 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecuri
     }
 }
 
-impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
-    type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl>;
+impl ToListMappable
+    for CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl
+{
+    type O = BlockAssignable<
+        CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1426,7 +1585,9 @@ pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTran
 }
 
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
-    pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
             access_control_max_age_sec: self.access_control_max_age_sec,
             include_subdomains: core::default::Default::default(),
@@ -1460,12 +1621,18 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecuri
 
     #[doc = "Get a reference to the value of field `access_control_max_age_sec` after provisioning.\n"]
     pub fn access_control_max_age_sec(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_control_max_age_sec", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_control_max_age_sec", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_subdomains` after provisioning.\n"]
     pub fn include_subdomains(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_subdomains", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_subdomains", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
@@ -1585,30 +1752,41 @@ struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElDynamic {
     content_type_options: Option<
         DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>,
     >,
-    frame_options: Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
-    referrer_policy: Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>>,
-    strict_transport_security: Option<
-        DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl>,
+    frame_options:
+        Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
+    referrer_policy: Option<
+        DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>,
     >,
-    xss_protection: Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
+    strict_transport_security: Option<
+        DynamicBlock<
+            CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
+        >,
+    >,
+    xss_protection:
+        Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
 }
 
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    content_security_policy: Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>>,
+    content_security_policy:
+        Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    content_type_options: Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>>,
+    content_type_options:
+        Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    frame_options: Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
+    frame_options:
+        Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    referrer_policy: Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>>,
+    referrer_policy:
+        Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     strict_transport_security: Option<
         Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    xss_protection: Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
+    xss_protection:
+        Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
     dynamic: CloudfrontResponseHeadersPolicySecurityHeadersConfigElDynamic,
 }
 
@@ -1616,15 +1794,19 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `content_security_policy`.\n"]
     pub fn set_content_security_policy(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.content_security_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.content_security_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1632,15 +1814,19 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `content_type_options`.\n"]
     pub fn set_content_type_options(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.content_type_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.content_type_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -1648,15 +1834,17 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `frame_options`.\n"]
     pub fn set_frame_options(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.frame_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.frame_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -1664,15 +1852,17 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `referrer_policy`.\n"]
     pub fn set_referrer_policy(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.referrer_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.referrer_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1680,22 +1870,19 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `strict_transport_security`.\n"]
     pub fn set_strict_transport_security(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.strict_transport_security = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.strict_transport_security = Some(d);
-            },
+            }
         }
         self
     }
@@ -1703,15 +1890,17 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `xss_protection`.\n"]
     pub fn set_xss_protection(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
+        v: impl Into<
+            BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.xss_protection = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.xss_protection = Some(d);
-            },
+            }
         }
         self
     }
@@ -1751,7 +1940,10 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
 }
 
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1767,37 +1959,64 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
     #[doc = "Get a reference to the value of field `content_security_policy` after provisioning.\n"]
     pub fn content_security_policy(
         &self,
-    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_security_policy", self.base))
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_security_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `content_type_options` after provisioning.\n"]
     pub fn content_type_options(
         &self,
-    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_type_options", self.base))
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_type_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `frame_options` after provisioning.\n"]
-    pub fn frame_options(&self) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.frame_options", self.base))
+    pub fn frame_options(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.frame_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `referrer_policy` after provisioning.\n"]
-    pub fn referrer_policy(&self) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.referrer_policy", self.base))
+    pub fn referrer_policy(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.referrer_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `strict_transport_security` after provisioning.\n"]
     pub fn strict_transport_security(
         &self,
-    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.strict_transport_security", self.base))
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.strict_transport_security", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xss_protection` after provisioning.\n"]
-    pub fn xss_protection(&self) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.xss_protection", self.base))
+    pub fn xss_protection(
+        &self,
+    ) -> ListRef<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.xss_protection", self.base),
+        )
     }
 }
 
@@ -1807,7 +2026,7 @@ pub struct CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
     sampling_rate: PrimField<f64>,
 }
 
-impl CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl { }
+impl CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {}
 
 impl ToListMappable for CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>;
@@ -1843,7 +2062,10 @@ pub struct CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
 }
 
 impl Ref for CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
         CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1863,15 +2085,22 @@ impl CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
 
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_rate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_rate", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudfrontResponseHeadersPolicyDynamic {
     cors_config: Option<DynamicBlock<CloudfrontResponseHeadersPolicyCorsConfigEl>>,
-    custom_headers_config: Option<DynamicBlock<CloudfrontResponseHeadersPolicyCustomHeadersConfigEl>>,
-    remove_headers_config: Option<DynamicBlock<CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl>>,
-    security_headers_config: Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigEl>>,
-    server_timing_headers_config: Option<DynamicBlock<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>>,
+    custom_headers_config:
+        Option<DynamicBlock<CloudfrontResponseHeadersPolicyCustomHeadersConfigEl>>,
+    remove_headers_config:
+        Option<DynamicBlock<CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl>>,
+    security_headers_config:
+        Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigEl>>,
+    server_timing_headers_config:
+        Option<DynamicBlock<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEcsTaskDefinitionData {
@@ -49,8 +49,7 @@ impl DataEcsTaskDefinition {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,12 +62,18 @@ impl DataEcsTaskDefinition {
 
     #[doc = "Get a reference to the value of field `arn_without_revision` after provisioning.\n"]
     pub fn arn_without_revision(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.arn_without_revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.arn_without_revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_definitions` after provisioning.\n"]
     pub fn container_definitions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_definitions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_definitions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu` after provisioning.\n"]
@@ -78,22 +83,34 @@ impl DataEcsTaskDefinition {
 
     #[doc = "Get a reference to the value of field `enable_fault_injection` after provisioning.\n"]
     pub fn enable_fault_injection(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_fault_injection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_fault_injection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(&self) -> ListRef<DataEcsTaskDefinitionEphemeralStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ephemeral_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ephemeral_storage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `family` after provisioning.\n"]
     pub fn family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.family", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.family", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -103,83 +120,128 @@ impl DataEcsTaskDefinition {
 
     #[doc = "Get a reference to the value of field `ipc_mode` after provisioning.\n"]
     pub fn ipc_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipc_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipc_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
     pub fn memory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_mode` after provisioning.\n"]
     pub fn network_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pid_mode` after provisioning.\n"]
     pub fn pid_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pid_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pid_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_constraints` after provisioning.\n"]
     pub fn placement_constraints(&self) -> SetRef<DataEcsTaskDefinitionPlacementConstraintsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.placement_constraints", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.placement_constraints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `proxy_configuration` after provisioning.\n"]
     pub fn proxy_configuration(&self) -> ListRef<DataEcsTaskDefinitionProxyConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.proxy_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.proxy_configuration", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requires_compatibilities` after provisioning.\n"]
     pub fn requires_compatibilities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.requires_compatibilities", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.requires_compatibilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision` after provisioning.\n"]
     pub fn revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_platform` after provisioning.\n"]
     pub fn runtime_platform(&self) -> ListRef<DataEcsTaskDefinitionRuntimePlatformElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime_platform", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_role_arn` after provisioning.\n"]
     pub fn task_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume` after provisioning.\n"]
     pub fn volume(&self) -> SetRef<DataEcsTaskDefinitionVolumeElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.volume", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.volume", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEcsTaskDefinition {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEcsTaskDefinition { }
+impl Datasource for DataEcsTaskDefinition {}
 
 impl ToListMappable for DataEcsTaskDefinition {
     type O = ListRef<DataEcsTaskDefinitionRef>;
@@ -236,10 +298,7 @@ pub struct DataEcsTaskDefinitionRef {
 
 impl Ref for DataEcsTaskDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,12 +318,18 @@ impl DataEcsTaskDefinitionRef {
 
     #[doc = "Get a reference to the value of field `arn_without_revision` after provisioning.\n"]
     pub fn arn_without_revision(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.arn_without_revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.arn_without_revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_definitions` after provisioning.\n"]
     pub fn container_definitions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_definitions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_definitions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu` after provisioning.\n"]
@@ -274,22 +339,34 @@ impl DataEcsTaskDefinitionRef {
 
     #[doc = "Get a reference to the value of field `enable_fault_injection` after provisioning.\n"]
     pub fn enable_fault_injection(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_fault_injection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_fault_injection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(&self) -> ListRef<DataEcsTaskDefinitionEphemeralStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ephemeral_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ephemeral_storage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `family` after provisioning.\n"]
     pub fn family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.family", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.family", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -299,73 +376,114 @@ impl DataEcsTaskDefinitionRef {
 
     #[doc = "Get a reference to the value of field `ipc_mode` after provisioning.\n"]
     pub fn ipc_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipc_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipc_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
     pub fn memory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_mode` after provisioning.\n"]
     pub fn network_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pid_mode` after provisioning.\n"]
     pub fn pid_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pid_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pid_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_constraints` after provisioning.\n"]
     pub fn placement_constraints(&self) -> SetRef<DataEcsTaskDefinitionPlacementConstraintsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.placement_constraints", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.placement_constraints", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `proxy_configuration` after provisioning.\n"]
     pub fn proxy_configuration(&self) -> ListRef<DataEcsTaskDefinitionProxyConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.proxy_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.proxy_configuration", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requires_compatibilities` after provisioning.\n"]
     pub fn requires_compatibilities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.requires_compatibilities", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.requires_compatibilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision` after provisioning.\n"]
     pub fn revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_platform` after provisioning.\n"]
     pub fn runtime_platform(&self) -> ListRef<DataEcsTaskDefinitionRuntimePlatformElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime_platform", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_role_arn` after provisioning.\n"]
     pub fn task_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume` after provisioning.\n"]
     pub fn volume(&self) -> SetRef<DataEcsTaskDefinitionVolumeElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.volume", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.volume", self.extract_ref()),
+        )
     }
 }
 
@@ -399,7 +517,9 @@ pub struct BuildDataEcsTaskDefinitionEphemeralStorageEl {}
 
 impl BuildDataEcsTaskDefinitionEphemeralStorageEl {
     pub fn build(self) -> DataEcsTaskDefinitionEphemeralStorageEl {
-        DataEcsTaskDefinitionEphemeralStorageEl { size_in_gib: core::default::Default::default() }
+        DataEcsTaskDefinitionEphemeralStorageEl {
+            size_in_gib: core::default::Default::default(),
+        }
     }
 }
 
@@ -578,7 +698,10 @@ impl DataEcsTaskDefinitionProxyConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
@@ -658,12 +781,18 @@ impl DataEcsTaskDefinitionRuntimePlatformElRef {
 
     #[doc = "Get a reference to the value of field `cpu_architecture` after provisioning.\n"]
     pub fn cpu_architecture(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_architecture", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_architecture", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operating_system_family` after provisioning.\n"]
     pub fn operating_system_family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operating_system_family", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.operating_system_family", self.base),
+        )
     }
 }
 
@@ -745,7 +874,10 @@ pub struct DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef {
 }
 
 impl Ref for DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef {
         DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -760,7 +892,10 @@ impl DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `autoprovision` after provisioning.\n"]
     pub fn autoprovision(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.autoprovision", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.autoprovision", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `driver` after provisioning.\n"]
@@ -807,7 +942,8 @@ impl DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl 
 }
 
 impl ToListMappable for DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl {
-    type O = BlockAssignable<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl>;
+    type O =
+        BlockAssignable<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -821,7 +957,9 @@ impl ToListMappable for DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAut
 pub struct BuildDataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl {}
 
 impl BuildDataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl {
-    pub fn build(self) -> DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl {
+    pub fn build(
+        self,
+    ) -> DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl {
         DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl {
             access_point_id: core::default::Default::default(),
             iam: core::default::Default::default(),
@@ -853,7 +991,10 @@ impl DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigElR
 
     #[doc = "Get a reference to the value of field `access_point_id` after provisioning.\n"]
     pub fn access_point_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_point_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_point_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam` after provisioning.\n"]
@@ -865,7 +1006,9 @@ impl DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigElR
 #[derive(Serialize)]
 pub struct DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    authorization_config: Option<ListField<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl>>,
+    authorization_config: Option<
+        ListField<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     file_system_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -880,7 +1023,9 @@ impl DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationEl {
     #[doc = "Set the field `authorization_config`.\n"]
     pub fn set_authorization_config(
         mut self,
-        v: impl Into<ListField<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl>>,
+        v: impl Into<
+            ListField<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigEl>,
+        >,
     ) -> Self {
         self.authorization_config = Some(v.into());
         self
@@ -943,7 +1088,10 @@ pub struct DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef {
 }
 
 impl Ref for DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef {
         DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -959,33 +1107,50 @@ impl DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef {
     #[doc = "Get a reference to the value of field `authorization_config` after provisioning.\n"]
     pub fn authorization_config(
         &self,
-    ) -> ListRef<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorization_config", self.base))
+    ) -> ListRef<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElAuthorizationConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorization_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_directory` after provisioning.\n"]
     pub fn root_directory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.root_directory", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.root_directory", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_encryption` after provisioning.\n"]
     pub fn transit_encryption(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_encryption", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_encryption", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_encryption_port` after provisioning.\n"]
     pub fn transit_encryption_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_encryption_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_encryption_port", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl {
+pub struct DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     credentials_parameter: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1006,9 +1171,12 @@ impl DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAutho
     }
 }
 
-impl ToListMappable for DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl {
-    type O =
-        BlockAssignable<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl>;
+impl ToListMappable
+    for DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl
+{
+    type O = BlockAssignable<
+        DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1019,12 +1187,16 @@ impl ToListMappable for DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeC
     }
 }
 
-pub struct BuildDataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl {}
+pub struct BuildDataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl
+{}
 
-impl BuildDataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl {
+impl
+    BuildDataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl
+{
     pub fn build(
         self,
-    ) -> DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl {
+    ) -> DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl
+    {
         DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigEl {
             credentials_parameter: core::default::Default::default(),
             domain: core::default::Default::default(),
@@ -1032,7 +1204,8 @@ impl BuildDataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl
     }
 }
 
-pub struct DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigElRef {
+pub struct DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1049,14 +1222,19 @@ impl Ref for DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfiguratio
     }
 }
 
-impl DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigElRef {
+impl
+    DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `credentials_parameter` after provisioning.\n"]
     pub fn credentials_parameter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials_parameter", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credentials_parameter", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
@@ -1108,7 +1286,8 @@ impl DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl {
 }
 
 impl ToListMappable for DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl {
-    type O = BlockAssignable<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl>;
+    type O =
+        BlockAssignable<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1156,18 +1335,27 @@ impl DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElRef {
     #[doc = "Get a reference to the value of field `authorization_config` after provisioning.\n"]
     pub fn authorization_config(
         &self,
-    ) -> ListRef<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorization_config", self.base))
+    ) -> ListRef<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElAuthorizationConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorization_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_directory` after provisioning.\n"]
     pub fn root_directory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.root_directory", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.root_directory", self.base),
+        )
     }
 }
 
@@ -1176,13 +1364,14 @@ pub struct DataEcsTaskDefinitionVolumeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     configure_at_launch: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    docker_volume_configuration: Option<ListField<DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationEl>>,
+    docker_volume_configuration:
+        Option<ListField<DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    efs_volume_configuration: Option<ListField<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationEl>>,
+    efs_volume_configuration:
+        Option<ListField<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    fsx_windows_file_server_volume_configuration: Option<
-        ListField<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl>,
-    >,
+    fsx_windows_file_server_volume_configuration:
+        Option<ListField<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     host_path: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1284,25 +1473,40 @@ impl DataEcsTaskDefinitionVolumeElRef {
 
     #[doc = "Get a reference to the value of field `configure_at_launch` after provisioning.\n"]
     pub fn configure_at_launch(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configure_at_launch", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configure_at_launch", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `docker_volume_configuration` after provisioning.\n"]
-    pub fn docker_volume_configuration(&self) -> ListRef<DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.docker_volume_configuration", self.base))
+    pub fn docker_volume_configuration(
+        &self,
+    ) -> ListRef<DataEcsTaskDefinitionVolumeElDockerVolumeConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.docker_volume_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `efs_volume_configuration` after provisioning.\n"]
-    pub fn efs_volume_configuration(&self) -> ListRef<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.efs_volume_configuration", self.base))
+    pub fn efs_volume_configuration(
+        &self,
+    ) -> ListRef<DataEcsTaskDefinitionVolumeElEfsVolumeConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_volume_configuration", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `fsx_windows_file_server_volume_configuration` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `fsx_windows_file_server_volume_configuration` after provisioning.\n"]
     pub fn fsx_windows_file_server_volume_configuration(
         &self,
     ) -> ListRef<DataEcsTaskDefinitionVolumeElFsxWindowsFileServerVolumeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fsx_windows_file_server_volume_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fsx_windows_file_server_volume_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `host_path` after provisioning.\n"]

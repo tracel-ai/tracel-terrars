@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBedrockagentAgentVersionsData {
@@ -44,8 +44,7 @@ impl DataBedrockagentAgentVersions {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -59,38 +58,52 @@ impl DataBedrockagentAgentVersions {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().agent_version_summaries = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.agent_version_summaries = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `agent_id` after provisioning.\n"]
     pub fn agent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_version_summaries` after provisioning.\n"]
-    pub fn agent_version_summaries(&self) -> ListRef<DataBedrockagentAgentVersionsAgentVersionSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.agent_version_summaries", self.extract_ref()))
+    pub fn agent_version_summaries(
+        &self,
+    ) -> ListRef<DataBedrockagentAgentVersionsAgentVersionSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.agent_version_summaries", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBedrockagentAgentVersions {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBedrockagentAgentVersions { }
+impl Datasource for DataBedrockagentAgentVersions {}
 
 impl ToListMappable for DataBedrockagentAgentVersions {
     type O = ListRef<DataBedrockagentAgentVersionsRef>;
@@ -148,10 +161,7 @@ pub struct DataBedrockagentAgentVersionsRef {
 
 impl Ref for DataBedrockagentAgentVersionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -166,28 +176,42 @@ impl DataBedrockagentAgentVersionsRef {
 
     #[doc = "Get a reference to the value of field `agent_id` after provisioning.\n"]
     pub fn agent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_version_summaries` after provisioning.\n"]
-    pub fn agent_version_summaries(&self) -> ListRef<DataBedrockagentAgentVersionsAgentVersionSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.agent_version_summaries", self.extract_ref()))
+    pub fn agent_version_summaries(
+        &self,
+    ) -> ListRef<DataBedrockagentAgentVersionsAgentVersionSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.agent_version_summaries", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {}
 
-impl DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl { }
+impl DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {}
 
-impl ToListMappable for DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {
-    type O = BlockAssignable<DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl>;
+impl ToListMappable
+    for DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl
+{
+    type O = BlockAssignable<
+        DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -201,7 +225,9 @@ impl ToListMappable for DataBedrockagentAgentVersionsAgentVersionSummariesElGuar
 pub struct BuildDataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {}
 
 impl BuildDataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {
-    pub fn build(self) -> DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {
+    pub fn build(
+        self,
+    ) -> DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {
         DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl {}
     }
 }
@@ -230,12 +256,18 @@ impl DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationE
 
     #[doc = "Get a reference to the value of field `guardrail_identifier` after provisioning.\n"]
     pub fn guardrail_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_version` after provisioning.\n"]
     pub fn guardrail_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_version", self.base),
+        )
     }
 }
 
@@ -249,7 +281,8 @@ struct DataBedrockagentAgentVersionsAgentVersionSummariesElDynamic {
 #[derive(Serialize)]
 pub struct DataBedrockagentAgentVersionsAgentVersionSummariesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    guardrail_configuration: Option<Vec<DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl>>,
+    guardrail_configuration:
+        Option<Vec<DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl>>,
     dynamic: DataBedrockagentAgentVersionsAgentVersionSummariesElDynamic,
 }
 
@@ -257,15 +290,19 @@ impl DataBedrockagentAgentVersionsAgentVersionSummariesEl {
     #[doc = "Set the field `guardrail_configuration`.\n"]
     pub fn set_guardrail_configuration(
         mut self,
-        v: impl Into<BlockAssignable<DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.guardrail_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.guardrail_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -300,7 +337,10 @@ pub struct DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
 }
 
 impl Ref for DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
-    fn new(shared: StackShared, base: String) -> DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
         DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
             shared: shared,
             base: base.to_string(),
@@ -325,7 +365,10 @@ impl DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
 
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
@@ -346,12 +389,17 @@ impl DataBedrockagentAgentVersionsAgentVersionSummariesElRef {
     #[doc = "Get a reference to the value of field `guardrail_configuration` after provisioning.\n"]
     pub fn guardrail_configuration(
         &self,
-    ) -> ListRef<DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardrail_configuration", self.base))
+    ) -> ListRef<DataBedrockagentAgentVersionsAgentVersionSummariesElGuardrailConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardrail_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct DataBedrockagentAgentVersionsDynamic {
-    agent_version_summaries: Option<DynamicBlock<DataBedrockagentAgentVersionsAgentVersionSummariesEl>>,
+    agent_version_summaries:
+        Option<DynamicBlock<DataBedrockagentAgentVersionsAgentVersionSummariesEl>>,
 }

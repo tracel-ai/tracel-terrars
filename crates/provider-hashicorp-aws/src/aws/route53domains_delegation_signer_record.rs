@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53domainsDelegationSignerRecordData {
@@ -57,7 +57,8 @@ impl Route53domainsDelegationSignerRecord {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl Route53domainsDelegationSignerRecord {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +82,22 @@ impl Route53domainsDelegationSignerRecord {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,28 +109,37 @@ impl Route53domainsDelegationSignerRecord {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().signing_attributes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.signing_attributes = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<Route53domainsDelegationSignerRecordTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<Route53domainsDelegationSignerRecordTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `dnssec_key_id` after provisioning.\n"]
     pub fn dnssec_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dnssec_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dnssec_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -128,8 +148,13 @@ impl Route53domainsDelegationSignerRecord {
     }
 
     #[doc = "Get a reference to the value of field `signing_attributes` after provisioning.\n"]
-    pub fn signing_attributes(&self) -> ListRef<Route53domainsDelegationSignerRecordSigningAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.signing_attributes", self.extract_ref()))
+    pub fn signing_attributes(
+        &self,
+    ) -> ListRef<Route53domainsDelegationSignerRecordSigningAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signing_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -143,11 +168,15 @@ impl Route53domainsDelegationSignerRecord {
 
 impl Referable for Route53domainsDelegationSignerRecord {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53domainsDelegationSignerRecord { }
+impl Resource for Route53domainsDelegationSignerRecord {}
 
 impl ToListMappable for Route53domainsDelegationSignerRecord {
     type O = ListRef<Route53domainsDelegationSignerRecordRef>;
@@ -180,20 +209,21 @@ pub struct BuildRoute53domainsDelegationSignerRecord {
 
 impl BuildRoute53domainsDelegationSignerRecord {
     pub fn build(self, stack: &mut Stack) -> Route53domainsDelegationSignerRecord {
-        let out = Route53domainsDelegationSignerRecord(Rc::new(Route53domainsDelegationSignerRecord_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(Route53domainsDelegationSignerRecordData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                domain_name: self.domain_name,
-                signing_attributes: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            Route53domainsDelegationSignerRecord(Rc::new(Route53domainsDelegationSignerRecord_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(Route53domainsDelegationSignerRecordData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    domain_name: self.domain_name,
+                    signing_attributes: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -206,10 +236,7 @@ pub struct Route53domainsDelegationSignerRecordRef {
 
 impl Ref for Route53domainsDelegationSignerRecordRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -224,12 +251,18 @@ impl Route53domainsDelegationSignerRecordRef {
 
     #[doc = "Get a reference to the value of field `dnssec_key_id` after provisioning.\n"]
     pub fn dnssec_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dnssec_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dnssec_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -238,8 +271,13 @@ impl Route53domainsDelegationSignerRecordRef {
     }
 
     #[doc = "Get a reference to the value of field `signing_attributes` after provisioning.\n"]
-    pub fn signing_attributes(&self) -> ListRef<Route53domainsDelegationSignerRecordSigningAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.signing_attributes", self.extract_ref()))
+    pub fn signing_attributes(
+        &self,
+    ) -> ListRef<Route53domainsDelegationSignerRecordSigningAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signing_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -258,7 +296,7 @@ pub struct Route53domainsDelegationSignerRecordSigningAttributesEl {
     public_key: PrimField<String>,
 }
 
-impl Route53domainsDelegationSignerRecordSigningAttributesEl { }
+impl Route53domainsDelegationSignerRecordSigningAttributesEl {}
 
 impl ToListMappable for Route53domainsDelegationSignerRecordSigningAttributesEl {
     type O = BlockAssignable<Route53domainsDelegationSignerRecordSigningAttributesEl>;
@@ -297,7 +335,10 @@ pub struct Route53domainsDelegationSignerRecordSigningAttributesElRef {
 }
 
 impl Ref for Route53domainsDelegationSignerRecordSigningAttributesElRef {
-    fn new(shared: StackShared, base: String) -> Route53domainsDelegationSignerRecordSigningAttributesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Route53domainsDelegationSignerRecordSigningAttributesElRef {
         Route53domainsDelegationSignerRecordSigningAttributesElRef {
             shared: shared,
             base: base.to_string(),
@@ -335,15 +376,13 @@ pub struct Route53domainsDelegationSignerRecordTimeoutsEl {
 }
 
 impl Route53domainsDelegationSignerRecordTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
@@ -392,14 +431,12 @@ impl Route53domainsDelegationSignerRecordTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
@@ -407,5 +444,6 @@ impl Route53domainsDelegationSignerRecordTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct Route53domainsDelegationSignerRecordDynamic {
-    signing_attributes: Option<DynamicBlock<Route53domainsDelegationSignerRecordSigningAttributesEl>>,
+    signing_attributes:
+        Option<DynamicBlock<Route53domainsDelegationSignerRecordSigningAttributesEl>>,
 }

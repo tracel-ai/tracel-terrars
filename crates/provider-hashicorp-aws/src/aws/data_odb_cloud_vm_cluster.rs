@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOdbCloudVmClusterData {
@@ -41,8 +41,7 @@ impl DataOdbCloudVmCluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -53,87 +52,118 @@ impl DataOdbCloudVmCluster {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `cloud_exadata_infrastructure_id` after provisioning.\nThe ID of the Cloud Exadata Infrastructure."]
+    #[doc = "Get a reference to the value of field `cloud_exadata_infrastructure_id` after provisioning.\nThe ID of the Cloud Exadata Infrastructure."]
     pub fn cloud_exadata_infrastructure_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_exadata_infrastructure_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_exadata_infrastructure_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `cluster_name` after provisioning.\nThe name of the Grid Infrastructure (GI) cluster."]
+    #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\nThe name of the Grid Infrastructure (GI) cluster."]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an instance: ECPU or\nOCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on\nthe number of cores elastically allocated from a pool of compute and storage\nservers. An OCPU is a legacy physical measure of compute resources. OCPUs are\nbased on the physical core of a processor with hyper-threading enabled."]
+    #[doc = "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an instance: ECPU or\nOCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on\nthe number of cores elastically allocated from a pool of compute and storage\nservers. An OCPU is a legacy physical measure of compute resources. OCPUs are\nbased on the physical core of a processor with hyper-threading enabled."]
     pub fn compute_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_model", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `cpu_core_count` after provisioning.\nThe number of CPU cores enabled on the VM cluster."]
+    #[doc = "Get a reference to the value of field `cpu_core_count` after provisioning.\nThe number of CPU cores enabled on the VM cluster."]
     pub fn cpu_core_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_core_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_core_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_at` after provisioning.\nThe time when the VM cluster was created."]
+    #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe time when the VM cluster was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_collection_options` after provisioning.\nThe set of diagnostic collection options enabled for the VM cluster."]
-    pub fn data_collection_options(&self) -> ListRef<DataOdbCloudVmClusterDataCollectionOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_collection_options", self.extract_ref()))
+    #[doc = "Get a reference to the value of field `data_collection_options` after provisioning.\nThe set of diagnostic collection options enabled for the VM cluster."]
+    pub fn data_collection_options(
+        &self,
+    ) -> ListRef<DataOdbCloudVmClusterDataCollectionOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_collection_options", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the data disk group, in terabytes (TB), that's allocated for the VM cluster."]
+    #[doc = "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the data disk group, in terabytes (TB), that's allocated for the VM cluster."]
     pub fn data_storage_size_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_storage_size_in_tbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_storage_size_in_tbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated for the VM cluster."]
+    #[doc = "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated for the VM cluster."]
     pub fn db_node_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_node_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_node_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_servers` after provisioning.\nThe list of database servers for the VM cluster."]
+    #[doc = "Get a reference to the value of field `db_servers` after provisioning.\nThe list of database servers for the VM cluster."]
     pub fn db_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.db_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.db_servers", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `disk_redundancy` after provisioning.\nThe type of redundancy configured for the VM cluster. NORMAL is 2-way redundancy. HIGH is 3-way redundancy."]
+    #[doc = "Get a reference to the value of field `disk_redundancy` after provisioning.\nThe type of redundancy configured for the VM cluster. NORMAL is 2-way redundancy. HIGH is 3-way redundancy."]
     pub fn disk_redundancy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disk_redundancy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disk_redundancy", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `display_name` after provisioning.\nThe display name of the VM cluster."]
+    #[doc = "Get a reference to the value of field `display_name` after provisioning.\nThe display name of the VM cluster."]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\nThe domain name of the VM cluster."]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `gi_version` after provisioning.\nhe software version of the Oracle Grid Infrastructure (GI) for the VM cluster."]
+    #[doc = "Get a reference to the value of field `gi_version` after provisioning.\nhe software version of the Oracle Grid Infrastructure (GI) for the VM cluster."]
     pub fn gi_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gi_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gi_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `hostname_prefix_computed` after provisioning.\nThe computed hostname prefix for the VM cluster."]
+    #[doc = "Get a reference to the value of field `hostname_prefix_computed` after provisioning.\nThe computed hostname prefix for the VM cluster."]
     pub fn hostname_prefix_computed(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hostname_prefix_computed", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hostname_prefix_computed", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\nThe unique identifier of the VM cluster."]
@@ -141,165 +171,226 @@ impl DataOdbCloudVmCluster {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `iorm_config_cache` after provisioning.\nThe ExadataIormConfig cache details for the VM cluster."]
+    #[doc = "Get a reference to the value of field `iorm_config_cache` after provisioning.\nThe ExadataIormConfig cache details for the VM cluster."]
     pub fn iorm_config_cache(&self) -> ListRef<DataOdbCloudVmClusterIormConfigCacheElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iorm_config_cache", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iorm_config_cache", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `is_local_backup_enabled` after provisioning.\nIndicates whether database backups to local Exadata storage is enabled for the VM cluster."]
+    #[doc = "Get a reference to the value of field `is_local_backup_enabled` after provisioning.\nIndicates whether database backups to local Exadata storage is enabled for the VM cluster."]
     pub fn is_local_backup_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_local_backup_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_local_backup_enabled", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `is_sparse_disk_group_enabled` after provisioning.\nIndicates whether the VM cluster is configured with a sparse disk group."]
+    #[doc = "Get a reference to the value of field `is_sparse_disk_group_enabled` after provisioning.\nIndicates whether the VM cluster is configured with a sparse disk group."]
     pub fn is_sparse_disk_group_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_sparse_disk_group_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_sparse_disk_group_enabled", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `last_update_history_entry_id` after provisioning.\nThe Oracle Cloud ID (OCID) of the last maintenance update history entry."]
+    #[doc = "Get a reference to the value of field `last_update_history_entry_id` after provisioning.\nThe Oracle Cloud ID (OCID) of the last maintenance update history entry."]
     pub fn last_update_history_entry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_update_history_entry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_update_history_entry_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `license_model` after provisioning.\nThe Oracle license model applied to the VM cluster."]
+    #[doc = "Get a reference to the value of field `license_model` after provisioning.\nThe Oracle license model applied to the VM cluster."]
     pub fn license_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_model", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `listener_port` after provisioning.\nThe port number configured for the listener on the VM cluster."]
+    #[doc = "Get a reference to the value of field `listener_port` after provisioning.\nThe port number configured for the listener on the VM cluster."]
     pub fn listener_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_port", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated for the VM cluster."]
+    #[doc = "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated for the VM cluster."]
     pub fn memory_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `node_count` after provisioning.\nThe number of nodes in the VM cluster."]
+    #[doc = "Get a reference to the value of field `node_count` after provisioning.\nThe number of nodes in the VM cluster."]
     pub fn node_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.node_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.node_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI Resource Anchor."]
+    #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI Resource Anchor."]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the VM cluster in OCI."]
+    #[doc = "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the VM cluster in OCI."]
     pub fn oci_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ocid` after provisioning.\nThe OCID of the VM cluster."]
     pub fn ocid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ocid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ocid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `odb_network_id` after provisioning.\nThe ID of the ODB network."]
     pub fn odb_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.odb_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.odb_network_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the VM cluster,expressed as a percentage."]
+    #[doc = "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the VM cluster,expressed as a percentage."]
     pub fn percent_progress(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.percent_progress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.percent_progress", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `scan_dns_name` after provisioning.\nThe FQDN of the DNS record for the Single Client Access Name (SCAN) IP\n addresses that are associated with the VM cluster."]
+    #[doc = "Get a reference to the value of field `scan_dns_name` after provisioning.\nThe FQDN of the DNS record for the Single Client Access Name (SCAN) IP\n addresses that are associated with the VM cluster."]
     pub fn scan_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_dns_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `scan_dns_record_id` after provisioning.\nThe OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster."]
+    #[doc = "Get a reference to the value of field `scan_dns_record_id` after provisioning.\nThe OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster."]
     pub fn scan_dns_record_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_dns_record_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_dns_record_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `scan_ip_ids` after provisioning.\nThe OCID of the SCAN IP addresses that are associated with the VM cluster."]
+    #[doc = "Get a reference to the value of field `scan_ip_ids` after provisioning.\nThe OCID of the SCAN IP addresses that are associated with the VM cluster."]
     pub fn scan_ip_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.scan_ip_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scan_ip_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `shape` after provisioning.\nThe hardware model name of the Exadata infrastructure that's running the VM cluster."]
+    #[doc = "Get a reference to the value of field `shape` after provisioning.\nThe hardware model name of the Exadata infrastructure that's running the VM cluster."]
     pub fn shape(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shape", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shape", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `ssh_public_keys` after provisioning.\nhe public key portion of one or more key pairs used for SSH access to the VM cluster."]
+    #[doc = "Get a reference to the value of field `ssh_public_keys` after provisioning.\nhe public key portion of one or more key pairs used for SSH access to the VM cluster."]
     pub fn ssh_public_keys(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ssh_public_keys", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ssh_public_keys", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\nThe status of the VM cluster."]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the VM cluster."]
+    #[doc = "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the VM cluster."]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated to the VM cluster."]
+    #[doc = "Get a reference to the value of field `storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated to the VM cluster."]
     pub fn storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `system_version` after provisioning.\nThe operating system version of the image chosen for the VM cluster."]
+    #[doc = "Get a reference to the value of field `system_version` after provisioning.\nThe operating system version of the image chosen for the VM cluster."]
     pub fn system_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.system_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.system_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timezone` after provisioning.\nThe time zone of the VM cluster."]
     pub fn timezone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timezone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timezone", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `vip_ids` after provisioning.\nThe virtual IP (VIP) addresses that are associated with the VM cluster.\nOracle's Cluster Ready Services (CRS) creates and maintains one VIP address for\neach node in the VM cluster to enable failover. If one node fails, the VIP is\nreassigned to another active node in the cluster."]
+    #[doc = "Get a reference to the value of field `vip_ids` after provisioning.\nThe virtual IP (VIP) addresses that are associated with the VM cluster.\nOracle's Cluster Ready Services (CRS) creates and maintains one VIP address for\neach node in the VM cluster to enable failover. If one node fails, the VIP is\nreassigned to another active node in the cluster."]
     pub fn vip_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.vip_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vip_ids", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOdbCloudVmCluster {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOdbCloudVmCluster { }
+impl Datasource for DataOdbCloudVmCluster {}
 
 impl ToListMappable for DataOdbCloudVmCluster {
     type O = ListRef<DataOdbCloudVmClusterRef>;
@@ -355,10 +446,7 @@ pub struct DataOdbCloudVmClusterRef {
 
 impl Ref for DataOdbCloudVmClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -376,87 +464,118 @@ impl DataOdbCloudVmClusterRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `cloud_exadata_infrastructure_id` after provisioning.\nThe ID of the Cloud Exadata Infrastructure."]
+    #[doc = "Get a reference to the value of field `cloud_exadata_infrastructure_id` after provisioning.\nThe ID of the Cloud Exadata Infrastructure."]
     pub fn cloud_exadata_infrastructure_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_exadata_infrastructure_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_exadata_infrastructure_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `cluster_name` after provisioning.\nThe name of the Grid Infrastructure (GI) cluster."]
+    #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\nThe name of the Grid Infrastructure (GI) cluster."]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an instance: ECPU or\nOCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on\nthe number of cores elastically allocated from a pool of compute and storage\nservers. An OCPU is a legacy physical measure of compute resources. OCPUs are\nbased on the physical core of a processor with hyper-threading enabled."]
+    #[doc = "Get a reference to the value of field `compute_model` after provisioning.\nThe OCI model compute model used when you create or clone an instance: ECPU or\nOCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on\nthe number of cores elastically allocated from a pool of compute and storage\nservers. An OCPU is a legacy physical measure of compute resources. OCPUs are\nbased on the physical core of a processor with hyper-threading enabled."]
     pub fn compute_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_model", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `cpu_core_count` after provisioning.\nThe number of CPU cores enabled on the VM cluster."]
+    #[doc = "Get a reference to the value of field `cpu_core_count` after provisioning.\nThe number of CPU cores enabled on the VM cluster."]
     pub fn cpu_core_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_core_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_core_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_at` after provisioning.\nThe time when the VM cluster was created."]
+    #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe time when the VM cluster was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_collection_options` after provisioning.\nThe set of diagnostic collection options enabled for the VM cluster."]
-    pub fn data_collection_options(&self) -> ListRef<DataOdbCloudVmClusterDataCollectionOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_collection_options", self.extract_ref()))
+    #[doc = "Get a reference to the value of field `data_collection_options` after provisioning.\nThe set of diagnostic collection options enabled for the VM cluster."]
+    pub fn data_collection_options(
+        &self,
+    ) -> ListRef<DataOdbCloudVmClusterDataCollectionOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_collection_options", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the data disk group, in terabytes (TB), that's allocated for the VM cluster."]
+    #[doc = "Get a reference to the value of field `data_storage_size_in_tbs` after provisioning.\nThe size of the data disk group, in terabytes (TB), that's allocated for the VM cluster."]
     pub fn data_storage_size_in_tbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_storage_size_in_tbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_storage_size_in_tbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated for the VM cluster."]
+    #[doc = "Get a reference to the value of field `db_node_storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated for the VM cluster."]
     pub fn db_node_storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.db_node_storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.db_node_storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `db_servers` after provisioning.\nThe list of database servers for the VM cluster."]
+    #[doc = "Get a reference to the value of field `db_servers` after provisioning.\nThe list of database servers for the VM cluster."]
     pub fn db_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.db_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.db_servers", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `disk_redundancy` after provisioning.\nThe type of redundancy configured for the VM cluster. NORMAL is 2-way redundancy. HIGH is 3-way redundancy."]
+    #[doc = "Get a reference to the value of field `disk_redundancy` after provisioning.\nThe type of redundancy configured for the VM cluster. NORMAL is 2-way redundancy. HIGH is 3-way redundancy."]
     pub fn disk_redundancy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disk_redundancy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disk_redundancy", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `display_name` after provisioning.\nThe display name of the VM cluster."]
+    #[doc = "Get a reference to the value of field `display_name` after provisioning.\nThe display name of the VM cluster."]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\nThe domain name of the VM cluster."]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `gi_version` after provisioning.\nhe software version of the Oracle Grid Infrastructure (GI) for the VM cluster."]
+    #[doc = "Get a reference to the value of field `gi_version` after provisioning.\nhe software version of the Oracle Grid Infrastructure (GI) for the VM cluster."]
     pub fn gi_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gi_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gi_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `hostname_prefix_computed` after provisioning.\nThe computed hostname prefix for the VM cluster."]
+    #[doc = "Get a reference to the value of field `hostname_prefix_computed` after provisioning.\nThe computed hostname prefix for the VM cluster."]
     pub fn hostname_prefix_computed(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hostname_prefix_computed", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hostname_prefix_computed", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\nThe unique identifier of the VM cluster."]
@@ -464,155 +583,212 @@ impl DataOdbCloudVmClusterRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `iorm_config_cache` after provisioning.\nThe ExadataIormConfig cache details for the VM cluster."]
+    #[doc = "Get a reference to the value of field `iorm_config_cache` after provisioning.\nThe ExadataIormConfig cache details for the VM cluster."]
     pub fn iorm_config_cache(&self) -> ListRef<DataOdbCloudVmClusterIormConfigCacheElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.iorm_config_cache", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.iorm_config_cache", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `is_local_backup_enabled` after provisioning.\nIndicates whether database backups to local Exadata storage is enabled for the VM cluster."]
+    #[doc = "Get a reference to the value of field `is_local_backup_enabled` after provisioning.\nIndicates whether database backups to local Exadata storage is enabled for the VM cluster."]
     pub fn is_local_backup_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_local_backup_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_local_backup_enabled", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `is_sparse_disk_group_enabled` after provisioning.\nIndicates whether the VM cluster is configured with a sparse disk group."]
+    #[doc = "Get a reference to the value of field `is_sparse_disk_group_enabled` after provisioning.\nIndicates whether the VM cluster is configured with a sparse disk group."]
     pub fn is_sparse_disk_group_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_sparse_disk_group_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_sparse_disk_group_enabled", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `last_update_history_entry_id` after provisioning.\nThe Oracle Cloud ID (OCID) of the last maintenance update history entry."]
+    #[doc = "Get a reference to the value of field `last_update_history_entry_id` after provisioning.\nThe Oracle Cloud ID (OCID) of the last maintenance update history entry."]
     pub fn last_update_history_entry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_update_history_entry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_update_history_entry_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `license_model` after provisioning.\nThe Oracle license model applied to the VM cluster."]
+    #[doc = "Get a reference to the value of field `license_model` after provisioning.\nThe Oracle license model applied to the VM cluster."]
     pub fn license_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.license_model", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.license_model", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `listener_port` after provisioning.\nThe port number configured for the listener on the VM cluster."]
+    #[doc = "Get a reference to the value of field `listener_port` after provisioning.\nThe port number configured for the listener on the VM cluster."]
     pub fn listener_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_port", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated for the VM cluster."]
+    #[doc = "Get a reference to the value of field `memory_size_in_gbs` after provisioning.\nThe amount of memory, in gigabytes (GB), that's allocated for the VM cluster."]
     pub fn memory_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.memory_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.memory_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `node_count` after provisioning.\nThe number of nodes in the VM cluster."]
+    #[doc = "Get a reference to the value of field `node_count` after provisioning.\nThe number of nodes in the VM cluster."]
     pub fn node_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.node_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.node_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI Resource Anchor."]
+    #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI Resource Anchor."]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the VM cluster in OCI."]
+    #[doc = "Get a reference to the value of field `oci_url` after provisioning.\nThe HTTPS link to the VM cluster in OCI."]
     pub fn oci_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ocid` after provisioning.\nThe OCID of the VM cluster."]
     pub fn ocid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ocid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ocid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `odb_network_id` after provisioning.\nThe ID of the ODB network."]
     pub fn odb_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.odb_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.odb_network_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the VM cluster,expressed as a percentage."]
+    #[doc = "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the VM cluster,expressed as a percentage."]
     pub fn percent_progress(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.percent_progress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.percent_progress", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `scan_dns_name` after provisioning.\nThe FQDN of the DNS record for the Single Client Access Name (SCAN) IP\n addresses that are associated with the VM cluster."]
+    #[doc = "Get a reference to the value of field `scan_dns_name` after provisioning.\nThe FQDN of the DNS record for the Single Client Access Name (SCAN) IP\n addresses that are associated with the VM cluster."]
     pub fn scan_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_dns_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `scan_dns_record_id` after provisioning.\nThe OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster."]
+    #[doc = "Get a reference to the value of field `scan_dns_record_id` after provisioning.\nThe OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster."]
     pub fn scan_dns_record_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_dns_record_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_dns_record_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `scan_ip_ids` after provisioning.\nThe OCID of the SCAN IP addresses that are associated with the VM cluster."]
+    #[doc = "Get a reference to the value of field `scan_ip_ids` after provisioning.\nThe OCID of the SCAN IP addresses that are associated with the VM cluster."]
     pub fn scan_ip_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.scan_ip_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scan_ip_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `shape` after provisioning.\nThe hardware model name of the Exadata infrastructure that's running the VM cluster."]
+    #[doc = "Get a reference to the value of field `shape` after provisioning.\nThe hardware model name of the Exadata infrastructure that's running the VM cluster."]
     pub fn shape(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shape", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shape", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `ssh_public_keys` after provisioning.\nhe public key portion of one or more key pairs used for SSH access to the VM cluster."]
+    #[doc = "Get a reference to the value of field `ssh_public_keys` after provisioning.\nhe public key portion of one or more key pairs used for SSH access to the VM cluster."]
     pub fn ssh_public_keys(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ssh_public_keys", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ssh_public_keys", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\nThe status of the VM cluster."]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the VM cluster."]
+    #[doc = "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the status of the VM cluster."]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated to the VM cluster."]
+    #[doc = "Get a reference to the value of field `storage_size_in_gbs` after provisioning.\nThe amount of local node storage, in gigabytes (GB), that's allocated to the VM cluster."]
     pub fn storage_size_in_gbs(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_size_in_gbs", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_size_in_gbs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `system_version` after provisioning.\nThe operating system version of the image chosen for the VM cluster."]
+    #[doc = "Get a reference to the value of field `system_version` after provisioning.\nThe operating system version of the image chosen for the VM cluster."]
     pub fn system_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.system_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.system_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timezone` after provisioning.\nThe time zone of the VM cluster."]
     pub fn timezone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timezone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timezone", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `vip_ids` after provisioning.\nThe virtual IP (VIP) addresses that are associated with the VM cluster.\nOracle's Cluster Ready Services (CRS) creates and maintains one VIP address for\neach node in the VM cluster to enable failover. If one node fails, the VIP is\nreassigned to another active node in the cluster."]
+    #[doc = "Get a reference to the value of field `vip_ids` after provisioning.\nThe virtual IP (VIP) addresses that are associated with the VM cluster.\nOracle's Cluster Ready Services (CRS) creates and maintains one VIP address for\neach node in the VM cluster to enable failover. If one node fails, the VIP is\nreassigned to another active node in the cluster."]
     pub fn vip_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.vip_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vip_ids", self.extract_ref()),
+        )
     }
 }
 
@@ -691,17 +867,26 @@ impl DataOdbCloudVmClusterDataCollectionOptionsElRef {
 
     #[doc = "Get a reference to the value of field `is_diagnostics_events_enabled` after provisioning.\n"]
     pub fn is_diagnostics_events_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_diagnostics_events_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_diagnostics_events_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_health_monitoring_enabled` after provisioning.\n"]
     pub fn is_health_monitoring_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_health_monitoring_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_health_monitoring_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_incident_logs_enabled` after provisioning.\n"]
     pub fn is_incident_logs_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_incident_logs_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_incident_logs_enabled", self.base),
+        )
     }
 }
 
@@ -765,7 +950,10 @@ pub struct DataOdbCloudVmClusterIormConfigCacheElDbPlansElRef {
 }
 
 impl Ref for DataOdbCloudVmClusterIormConfigCacheElDbPlansElRef {
-    fn new(shared: StackShared, base: String) -> DataOdbCloudVmClusterIormConfigCacheElDbPlansElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataOdbCloudVmClusterIormConfigCacheElDbPlansElRef {
         DataOdbCloudVmClusterIormConfigCacheElDbPlansElRef {
             shared: shared,
             base: base.to_string(),
@@ -785,7 +973,10 @@ impl DataOdbCloudVmClusterIormConfigCacheElDbPlansElRef {
 
     #[doc = "Get a reference to the value of field `flash_cache_limit` after provisioning.\n"]
     pub fn flash_cache_limit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flash_cache_limit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flash_cache_limit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share` after provisioning.\n"]
@@ -808,7 +999,10 @@ pub struct DataOdbCloudVmClusterIormConfigCacheEl {
 
 impl DataOdbCloudVmClusterIormConfigCacheEl {
     #[doc = "Set the field `db_plans`.\n"]
-    pub fn set_db_plans(mut self, v: impl Into<ListField<DataOdbCloudVmClusterIormConfigCacheElDbPlansEl>>) -> Self {
+    pub fn set_db_plans(
+        mut self,
+        v: impl Into<ListField<DataOdbCloudVmClusterIormConfigCacheElDbPlansEl>>,
+    ) -> Self {
         self.db_plans = Some(v.into());
         self
     }
@@ -883,12 +1077,18 @@ impl DataOdbCloudVmClusterIormConfigCacheElRef {
 
     #[doc = "Get a reference to the value of field `lifecycle_details` after provisioning.\n"]
     pub fn lifecycle_details(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_details", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_state` after provisioning.\n"]
     pub fn lifecycle_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_state", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_state", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `objective` after provisioning.\n"]

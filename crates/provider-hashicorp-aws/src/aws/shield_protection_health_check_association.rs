@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ShieldProtectionHealthCheckAssociationData {
@@ -55,7 +55,8 @@ impl ShieldProtectionHealthCheckAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -68,7 +69,7 @@ impl ShieldProtectionHealthCheckAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -79,12 +80,22 @@ impl ShieldProtectionHealthCheckAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -96,7 +107,10 @@ impl ShieldProtectionHealthCheckAssociation {
 
     #[doc = "Get a reference to the value of field `health_check_arn` after provisioning.\n"]
     pub fn health_check_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,17 +120,24 @@ impl ShieldProtectionHealthCheckAssociation {
 
     #[doc = "Get a reference to the value of field `shield_protection_id` after provisioning.\n"]
     pub fn shield_protection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shield_protection_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shield_protection_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ShieldProtectionHealthCheckAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ShieldProtectionHealthCheckAssociation { }
+impl Resource for ShieldProtectionHealthCheckAssociation {}
 
 impl ToListMappable for ShieldProtectionHealthCheckAssociation {
     type O = ListRef<ShieldProtectionHealthCheckAssociationRef>;
@@ -151,19 +172,21 @@ pub struct BuildShieldProtectionHealthCheckAssociation {
 
 impl BuildShieldProtectionHealthCheckAssociation {
     pub fn build(self, stack: &mut Stack) -> ShieldProtectionHealthCheckAssociation {
-        let out = ShieldProtectionHealthCheckAssociation(Rc::new(ShieldProtectionHealthCheckAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(ShieldProtectionHealthCheckAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                health_check_arn: self.health_check_arn,
-                id: core::default::Default::default(),
-                shield_protection_id: self.shield_protection_id,
-            }),
-        }));
+        let out = ShieldProtectionHealthCheckAssociation(Rc::new(
+            ShieldProtectionHealthCheckAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(ShieldProtectionHealthCheckAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    health_check_arn: self.health_check_arn,
+                    id: core::default::Default::default(),
+                    shield_protection_id: self.shield_protection_id,
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -176,10 +199,7 @@ pub struct ShieldProtectionHealthCheckAssociationRef {
 
 impl Ref for ShieldProtectionHealthCheckAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -194,7 +214,10 @@ impl ShieldProtectionHealthCheckAssociationRef {
 
     #[doc = "Get a reference to the value of field `health_check_arn` after provisioning.\n"]
     pub fn health_check_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -204,6 +227,9 @@ impl ShieldProtectionHealthCheckAssociationRef {
 
     #[doc = "Get a reference to the value of field `shield_protection_id` after provisioning.\n"]
     pub fn shield_protection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shield_protection_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shield_protection_id", self.extract_ref()),
+        )
     }
 }

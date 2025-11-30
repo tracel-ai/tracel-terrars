@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CognitoIdentityPoolRolesAttachmentData {
@@ -60,7 +60,8 @@ impl CognitoIdentityPoolRolesAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl CognitoIdentityPoolRolesAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl CognitoIdentityPoolRolesAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -99,8 +110,7 @@ impl CognitoIdentityPoolRolesAttachment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -114,10 +124,10 @@ impl CognitoIdentityPoolRolesAttachment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().role_mapping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.role_mapping = Some(d);
-            },
+            }
         }
         self
     }
@@ -129,28 +139,40 @@ impl CognitoIdentityPoolRolesAttachment {
 
     #[doc = "Get a reference to the value of field `identity_pool_id` after provisioning.\n"]
     pub fn identity_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_pool_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles` after provisioning.\n"]
     pub fn roles(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.roles", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.roles", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CognitoIdentityPoolRolesAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CognitoIdentityPoolRolesAttachment { }
+impl Resource for CognitoIdentityPoolRolesAttachment {}
 
 impl ToListMappable for CognitoIdentityPoolRolesAttachment {
     type O = ListRef<CognitoIdentityPoolRolesAttachmentRef>;
@@ -185,22 +207,23 @@ pub struct BuildCognitoIdentityPoolRolesAttachment {
 
 impl BuildCognitoIdentityPoolRolesAttachment {
     pub fn build(self, stack: &mut Stack) -> CognitoIdentityPoolRolesAttachment {
-        let out = CognitoIdentityPoolRolesAttachment(Rc::new(CognitoIdentityPoolRolesAttachment_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(CognitoIdentityPoolRolesAttachmentData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                identity_pool_id: self.identity_pool_id,
-                region: core::default::Default::default(),
-                roles: self.roles,
-                role_mapping: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            CognitoIdentityPoolRolesAttachment(Rc::new(CognitoIdentityPoolRolesAttachment_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(CognitoIdentityPoolRolesAttachmentData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    identity_pool_id: self.identity_pool_id,
+                    region: core::default::Default::default(),
+                    roles: self.roles,
+                    role_mapping: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -213,10 +236,7 @@ pub struct CognitoIdentityPoolRolesAttachmentRef {
 
 impl Ref for CognitoIdentityPoolRolesAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -236,18 +256,26 @@ impl CognitoIdentityPoolRolesAttachmentRef {
 
     #[doc = "Get a reference to the value of field `identity_pool_id` after provisioning.\n"]
     pub fn identity_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_pool_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles` after provisioning.\n"]
     pub fn roles(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.roles", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.roles", self.extract_ref()),
+        )
     }
 }
 
@@ -259,7 +287,7 @@ pub struct CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl {
     value: PrimField<String>,
 }
 
-impl CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl { }
+impl CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl {}
 
 impl ToListMappable for CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl {
     type O = BlockAssignable<CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl>;
@@ -301,7 +329,10 @@ pub struct CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef {
 }
 
 impl Ref for CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef {
-    fn new(shared: StackShared, base: String) -> CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef {
         CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -337,7 +368,8 @@ impl CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef {
 
 #[derive(Serialize, Default)]
 struct CognitoIdentityPoolRolesAttachmentRoleMappingElDynamic {
-    mapping_rule: Option<DynamicBlock<CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl>>,
+    mapping_rule:
+        Option<DynamicBlock<CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleEl>>,
 }
 
 #[derive(Serialize)]
@@ -367,10 +399,10 @@ impl CognitoIdentityPoolRolesAttachmentRoleMappingEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mapping_rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mapping_rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -413,7 +445,10 @@ pub struct CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
 }
 
 impl Ref for CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
-    fn new(shared: StackShared, base: String) -> CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
         CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
             shared: shared,
             base: base.to_string(),
@@ -428,12 +463,18 @@ impl CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
 
     #[doc = "Get a reference to the value of field `ambiguous_role_resolution` after provisioning.\n"]
     pub fn ambiguous_role_resolution(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ambiguous_role_resolution", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ambiguous_role_resolution", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_provider` after provisioning.\n"]
     pub fn identity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -442,7 +483,9 @@ impl CognitoIdentityPoolRolesAttachmentRoleMappingElRef {
     }
 
     #[doc = "Get a reference to the value of field `mapping_rule` after provisioning.\n"]
-    pub fn mapping_rule(&self) -> ListRef<CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef> {
+    pub fn mapping_rule(
+        &self,
+    ) -> ListRef<CognitoIdentityPoolRolesAttachmentRoleMappingElMappingRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.mapping_rule", self.base))
     }
 }

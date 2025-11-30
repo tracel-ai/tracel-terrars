@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVpcIpamPreviewNextCidrData {
@@ -67,8 +67,7 @@ impl DataVpcIpamPreviewNextCidr {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -82,12 +81,18 @@ impl DataVpcIpamPreviewNextCidr {
 
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disallowed_cidrs` after provisioning.\n"]
     pub fn disallowed_cidrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.disallowed_cidrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.disallowed_cidrs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -97,18 +102,26 @@ impl DataVpcIpamPreviewNextCidr {
 
     #[doc = "Get a reference to the value of field `ipam_pool_id` after provisioning.\n"]
     pub fn ipam_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `netmask_length` after provisioning.\n"]
     pub fn netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.netmask_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.netmask_length", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -122,11 +135,15 @@ impl DataVpcIpamPreviewNextCidr {
 
 impl Referable for DataVpcIpamPreviewNextCidr {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVpcIpamPreviewNextCidr { }
+impl Datasource for DataVpcIpamPreviewNextCidr {}
 
 impl ToListMappable for DataVpcIpamPreviewNextCidr {
     type O = ListRef<DataVpcIpamPreviewNextCidrRef>;
@@ -186,10 +203,7 @@ pub struct DataVpcIpamPreviewNextCidrRef {
 
 impl Ref for DataVpcIpamPreviewNextCidrRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -204,12 +218,18 @@ impl DataVpcIpamPreviewNextCidrRef {
 
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `disallowed_cidrs` after provisioning.\n"]
     pub fn disallowed_cidrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.disallowed_cidrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.disallowed_cidrs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -219,18 +239,26 @@ impl DataVpcIpamPreviewNextCidrRef {
 
     #[doc = "Get a reference to the value of field `ipam_pool_id` after provisioning.\n"]
     pub fn ipam_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipam_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipam_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `netmask_length` after provisioning.\n"]
     pub fn netmask_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.netmask_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.netmask_length", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -272,7 +300,9 @@ pub struct BuildDataVpcIpamPreviewNextCidrTimeoutsEl {}
 
 impl BuildDataVpcIpamPreviewNextCidrTimeoutsEl {
     pub fn build(self) -> DataVpcIpamPreviewNextCidrTimeoutsEl {
-        DataVpcIpamPreviewNextCidrTimeoutsEl { read: core::default::Default::default() }
+        DataVpcIpamPreviewNextCidrTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

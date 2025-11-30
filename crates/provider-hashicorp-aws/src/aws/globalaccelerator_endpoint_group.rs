@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlobalacceleratorEndpointGroupData {
@@ -75,7 +75,8 @@ impl GlobalacceleratorEndpointGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl GlobalacceleratorEndpointGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl GlobalacceleratorEndpointGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -164,23 +175,26 @@ impl GlobalacceleratorEndpointGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().endpoint_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.endpoint_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `port_override`.\n"]
-    pub fn set_port_override(self, v: impl Into<BlockAssignable<GlobalacceleratorEndpointGroupPortOverrideEl>>) -> Self {
+    pub fn set_port_override(
+        self,
+        v: impl Into<BlockAssignable<GlobalacceleratorEndpointGroupPortOverrideEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().port_override = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.port_override = Some(d);
-            },
+            }
         }
         self
     }
@@ -198,27 +212,42 @@ impl GlobalacceleratorEndpointGroup {
 
     #[doc = "Get a reference to the value of field `endpoint_group_region` after provisioning.\n"]
     pub fn endpoint_group_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_group_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_group_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_interval_seconds` after provisioning.\n"]
     pub fn health_check_interval_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_interval_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_interval_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_path` after provisioning.\n"]
     pub fn health_check_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_port` after provisioning.\n"]
     pub fn health_check_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_protocol` after provisioning.\n"]
     pub fn health_check_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -228,17 +257,26 @@ impl GlobalacceleratorEndpointGroup {
 
     #[doc = "Get a reference to the value of field `listener_arn` after provisioning.\n"]
     pub fn listener_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold_count` after provisioning.\n"]
     pub fn threshold_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_dial_percentage` after provisioning.\n"]
     pub fn traffic_dial_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_dial_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_dial_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -252,11 +290,15 @@ impl GlobalacceleratorEndpointGroup {
 
 impl Referable for GlobalacceleratorEndpointGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlobalacceleratorEndpointGroup { }
+impl Resource for GlobalacceleratorEndpointGroup {}
 
 impl ToListMappable for GlobalacceleratorEndpointGroup {
     type O = ListRef<GlobalacceleratorEndpointGroupRef>;
@@ -324,10 +366,7 @@ pub struct GlobalacceleratorEndpointGroupRef {
 
 impl Ref for GlobalacceleratorEndpointGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -347,27 +386,42 @@ impl GlobalacceleratorEndpointGroupRef {
 
     #[doc = "Get a reference to the value of field `endpoint_group_region` after provisioning.\n"]
     pub fn endpoint_group_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_group_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_group_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_interval_seconds` after provisioning.\n"]
     pub fn health_check_interval_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_interval_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_interval_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_path` after provisioning.\n"]
     pub fn health_check_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_port` after provisioning.\n"]
     pub fn health_check_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_protocol` after provisioning.\n"]
     pub fn health_check_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -377,17 +431,26 @@ impl GlobalacceleratorEndpointGroupRef {
 
     #[doc = "Get a reference to the value of field `listener_arn` after provisioning.\n"]
     pub fn listener_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold_count` after provisioning.\n"]
     pub fn threshold_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_dial_percentage` after provisioning.\n"]
     pub fn traffic_dial_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_dial_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_dial_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -468,7 +531,10 @@ pub struct GlobalacceleratorEndpointGroupEndpointConfigurationElRef {
 }
 
 impl Ref for GlobalacceleratorEndpointGroupEndpointConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> GlobalacceleratorEndpointGroupEndpointConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlobalacceleratorEndpointGroupEndpointConfigurationElRef {
         GlobalacceleratorEndpointGroupEndpointConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -483,12 +549,18 @@ impl GlobalacceleratorEndpointGroupEndpointConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `attachment_arn` after provisioning.\n"]
     pub fn attachment_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_ip_preservation_enabled` after provisioning.\n"]
     pub fn client_ip_preservation_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_ip_preservation_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_ip_preservation_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_id` after provisioning.\n"]
@@ -508,7 +580,7 @@ pub struct GlobalacceleratorEndpointGroupPortOverrideEl {
     listener_port: PrimField<f64>,
 }
 
-impl GlobalacceleratorEndpointGroupPortOverrideEl { }
+impl GlobalacceleratorEndpointGroupPortOverrideEl {}
 
 impl ToListMappable for GlobalacceleratorEndpointGroupPortOverrideEl {
     type O = BlockAssignable<GlobalacceleratorEndpointGroupPortOverrideEl>;
@@ -559,12 +631,18 @@ impl GlobalacceleratorEndpointGroupPortOverrideElRef {
 
     #[doc = "Get a reference to the value of field `endpoint_port` after provisioning.\n"]
     pub fn endpoint_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `listener_port` after provisioning.\n"]
     pub fn listener_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_port", self.base),
+        )
     }
 }
 
@@ -659,6 +737,7 @@ impl GlobalacceleratorEndpointGroupTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct GlobalacceleratorEndpointGroupDynamic {
-    endpoint_configuration: Option<DynamicBlock<GlobalacceleratorEndpointGroupEndpointConfigurationEl>>,
+    endpoint_configuration:
+        Option<DynamicBlock<GlobalacceleratorEndpointGroupEndpointConfigurationEl>>,
     port_override: Option<DynamicBlock<GlobalacceleratorEndpointGroupPortOverrideEl>>,
 }

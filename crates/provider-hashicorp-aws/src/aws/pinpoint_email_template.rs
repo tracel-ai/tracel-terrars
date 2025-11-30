@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct PinpointEmailTemplateData {
@@ -59,7 +59,8 @@ impl PinpointEmailTemplate {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl PinpointEmailTemplate {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,17 +84,26 @@ impl PinpointEmailTemplate {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -106,14 +116,17 @@ impl PinpointEmailTemplate {
     }
 
     #[doc = "Set the field `email_template`.\n"]
-    pub fn set_email_template(self, v: impl Into<BlockAssignable<PinpointEmailTemplateEmailTemplateEl>>) -> Self {
+    pub fn set_email_template(
+        self,
+        v: impl Into<BlockAssignable<PinpointEmailTemplateEmailTemplateEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().email_template = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.email_template = Some(d);
-            },
+            }
         }
         self
     }
@@ -123,40 +136,58 @@ impl PinpointEmailTemplate {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `template_name` after provisioning.\n"]
     pub fn template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_template` after provisioning.\n"]
     pub fn email_template(&self) -> ListRef<PinpointEmailTemplateEmailTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.email_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.email_template", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for PinpointEmailTemplate {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for PinpointEmailTemplate { }
+impl Resource for PinpointEmailTemplate {}
 
 impl ToListMappable for PinpointEmailTemplate {
     type O = ListRef<PinpointEmailTemplateRef>;
@@ -216,10 +247,7 @@ pub struct PinpointEmailTemplateRef {
 
 impl Ref for PinpointEmailTemplateRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -237,30 +265,44 @@ impl PinpointEmailTemplateRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `template_name` after provisioning.\n"]
     pub fn template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_template` after provisioning.\n"]
     pub fn email_template(&self) -> ListRef<PinpointEmailTemplateEmailTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.email_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.email_template", self.extract_ref()),
+        )
     }
 }
 
@@ -401,14 +443,17 @@ impl PinpointEmailTemplateEmailTemplateEl {
     }
 
     #[doc = "Set the field `header`.\n"]
-    pub fn set_header(mut self, v: impl Into<BlockAssignable<PinpointEmailTemplateEmailTemplateElHeaderEl>>) -> Self {
+    pub fn set_header(
+        mut self,
+        v: impl Into<BlockAssignable<PinpointEmailTemplateEmailTemplateElHeaderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
@@ -464,7 +509,10 @@ impl PinpointEmailTemplateEmailTemplateElRef {
 
     #[doc = "Get a reference to the value of field `default_substitutions` after provisioning.\n"]
     pub fn default_substitutions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_substitutions", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_substitutions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
@@ -479,7 +527,10 @@ impl PinpointEmailTemplateEmailTemplateElRef {
 
     #[doc = "Get a reference to the value of field `recommender_id` after provisioning.\n"]
     pub fn recommender_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.recommender_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.recommender_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subject` after provisioning.\n"]

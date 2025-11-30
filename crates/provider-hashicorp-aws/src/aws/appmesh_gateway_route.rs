@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppmeshGatewayRouteData {
@@ -67,7 +67,8 @@ impl AppmeshGatewayRoute {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl AppmeshGatewayRoute {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl AppmeshGatewayRoute {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl AppmeshGatewayRoute {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -136,10 +146,10 @@ impl AppmeshGatewayRoute {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.spec = Some(d);
-            },
+            }
         }
         self
     }
@@ -151,7 +161,10 @@ impl AppmeshGatewayRoute {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -161,63 +174,96 @@ impl AppmeshGatewayRoute {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_gateway_name` after provisioning.\n"]
     pub fn virtual_gateway_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_gateway_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_gateway_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<AppmeshGatewayRouteSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppmeshGatewayRoute {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppmeshGatewayRoute { }
+impl Resource for AppmeshGatewayRoute {}
 
 impl ToListMappable for AppmeshGatewayRoute {
     type O = ListRef<AppmeshGatewayRouteRef>;
@@ -286,10 +332,7 @@ pub struct AppmeshGatewayRouteRef {
 
 impl Ref for AppmeshGatewayRouteRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -309,7 +352,10 @@ impl AppmeshGatewayRouteRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -319,53 +365,82 @@ impl AppmeshGatewayRouteRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_gateway_name` after provisioning.\n"]
     pub fn virtual_gateway_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_gateway_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_gateway_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<AppmeshGatewayRouteSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 }
 
@@ -374,7 +449,7 @@ pub struct AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl 
     virtual_service_name: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl { }
+impl AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>;
@@ -425,13 +500,17 @@ impl AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceElRef {
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElDynamic {
-    virtual_service: Option<DynamicBlock<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
 }
 
 #[derive(Serialize)]
@@ -439,7 +518,8 @@ pub struct AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    virtual_service: Option<Vec<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<Vec<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
     dynamic: AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElDynamic,
 }
 
@@ -453,15 +533,17 @@ impl AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetEl {
     #[doc = "Set the field `virtual_service`.\n"]
     pub fn set_virtual_service(
         mut self,
-        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
+        v: impl Into<
+            BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.virtual_service = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.virtual_service = Some(d);
-            },
+            }
         }
         self
     }
@@ -497,7 +579,10 @@ pub struct AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
         AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
             shared: shared,
             base: base.to_string(),
@@ -516,8 +601,13 @@ impl AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
     }
 
     #[doc = "Get a reference to the value of field `virtual_service` after provisioning.\n"]
-    pub fn virtual_service(&self) -> ListRef<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+    pub fn virtual_service(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -542,10 +632,10 @@ impl AppmeshGatewayRouteSpecElGrpcRouteElActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target = Some(d);
-            },
+            }
         }
         self
     }
@@ -687,27 +777,33 @@ pub struct AppmeshGatewayRouteSpecElGrpcRouteEl {
 
 impl AppmeshGatewayRouteSpecElGrpcRouteEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `match_`.\n"]
-    pub fn set_match(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElMatchEl>>) -> Self {
+    pub fn set_match(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteElMatchEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -772,7 +868,7 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl {
     default_target_hostname: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl { }
+impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl>;
@@ -805,7 +901,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
             shared: shared,
             base: base.to_string(),
@@ -820,7 +919,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
 
     #[doc = "Get a reference to the value of field `default_target_hostname` after provisioning.\n"]
     pub fn default_target_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_target_hostname", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_target_hostname", self.base),
+        )
     }
 }
 
@@ -829,7 +931,7 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl {
     exact: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl { }
+impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl>;
@@ -860,7 +962,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -930,7 +1035,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
             shared: shared,
             base: base.to_string(),
@@ -945,7 +1053,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
 
     #[doc = "Get a reference to the value of field `default_prefix` after provisioning.\n"]
     pub fn default_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
@@ -956,7 +1067,8 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
 
 #[derive(Serialize, Default)]
 struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElDynamic {
-    hostname: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl>>,
+    hostname:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl>>,
     path: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl>>,
     prefix: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixEl>>,
 }
@@ -981,10 +1093,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hostname = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hostname = Some(d);
-            },
+            }
         }
         self
     }
@@ -997,10 +1109,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.path = Some(d);
-            },
+            }
         }
         self
     }
@@ -1013,10 +1125,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prefix = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prefix = Some(d);
-            },
+            }
         }
         self
     }
@@ -1053,7 +1165,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
             shared: shared,
             base: base.to_string(),
@@ -1067,7 +1182,9 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
     }
 
     #[doc = "Get a reference to the value of field `hostname` after provisioning.\n"]
-    pub fn hostname(&self) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef> {
+    pub fn hostname(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.hostname", self.base))
     }
 
@@ -1077,7 +1194,9 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
-    pub fn prefix(&self) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef> {
+    pub fn prefix(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef> {
         ListRef::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
 }
@@ -1087,7 +1206,7 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl
     virtual_service_name: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl { }
+impl AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>;
@@ -1138,13 +1257,17 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceElRef {
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElDynamic {
-    virtual_service: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
 }
 
 #[derive(Serialize)]
@@ -1152,7 +1275,8 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    virtual_service: Option<Vec<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<Vec<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
     dynamic: AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElDynamic,
 }
 
@@ -1166,15 +1290,17 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetEl {
     #[doc = "Set the field `virtual_service`.\n"]
     pub fn set_virtual_service(
         mut self,
-        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
+        v: impl Into<
+            BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.virtual_service = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.virtual_service = Some(d);
-            },
+            }
         }
         self
     }
@@ -1210,7 +1336,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
             shared: shared,
             base: base.to_string(),
@@ -1229,8 +1358,13 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
     }
 
     #[doc = "Get a reference to the value of field `virtual_service` after provisioning.\n"]
-    pub fn virtual_service(&self) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+    pub fn virtual_service(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -1258,10 +1392,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rewrite = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rewrite = Some(d);
-            },
+            }
         }
         self
     }
@@ -1274,10 +1408,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target = Some(d);
-            },
+            }
         }
         self
     }
@@ -1343,7 +1477,7 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl {
     start: PrimField<f64>,
 }
 
-impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl { }
+impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>;
@@ -1454,15 +1588,17 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchEl {
     #[doc = "Set the field `range`.\n"]
     pub fn set_range(
         mut self,
-        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>>,
+        v: impl Into<
+            BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.range = Some(d);
-            },
+            }
         }
         self
     }
@@ -1501,7 +1637,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -1535,7 +1674,9 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `range` after provisioning.\n"]
-    pub fn range(&self) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeElRef> {
+    pub fn range(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.range", self.base))
     }
 }
@@ -1570,10 +1711,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -1613,7 +1754,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -1637,7 +1781,9 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 }
@@ -1693,7 +1839,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
             shared: shared,
             base: base.to_string(),
@@ -1768,7 +1917,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -1858,7 +2010,8 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchElRef {
 
 #[derive(Serialize, Default)]
 struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElDynamic {
-    match_: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>>,
+    match_:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>>,
 }
 
 #[derive(Serialize)]
@@ -1873,15 +2026,17 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterEl {
     #[doc = "Set the field `match_`.\n"]
     pub fn set_match(
         mut self,
-        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>>,
+        v: impl Into<
+            BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -1920,7 +2075,10 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
         AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1939,7 +2097,9 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 }
@@ -1949,7 +2109,8 @@ struct AppmeshGatewayRouteSpecElHttp2RouteElMatchElDynamic {
     header: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderEl>>,
     hostname: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameEl>>,
     path: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElPathEl>>,
-    query_parameter: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterEl>>,
+    query_parameter:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterEl>>,
 }
 
 #[derive(Serialize)]
@@ -1990,10 +2151,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
@@ -2006,10 +2167,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hostname = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hostname = Some(d);
-            },
+            }
         }
         self
     }
@@ -2022,10 +2183,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.path = Some(d);
-            },
+            }
         }
         self
     }
@@ -2038,10 +2199,10 @@ impl AppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -2132,27 +2293,33 @@ pub struct AppmeshGatewayRouteSpecElHttp2RouteEl {
 
 impl AppmeshGatewayRouteSpecElHttp2RouteEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `match_`.\n"]
-    pub fn set_match(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchEl>>) -> Self {
+    pub fn set_match(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteElMatchEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -2217,7 +2384,7 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl {
     default_target_hostname: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl { }
+impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl>;
@@ -2250,7 +2417,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
         AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
             shared: shared,
             base: base.to_string(),
@@ -2265,7 +2435,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
 
     #[doc = "Get a reference to the value of field `default_target_hostname` after provisioning.\n"]
     pub fn default_target_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_target_hostname", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_target_hostname", self.base),
+        )
     }
 }
 
@@ -2274,7 +2447,7 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl {
     exact: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl { }
+impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl>;
@@ -2305,7 +2478,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
         AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -2375,7 +2551,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
         AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
             shared: shared,
             base: base.to_string(),
@@ -2390,7 +2569,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
 
     #[doc = "Get a reference to the value of field `default_prefix` after provisioning.\n"]
     pub fn default_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
@@ -2426,10 +2608,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hostname = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hostname = Some(d);
-            },
+            }
         }
         self
     }
@@ -2442,10 +2624,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.path = Some(d);
-            },
+            }
         }
         self
     }
@@ -2458,10 +2640,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prefix = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prefix = Some(d);
-            },
+            }
         }
         self
     }
@@ -2498,7 +2680,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
         AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
             shared: shared,
             base: base.to_string(),
@@ -2512,7 +2697,9 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
     }
 
     #[doc = "Get a reference to the value of field `hostname` after provisioning.\n"]
-    pub fn hostname(&self) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef> {
+    pub fn hostname(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.hostname", self.base))
     }
 
@@ -2522,7 +2709,9 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
-    pub fn prefix(&self) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef> {
+    pub fn prefix(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef> {
         ListRef::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
 }
@@ -2532,7 +2721,7 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl 
     virtual_service_name: PrimField<String>,
 }
 
-impl AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl { }
+impl AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>;
@@ -2583,13 +2772,17 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceElRef {
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElDynamic {
-    virtual_service: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
 }
 
 #[derive(Serialize)]
@@ -2597,7 +2790,8 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    virtual_service: Option<Vec<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<Vec<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
     dynamic: AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElDynamic,
 }
 
@@ -2611,15 +2805,17 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElTargetEl {
     #[doc = "Set the field `virtual_service`.\n"]
     pub fn set_virtual_service(
         mut self,
-        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
+        v: impl Into<
+            BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.virtual_service = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.virtual_service = Some(d);
-            },
+            }
         }
         self
     }
@@ -2655,7 +2851,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
         AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
             shared: shared,
             base: base.to_string(),
@@ -2674,8 +2873,13 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
     }
 
     #[doc = "Get a reference to the value of field `virtual_service` after provisioning.\n"]
-    pub fn virtual_service(&self) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+    pub fn virtual_service(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -2703,10 +2907,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rewrite = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rewrite = Some(d);
-            },
+            }
         }
         self
     }
@@ -2719,10 +2923,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target = Some(d);
-            },
+            }
         }
         self
     }
@@ -2788,7 +2992,7 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeEl {
     start: PrimField<f64>,
 }
 
-impl AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeEl { }
+impl AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeEl {}
 
 impl ToListMappable for AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeEl {
     type O = BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeEl>;
@@ -2904,10 +3108,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.range = Some(d);
-            },
+            }
         }
         self
     }
@@ -2946,7 +3150,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
         AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -2980,7 +3187,9 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `range` after provisioning.\n"]
-    pub fn range(&self) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeElRef> {
+    pub fn range(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.range", self.base))
     }
 }
@@ -3015,10 +3224,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -3058,7 +3267,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
         AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -3138,7 +3350,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
         AppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
             shared: shared,
             base: base.to_string(),
@@ -3213,7 +3428,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
         AppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -3303,7 +3521,8 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchElRef {
 
 #[derive(Serialize, Default)]
 struct AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElDynamic {
-    match_: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>>,
+    match_:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>>,
 }
 
 #[derive(Serialize)]
@@ -3318,15 +3537,17 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterEl {
     #[doc = "Set the field `match_`.\n"]
     pub fn set_match(
         mut self,
-        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>>,
+        v: impl Into<
+            BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -3365,7 +3586,10 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
 }
 
 impl Ref for AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
-    fn new(shared: StackShared, base: String) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
         AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -3384,7 +3608,9 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 }
@@ -3394,7 +3620,8 @@ struct AppmeshGatewayRouteSpecElHttpRouteElMatchElDynamic {
     header: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderEl>>,
     hostname: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameEl>>,
     path: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElPathEl>>,
-    query_parameter: Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterEl>>,
+    query_parameter:
+        Option<DynamicBlock<AppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterEl>>,
 }
 
 #[derive(Serialize)]
@@ -3435,10 +3662,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
@@ -3451,23 +3678,26 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hostname = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hostname = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `path`.\n"]
-    pub fn set_path(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchElPathEl>>) -> Self {
+    pub fn set_path(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchElPathEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.path = Some(d);
-            },
+            }
         }
         self
     }
@@ -3480,10 +3710,10 @@ impl AppmeshGatewayRouteSpecElHttpRouteElMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -3574,27 +3804,33 @@ pub struct AppmeshGatewayRouteSpecElHttpRouteEl {
 
 impl AppmeshGatewayRouteSpecElHttpRouteEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `match_`.\n"]
-    pub fn set_match(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchEl>>) -> Self {
+    pub fn set_match(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteElMatchEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -3682,40 +3918,49 @@ impl AppmeshGatewayRouteSpecEl {
     }
 
     #[doc = "Set the field `grpc_route`.\n"]
-    pub fn set_grpc_route(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteEl>>) -> Self {
+    pub fn set_grpc_route(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElGrpcRouteEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.grpc_route = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.grpc_route = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `http2_route`.\n"]
-    pub fn set_http2_route(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteEl>>) -> Self {
+    pub fn set_http2_route(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttp2RouteEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http2_route = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http2_route = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `http_route`.\n"]
-    pub fn set_http_route(mut self, v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteEl>>) -> Self {
+    pub fn set_http_route(
+        mut self,
+        v: impl Into<BlockAssignable<AppmeshGatewayRouteSpecElHttpRouteEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_route = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_route = Some(d);
-            },
+            }
         }
         self
     }

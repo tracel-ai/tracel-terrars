@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecurityhubConfigurationPolicyData {
@@ -61,7 +61,8 @@ impl SecurityhubConfigurationPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl SecurityhubConfigurationPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl SecurityhubConfigurationPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl SecurityhubConfigurationPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -121,10 +131,10 @@ impl SecurityhubConfigurationPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -136,7 +146,10 @@ impl SecurityhubConfigurationPolicy {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -146,28 +159,42 @@ impl SecurityhubConfigurationPolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_policy` after provisioning.\n"]
-    pub fn configuration_policy(&self) -> ListRef<SecurityhubConfigurationPolicyConfigurationPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_policy", self.extract_ref()))
+    pub fn configuration_policy(
+        &self,
+    ) -> ListRef<SecurityhubConfigurationPolicyConfigurationPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_policy", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SecurityhubConfigurationPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecurityhubConfigurationPolicy { }
+impl Resource for SecurityhubConfigurationPolicy {}
 
 impl ToListMappable for SecurityhubConfigurationPolicy {
     type O = ListRef<SecurityhubConfigurationPolicyRef>;
@@ -228,10 +255,7 @@ pub struct SecurityhubConfigurationPolicyRef {
 
 impl Ref for SecurityhubConfigurationPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -251,7 +275,10 @@ impl SecurityhubConfigurationPolicyRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -261,23 +288,34 @@ impl SecurityhubConfigurationPolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_policy` after provisioning.\n"]
-    pub fn configuration_policy(&self) -> ListRef<SecurityhubConfigurationPolicyConfigurationPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_policy", self.extract_ref()))
+    pub fn configuration_policy(
+        &self,
+    ) -> ListRef<SecurityhubConfigurationPolicyConfigurationPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_policy", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElBoolEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElBoolEl
+{
     value: PrimField<bool>,
 }
 
@@ -300,7 +338,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElBoolEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElBoolEl
+{
     #[doc = ""]
     pub value: PrimField<bool>,
 }
@@ -315,7 +354,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElBoolElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElBoolElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -344,7 +384,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElDoubleEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElDoubleEl
+{
     value: PrimField<f64>,
 }
 
@@ -367,7 +408,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElDoubleEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElDoubleEl
+{
     #[doc = ""]
     pub value: PrimField<f64>,
 }
@@ -382,7 +424,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElDoubleElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElDoubleElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -411,7 +454,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumEl
+{
     value: PrimField<String>,
 }
 
@@ -434,7 +478,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumEl
+{
     #[doc = ""]
     pub value: PrimField<String>,
 }
@@ -449,7 +494,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -478,7 +524,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumListEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumListEl
+{
     value: ListField<PrimField<String>>,
 }
 
@@ -501,7 +548,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumListEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumListEl
+{
     #[doc = ""]
     pub value: ListField<PrimField<String>>,
 }
@@ -516,7 +564,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumListElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElEnumListElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -545,7 +594,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntEl
+{
     value: PrimField<f64>,
 }
 
@@ -568,7 +618,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntEl
+{
     #[doc = ""]
     pub value: PrimField<f64>,
 }
@@ -583,7 +634,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -612,7 +664,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntListEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntListEl
+{
     value: ListField<PrimField<f64>>,
 }
 
@@ -635,7 +688,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntListEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntListEl
+{
     #[doc = ""]
     pub value: ListField<PrimField<f64>>,
 }
@@ -650,7 +704,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntListElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElIntListElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -679,7 +734,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringEl
+{
     value: PrimField<String>,
 }
 
@@ -702,7 +758,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringEl
+{
     #[doc = ""]
     pub value: PrimField<String>,
 }
@@ -717,7 +774,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -746,7 +804,8 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 }
 
 #[derive(Serialize)]
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringListEl {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringListEl
+{
     value: ListField<PrimField<String>>,
 }
 
@@ -769,7 +828,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringListEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringListEl
+{
     #[doc = ""]
     pub value: ListField<PrimField<String>>,
 }
@@ -784,7 +844,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringListElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElStringListElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1112,7 +1173,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -1139,7 +1201,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElParameterElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1305,7 +1368,8 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterEl {
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterEl
+{
     #[doc = ""]
     pub security_control_id: PrimField<String>,
 }
@@ -1322,7 +1386,8 @@ impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCon
     }
 }
 
-pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElRef {
+pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1376,13 +1441,19 @@ pub struct SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsCo
 
 impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {
     #[doc = "Set the field `disabled_control_identifiers`.\n"]
-    pub fn set_disabled_control_identifiers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_disabled_control_identifiers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.disabled_control_identifiers = Some(v.into());
         self
     }
 
     #[doc = "Set the field `enabled_control_identifiers`.\n"]
-    pub fn set_enabled_control_identifiers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_enabled_control_identifiers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.enabled_control_identifiers = Some(v.into());
         self
     }
@@ -1402,17 +1473,21 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.security_control_custom_parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.security_control_custom_parameter = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {
-    type O = BlockAssignable<SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl>;
+impl ToListMappable
+    for SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl
+{
+    type O = BlockAssignable<
+        SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1423,10 +1498,13 @@ impl ToListMappable for SecurityhubConfigurationPolicyConfigurationPolicyElSecur
     }
 }
 
-pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {}
+pub struct BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl
+{}
 
 impl BuildSecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {
-    pub fn build(self) -> SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {
+    pub fn build(
+        self,
+    ) -> SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {
         SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl {
             disabled_control_identifiers: core::default::Default::default(),
             enabled_control_identifiers: core::default::Default::default(),
@@ -1460,12 +1538,18 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
 
     #[doc = "Get a reference to the value of field `disabled_control_identifiers` after provisioning.\n"]
     pub fn disabled_control_identifiers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.disabled_control_identifiers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.disabled_control_identifiers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled_control_identifiers` after provisioning.\n"]
     pub fn enabled_control_identifiers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.enabled_control_identifiers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.enabled_control_identifiers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_control_custom_parameter` after provisioning.\n"]
@@ -1473,15 +1557,20 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigur
         &self,
     ) -> ListRef<
         SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElSecurityControlCustomParameterElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.security_control_custom_parameter", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_control_custom_parameter", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SecurityhubConfigurationPolicyConfigurationPolicyElDynamic {
     security_controls_configuration: Option<
-        DynamicBlock<SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl>,
+        DynamicBlock<
+            SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl,
+        >,
     >,
 }
 
@@ -1507,22 +1596,19 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyEl {
     #[doc = "Set the field `security_controls_configuration`.\n"]
     pub fn set_security_controls_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.security_controls_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.security_controls_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1562,7 +1648,10 @@ pub struct SecurityhubConfigurationPolicyConfigurationPolicyElRef {
 }
 
 impl Ref for SecurityhubConfigurationPolicyConfigurationPolicyElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubConfigurationPolicyConfigurationPolicyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubConfigurationPolicyConfigurationPolicyElRef {
         SecurityhubConfigurationPolicyConfigurationPolicyElRef {
             shared: shared,
             base: base.to_string(),
@@ -1577,19 +1666,30 @@ impl SecurityhubConfigurationPolicyConfigurationPolicyElRef {
 
     #[doc = "Get a reference to the value of field `enabled_standard_arns` after provisioning.\n"]
     pub fn enabled_standard_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.enabled_standard_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.enabled_standard_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_enabled` after provisioning.\n"]
     pub fn service_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_controls_configuration` after provisioning.\n"]
     pub fn security_controls_configuration(
         &self,
-    ) -> ListRef<SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_controls_configuration", self.base))
+    ) -> ListRef<
+        SecurityhubConfigurationPolicyConfigurationPolicyElSecurityControlsConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_controls_configuration", self.base),
+        )
     }
 }
 

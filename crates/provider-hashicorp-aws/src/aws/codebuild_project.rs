@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodebuildProjectData {
@@ -104,7 +104,8 @@ impl CodebuildProject {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -117,7 +118,7 @@ impl CodebuildProject {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -128,17 +129,26 @@ impl CodebuildProject {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `auto_retry_limit`.\nMaximum number of additional automatic retries after a failed build. The default value is 0."]
+    #[doc = "Set the field `auto_retry_limit`.\nMaximum number of additional automatic retries after a failed build. The default value is 0."]
     pub fn set_auto_retry_limit(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().auto_retry_limit = Some(v.into());
         self
@@ -192,8 +202,7 @@ impl CodebuildProject {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -228,23 +237,26 @@ impl CodebuildProject {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().artifacts = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.artifacts = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `build_batch_config`.\n"]
-    pub fn set_build_batch_config(self, v: impl Into<BlockAssignable<CodebuildProjectBuildBatchConfigEl>>) -> Self {
+    pub fn set_build_batch_config(
+        self,
+        v: impl Into<BlockAssignable<CodebuildProjectBuildBatchConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().build_batch_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.build_batch_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -254,23 +266,26 @@ impl CodebuildProject {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cache = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cache = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `environment`.\n"]
-    pub fn set_environment(self, v: impl Into<BlockAssignable<CodebuildProjectEnvironmentEl>>) -> Self {
+    pub fn set_environment(
+        self,
+        v: impl Into<BlockAssignable<CodebuildProjectEnvironmentEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().environment = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.environment = Some(d);
-            },
+            }
         }
         self
     }
@@ -283,36 +298,42 @@ impl CodebuildProject {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().file_system_locations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.file_system_locations = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `logs_config`.\n"]
-    pub fn set_logs_config(self, v: impl Into<BlockAssignable<CodebuildProjectLogsConfigEl>>) -> Self {
+    pub fn set_logs_config(
+        self,
+        v: impl Into<BlockAssignable<CodebuildProjectLogsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().logs_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.logs_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `secondary_artifacts`.\n"]
-    pub fn set_secondary_artifacts(self, v: impl Into<BlockAssignable<CodebuildProjectSecondaryArtifactsEl>>) -> Self {
+    pub fn set_secondary_artifacts(
+        self,
+        v: impl Into<BlockAssignable<CodebuildProjectSecondaryArtifactsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().secondary_artifacts = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.secondary_artifacts = Some(d);
-            },
+            }
         }
         self
     }
@@ -325,23 +346,26 @@ impl CodebuildProject {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().secondary_source_version = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.secondary_source_version = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `secondary_sources`.\n"]
-    pub fn set_secondary_sources(self, v: impl Into<BlockAssignable<CodebuildProjectSecondarySourcesEl>>) -> Self {
+    pub fn set_secondary_sources(
+        self,
+        v: impl Into<BlockAssignable<CodebuildProjectSecondarySourcesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().secondary_sources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.secondary_sources = Some(d);
-            },
+            }
         }
         self
     }
@@ -351,23 +375,26 @@ impl CodebuildProject {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.source = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `vpc_config`.\n"]
-    pub fn set_vpc_config(self, v: impl Into<BlockAssignable<CodebuildProjectVpcConfigEl>>) -> Self {
+    pub fn set_vpc_config(
+        self,
+        v: impl Into<BlockAssignable<CodebuildProjectVpcConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -377,40 +404,60 @@ impl CodebuildProject {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `auto_retry_limit` after provisioning.\nMaximum number of additional automatic retries after a failed build. The default value is 0."]
+    #[doc = "Get a reference to the value of field `auto_retry_limit` after provisioning.\nMaximum number of additional automatic retries after a failed build. The default value is 0."]
     pub fn auto_retry_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_retry_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_retry_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `badge_enabled` after provisioning.\n"]
     pub fn badge_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.badge_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.badge_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `badge_url` after provisioning.\n"]
     pub fn badge_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.badge_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.badge_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `build_timeout` after provisioning.\n"]
     pub fn build_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.build_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.build_timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `concurrent_build_limit` after provisioning.\n"]
     pub fn concurrent_build_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.concurrent_build_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.concurrent_build_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_key` after provisioning.\n"]
     pub fn encryption_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -420,98 +467,152 @@ impl CodebuildProject {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_visibility` after provisioning.\n"]
     pub fn project_visibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_visibility", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_visibility", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_project_alias` after provisioning.\n"]
     pub fn public_project_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_project_alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_project_alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queued_timeout` after provisioning.\n"]
     pub fn queued_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.queued_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.queued_timeout", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_access_role` after provisioning.\n"]
     pub fn resource_access_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_access_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_access_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
     pub fn service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `artifacts` after provisioning.\n"]
     pub fn artifacts(&self) -> ListRef<CodebuildProjectArtifactsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.artifacts", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.artifacts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `build_batch_config` after provisioning.\n"]
     pub fn build_batch_config(&self) -> ListRef<CodebuildProjectBuildBatchConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.build_batch_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.build_batch_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache` after provisioning.\n"]
     pub fn cache(&self) -> ListRef<CodebuildProjectCacheElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> ListRef<CodebuildProjectEnvironmentElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.environment", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.environment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logs_config` after provisioning.\n"]
     pub fn logs_config(&self) -> ListRef<CodebuildProjectLogsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logs_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logs_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<CodebuildProjectSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<CodebuildProjectVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodebuildProject {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodebuildProject { }
+impl Resource for CodebuildProject {}
 
 impl ToListMappable for CodebuildProject {
     type O = ListRef<CodebuildProjectRef>;
@@ -596,10 +697,7 @@ pub struct CodebuildProjectRef {
 
 impl Ref for CodebuildProjectRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -617,40 +715,60 @@ impl CodebuildProjectRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `auto_retry_limit` after provisioning.\nMaximum number of additional automatic retries after a failed build. The default value is 0."]
+    #[doc = "Get a reference to the value of field `auto_retry_limit` after provisioning.\nMaximum number of additional automatic retries after a failed build. The default value is 0."]
     pub fn auto_retry_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_retry_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_retry_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `badge_enabled` after provisioning.\n"]
     pub fn badge_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.badge_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.badge_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `badge_url` after provisioning.\n"]
     pub fn badge_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.badge_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.badge_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `build_timeout` after provisioning.\n"]
     pub fn build_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.build_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.build_timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `concurrent_build_limit` after provisioning.\n"]
     pub fn concurrent_build_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.concurrent_build_limit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.concurrent_build_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_key` after provisioning.\n"]
     pub fn encryption_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -660,88 +778,138 @@ impl CodebuildProjectRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_visibility` after provisioning.\n"]
     pub fn project_visibility(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_visibility", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_visibility", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_project_alias` after provisioning.\n"]
     pub fn public_project_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_project_alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_project_alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queued_timeout` after provisioning.\n"]
     pub fn queued_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.queued_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.queued_timeout", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_access_role` after provisioning.\n"]
     pub fn resource_access_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_access_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_access_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
     pub fn service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `artifacts` after provisioning.\n"]
     pub fn artifacts(&self) -> ListRef<CodebuildProjectArtifactsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.artifacts", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.artifacts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `build_batch_config` after provisioning.\n"]
     pub fn build_batch_config(&self) -> ListRef<CodebuildProjectBuildBatchConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.build_batch_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.build_batch_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache` after provisioning.\n"]
     pub fn cache(&self) -> ListRef<CodebuildProjectCacheElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> ListRef<CodebuildProjectEnvironmentElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.environment", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.environment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logs_config` after provisioning.\n"]
     pub fn logs_config(&self) -> ListRef<CodebuildProjectLogsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logs_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logs_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<CodebuildProjectSourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<CodebuildProjectVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -880,17 +1048,26 @@ impl CodebuildProjectArtifactsElRef {
 
     #[doc = "Get a reference to the value of field `artifact_identifier` after provisioning.\n"]
     pub fn artifact_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.artifact_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.artifact_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_owner_access` after provisioning.\n"]
     pub fn bucket_owner_access(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_access", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_access", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_disabled` after provisioning.\n"]
     pub fn encryption_disabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_disabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_disabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
@@ -905,12 +1082,18 @@ impl CodebuildProjectArtifactsElRef {
 
     #[doc = "Get a reference to the value of field `namespace_type` after provisioning.\n"]
     pub fn namespace_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_artifact_name` after provisioning.\n"]
     pub fn override_artifact_name(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.override_artifact_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.override_artifact_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `packaging` after provisioning.\n"]
@@ -980,7 +1163,10 @@ pub struct CodebuildProjectBuildBatchConfigElRestrictionsElRef {
 }
 
 impl Ref for CodebuildProjectBuildBatchConfigElRestrictionsElRef {
-    fn new(shared: StackShared, base: String) -> CodebuildProjectBuildBatchConfigElRestrictionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodebuildProjectBuildBatchConfigElRestrictionsElRef {
         CodebuildProjectBuildBatchConfigElRestrictionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -995,12 +1181,18 @@ impl CodebuildProjectBuildBatchConfigElRestrictionsElRef {
 
     #[doc = "Get a reference to the value of field `compute_types_allowed` after provisioning.\n"]
     pub fn compute_types_allowed(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_types_allowed", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_types_allowed", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_builds_allowed` after provisioning.\n"]
     pub fn maximum_builds_allowed(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_builds_allowed", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_builds_allowed", self.base),
+        )
     }
 }
 
@@ -1042,10 +1234,10 @@ impl CodebuildProjectBuildBatchConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.restrictions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.restrictions = Some(d);
-            },
+            }
         }
         self
     }
@@ -1101,7 +1293,10 @@ impl CodebuildProjectBuildBatchConfigElRef {
 
     #[doc = "Get a reference to the value of field `combine_artifacts` after provisioning.\n"]
     pub fn combine_artifacts(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.combine_artifacts", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.combine_artifacts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
@@ -1111,7 +1306,10 @@ impl CodebuildProjectBuildBatchConfigElRef {
 
     #[doc = "Get a reference to the value of field `timeout_in_mins` after provisioning.\n"]
     pub fn timeout_in_mins(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_in_mins", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_in_mins", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restrictions` after provisioning.\n"]
@@ -1276,7 +1474,10 @@ impl CodebuildProjectEnvironmentElDockerServerElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 }
 
@@ -1331,7 +1532,10 @@ pub struct CodebuildProjectEnvironmentElEnvironmentVariableElRef {
 }
 
 impl Ref for CodebuildProjectEnvironmentElEnvironmentVariableElRef {
-    fn new(shared: StackShared, base: String) -> CodebuildProjectEnvironmentElEnvironmentVariableElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodebuildProjectEnvironmentElEnvironmentVariableElRef {
         CodebuildProjectEnvironmentElEnvironmentVariableElRef {
             shared: shared,
             base: base.to_string(),
@@ -1390,7 +1594,9 @@ pub struct BuildCodebuildProjectEnvironmentElFleetEl {}
 
 impl BuildCodebuildProjectEnvironmentElFleetEl {
     pub fn build(self) -> CodebuildProjectEnvironmentElFleetEl {
-        CodebuildProjectEnvironmentElFleetEl { fleet_arn: core::default::Default::default() }
+        CodebuildProjectEnvironmentElFleetEl {
+            fleet_arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -1425,7 +1631,7 @@ pub struct CodebuildProjectEnvironmentElRegistryCredentialEl {
     credential_provider: PrimField<String>,
 }
 
-impl CodebuildProjectEnvironmentElRegistryCredentialEl { }
+impl CodebuildProjectEnvironmentElRegistryCredentialEl {}
 
 impl ToListMappable for CodebuildProjectEnvironmentElRegistryCredentialEl {
     type O = BlockAssignable<CodebuildProjectEnvironmentElRegistryCredentialEl>;
@@ -1461,7 +1667,10 @@ pub struct CodebuildProjectEnvironmentElRegistryCredentialElRef {
 }
 
 impl Ref for CodebuildProjectEnvironmentElRegistryCredentialElRef {
-    fn new(shared: StackShared, base: String) -> CodebuildProjectEnvironmentElRegistryCredentialElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodebuildProjectEnvironmentElRegistryCredentialElRef {
         CodebuildProjectEnvironmentElRegistryCredentialElRef {
             shared: shared,
             base: base.to_string(),
@@ -1481,7 +1690,10 @@ impl CodebuildProjectEnvironmentElRegistryCredentialElRef {
 
     #[doc = "Get a reference to the value of field `credential_provider` after provisioning.\n"]
     pub fn credential_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credential_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credential_provider", self.base),
+        )
     }
 }
 
@@ -1543,10 +1755,10 @@ impl CodebuildProjectEnvironmentEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.docker_server = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.docker_server = Some(d);
-            },
+            }
         }
         self
     }
@@ -1559,23 +1771,26 @@ impl CodebuildProjectEnvironmentEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.environment_variable = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.environment_variable = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `fleet`.\n"]
-    pub fn set_fleet(mut self, v: impl Into<BlockAssignable<CodebuildProjectEnvironmentElFleetEl>>) -> Self {
+    pub fn set_fleet(
+        mut self,
+        v: impl Into<BlockAssignable<CodebuildProjectEnvironmentElFleetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.fleet = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.fleet = Some(d);
-            },
+            }
         }
         self
     }
@@ -1588,10 +1803,10 @@ impl CodebuildProjectEnvironmentEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.registry_credential = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.registry_credential = Some(d);
-            },
+            }
         }
         self
     }
@@ -1672,12 +1887,18 @@ impl CodebuildProjectEnvironmentElRef {
 
     #[doc = "Get a reference to the value of field `image_pull_credentials_type` after provisioning.\n"]
     pub fn image_pull_credentials_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_pull_credentials_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_pull_credentials_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `privileged_mode` after provisioning.\n"]
     pub fn privileged_mode(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.privileged_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.privileged_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -1687,12 +1908,20 @@ impl CodebuildProjectEnvironmentElRef {
 
     #[doc = "Get a reference to the value of field `docker_server` after provisioning.\n"]
     pub fn docker_server(&self) -> ListRef<CodebuildProjectEnvironmentElDockerServerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.docker_server", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.docker_server", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_variable` after provisioning.\n"]
-    pub fn environment_variable(&self) -> ListRef<CodebuildProjectEnvironmentElEnvironmentVariableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.environment_variable", self.base))
+    pub fn environment_variable(
+        &self,
+    ) -> ListRef<CodebuildProjectEnvironmentElEnvironmentVariableElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.environment_variable", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet` after provisioning.\n"]
@@ -1701,8 +1930,13 @@ impl CodebuildProjectEnvironmentElRef {
     }
 
     #[doc = "Get a reference to the value of field `registry_credential` after provisioning.\n"]
-    pub fn registry_credential(&self) -> ListRef<CodebuildProjectEnvironmentElRegistryCredentialElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.registry_credential", self.base))
+    pub fn registry_credential(
+        &self,
+    ) -> ListRef<CodebuildProjectEnvironmentElRegistryCredentialElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.registry_credential", self.base),
+        )
     }
 }
 
@@ -1809,7 +2043,10 @@ impl CodebuildProjectFileSystemLocationsElRef {
 
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mount_options", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mount_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mount_point` after provisioning.\n"]
@@ -1996,12 +2233,18 @@ impl CodebuildProjectLogsConfigElS3LogsElRef {
 
     #[doc = "Get a reference to the value of field `bucket_owner_access` after provisioning.\n"]
     pub fn bucket_owner_access(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_access", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_access", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_disabled` after provisioning.\n"]
     pub fn encryption_disabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_disabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_disabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
@@ -2039,23 +2282,26 @@ impl CodebuildProjectLogsConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `s3_logs`.\n"]
-    pub fn set_s3_logs(mut self, v: impl Into<BlockAssignable<CodebuildProjectLogsConfigElS3LogsEl>>) -> Self {
+    pub fn set_s3_logs(
+        mut self,
+        v: impl Into<BlockAssignable<CodebuildProjectLogsConfigElS3LogsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -2106,7 +2352,10 @@ impl CodebuildProjectLogsConfigElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
     pub fn cloudwatch_logs(&self) -> ListRef<CodebuildProjectLogsConfigElCloudwatchLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_logs` after provisioning.\n"]
@@ -2245,17 +2494,26 @@ impl CodebuildProjectSecondaryArtifactsElRef {
 
     #[doc = "Get a reference to the value of field `artifact_identifier` after provisioning.\n"]
     pub fn artifact_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.artifact_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.artifact_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_owner_access` after provisioning.\n"]
     pub fn bucket_owner_access(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_access", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_access", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_disabled` after provisioning.\n"]
     pub fn encryption_disabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_disabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_disabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
@@ -2270,12 +2528,18 @@ impl CodebuildProjectSecondaryArtifactsElRef {
 
     #[doc = "Get a reference to the value of field `namespace_type` after provisioning.\n"]
     pub fn namespace_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_artifact_name` after provisioning.\n"]
     pub fn override_artifact_name(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.override_artifact_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.override_artifact_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `packaging` after provisioning.\n"]
@@ -2300,7 +2564,7 @@ pub struct CodebuildProjectSecondarySourceVersionEl {
     source_version: PrimField<String>,
 }
 
-impl CodebuildProjectSecondarySourceVersionEl { }
+impl CodebuildProjectSecondarySourceVersionEl {}
 
 impl ToListMappable for CodebuildProjectSecondarySourceVersionEl {
     type O = BlockAssignable<CodebuildProjectSecondarySourceVersionEl>;
@@ -2351,12 +2615,18 @@ impl CodebuildProjectSecondarySourceVersionElRef {
 
     #[doc = "Get a reference to the value of field `source_identifier` after provisioning.\n"]
     pub fn source_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.base),
+        )
     }
 }
 
@@ -2367,7 +2637,7 @@ pub struct CodebuildProjectSecondarySourcesElAuthEl {
     type_: PrimField<String>,
 }
 
-impl CodebuildProjectSecondarySourcesElAuthEl { }
+impl CodebuildProjectSecondarySourcesElAuthEl {}
 
 impl ToListMappable for CodebuildProjectSecondarySourcesElAuthEl {
     type O = BlockAssignable<CodebuildProjectSecondarySourcesElAuthEl>;
@@ -2478,7 +2748,10 @@ pub struct CodebuildProjectSecondarySourcesElBuildStatusConfigElRef {
 }
 
 impl Ref for CodebuildProjectSecondarySourcesElBuildStatusConfigElRef {
-    fn new(shared: StackShared, base: String) -> CodebuildProjectSecondarySourcesElBuildStatusConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodebuildProjectSecondarySourcesElBuildStatusConfigElRef {
         CodebuildProjectSecondarySourcesElBuildStatusConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2507,7 +2780,7 @@ pub struct CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {
     fetch_submodules: PrimField<bool>,
 }
 
-impl CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl { }
+impl CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {}
 
 impl ToListMappable for CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {
     type O = BlockAssignable<CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl>;
@@ -2528,7 +2801,9 @@ pub struct BuildCodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {
 
 impl BuildCodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {
     pub fn build(self) -> CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {
-        CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl { fetch_submodules: self.fetch_submodules }
+        CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl {
+            fetch_submodules: self.fetch_submodules,
+        }
     }
 }
 
@@ -2538,7 +2813,10 @@ pub struct CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef {
 }
 
 impl Ref for CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef {
-    fn new(shared: StackShared, base: String) -> CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef {
         CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2553,15 +2831,20 @@ impl CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef {
 
     #[doc = "Get a reference to the value of field `fetch_submodules` after provisioning.\n"]
     pub fn fetch_submodules(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fetch_submodules", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fetch_submodules", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CodebuildProjectSecondarySourcesElDynamic {
     auth: Option<DynamicBlock<CodebuildProjectSecondarySourcesElAuthEl>>,
-    build_status_config: Option<DynamicBlock<CodebuildProjectSecondarySourcesElBuildStatusConfigEl>>,
-    git_submodules_config: Option<DynamicBlock<CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl>>,
+    build_status_config:
+        Option<DynamicBlock<CodebuildProjectSecondarySourcesElBuildStatusConfigEl>>,
+    git_submodules_config:
+        Option<DynamicBlock<CodebuildProjectSecondarySourcesElGitSubmodulesConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -2620,14 +2903,17 @@ impl CodebuildProjectSecondarySourcesEl {
     }
 
     #[doc = "Set the field `auth`.\n"]
-    pub fn set_auth(mut self, v: impl Into<BlockAssignable<CodebuildProjectSecondarySourcesElAuthEl>>) -> Self {
+    pub fn set_auth(
+        mut self,
+        v: impl Into<BlockAssignable<CodebuildProjectSecondarySourcesElAuthEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.auth = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.auth = Some(d);
-            },
+            }
         }
         self
     }
@@ -2640,10 +2926,10 @@ impl CodebuildProjectSecondarySourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.build_status_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.build_status_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2656,10 +2942,10 @@ impl CodebuildProjectSecondarySourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.git_submodules_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.git_submodules_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2728,7 +3014,10 @@ impl CodebuildProjectSecondarySourcesElRef {
 
     #[doc = "Get a reference to the value of field `git_clone_depth` after provisioning.\n"]
     pub fn git_clone_depth(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.git_clone_depth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.git_clone_depth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `insecure_ssl` after provisioning.\n"]
@@ -2743,12 +3032,18 @@ impl CodebuildProjectSecondarySourcesElRef {
 
     #[doc = "Get a reference to the value of field `report_build_status` after provisioning.\n"]
     pub fn report_build_status(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.report_build_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.report_build_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_identifier` after provisioning.\n"]
     pub fn source_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -2762,13 +3057,23 @@ impl CodebuildProjectSecondarySourcesElRef {
     }
 
     #[doc = "Get a reference to the value of field `build_status_config` after provisioning.\n"]
-    pub fn build_status_config(&self) -> ListRef<CodebuildProjectSecondarySourcesElBuildStatusConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.build_status_config", self.base))
+    pub fn build_status_config(
+        &self,
+    ) -> ListRef<CodebuildProjectSecondarySourcesElBuildStatusConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.build_status_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `git_submodules_config` after provisioning.\n"]
-    pub fn git_submodules_config(&self) -> ListRef<CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.git_submodules_config", self.base))
+    pub fn git_submodules_config(
+        &self,
+    ) -> ListRef<CodebuildProjectSecondarySourcesElGitSubmodulesConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.git_submodules_config", self.base),
+        )
     }
 }
 
@@ -2779,7 +3084,7 @@ pub struct CodebuildProjectSourceElAuthEl {
     type_: PrimField<String>,
 }
 
-impl CodebuildProjectSourceElAuthEl { }
+impl CodebuildProjectSourceElAuthEl {}
 
 impl ToListMappable for CodebuildProjectSourceElAuthEl {
     type O = BlockAssignable<CodebuildProjectSourceElAuthEl>;
@@ -2919,7 +3224,7 @@ pub struct CodebuildProjectSourceElGitSubmodulesConfigEl {
     fetch_submodules: PrimField<bool>,
 }
 
-impl CodebuildProjectSourceElGitSubmodulesConfigEl { }
+impl CodebuildProjectSourceElGitSubmodulesConfigEl {}
 
 impl ToListMappable for CodebuildProjectSourceElGitSubmodulesConfigEl {
     type O = BlockAssignable<CodebuildProjectSourceElGitSubmodulesConfigEl>;
@@ -2940,7 +3245,9 @@ pub struct BuildCodebuildProjectSourceElGitSubmodulesConfigEl {
 
 impl BuildCodebuildProjectSourceElGitSubmodulesConfigEl {
     pub fn build(self) -> CodebuildProjectSourceElGitSubmodulesConfigEl {
-        CodebuildProjectSourceElGitSubmodulesConfigEl { fetch_submodules: self.fetch_submodules }
+        CodebuildProjectSourceElGitSubmodulesConfigEl {
+            fetch_submodules: self.fetch_submodules,
+        }
     }
 }
 
@@ -2965,7 +3272,10 @@ impl CodebuildProjectSourceElGitSubmodulesConfigElRef {
 
     #[doc = "Get a reference to the value of field `fetch_submodules` after provisioning.\n"]
     pub fn fetch_submodules(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fetch_submodules", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fetch_submodules", self.base),
+        )
     }
 }
 
@@ -3031,14 +3341,17 @@ impl CodebuildProjectSourceEl {
     }
 
     #[doc = "Set the field `auth`.\n"]
-    pub fn set_auth(mut self, v: impl Into<BlockAssignable<CodebuildProjectSourceElAuthEl>>) -> Self {
+    pub fn set_auth(
+        mut self,
+        v: impl Into<BlockAssignable<CodebuildProjectSourceElAuthEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.auth = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.auth = Some(d);
-            },
+            }
         }
         self
     }
@@ -3051,10 +3364,10 @@ impl CodebuildProjectSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.build_status_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.build_status_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -3067,10 +3380,10 @@ impl CodebuildProjectSourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.git_submodules_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.git_submodules_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -3136,7 +3449,10 @@ impl CodebuildProjectSourceElRef {
 
     #[doc = "Get a reference to the value of field `git_clone_depth` after provisioning.\n"]
     pub fn git_clone_depth(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.git_clone_depth", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.git_clone_depth", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `insecure_ssl` after provisioning.\n"]
@@ -3151,7 +3467,10 @@ impl CodebuildProjectSourceElRef {
 
     #[doc = "Get a reference to the value of field `report_build_status` after provisioning.\n"]
     pub fn report_build_status(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.report_build_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.report_build_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -3166,12 +3485,20 @@ impl CodebuildProjectSourceElRef {
 
     #[doc = "Get a reference to the value of field `build_status_config` after provisioning.\n"]
     pub fn build_status_config(&self) -> ListRef<CodebuildProjectSourceElBuildStatusConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.build_status_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.build_status_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `git_submodules_config` after provisioning.\n"]
-    pub fn git_submodules_config(&self) -> ListRef<CodebuildProjectSourceElGitSubmodulesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.git_submodules_config", self.base))
+    pub fn git_submodules_config(
+        &self,
+    ) -> ListRef<CodebuildProjectSourceElGitSubmodulesConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.git_submodules_config", self.base),
+        )
     }
 }
 
@@ -3182,7 +3509,7 @@ pub struct CodebuildProjectVpcConfigEl {
     vpc_id: PrimField<String>,
 }
 
-impl CodebuildProjectVpcConfigEl { }
+impl CodebuildProjectVpcConfigEl {}
 
 impl ToListMappable for CodebuildProjectVpcConfigEl {
     type O = BlockAssignable<CodebuildProjectVpcConfigEl>;
@@ -3236,7 +3563,10 @@ impl CodebuildProjectVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]

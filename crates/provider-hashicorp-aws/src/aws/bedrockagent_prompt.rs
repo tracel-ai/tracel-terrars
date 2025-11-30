@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentPromptData {
@@ -65,7 +65,8 @@ impl BedrockagentPrompt {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl BedrockagentPrompt {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl BedrockagentPrompt {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -116,8 +127,7 @@ impl BedrockagentPrompt {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,10 +144,10 @@ impl BedrockagentPrompt {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().variant = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.variant = Some(d);
-            },
+            }
         }
         self
     }
@@ -149,22 +159,34 @@ impl BedrockagentPrompt {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_encryption_key_arn` after provisioning.\n"]
     pub fn customer_encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_encryption_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_encryption_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_variant` after provisioning.\n"]
     pub fn default_variant(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_variant", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_variant", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -174,48 +196,72 @@ impl BedrockagentPrompt {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `variant` after provisioning.\n"]
     pub fn variant(&self) -> ListRef<BedrockagentPromptVariantElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.variant", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.variant", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockagentPrompt {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentPrompt { }
+impl Resource for BedrockagentPrompt {}
 
 impl ToListMappable for BedrockagentPrompt {
     type O = ListRef<BedrockagentPromptRef>;
@@ -278,10 +324,7 @@ pub struct BedrockagentPromptRef {
 
 impl Ref for BedrockagentPromptRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -301,22 +344,34 @@ impl BedrockagentPromptRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_encryption_key_arn` after provisioning.\n"]
     pub fn customer_encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_encryption_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_encryption_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_variant` after provisioning.\n"]
     pub fn default_variant(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_variant", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_variant", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -326,38 +381,58 @@ impl BedrockagentPromptRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `variant` after provisioning.\n"]
     pub fn variant(&self) -> ListRef<BedrockagentPromptVariantElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.variant", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.variant", self.extract_ref()),
+        )
     }
 }
 
@@ -366,7 +441,7 @@ pub struct BedrockagentPromptVariantElGenAiResourceElAgentEl {
     agent_identifier: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElGenAiResourceElAgentEl { }
+impl BedrockagentPromptVariantElGenAiResourceElAgentEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElGenAiResourceElAgentEl {
     type O = BlockAssignable<BedrockagentPromptVariantElGenAiResourceElAgentEl>;
@@ -387,7 +462,9 @@ pub struct BuildBedrockagentPromptVariantElGenAiResourceElAgentEl {
 
 impl BuildBedrockagentPromptVariantElGenAiResourceElAgentEl {
     pub fn build(self) -> BedrockagentPromptVariantElGenAiResourceElAgentEl {
-        BedrockagentPromptVariantElGenAiResourceElAgentEl { agent_identifier: self.agent_identifier }
+        BedrockagentPromptVariantElGenAiResourceElAgentEl {
+            agent_identifier: self.agent_identifier,
+        }
     }
 }
 
@@ -397,7 +474,10 @@ pub struct BedrockagentPromptVariantElGenAiResourceElAgentElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElGenAiResourceElAgentElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElGenAiResourceElAgentElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElGenAiResourceElAgentElRef {
         BedrockagentPromptVariantElGenAiResourceElAgentElRef {
             shared: shared,
             base: base.to_string(),
@@ -412,7 +492,10 @@ impl BedrockagentPromptVariantElGenAiResourceElAgentElRef {
 
     #[doc = "Get a reference to the value of field `agent_identifier` after provisioning.\n"]
     pub fn agent_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_identifier", self.base),
+        )
     }
 }
 
@@ -437,10 +520,10 @@ impl BedrockagentPromptVariantElGenAiResourceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.agent = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.agent = Some(d);
-            },
+            }
         }
         self
     }
@@ -563,7 +646,10 @@ pub struct BedrockagentPromptVariantElInferenceConfigurationElTextElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElInferenceConfigurationElTextElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElInferenceConfigurationElTextElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElInferenceConfigurationElTextElRef {
         BedrockagentPromptVariantElInferenceConfigurationElTextElRef {
             shared: shared,
             base: base.to_string(),
@@ -583,7 +669,10 @@ impl BedrockagentPromptVariantElInferenceConfigurationElTextElRef {
 
     #[doc = "Get a reference to the value of field `stop_sequences` after provisioning.\n"]
     pub fn stop_sequences(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.stop_sequences", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stop_sequences", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `temperature` after provisioning.\n"]
@@ -618,10 +707,10 @@ impl BedrockagentPromptVariantElInferenceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.text = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.text = Some(d);
-            },
+            }
         }
         self
     }
@@ -656,7 +745,10 @@ pub struct BedrockagentPromptVariantElInferenceConfigurationElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElInferenceConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElInferenceConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElInferenceConfigurationElRef {
         BedrockagentPromptVariantElInferenceConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -681,7 +773,7 @@ pub struct BedrockagentPromptVariantElMetadataEl {
     value: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElMetadataEl { }
+impl BedrockagentPromptVariantElMetadataEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElMetadataEl {
     type O = BlockAssignable<BedrockagentPromptVariantElMetadataEl>;
@@ -746,10 +838,11 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariable
     name: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>;
+    type O =
+        BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -805,10 +898,14 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElCont
     type_: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl {}
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl>;
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl
+{
+    type O = BlockAssignable<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -819,27 +916,37 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl {
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl {
-    pub fn build(self) -> BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl {
-        BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl { type_: self.type_ }
+    pub fn build(
+        self,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl
+    {
+        BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl {
+            type_: self.type_,
+        }
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef {
+impl Ref
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef {
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef
+    {
         BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef {
             shared: shared,
             base: base.to_string(),
@@ -861,7 +968,9 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElC
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElDynamic {
     cache_point: Option<
-        DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl>,
+        DynamicBlock<
+            BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl,
+        >,
     >,
 }
 
@@ -870,7 +979,9 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElCont
     #[serde(skip_serializing_if = "Option::is_none")]
     text: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cache_point: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl>>,
+    cache_point: Option<
+        Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointEl>,
+    >,
     dynamic: BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElDynamic,
 }
 
@@ -896,17 +1007,18 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl 
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cache_point = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cache_point = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>;
+    type O =
+        BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -920,7 +1032,9 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
 pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl {}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl {
-    pub fn build(self) -> BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl {
         BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl {
             text: core::default::Default::default(),
             cache_point: core::default::Default::default(),
@@ -959,21 +1073,26 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElR
     #[doc = "Get a reference to the value of field `cache_point` after provisioning.\n"]
     pub fn cache_point(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef> {
+    ) -> ListRef<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElCachePointElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.cache_point", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElDynamic {
-    content: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>>,
+    content: Option<
+        DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElMessageEl {
     role: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    content: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>>,
+    content:
+        Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>>,
     dynamic: BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElDynamic,
 }
 
@@ -981,15 +1100,19 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageEl {
     #[doc = "Set the field `content`.\n"]
     pub fn set_content(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.content = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.content = Some(d);
-            },
+            }
         }
         self
     }
@@ -1050,7 +1173,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElRef {
     }
 
     #[doc = "Get a reference to the value of field `content` after provisioning.\n"]
-    pub fn content(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElRef> {
+    pub fn content(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElContentElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.content", self.base))
     }
 }
@@ -1061,10 +1187,14 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCache
     type_: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl {}
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl>;
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl
+{
+    type O = BlockAssignable<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1081,8 +1211,12 @@ pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElSystemEl
 }
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl {
-    pub fn build(self) -> BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl {
-        BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl { type_: self.type_ }
+    pub fn build(
+        self,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl {
+        BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl {
+            type_: self.type_,
+        }
     }
 }
 
@@ -1116,7 +1250,9 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointE
 
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElDynamic {
-    cache_point: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl>>,
+    cache_point: Option<
+        DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1124,7 +1260,8 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElSystemEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     text: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cache_point: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl>>,
+    cache_point:
+        Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl>>,
     dynamic: BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElDynamic,
 }
 
@@ -1138,15 +1275,19 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElSystemEl {
     #[doc = "Set the field `cache_point`.\n"]
     pub fn set_cache_point(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cache_point = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cache_point = Some(d);
-            },
+            }
         }
         self
     }
@@ -1182,7 +1323,10 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef {
         BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef {
             shared: shared,
             base: base.to_string(),
@@ -1203,18 +1347,20 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef {
     #[doc = "Get a reference to the value of field `cache_point` after provisioning.\n"]
     pub fn cache_point(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointElRef> {
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElCachePointElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.cache_point", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl {
     type O =
@@ -1231,7 +1377,8 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl {
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -1246,7 +1393,8 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1263,7 +1411,9 @@ impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigu
     }
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef {
+impl
+    BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1275,7 +1425,8 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     json: Option<PrimField<String>>,
 }
@@ -1303,7 +1454,8 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl {}
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl
+{}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl {
     pub fn build(
@@ -1315,7 +1467,8 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1386,18 +1539,21 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_schema = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl {
-    type O =
-        BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl>;
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl
+{
+    type O = BlockAssignable<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1408,15 +1564,19 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl {
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
 
-impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl {
+impl
+    BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl
+{
     pub fn build(
         self,
-    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl {
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl
+    {
         BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl {
             description: core::default::Default::default(),
             name: self.name,
@@ -1426,7 +1586,8 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1443,7 +1604,9 @@ impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigu
     }
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef {
+impl
+    BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1463,7 +1626,7 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         &self,
     ) -> ListRef<
         BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.input_schema", self.base))
     }
 }
@@ -1505,10 +1668,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cache_point = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cache_point = Some(d);
-            },
+            }
         }
         self
     }
@@ -1528,17 +1691,21 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tool_spec = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tool_spec = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl>;
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl
+{
+    type O = BlockAssignable<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1549,10 +1716,13 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {}
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {
+}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {
-    pub fn build(self) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {
         BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl {
             cache_point: core::default::Default::default(),
             tool_spec: core::default::Default::default(),
@@ -1586,24 +1756,27 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
     #[doc = "Get a reference to the value of field `cache_point` after provisioning.\n"]
     pub fn cache_point(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef> {
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef>{
         ListRef::new(self.shared().clone(), format!("{}.cache_point", self.base))
     }
 
     #[doc = "Get a reference to the value of field `tool_spec` after provisioning.\n"]
     pub fn tool_spec(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef> {
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tool_spec", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {}
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl
+{}
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {}
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl
+{
     type O =
         BlockAssignable<
             BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl,
@@ -1618,7 +1791,8 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {}
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl
+{}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {
     pub fn build(
@@ -1628,7 +1802,8 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1645,16 +1820,19 @@ impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigu
     }
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef {
+impl
+    BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {}
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl
+{}
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {
     type O =
@@ -1671,7 +1849,8 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {}
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl
+{}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {
     pub fn build(
@@ -1681,7 +1860,8 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1698,18 +1878,21 @@ impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigu
     }
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef {
+impl
+    BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl
+{
     name: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl {
     type O =
@@ -1726,7 +1909,8 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl {
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
@@ -1741,7 +1925,8 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1758,7 +1943,9 @@ impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigu
     }
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef {
+impl
+    BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1809,10 +1996,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.any = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.any = Some(d);
-            },
+            }
         }
         self
     }
@@ -1832,10 +2019,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.auto = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.auto = Some(d);
-            },
+            }
         }
         self
     }
@@ -1855,18 +2042,21 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tool = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tool = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {
-    type O =
-        BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl>;
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl
+{
+    type O = BlockAssignable<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1877,10 +2067,14 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
     }
 }
 
-pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {}
+pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl
+{}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {
-    pub fn build(self) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl
+    {
         BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {
             any: core::default::Default::default(),
             auto: core::default::Default::default(),
@@ -1890,16 +2084,20 @@ impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurat
     }
 }
 
-pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef {
+pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef {
+impl Ref
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef {
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef
+    {
         BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1915,39 +2113,51 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
     #[doc = "Get a reference to the value of field `any` after provisioning.\n"]
     pub fn any(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef> {
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef>{
         ListRef::new(self.shared().clone(), format!("{}.any", self.base))
     }
 
     #[doc = "Get a reference to the value of field `auto` after provisioning.\n"]
     pub fn auto(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef> {
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef>{
         ListRef::new(self.shared().clone(), format!("{}.auto", self.base))
     }
 
     #[doc = "Get a reference to the value of field `tool` after provisioning.\n"]
     pub fn tool(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef> {
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef>{
         ListRef::new(self.shared().clone(), format!("{}.tool", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElDynamic {
-    tool: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl>>,
+    tool: Option<
+        DynamicBlock<
+            BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl,
+        >,
+    >,
     tool_choice: Option<
-        DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl>,
+        DynamicBlock<
+            BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    tool: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl>>,
+    tool: Option<
+        Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tool_choice: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl>>,
+    tool_choice: Option<
+        Vec<
+            BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl,
+        >,
+    >,
     dynamic: BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElDynamic,
 }
 
@@ -1955,22 +2165,19 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
     #[doc = "Set the field `tool`.\n"]
     pub fn set_tool(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tool = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tool = Some(d);
-            },
+            }
         }
         self
     }
@@ -1990,17 +2197,21 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tool_choice = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tool_choice = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl>;
+impl ToListMappable
+    for BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2014,7 +2225,9 @@ impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElChatEl
 pub struct BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {}
 
 impl BuildBedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {
-    pub fn build(self) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {
         BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl {
             tool: core::default::Default::default(),
             tool_choice: core::default::Default::default(),
@@ -2046,22 +2259,30 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl
     }
 
     #[doc = "Get a reference to the value of field `tool` after provisioning.\n"]
-    pub fn tool(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElRef> {
+    pub fn tool(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.tool", self.base))
     }
 
     #[doc = "Get a reference to the value of field `tool_choice` after provisioning.\n"]
     pub fn tool_choice(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef> {
+    ) -> ListRef<
+        BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.tool_choice", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElTemplateConfigurationElChatElDynamic {
-    input_variable: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>>,
-    message: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageEl>>,
+    input_variable: Option<
+        DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>,
+    >,
+    message:
+        Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageEl>>,
     system: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemEl>>,
     tool_configuration: Option<
         DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl>,
@@ -2071,13 +2292,15 @@ struct BedrockagentPromptVariantElTemplateConfigurationElChatElDynamic {
 #[derive(Serialize)]
 pub struct BedrockagentPromptVariantElTemplateConfigurationElChatEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    input_variable: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>>,
+    input_variable:
+        Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     message: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     system: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tool_configuration: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl>>,
+    tool_configuration:
+        Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl>>,
     dynamic: BedrockagentPromptVariantElTemplateConfigurationElChatElDynamic,
 }
 
@@ -2085,15 +2308,19 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatEl {
     #[doc = "Set the field `input_variable`.\n"]
     pub fn set_input_variable(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_variable = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_variable = Some(d);
-            },
+            }
         }
         self
     }
@@ -2106,10 +2333,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.message = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.message = Some(d);
-            },
+            }
         }
         self
     }
@@ -2122,10 +2349,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.system = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.system = Some(d);
-            },
+            }
         }
         self
     }
@@ -2133,15 +2360,19 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatEl {
     #[doc = "Set the field `tool_configuration`.\n"]
     pub fn set_tool_configuration(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tool_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tool_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2179,7 +2410,10 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElChatElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElTemplateConfigurationElChatElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElTemplateConfigurationElChatElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElChatElRef {
         BedrockagentPromptVariantElTemplateConfigurationElChatElRef {
             shared: shared,
             base: base.to_string(),
@@ -2193,25 +2427,38 @@ impl BedrockagentPromptVariantElTemplateConfigurationElChatElRef {
     }
 
     #[doc = "Get a reference to the value of field `input_variable` after provisioning.\n"]
-    pub fn input_variable(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_variable", self.base))
+    pub fn input_variable(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElInputVariableElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_variable", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `message` after provisioning.\n"]
-    pub fn message(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElRef> {
+    pub fn message(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElMessageElRef> {
         ListRef::new(self.shared().clone(), format!("{}.message", self.base))
     }
 
     #[doc = "Get a reference to the value of field `system` after provisioning.\n"]
-    pub fn system(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef> {
+    pub fn system(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElSystemElRef> {
         ListRef::new(self.shared().clone(), format!("{}.system", self.base))
     }
 
     #[doc = "Get a reference to the value of field `tool_configuration` after provisioning.\n"]
     pub fn tool_configuration(
         &self,
-    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tool_configuration", self.base))
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElChatElToolConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tool_configuration", self.base),
+        )
     }
 }
 
@@ -2221,7 +2468,7 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl 
     type_: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl {
     type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl>;
@@ -2279,10 +2526,11 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariable
     name: PrimField<String>,
 }
 
-impl BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl { }
+impl BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl {}
 
 impl ToListMappable for BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl {
-    type O = BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>;
+    type O =
+        BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2334,8 +2582,11 @@ impl BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableElRef 
 
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElTemplateConfigurationElTextElDynamic {
-    cache_point: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl>>,
-    input_variable: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>>,
+    cache_point:
+        Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl>>,
+    input_variable: Option<
+        DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -2344,7 +2595,8 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElTextEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cache_point: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    input_variable: Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>>,
+    input_variable:
+        Option<Vec<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>>,
     dynamic: BedrockagentPromptVariantElTemplateConfigurationElTextElDynamic,
 }
 
@@ -2352,15 +2604,17 @@ impl BedrockagentPromptVariantElTemplateConfigurationElTextEl {
     #[doc = "Set the field `cache_point`.\n"]
     pub fn set_cache_point(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cache_point = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cache_point = Some(d);
-            },
+            }
         }
         self
     }
@@ -2368,15 +2622,19 @@ impl BedrockagentPromptVariantElTemplateConfigurationElTextEl {
     #[doc = "Set the field `input_variable`.\n"]
     pub fn set_input_variable(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_variable = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_variable = Some(d);
-            },
+            }
         }
         self
     }
@@ -2416,7 +2674,10 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElTextElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElTemplateConfigurationElTextElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElTemplateConfigurationElTextElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElTextElRef {
         BedrockagentPromptVariantElTemplateConfigurationElTextElRef {
             shared: shared,
             base: base.to_string(),
@@ -2435,13 +2696,20 @@ impl BedrockagentPromptVariantElTemplateConfigurationElTextElRef {
     }
 
     #[doc = "Get a reference to the value of field `cache_point` after provisioning.\n"]
-    pub fn cache_point(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointElRef> {
+    pub fn cache_point(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElTextElCachePointElRef> {
         ListRef::new(self.shared().clone(), format!("{}.cache_point", self.base))
     }
 
     #[doc = "Get a reference to the value of field `input_variable` after provisioning.\n"]
-    pub fn input_variable(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_variable", self.base))
+    pub fn input_variable(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElTextElInputVariableElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_variable", self.base),
+        )
     }
 }
 
@@ -2469,10 +2737,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.chat = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.chat = Some(d);
-            },
+            }
         }
         self
     }
@@ -2485,10 +2753,10 @@ impl BedrockagentPromptVariantElTemplateConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.text = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.text = Some(d);
-            },
+            }
         }
         self
     }
@@ -2524,7 +2792,10 @@ pub struct BedrockagentPromptVariantElTemplateConfigurationElRef {
 }
 
 impl Ref for BedrockagentPromptVariantElTemplateConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentPromptVariantElTemplateConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentPromptVariantElTemplateConfigurationElRef {
         BedrockagentPromptVariantElTemplateConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2551,9 +2822,11 @@ impl BedrockagentPromptVariantElTemplateConfigurationElRef {
 #[derive(Serialize, Default)]
 struct BedrockagentPromptVariantElDynamic {
     gen_ai_resource: Option<DynamicBlock<BedrockagentPromptVariantElGenAiResourceEl>>,
-    inference_configuration: Option<DynamicBlock<BedrockagentPromptVariantElInferenceConfigurationEl>>,
+    inference_configuration:
+        Option<DynamicBlock<BedrockagentPromptVariantElInferenceConfigurationEl>>,
     metadata: Option<DynamicBlock<BedrockagentPromptVariantElMetadataEl>>,
-    template_configuration: Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationEl>>,
+    template_configuration:
+        Option<DynamicBlock<BedrockagentPromptVariantElTemplateConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -2596,10 +2869,10 @@ impl BedrockagentPromptVariantEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.gen_ai_resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.gen_ai_resource = Some(d);
-            },
+            }
         }
         self
     }
@@ -2612,23 +2885,26 @@ impl BedrockagentPromptVariantEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inference_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inference_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `metadata`.\n"]
-    pub fn set_metadata(mut self, v: impl Into<BlockAssignable<BedrockagentPromptVariantElMetadataEl>>) -> Self {
+    pub fn set_metadata(
+        mut self,
+        v: impl Into<BlockAssignable<BedrockagentPromptVariantElMetadataEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metadata = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metadata = Some(d);
-            },
+            }
         }
         self
     }
@@ -2641,10 +2917,10 @@ impl BedrockagentPromptVariantEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.template_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.template_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2706,7 +2982,10 @@ impl BedrockagentPromptVariantElRef {
 
     #[doc = "Get a reference to the value of field `additional_model_request_fields` after provisioning.\n"]
     pub fn additional_model_request_fields(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_model_request_fields", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_model_request_fields", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
@@ -2721,17 +3000,28 @@ impl BedrockagentPromptVariantElRef {
 
     #[doc = "Get a reference to the value of field `template_type` after provisioning.\n"]
     pub fn template_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gen_ai_resource` after provisioning.\n"]
     pub fn gen_ai_resource(&self) -> ListRef<BedrockagentPromptVariantElGenAiResourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.gen_ai_resource", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.gen_ai_resource", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_configuration` after provisioning.\n"]
-    pub fn inference_configuration(&self) -> ListRef<BedrockagentPromptVariantElInferenceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inference_configuration", self.base))
+    pub fn inference_configuration(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElInferenceConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
@@ -2740,8 +3030,13 @@ impl BedrockagentPromptVariantElRef {
     }
 
     #[doc = "Get a reference to the value of field `template_configuration` after provisioning.\n"]
-    pub fn template_configuration(&self) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.template_configuration", self.base))
+    pub fn template_configuration(
+        &self,
+    ) -> ListRef<BedrockagentPromptVariantElTemplateConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.template_configuration", self.base),
+        )
     }
 }
 

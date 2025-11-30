@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkfirewallVpcEndpointAssociationData {
@@ -64,7 +64,8 @@ impl NetworkfirewallVpcEndpointAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl NetworkfirewallVpcEndpointAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl NetworkfirewallVpcEndpointAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,8 +114,7 @@ impl NetworkfirewallVpcEndpointAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -124,71 +134,105 @@ impl NetworkfirewallVpcEndpointAssociation {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().subnet_mapping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.subnet_mapping = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<NetworkfirewallVpcEndpointAssociationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<NetworkfirewallVpcEndpointAssociationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_arn` after provisioning.\n"]
     pub fn firewall_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_association_arn` after provisioning.\n"]
     pub fn vpc_endpoint_association_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_association_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_association_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_association_id` after provisioning.\n"]
     pub fn vpc_endpoint_association_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_association_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_association_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_association_status` after provisioning.\n"]
     pub fn vpc_endpoint_association_status(
         &self,
     ) -> ListRef<NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_endpoint_association_status", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_association_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_mapping` after provisioning.\n"]
-    pub fn subnet_mapping(&self) -> ListRef<NetworkfirewallVpcEndpointAssociationSubnetMappingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subnet_mapping", self.extract_ref()))
+    pub fn subnet_mapping(
+        &self,
+    ) -> ListRef<NetworkfirewallVpcEndpointAssociationSubnetMappingElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_mapping", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -202,11 +246,15 @@ impl NetworkfirewallVpcEndpointAssociation {
 
 impl Referable for NetworkfirewallVpcEndpointAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkfirewallVpcEndpointAssociation { }
+impl Resource for NetworkfirewallVpcEndpointAssociation {}
 
 impl ToListMappable for NetworkfirewallVpcEndpointAssociation {
     type O = ListRef<NetworkfirewallVpcEndpointAssociationRef>;
@@ -241,24 +289,26 @@ pub struct BuildNetworkfirewallVpcEndpointAssociation {
 
 impl BuildNetworkfirewallVpcEndpointAssociation {
     pub fn build(self, stack: &mut Stack) -> NetworkfirewallVpcEndpointAssociation {
-        let out = NetworkfirewallVpcEndpointAssociation(Rc::new(NetworkfirewallVpcEndpointAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(NetworkfirewallVpcEndpointAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                description: core::default::Default::default(),
-                firewall_arn: self.firewall_arn,
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                vpc_id: self.vpc_id,
-                subnet_mapping: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = NetworkfirewallVpcEndpointAssociation(Rc::new(
+            NetworkfirewallVpcEndpointAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(NetworkfirewallVpcEndpointAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    description: core::default::Default::default(),
+                    firewall_arn: self.firewall_arn,
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    vpc_id: self.vpc_id,
+                    subnet_mapping: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -271,10 +321,7 @@ pub struct NetworkfirewallVpcEndpointAssociationRef {
 
 impl Ref for NetworkfirewallVpcEndpointAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -289,55 +336,86 @@ impl NetworkfirewallVpcEndpointAssociationRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_arn` after provisioning.\n"]
     pub fn firewall_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_association_arn` after provisioning.\n"]
     pub fn vpc_endpoint_association_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_association_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_association_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_association_id` after provisioning.\n"]
     pub fn vpc_endpoint_association_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_association_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_association_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_association_status` after provisioning.\n"]
     pub fn vpc_endpoint_association_status(
         &self,
     ) -> ListRef<NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_endpoint_association_status", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_association_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_mapping` after provisioning.\n"]
-    pub fn subnet_mapping(&self) -> ListRef<NetworkfirewallVpcEndpointAssociationSubnetMappingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subnet_mapping", self.extract_ref()))
+    pub fn subnet_mapping(
+        &self,
+    ) -> ListRef<NetworkfirewallVpcEndpointAssociationSubnetMappingElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_mapping", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -350,7 +428,8 @@ impl NetworkfirewallVpcEndpointAssociationRef {
 }
 
 #[derive(Serialize)]
-pub struct NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentEl {
+pub struct NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     endpoint_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -402,7 +481,8 @@ impl ToListMappable for NetworkfirewallVpcEndpointAssociationVpcEndpointAssociat
     }
 }
 
-pub struct BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentEl {}
+pub struct BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentEl
+{}
 
 impl BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentEl {
     pub fn build(
@@ -417,7 +497,8 @@ impl BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAss
     }
 }
 
-pub struct NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentElRef {
+pub struct NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -496,9 +577,12 @@ impl NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociat
     }
 }
 
-impl ToListMappable for NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl {
-    type O =
-        BlockAssignable<NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl>;
+impl ToListMappable
+    for NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl
+{
+    type O = BlockAssignable<
+        NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -509,10 +593,16 @@ impl ToListMappable for NetworkfirewallVpcEndpointAssociationVpcEndpointAssociat
     }
 }
 
-pub struct BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl {}
+pub struct BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl
+{}
 
-impl BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl {
-    pub fn build(self) -> NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl {
+impl
+    BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl
+{
+    pub fn build(
+        self,
+    ) -> NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl
+    {
         NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateEl {
             attachment: core::default::Default::default(),
             availability_zone: core::default::Default::default(),
@@ -520,16 +610,20 @@ impl BuildNetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAss
     }
 }
 
-pub struct NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef {
+pub struct NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef {
+impl Ref
+    for NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef {
+    ) -> NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef
+    {
         NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef {
             shared: shared,
             base: base.to_string(),
@@ -547,13 +641,16 @@ impl NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociat
         &self,
     ) -> ListRef<
         NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElAttachmentElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.attachment", self.base))
     }
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 }
 
@@ -630,8 +727,11 @@ impl NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElRef {
     #[doc = "Get a reference to the value of field `association_sync_state` after provisioning.\n"]
     pub fn association_sync_state(
         &self,
-    ) -> SetRef<NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.association_sync_state", self.base))
+    ) -> SetRef<NetworkfirewallVpcEndpointAssociationVpcEndpointAssociationStatusElAssociationSyncStateElRef>{
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.association_sync_state", self.base),
+        )
     }
 }
 
@@ -682,7 +782,10 @@ pub struct NetworkfirewallVpcEndpointAssociationSubnetMappingElRef {
 }
 
 impl Ref for NetworkfirewallVpcEndpointAssociationSubnetMappingElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallVpcEndpointAssociationSubnetMappingElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallVpcEndpointAssociationSubnetMappingElRef {
         NetworkfirewallVpcEndpointAssociationSubnetMappingElRef {
             shared: shared,
             base: base.to_string(),
@@ -697,7 +800,10 @@ impl NetworkfirewallVpcEndpointAssociationSubnetMappingElRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
@@ -715,15 +821,13 @@ pub struct NetworkfirewallVpcEndpointAssociationTimeoutsEl {
 }
 
 impl NetworkfirewallVpcEndpointAssociationTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
@@ -759,7 +863,10 @@ pub struct NetworkfirewallVpcEndpointAssociationTimeoutsElRef {
 }
 
 impl Ref for NetworkfirewallVpcEndpointAssociationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallVpcEndpointAssociationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallVpcEndpointAssociationTimeoutsElRef {
         NetworkfirewallVpcEndpointAssociationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),
@@ -772,14 +879,12 @@ impl NetworkfirewallVpcEndpointAssociationTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontOriginAccessIdentitiesData {
@@ -56,12 +56,18 @@ impl DataCloudfrontOriginAccessIdentities {
 
     #[doc = "Get a reference to the value of field `comments` after provisioning.\n"]
     pub fn comments(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.comments", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.comments", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_arns` after provisioning.\n"]
     pub fn iam_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.iam_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.iam_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -76,17 +82,24 @@ impl DataCloudfrontOriginAccessIdentities {
 
     #[doc = "Get a reference to the value of field `s3_canonical_user_ids` after provisioning.\n"]
     pub fn s3_canonical_user_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.s3_canonical_user_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.s3_canonical_user_ids", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontOriginAccessIdentities {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontOriginAccessIdentities { }
+impl Datasource for DataCloudfrontOriginAccessIdentities {}
 
 impl ToListMappable for DataCloudfrontOriginAccessIdentities {
     type O = ListRef<DataCloudfrontOriginAccessIdentitiesRef>;
@@ -117,17 +130,18 @@ pub struct BuildDataCloudfrontOriginAccessIdentities {
 
 impl BuildDataCloudfrontOriginAccessIdentities {
     pub fn build(self, stack: &mut Stack) -> DataCloudfrontOriginAccessIdentities {
-        let out = DataCloudfrontOriginAccessIdentities(Rc::new(DataCloudfrontOriginAccessIdentities_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataCloudfrontOriginAccessIdentitiesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                comments: core::default::Default::default(),
-                id: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataCloudfrontOriginAccessIdentities(Rc::new(DataCloudfrontOriginAccessIdentities_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataCloudfrontOriginAccessIdentitiesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    comments: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -140,10 +154,7 @@ pub struct DataCloudfrontOriginAccessIdentitiesRef {
 
 impl Ref for DataCloudfrontOriginAccessIdentitiesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -158,12 +169,18 @@ impl DataCloudfrontOriginAccessIdentitiesRef {
 
     #[doc = "Get a reference to the value of field `comments` after provisioning.\n"]
     pub fn comments(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.comments", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.comments", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_arns` after provisioning.\n"]
     pub fn iam_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.iam_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.iam_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -178,6 +195,9 @@ impl DataCloudfrontOriginAccessIdentitiesRef {
 
     #[doc = "Get a reference to the value of field `s3_canonical_user_ids` after provisioning.\n"]
     pub fn s3_canonical_user_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.s3_canonical_user_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.s3_canonical_user_ids", self.extract_ref()),
+        )
     }
 }

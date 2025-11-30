@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIdentitystoreGroupMembershipsData {
@@ -42,8 +42,7 @@ impl DataIdentitystoreGroupMemberships {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -51,33 +50,50 @@ impl DataIdentitystoreGroupMemberships {
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_memberships` after provisioning.\n"]
-    pub fn group_memberships(&self) -> ListRef<DataIdentitystoreGroupMembershipsGroupMembershipsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.group_memberships", self.extract_ref()))
+    pub fn group_memberships(
+        &self,
+    ) -> ListRef<DataIdentitystoreGroupMembershipsGroupMembershipsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.group_memberships", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIdentitystoreGroupMemberships {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIdentitystoreGroupMemberships { }
+impl Datasource for DataIdentitystoreGroupMemberships {}
 
 impl ToListMappable for DataIdentitystoreGroupMemberships {
     type O = ListRef<DataIdentitystoreGroupMembershipsRef>;
@@ -136,10 +152,7 @@ pub struct DataIdentitystoreGroupMembershipsRef {
 
 impl Ref for DataIdentitystoreGroupMembershipsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -154,23 +167,36 @@ impl DataIdentitystoreGroupMembershipsRef {
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_memberships` after provisioning.\n"]
-    pub fn group_memberships(&self) -> ListRef<DataIdentitystoreGroupMembershipsGroupMembershipsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.group_memberships", self.extract_ref()))
+    pub fn group_memberships(
+        &self,
+    ) -> ListRef<DataIdentitystoreGroupMembershipsGroupMembershipsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.group_memberships", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -204,7 +230,9 @@ pub struct BuildDataIdentitystoreGroupMembershipsGroupMembershipsElMemberId {}
 
 impl BuildDataIdentitystoreGroupMembershipsGroupMembershipsElMemberId {
     pub fn build(self) -> DataIdentitystoreGroupMembershipsGroupMembershipsElMemberId {
-        DataIdentitystoreGroupMembershipsGroupMembershipsElMemberId { user_id: core::default::Default::default() }
+        DataIdentitystoreGroupMembershipsGroupMembershipsElMemberId {
+            user_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -214,7 +242,10 @@ pub struct DataIdentitystoreGroupMembershipsGroupMembershipsElMemberIdRef {
 }
 
 impl Ref for DataIdentitystoreGroupMembershipsGroupMembershipsElMemberIdRef {
-    fn new(shared: StackShared, base: String) -> DataIdentitystoreGroupMembershipsGroupMembershipsElMemberIdRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataIdentitystoreGroupMembershipsGroupMembershipsElMemberIdRef {
         DataIdentitystoreGroupMembershipsGroupMembershipsElMemberIdRef {
             shared: shared,
             base: base.to_string(),
@@ -259,7 +290,10 @@ impl DataIdentitystoreGroupMembershipsGroupMembershipsEl {
     }
 
     #[doc = "Set the field `member_id`.\n"]
-    pub fn set_member_id(mut self, v: impl Into<DataIdentitystoreGroupMembershipsGroupMembershipsElMemberId>) -> Self {
+    pub fn set_member_id(
+        mut self,
+        v: impl Into<DataIdentitystoreGroupMembershipsGroupMembershipsElMemberId>,
+    ) -> Self {
         self.member_id = Some(v.into());
         self
     }
@@ -302,7 +336,10 @@ pub struct DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
 }
 
 impl Ref for DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
-    fn new(shared: StackShared, base: String) -> DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
         DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
             shared: shared,
             base: base.to_string(),
@@ -322,7 +359,10 @@ impl DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `member_id` after provisioning.\n"]
@@ -335,6 +375,9 @@ impl DataIdentitystoreGroupMembershipsGroupMembershipsElRef {
 
     #[doc = "Get a reference to the value of field `membership_id` after provisioning.\n"]
     pub fn membership_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.membership_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.membership_id", self.base),
+        )
     }
 }

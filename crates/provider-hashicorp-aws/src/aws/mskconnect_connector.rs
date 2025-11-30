@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct MskconnectConnectorData {
@@ -33,9 +33,11 @@ struct MskconnectConnectorData {
     #[serde(skip_serializing_if = "Option::is_none")]
     kafka_cluster: Option<Vec<MskconnectConnectorKafkaClusterEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    kafka_cluster_client_authentication: Option<Vec<MskconnectConnectorKafkaClusterClientAuthenticationEl>>,
+    kafka_cluster_client_authentication:
+        Option<Vec<MskconnectConnectorKafkaClusterClientAuthenticationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    kafka_cluster_encryption_in_transit: Option<Vec<MskconnectConnectorKafkaClusterEncryptionInTransitEl>>,
+    kafka_cluster_encryption_in_transit:
+        Option<Vec<MskconnectConnectorKafkaClusterEncryptionInTransitEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     log_delivery: Option<Vec<MskconnectConnectorLogDeliveryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -82,7 +84,8 @@ impl MskconnectConnector {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -95,7 +98,7 @@ impl MskconnectConnector {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -106,12 +109,22 @@ impl MskconnectConnector {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -127,8 +140,7 @@ impl MskconnectConnector {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -147,27 +159,33 @@ impl MskconnectConnector {
     }
 
     #[doc = "Set the field `capacity`.\n"]
-    pub fn set_capacity(self, v: impl Into<BlockAssignable<MskconnectConnectorCapacityEl>>) -> Self {
+    pub fn set_capacity(
+        self,
+        v: impl Into<BlockAssignable<MskconnectConnectorCapacityEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.capacity = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `kafka_cluster`.\n"]
-    pub fn set_kafka_cluster(self, v: impl Into<BlockAssignable<MskconnectConnectorKafkaClusterEl>>) -> Self {
+    pub fn set_kafka_cluster(
+        self,
+        v: impl Into<BlockAssignable<MskconnectConnectorKafkaClusterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kafka_cluster = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kafka_cluster = Some(d);
-            },
+            }
         }
         self
     }
@@ -180,10 +198,14 @@ impl MskconnectConnector {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kafka_cluster_client_authentication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.kafka_cluster_client_authentication = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .kafka_cluster_client_authentication = Some(d);
+            }
         }
         self
     }
@@ -196,23 +218,30 @@ impl MskconnectConnector {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kafka_cluster_encryption_in_transit = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.kafka_cluster_encryption_in_transit = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .kafka_cluster_encryption_in_transit = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `log_delivery`.\n"]
-    pub fn set_log_delivery(self, v: impl Into<BlockAssignable<MskconnectConnectorLogDeliveryEl>>) -> Self {
+    pub fn set_log_delivery(
+        self,
+        v: impl Into<BlockAssignable<MskconnectConnectorLogDeliveryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().log_delivery = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.log_delivery = Some(d);
-            },
+            }
         }
         self
     }
@@ -222,10 +251,10 @@ impl MskconnectConnector {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().plugin = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.plugin = Some(d);
-            },
+            }
         }
         self
     }
@@ -244,10 +273,10 @@ impl MskconnectConnector {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().worker_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.worker_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -259,12 +288,18 @@ impl MskconnectConnector {
 
     #[doc = "Get a reference to the value of field `connector_configuration` after provisioning.\n"]
     pub fn connector_configuration(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.connector_configuration", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.connector_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -274,87 +309,132 @@ impl MskconnectConnector {
 
     #[doc = "Get a reference to the value of field `kafkaconnect_version` after provisioning.\n"]
     pub fn kafkaconnect_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kafkaconnect_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kafkaconnect_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_execution_role_arn` after provisioning.\n"]
     pub fn service_execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity` after provisioning.\n"]
     pub fn capacity(&self) -> ListRef<MskconnectConnectorCapacityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kafka_cluster` after provisioning.\n"]
     pub fn kafka_cluster(&self) -> ListRef<MskconnectConnectorKafkaClusterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kafka_cluster", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kafka_cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kafka_cluster_client_authentication` after provisioning.\n"]
     pub fn kafka_cluster_client_authentication(
         &self,
     ) -> ListRef<MskconnectConnectorKafkaClusterClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kafka_cluster_client_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kafka_cluster_client_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kafka_cluster_encryption_in_transit` after provisioning.\n"]
     pub fn kafka_cluster_encryption_in_transit(
         &self,
     ) -> ListRef<MskconnectConnectorKafkaClusterEncryptionInTransitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kafka_cluster_encryption_in_transit", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kafka_cluster_encryption_in_transit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_delivery` after provisioning.\n"]
     pub fn log_delivery(&self) -> ListRef<MskconnectConnectorLogDeliveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_delivery", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_delivery", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskconnectConnectorTimeoutsElRef {
-        MskconnectConnectorTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        MskconnectConnectorTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `worker_configuration` after provisioning.\n"]
     pub fn worker_configuration(&self) -> ListRef<MskconnectConnectorWorkerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.worker_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.worker_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for MskconnectConnector {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for MskconnectConnector { }
+impl Resource for MskconnectConnector {}
 
 impl ToListMappable for MskconnectConnector {
     type O = ListRef<MskconnectConnectorRef>;
@@ -433,10 +513,7 @@ pub struct MskconnectConnectorRef {
 
 impl Ref for MskconnectConnectorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -456,12 +533,18 @@ impl MskconnectConnectorRef {
 
     #[doc = "Get a reference to the value of field `connector_configuration` after provisioning.\n"]
     pub fn connector_configuration(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.connector_configuration", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.connector_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -471,77 +554,118 @@ impl MskconnectConnectorRef {
 
     #[doc = "Get a reference to the value of field `kafkaconnect_version` after provisioning.\n"]
     pub fn kafkaconnect_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kafkaconnect_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kafkaconnect_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_execution_role_arn` after provisioning.\n"]
     pub fn service_execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity` after provisioning.\n"]
     pub fn capacity(&self) -> ListRef<MskconnectConnectorCapacityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kafka_cluster` after provisioning.\n"]
     pub fn kafka_cluster(&self) -> ListRef<MskconnectConnectorKafkaClusterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kafka_cluster", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kafka_cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kafka_cluster_client_authentication` after provisioning.\n"]
     pub fn kafka_cluster_client_authentication(
         &self,
     ) -> ListRef<MskconnectConnectorKafkaClusterClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kafka_cluster_client_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kafka_cluster_client_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kafka_cluster_encryption_in_transit` after provisioning.\n"]
     pub fn kafka_cluster_encryption_in_transit(
         &self,
     ) -> ListRef<MskconnectConnectorKafkaClusterEncryptionInTransitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kafka_cluster_encryption_in_transit", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kafka_cluster_encryption_in_transit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_delivery` after provisioning.\n"]
     pub fn log_delivery(&self) -> ListRef<MskconnectConnectorLogDeliveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_delivery", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_delivery", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskconnectConnectorTimeoutsElRef {
-        MskconnectConnectorTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        MskconnectConnectorTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `worker_configuration` after provisioning.\n"]
     pub fn worker_configuration(&self) -> ListRef<MskconnectConnectorWorkerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.worker_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.worker_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -587,7 +711,10 @@ pub struct MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef {
 }
 
 impl Ref for MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef {
         MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef {
             shared: shared,
             base: base.to_string(),
@@ -602,7 +729,10 @@ impl MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef {
 
     #[doc = "Get a reference to the value of field `cpu_utilization_percentage` after provisioning.\n"]
     pub fn cpu_utilization_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_utilization_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_utilization_percentage", self.base),
+        )
     }
 }
 
@@ -648,7 +778,10 @@ pub struct MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef {
 }
 
 impl Ref for MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef {
         MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef {
             shared: shared,
             base: base.to_string(),
@@ -663,14 +796,19 @@ impl MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef {
 
     #[doc = "Get a reference to the value of field `cpu_utilization_percentage` after provisioning.\n"]
     pub fn cpu_utilization_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cpu_utilization_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cpu_utilization_percentage", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct MskconnectConnectorCapacityElAutoscalingElDynamic {
-    scale_in_policy: Option<DynamicBlock<MskconnectConnectorCapacityElAutoscalingElScaleInPolicyEl>>,
-    scale_out_policy: Option<DynamicBlock<MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyEl>>,
+    scale_in_policy:
+        Option<DynamicBlock<MskconnectConnectorCapacityElAutoscalingElScaleInPolicyEl>>,
+    scale_out_policy:
+        Option<DynamicBlock<MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyEl>>,
 }
 
 #[derive(Serialize)]
@@ -701,10 +839,10 @@ impl MskconnectConnectorCapacityElAutoscalingEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.scale_in_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.scale_in_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -717,10 +855,10 @@ impl MskconnectConnectorCapacityElAutoscalingEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.scale_out_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.scale_out_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -779,7 +917,10 @@ impl MskconnectConnectorCapacityElAutoscalingElRef {
 
     #[doc = "Get a reference to the value of field `max_worker_count` after provisioning.\n"]
     pub fn max_worker_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_worker_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_worker_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mcu_count` after provisioning.\n"]
@@ -789,17 +930,30 @@ impl MskconnectConnectorCapacityElAutoscalingElRef {
 
     #[doc = "Get a reference to the value of field `min_worker_count` after provisioning.\n"]
     pub fn min_worker_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_worker_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_worker_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_in_policy` after provisioning.\n"]
-    pub fn scale_in_policy(&self) -> ListRef<MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scale_in_policy", self.base))
+    pub fn scale_in_policy(
+        &self,
+    ) -> ListRef<MskconnectConnectorCapacityElAutoscalingElScaleInPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scale_in_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_out_policy` after provisioning.\n"]
-    pub fn scale_out_policy(&self) -> ListRef<MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scale_out_policy", self.base))
+    pub fn scale_out_policy(
+        &self,
+    ) -> ListRef<MskconnectConnectorCapacityElAutoscalingElScaleOutPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scale_out_policy", self.base),
+        )
     }
 }
 
@@ -850,7 +1004,10 @@ pub struct MskconnectConnectorCapacityElProvisionedCapacityElRef {
 }
 
 impl Ref for MskconnectConnectorCapacityElProvisionedCapacityElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorCapacityElProvisionedCapacityElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorCapacityElProvisionedCapacityElRef {
         MskconnectConnectorCapacityElProvisionedCapacityElRef {
             shared: shared,
             base: base.to_string(),
@@ -891,14 +1048,17 @@ pub struct MskconnectConnectorCapacityEl {
 
 impl MskconnectConnectorCapacityEl {
     #[doc = "Set the field `autoscaling`.\n"]
-    pub fn set_autoscaling(mut self, v: impl Into<BlockAssignable<MskconnectConnectorCapacityElAutoscalingEl>>) -> Self {
+    pub fn set_autoscaling(
+        mut self,
+        v: impl Into<BlockAssignable<MskconnectConnectorCapacityElAutoscalingEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.autoscaling = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.autoscaling = Some(d);
-            },
+            }
         }
         self
     }
@@ -911,10 +1071,10 @@ impl MskconnectConnectorCapacityEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.provisioned_capacity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.provisioned_capacity = Some(d);
-            },
+            }
         }
         self
     }
@@ -969,8 +1129,13 @@ impl MskconnectConnectorCapacityElRef {
     }
 
     #[doc = "Get a reference to the value of field `provisioned_capacity` after provisioning.\n"]
-    pub fn provisioned_capacity(&self) -> ListRef<MskconnectConnectorCapacityElProvisionedCapacityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioned_capacity", self.base))
+    pub fn provisioned_capacity(
+        &self,
+    ) -> ListRef<MskconnectConnectorCapacityElProvisionedCapacityElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioned_capacity", self.base),
+        )
     }
 }
 
@@ -980,7 +1145,7 @@ pub struct MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcEl {
     subnets: SetField<PrimField<String>>,
 }
 
-impl MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcEl { }
+impl MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcEl {}
 
 impl ToListMappable for MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcEl {
     type O = BlockAssignable<MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcEl>;
@@ -1016,7 +1181,10 @@ pub struct MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcElRef {
 }
 
 impl Ref for MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcElRef {
         MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -1031,7 +1199,10 @@ impl MskconnectConnectorKafkaClusterElApacheKafkaClusterElVpcElRef {
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -1062,10 +1233,10 @@ impl MskconnectConnectorKafkaClusterElApacheKafkaClusterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vpc = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vpc = Some(d);
-            },
+            }
         }
         self
     }
@@ -1104,7 +1275,10 @@ pub struct MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
 }
 
 impl Ref for MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
         MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1119,7 +1293,10 @@ impl MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
 
     #[doc = "Get a reference to the value of field `bootstrap_servers` after provisioning.\n"]
     pub fn bootstrap_servers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_servers", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_servers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc` after provisioning.\n"]
@@ -1130,7 +1307,8 @@ impl MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef {
 
 #[derive(Serialize, Default)]
 struct MskconnectConnectorKafkaClusterElDynamic {
-    apache_kafka_cluster: Option<DynamicBlock<MskconnectConnectorKafkaClusterElApacheKafkaClusterEl>>,
+    apache_kafka_cluster:
+        Option<DynamicBlock<MskconnectConnectorKafkaClusterElApacheKafkaClusterEl>>,
 }
 
 #[derive(Serialize)]
@@ -1149,10 +1327,10 @@ impl MskconnectConnectorKafkaClusterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.apache_kafka_cluster = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.apache_kafka_cluster = Some(d);
-            },
+            }
         }
         self
     }
@@ -1201,8 +1379,13 @@ impl MskconnectConnectorKafkaClusterElRef {
     }
 
     #[doc = "Get a reference to the value of field `apache_kafka_cluster` after provisioning.\n"]
-    pub fn apache_kafka_cluster(&self) -> ListRef<MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.apache_kafka_cluster", self.base))
+    pub fn apache_kafka_cluster(
+        &self,
+    ) -> ListRef<MskconnectConnectorKafkaClusterElApacheKafkaClusterElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.apache_kafka_cluster", self.base),
+        )
     }
 }
 
@@ -1248,7 +1431,10 @@ pub struct MskconnectConnectorKafkaClusterClientAuthenticationElRef {
 }
 
 impl Ref for MskconnectConnectorKafkaClusterClientAuthenticationElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorKafkaClusterClientAuthenticationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorKafkaClusterClientAuthenticationElRef {
         MskconnectConnectorKafkaClusterClientAuthenticationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1263,7 +1449,10 @@ impl MskconnectConnectorKafkaClusterClientAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.base),
+        )
     }
 }
 
@@ -1297,7 +1486,9 @@ pub struct BuildMskconnectConnectorKafkaClusterEncryptionInTransitEl {}
 
 impl BuildMskconnectConnectorKafkaClusterEncryptionInTransitEl {
     pub fn build(self) -> MskconnectConnectorKafkaClusterEncryptionInTransitEl {
-        MskconnectConnectorKafkaClusterEncryptionInTransitEl { encryption_type: core::default::Default::default() }
+        MskconnectConnectorKafkaClusterEncryptionInTransitEl {
+            encryption_type: core::default::Default::default(),
+        }
     }
 }
 
@@ -1307,7 +1498,10 @@ pub struct MskconnectConnectorKafkaClusterEncryptionInTransitElRef {
 }
 
 impl Ref for MskconnectConnectorKafkaClusterEncryptionInTransitElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorKafkaClusterEncryptionInTransitElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorKafkaClusterEncryptionInTransitElRef {
         MskconnectConnectorKafkaClusterEncryptionInTransitElRef {
             shared: shared,
             base: base.to_string(),
@@ -1322,7 +1516,10 @@ impl MskconnectConnectorKafkaClusterEncryptionInTransitElRef {
 
     #[doc = "Get a reference to the value of field `encryption_type` after provisioning.\n"]
     pub fn encryption_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_type", self.base),
+        )
     }
 }
 
@@ -1447,7 +1644,10 @@ pub struct MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef {
 }
 
 impl Ref for MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef {
         MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef {
             shared: shared,
             base: base.to_string(),
@@ -1462,7 +1662,10 @@ impl MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef {
 
     #[doc = "Get a reference to the value of field `delivery_stream` after provisioning.\n"]
     pub fn delivery_stream(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
@@ -1527,7 +1730,10 @@ pub struct MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3ElRef {
 }
 
 impl Ref for MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3ElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3ElRef {
         MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -1558,7 +1764,8 @@ impl MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3ElRef {
 
 #[derive(Serialize, Default)]
 struct MskconnectConnectorLogDeliveryElWorkerLogDeliveryElDynamic {
-    cloudwatch_logs: Option<DynamicBlock<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsEl>>,
+    cloudwatch_logs:
+        Option<DynamicBlock<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsEl>>,
     firehose: Option<DynamicBlock<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseEl>>,
     s3: Option<DynamicBlock<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElS3El>>,
 }
@@ -1566,7 +1773,8 @@ struct MskconnectConnectorLogDeliveryElWorkerLogDeliveryElDynamic {
 #[derive(Serialize)]
 pub struct MskconnectConnectorLogDeliveryElWorkerLogDeliveryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_logs: Option<Vec<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsEl>>,
+    cloudwatch_logs:
+        Option<Vec<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     firehose: Option<Vec<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1578,15 +1786,17 @@ impl MskconnectConnectorLogDeliveryElWorkerLogDeliveryEl {
     #[doc = "Set the field `cloudwatch_logs`.\n"]
     pub fn set_cloudwatch_logs(
         mut self,
-        v: impl Into<BlockAssignable<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsEl>>,
+        v: impl Into<
+            BlockAssignable<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -1599,10 +1809,10 @@ impl MskconnectConnectorLogDeliveryElWorkerLogDeliveryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -1615,10 +1825,10 @@ impl MskconnectConnectorLogDeliveryElWorkerLogDeliveryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -1655,7 +1865,10 @@ pub struct MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef {
 }
 
 impl Ref for MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef {
-    fn new(shared: StackShared, base: String) -> MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef {
         MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1669,12 +1882,19 @@ impl MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef {
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
-    pub fn cloudwatch_logs(&self) -> ListRef<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs", self.base))
+    pub fn cloudwatch_logs(
+        &self,
+    ) -> ListRef<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElCloudwatchLogsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firehose` after provisioning.\n"]
-    pub fn firehose(&self) -> ListRef<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef> {
+    pub fn firehose(
+        &self,
+    ) -> ListRef<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElFirehoseElRef> {
         ListRef::new(self.shared().clone(), format!("{}.firehose", self.base))
     }
 
@@ -1705,10 +1925,10 @@ impl MskconnectConnectorLogDeliveryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.worker_log_delivery = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.worker_log_delivery = Some(d);
-            },
+            }
         }
         self
     }
@@ -1757,8 +1977,13 @@ impl MskconnectConnectorLogDeliveryElRef {
     }
 
     #[doc = "Get a reference to the value of field `worker_log_delivery` after provisioning.\n"]
-    pub fn worker_log_delivery(&self) -> ListRef<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.worker_log_delivery", self.base))
+    pub fn worker_log_delivery(
+        &self,
+    ) -> ListRef<MskconnectConnectorLogDeliveryElWorkerLogDeliveryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.worker_log_delivery", self.base),
+        )
     }
 }
 
@@ -1768,7 +1993,7 @@ pub struct MskconnectConnectorPluginElCustomPluginEl {
     revision: PrimField<f64>,
 }
 
-impl MskconnectConnectorPluginElCustomPluginEl { }
+impl MskconnectConnectorPluginElCustomPluginEl {}
 
 impl ToListMappable for MskconnectConnectorPluginElCustomPluginEl {
     type O = BlockAssignable<MskconnectConnectorPluginElCustomPluginEl>;
@@ -1849,10 +2074,10 @@ impl MskconnectConnectorPluginEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_plugin = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_plugin = Some(d);
-            },
+            }
         }
         self
     }
@@ -1902,7 +2127,10 @@ impl MskconnectConnectorPluginElRef {
 
     #[doc = "Get a reference to the value of field `custom_plugin` after provisioning.\n"]
     pub fn custom_plugin(&self) -> ListRef<MskconnectConnectorPluginElCustomPluginElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_plugin", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_plugin", self.base),
+        )
     }
 }
 
@@ -2001,7 +2229,7 @@ pub struct MskconnectConnectorWorkerConfigurationEl {
     revision: PrimField<f64>,
 }
 
-impl MskconnectConnectorWorkerConfigurationEl { }
+impl MskconnectConnectorWorkerConfigurationEl {}
 
 impl ToListMappable for MskconnectConnectorWorkerConfigurationEl {
     type O = BlockAssignable<MskconnectConnectorWorkerConfigurationEl>;
@@ -2065,8 +2293,10 @@ impl MskconnectConnectorWorkerConfigurationElRef {
 struct MskconnectConnectorDynamic {
     capacity: Option<DynamicBlock<MskconnectConnectorCapacityEl>>,
     kafka_cluster: Option<DynamicBlock<MskconnectConnectorKafkaClusterEl>>,
-    kafka_cluster_client_authentication: Option<DynamicBlock<MskconnectConnectorKafkaClusterClientAuthenticationEl>>,
-    kafka_cluster_encryption_in_transit: Option<DynamicBlock<MskconnectConnectorKafkaClusterEncryptionInTransitEl>>,
+    kafka_cluster_client_authentication:
+        Option<DynamicBlock<MskconnectConnectorKafkaClusterClientAuthenticationEl>>,
+    kafka_cluster_encryption_in_transit:
+        Option<DynamicBlock<MskconnectConnectorKafkaClusterEncryptionInTransitEl>>,
     log_delivery: Option<DynamicBlock<MskconnectConnectorLogDeliveryEl>>,
     plugin: Option<DynamicBlock<MskconnectConnectorPluginEl>>,
     worker_configuration: Option<DynamicBlock<MskconnectConnectorWorkerConfigurationEl>>,

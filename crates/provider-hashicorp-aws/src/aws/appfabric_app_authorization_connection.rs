@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppfabricAppAuthorizationConnectionData {
@@ -60,7 +60,8 @@ impl AppfabricAppAuthorizationConnection {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl AppfabricAppAuthorizationConnection {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,17 +85,26 @@ impl AppfabricAppAuthorizationConnection {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -108,10 +118,10 @@ impl AppfabricAppAuthorizationConnection {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auth_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auth_request = Some(d);
-            },
+            }
         }
         self
     }
@@ -129,12 +139,18 @@ impl AppfabricAppAuthorizationConnection {
 
     #[doc = "Get a reference to the value of field `app_authorization_arn` after provisioning.\n"]
     pub fn app_authorization_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_authorization_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_authorization_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `app_bundle_arn` after provisioning.\n"]
     pub fn app_bundle_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_bundle_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_bundle_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -142,20 +158,28 @@ impl AppfabricAppAuthorizationConnection {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tenant` after provisioning.\n"]
     pub fn tenant(&self) -> ListRef<AppfabricAppAuthorizationConnectionTenantElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tenant", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tenant", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auth_request` after provisioning.\n"]
     pub fn auth_request(&self) -> ListRef<AppfabricAppAuthorizationConnectionAuthRequestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auth_request", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auth_request", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -169,11 +193,15 @@ impl AppfabricAppAuthorizationConnection {
 
 impl Referable for AppfabricAppAuthorizationConnection {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppfabricAppAuthorizationConnection { }
+impl Resource for AppfabricAppAuthorizationConnection {}
 
 impl ToListMappable for AppfabricAppAuthorizationConnection {
     type O = ListRef<AppfabricAppAuthorizationConnectionRef>;
@@ -208,22 +236,23 @@ pub struct BuildAppfabricAppAuthorizationConnection {
 
 impl BuildAppfabricAppAuthorizationConnection {
     pub fn build(self, stack: &mut Stack) -> AppfabricAppAuthorizationConnection {
-        let out = AppfabricAppAuthorizationConnection(Rc::new(AppfabricAppAuthorizationConnection_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(AppfabricAppAuthorizationConnectionData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                app_authorization_arn: self.app_authorization_arn,
-                app_bundle_arn: self.app_bundle_arn,
-                region: core::default::Default::default(),
-                auth_request: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            AppfabricAppAuthorizationConnection(Rc::new(AppfabricAppAuthorizationConnection_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(AppfabricAppAuthorizationConnectionData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    app_authorization_arn: self.app_authorization_arn,
+                    app_bundle_arn: self.app_bundle_arn,
+                    region: core::default::Default::default(),
+                    auth_request: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -236,10 +265,7 @@ pub struct AppfabricAppAuthorizationConnectionRef {
 
 impl Ref for AppfabricAppAuthorizationConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,12 +285,18 @@ impl AppfabricAppAuthorizationConnectionRef {
 
     #[doc = "Get a reference to the value of field `app_authorization_arn` after provisioning.\n"]
     pub fn app_authorization_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_authorization_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_authorization_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `app_bundle_arn` after provisioning.\n"]
     pub fn app_bundle_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_bundle_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_bundle_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -272,20 +304,28 @@ impl AppfabricAppAuthorizationConnectionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tenant` after provisioning.\n"]
     pub fn tenant(&self) -> ListRef<AppfabricAppAuthorizationConnectionTenantElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tenant", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tenant", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auth_request` after provisioning.\n"]
     pub fn auth_request(&self) -> ListRef<AppfabricAppAuthorizationConnectionAuthRequestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auth_request", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auth_request", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -363,12 +403,18 @@ impl AppfabricAppAuthorizationConnectionTenantElRef {
 
     #[doc = "Get a reference to the value of field `tenant_display_name` after provisioning.\n"]
     pub fn tenant_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tenant_display_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tenant_display_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tenant_identifier` after provisioning.\n"]
     pub fn tenant_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tenant_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tenant_identifier", self.base),
+        )
     }
 }
 
@@ -378,7 +424,7 @@ pub struct AppfabricAppAuthorizationConnectionAuthRequestEl {
     redirect_uri: PrimField<String>,
 }
 
-impl AppfabricAppAuthorizationConnectionAuthRequestEl { }
+impl AppfabricAppAuthorizationConnectionAuthRequestEl {}
 
 impl ToListMappable for AppfabricAppAuthorizationConnectionAuthRequestEl {
     type O = BlockAssignable<AppfabricAppAuthorizationConnectionAuthRequestEl>;
@@ -414,7 +460,10 @@ pub struct AppfabricAppAuthorizationConnectionAuthRequestElRef {
 }
 
 impl Ref for AppfabricAppAuthorizationConnectionAuthRequestElRef {
-    fn new(shared: StackShared, base: String) -> AppfabricAppAuthorizationConnectionAuthRequestElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppfabricAppAuthorizationConnectionAuthRequestElRef {
         AppfabricAppAuthorizationConnectionAuthRequestElRef {
             shared: shared,
             base: base.to_string(),
@@ -445,8 +494,7 @@ pub struct AppfabricAppAuthorizationConnectionTimeoutsEl {
 }
 
 impl AppfabricAppAuthorizationConnectionTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
@@ -469,7 +517,9 @@ pub struct BuildAppfabricAppAuthorizationConnectionTimeoutsEl {}
 
 impl BuildAppfabricAppAuthorizationConnectionTimeoutsEl {
     pub fn build(self) -> AppfabricAppAuthorizationConnectionTimeoutsEl {
-        AppfabricAppAuthorizationConnectionTimeoutsEl { create: core::default::Default::default() }
+        AppfabricAppAuthorizationConnectionTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 
@@ -492,8 +542,7 @@ impl AppfabricAppAuthorizationConnectionTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }

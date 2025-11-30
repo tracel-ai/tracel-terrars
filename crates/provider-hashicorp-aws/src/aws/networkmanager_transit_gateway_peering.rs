@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkmanagerTransitGatewayPeeringData {
@@ -61,7 +61,8 @@ impl NetworkmanagerTransitGatewayPeering {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl NetworkmanagerTransitGatewayPeering {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl NetworkmanagerTransitGatewayPeering {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -125,17 +136,26 @@ impl NetworkmanagerTransitGatewayPeering {
 
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edge_location` after provisioning.\n"]
     pub fn edge_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edge_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edge_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -145,37 +165,61 @@ impl NetworkmanagerTransitGatewayPeering {
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peering_type` after provisioning.\n"]
     pub fn peering_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peering_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peering_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_arn` after provisioning.\n"]
     pub fn transit_gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_peering_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_peering_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_peering_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.transit_gateway_peering_attachment_id",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -189,11 +233,15 @@ impl NetworkmanagerTransitGatewayPeering {
 
 impl Referable for NetworkmanagerTransitGatewayPeering {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkmanagerTransitGatewayPeering { }
+impl Resource for NetworkmanagerTransitGatewayPeering {}
 
 impl ToListMappable for NetworkmanagerTransitGatewayPeering {
     type O = ListRef<NetworkmanagerTransitGatewayPeeringRef>;
@@ -228,22 +276,23 @@ pub struct BuildNetworkmanagerTransitGatewayPeering {
 
 impl BuildNetworkmanagerTransitGatewayPeering {
     pub fn build(self, stack: &mut Stack) -> NetworkmanagerTransitGatewayPeering {
-        let out = NetworkmanagerTransitGatewayPeering(Rc::new(NetworkmanagerTransitGatewayPeering_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(NetworkmanagerTransitGatewayPeeringData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                core_network_id: self.core_network_id,
-                id: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-                transit_gateway_arn: self.transit_gateway_arn,
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            NetworkmanagerTransitGatewayPeering(Rc::new(NetworkmanagerTransitGatewayPeering_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(NetworkmanagerTransitGatewayPeeringData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    core_network_id: self.core_network_id,
+                    id: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                    transit_gateway_arn: self.transit_gateway_arn,
+                    timeouts: core::default::Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -256,10 +305,7 @@ pub struct NetworkmanagerTransitGatewayPeeringRef {
 
 impl Ref for NetworkmanagerTransitGatewayPeeringRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -279,17 +325,26 @@ impl NetworkmanagerTransitGatewayPeeringRef {
 
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edge_location` after provisioning.\n"]
     pub fn edge_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edge_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edge_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -299,37 +354,61 @@ impl NetworkmanagerTransitGatewayPeeringRef {
 
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peering_type` after provisioning.\n"]
     pub fn peering_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peering_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peering_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_arn` after provisioning.\n"]
     pub fn transit_gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_peering_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_peering_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_peering_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.transit_gateway_peering_attachment_id",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]

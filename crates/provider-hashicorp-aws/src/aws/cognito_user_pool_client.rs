@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CognitoUserPoolClientData {
@@ -98,7 +98,8 @@ impl CognitoUserPoolClient {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -111,7 +112,7 @@ impl CognitoUserPoolClient {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -122,12 +123,22 @@ impl CognitoUserPoolClient {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -145,7 +156,10 @@ impl CognitoUserPoolClient {
 
     #[doc = "Set the field `allowed_oauth_flows_user_pool_client`.\n"]
     pub fn set_allowed_oauth_flows_user_pool_client(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().allowed_oauth_flows_user_pool_client = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .allowed_oauth_flows_user_pool_client = Some(v.into());
         self
     }
 
@@ -174,8 +188,14 @@ impl CognitoUserPoolClient {
     }
 
     #[doc = "Set the field `enable_propagate_additional_user_context_data`.\n"]
-    pub fn set_enable_propagate_additional_user_context_data(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().enable_propagate_additional_user_context_data = Some(v.into());
+    pub fn set_enable_propagate_additional_user_context_data(
+        self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .enable_propagate_additional_user_context_data = Some(v.into());
         self
     }
 
@@ -227,15 +247,17 @@ impl CognitoUserPoolClient {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `supported_identity_providers`.\n"]
-    pub fn set_supported_identity_providers(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_supported_identity_providers(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().supported_identity_providers = Some(v.into());
         self
     }
@@ -254,10 +276,10 @@ impl CognitoUserPoolClient {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().analytics_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.analytics_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -270,10 +292,10 @@ impl CognitoUserPoolClient {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().refresh_token_rotation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.refresh_token_rotation = Some(d);
-            },
+            }
         }
         self
     }
@@ -286,76 +308,114 @@ impl CognitoUserPoolClient {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().token_validity_units = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.token_validity_units = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `access_token_validity` after provisioning.\n"]
     pub fn access_token_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_token_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_token_validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_oauth_flows` after provisioning.\n"]
     pub fn allowed_oauth_flows(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_oauth_flows", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_oauth_flows", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_oauth_flows_user_pool_client` after provisioning.\n"]
     pub fn allowed_oauth_flows_user_pool_client(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allowed_oauth_flows_user_pool_client", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.allowed_oauth_flows_user_pool_client",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_oauth_scopes` after provisioning.\n"]
     pub fn allowed_oauth_scopes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_oauth_scopes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_oauth_scopes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auth_session_validity` after provisioning.\n"]
     pub fn auth_session_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auth_session_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auth_session_validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `callback_urls` after provisioning.\n"]
     pub fn callback_urls(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.callback_urls", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.callback_urls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_redirect_uri` after provisioning.\n"]
     pub fn default_redirect_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_redirect_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_redirect_uri", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `enable_propagate_additional_user_context_data` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `enable_propagate_additional_user_context_data` after provisioning.\n"]
     pub fn enable_propagate_additional_user_context_data(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.enable_propagate_additional_user_context_data", self.extract_ref()),
+            format!(
+                "{}.enable_propagate_additional_user_context_data",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `enable_token_revocation` after provisioning.\n"]
     pub fn enable_token_revocation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_token_revocation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_token_revocation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `explicit_auth_flows` after provisioning.\n"]
     pub fn explicit_auth_flows(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.explicit_auth_flows", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.explicit_auth_flows", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `generate_secret` after provisioning.\n"]
     pub fn generate_secret(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.generate_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.generate_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -365,78 +425,124 @@ impl CognitoUserPoolClient {
 
     #[doc = "Get a reference to the value of field `id_token_validity` after provisioning.\n"]
     pub fn id_token_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.id_token_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.id_token_validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logout_urls` after provisioning.\n"]
     pub fn logout_urls(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.logout_urls", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.logout_urls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prevent_user_existence_errors` after provisioning.\n"]
     pub fn prevent_user_existence_errors(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prevent_user_existence_errors", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prevent_user_existence_errors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_attributes` after provisioning.\n"]
     pub fn read_attributes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.read_attributes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.read_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `refresh_token_validity` after provisioning.\n"]
     pub fn refresh_token_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_token_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_token_validity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_identity_providers` after provisioning.\n"]
     pub fn supported_identity_providers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.supported_identity_providers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.supported_identity_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_attributes` after provisioning.\n"]
     pub fn write_attributes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.write_attributes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.write_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `analytics_configuration` after provisioning.\n"]
-    pub fn analytics_configuration(&self) -> ListRef<CognitoUserPoolClientAnalyticsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.analytics_configuration", self.extract_ref()))
+    pub fn analytics_configuration(
+        &self,
+    ) -> ListRef<CognitoUserPoolClientAnalyticsConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.analytics_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `refresh_token_rotation` after provisioning.\n"]
-    pub fn refresh_token_rotation(&self) -> ListRef<CognitoUserPoolClientRefreshTokenRotationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.refresh_token_rotation", self.extract_ref()))
+    pub fn refresh_token_rotation(
+        &self,
+    ) -> ListRef<CognitoUserPoolClientRefreshTokenRotationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.refresh_token_rotation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_validity_units` after provisioning.\n"]
     pub fn token_validity_units(&self) -> ListRef<CognitoUserPoolClientTokenValidityUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.token_validity_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.token_validity_units", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CognitoUserPoolClient {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CognitoUserPoolClient { }
+impl Resource for CognitoUserPoolClient {}
 
 impl ToListMappable for CognitoUserPoolClient {
     type O = ListRef<CognitoUserPoolClientRef>;
@@ -518,10 +624,7 @@ pub struct CognitoUserPoolClientRef {
 
 impl Ref for CognitoUserPoolClientRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -536,66 +639,104 @@ impl CognitoUserPoolClientRef {
 
     #[doc = "Get a reference to the value of field `access_token_validity` after provisioning.\n"]
     pub fn access_token_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_token_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_token_validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_oauth_flows` after provisioning.\n"]
     pub fn allowed_oauth_flows(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_oauth_flows", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_oauth_flows", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_oauth_flows_user_pool_client` after provisioning.\n"]
     pub fn allowed_oauth_flows_user_pool_client(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allowed_oauth_flows_user_pool_client", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.allowed_oauth_flows_user_pool_client",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_oauth_scopes` after provisioning.\n"]
     pub fn allowed_oauth_scopes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_oauth_scopes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_oauth_scopes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auth_session_validity` after provisioning.\n"]
     pub fn auth_session_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auth_session_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auth_session_validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `callback_urls` after provisioning.\n"]
     pub fn callback_urls(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.callback_urls", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.callback_urls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_redirect_uri` after provisioning.\n"]
     pub fn default_redirect_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_redirect_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_redirect_uri", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `enable_propagate_additional_user_context_data` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `enable_propagate_additional_user_context_data` after provisioning.\n"]
     pub fn enable_propagate_additional_user_context_data(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.enable_propagate_additional_user_context_data", self.extract_ref()),
+            format!(
+                "{}.enable_propagate_additional_user_context_data",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `enable_token_revocation` after provisioning.\n"]
     pub fn enable_token_revocation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_token_revocation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_token_revocation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `explicit_auth_flows` after provisioning.\n"]
     pub fn explicit_auth_flows(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.explicit_auth_flows", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.explicit_auth_flows", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `generate_secret` after provisioning.\n"]
     pub fn generate_secret(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.generate_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.generate_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -605,68 +746,110 @@ impl CognitoUserPoolClientRef {
 
     #[doc = "Get a reference to the value of field `id_token_validity` after provisioning.\n"]
     pub fn id_token_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.id_token_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.id_token_validity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logout_urls` after provisioning.\n"]
     pub fn logout_urls(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.logout_urls", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.logout_urls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `prevent_user_existence_errors` after provisioning.\n"]
     pub fn prevent_user_existence_errors(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prevent_user_existence_errors", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.prevent_user_existence_errors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_attributes` after provisioning.\n"]
     pub fn read_attributes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.read_attributes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.read_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `refresh_token_validity` after provisioning.\n"]
     pub fn refresh_token_validity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_token_validity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_token_validity", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_identity_providers` after provisioning.\n"]
     pub fn supported_identity_providers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.supported_identity_providers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.supported_identity_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `write_attributes` after provisioning.\n"]
     pub fn write_attributes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.write_attributes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.write_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `analytics_configuration` after provisioning.\n"]
-    pub fn analytics_configuration(&self) -> ListRef<CognitoUserPoolClientAnalyticsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.analytics_configuration", self.extract_ref()))
+    pub fn analytics_configuration(
+        &self,
+    ) -> ListRef<CognitoUserPoolClientAnalyticsConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.analytics_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `refresh_token_rotation` after provisioning.\n"]
-    pub fn refresh_token_rotation(&self) -> ListRef<CognitoUserPoolClientRefreshTokenRotationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.refresh_token_rotation", self.extract_ref()))
+    pub fn refresh_token_rotation(
+        &self,
+    ) -> ListRef<CognitoUserPoolClientRefreshTokenRotationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.refresh_token_rotation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_validity_units` after provisioning.\n"]
     pub fn token_validity_units(&self) -> ListRef<CognitoUserPoolClientTokenValidityUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.token_validity_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.token_validity_units", self.extract_ref()),
+        )
     }
 }
 
@@ -763,12 +946,18 @@ impl CognitoUserPoolClientAnalyticsConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
@@ -783,7 +972,10 @@ impl CognitoUserPoolClientAnalyticsConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `user_data_shared` after provisioning.\n"]
     pub fn user_data_shared(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_data_shared", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_data_shared", self.base),
+        )
     }
 }
 
@@ -854,7 +1046,10 @@ impl CognitoUserPoolClientRefreshTokenRotationElRef {
 
     #[doc = "Get a reference to the value of field `retry_grace_period_seconds` after provisioning.\n"]
     pub fn retry_grace_period_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retry_grace_period_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retry_grace_period_seconds", self.base),
+        )
     }
 }
 
@@ -943,7 +1138,10 @@ impl CognitoUserPoolClientTokenValidityUnitsElRef {
 
     #[doc = "Get a reference to the value of field `refresh_token` after provisioning.\n"]
     pub fn refresh_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.refresh_token", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.refresh_token", self.base),
+        )
     }
 }
 

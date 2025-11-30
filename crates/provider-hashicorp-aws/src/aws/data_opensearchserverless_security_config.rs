@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOpensearchserverlessSecurityConfigData {
@@ -44,8 +44,7 @@ impl DataOpensearchserverlessSecurityConfig {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -59,68 +58,87 @@ impl DataOpensearchserverlessSecurityConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().saml_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.saml_options = Some(d);
-            },
+            }
         }
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `config_version` after provisioning.\nThe version of the security configuration."]
+    #[doc = "Get a reference to the value of field `config_version` after provisioning.\nThe version of the security configuration."]
     pub fn config_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_date` after provisioning.\nThe date the configuration was created."]
+    #[doc = "Get a reference to the value of field `created_date` after provisioning.\nThe date the configuration was created."]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `description` after provisioning.\nThe description of the security configuration."]
+    #[doc = "Get a reference to the value of field `description` after provisioning.\nThe description of the security configuration."]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `id` after provisioning.\nThe unique identifier of the security configuration."]
+    #[doc = "Get a reference to the value of field `id` after provisioning.\nThe unique identifier of the security configuration."]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `last_modified_date` after provisioning.\nThe date the configuration was last modified."]
+    #[doc = "Get a reference to the value of field `last_modified_date` after provisioning.\nThe date the configuration was last modified."]
     pub fn last_modified_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\nThe type of security configuration."]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_options` after provisioning.\n"]
     pub fn saml_options(&self) -> ListRef<DataOpensearchserverlessSecurityConfigSamlOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.saml_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.saml_options", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOpensearchserverlessSecurityConfig {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOpensearchserverlessSecurityConfig { }
+impl Datasource for DataOpensearchserverlessSecurityConfig {}
 
 impl ToListMappable for DataOpensearchserverlessSecurityConfig {
     type O = ListRef<DataOpensearchserverlessSecurityConfigRef>;
@@ -153,19 +171,21 @@ pub struct BuildDataOpensearchserverlessSecurityConfig {
 
 impl BuildDataOpensearchserverlessSecurityConfig {
     pub fn build(self, stack: &mut Stack) -> DataOpensearchserverlessSecurityConfig {
-        let out = DataOpensearchserverlessSecurityConfig(Rc::new(DataOpensearchserverlessSecurityConfig_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOpensearchserverlessSecurityConfigData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: self.id,
-                region: core::default::Default::default(),
-                saml_options: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataOpensearchserverlessSecurityConfig(Rc::new(
+            DataOpensearchserverlessSecurityConfig_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOpensearchserverlessSecurityConfigData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: self.id,
+                    region: core::default::Default::default(),
+                    saml_options: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -178,10 +198,7 @@ pub struct DataOpensearchserverlessSecurityConfigRef {
 
 impl Ref for DataOpensearchserverlessSecurityConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -194,57 +211,72 @@ impl DataOpensearchserverlessSecurityConfigRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `config_version` after provisioning.\nThe version of the security configuration."]
+    #[doc = "Get a reference to the value of field `config_version` after provisioning.\nThe version of the security configuration."]
     pub fn config_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_version", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_date` after provisioning.\nThe date the configuration was created."]
+    #[doc = "Get a reference to the value of field `created_date` after provisioning.\nThe date the configuration was created."]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `description` after provisioning.\nThe description of the security configuration."]
+    #[doc = "Get a reference to the value of field `description` after provisioning.\nThe description of the security configuration."]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `id` after provisioning.\nThe unique identifier of the security configuration."]
+    #[doc = "Get a reference to the value of field `id` after provisioning.\nThe unique identifier of the security configuration."]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `last_modified_date` after provisioning.\nThe date the configuration was last modified."]
+    #[doc = "Get a reference to the value of field `last_modified_date` after provisioning.\nThe date the configuration was last modified."]
     pub fn last_modified_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\nThe type of security configuration."]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_options` after provisioning.\n"]
     pub fn saml_options(&self) -> ListRef<DataOpensearchserverlessSecurityConfigSamlOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.saml_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.saml_options", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataOpensearchserverlessSecurityConfigSamlOptionsEl {}
 
-impl DataOpensearchserverlessSecurityConfigSamlOptionsEl { }
+impl DataOpensearchserverlessSecurityConfigSamlOptionsEl {}
 
 impl ToListMappable for DataOpensearchserverlessSecurityConfigSamlOptionsEl {
     type O = BlockAssignable<DataOpensearchserverlessSecurityConfigSamlOptionsEl>;
@@ -272,7 +304,10 @@ pub struct DataOpensearchserverlessSecurityConfigSamlOptionsElRef {
 }
 
 impl Ref for DataOpensearchserverlessSecurityConfigSamlOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataOpensearchserverlessSecurityConfigSamlOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataOpensearchserverlessSecurityConfigSamlOptionsElRef {
         DataOpensearchserverlessSecurityConfigSamlOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -285,28 +320,33 @@ impl DataOpensearchserverlessSecurityConfigSamlOptionsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `group_attribute` after provisioning.\nGroup attribute for this SAML integration."]
+    #[doc = "Get a reference to the value of field `group_attribute` after provisioning.\nGroup attribute for this SAML integration."]
     pub fn group_attribute(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_attribute", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_attribute", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `metadata` after provisioning.\nThe XML IdP metadata file generated from your identity provider."]
+    #[doc = "Get a reference to the value of field `metadata` after provisioning.\nThe XML IdP metadata file generated from your identity provider."]
     pub fn metadata(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metadata", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `session_timeout` after provisioning.\nSession timeout, in minutes. Minimum is 5 minutes and maximum is 720 minutes (12 hours). Default is 60 minutes."]
+    #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\nSession timeout, in minutes. Minimum is 5 minutes and maximum is 720 minutes (12 hours). Default is 60 minutes."]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `user_attribute` after provisioning.\nUser attribute for this SAML integration."]
+    #[doc = "Get a reference to the value of field `user_attribute` after provisioning.\nUser attribute for this SAML integration."]
     pub fn user_attribute(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_attribute", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_attribute", self.base),
+        )
     }
 }
 

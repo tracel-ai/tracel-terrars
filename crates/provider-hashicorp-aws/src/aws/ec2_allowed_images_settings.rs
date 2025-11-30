@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Ec2AllowedImagesSettingsData {
@@ -57,7 +57,8 @@ impl Ec2AllowedImagesSettings {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl Ec2AllowedImagesSettings {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,59 +82,83 @@ impl Ec2AllowedImagesSettings {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `image_criterion`.\n"]
-    pub fn set_image_criterion(self, v: impl Into<BlockAssignable<Ec2AllowedImagesSettingsImageCriterionEl>>) -> Self {
+    pub fn set_image_criterion(
+        self,
+        v: impl Into<BlockAssignable<Ec2AllowedImagesSettingsImageCriterionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().image_criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.image_criterion = Some(d);
-            },
+            }
         }
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_criterion` after provisioning.\n"]
     pub fn image_criterion(&self) -> ListRef<Ec2AllowedImagesSettingsImageCriterionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_criterion", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_criterion", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Ec2AllowedImagesSettings {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Ec2AllowedImagesSettings { }
+impl Resource for Ec2AllowedImagesSettings {}
 
 impl ToListMappable for Ec2AllowedImagesSettings {
     type O = ListRef<Ec2AllowedImagesSettingsRef>;
@@ -192,10 +217,7 @@ pub struct Ec2AllowedImagesSettingsRef {
 
 impl Ref for Ec2AllowedImagesSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -208,20 +230,28 @@ impl Ec2AllowedImagesSettingsRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_criterion` after provisioning.\n"]
     pub fn image_criterion(&self) -> ListRef<Ec2AllowedImagesSettingsImageCriterionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_criterion", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_criterion", self.extract_ref()),
+        )
     }
 }
 
@@ -267,7 +297,10 @@ pub struct Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef {
 }
 
 impl Ref for Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef {
-    fn new(shared: StackShared, base: String) -> Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef {
         Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef {
             shared: shared,
             base: base.to_string(),
@@ -282,7 +315,10 @@ impl Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef {
 
     #[doc = "Get a reference to the value of field `maximum_days_since_created` after provisioning.\n"]
     pub fn maximum_days_since_created(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_days_since_created", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_days_since_created", self.base),
+        )
     }
 }
 
@@ -346,16 +382,19 @@ impl Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionElRef {
 
     #[doc = "Get a reference to the value of field `maximum_days_since_deprecated` after provisioning.\n"]
     pub fn maximum_days_since_deprecated(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_days_since_deprecated", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_days_since_deprecated", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct Ec2AllowedImagesSettingsImageCriterionElDynamic {
-    creation_date_condition: Option<DynamicBlock<Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionEl>>,
-    deprecation_time_condition: Option<
-        DynamicBlock<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionEl>,
-    >,
+    creation_date_condition:
+        Option<DynamicBlock<Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionEl>>,
+    deprecation_time_condition:
+        Option<DynamicBlock<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionEl>>,
 }
 
 #[derive(Serialize)]
@@ -367,9 +406,11 @@ pub struct Ec2AllowedImagesSettingsImageCriterionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     marketplace_product_codes: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    creation_date_condition: Option<Vec<Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionEl>>,
+    creation_date_condition:
+        Option<Vec<Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    deprecation_time_condition: Option<Vec<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionEl>>,
+    deprecation_time_condition:
+        Option<Vec<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionEl>>,
     dynamic: Ec2AllowedImagesSettingsImageCriterionElDynamic,
 }
 
@@ -387,7 +428,10 @@ impl Ec2AllowedImagesSettingsImageCriterionEl {
     }
 
     #[doc = "Set the field `marketplace_product_codes`.\n"]
-    pub fn set_marketplace_product_codes(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_marketplace_product_codes(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.marketplace_product_codes = Some(v.into());
         self
     }
@@ -400,10 +444,10 @@ impl Ec2AllowedImagesSettingsImageCriterionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.creation_date_condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.creation_date_condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -411,15 +455,17 @@ impl Ec2AllowedImagesSettingsImageCriterionEl {
     #[doc = "Set the field `deprecation_time_condition`.\n"]
     pub fn set_deprecation_time_condition(
         mut self,
-        v: impl Into<BlockAssignable<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionEl>>,
+        v: impl Into<
+            BlockAssignable<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.deprecation_time_condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.deprecation_time_condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -478,24 +524,38 @@ impl Ec2AllowedImagesSettingsImageCriterionElRef {
 
     #[doc = "Get a reference to the value of field `image_providers` after provisioning.\n"]
     pub fn image_providers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.image_providers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.image_providers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `marketplace_product_codes` after provisioning.\n"]
     pub fn marketplace_product_codes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.marketplace_product_codes", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.marketplace_product_codes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_date_condition` after provisioning.\n"]
-    pub fn creation_date_condition(&self) -> ListRef<Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.creation_date_condition", self.base))
+    pub fn creation_date_condition(
+        &self,
+    ) -> ListRef<Ec2AllowedImagesSettingsImageCriterionElCreationDateConditionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.creation_date_condition", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deprecation_time_condition` after provisioning.\n"]
     pub fn deprecation_time_condition(
         &self,
     ) -> ListRef<Ec2AllowedImagesSettingsImageCriterionElDeprecationTimeConditionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deprecation_time_condition", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deprecation_time_condition", self.base),
+        )
     }
 }
 

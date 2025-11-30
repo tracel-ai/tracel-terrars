@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ElasticBeanstalkApplicationData {
@@ -65,7 +65,8 @@ impl ElasticBeanstalkApplication {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl ElasticBeanstalkApplication {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl ElasticBeanstalkApplication {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +121,7 @@ impl ElasticBeanstalkApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,10 +147,10 @@ impl ElasticBeanstalkApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().appversion_lifecycle = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.appversion_lifecycle = Some(d);
-            },
+            }
         }
         self
     }
@@ -152,7 +162,10 @@ impl ElasticBeanstalkApplication {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -162,38 +175,58 @@ impl ElasticBeanstalkApplication {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `appversion_lifecycle` after provisioning.\n"]
-    pub fn appversion_lifecycle(&self) -> ListRef<ElasticBeanstalkApplicationAppversionLifecycleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.appversion_lifecycle", self.extract_ref()))
+    pub fn appversion_lifecycle(
+        &self,
+    ) -> ListRef<ElasticBeanstalkApplicationAppversionLifecycleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.appversion_lifecycle", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ElasticBeanstalkApplication {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ElasticBeanstalkApplication { }
+impl Resource for ElasticBeanstalkApplication {}
 
 impl ToListMappable for ElasticBeanstalkApplication {
     type O = ListRef<ElasticBeanstalkApplicationRef>;
@@ -256,10 +289,7 @@ pub struct ElasticBeanstalkApplicationRef {
 
 impl Ref for ElasticBeanstalkApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -279,7 +309,10 @@ impl ElasticBeanstalkApplicationRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -289,28 +322,44 @@ impl ElasticBeanstalkApplicationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `appversion_lifecycle` after provisioning.\n"]
-    pub fn appversion_lifecycle(&self) -> ListRef<ElasticBeanstalkApplicationAppversionLifecycleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.appversion_lifecycle", self.extract_ref()))
+    pub fn appversion_lifecycle(
+        &self,
+    ) -> ListRef<ElasticBeanstalkApplicationAppversionLifecycleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.appversion_lifecycle", self.extract_ref()),
+        )
     }
 }
 
@@ -379,7 +428,10 @@ pub struct ElasticBeanstalkApplicationAppversionLifecycleElRef {
 }
 
 impl Ref for ElasticBeanstalkApplicationAppversionLifecycleElRef {
-    fn new(shared: StackShared, base: String) -> ElasticBeanstalkApplicationAppversionLifecycleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ElasticBeanstalkApplicationAppversionLifecycleElRef {
         ElasticBeanstalkApplicationAppversionLifecycleElRef {
             shared: shared,
             base: base.to_string(),
@@ -394,12 +446,18 @@ impl ElasticBeanstalkApplicationAppversionLifecycleElRef {
 
     #[doc = "Get a reference to the value of field `delete_source_from_s3` after provisioning.\n"]
     pub fn delete_source_from_s3(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_source_from_s3", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_source_from_s3", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_age_in_days` after provisioning.\n"]
     pub fn max_age_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_age_in_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_age_in_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_count` after provisioning.\n"]

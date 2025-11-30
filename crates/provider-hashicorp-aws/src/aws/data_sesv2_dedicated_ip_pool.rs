@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSesv2DedicatedIpPoolData {
@@ -51,8 +51,7 @@ impl DataSesv2DedicatedIpPool {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,7 +70,10 @@ impl DataSesv2DedicatedIpPool {
 
     #[doc = "Get a reference to the value of field `dedicated_ips` after provisioning.\n"]
     pub fn dedicated_ips(&self) -> ListRef<DataSesv2DedicatedIpPoolDedicatedIpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dedicated_ips", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dedicated_ips", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -81,33 +83,48 @@ impl DataSesv2DedicatedIpPool {
 
     #[doc = "Get a reference to the value of field `pool_name` after provisioning.\n"]
     pub fn pool_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pool_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pool_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_mode` after provisioning.\n"]
     pub fn scaling_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSesv2DedicatedIpPool {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSesv2DedicatedIpPool { }
+impl Datasource for DataSesv2DedicatedIpPool {}
 
 impl ToListMappable for DataSesv2DedicatedIpPool {
     type O = ListRef<DataSesv2DedicatedIpPoolRef>;
@@ -165,10 +182,7 @@ pub struct DataSesv2DedicatedIpPoolRef {
 
 impl Ref for DataSesv2DedicatedIpPoolRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -188,7 +202,10 @@ impl DataSesv2DedicatedIpPoolRef {
 
     #[doc = "Get a reference to the value of field `dedicated_ips` after provisioning.\n"]
     pub fn dedicated_ips(&self) -> ListRef<DataSesv2DedicatedIpPoolDedicatedIpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dedicated_ips", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dedicated_ips", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -198,23 +215,34 @@ impl DataSesv2DedicatedIpPoolRef {
 
     #[doc = "Get a reference to the value of field `pool_name` after provisioning.\n"]
     pub fn pool_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pool_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pool_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_mode` after provisioning.\n"]
     pub fn scaling_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -298,11 +326,17 @@ impl DataSesv2DedicatedIpPoolDedicatedIpsElRef {
 
     #[doc = "Get a reference to the value of field `warmup_percentage` after provisioning.\n"]
     pub fn warmup_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warmup_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warmup_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warmup_status` after provisioning.\n"]
     pub fn warmup_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warmup_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warmup_status", self.base),
+        )
     }
 }

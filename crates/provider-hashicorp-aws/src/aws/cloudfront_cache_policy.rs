@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontCachePolicyData {
@@ -26,9 +26,8 @@ struct CloudfrontCachePolicyData {
     min_ttl: Option<PrimField<f64>>,
     name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    parameters_in_cache_key_and_forwarded_to_origin: Option<
-        Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl>,
-    >,
+    parameters_in_cache_key_and_forwarded_to_origin:
+        Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl>>,
     dynamic: CloudfrontCachePolicyDynamic,
 }
 
@@ -67,7 +66,8 @@ impl CloudfrontCachePolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +80,7 @@ impl CloudfrontCachePolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +91,22 @@ impl CloudfrontCachePolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -137,11 +147,18 @@ impl CloudfrontCachePolicy {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().parameters_in_cache_key_and_forwarded_to_origin = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .parameters_in_cache_key_and_forwarded_to_origin = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.parameters_in_cache_key_and_forwarded_to_origin = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .parameters_in_cache_key_and_forwarded_to_origin = Some(d);
+            }
         }
         self
     }
@@ -153,17 +170,26 @@ impl CloudfrontCachePolicy {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_ttl` after provisioning.\n"]
     pub fn default_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_ttl", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_ttl", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -173,38 +199,53 @@ impl CloudfrontCachePolicy {
 
     #[doc = "Get a reference to the value of field `max_ttl` after provisioning.\n"]
     pub fn max_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_ttl", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_ttl", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_ttl` after provisioning.\n"]
     pub fn min_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_ttl", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_ttl", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `parameters_in_cache_key_and_forwarded_to_origin` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `parameters_in_cache_key_and_forwarded_to_origin` after provisioning.\n"]
     pub fn parameters_in_cache_key_and_forwarded_to_origin(
         &self,
     ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef> {
         ListRef::new(
             self.shared().clone(),
-            format!("{}.parameters_in_cache_key_and_forwarded_to_origin", self.extract_ref()),
+            format!(
+                "{}.parameters_in_cache_key_and_forwarded_to_origin",
+                self.extract_ref()
+            ),
         )
     }
 }
 
 impl Referable for CloudfrontCachePolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontCachePolicy { }
+impl Resource for CloudfrontCachePolicy {}
 
 impl ToListMappable for CloudfrontCachePolicy {
     type O = ListRef<CloudfrontCachePolicyRef>;
@@ -267,10 +308,7 @@ pub struct CloudfrontCachePolicyRef {
 
 impl Ref for CloudfrontCachePolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -290,17 +328,26 @@ impl CloudfrontCachePolicyRef {
 
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_ttl` after provisioning.\n"]
     pub fn default_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_ttl", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_ttl", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -310,27 +357,38 @@ impl CloudfrontCachePolicyRef {
 
     #[doc = "Get a reference to the value of field `max_ttl` after provisioning.\n"]
     pub fn max_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_ttl", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_ttl", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_ttl` after provisioning.\n"]
     pub fn min_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_ttl", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_ttl", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `parameters_in_cache_key_and_forwarded_to_origin` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `parameters_in_cache_key_and_forwarded_to_origin` after provisioning.\n"]
     pub fn parameters_in_cache_key_and_forwarded_to_origin(
         &self,
     ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef> {
         ListRef::new(
             self.shared().clone(),
-            format!("{}.parameters_in_cache_key_and_forwarded_to_origin", self.extract_ref()),
+            format!(
+                "{}.parameters_in_cache_key_and_forwarded_to_origin",
+                self.extract_ref()
+            ),
         )
     }
 }
@@ -349,9 +407,12 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfi
     }
 }
 
-impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl {
-    type O =
-        BlockAssignable<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl>;
+impl ToListMappable
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl
+{
+    type O = BlockAssignable<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -362,26 +423,34 @@ impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToO
     }
 }
 
-pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl {}
+pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl
+{}
 
 impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl {
-    pub fn build(self) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl
+    {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl {
             items: core::default::Default::default(),
         }
     }
 }
 
-pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef {
+pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef {
+impl Ref
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef {
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef
+    {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -403,7 +472,9 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfi
 #[derive(Serialize, Default)]
 struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElDynamic {
     cookies: Option<
-        DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl>,
+        DynamicBlock<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl,
+        >,
     >,
 }
 
@@ -411,7 +482,11 @@ struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesCon
 pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl {
     cookie_behavior: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cookies: Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl>>,
+    cookies: Option<
+        Vec<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesEl,
+        >,
+    >,
     dynamic: CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElDynamic,
 }
 
@@ -431,17 +506,21 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cookies = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cookies = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl {
-    type O = BlockAssignable<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl>;
+impl ToListMappable
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl
+{
+    type O = BlockAssignable<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -458,7 +537,9 @@ pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElC
 }
 
 impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl {
-    pub fn build(self) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl {
             cookie_behavior: self.cookie_behavior,
             cookies: core::default::Default::default(),
@@ -491,13 +572,18 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfi
 
     #[doc = "Get a reference to the value of field `cookie_behavior` after provisioning.\n"]
     pub fn cookie_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cookie_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cookie_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies` after provisioning.\n"]
     pub fn cookies(
         &self,
-    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef> {
+    ) -> ListRef<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElCookiesElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.cookies", self.base))
     }
 }
@@ -516,9 +602,12 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfi
     }
 }
 
-impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl {
-    type O =
-        BlockAssignable<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl>;
+impl ToListMappable
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl
+{
+    type O = BlockAssignable<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -529,26 +618,34 @@ impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToO
     }
 }
 
-pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl {}
+pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl
+{}
 
 impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl {
-    pub fn build(self) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl
+    {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl {
             items: core::default::Default::default(),
         }
     }
 }
 
-pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef {
+pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef {
+impl Ref
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef {
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef
+    {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef {
             shared: shared,
             base: base.to_string(),
@@ -570,7 +667,9 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfi
 #[derive(Serialize, Default)]
 struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElDynamic {
     headers: Option<
-        DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl>,
+        DynamicBlock<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl,
+        >,
     >,
 }
 
@@ -579,7 +678,11 @@ pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeader
     #[serde(skip_serializing_if = "Option::is_none")]
     header_behavior: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    headers: Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl>>,
+    headers: Option<
+        Vec<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersEl,
+        >,
+    >,
     dynamic: CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElDynamic,
 }
 
@@ -605,17 +708,21 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.headers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.headers = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl {
-    type O = BlockAssignable<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl>;
+impl ToListMappable
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl
+{
+    type O = BlockAssignable<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -629,7 +736,9 @@ impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToO
 pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl {}
 
 impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl {
-    pub fn build(self) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl {
             header_behavior: core::default::Default::default(),
             headers: core::default::Default::default(),
@@ -662,19 +771,25 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfi
 
     #[doc = "Get a reference to the value of field `header_behavior` after provisioning.\n"]
     pub fn header_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.header_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.header_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `headers` after provisioning.\n"]
     pub fn headers(
         &self,
-    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef> {
+    ) -> ListRef<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElHeadersElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.headers", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsEl {
+pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
@@ -702,7 +817,8 @@ impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToO
     }
 }
 
-pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsEl {}
+pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsEl
+{}
 
 impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsEl {
     pub fn build(
@@ -714,7 +830,8 @@ impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQuerySt
     }
 }
 
-pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsElRef {
+pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -777,17 +894,21 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStrings
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_strings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_strings = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl {
-    type O = BlockAssignable<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl>;
+impl ToListMappable
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl
+{
+    type O = BlockAssignable<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -798,13 +919,16 @@ impl ToListMappable for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToO
     }
 }
 
-pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl {
+pub struct BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl
+{
     #[doc = ""]
     pub query_string_behavior: PrimField<String>,
 }
 
 impl BuildCloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl {
-    pub fn build(self) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl {
+    pub fn build(
+        self,
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl {
             query_string_behavior: self.query_string_behavior,
             query_strings: core::default::Default::default(),
@@ -818,11 +942,14 @@ pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryS
     base: String,
 }
 
-impl Ref for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef {
+impl Ref
+    for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef {
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef
+    {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -837,7 +964,10 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStrings
 
     #[doc = "Get a reference to the value of field `query_string_behavior` after provisioning.\n"]
     pub fn query_string_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_string_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_string_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_strings` after provisioning.\n"]
@@ -845,21 +975,30 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStrings
         &self,
     ) -> ListRef<
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElQueryStringsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.query_strings", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_strings", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElDynamic {
     cookies_config: Option<
-        DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl>,
+        DynamicBlock<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl,
+        >,
     >,
     headers_config: Option<
-        DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl>,
+        DynamicBlock<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl,
+        >,
     >,
     query_strings_config: Option<
-        DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl>,
+        DynamicBlock<
+            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl,
+        >,
     >,
 }
 
@@ -870,9 +1009,11 @@ pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enable_accept_encoding_gzip: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cookies_config: Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl>>,
+    cookies_config:
+        Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    headers_config: Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl>>,
+    headers_config:
+        Option<Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     query_strings_config: Option<
         Vec<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl>,
@@ -896,22 +1037,19 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl {
     #[doc = "Set the field `cookies_config`.\n"]
     pub fn set_cookies_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cookies_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cookies_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -919,22 +1057,19 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl {
     #[doc = "Set the field `headers_config`.\n"]
     pub fn set_headers_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.headers_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.headers_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -942,22 +1077,19 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl {
     #[doc = "Set the field `query_strings_config`.\n"]
     pub fn set_query_strings_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_strings_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_strings_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -996,7 +1128,10 @@ pub struct CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef {
 }
 
 impl Ref for CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef {
         CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef {
             shared: shared,
             base: base.to_string(),
@@ -1011,39 +1146,57 @@ impl CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElRef {
 
     #[doc = "Get a reference to the value of field `enable_accept_encoding_brotli` after provisioning.\n"]
     pub fn enable_accept_encoding_brotli(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_accept_encoding_brotli", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_accept_encoding_brotli", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_accept_encoding_gzip` after provisioning.\n"]
     pub fn enable_accept_encoding_gzip(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_accept_encoding_gzip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_accept_encoding_gzip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cookies_config` after provisioning.\n"]
     pub fn cookies_config(
         &self,
-    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cookies_config", self.base))
+    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElCookiesConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cookies_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `headers_config` after provisioning.\n"]
     pub fn headers_config(
         &self,
-    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.headers_config", self.base))
+    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElHeadersConfigElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.headers_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_strings_config` after provisioning.\n"]
     pub fn query_strings_config(
         &self,
-    ) -> ListRef<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_strings_config", self.base))
+    ) -> ListRef<
+        CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginElQueryStringsConfigElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_strings_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudfrontCachePolicyDynamic {
-    parameters_in_cache_key_and_forwarded_to_origin: Option<
-        DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl>,
-    >,
+    parameters_in_cache_key_and_forwarded_to_origin:
+        Option<DynamicBlock<CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginEl>>,
 }

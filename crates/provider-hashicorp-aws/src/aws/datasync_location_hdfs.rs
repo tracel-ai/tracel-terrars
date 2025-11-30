@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncLocationHdfsData {
@@ -87,7 +87,8 @@ impl DatasyncLocationHdfs {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -100,7 +101,7 @@ impl DatasyncLocationHdfs {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -111,12 +112,22 @@ impl DatasyncLocationHdfs {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -174,8 +185,7 @@ impl DatasyncLocationHdfs {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -212,34 +222,43 @@ impl DatasyncLocationHdfs {
     }
 
     #[doc = "Set the field `name_node`.\n"]
-    pub fn set_name_node(self, v: impl Into<BlockAssignable<DatasyncLocationHdfsNameNodeEl>>) -> Self {
+    pub fn set_name_node(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationHdfsNameNodeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().name_node = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.name_node = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `qop_configuration`.\n"]
-    pub fn set_qop_configuration(self, v: impl Into<BlockAssignable<DatasyncLocationHdfsQopConfigurationEl>>) -> Self {
+    pub fn set_qop_configuration(
+        self,
+        v: impl Into<BlockAssignable<DatasyncLocationHdfsQopConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().qop_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.qop_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.agent_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.agent_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -249,12 +268,18 @@ impl DatasyncLocationHdfs {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_size` after provisioning.\n"]
     pub fn block_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -264,63 +289,98 @@ impl DatasyncLocationHdfs {
 
     #[doc = "Get a reference to the value of field `kerberos_keytab` after provisioning.\n"]
     pub fn kerberos_keytab(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_keytab", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_keytab", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_keytab_base64` after provisioning.\n"]
     pub fn kerberos_keytab_base64(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_keytab_base64", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_keytab_base64", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_krb5_conf` after provisioning.\n"]
     pub fn kerberos_krb5_conf(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_krb5_conf", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_krb5_conf", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_krb5_conf_base64` after provisioning.\n"]
     pub fn kerberos_krb5_conf_base64(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_krb5_conf_base64", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_krb5_conf_base64", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_principal` after provisioning.\n"]
     pub fn kerberos_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_principal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_provider_uri` after provisioning.\n"]
     pub fn kms_key_provider_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_provider_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_provider_uri", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_factor` after provisioning.\n"]
     pub fn replication_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_factor", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replication_factor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `simple_user` after provisioning.\n"]
     pub fn simple_user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.simple_user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.simple_user", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -330,17 +390,24 @@ impl DatasyncLocationHdfs {
 
     #[doc = "Get a reference to the value of field `qop_configuration` after provisioning.\n"]
     pub fn qop_configuration(&self) -> ListRef<DatasyncLocationHdfsQopConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.qop_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.qop_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncLocationHdfs {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncLocationHdfs { }
+impl Resource for DatasyncLocationHdfs {}
 
 impl ToListMappable for DatasyncLocationHdfs {
     type O = ListRef<DatasyncLocationHdfsRef>;
@@ -414,10 +481,7 @@ pub struct DatasyncLocationHdfsRef {
 
 impl Ref for DatasyncLocationHdfsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -432,7 +496,10 @@ impl DatasyncLocationHdfsRef {
 
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.agent_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.agent_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -442,12 +509,18 @@ impl DatasyncLocationHdfsRef {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_size` after provisioning.\n"]
     pub fn block_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -457,63 +530,98 @@ impl DatasyncLocationHdfsRef {
 
     #[doc = "Get a reference to the value of field `kerberos_keytab` after provisioning.\n"]
     pub fn kerberos_keytab(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_keytab", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_keytab", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_keytab_base64` after provisioning.\n"]
     pub fn kerberos_keytab_base64(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_keytab_base64", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_keytab_base64", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_krb5_conf` after provisioning.\n"]
     pub fn kerberos_krb5_conf(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_krb5_conf", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_krb5_conf", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_krb5_conf_base64` after provisioning.\n"]
     pub fn kerberos_krb5_conf_base64(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_krb5_conf_base64", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_krb5_conf_base64", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_principal` after provisioning.\n"]
     pub fn kerberos_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kerberos_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kerberos_principal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_provider_uri` after provisioning.\n"]
     pub fn kms_key_provider_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_provider_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_provider_uri", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replication_factor` after provisioning.\n"]
     pub fn replication_factor(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replication_factor", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replication_factor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `simple_user` after provisioning.\n"]
     pub fn simple_user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.simple_user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.simple_user", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdirectory", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
@@ -523,7 +631,10 @@ impl DatasyncLocationHdfsRef {
 
     #[doc = "Get a reference to the value of field `qop_configuration` after provisioning.\n"]
     pub fn qop_configuration(&self) -> ListRef<DatasyncLocationHdfsQopConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.qop_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.qop_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -533,7 +644,7 @@ pub struct DatasyncLocationHdfsNameNodeEl {
     port: PrimField<f64>,
 }
 
-impl DatasyncLocationHdfsNameNodeEl { }
+impl DatasyncLocationHdfsNameNodeEl {}
 
 impl ToListMappable for DatasyncLocationHdfsNameNodeEl {
     type O = BlockAssignable<DatasyncLocationHdfsNameNodeEl>;
@@ -659,12 +770,18 @@ impl DatasyncLocationHdfsQopConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `data_transfer_protection` after provisioning.\n"]
     pub fn data_transfer_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_transfer_protection", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_transfer_protection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rpc_protection` after provisioning.\n"]
     pub fn rpc_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rpc_protection", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rpc_protection", self.base),
+        )
     }
 }
 

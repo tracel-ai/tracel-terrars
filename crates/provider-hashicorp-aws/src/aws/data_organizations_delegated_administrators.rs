@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOrganizationsDelegatedAdministratorsData {
@@ -58,7 +58,10 @@ impl DataOrganizationsDelegatedAdministrators {
     pub fn delegated_administrators(
         &self,
     ) -> SetRef<DataOrganizationsDelegatedAdministratorsDelegatedAdministratorsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.delegated_administrators", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.delegated_administrators", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -68,17 +71,24 @@ impl DataOrganizationsDelegatedAdministrators {
 
     #[doc = "Get a reference to the value of field `service_principal` after provisioning.\n"]
     pub fn service_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_principal", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOrganizationsDelegatedAdministrators {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOrganizationsDelegatedAdministrators { }
+impl Datasource for DataOrganizationsDelegatedAdministrators {}
 
 impl ToListMappable for DataOrganizationsDelegatedAdministrators {
     type O = ListRef<DataOrganizationsDelegatedAdministratorsRef>;
@@ -109,17 +119,19 @@ pub struct BuildDataOrganizationsDelegatedAdministrators {
 
 impl BuildDataOrganizationsDelegatedAdministrators {
     pub fn build(self, stack: &mut Stack) -> DataOrganizationsDelegatedAdministrators {
-        let out = DataOrganizationsDelegatedAdministrators(Rc::new(DataOrganizationsDelegatedAdministrators_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOrganizationsDelegatedAdministratorsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                service_principal: core::default::Default::default(),
-            }),
-        }));
+        let out = DataOrganizationsDelegatedAdministrators(Rc::new(
+            DataOrganizationsDelegatedAdministrators_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOrganizationsDelegatedAdministratorsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    service_principal: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -132,10 +144,7 @@ pub struct DataOrganizationsDelegatedAdministratorsRef {
 
 impl Ref for DataOrganizationsDelegatedAdministratorsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -152,7 +161,10 @@ impl DataOrganizationsDelegatedAdministratorsRef {
     pub fn delegated_administrators(
         &self,
     ) -> SetRef<DataOrganizationsDelegatedAdministratorsDelegatedAdministratorsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.delegated_administrators", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.delegated_administrators", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -162,7 +174,10 @@ impl DataOrganizationsDelegatedAdministratorsRef {
 
     #[doc = "Get a reference to the value of field `service_principal` after provisioning.\n"]
     pub fn service_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_principal", self.extract_ref()),
+        )
     }
 }
 
@@ -294,7 +309,10 @@ impl DataOrganizationsDelegatedAdministratorsDelegatedAdministratorsElRef {
 
     #[doc = "Get a reference to the value of field `delegation_enabled_date` after provisioning.\n"]
     pub fn delegation_enabled_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delegation_enabled_date", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delegation_enabled_date", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email` after provisioning.\n"]
@@ -309,12 +327,18 @@ impl DataOrganizationsDelegatedAdministratorsDelegatedAdministratorsElRef {
 
     #[doc = "Get a reference to the value of field `joined_method` after provisioning.\n"]
     pub fn joined_method(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.joined_method", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.joined_method", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `joined_timestamp` after provisioning.\n"]
     pub fn joined_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.joined_timestamp", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.joined_timestamp", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

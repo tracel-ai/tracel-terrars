@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppmeshVirtualNodeData {
@@ -60,8 +60,7 @@ impl DataAppmeshVirtualNode {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -80,7 +79,10 @@ impl DataAppmeshVirtualNode {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -90,53 +92,80 @@ impl DataAppmeshVirtualNode {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshVirtualNodeSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppmeshVirtualNode {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppmeshVirtualNode { }
+impl Datasource for DataAppmeshVirtualNode {}
 
 impl ToListMappable for DataAppmeshVirtualNode {
     type O = ListRef<DataAppmeshVirtualNodeRef>;
@@ -198,10 +227,7 @@ pub struct DataAppmeshVirtualNodeRef {
 
 impl Ref for DataAppmeshVirtualNodeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -221,7 +247,10 @@ impl DataAppmeshVirtualNodeRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -231,48 +260,72 @@ impl DataAppmeshVirtualNodeRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshVirtualNodeSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_chain: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -293,9 +346,12 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCer
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -306,12 +362,16 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl
+{}
 
-impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl {
+impl
+    BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl
+{
     pub fn build(
         self,
-    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl {
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl
+    {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileEl {
             certificate_chain: core::default::Default::default(),
             private_key: core::default::Default::default(),
@@ -319,7 +379,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -336,14 +397,19 @@ impl Ref for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyEl
     }
 }
 
-impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileElRef {
+impl
+    DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
@@ -353,7 +419,8 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCer
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     secret_name: Option<PrimField<String>>,
 }
@@ -366,9 +433,12 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCer
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -379,17 +449,24 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl
+{}
 
-impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl {
+impl
+    BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl
+{
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl
+    {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsEl {
             secret_name: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -459,8 +536,12 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCer
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -471,10 +552,13 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl {
             file: core::default::Default::default(),
             sds: core::default::Default::default(),
@@ -482,16 +566,20 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef {
             shared: shared,
             base: base.to_string(),
@@ -507,20 +595,21 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCer
     #[doc = "Get a reference to the value of field `file` after provisioning.\n"]
     pub fn file(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElFileElRef>{
         ListRef::new(self.shared().clone(), format!("{}.file", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sds` after provisioning.\n"]
     pub fn sds(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElSdsElRef>{
         ListRef::new(self.shared().clone(), format!("{}.sds", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     exact: Option<SetField<PrimField<String>>>,
 }
@@ -548,7 +637,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl {
     pub fn build(
@@ -560,7 +650,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -631,7 +722,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesEl {
     pub fn build(
@@ -643,7 +735,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -676,14 +769,20 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_authority_arns: Option<SetField<PrimField<String>>>,
 }
 
-impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl {
+impl
+    DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl
+{
     #[doc = "Set the field `certificate_authority_arns`.\n"]
-    pub fn set_certificate_authority_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_certificate_authority_arns(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.certificate_authority_arns = Some(v.into());
         self
     }
@@ -704,7 +803,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmEl {
     pub fn build(
@@ -716,7 +816,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -745,7 +846,8 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_chain: Option<PrimField<String>>,
 }
@@ -773,7 +875,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileEl {
     pub fn build(
@@ -785,7 +888,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -814,12 +918,15 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     secret_name: Option<PrimField<String>>,
 }
 
-impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl {
+impl
+    DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl
+{
     #[doc = "Set the field `secret_name`.\n"]
     pub fn set_secret_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.secret_name = Some(v.into());
@@ -842,7 +949,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsEl {
     pub fn build(
@@ -854,7 +962,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -948,9 +1057,12 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -961,12 +1073,16 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl
+{}
 
-impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl {
+impl
+    BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl
+{
     pub fn build(
         self,
-    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl {
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl
+    {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustEl {
             acm: core::default::Default::default(),
             file: core::default::Default::default(),
@@ -975,7 +1091,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTls
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -992,7 +1109,9 @@ impl Ref for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyEl
     }
 }
 
-impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElRef {
+impl
+    DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1000,7 +1119,7 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
     #[doc = "Get a reference to the value of field `acm` after provisioning.\n"]
     pub fn acm(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElAcmElRef>{
         ListRef::new(self.shared().clone(), format!("{}.acm", self.base))
     }
 
@@ -1009,14 +1128,14 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
         &self,
     ) -> ListRef<
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElFileElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.file", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sds` after provisioning.\n"]
     pub fn sds(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElSdsElRef>{
         ListRef::new(self.shared().clone(), format!("{}.sds", self.base))
     }
 }
@@ -1069,8 +1188,12 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1081,10 +1204,13 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElCli
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl {
             subject_alternative_names: core::default::Default::default(),
             trust: core::default::Default::default(),
@@ -1097,11 +1223,14 @@ pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTl
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1119,14 +1248,17 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
         &self,
     ) -> ListRef<
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElSubjectAlternativeNamesElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.subject_alternative_names", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subject_alternative_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust` after provisioning.\n"]
     pub fn trust(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElTrustElRef>{
         ListRef::new(self.shared().clone(), format!("{}.trust", self.base))
     }
 }
@@ -1134,13 +1266,21 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElVal
 #[derive(Serialize)]
 pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    certificate: Option<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl>>,
+    certificate: Option<
+        ListField<
+            DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateEl,
+        >,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     enforce: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     ports: Option<SetField<PrimField<f64>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    validation: Option<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl>>,
+    validation: Option<
+        ListField<
+            DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationEl,
+        >,
+    >,
 }
 
 impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl {
@@ -1190,7 +1330,8 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl {
 }
 
 impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl>;
+    type O =
+        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1239,7 +1380,9 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElRef
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElCertificateElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.certificate", self.base))
     }
 
@@ -1256,7 +1399,9 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElRef
     #[doc = "Get a reference to the value of field `validation` after provisioning.\n"]
     pub fn validation(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElValidationElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.validation", self.base))
     }
 }
@@ -1264,14 +1409,17 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElRef
 #[derive(Serialize)]
 pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    tls: Option<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl>>,
+    tls:
+        Option<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl>>,
 }
 
 impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyEl {
     #[doc = "Set the field `tls`.\n"]
     pub fn set_tls(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl>>,
+        v: impl Into<
+            ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsEl>,
+        >,
     ) -> Self {
         self.tls = Some(v.into());
         self
@@ -1323,7 +1471,9 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElRef {
     }
 
     #[doc = "Get a reference to the value of field `tls` after provisioning.\n"]
-    pub fn tls(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElRef> {
+    pub fn tls(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElTlsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tls", self.base))
     }
 }
@@ -1331,7 +1481,8 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElRef {
 #[derive(Serialize)]
 pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    client_policy: Option<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyEl>>,
+    client_policy:
+        Option<ListField<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     virtual_service_name: Option<PrimField<String>>,
 }
@@ -1382,7 +1533,10 @@ pub struct DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef {
         DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1396,13 +1550,21 @@ impl DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef {
     }
 
     #[doc = "Get a reference to the value of field `client_policy` after provisioning.\n"]
-    pub fn client_policy(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_policy", self.base))
+    pub fn client_policy(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElClientPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
@@ -1439,7 +1601,9 @@ pub struct BuildDataAppmeshVirtualNodeSpecElBackendEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendEl {
     pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendEl {
-        DataAppmeshVirtualNodeSpecElBackendEl { virtual_service: core::default::Default::default() }
+        DataAppmeshVirtualNodeSpecElBackendEl {
+            virtual_service: core::default::Default::default(),
+        }
     }
 }
 
@@ -1463,8 +1627,13 @@ impl DataAppmeshVirtualNodeSpecElBackendElRef {
     }
 
     #[doc = "Get a reference to the value of field `virtual_service` after provisioning.\n"]
-    pub fn virtual_service(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+    pub fn virtual_service(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendElVirtualServiceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -1490,8 +1659,12 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificate
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1502,10 +1675,13 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl {
             certificate_chain: core::default::Default::default(),
             private_key: core::default::Default::default(),
@@ -1518,11 +1694,14 @@ pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCerti
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef {
             shared: shared,
             base: base.to_string(),
@@ -1537,7 +1716,10 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificate
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
@@ -1560,8 +1742,12 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificate
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1572,10 +1758,13 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl {
             secret_name: core::default::Default::default(),
         }
@@ -1613,16 +1802,28 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificate
 #[derive(Serialize)]
 pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    file: Option<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl>>,
+    file: Option<
+        ListField<
+            DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl,
+        >,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    sds: Option<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl>>,
+    sds: Option<
+        ListField<
+            DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl,
+        >,
+    >,
 }
 
 impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
     #[doc = "Set the field `file`.\n"]
     pub fn set_file(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl>>,
+        v: impl Into<
+            ListField<
+                DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileEl,
+            >,
+        >,
     ) -> Self {
         self.file = Some(v.into());
         self
@@ -1631,15 +1832,23 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificate
     #[doc = "Set the field `sds`.\n"]
     pub fn set_sds(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl>>,
+        v: impl Into<
+            ListField<
+                DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsEl,
+            >,
+        >,
     ) -> Self {
         self.sds = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1653,7 +1862,9 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
 pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl {
             file: core::default::Default::default(),
             sds: core::default::Default::default(),
@@ -1686,18 +1897,25 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificate
     #[doc = "Get a reference to the value of field `file` after provisioning.\n"]
     pub fn file(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElFileElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.file", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sds` after provisioning.\n"]
-    pub fn sds(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsElRef> {
+    pub fn sds(
+        &self,
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElSdsElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.sds", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     exact: Option<SetField<PrimField<String>>>,
 }
@@ -1725,7 +1943,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchEl {
     pub fn build(
@@ -1737,7 +1956,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValida
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElMatchElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1808,7 +2028,8 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesEl {
     pub fn build(
@@ -1820,7 +2041,8 @@ impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValida
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1853,22 +2075,29 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_authority_arns: Option<SetField<PrimField<String>>>,
 }
 
 impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {
     #[doc = "Set the field `certificate_authority_arns`.\n"]
-    pub fn set_certificate_authority_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_certificate_authority_arns(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.certificate_authority_arns = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1879,26 +2108,34 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmEl {
             certificate_authority_arns: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef {
             shared: shared,
             base: base.to_string(),
@@ -1913,12 +2150,16 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
 
     #[doc = "Get a reference to the value of field `certificate_authority_arns` after provisioning.\n"]
     pub fn certificate_authority_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.certificate_authority_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority_arns", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_chain: Option<PrimField<String>>,
 }
@@ -1931,9 +2172,12 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1944,26 +2188,36 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl
+{}
 
-impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl {
+impl
+    BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl
+{
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileEl {
             certificate_chain: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef {
             shared: shared,
             base: base.to_string(),
@@ -1978,12 +2232,16 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     secret_name: Option<PrimField<String>>,
 }
@@ -1996,9 +2254,12 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2009,26 +2270,34 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsEl {
             secret_name: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef {
+pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2107,8 +2376,12 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2119,10 +2392,13 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl {
             acm: core::default::Default::default(),
             file: core::default::Default::default(),
@@ -2136,11 +2412,14 @@ pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValid
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef {
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef
+    {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef {
             shared: shared,
             base: base.to_string(),
@@ -2156,21 +2435,25 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
     #[doc = "Get a reference to the value of field `acm` after provisioning.\n"]
     pub fn acm(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElAcmElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.acm", self.base))
     }
 
     #[doc = "Get a reference to the value of field `file` after provisioning.\n"]
     pub fn file(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElFileElRef>{
         ListRef::new(self.shared().clone(), format!("{}.file", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sds` after provisioning.\n"]
     pub fn sds(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElSdsElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.sds", self.base))
     }
 }
@@ -2207,15 +2490,23 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
     #[doc = "Set the field `trust`.\n"]
     pub fn set_trust(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl>>,
+        v: impl Into<
+            ListField<
+                DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustEl,
+            >,
+        >,
     ) -> Self {
         self.trust = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2229,7 +2520,9 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolic
 pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl {
             subject_alternative_names: core::default::Default::default(),
             trust: core::default::Default::default(),
@@ -2264,14 +2557,19 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
         &self,
     ) -> ListRef<
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElSubjectAlternativeNamesElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.subject_alternative_names", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subject_alternative_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust` after provisioning.\n"]
     pub fn trust(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElTrustElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.trust", self.base))
     }
 }
@@ -2279,20 +2577,28 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationE
 #[derive(Serialize)]
 pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    certificate: Option<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl>>,
+    certificate: Option<
+        ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
     enforce: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     ports: Option<SetField<PrimField<f64>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    validation: Option<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl>>,
+    validation: Option<
+        ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl>,
+    >,
 }
 
 impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsEl {
     #[doc = "Set the field `certificate`.\n"]
     pub fn set_certificate(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl>>,
+        v: impl Into<
+            ListField<
+                DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateEl,
+            >,
+        >,
     ) -> Self {
         self.certificate = Some(v.into());
         self
@@ -2313,7 +2619,9 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsEl {
     #[doc = "Set the field `validation`.\n"]
     pub fn set_validation(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl>>,
+        v: impl Into<
+            ListField<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationEl>,
+        >,
     ) -> Self {
         self.validation = Some(v.into());
         self
@@ -2351,7 +2659,10 @@ pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2367,7 +2678,8 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElRef> {
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElCertificateElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.certificate", self.base))
     }
 
@@ -2382,7 +2694,10 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef {
     }
 
     #[doc = "Get a reference to the value of field `validation` after provisioning.\n"]
-    pub fn validation(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElRef> {
+    pub fn validation(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElValidationElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.validation", self.base))
     }
 }
@@ -2420,7 +2735,9 @@ pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyEl {
     pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyEl {
-        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyEl { tls: core::default::Default::default() }
+        DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyEl {
+            tls: core::default::Default::default(),
+        }
     }
 }
 
@@ -2430,7 +2747,10 @@ pub struct DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef {
         DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef {
             shared: shared,
             base: base.to_string(),
@@ -2444,7 +2764,9 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef {
     }
 
     #[doc = "Get a reference to the value of field `tls` after provisioning.\n"]
-    pub fn tls(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef> {
+    pub fn tls(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElTlsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tls", self.base))
     }
 }
@@ -2482,7 +2804,9 @@ pub struct BuildDataAppmeshVirtualNodeSpecElBackendDefaultsEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElBackendDefaultsEl {
     pub fn build(self) -> DataAppmeshVirtualNodeSpecElBackendDefaultsEl {
-        DataAppmeshVirtualNodeSpecElBackendDefaultsEl { client_policy: core::default::Default::default() }
+        DataAppmeshVirtualNodeSpecElBackendDefaultsEl {
+            client_policy: core::default::Default::default(),
+        }
     }
 }
 
@@ -2506,8 +2830,13 @@ impl DataAppmeshVirtualNodeSpecElBackendDefaultsElRef {
     }
 
     #[doc = "Get a reference to the value of field `client_policy` after provisioning.\n"]
-    pub fn client_policy(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_policy", self.base))
+    pub fn client_policy(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElClientPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_policy", self.base),
+        )
     }
 }
 
@@ -2553,7 +2882,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElGrpcElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElGrpcElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElGrpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElGrpcElRef {
         DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElGrpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -2623,7 +2955,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttpElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttpElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttpElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttpElRef {
         DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttpElRef {
             shared: shared,
             base: base.to_string(),
@@ -2638,12 +2973,18 @@ impl DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttpElRef {
 
     #[doc = "Get a reference to the value of field `max_connections` after provisioning.\n"]
     pub fn max_connections(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_connections", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_connections", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_pending_requests` after provisioning.\n"]
     pub fn max_pending_requests(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_pending_requests", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_pending_requests", self.base),
+        )
     }
 }
 
@@ -2689,7 +3030,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef {
         DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef {
             shared: shared,
             base: base.to_string(),
@@ -2750,7 +3094,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElTcpElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElTcpElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElTcpElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElTcpElRef {
         DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElTcpElRef {
             shared: shared,
             base: base.to_string(),
@@ -2765,7 +3112,10 @@ impl DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElTcpElRef {
 
     #[doc = "Get a reference to the value of field `max_connections` after provisioning.\n"]
     pub fn max_connections(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_connections", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_connections", self.base),
+        )
     }
 }
 
@@ -2850,7 +3200,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef {
         DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef {
             shared: shared,
             base: base.to_string(),
@@ -2874,7 +3227,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef {
     }
 
     #[doc = "Get a reference to the value of field `http2` after provisioning.\n"]
-    pub fn http2(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef> {
+    pub fn http2(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElHttp2ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.http2", self.base))
     }
 
@@ -2980,7 +3335,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
         DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
             shared: shared,
             base: base.to_string(),
@@ -2995,12 +3353,18 @@ impl DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
 
     #[doc = "Get a reference to the value of field `healthy_threshold` after provisioning.\n"]
     pub fn healthy_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.healthy_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.healthy_threshold", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `interval_millis` after provisioning.\n"]
     pub fn interval_millis(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interval_millis", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.interval_millis", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -3020,12 +3384,18 @@ impl DataAppmeshVirtualNodeSpecElListenerElHealthCheckElRef {
 
     #[doc = "Get a reference to the value of field `timeout_millis` after provisioning.\n"]
     pub fn timeout_millis(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_millis", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_millis", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unhealthy_threshold` after provisioning.\n"]
     pub fn unhealthy_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unhealthy_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unhealthy_threshold", self.base),
+        )
     }
 }
 
@@ -3051,8 +3421,12 @@ impl DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDuratio
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3066,7 +3440,9 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionEl
 pub struct BuildDataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl {
         DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl {
             unit: core::default::Default::default(),
             value: core::default::Default::default(),
@@ -3203,7 +3579,11 @@ impl DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionEl {
     #[doc = "Set the field `base_ejection_duration`.\n"]
     pub fn set_base_ejection_duration(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl>>,
+        v: impl Into<
+            ListField<
+                DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationEl,
+            >,
+        >,
     ) -> Self {
         self.base_ejection_duration = Some(v.into());
         self
@@ -3262,7 +3642,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef {
         DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3278,23 +3661,35 @@ impl DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef {
     #[doc = "Get a reference to the value of field `base_ejection_duration` after provisioning.\n"]
     pub fn base_ejection_duration(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.base_ejection_duration", self.base))
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElBaseEjectionDurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.base_ejection_duration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
-    pub fn interval(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElIntervalElRef> {
+    pub fn interval(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElIntervalElRef> {
         ListRef::new(self.shared().clone(), format!("{}.interval", self.base))
     }
 
     #[doc = "Get a reference to the value of field `max_ejection_percent` after provisioning.\n"]
     pub fn max_ejection_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_ejection_percent", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_ejection_percent", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_server_errors` after provisioning.\n"]
     pub fn max_server_errors(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_server_errors", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_server_errors", self.base),
+        )
     }
 }
 
@@ -3349,7 +3744,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElPortMappingElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElPortMappingElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElPortMappingElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElPortMappingElRef {
         DataAppmeshVirtualNodeSpecElListenerElPortMappingElRef {
             shared: shared,
             base: base.to_string(),
@@ -3424,7 +3822,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElIdleElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElIdleElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElIdleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElIdleElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElIdleElRef {
             shared: shared,
             base: base.to_string(),
@@ -3531,7 +3932,8 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     idle: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElIdleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    per_request: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElPerRequestEl>>,
+    per_request:
+        Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElPerRequestEl>>,
 }
 
 impl DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcEl {
@@ -3583,7 +3985,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElRef {
             shared: shared,
             base: base.to_string(),
@@ -3602,7 +4007,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElRef {
     }
 
     #[doc = "Get a reference to the value of field `per_request` after provisioning.\n"]
-    pub fn per_request(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElPerRequestElRef> {
+    pub fn per_request(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcElPerRequestElRef> {
         ListRef::new(self.shared().clone(), format!("{}.per_request", self.base))
     }
 }
@@ -3658,7 +4065,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElIdleElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElIdleElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElIdleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElIdleElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElIdleElRef {
             shared: shared,
             base: base.to_string(),
@@ -3765,7 +4175,8 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     idle: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElIdleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    per_request: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElPerRequestEl>>,
+    per_request:
+        Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElPerRequestEl>>,
 }
 
 impl DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpEl {
@@ -3817,7 +4228,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElRef {
             shared: shared,
             base: base.to_string(),
@@ -3836,7 +4250,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElRef {
     }
 
     #[doc = "Get a reference to the value of field `per_request` after provisioning.\n"]
-    pub fn per_request(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElPerRequestElRef> {
+    pub fn per_request(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpElPerRequestElRef> {
         ListRef::new(self.shared().clone(), format!("{}.per_request", self.base))
     }
 }
@@ -3892,7 +4308,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElIdleElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElIdleElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElIdleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElIdleElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElIdleElRef {
             shared: shared,
             base: base.to_string(),
@@ -3999,7 +4418,8 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2El {
     #[serde(skip_serializing_if = "Option::is_none")]
     idle: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElIdleEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    per_request: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElPerRequestEl>>,
+    per_request:
+        Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElPerRequestEl>>,
 }
 
 impl DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2El {
@@ -4051,7 +4471,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElRef {
             shared: shared,
             base: base.to_string(),
@@ -4070,7 +4493,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElRef {
     }
 
     #[doc = "Get a reference to the value of field `per_request` after provisioning.\n"]
-    pub fn per_request(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElPerRequestElRef> {
+    pub fn per_request(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2ElPerRequestElRef> {
         ListRef::new(self.shared().clone(), format!("{}.per_request", self.base))
     }
 }
@@ -4126,7 +4551,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElIdleElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElIdleElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElIdleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElIdleElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElIdleElRef {
             shared: shared,
             base: base.to_string(),
@@ -4183,7 +4611,9 @@ pub struct BuildDataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl {
     pub fn build(self) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl {
-        DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl { idle: core::default::Default::default() }
+        DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl {
+            idle: core::default::Default::default(),
+        }
     }
 }
 
@@ -4193,7 +4623,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpElRef {
             shared: shared,
             base: base.to_string(),
@@ -4226,25 +4659,37 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutEl {
 
 impl DataAppmeshVirtualNodeSpecElListenerElTimeoutEl {
     #[doc = "Set the field `grpc`.\n"]
-    pub fn set_grpc(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcEl>>) -> Self {
+    pub fn set_grpc(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElGrpcEl>>,
+    ) -> Self {
         self.grpc = Some(v.into());
         self
     }
 
     #[doc = "Set the field `http`.\n"]
-    pub fn set_http(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpEl>>) -> Self {
+    pub fn set_http(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttpEl>>,
+    ) -> Self {
         self.http = Some(v.into());
         self
     }
 
     #[doc = "Set the field `http2`.\n"]
-    pub fn set_http2(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2El>>) -> Self {
+    pub fn set_http2(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElHttp2El>>,
+    ) -> Self {
         self.http2 = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tcp`.\n"]
-    pub fn set_tcp(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl>>) -> Self {
+    pub fn set_tcp(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutElTcpEl>>,
+    ) -> Self {
         self.tcp = Some(v.into());
         self
     }
@@ -4281,7 +4726,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTimeoutElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTimeoutElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTimeoutElRef {
         DataAppmeshVirtualNodeSpecElListenerElTimeoutElRef {
             shared: shared,
             base: base.to_string(),
@@ -4357,7 +4805,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElAcmElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElAcmElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElAcmElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElAcmElRef {
         DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElAcmElRef {
             shared: shared,
             base: base.to_string(),
@@ -4372,7 +4823,10 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElAcmElRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.base),
+        )
     }
 }
 
@@ -4427,7 +4881,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef {
         DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef {
             shared: shared,
             base: base.to_string(),
@@ -4442,7 +4899,10 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef {
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
@@ -4493,7 +4953,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElSdsElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElSdsElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElSdsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElSdsElRef {
         DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElSdsElRef {
             shared: shared,
             base: base.to_string(),
@@ -4581,7 +5044,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef {
         DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef {
             shared: shared,
             base: base.to_string(),
@@ -4600,7 +5066,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef {
     }
 
     #[doc = "Get a reference to the value of field `file` after provisioning.\n"]
-    pub fn file(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef> {
+    pub fn file(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElFileElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file", self.base))
     }
 
@@ -4624,9 +5092,12 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNa
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl {
-    type O =
-        BlockAssignable<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4637,26 +5108,34 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElS
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl
+{}
 
 impl BuildDataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl
+    {
         DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl {
             exact: core::default::Default::default(),
         }
     }
 }
 
-pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef {
+pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef {
+impl Ref
+    for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef {
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef
+    {
         DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -4678,7 +5157,11 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNa
 #[derive(Serialize)]
 pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
     #[serde(rename = "match", skip_serializing_if = "Option::is_none")]
-    match_: Option<ListField<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl>>,
+    match_: Option<
+        ListField<
+            DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchEl,
+        >,
+    >,
 }
 
 impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
@@ -4699,8 +5182,12 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNa
     }
 }
 
-impl ToListMappable for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
-    type O = BlockAssignable<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl>;
+impl ToListMappable
+    for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl
+{
+    type O = BlockAssignable<
+        DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4711,10 +5198,13 @@ impl ToListMappable for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElS
     }
 }
 
-pub struct BuildDataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {}
+pub struct BuildDataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
+}
 
 impl BuildDataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
-    pub fn build(self) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
         DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl {
             match_: core::default::Default::default(),
         }
@@ -4746,7 +5236,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNa
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
     pub fn match_(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef> {
+    ) -> ListRef<
+        DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElMatchElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 }
@@ -4811,7 +5303,10 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElFileElRef {
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.base),
+        )
     }
 }
 
@@ -4936,7 +5431,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef {
         DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef {
             shared: shared,
             base: base.to_string(),
@@ -4950,12 +5448,16 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef {
     }
 
     #[doc = "Get a reference to the value of field `file` after provisioning.\n"]
-    pub fn file(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElFileElRef> {
+    pub fn file(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElFileElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file", self.base))
     }
 
     #[doc = "Get a reference to the value of field `sds` after provisioning.\n"]
-    pub fn sds(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElSdsElRef> {
+    pub fn sds(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElSdsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.sds", self.base))
     }
 }
@@ -4974,7 +5476,11 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationEl {
     #[doc = "Set the field `subject_alternative_names`.\n"]
     pub fn set_subject_alternative_names(
         mut self,
-        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl>>,
+        v: impl Into<
+            ListField<
+                DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesEl,
+            >,
+        >,
     ) -> Self {
         self.subject_alternative_names = Some(v.into());
         self
@@ -5019,7 +5525,10 @@ pub struct DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef {
         DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef {
             shared: shared,
             base: base.to_string(),
@@ -5035,12 +5544,18 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef {
     #[doc = "Get a reference to the value of field `subject_alternative_names` after provisioning.\n"]
     pub fn subject_alternative_names(
         &self,
-    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.subject_alternative_names", self.base))
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElSubjectAlternativeNamesElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subject_alternative_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust` after provisioning.\n"]
-    pub fn trust(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef> {
+    pub fn trust(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElTrustElRef> {
         ListRef::new(self.shared().clone(), format!("{}.trust", self.base))
     }
 }
@@ -5125,7 +5640,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElRef {
     }
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
-    pub fn certificate(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef> {
+    pub fn certificate(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElCertificateElRef> {
         ListRef::new(self.shared().clone(), format!("{}.certificate", self.base))
     }
 
@@ -5135,7 +5652,9 @@ impl DataAppmeshVirtualNodeSpecElListenerElTlsElRef {
     }
 
     #[doc = "Get a reference to the value of field `validation` after provisioning.\n"]
-    pub fn validation(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef> {
+    pub fn validation(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElTlsElValidationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.validation", self.base))
     }
 }
@@ -5194,13 +5713,19 @@ impl DataAppmeshVirtualNodeSpecElListenerEl {
     }
 
     #[doc = "Set the field `timeout`.\n"]
-    pub fn set_timeout(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutEl>>) -> Self {
+    pub fn set_timeout(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTimeoutEl>>,
+    ) -> Self {
         self.timeout = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tls`.\n"]
-    pub fn set_tls(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTlsEl>>) -> Self {
+    pub fn set_tls(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerElTlsEl>>,
+    ) -> Self {
         self.tls = Some(v.into());
         self
     }
@@ -5253,8 +5778,13 @@ impl DataAppmeshVirtualNodeSpecElListenerElRef {
     }
 
     #[doc = "Get a reference to the value of field `connection_pool` after provisioning.\n"]
-    pub fn connection_pool(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_pool", self.base))
+    pub fn connection_pool(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElConnectionPoolElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_pool", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check` after provisioning.\n"]
@@ -5263,8 +5793,13 @@ impl DataAppmeshVirtualNodeSpecElListenerElRef {
     }
 
     #[doc = "Get a reference to the value of field `outlier_detection` after provisioning.\n"]
-    pub fn outlier_detection(&self) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.outlier_detection", self.base))
+    pub fn outlier_detection(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElListenerElOutlierDetectionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.outlier_detection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port_mapping` after provisioning.\n"]
@@ -5415,7 +5950,10 @@ pub struct DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef {
         DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef {
             shared: shared,
             base: base.to_string(),
@@ -5429,7 +5967,9 @@ impl DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef {
     }
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
-    pub fn json(&self) -> ListRef<DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElJsonElRef> {
+    pub fn json(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElJsonElRef> {
         ListRef::new(self.shared().clone(), format!("{}.json", self.base))
     }
 
@@ -5493,7 +6033,10 @@ pub struct DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElRef {
         DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElRef {
             shared: shared,
             base: base.to_string(),
@@ -5507,7 +6050,9 @@ impl DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElRef {
     }
 
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
-    pub fn format(&self) -> ListRef<DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef> {
+    pub fn format(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileElFormatElRef> {
         ListRef::new(self.shared().clone(), format!("{}.format", self.base))
     }
 
@@ -5525,7 +6070,10 @@ pub struct DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl {
 
 impl DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl {
     #[doc = "Set the field `file`.\n"]
-    pub fn set_file(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileEl>>) -> Self {
+    pub fn set_file(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElLoggingElAccessLogElFileEl>>,
+    ) -> Self {
         self.file = Some(v.into());
         self
     }
@@ -5547,7 +6095,9 @@ pub struct BuildDataAppmeshVirtualNodeSpecElLoggingElAccessLogEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElLoggingElAccessLogEl {
     pub fn build(self) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl {
-        DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl { file: core::default::Default::default() }
+        DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl {
+            file: core::default::Default::default(),
+        }
     }
 }
 
@@ -5557,7 +6107,10 @@ pub struct DataAppmeshVirtualNodeSpecElLoggingElAccessLogElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElLoggingElAccessLogElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElLoggingElAccessLogElRef {
         DataAppmeshVirtualNodeSpecElLoggingElAccessLogElRef {
             shared: shared,
             base: base.to_string(),
@@ -5584,7 +6137,10 @@ pub struct DataAppmeshVirtualNodeSpecElLoggingEl {
 
 impl DataAppmeshVirtualNodeSpecElLoggingEl {
     #[doc = "Set the field `access_log`.\n"]
-    pub fn set_access_log(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl>>) -> Self {
+    pub fn set_access_log(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElLoggingElAccessLogEl>>,
+    ) -> Self {
         self.access_log = Some(v.into());
         self
     }
@@ -5606,7 +6162,9 @@ pub struct BuildDataAppmeshVirtualNodeSpecElLoggingEl {}
 
 impl BuildDataAppmeshVirtualNodeSpecElLoggingEl {
     pub fn build(self) -> DataAppmeshVirtualNodeSpecElLoggingEl {
-        DataAppmeshVirtualNodeSpecElLoggingEl { access_log: core::default::Default::default() }
+        DataAppmeshVirtualNodeSpecElLoggingEl {
+            access_log: core::default::Default::default(),
+        }
     }
 }
 
@@ -5695,7 +6253,10 @@ pub struct DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef {
         DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef {
             shared: shared,
             base: base.to_string(),
@@ -5715,7 +6276,10 @@ impl DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef {
 
     #[doc = "Get a reference to the value of field `namespace_name` after provisioning.\n"]
     pub fn namespace_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
@@ -5784,7 +6348,10 @@ pub struct DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsElRef {
 }
 
 impl Ref for DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsElRef {
         DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsElRef {
             shared: shared,
             base: base.to_string(),
@@ -5804,12 +6371,18 @@ impl DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsElRef {
 
     #[doc = "Get a reference to the value of field `ip_preference` after provisioning.\n"]
     pub fn ip_preference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_preference", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_preference", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_type` after provisioning.\n"]
     pub fn response_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_type", self.base),
+        )
     }
 }
 
@@ -5832,7 +6405,10 @@ impl DataAppmeshVirtualNodeSpecElServiceDiscoveryEl {
     }
 
     #[doc = "Set the field `dns`.\n"]
-    pub fn set_dns(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsEl>>) -> Self {
+    pub fn set_dns(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElServiceDiscoveryElDnsEl>>,
+    ) -> Self {
         self.dns = Some(v.into());
         self
     }
@@ -5881,8 +6457,13 @@ impl DataAppmeshVirtualNodeSpecElServiceDiscoveryElRef {
     }
 
     #[doc = "Get a reference to the value of field `aws_cloud_map` after provisioning.\n"]
-    pub fn aws_cloud_map(&self) -> ListRef<DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.aws_cloud_map", self.base))
+    pub fn aws_cloud_map(
+        &self,
+    ) -> ListRef<DataAppmeshVirtualNodeSpecElServiceDiscoveryElAwsCloudMapElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.aws_cloud_map", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns` after provisioning.\n"]
@@ -5907,7 +6488,10 @@ pub struct DataAppmeshVirtualNodeSpecEl {
 
 impl DataAppmeshVirtualNodeSpecEl {
     #[doc = "Set the field `backend`.\n"]
-    pub fn set_backend(mut self, v: impl Into<SetField<DataAppmeshVirtualNodeSpecElBackendEl>>) -> Self {
+    pub fn set_backend(
+        mut self,
+        v: impl Into<SetField<DataAppmeshVirtualNodeSpecElBackendEl>>,
+    ) -> Self {
         self.backend = Some(v.into());
         self
     }
@@ -5922,13 +6506,19 @@ impl DataAppmeshVirtualNodeSpecEl {
     }
 
     #[doc = "Set the field `listener`.\n"]
-    pub fn set_listener(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerEl>>) -> Self {
+    pub fn set_listener(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElListenerEl>>,
+    ) -> Self {
         self.listener = Some(v.into());
         self
     }
 
     #[doc = "Set the field `logging`.\n"]
-    pub fn set_logging(mut self, v: impl Into<ListField<DataAppmeshVirtualNodeSpecElLoggingEl>>) -> Self {
+    pub fn set_logging(
+        mut self,
+        v: impl Into<ListField<DataAppmeshVirtualNodeSpecElLoggingEl>>,
+    ) -> Self {
         self.logging = Some(v.into());
         self
     }
@@ -5995,7 +6585,10 @@ impl DataAppmeshVirtualNodeSpecElRef {
 
     #[doc = "Get a reference to the value of field `backend_defaults` after provisioning.\n"]
     pub fn backend_defaults(&self) -> ListRef<DataAppmeshVirtualNodeSpecElBackendDefaultsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.backend_defaults", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.backend_defaults", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `listener` after provisioning.\n"]
@@ -6010,6 +6603,9 @@ impl DataAppmeshVirtualNodeSpecElRef {
 
     #[doc = "Get a reference to the value of field `service_discovery` after provisioning.\n"]
     pub fn service_discovery(&self) -> ListRef<DataAppmeshVirtualNodeSpecElServiceDiscoveryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_discovery", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_discovery", self.base),
+        )
     }
 }

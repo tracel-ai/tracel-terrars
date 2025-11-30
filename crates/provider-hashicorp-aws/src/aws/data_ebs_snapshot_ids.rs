@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEbsSnapshotIdsData {
@@ -63,8 +63,7 @@ impl DataEbsSnapshotIds {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -81,10 +80,10 @@ impl DataEbsSnapshotIds {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -107,33 +106,48 @@ impl DataEbsSnapshotIds {
 
     #[doc = "Get a reference to the value of field `owners` after provisioning.\n"]
     pub fn owners(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.owners", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.owners", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restorable_by_user_ids` after provisioning.\n"]
     pub fn restorable_by_user_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.restorable_by_user_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.restorable_by_user_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEbsSnapshotIdsTimeoutsElRef {
-        DataEbsSnapshotIdsTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEbsSnapshotIdsTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEbsSnapshotIds {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEbsSnapshotIds { }
+impl Datasource for DataEbsSnapshotIds {}
 
 impl ToListMappable for DataEbsSnapshotIds {
     type O = ListRef<DataEbsSnapshotIdsRef>;
@@ -192,10 +206,7 @@ pub struct DataEbsSnapshotIdsRef {
 
 impl Ref for DataEbsSnapshotIdsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -220,23 +231,34 @@ impl DataEbsSnapshotIdsRef {
 
     #[doc = "Get a reference to the value of field `owners` after provisioning.\n"]
     pub fn owners(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.owners", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.owners", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restorable_by_user_ids` after provisioning.\n"]
     pub fn restorable_by_user_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.restorable_by_user_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.restorable_by_user_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEbsSnapshotIdsTimeoutsElRef {
-        DataEbsSnapshotIdsTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEbsSnapshotIdsTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -246,7 +268,7 @@ pub struct DataEbsSnapshotIdsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEbsSnapshotIdsFilterEl { }
+impl DataEbsSnapshotIdsFilterEl {}
 
 impl ToListMappable for DataEbsSnapshotIdsFilterEl {
     type O = BlockAssignable<DataEbsSnapshotIdsFilterEl>;
@@ -336,7 +358,9 @@ pub struct BuildDataEbsSnapshotIdsTimeoutsEl {}
 
 impl BuildDataEbsSnapshotIdsTimeoutsEl {
     pub fn build(self) -> DataEbsSnapshotIdsTimeoutsEl {
-        DataEbsSnapshotIdsTimeoutsEl { read: core::default::Default::default() }
+        DataEbsSnapshotIdsTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

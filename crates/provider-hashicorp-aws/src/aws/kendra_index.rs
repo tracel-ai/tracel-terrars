@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct KendraIndexData {
@@ -33,9 +33,11 @@ struct KendraIndexData {
     #[serde(skip_serializing_if = "Option::is_none")]
     capacity_units: Option<Vec<KendraIndexCapacityUnitsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    document_metadata_configuration_updates: Option<Vec<KendraIndexDocumentMetadataConfigurationUpdatesEl>>,
+    document_metadata_configuration_updates:
+        Option<Vec<KendraIndexDocumentMetadataConfigurationUpdatesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    server_side_encryption_configuration: Option<Vec<KendraIndexServerSideEncryptionConfigurationEl>>,
+    server_side_encryption_configuration:
+        Option<Vec<KendraIndexServerSideEncryptionConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<KendraIndexTimeoutsEl>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -80,7 +82,8 @@ impl KendraIndex {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -93,7 +96,7 @@ impl KendraIndex {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -104,12 +107,22 @@ impl KendraIndex {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,8 +144,7 @@ impl KendraIndex {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -157,14 +169,17 @@ impl KendraIndex {
     }
 
     #[doc = "Set the field `capacity_units`.\n"]
-    pub fn set_capacity_units(self, v: impl Into<BlockAssignable<KendraIndexCapacityUnitsEl>>) -> Self {
+    pub fn set_capacity_units(
+        self,
+        v: impl Into<BlockAssignable<KendraIndexCapacityUnitsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity_units = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.capacity_units = Some(d);
-            },
+            }
         }
         self
     }
@@ -176,11 +191,18 @@ impl KendraIndex {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().document_metadata_configuration_updates = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .document_metadata_configuration_updates = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.document_metadata_configuration_updates = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .document_metadata_configuration_updates = Some(d);
+            }
         }
         self
     }
@@ -192,11 +214,18 @@ impl KendraIndex {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().server_side_encryption_configuration = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .server_side_encryption_configuration = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.server_side_encryption_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .server_side_encryption_configuration = Some(d);
+            }
         }
         self
     }
@@ -215,10 +244,14 @@ impl KendraIndex {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().user_group_resolution_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.user_group_resolution_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .user_group_resolution_configuration = Some(d);
+            }
         }
         self
     }
@@ -231,10 +264,10 @@ impl KendraIndex {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().user_token_configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.user_token_configurations = Some(d);
-            },
+            }
         }
         self
     }
@@ -246,22 +279,34 @@ impl KendraIndex {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edition` after provisioning.\n"]
     pub fn edition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.error_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.error_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -271,83 +316,135 @@ impl KendraIndex {
 
     #[doc = "Get a reference to the value of field `index_statistics` after provisioning.\n"]
     pub fn index_statistics(&self) -> ListRef<KendraIndexIndexStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.index_statistics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.index_statistics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_context_policy` after provisioning.\n"]
     pub fn user_context_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_context_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_context_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_units` after provisioning.\n"]
     pub fn capacity_units(&self) -> ListRef<KendraIndexCapacityUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
-    pub fn server_side_encryption_configuration(&self) -> ListRef<KendraIndexServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+    pub fn server_side_encryption_configuration(
+        &self,
+    ) -> ListRef<KendraIndexServerSideEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KendraIndexTimeoutsElRef {
-        KendraIndexTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        KendraIndexTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_group_resolution_configuration` after provisioning.\n"]
-    pub fn user_group_resolution_configuration(&self) -> ListRef<KendraIndexUserGroupResolutionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_group_resolution_configuration", self.extract_ref()))
+    pub fn user_group_resolution_configuration(
+        &self,
+    ) -> ListRef<KendraIndexUserGroupResolutionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_group_resolution_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_token_configurations` after provisioning.\n"]
     pub fn user_token_configurations(&self) -> ListRef<KendraIndexUserTokenConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_token_configurations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_token_configurations", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for KendraIndex {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for KendraIndex { }
+impl Resource for KendraIndex {}
 
 impl ToListMappable for KendraIndex {
     type O = ListRef<KendraIndexRef>;
@@ -420,10 +517,7 @@ pub struct KendraIndexRef {
 
 impl Ref for KendraIndexRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -443,22 +537,34 @@ impl KendraIndexRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edition` after provisioning.\n"]
     pub fn edition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.error_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.error_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -468,73 +574,121 @@ impl KendraIndexRef {
 
     #[doc = "Get a reference to the value of field `index_statistics` after provisioning.\n"]
     pub fn index_statistics(&self) -> ListRef<KendraIndexIndexStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.index_statistics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.index_statistics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_context_policy` after provisioning.\n"]
     pub fn user_context_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_context_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_context_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_units` after provisioning.\n"]
     pub fn capacity_units(&self) -> ListRef<KendraIndexCapacityUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
-    pub fn server_side_encryption_configuration(&self) -> ListRef<KendraIndexServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+    pub fn server_side_encryption_configuration(
+        &self,
+    ) -> ListRef<KendraIndexServerSideEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KendraIndexTimeoutsElRef {
-        KendraIndexTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        KendraIndexTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_group_resolution_configuration` after provisioning.\n"]
-    pub fn user_group_resolution_configuration(&self) -> ListRef<KendraIndexUserGroupResolutionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_group_resolution_configuration", self.extract_ref()))
+    pub fn user_group_resolution_configuration(
+        &self,
+    ) -> ListRef<KendraIndexUserGroupResolutionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_group_resolution_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_token_configurations` after provisioning.\n"]
     pub fn user_token_configurations(&self) -> ListRef<KendraIndexUserTokenConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_token_configurations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_token_configurations", self.extract_ref()),
+        )
     }
 }
 
@@ -595,7 +749,10 @@ impl KendraIndexIndexStatisticsElFaqStatisticsElRef {
 
     #[doc = "Get a reference to the value of field `indexed_question_answers_count` after provisioning.\n"]
     pub fn indexed_question_answers_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.indexed_question_answers_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.indexed_question_answers_count", self.base),
+        )
     }
 }
 
@@ -650,7 +807,10 @@ pub struct KendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
 }
 
 impl Ref for KendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
-    fn new(shared: StackShared, base: String) -> KendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
         KendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
             shared: shared,
             base: base.to_string(),
@@ -665,12 +825,18 @@ impl KendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
 
     #[doc = "Get a reference to the value of field `indexed_text_bytes` after provisioning.\n"]
     pub fn indexed_text_bytes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.indexed_text_bytes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.indexed_text_bytes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `indexed_text_documents_count` after provisioning.\n"]
     pub fn indexed_text_documents_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.indexed_text_documents_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.indexed_text_documents_count", self.base),
+        )
     }
 }
 
@@ -679,12 +845,16 @@ pub struct KendraIndexIndexStatisticsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     faq_statistics: Option<ListField<KendraIndexIndexStatisticsElFaqStatisticsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    text_document_statistics: Option<ListField<KendraIndexIndexStatisticsElTextDocumentStatisticsEl>>,
+    text_document_statistics:
+        Option<ListField<KendraIndexIndexStatisticsElTextDocumentStatisticsEl>>,
 }
 
 impl KendraIndexIndexStatisticsEl {
     #[doc = "Set the field `faq_statistics`.\n"]
-    pub fn set_faq_statistics(mut self, v: impl Into<ListField<KendraIndexIndexStatisticsElFaqStatisticsEl>>) -> Self {
+    pub fn set_faq_statistics(
+        mut self,
+        v: impl Into<ListField<KendraIndexIndexStatisticsElFaqStatisticsEl>>,
+    ) -> Self {
         self.faq_statistics = Some(v.into());
         self
     }
@@ -743,12 +913,20 @@ impl KendraIndexIndexStatisticsElRef {
 
     #[doc = "Get a reference to the value of field `faq_statistics` after provisioning.\n"]
     pub fn faq_statistics(&self) -> ListRef<KendraIndexIndexStatisticsElFaqStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.faq_statistics", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.faq_statistics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text_document_statistics` after provisioning.\n"]
-    pub fn text_document_statistics(&self) -> ListRef<KendraIndexIndexStatisticsElTextDocumentStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.text_document_statistics", self.base))
+    pub fn text_document_statistics(
+        &self,
+    ) -> ListRef<KendraIndexIndexStatisticsElTextDocumentStatisticsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.text_document_statistics", self.base),
+        )
     }
 }
 
@@ -818,12 +996,18 @@ impl KendraIndexCapacityUnitsElRef {
 
     #[doc = "Get a reference to the value of field `query_capacity_units` after provisioning.\n"]
     pub fn query_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_capacity_units` after provisioning.\n"]
     pub fn storage_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_capacity_units", self.base),
+        )
     }
 }
 
@@ -905,7 +1089,10 @@ pub struct KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
 }
 
 impl Ref for KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
-    fn new(shared: StackShared, base: String) -> KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
         KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
             shared: shared,
             base: base.to_string(),
@@ -940,7 +1127,10 @@ impl KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
 
     #[doc = "Get a reference to the value of field `values_importance_map` after provisioning.\n"]
     pub fn values_importance_map(&self) -> RecRef<PrimExpr<f64>> {
-        RecRef::new(self.shared().clone(), format!("{}.values_importance_map", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.values_importance_map", self.base),
+        )
     }
 }
 
@@ -1013,7 +1203,10 @@ pub struct KendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
 }
 
 impl Ref for KendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
-    fn new(shared: StackShared, base: String) -> KendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
         KendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
             shared: shared,
             base: base.to_string(),
@@ -1074,10 +1267,10 @@ impl KendraIndexDocumentMetadataConfigurationUpdatesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.relevance = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.relevance = Some(d);
-            },
+            }
         }
         self
     }
@@ -1090,10 +1283,10 @@ impl KendraIndexDocumentMetadataConfigurationUpdatesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.search = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.search = Some(d);
-            },
+            }
         }
         self
     }
@@ -1136,7 +1329,10 @@ pub struct KendraIndexDocumentMetadataConfigurationUpdatesElRef {
 }
 
 impl Ref for KendraIndexDocumentMetadataConfigurationUpdatesElRef {
-    fn new(shared: StackShared, base: String) -> KendraIndexDocumentMetadataConfigurationUpdatesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KendraIndexDocumentMetadataConfigurationUpdatesElRef {
         KendraIndexDocumentMetadataConfigurationUpdatesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1160,7 +1356,9 @@ impl KendraIndexDocumentMetadataConfigurationUpdatesElRef {
     }
 
     #[doc = "Get a reference to the value of field `relevance` after provisioning.\n"]
-    pub fn relevance(&self) -> ListRef<KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef> {
+    pub fn relevance(
+        &self,
+    ) -> ListRef<KendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef> {
         ListRef::new(self.shared().clone(), format!("{}.relevance", self.base))
     }
 
@@ -1200,7 +1398,9 @@ pub struct BuildKendraIndexServerSideEncryptionConfigurationEl {}
 
 impl BuildKendraIndexServerSideEncryptionConfigurationEl {
     pub fn build(self) -> KendraIndexServerSideEncryptionConfigurationEl {
-        KendraIndexServerSideEncryptionConfigurationEl { kms_key_id: core::default::Default::default() }
+        KendraIndexServerSideEncryptionConfigurationEl {
+            kms_key_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -1323,7 +1523,7 @@ pub struct KendraIndexUserGroupResolutionConfigurationEl {
     user_group_resolution_mode: PrimField<String>,
 }
 
-impl KendraIndexUserGroupResolutionConfigurationEl { }
+impl KendraIndexUserGroupResolutionConfigurationEl {}
 
 impl ToListMappable for KendraIndexUserGroupResolutionConfigurationEl {
     type O = BlockAssignable<KendraIndexUserGroupResolutionConfigurationEl>;
@@ -1344,7 +1544,9 @@ pub struct BuildKendraIndexUserGroupResolutionConfigurationEl {
 
 impl BuildKendraIndexUserGroupResolutionConfigurationEl {
     pub fn build(self) -> KendraIndexUserGroupResolutionConfigurationEl {
-        KendraIndexUserGroupResolutionConfigurationEl { user_group_resolution_mode: self.user_group_resolution_mode }
+        KendraIndexUserGroupResolutionConfigurationEl {
+            user_group_resolution_mode: self.user_group_resolution_mode,
+        }
     }
 }
 
@@ -1369,7 +1571,10 @@ impl KendraIndexUserGroupResolutionConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `user_group_resolution_mode` after provisioning.\n"]
     pub fn user_group_resolution_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_group_resolution_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_group_resolution_mode", self.base),
+        )
     }
 }
 
@@ -1379,7 +1584,7 @@ pub struct KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl {
     user_name_attribute_field: PrimField<String>,
 }
 
-impl KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl { }
+impl KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl {}
 
 impl ToListMappable for KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl {
     type O = BlockAssignable<KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>;
@@ -1415,7 +1620,10 @@ pub struct KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
 }
 
 impl Ref for KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
         KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1430,12 +1638,18 @@ impl KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `group_attribute_field` after provisioning.\n"]
     pub fn group_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_attribute_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name_attribute_field` after provisioning.\n"]
     pub fn user_name_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name_attribute_field", self.base),
+        )
     }
 }
 
@@ -1531,7 +1745,10 @@ pub struct KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 }
 
 impl Ref for KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
         KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1551,7 +1768,10 @@ impl KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `group_attribute_field` after provisioning.\n"]
     pub fn group_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_attribute_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -1566,7 +1786,10 @@ impl KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `secrets_manager_arn` after provisioning.\n"]
     pub fn secrets_manager_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secrets_manager_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secrets_manager_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -1576,26 +1799,29 @@ impl KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `user_name_attribute_field` after provisioning.\n"]
     pub fn user_name_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name_attribute_field", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct KendraIndexUserTokenConfigurationsElDynamic {
-    json_token_type_configuration: Option<
-        DynamicBlock<KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>,
-    >,
-    jwt_token_type_configuration: Option<
-        DynamicBlock<KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationEl>,
-    >,
+    json_token_type_configuration:
+        Option<DynamicBlock<KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>>,
+    jwt_token_type_configuration:
+        Option<DynamicBlock<KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationEl>>,
 }
 
 #[derive(Serialize)]
 pub struct KendraIndexUserTokenConfigurationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    json_token_type_configuration: Option<Vec<KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>>,
+    json_token_type_configuration:
+        Option<Vec<KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    jwt_token_type_configuration: Option<Vec<KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationEl>>,
+    jwt_token_type_configuration:
+        Option<Vec<KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationEl>>,
     dynamic: KendraIndexUserTokenConfigurationsElDynamic,
 }
 
@@ -1608,10 +1834,10 @@ impl KendraIndexUserTokenConfigurationsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.json_token_type_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.json_token_type_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1624,10 +1850,10 @@ impl KendraIndexUserTokenConfigurationsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.jwt_token_type_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.jwt_token_type_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1680,22 +1906,31 @@ impl KendraIndexUserTokenConfigurationsElRef {
     pub fn json_token_type_configuration(
         &self,
     ) -> ListRef<KendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.json_token_type_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.json_token_type_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jwt_token_type_configuration` after provisioning.\n"]
     pub fn jwt_token_type_configuration(
         &self,
     ) -> ListRef<KendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_token_type_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_token_type_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct KendraIndexDynamic {
     capacity_units: Option<DynamicBlock<KendraIndexCapacityUnitsEl>>,
-    document_metadata_configuration_updates: Option<DynamicBlock<KendraIndexDocumentMetadataConfigurationUpdatesEl>>,
-    server_side_encryption_configuration: Option<DynamicBlock<KendraIndexServerSideEncryptionConfigurationEl>>,
-    user_group_resolution_configuration: Option<DynamicBlock<KendraIndexUserGroupResolutionConfigurationEl>>,
+    document_metadata_configuration_updates:
+        Option<DynamicBlock<KendraIndexDocumentMetadataConfigurationUpdatesEl>>,
+    server_side_encryption_configuration:
+        Option<DynamicBlock<KendraIndexServerSideEncryptionConfigurationEl>>,
+    user_group_resolution_configuration:
+        Option<DynamicBlock<KendraIndexUserGroupResolutionConfigurationEl>>,
     user_token_configurations: Option<DynamicBlock<KendraIndexUserTokenConfigurationsEl>>,
 }

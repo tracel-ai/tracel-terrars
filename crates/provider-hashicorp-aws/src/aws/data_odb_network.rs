@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOdbNetworkData {
@@ -41,8 +41,7 @@ impl DataOdbNetwork {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -53,52 +52,68 @@ impl DataOdbNetwork {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone` after provisioning.\nThe availability zone where the ODB network is located."]
+    #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\nThe availability zone where the ODB network is located."]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe AZ ID of the AZ where the ODB network is located."]
+    #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe AZ ID of the AZ where the ODB network is located."]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `backup_subnet_cidr` after provisioning.\n The CIDR range of the backup subnet for the ODB network."]
+    #[doc = "Get a reference to the value of field `backup_subnet_cidr` after provisioning.\n The CIDR range of the backup subnet for the ODB network."]
     pub fn backup_subnet_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.backup_subnet_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.backup_subnet_cidr", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `client_subnet_cidr` after provisioning.\nThe CIDR notation for the network resource."]
+    #[doc = "Get a reference to the value of field `client_subnet_cidr` after provisioning.\nThe CIDR notation for the network resource."]
     pub fn client_subnet_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_subnet_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_subnet_cidr", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_at` after provisioning.\nThe date and time when the ODB network was created."]
+    #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe date and time when the ODB network was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `custom_domain_name` after provisioning.\nThe name of the custom domain that the network is located."]
+    #[doc = "Get a reference to the value of field `custom_domain_name` after provisioning.\nThe name of the custom domain that the network is located."]
     pub fn custom_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `default_dns_prefix` after provisioning.\nThe default DNS prefix for the network resource."]
+    #[doc = "Get a reference to the value of field `default_dns_prefix` after provisioning.\nThe default DNS prefix for the network resource."]
     pub fn default_dns_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_dns_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_dns_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `display_name` after provisioning.\nDisplay name for the network resource."]
+    #[doc = "Get a reference to the value of field `display_name` after provisioning.\nDisplay name for the network resource."]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,90 +121,124 @@ impl DataOdbNetwork {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `managed_services` after provisioning.\nThe managed services configuration for the ODB network."]
+    #[doc = "Get a reference to the value of field `managed_services` after provisioning.\nThe managed services configuration for the ODB network."]
     pub fn managed_services(&self) -> ListRef<DataOdbNetworkManagedServicesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_services", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_services", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_dns_forwarding_configs` after provisioning.\nThe DNS resolver endpoint in OCI for forwarding DNS queries for the ociPrivateZone domain."]
-    pub fn oci_dns_forwarding_configs(&self) -> ListRef<DataOdbNetworkOciDnsForwardingConfigsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.oci_dns_forwarding_configs", self.extract_ref()))
+    #[doc = "Get a reference to the value of field `oci_dns_forwarding_configs` after provisioning.\nThe DNS resolver endpoint in OCI for forwarding DNS queries for the ociPrivateZone domain."]
+    pub fn oci_dns_forwarding_configs(
+        &self,
+    ) -> ListRef<DataOdbNetworkOciDnsForwardingConfigsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oci_dns_forwarding_configs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_network_anchor_id` after provisioning.\nThe unique identifier of the OCI network anchor for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_network_anchor_id` after provisioning.\nThe unique identifier of the OCI network anchor for the ODB network."]
     pub fn oci_network_anchor_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_network_anchor_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_network_anchor_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_network_anchor_url` after provisioning.\nThe URL of the OCI network anchor for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_network_anchor_url` after provisioning.\nThe URL of the OCI network anchor for the ODB network."]
     pub fn oci_network_anchor_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_network_anchor_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_network_anchor_url", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the ODB network."]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_vcn_id` after provisioning.\nThe unique identifier  Oracle Cloud ID (OCID) of the OCI VCN for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_vcn_id` after provisioning.\nThe unique identifier  Oracle Cloud ID (OCID) of the OCI VCN for the ODB network."]
     pub fn oci_vcn_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_vcn_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_vcn_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_vcn_url` after provisioning.\nThe URL of the OCI VCN for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_vcn_url` after provisioning.\nThe URL of the OCI VCN for the ODB network."]
     pub fn oci_vcn_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_vcn_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_vcn_url", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `peered_cidrs` after provisioning.\nThe list of CIDR ranges from the peered VPC that are allowed access to the ODB network. Please refer odb network peering documentation."]
+    #[doc = "Get a reference to the value of field `peered_cidrs` after provisioning.\nThe list of CIDR ranges from the peered VPC that are allowed access to the ODB network. Please refer odb network peering documentation."]
     pub fn peered_cidrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.peered_cidrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.peered_cidrs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the ODB network, expressed as a percentage."]
+    #[doc = "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the ODB network, expressed as a percentage."]
     pub fn percent_progress(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.percent_progress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.percent_progress", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\nThe status of the network resource."]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the current status of the ODB network."]
+    #[doc = "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the current status of the ODB network."]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOdbNetwork {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOdbNetwork { }
+impl Datasource for DataOdbNetwork {}
 
 impl ToListMappable for DataOdbNetwork {
     type O = ListRef<DataOdbNetworkRef>;
@@ -245,10 +294,7 @@ pub struct DataOdbNetworkRef {
 
 impl Ref for DataOdbNetworkRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -266,52 +312,68 @@ impl DataOdbNetworkRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone` after provisioning.\nThe availability zone where the ODB network is located."]
+    #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\nThe availability zone where the ODB network is located."]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe AZ ID of the AZ where the ODB network is located."]
+    #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\nThe AZ ID of the AZ where the ODB network is located."]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `backup_subnet_cidr` after provisioning.\n The CIDR range of the backup subnet for the ODB network."]
+    #[doc = "Get a reference to the value of field `backup_subnet_cidr` after provisioning.\n The CIDR range of the backup subnet for the ODB network."]
     pub fn backup_subnet_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.backup_subnet_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.backup_subnet_cidr", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `client_subnet_cidr` after provisioning.\nThe CIDR notation for the network resource."]
+    #[doc = "Get a reference to the value of field `client_subnet_cidr` after provisioning.\nThe CIDR notation for the network resource."]
     pub fn client_subnet_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_subnet_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_subnet_cidr", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_at` after provisioning.\nThe date and time when the ODB network was created."]
+    #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe date and time when the ODB network was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `custom_domain_name` after provisioning.\nThe name of the custom domain that the network is located."]
+    #[doc = "Get a reference to the value of field `custom_domain_name` after provisioning.\nThe name of the custom domain that the network is located."]
     pub fn custom_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_domain_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `default_dns_prefix` after provisioning.\nThe default DNS prefix for the network resource."]
+    #[doc = "Get a reference to the value of field `default_dns_prefix` after provisioning.\nThe default DNS prefix for the network resource."]
     pub fn default_dns_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_dns_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_dns_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `display_name` after provisioning.\nDisplay name for the network resource."]
+    #[doc = "Get a reference to the value of field `display_name` after provisioning.\nDisplay name for the network resource."]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -319,80 +381,110 @@ impl DataOdbNetworkRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `managed_services` after provisioning.\nThe managed services configuration for the ODB network."]
+    #[doc = "Get a reference to the value of field `managed_services` after provisioning.\nThe managed services configuration for the ODB network."]
     pub fn managed_services(&self) -> ListRef<DataOdbNetworkManagedServicesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_services", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_services", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_dns_forwarding_configs` after provisioning.\nThe DNS resolver endpoint in OCI for forwarding DNS queries for the ociPrivateZone domain."]
-    pub fn oci_dns_forwarding_configs(&self) -> ListRef<DataOdbNetworkOciDnsForwardingConfigsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.oci_dns_forwarding_configs", self.extract_ref()))
+    #[doc = "Get a reference to the value of field `oci_dns_forwarding_configs` after provisioning.\nThe DNS resolver endpoint in OCI for forwarding DNS queries for the ociPrivateZone domain."]
+    pub fn oci_dns_forwarding_configs(
+        &self,
+    ) -> ListRef<DataOdbNetworkOciDnsForwardingConfigsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oci_dns_forwarding_configs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_network_anchor_id` after provisioning.\nThe unique identifier of the OCI network anchor for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_network_anchor_id` after provisioning.\nThe unique identifier of the OCI network anchor for the ODB network."]
     pub fn oci_network_anchor_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_network_anchor_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_network_anchor_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_network_anchor_url` after provisioning.\nThe URL of the OCI network anchor for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_network_anchor_url` after provisioning.\nThe URL of the OCI network anchor for the ODB network."]
     pub fn oci_network_anchor_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_network_anchor_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_network_anchor_url", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\nThe name of the OCI resource anchor for the ODB network."]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_vcn_id` after provisioning.\nThe unique identifier  Oracle Cloud ID (OCID) of the OCI VCN for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_vcn_id` after provisioning.\nThe unique identifier  Oracle Cloud ID (OCID) of the OCI VCN for the ODB network."]
     pub fn oci_vcn_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_vcn_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_vcn_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `oci_vcn_url` after provisioning.\nThe URL of the OCI VCN for the ODB network."]
+    #[doc = "Get a reference to the value of field `oci_vcn_url` after provisioning.\nThe URL of the OCI VCN for the ODB network."]
     pub fn oci_vcn_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_vcn_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_vcn_url", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `peered_cidrs` after provisioning.\nThe list of CIDR ranges from the peered VPC that are allowed access to the ODB network. Please refer odb network peering documentation."]
+    #[doc = "Get a reference to the value of field `peered_cidrs` after provisioning.\nThe list of CIDR ranges from the peered VPC that are allowed access to the ODB network. Please refer odb network peering documentation."]
     pub fn peered_cidrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.peered_cidrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.peered_cidrs", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the ODB network, expressed as a percentage."]
+    #[doc = "Get a reference to the value of field `percent_progress` after provisioning.\nThe amount of progress made on the current operation on the ODB network, expressed as a percentage."]
     pub fn percent_progress(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.percent_progress", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.percent_progress", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\nThe status of the network resource."]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the current status of the ODB network."]
+    #[doc = "Get a reference to the value of field `status_reason` after provisioning.\nAdditional information about the current status of the ODB network."]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -447,7 +539,10 @@ pub struct DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef {
 }
 
 impl Ref for DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef {
-    fn new(shared: StackShared, base: String) -> DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef {
         DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef {
             shared: shared,
             base: base.to_string(),
@@ -462,7 +557,10 @@ impl DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef {
 
     #[doc = "Get a reference to the value of field `ipv4_addresses` after provisioning.\n"]
     pub fn ipv4_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv4_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv4_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -560,12 +658,18 @@ impl DataOdbNetworkManagedServicesElS3AccessElRef {
 
     #[doc = "Get a reference to the value of field `ipv4_addresses` after provisioning.\n"]
     pub fn ipv4_addresses(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv4_addresses", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv4_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_policy_document` after provisioning.\n"]
     pub fn s3_policy_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_policy_document", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_policy_document", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -625,7 +729,10 @@ pub struct DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef {
 }
 
 impl Ref for DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef {
-    fn new(shared: StackShared, base: String) -> DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef {
         DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef {
             shared: shared,
             base: base.to_string(),
@@ -640,12 +747,18 @@ impl DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef {
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_endpoint_type` after provisioning.\n"]
     pub fn vpc_endpoint_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_type", self.base),
+        )
     }
 }
 
@@ -727,7 +840,8 @@ impl DataOdbNetworkManagedServicesElZeroTlAccessElRef {
 #[derive(Serialize)]
 pub struct DataOdbNetworkManagedServicesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    managed_s3_backup_access: Option<ListField<DataOdbNetworkManagedServicesElManagedS3BackupAccessEl>>,
+    managed_s3_backup_access:
+        Option<ListField<DataOdbNetworkManagedServicesElManagedS3BackupAccessEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     managed_service_ipv4_cidrs: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -737,7 +851,8 @@ pub struct DataOdbNetworkManagedServicesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     service_network_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    service_network_endpoint: Option<ListField<DataOdbNetworkManagedServicesElServiceNetworkEndpointEl>>,
+    service_network_endpoint:
+        Option<ListField<DataOdbNetworkManagedServicesElServiceNetworkEndpointEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     zero_tl_access: Option<ListField<DataOdbNetworkManagedServicesElZeroTlAccessEl>>,
 }
@@ -753,7 +868,10 @@ impl DataOdbNetworkManagedServicesEl {
     }
 
     #[doc = "Set the field `managed_service_ipv4_cidrs`.\n"]
-    pub fn set_managed_service_ipv4_cidrs(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_managed_service_ipv4_cidrs(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.managed_service_ipv4_cidrs = Some(v.into());
         self
     }
@@ -765,7 +883,10 @@ impl DataOdbNetworkManagedServicesEl {
     }
 
     #[doc = "Set the field `s3_access`.\n"]
-    pub fn set_s3_access(mut self, v: impl Into<ListField<DataOdbNetworkManagedServicesElS3AccessEl>>) -> Self {
+    pub fn set_s3_access(
+        mut self,
+        v: impl Into<ListField<DataOdbNetworkManagedServicesElS3AccessEl>>,
+    ) -> Self {
         self.s3_access = Some(v.into());
         self
     }
@@ -786,7 +907,10 @@ impl DataOdbNetworkManagedServicesEl {
     }
 
     #[doc = "Set the field `zero_tl_access`.\n"]
-    pub fn set_zero_tl_access(mut self, v: impl Into<ListField<DataOdbNetworkManagedServicesElZeroTlAccessEl>>) -> Self {
+    pub fn set_zero_tl_access(
+        mut self,
+        v: impl Into<ListField<DataOdbNetworkManagedServicesElZeroTlAccessEl>>,
+    ) -> Self {
         self.zero_tl_access = Some(v.into());
         self
     }
@@ -840,18 +964,29 @@ impl DataOdbNetworkManagedServicesElRef {
     }
 
     #[doc = "Get a reference to the value of field `managed_s3_backup_access` after provisioning.\n"]
-    pub fn managed_s3_backup_access(&self) -> ListRef<DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_s3_backup_access", self.base))
+    pub fn managed_s3_backup_access(
+        &self,
+    ) -> ListRef<DataOdbNetworkManagedServicesElManagedS3BackupAccessElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_s3_backup_access", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_service_ipv4_cidrs` after provisioning.\n"]
     pub fn managed_service_ipv4_cidrs(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_service_ipv4_cidrs", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_service_ipv4_cidrs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_gateway_arn` after provisioning.\n"]
     pub fn resource_gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_gateway_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_gateway_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_access` after provisioning.\n"]
@@ -861,17 +996,28 @@ impl DataOdbNetworkManagedServicesElRef {
 
     #[doc = "Get a reference to the value of field `service_network_arn` after provisioning.\n"]
     pub fn service_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_network_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_network_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_network_endpoint` after provisioning.\n"]
-    pub fn service_network_endpoint(&self) -> ListRef<DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_network_endpoint", self.base))
+    pub fn service_network_endpoint(
+        &self,
+    ) -> ListRef<DataOdbNetworkManagedServicesElServiceNetworkEndpointElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_network_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zero_tl_access` after provisioning.\n"]
     pub fn zero_tl_access(&self) -> ListRef<DataOdbNetworkManagedServicesElZeroTlAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.zero_tl_access", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.zero_tl_access", self.base),
+        )
     }
 }
 
@@ -946,6 +1092,9 @@ impl DataOdbNetworkOciDnsForwardingConfigsElRef {
 
     #[doc = "Get a reference to the value of field `oci_dns_listener_ip` after provisioning.\n"]
     pub fn oci_dns_listener_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_dns_listener_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_dns_listener_ip", self.base),
+        )
     }
 }

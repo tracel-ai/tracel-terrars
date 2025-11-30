@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IotDomainConfigurationData {
@@ -79,7 +79,8 @@ impl IotDomainConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -92,7 +93,7 @@ impl IotDomainConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -103,12 +104,22 @@ impl IotDomainConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -136,8 +147,7 @@ impl IotDomainConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -180,34 +190,43 @@ impl IotDomainConfiguration {
     }
 
     #[doc = "Set the field `authorizer_config`.\n"]
-    pub fn set_authorizer_config(self, v: impl Into<BlockAssignable<IotDomainConfigurationAuthorizerConfigEl>>) -> Self {
+    pub fn set_authorizer_config(
+        self,
+        v: impl Into<BlockAssignable<IotDomainConfigurationAuthorizerConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().authorizer_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.authorizer_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tls_config`.\n"]
-    pub fn set_tls_config(self, v: impl Into<BlockAssignable<IotDomainConfigurationTlsConfigEl>>) -> Self {
+    pub fn set_tls_config(
+        self,
+        v: impl Into<BlockAssignable<IotDomainConfigurationTlsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tls_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tls_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `application_protocol` after provisioning.\n"]
     pub fn application_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -217,17 +236,26 @@ impl IotDomainConfiguration {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_type` after provisioning.\n"]
     pub fn domain_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -237,63 +265,96 @@ impl IotDomainConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_certificate_arns` after provisioning.\n"]
     pub fn server_certificate_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.server_certificate_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.server_certificate_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_type` after provisioning.\n"]
     pub fn service_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_certificate_arn` after provisioning.\n"]
     pub fn validation_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_config` after provisioning.\n"]
     pub fn authorizer_config(&self) -> ListRef<IotDomainConfigurationAuthorizerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorizer_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorizer_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_config` after provisioning.\n"]
     pub fn tls_config(&self) -> ListRef<IotDomainConfigurationTlsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tls_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tls_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IotDomainConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IotDomainConfiguration { }
+impl Resource for IotDomainConfiguration {}
 
 impl ToListMappable for IotDomainConfiguration {
     type O = ListRef<IotDomainConfigurationRef>;
@@ -363,10 +424,7 @@ pub struct IotDomainConfigurationRef {
 
 impl Ref for IotDomainConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -381,7 +439,10 @@ impl IotDomainConfigurationRef {
 
     #[doc = "Get a reference to the value of field `application_protocol` after provisioning.\n"]
     pub fn application_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -391,17 +452,26 @@ impl IotDomainConfigurationRef {
 
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_type` after provisioning.\n"]
     pub fn domain_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -411,53 +481,82 @@ impl IotDomainConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_certificate_arns` after provisioning.\n"]
     pub fn server_certificate_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.server_certificate_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.server_certificate_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_type` after provisioning.\n"]
     pub fn service_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_certificate_arn` after provisioning.\n"]
     pub fn validation_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_config` after provisioning.\n"]
     pub fn authorizer_config(&self) -> ListRef<IotDomainConfigurationAuthorizerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorizer_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorizer_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tls_config` after provisioning.\n"]
     pub fn tls_config(&self) -> ListRef<IotDomainConfigurationTlsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tls_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tls_config", self.extract_ref()),
+        )
     }
 }
 
@@ -527,12 +626,18 @@ impl IotDomainConfigurationAuthorizerConfigElRef {
 
     #[doc = "Get a reference to the value of field `allow_authorizer_override` after provisioning.\n"]
     pub fn allow_authorizer_override(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_authorizer_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_authorizer_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_authorizer_name` after provisioning.\n"]
     pub fn default_authorizer_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_authorizer_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_authorizer_name", self.base),
+        )
     }
 }
 
@@ -566,7 +671,9 @@ pub struct BuildIotDomainConfigurationTlsConfigEl {}
 
 impl BuildIotDomainConfigurationTlsConfigEl {
     pub fn build(self) -> IotDomainConfigurationTlsConfigEl {
-        IotDomainConfigurationTlsConfigEl { security_policy: core::default::Default::default() }
+        IotDomainConfigurationTlsConfigEl {
+            security_policy: core::default::Default::default(),
+        }
     }
 }
 
@@ -591,7 +698,10 @@ impl IotDomainConfigurationTlsConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_policy` after provisioning.\n"]
     pub fn security_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_policy", self.base),
+        )
     }
 }
 

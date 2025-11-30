@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2TransitGatewayConnectPeerData {
@@ -57,8 +57,7 @@ impl DataEc2TransitGatewayConnectPeer {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -77,14 +76,17 @@ impl DataEc2TransitGatewayConnectPeer {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2TransitGatewayConnectPeerFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2TransitGatewayConnectPeerFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -102,17 +104,26 @@ impl DataEc2TransitGatewayConnectPeer {
 
     #[doc = "Get a reference to the value of field `bgp_asn` after provisioning.\n"]
     pub fn bgp_asn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bgp_asn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bgp_asn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bgp_peer_address` after provisioning.\n"]
     pub fn bgp_peer_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bgp_peer_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bgp_peer_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bgp_transit_gateway_addresses` after provisioning.\n"]
     pub fn bgp_transit_gateway_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.bgp_transit_gateway_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.bgp_transit_gateway_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -122,38 +133,58 @@ impl DataEc2TransitGatewayConnectPeer {
 
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.inside_cidr_blocks", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inside_cidr_blocks", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_address` after provisioning.\n"]
     pub fn peer_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_address", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_address` after provisioning.\n"]
     pub fn transit_gateway_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_connect_peer_id` after provisioning.\n"]
     pub fn transit_gateway_connect_peer_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_connect_peer_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_connect_peer_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -167,11 +198,15 @@ impl DataEc2TransitGatewayConnectPeer {
 
 impl Referable for DataEc2TransitGatewayConnectPeer {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2TransitGatewayConnectPeer { }
+impl Datasource for DataEc2TransitGatewayConnectPeer {}
 
 impl ToListMappable for DataEc2TransitGatewayConnectPeer {
     type O = ListRef<DataEc2TransitGatewayConnectPeerRef>;
@@ -230,10 +265,7 @@ pub struct DataEc2TransitGatewayConnectPeerRef {
 
 impl Ref for DataEc2TransitGatewayConnectPeerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -253,17 +285,26 @@ impl DataEc2TransitGatewayConnectPeerRef {
 
     #[doc = "Get a reference to the value of field `bgp_asn` after provisioning.\n"]
     pub fn bgp_asn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bgp_asn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bgp_asn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bgp_peer_address` after provisioning.\n"]
     pub fn bgp_peer_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bgp_peer_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bgp_peer_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bgp_transit_gateway_addresses` after provisioning.\n"]
     pub fn bgp_transit_gateway_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.bgp_transit_gateway_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.bgp_transit_gateway_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -273,38 +314,58 @@ impl DataEc2TransitGatewayConnectPeerRef {
 
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.inside_cidr_blocks", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inside_cidr_blocks", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_address` after provisioning.\n"]
     pub fn peer_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_address", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_address` after provisioning.\n"]
     pub fn transit_gateway_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_connect_peer_id` after provisioning.\n"]
     pub fn transit_gateway_connect_peer_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_connect_peer_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_connect_peer_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -322,7 +383,7 @@ pub struct DataEc2TransitGatewayConnectPeerFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2TransitGatewayConnectPeerFilterEl { }
+impl DataEc2TransitGatewayConnectPeerFilterEl {}
 
 impl ToListMappable for DataEc2TransitGatewayConnectPeerFilterEl {
     type O = BlockAssignable<DataEc2TransitGatewayConnectPeerFilterEl>;
@@ -412,7 +473,9 @@ pub struct BuildDataEc2TransitGatewayConnectPeerTimeoutsEl {}
 
 impl BuildDataEc2TransitGatewayConnectPeerTimeoutsEl {
     pub fn build(self) -> DataEc2TransitGatewayConnectPeerTimeoutsEl {
-        DataEc2TransitGatewayConnectPeerTimeoutsEl { read: core::default::Default::default() }
+        DataEc2TransitGatewayConnectPeerTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlueCatalogDatabaseData {
@@ -75,7 +75,8 @@ impl GlueCatalogDatabase {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl GlueCatalogDatabase {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl GlueCatalogDatabase {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -138,8 +149,7 @@ impl GlueCatalogDatabase {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -165,36 +175,46 @@ impl GlueCatalogDatabase {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().create_table_default_permission = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.create_table_default_permission = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .create_table_default_permission = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `federated_database`.\n"]
-    pub fn set_federated_database(self, v: impl Into<BlockAssignable<GlueCatalogDatabaseFederatedDatabaseEl>>) -> Self {
+    pub fn set_federated_database(
+        self,
+        v: impl Into<BlockAssignable<GlueCatalogDatabaseFederatedDatabaseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().federated_database = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.federated_database = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `target_database`.\n"]
-    pub fn set_target_database(self, v: impl Into<BlockAssignable<GlueCatalogDatabaseTargetDatabaseEl>>) -> Self {
+    pub fn set_target_database(
+        self,
+        v: impl Into<BlockAssignable<GlueCatalogDatabaseTargetDatabaseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_database = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_database = Some(d);
-            },
+            }
         }
         self
     }
@@ -206,12 +226,18 @@ impl GlueCatalogDatabase {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -221,58 +247,90 @@ impl GlueCatalogDatabase {
 
     #[doc = "Get a reference to the value of field `location_uri` after provisioning.\n"]
     pub fn location_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_table_default_permission` after provisioning.\n"]
-    pub fn create_table_default_permission(&self) -> ListRef<GlueCatalogDatabaseCreateTableDefaultPermissionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.create_table_default_permission", self.extract_ref()))
+    pub fn create_table_default_permission(
+        &self,
+    ) -> ListRef<GlueCatalogDatabaseCreateTableDefaultPermissionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.create_table_default_permission", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `federated_database` after provisioning.\n"]
     pub fn federated_database(&self) -> ListRef<GlueCatalogDatabaseFederatedDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.federated_database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.federated_database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_database` after provisioning.\n"]
     pub fn target_database(&self) -> ListRef<GlueCatalogDatabaseTargetDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_database", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GlueCatalogDatabase {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlueCatalogDatabase { }
+impl Resource for GlueCatalogDatabase {}
 
 impl ToListMappable for GlueCatalogDatabase {
     type O = ListRef<GlueCatalogDatabaseRef>;
@@ -340,10 +398,7 @@ pub struct GlueCatalogDatabaseRef {
 
 impl Ref for GlueCatalogDatabaseRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -363,12 +418,18 @@ impl GlueCatalogDatabaseRef {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -378,48 +439,76 @@ impl GlueCatalogDatabaseRef {
 
     #[doc = "Get a reference to the value of field `location_uri` after provisioning.\n"]
     pub fn location_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_table_default_permission` after provisioning.\n"]
-    pub fn create_table_default_permission(&self) -> ListRef<GlueCatalogDatabaseCreateTableDefaultPermissionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.create_table_default_permission", self.extract_ref()))
+    pub fn create_table_default_permission(
+        &self,
+    ) -> ListRef<GlueCatalogDatabaseCreateTableDefaultPermissionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.create_table_default_permission", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `federated_database` after provisioning.\n"]
     pub fn federated_database(&self) -> ListRef<GlueCatalogDatabaseFederatedDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.federated_database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.federated_database", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_database` after provisioning.\n"]
     pub fn target_database(&self) -> ListRef<GlueCatalogDatabaseTargetDatabaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_database", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_database", self.extract_ref()),
+        )
     }
 }
 
@@ -465,7 +554,10 @@ pub struct GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef {
 }
 
 impl Ref for GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef {
-    fn new(shared: StackShared, base: String) -> GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef {
         GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef {
             shared: shared,
             base: base.to_string(),
@@ -480,7 +572,10 @@ impl GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef {
 
     #[doc = "Get a reference to the value of field `data_lake_principal_identifier` after provisioning.\n"]
     pub fn data_lake_principal_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_lake_principal_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_lake_principal_identifier", self.base),
+        )
     }
 }
 
@@ -513,10 +608,10 @@ impl GlueCatalogDatabaseCreateTableDefaultPermissionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.principal = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.principal = Some(d);
-            },
+            }
         }
         self
     }
@@ -552,7 +647,10 @@ pub struct GlueCatalogDatabaseCreateTableDefaultPermissionElRef {
 }
 
 impl Ref for GlueCatalogDatabaseCreateTableDefaultPermissionElRef {
-    fn new(shared: StackShared, base: String) -> GlueCatalogDatabaseCreateTableDefaultPermissionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlueCatalogDatabaseCreateTableDefaultPermissionElRef {
         GlueCatalogDatabaseCreateTableDefaultPermissionElRef {
             shared: shared,
             base: base.to_string(),
@@ -571,7 +669,9 @@ impl GlueCatalogDatabaseCreateTableDefaultPermissionElRef {
     }
 
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
-    pub fn principal(&self) -> ListRef<GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef> {
+    pub fn principal(
+        &self,
+    ) -> ListRef<GlueCatalogDatabaseCreateTableDefaultPermissionElPrincipalElRef> {
         ListRef::new(self.shared().clone(), format!("{}.principal", self.base))
     }
 }
@@ -642,7 +742,10 @@ impl GlueCatalogDatabaseFederatedDatabaseElRef {
 
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.connection_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.connection_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identifier` after provisioning.\n"]
@@ -722,7 +825,10 @@ impl GlueCatalogDatabaseTargetDatabaseElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
@@ -733,7 +839,8 @@ impl GlueCatalogDatabaseTargetDatabaseElRef {
 
 #[derive(Serialize, Default)]
 struct GlueCatalogDatabaseDynamic {
-    create_table_default_permission: Option<DynamicBlock<GlueCatalogDatabaseCreateTableDefaultPermissionEl>>,
+    create_table_default_permission:
+        Option<DynamicBlock<GlueCatalogDatabaseCreateTableDefaultPermissionEl>>,
     federated_database: Option<DynamicBlock<GlueCatalogDatabaseFederatedDatabaseEl>>,
     target_database: Option<DynamicBlock<GlueCatalogDatabaseTargetDatabaseEl>>,
 }

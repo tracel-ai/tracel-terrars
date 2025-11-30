@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBudgetsBudgetData {
@@ -73,7 +73,10 @@ impl DataBudgetsBudget {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -83,42 +86,66 @@ impl DataBudgetsBudget {
 
     #[doc = "Get a reference to the value of field `auto_adjust_data` after provisioning.\n"]
     pub fn auto_adjust_data(&self) -> ListRef<DataBudgetsBudgetAutoAdjustDataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_adjust_data", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_adjust_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_view_arn` after provisioning.\n"]
     pub fn billing_view_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_view_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_view_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `budget_exceeded` after provisioning.\n"]
     pub fn budget_exceeded(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.budget_exceeded", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.budget_exceeded", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `budget_limit` after provisioning.\n"]
     pub fn budget_limit(&self) -> ListRef<DataBudgetsBudgetBudgetLimitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.budget_limit", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.budget_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `budget_type` after provisioning.\n"]
     pub fn budget_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.budget_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.budget_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `calculated_spend` after provisioning.\n"]
     pub fn calculated_spend(&self) -> ListRef<DataBudgetsBudgetCalculatedSpendElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.calculated_spend", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.calculated_spend", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cost_filter` after provisioning.\n"]
     pub fn cost_filter(&self) -> SetRef<DataBudgetsBudgetCostFilterElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.cost_filter", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cost_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cost_types` after provisioning.\n"]
     pub fn cost_types(&self) -> ListRef<DataBudgetsBudgetCostTypesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_types", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -128,52 +155,80 @@ impl DataBudgetsBudget {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification` after provisioning.\n"]
     pub fn notification(&self) -> SetRef<DataBudgetsBudgetNotificationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.notification", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.notification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `planned_limit` after provisioning.\n"]
     pub fn planned_limit(&self) -> SetRef<DataBudgetsBudgetPlannedLimitElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.planned_limit", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.planned_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_period_end` after provisioning.\n"]
     pub fn time_period_end(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_period_end", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_period_end", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_period_start` after provisioning.\n"]
     pub fn time_period_start(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_period_start", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_period_start", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_unit` after provisioning.\n"]
     pub fn time_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_unit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_unit", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBudgetsBudget {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBudgetsBudget { }
+impl Datasource for DataBudgetsBudget {}
 
 impl ToListMappable for DataBudgetsBudget {
     type O = ListRef<DataBudgetsBudgetRef>;
@@ -232,10 +287,7 @@ pub struct DataBudgetsBudgetRef {
 
 impl Ref for DataBudgetsBudgetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -250,7 +302,10 @@ impl DataBudgetsBudgetRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -260,42 +315,66 @@ impl DataBudgetsBudgetRef {
 
     #[doc = "Get a reference to the value of field `auto_adjust_data` after provisioning.\n"]
     pub fn auto_adjust_data(&self) -> ListRef<DataBudgetsBudgetAutoAdjustDataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_adjust_data", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_adjust_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `billing_view_arn` after provisioning.\n"]
     pub fn billing_view_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.billing_view_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.billing_view_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `budget_exceeded` after provisioning.\n"]
     pub fn budget_exceeded(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.budget_exceeded", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.budget_exceeded", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `budget_limit` after provisioning.\n"]
     pub fn budget_limit(&self) -> ListRef<DataBudgetsBudgetBudgetLimitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.budget_limit", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.budget_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `budget_type` after provisioning.\n"]
     pub fn budget_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.budget_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.budget_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `calculated_spend` after provisioning.\n"]
     pub fn calculated_spend(&self) -> ListRef<DataBudgetsBudgetCalculatedSpendElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.calculated_spend", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.calculated_spend", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cost_filter` after provisioning.\n"]
     pub fn cost_filter(&self) -> SetRef<DataBudgetsBudgetCostFilterElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.cost_filter", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cost_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cost_types` after provisioning.\n"]
     pub fn cost_types(&self) -> ListRef<DataBudgetsBudgetCostTypesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_types", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -305,42 +384,66 @@ impl DataBudgetsBudgetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification` after provisioning.\n"]
     pub fn notification(&self) -> SetRef<DataBudgetsBudgetNotificationElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.notification", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.notification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `planned_limit` after provisioning.\n"]
     pub fn planned_limit(&self) -> SetRef<DataBudgetsBudgetPlannedLimitElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.planned_limit", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.planned_limit", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_period_end` after provisioning.\n"]
     pub fn time_period_end(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_period_end", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_period_end", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_period_start` after provisioning.\n"]
     pub fn time_period_start(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_period_start", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_period_start", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_unit` after provisioning.\n"]
     pub fn time_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.time_unit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.time_unit", self.extract_ref()),
+        )
     }
 }
 
@@ -395,7 +498,10 @@ pub struct DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef {
 }
 
 impl Ref for DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef {
         DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -410,12 +516,18 @@ impl DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef {
 
     #[doc = "Get a reference to the value of field `budget_adjustment_period` after provisioning.\n"]
     pub fn budget_adjustment_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.budget_adjustment_period", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.budget_adjustment_period", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lookback_available_periods` after provisioning.\n"]
     pub fn lookback_available_periods(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lookback_available_periods", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lookback_available_periods", self.base),
+        )
     }
 }
 
@@ -497,17 +609,28 @@ impl DataBudgetsBudgetAutoAdjustDataElRef {
 
     #[doc = "Get a reference to the value of field `auto_adjust_type` after provisioning.\n"]
     pub fn auto_adjust_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_adjust_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_adjust_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `historical_options` after provisioning.\n"]
-    pub fn historical_options(&self) -> ListRef<DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.historical_options", self.base))
+    pub fn historical_options(
+        &self,
+    ) -> ListRef<DataBudgetsBudgetAutoAdjustDataElHistoricalOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.historical_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_auto_adjust_time` after provisioning.\n"]
     pub fn last_auto_adjust_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_auto_adjust_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_auto_adjust_time", self.base),
+        )
     }
 }
 
@@ -637,7 +760,10 @@ pub struct DataBudgetsBudgetCalculatedSpendElActualSpendElRef {
 }
 
 impl Ref for DataBudgetsBudgetCalculatedSpendElActualSpendElRef {
-    fn new(shared: StackShared, base: String) -> DataBudgetsBudgetCalculatedSpendElActualSpendElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBudgetsBudgetCalculatedSpendElActualSpendElRef {
         DataBudgetsBudgetCalculatedSpendElActualSpendElRef {
             shared: shared,
             base: base.to_string(),
@@ -669,7 +795,10 @@ pub struct DataBudgetsBudgetCalculatedSpendEl {
 
 impl DataBudgetsBudgetCalculatedSpendEl {
     #[doc = "Set the field `actual_spend`.\n"]
-    pub fn set_actual_spend(mut self, v: impl Into<ListField<DataBudgetsBudgetCalculatedSpendElActualSpendEl>>) -> Self {
+    pub fn set_actual_spend(
+        mut self,
+        v: impl Into<ListField<DataBudgetsBudgetCalculatedSpendElActualSpendEl>>,
+    ) -> Self {
         self.actual_spend = Some(v.into());
         self
     }
@@ -691,7 +820,9 @@ pub struct BuildDataBudgetsBudgetCalculatedSpendEl {}
 
 impl BuildDataBudgetsBudgetCalculatedSpendEl {
     pub fn build(self) -> DataBudgetsBudgetCalculatedSpendEl {
-        DataBudgetsBudgetCalculatedSpendEl { actual_spend: core::default::Default::default() }
+        DataBudgetsBudgetCalculatedSpendEl {
+            actual_spend: core::default::Default::default(),
+        }
     }
 }
 
@@ -942,37 +1073,58 @@ impl DataBudgetsBudgetCostTypesElRef {
 
     #[doc = "Get a reference to the value of field `include_credit` after provisioning.\n"]
     pub fn include_credit(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_credit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_credit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_discount` after provisioning.\n"]
     pub fn include_discount(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_discount", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_discount", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_other_subscription` after provisioning.\n"]
     pub fn include_other_subscription(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_other_subscription", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_other_subscription", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_recurring` after provisioning.\n"]
     pub fn include_recurring(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_recurring", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_recurring", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_refund` after provisioning.\n"]
     pub fn include_refund(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_refund", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_refund", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_subscription` after provisioning.\n"]
     pub fn include_subscription(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_subscription", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_subscription", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_support` after provisioning.\n"]
     pub fn include_support(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_support", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_support", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_tax` after provisioning.\n"]
@@ -982,12 +1134,18 @@ impl DataBudgetsBudgetCostTypesElRef {
 
     #[doc = "Get a reference to the value of field `include_upfront` after provisioning.\n"]
     pub fn include_upfront(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_upfront", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_upfront", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `use_amortized` after provisioning.\n"]
     pub fn use_amortized(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.use_amortized", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.use_amortized", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `use_blended` after provisioning.\n"]
@@ -1026,13 +1184,19 @@ impl DataBudgetsBudgetNotificationEl {
     }
 
     #[doc = "Set the field `subscriber_email_addresses`.\n"]
-    pub fn set_subscriber_email_addresses(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_subscriber_email_addresses(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.subscriber_email_addresses = Some(v.into());
         self
     }
 
     #[doc = "Set the field `subscriber_sns_topic_arns`.\n"]
-    pub fn set_subscriber_sns_topic_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_subscriber_sns_topic_arns(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.subscriber_sns_topic_arns = Some(v.into());
         self
     }
@@ -1098,22 +1262,34 @@ impl DataBudgetsBudgetNotificationElRef {
 
     #[doc = "Get a reference to the value of field `comparison_operator` after provisioning.\n"]
     pub fn comparison_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comparison_operator", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comparison_operator", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_type` after provisioning.\n"]
     pub fn notification_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_email_addresses` after provisioning.\n"]
     pub fn subscriber_email_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subscriber_email_addresses", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subscriber_email_addresses", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subscriber_sns_topic_arns` after provisioning.\n"]
     pub fn subscriber_sns_topic_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subscriber_sns_topic_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subscriber_sns_topic_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold` after provisioning.\n"]
@@ -1123,7 +1299,10 @@ impl DataBudgetsBudgetNotificationElRef {
 
     #[doc = "Get a reference to the value of field `threshold_type` after provisioning.\n"]
     pub fn threshold_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold_type", self.base),
+        )
     }
 }
 

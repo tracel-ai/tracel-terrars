@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEmrReleaseLabelsData {
@@ -51,8 +51,7 @@ impl DataEmrReleaseLabels {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,10 +62,10 @@ impl DataEmrReleaseLabels {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filters = Some(d);
-            },
+            }
         }
         self
     }
@@ -76,30 +75,42 @@ impl DataEmrReleaseLabels {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_labels` after provisioning.\n"]
     pub fn release_labels(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.release_labels", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.release_labels", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<DataEmrReleaseLabelsFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEmrReleaseLabels {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEmrReleaseLabels { }
+impl Datasource for DataEmrReleaseLabels {}
 
 impl ToListMappable for DataEmrReleaseLabels {
     type O = ListRef<DataEmrReleaseLabelsRef>;
@@ -155,10 +166,7 @@ pub struct DataEmrReleaseLabelsRef {
 
 impl Ref for DataEmrReleaseLabelsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -176,20 +184,28 @@ impl DataEmrReleaseLabelsRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_labels` after provisioning.\n"]
     pub fn release_labels(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.release_labels", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.release_labels", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<DataEmrReleaseLabelsFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 }
 

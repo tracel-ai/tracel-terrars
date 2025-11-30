@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataResourcegroupstaggingapiResourcesData {
@@ -71,8 +71,7 @@ impl DataResourcegroupstaggingapiResources {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -98,17 +97,20 @@ impl DataResourcegroupstaggingapiResources {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tag_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tag_filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `exclude_compliant_resources` after provisioning.\n"]
     pub fn exclude_compliant_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_compliant_resources", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_compliant_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -118,43 +120,66 @@ impl DataResourcegroupstaggingapiResources {
 
     #[doc = "Get a reference to the value of field `include_compliance_details` after provisioning.\n"]
     pub fn include_compliance_details(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_compliance_details", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_compliance_details", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn_list` after provisioning.\n"]
     pub fn resource_arn_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_arn_list", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_arn_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tag_mapping_list` after provisioning.\n"]
-    pub fn resource_tag_mapping_list(&self) -> ListRef<DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_tag_mapping_list", self.extract_ref()))
+    pub fn resource_tag_mapping_list(
+        &self,
+    ) -> ListRef<DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_mapping_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type_filters` after provisioning.\n"]
     pub fn resource_type_filters(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_type_filters", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_type_filters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_filter` after provisioning.\n"]
     pub fn tag_filter(&self) -> ListRef<DataResourcegroupstaggingapiResourcesTagFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_filter", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataResourcegroupstaggingapiResources {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataResourcegroupstaggingapiResources { }
+impl Datasource for DataResourcegroupstaggingapiResources {}
 
 impl ToListMappable for DataResourcegroupstaggingapiResources {
     type O = ListRef<DataResourcegroupstaggingapiResourcesRef>;
@@ -185,23 +210,25 @@ pub struct BuildDataResourcegroupstaggingapiResources {
 
 impl BuildDataResourcegroupstaggingapiResources {
     pub fn build(self, stack: &mut Stack) -> DataResourcegroupstaggingapiResources {
-        let out = DataResourcegroupstaggingapiResources(Rc::new(DataResourcegroupstaggingapiResources_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataResourcegroupstaggingapiResourcesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                exclude_compliant_resources: core::default::Default::default(),
-                id: core::default::Default::default(),
-                include_compliance_details: core::default::Default::default(),
-                region: core::default::Default::default(),
-                resource_arn_list: core::default::Default::default(),
-                resource_type_filters: core::default::Default::default(),
-                tag_filter: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataResourcegroupstaggingapiResources(Rc::new(
+            DataResourcegroupstaggingapiResources_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataResourcegroupstaggingapiResourcesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    exclude_compliant_resources: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    include_compliance_details: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    resource_arn_list: core::default::Default::default(),
+                    resource_type_filters: core::default::Default::default(),
+                    tag_filter: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -214,10 +241,7 @@ pub struct DataResourcegroupstaggingapiResourcesRef {
 
 impl Ref for DataResourcegroupstaggingapiResourcesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -232,7 +256,10 @@ impl DataResourcegroupstaggingapiResourcesRef {
 
     #[doc = "Get a reference to the value of field `exclude_compliant_resources` after provisioning.\n"]
     pub fn exclude_compliant_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_compliant_resources", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_compliant_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -242,33 +269,52 @@ impl DataResourcegroupstaggingapiResourcesRef {
 
     #[doc = "Get a reference to the value of field `include_compliance_details` after provisioning.\n"]
     pub fn include_compliance_details(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_compliance_details", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_compliance_details", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn_list` after provisioning.\n"]
     pub fn resource_arn_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_arn_list", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_arn_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tag_mapping_list` after provisioning.\n"]
-    pub fn resource_tag_mapping_list(&self) -> ListRef<DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_tag_mapping_list", self.extract_ref()))
+    pub fn resource_tag_mapping_list(
+        &self,
+    ) -> ListRef<DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_mapping_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type_filters` after provisioning.\n"]
     pub fn resource_type_filters(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_type_filters", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_type_filters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_filter` after provisioning.\n"]
     pub fn tag_filter(&self) -> ListRef<DataResourcegroupstaggingapiResourcesTagFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_filter", self.extract_ref()),
+        )
     }
 }
 
@@ -290,7 +336,10 @@ impl DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDeta
     }
 
     #[doc = "Set the field `keys_with_noncompliant_values`.\n"]
-    pub fn set_keys_with_noncompliant_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_keys_with_noncompliant_values(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.keys_with_noncompliant_values = Some(v.into());
         self
     }
@@ -302,8 +351,12 @@ impl DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDeta
     }
 }
 
-impl ToListMappable for DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {
-    type O = BlockAssignable<DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl>;
+impl ToListMappable
+    for DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl
+{
+    type O = BlockAssignable<
+        DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -314,10 +367,13 @@ impl ToListMappable for DataResourcegroupstaggingapiResourcesResourceTagMappingL
     }
 }
 
-pub struct BuildDataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {}
+pub struct BuildDataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {
+}
 
 impl BuildDataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {
-    pub fn build(self) -> DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {
+    pub fn build(
+        self,
+    ) -> DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {
         DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl {
             compliance_status: core::default::Default::default(),
             keys_with_noncompliant_values: core::default::Default::default(),
@@ -350,17 +406,26 @@ impl DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDeta
 
     #[doc = "Get a reference to the value of field `compliance_status` after provisioning.\n"]
     pub fn compliance_status(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compliance_status", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compliance_status", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `keys_with_noncompliant_values` after provisioning.\n"]
     pub fn keys_with_noncompliant_values(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.keys_with_noncompliant_values", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.keys_with_noncompliant_values", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `non_compliant_keys` after provisioning.\n"]
     pub fn non_compliant_keys(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.non_compliant_keys", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.non_compliant_keys", self.base),
+        )
     }
 }
 
@@ -380,7 +445,11 @@ impl DataResourcegroupstaggingapiResourcesResourceTagMappingListEl {
     #[doc = "Set the field `compliance_details`.\n"]
     pub fn set_compliance_details(
         mut self,
-        v: impl Into<ListField<DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl>>,
+        v: impl Into<
+            ListField<
+                DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsEl,
+            >,
+        >,
     ) -> Self {
         self.compliance_details = Some(v.into());
         self
@@ -429,7 +498,10 @@ pub struct DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef {
 }
 
 impl Ref for DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef {
-    fn new(shared: StackShared, base: String) -> DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef {
         DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef {
             shared: shared,
             base: base.to_string(),
@@ -445,8 +517,12 @@ impl DataResourcegroupstaggingapiResourcesResourceTagMappingListElRef {
     #[doc = "Get a reference to the value of field `compliance_details` after provisioning.\n"]
     pub fn compliance_details(
         &self,
-    ) -> ListRef<DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compliance_details", self.base))
+    ) -> ListRef<DataResourcegroupstaggingapiResourcesResourceTagMappingListElComplianceDetailsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compliance_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
@@ -507,7 +583,10 @@ pub struct DataResourcegroupstaggingapiResourcesTagFilterElRef {
 }
 
 impl Ref for DataResourcegroupstaggingapiResourcesTagFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataResourcegroupstaggingapiResourcesTagFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataResourcegroupstaggingapiResourcesTagFilterElRef {
         DataResourcegroupstaggingapiResourcesTagFilterElRef {
             shared: shared,
             base: base.to_string(),

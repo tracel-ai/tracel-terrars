@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodepipelineData {
@@ -74,7 +74,8 @@ impl Codepipeline {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl Codepipeline {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl Codepipeline {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -125,8 +136,7 @@ impl Codepipeline {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -145,14 +155,17 @@ impl Codepipeline {
     }
 
     #[doc = "Set the field `artifact_store`.\n"]
-    pub fn set_artifact_store(self, v: impl Into<BlockAssignable<CodepipelineArtifactStoreEl>>) -> Self {
+    pub fn set_artifact_store(
+        self,
+        v: impl Into<BlockAssignable<CodepipelineArtifactStoreEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().artifact_store = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.artifact_store = Some(d);
-            },
+            }
         }
         self
     }
@@ -162,10 +175,10 @@ impl Codepipeline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().stage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.stage = Some(d);
-            },
+            }
         }
         self
     }
@@ -175,10 +188,10 @@ impl Codepipeline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().trigger = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.trigger = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,10 +201,10 @@ impl Codepipeline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().variable = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.variable = Some(d);
-            },
+            }
         }
         self
     }
@@ -203,7 +216,10 @@ impl Codepipeline {
 
     #[doc = "Get a reference to the value of field `execution_mode` after provisioning.\n"]
     pub fn execution_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -213,63 +229,96 @@ impl Codepipeline {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pipeline_type` after provisioning.\n"]
     pub fn pipeline_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pipeline_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pipeline_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trigger_all` after provisioning.\n"]
     pub fn trigger_all(&self) -> ListRef<CodepipelineTriggerAllElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trigger_all", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trigger_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stage` after provisioning.\n"]
     pub fn stage(&self) -> ListRef<CodepipelineStageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trigger` after provisioning.\n"]
     pub fn trigger(&self) -> ListRef<CodepipelineTriggerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trigger", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trigger", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `variable` after provisioning.\n"]
     pub fn variable(&self) -> ListRef<CodepipelineVariableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.variable", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.variable", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Codepipeline {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Codepipeline { }
+impl Resource for Codepipeline {}
 
 impl ToListMappable for Codepipeline {
     type O = ListRef<CodepipelineRef>;
@@ -339,10 +388,7 @@ pub struct CodepipelineRef {
 
 impl Ref for CodepipelineRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -362,7 +408,10 @@ impl CodepipelineRef {
 
     #[doc = "Get a reference to the value of field `execution_mode` after provisioning.\n"]
     pub fn execution_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -372,53 +421,82 @@ impl CodepipelineRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pipeline_type` after provisioning.\n"]
     pub fn pipeline_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pipeline_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pipeline_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trigger_all` after provisioning.\n"]
     pub fn trigger_all(&self) -> ListRef<CodepipelineTriggerAllElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trigger_all", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trigger_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stage` after provisioning.\n"]
     pub fn stage(&self) -> ListRef<CodepipelineStageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.stage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.stage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trigger` after provisioning.\n"]
     pub fn trigger(&self) -> ListRef<CodepipelineTriggerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.trigger", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trigger", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `variable` after provisioning.\n"]
     pub fn variable(&self) -> ListRef<CodepipelineVariableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.variable", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.variable", self.extract_ref()),
+        )
     }
 }
 
@@ -585,7 +663,8 @@ pub struct CodepipelineTriggerAllElGitConfigurationElPullRequestEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     events: Option<ListField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    file_paths: Option<ListField<CodepipelineTriggerAllElGitConfigurationElPullRequestElFilePathsEl>>,
+    file_paths:
+        Option<ListField<CodepipelineTriggerAllElGitConfigurationElPullRequestElFilePathsEl>>,
 }
 
 impl CodepipelineTriggerAllElGitConfigurationElPullRequestEl {
@@ -644,7 +723,10 @@ pub struct CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
 }
 
 impl Ref for CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
         CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
             shared: shared,
             base: base.to_string(),
@@ -658,7 +740,9 @@ impl CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
     }
 
     #[doc = "Get a reference to the value of field `branches` after provisioning.\n"]
-    pub fn branches(&self) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPullRequestElBranchesElRef> {
+    pub fn branches(
+        &self,
+    ) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPullRequestElBranchesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.branches", self.base))
     }
 
@@ -668,7 +752,9 @@ impl CodepipelineTriggerAllElGitConfigurationElPullRequestElRef {
     }
 
     #[doc = "Get a reference to the value of field `file_paths` after provisioning.\n"]
-    pub fn file_paths(&self) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPullRequestElFilePathsElRef> {
+    pub fn file_paths(
+        &self,
+    ) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPullRequestElFilePathsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file_paths", self.base))
     }
 }
@@ -724,7 +810,10 @@ pub struct CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef {
 }
 
 impl Ref for CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef {
         CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef {
             shared: shared,
             base: base.to_string(),
@@ -799,7 +888,10 @@ pub struct CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef {
 }
 
 impl Ref for CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef {
         CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef {
             shared: shared,
             base: base.to_string(),
@@ -874,7 +966,10 @@ pub struct CodepipelineTriggerAllElGitConfigurationElPushElTagsElRef {
 }
 
 impl Ref for CodepipelineTriggerAllElGitConfigurationElPushElTagsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerAllElGitConfigurationElPushElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerAllElGitConfigurationElPushElTagsElRef {
         CodepipelineTriggerAllElGitConfigurationElPushElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -928,7 +1023,10 @@ impl CodepipelineTriggerAllElGitConfigurationElPushEl {
     }
 
     #[doc = "Set the field `tags`.\n"]
-    pub fn set_tags(mut self, v: impl Into<ListField<CodepipelineTriggerAllElGitConfigurationElPushElTagsEl>>) -> Self {
+    pub fn set_tags(
+        mut self,
+        v: impl Into<ListField<CodepipelineTriggerAllElGitConfigurationElPushElTagsEl>>,
+    ) -> Self {
         self.tags = Some(v.into());
         self
     }
@@ -964,7 +1062,10 @@ pub struct CodepipelineTriggerAllElGitConfigurationElPushElRef {
 }
 
 impl Ref for CodepipelineTriggerAllElGitConfigurationElPushElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerAllElGitConfigurationElPushElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerAllElGitConfigurationElPushElRef {
         CodepipelineTriggerAllElGitConfigurationElPushElRef {
             shared: shared,
             base: base.to_string(),
@@ -978,12 +1079,16 @@ impl CodepipelineTriggerAllElGitConfigurationElPushElRef {
     }
 
     #[doc = "Get a reference to the value of field `branches` after provisioning.\n"]
-    pub fn branches(&self) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef> {
+    pub fn branches(
+        &self,
+    ) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPushElBranchesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.branches", self.base))
     }
 
     #[doc = "Get a reference to the value of field `file_paths` after provisioning.\n"]
-    pub fn file_paths(&self) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef> {
+    pub fn file_paths(
+        &self,
+    ) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPushElFilePathsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file_paths", self.base))
     }
 
@@ -1014,7 +1119,10 @@ impl CodepipelineTriggerAllElGitConfigurationEl {
     }
 
     #[doc = "Set the field `push`.\n"]
-    pub fn set_push(mut self, v: impl Into<ListField<CodepipelineTriggerAllElGitConfigurationElPushEl>>) -> Self {
+    pub fn set_push(
+        mut self,
+        v: impl Into<ListField<CodepipelineTriggerAllElGitConfigurationElPushEl>>,
+    ) -> Self {
         self.push = Some(v.into());
         self
     }
@@ -1070,7 +1178,9 @@ impl CodepipelineTriggerAllElGitConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `pull_request` after provisioning.\n"]
-    pub fn pull_request(&self) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPullRequestElRef> {
+    pub fn pull_request(
+        &self,
+    ) -> ListRef<CodepipelineTriggerAllElGitConfigurationElPullRequestElRef> {
         ListRef::new(self.shared().clone(), format!("{}.pull_request", self.base))
     }
 
@@ -1081,7 +1191,10 @@ impl CodepipelineTriggerAllElGitConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `source_action_name` after provisioning.\n"]
     pub fn source_action_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_action_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_action_name", self.base),
+        )
     }
 }
 
@@ -1095,7 +1208,10 @@ pub struct CodepipelineTriggerAllEl {
 
 impl CodepipelineTriggerAllEl {
     #[doc = "Set the field `git_configuration`.\n"]
-    pub fn set_git_configuration(mut self, v: impl Into<ListField<CodepipelineTriggerAllElGitConfigurationEl>>) -> Self {
+    pub fn set_git_configuration(
+        mut self,
+        v: impl Into<ListField<CodepipelineTriggerAllElGitConfigurationEl>>,
+    ) -> Self {
         self.git_configuration = Some(v.into());
         self
     }
@@ -1151,12 +1267,18 @@ impl CodepipelineTriggerAllElRef {
 
     #[doc = "Get a reference to the value of field `git_configuration` after provisioning.\n"]
     pub fn git_configuration(&self) -> ListRef<CodepipelineTriggerAllElGitConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.git_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.git_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_type` after provisioning.\n"]
     pub fn provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_type", self.base),
+        )
     }
 }
 
@@ -1167,7 +1289,7 @@ pub struct CodepipelineArtifactStoreElEncryptionKeyEl {
     type_: PrimField<String>,
 }
 
-impl CodepipelineArtifactStoreElEncryptionKeyEl { }
+impl CodepipelineArtifactStoreElEncryptionKeyEl {}
 
 impl ToListMappable for CodepipelineArtifactStoreElEncryptionKeyEl {
     type O = BlockAssignable<CodepipelineArtifactStoreElEncryptionKeyEl>;
@@ -1259,10 +1381,10 @@ impl CodepipelineArtifactStoreEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.encryption_key = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.encryption_key = Some(d);
-            },
+            }
         }
         self
     }
@@ -1335,7 +1457,10 @@ impl CodepipelineArtifactStoreElRef {
 
     #[doc = "Get a reference to the value of field `encryption_key` after provisioning.\n"]
     pub fn encryption_key(&self) -> ListRef<CodepipelineArtifactStoreElEncryptionKeyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_key", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_key", self.base),
+        )
     }
 }
 
@@ -1485,12 +1610,18 @@ impl CodepipelineStageElActionElRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.configuration", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_artifacts` after provisioning.\n"]
     pub fn input_artifacts(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.input_artifacts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_artifacts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1505,7 +1636,10 @@ impl CodepipelineStageElActionElRef {
 
     #[doc = "Get a reference to the value of field `output_artifacts` after provisioning.\n"]
     pub fn output_artifacts(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.output_artifacts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_artifacts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
@@ -1535,7 +1669,10 @@ impl CodepipelineStageElActionElRef {
 
     #[doc = "Get a reference to the value of field `timeout_in_minutes` after provisioning.\n"]
     pub fn timeout_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
@@ -1604,7 +1741,10 @@ pub struct CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef {
 }
 
 impl Ref for CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef {
         CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -1640,7 +1780,8 @@ impl CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef {
 
 #[derive(Serialize, Default)]
 struct CodepipelineStageElBeforeEntryElConditionElRuleElDynamic {
-    rule_type_id: Option<DynamicBlock<CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdEl>>,
+    rule_type_id:
+        Option<DynamicBlock<CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdEl>>,
 }
 
 #[derive(Serialize)]
@@ -1708,10 +1849,10 @@ impl CodepipelineStageElBeforeEntryElConditionElRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule_type_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule_type_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -1756,7 +1897,10 @@ pub struct CodepipelineStageElBeforeEntryElConditionElRuleElRef {
 }
 
 impl Ref for CodepipelineStageElBeforeEntryElConditionElRuleElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElBeforeEntryElConditionElRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElBeforeEntryElConditionElRuleElRef {
         CodepipelineStageElBeforeEntryElConditionElRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -1776,12 +1920,18 @@ impl CodepipelineStageElBeforeEntryElConditionElRuleElRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.configuration", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_artifacts` after provisioning.\n"]
     pub fn input_artifacts(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.input_artifacts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_artifacts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1801,11 +1951,16 @@ impl CodepipelineStageElBeforeEntryElConditionElRuleElRef {
 
     #[doc = "Get a reference to the value of field `timeout_in_minutes` after provisioning.\n"]
     pub fn timeout_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_type_id` after provisioning.\n"]
-    pub fn rule_type_id(&self) -> ListRef<CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef> {
+    pub fn rule_type_id(
+        &self,
+    ) -> ListRef<CodepipelineStageElBeforeEntryElConditionElRuleElRuleTypeIdElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule_type_id", self.base))
     }
 }
@@ -1832,14 +1987,17 @@ impl CodepipelineStageElBeforeEntryElConditionEl {
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(mut self, v: impl Into<BlockAssignable<CodepipelineStageElBeforeEntryElConditionElRuleEl>>) -> Self {
+    pub fn set_rule(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElBeforeEntryElConditionElRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -1913,14 +2071,17 @@ pub struct CodepipelineStageElBeforeEntryEl {
 
 impl CodepipelineStageElBeforeEntryEl {
     #[doc = "Set the field `condition`.\n"]
-    pub fn set_condition(mut self, v: impl Into<BlockAssignable<CodepipelineStageElBeforeEntryElConditionEl>>) -> Self {
+    pub fn set_condition(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElBeforeEntryElConditionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -2034,7 +2195,10 @@ pub struct CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef {
 }
 
 impl Ref for CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef {
         CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -2138,10 +2302,10 @@ impl CodepipelineStageElOnFailureElConditionElRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule_type_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule_type_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -2186,7 +2350,10 @@ pub struct CodepipelineStageElOnFailureElConditionElRuleElRef {
 }
 
 impl Ref for CodepipelineStageElOnFailureElConditionElRuleElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElOnFailureElConditionElRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElOnFailureElConditionElRuleElRef {
         CodepipelineStageElOnFailureElConditionElRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -2206,12 +2373,18 @@ impl CodepipelineStageElOnFailureElConditionElRuleElRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.configuration", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_artifacts` after provisioning.\n"]
     pub fn input_artifacts(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.input_artifacts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_artifacts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -2231,11 +2404,16 @@ impl CodepipelineStageElOnFailureElConditionElRuleElRef {
 
     #[doc = "Get a reference to the value of field `timeout_in_minutes` after provisioning.\n"]
     pub fn timeout_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_type_id` after provisioning.\n"]
-    pub fn rule_type_id(&self) -> ListRef<CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef> {
+    pub fn rule_type_id(
+        &self,
+    ) -> ListRef<CodepipelineStageElOnFailureElConditionElRuleElRuleTypeIdElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule_type_id", self.base))
     }
 }
@@ -2262,14 +2440,17 @@ impl CodepipelineStageElOnFailureElConditionEl {
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(mut self, v: impl Into<BlockAssignable<CodepipelineStageElOnFailureElConditionElRuleEl>>) -> Self {
+    pub fn set_rule(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElOnFailureElConditionElRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -2359,7 +2540,9 @@ pub struct BuildCodepipelineStageElOnFailureElRetryConfigurationEl {}
 
 impl BuildCodepipelineStageElOnFailureElRetryConfigurationEl {
     pub fn build(self) -> CodepipelineStageElOnFailureElRetryConfigurationEl {
-        CodepipelineStageElOnFailureElRetryConfigurationEl { retry_mode: core::default::Default::default() }
+        CodepipelineStageElOnFailureElRetryConfigurationEl {
+            retry_mode: core::default::Default::default(),
+        }
     }
 }
 
@@ -2369,7 +2552,10 @@ pub struct CodepipelineStageElOnFailureElRetryConfigurationElRef {
 }
 
 impl Ref for CodepipelineStageElOnFailureElRetryConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElOnFailureElRetryConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElOnFailureElRetryConfigurationElRef {
         CodepipelineStageElOnFailureElRetryConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2413,14 +2599,17 @@ impl CodepipelineStageElOnFailureEl {
     }
 
     #[doc = "Set the field `condition`.\n"]
-    pub fn set_condition(mut self, v: impl Into<BlockAssignable<CodepipelineStageElOnFailureElConditionEl>>) -> Self {
+    pub fn set_condition(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElOnFailureElConditionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -2433,10 +2622,10 @@ impl CodepipelineStageElOnFailureEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.retry_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.retry_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2497,8 +2686,13 @@ impl CodepipelineStageElOnFailureElRef {
     }
 
     #[doc = "Get a reference to the value of field `retry_configuration` after provisioning.\n"]
-    pub fn retry_configuration(&self) -> ListRef<CodepipelineStageElOnFailureElRetryConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_configuration", self.base))
+    pub fn retry_configuration(
+        &self,
+    ) -> ListRef<CodepipelineStageElOnFailureElRetryConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_configuration", self.base),
+        )
     }
 }
 
@@ -2562,7 +2756,10 @@ pub struct CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef {
 }
 
 impl Ref for CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef {
         CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -2666,10 +2863,10 @@ impl CodepipelineStageElOnSuccessElConditionElRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule_type_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule_type_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -2714,7 +2911,10 @@ pub struct CodepipelineStageElOnSuccessElConditionElRuleElRef {
 }
 
 impl Ref for CodepipelineStageElOnSuccessElConditionElRuleElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineStageElOnSuccessElConditionElRuleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineStageElOnSuccessElConditionElRuleElRef {
         CodepipelineStageElOnSuccessElConditionElRuleElRef {
             shared: shared,
             base: base.to_string(),
@@ -2734,12 +2934,18 @@ impl CodepipelineStageElOnSuccessElConditionElRuleElRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.configuration", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_artifacts` after provisioning.\n"]
     pub fn input_artifacts(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.input_artifacts", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_artifacts", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -2759,11 +2965,16 @@ impl CodepipelineStageElOnSuccessElConditionElRuleElRef {
 
     #[doc = "Get a reference to the value of field `timeout_in_minutes` after provisioning.\n"]
     pub fn timeout_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_type_id` after provisioning.\n"]
-    pub fn rule_type_id(&self) -> ListRef<CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef> {
+    pub fn rule_type_id(
+        &self,
+    ) -> ListRef<CodepipelineStageElOnSuccessElConditionElRuleElRuleTypeIdElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule_type_id", self.base))
     }
 }
@@ -2790,14 +3001,17 @@ impl CodepipelineStageElOnSuccessElConditionEl {
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(mut self, v: impl Into<BlockAssignable<CodepipelineStageElOnSuccessElConditionElRuleEl>>) -> Self {
+    pub fn set_rule(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElOnSuccessElConditionElRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -2871,14 +3085,17 @@ pub struct CodepipelineStageElOnSuccessEl {
 
 impl CodepipelineStageElOnSuccessEl {
     #[doc = "Set the field `condition`.\n"]
-    pub fn set_condition(mut self, v: impl Into<BlockAssignable<CodepipelineStageElOnSuccessElConditionEl>>) -> Self {
+    pub fn set_condition(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElOnSuccessElConditionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -2956,53 +3173,65 @@ pub struct CodepipelineStageEl {
 
 impl CodepipelineStageEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<BlockAssignable<CodepipelineStageElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `before_entry`.\n"]
-    pub fn set_before_entry(mut self, v: impl Into<BlockAssignable<CodepipelineStageElBeforeEntryEl>>) -> Self {
+    pub fn set_before_entry(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElBeforeEntryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.before_entry = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.before_entry = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `on_failure`.\n"]
-    pub fn set_on_failure(mut self, v: impl Into<BlockAssignable<CodepipelineStageElOnFailureEl>>) -> Self {
+    pub fn set_on_failure(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElOnFailureEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_failure = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_failure = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `on_success`.\n"]
-    pub fn set_on_success(mut self, v: impl Into<BlockAssignable<CodepipelineStageElOnSuccessEl>>) -> Self {
+    pub fn set_on_success(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineStageElOnSuccessEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_success = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_success = Some(d);
-            },
+            }
         }
         self
     }
@@ -3134,7 +3363,10 @@ pub struct CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef {
 }
 
 impl Ref for CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef {
         CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef {
             shared: shared,
             base: base.to_string(),
@@ -3209,7 +3441,10 @@ pub struct CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef {
 }
 
 impl Ref for CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef {
         CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3236,7 +3471,8 @@ impl CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef {
 #[derive(Serialize, Default)]
 struct CodepipelineTriggerElGitConfigurationElPullRequestElDynamic {
     branches: Option<DynamicBlock<CodepipelineTriggerElGitConfigurationElPullRequestElBranchesEl>>,
-    file_paths: Option<DynamicBlock<CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsEl>>,
+    file_paths:
+        Option<DynamicBlock<CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsEl>>,
 }
 
 #[derive(Serialize)]
@@ -3265,10 +3501,10 @@ impl CodepipelineTriggerElGitConfigurationElPullRequestEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.branches = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.branches = Some(d);
-            },
+            }
         }
         self
     }
@@ -3281,10 +3517,10 @@ impl CodepipelineTriggerElGitConfigurationElPullRequestEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.file_paths = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.file_paths = Some(d);
-            },
+            }
         }
         self
     }
@@ -3321,7 +3557,10 @@ pub struct CodepipelineTriggerElGitConfigurationElPullRequestElRef {
 }
 
 impl Ref for CodepipelineTriggerElGitConfigurationElPullRequestElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerElGitConfigurationElPullRequestElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerElGitConfigurationElPullRequestElRef {
         CodepipelineTriggerElGitConfigurationElPullRequestElRef {
             shared: shared,
             base: base.to_string(),
@@ -3340,12 +3579,16 @@ impl CodepipelineTriggerElGitConfigurationElPullRequestElRef {
     }
 
     #[doc = "Get a reference to the value of field `branches` after provisioning.\n"]
-    pub fn branches(&self) -> ListRef<CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef> {
+    pub fn branches(
+        &self,
+    ) -> ListRef<CodepipelineTriggerElGitConfigurationElPullRequestElBranchesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.branches", self.base))
     }
 
     #[doc = "Get a reference to the value of field `file_paths` after provisioning.\n"]
-    pub fn file_paths(&self) -> ListRef<CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef> {
+    pub fn file_paths(
+        &self,
+    ) -> ListRef<CodepipelineTriggerElGitConfigurationElPullRequestElFilePathsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file_paths", self.base))
     }
 }
@@ -3401,7 +3644,10 @@ pub struct CodepipelineTriggerElGitConfigurationElPushElBranchesElRef {
 }
 
 impl Ref for CodepipelineTriggerElGitConfigurationElPushElBranchesElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerElGitConfigurationElPushElBranchesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerElGitConfigurationElPushElBranchesElRef {
         CodepipelineTriggerElGitConfigurationElPushElBranchesElRef {
             shared: shared,
             base: base.to_string(),
@@ -3476,7 +3722,10 @@ pub struct CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef {
 }
 
 impl Ref for CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef {
         CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3551,7 +3800,10 @@ pub struct CodepipelineTriggerElGitConfigurationElPushElTagsElRef {
 }
 
 impl Ref for CodepipelineTriggerElGitConfigurationElPushElTagsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineTriggerElGitConfigurationElPushElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineTriggerElGitConfigurationElPushElTagsElRef {
         CodepipelineTriggerElGitConfigurationElPushElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3602,10 +3854,10 @@ impl CodepipelineTriggerElGitConfigurationElPushEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.branches = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.branches = Some(d);
-            },
+            }
         }
         self
     }
@@ -3618,10 +3870,10 @@ impl CodepipelineTriggerElGitConfigurationElPushEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.file_paths = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.file_paths = Some(d);
-            },
+            }
         }
         self
     }
@@ -3634,10 +3886,10 @@ impl CodepipelineTriggerElGitConfigurationElPushEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -3693,7 +3945,9 @@ impl CodepipelineTriggerElGitConfigurationElPushElRef {
     }
 
     #[doc = "Get a reference to the value of field `file_paths` after provisioning.\n"]
-    pub fn file_paths(&self) -> ListRef<CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef> {
+    pub fn file_paths(
+        &self,
+    ) -> ListRef<CodepipelineTriggerElGitConfigurationElPushElFilePathsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file_paths", self.base))
     }
 
@@ -3728,23 +3982,26 @@ impl CodepipelineTriggerElGitConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pull_request = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pull_request = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `push`.\n"]
-    pub fn set_push(mut self, v: impl Into<BlockAssignable<CodepipelineTriggerElGitConfigurationElPushEl>>) -> Self {
+    pub fn set_push(
+        mut self,
+        v: impl Into<BlockAssignable<CodepipelineTriggerElGitConfigurationElPushEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.push = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.push = Some(d);
-            },
+            }
         }
         self
     }
@@ -3799,7 +4056,10 @@ impl CodepipelineTriggerElGitConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `source_action_name` after provisioning.\n"]
     pub fn source_action_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_action_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_action_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pull_request` after provisioning.\n"]
@@ -3835,10 +4095,10 @@ impl CodepipelineTriggerEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.git_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.git_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3892,12 +4152,18 @@ impl CodepipelineTriggerElRef {
 
     #[doc = "Get a reference to the value of field `provider_type` after provisioning.\n"]
     pub fn provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `git_configuration` after provisioning.\n"]
     pub fn git_configuration(&self) -> ListRef<CodepipelineTriggerElGitConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.git_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.git_configuration", self.base),
+        )
     }
 }
 
@@ -3972,7 +4238,10 @@ impl CodepipelineVariableElRef {
 
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_value", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]

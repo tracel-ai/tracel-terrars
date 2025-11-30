@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2LocalGatewayVirtualInterfaceGroupData {
@@ -63,8 +63,7 @@ impl DataEc2LocalGatewayVirtualInterfaceGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -77,20 +76,26 @@ impl DataEc2LocalGatewayVirtualInterfaceGroup {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2LocalGatewayVirtualInterfaceGroupFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2LocalGatewayVirtualInterfaceGroupFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -102,23 +107,34 @@ impl DataEc2LocalGatewayVirtualInterfaceGroup {
 
     #[doc = "Get a reference to the value of field `local_gateway_id` after provisioning.\n"]
     pub fn local_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_gateway_virtual_interface_ids` after provisioning.\n"]
     pub fn local_gateway_virtual_interface_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_gateway_virtual_interface_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.local_gateway_virtual_interface_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -132,11 +148,15 @@ impl DataEc2LocalGatewayVirtualInterfaceGroup {
 
 impl Referable for DataEc2LocalGatewayVirtualInterfaceGroup {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2LocalGatewayVirtualInterfaceGroup { }
+impl Datasource for DataEc2LocalGatewayVirtualInterfaceGroup {}
 
 impl ToListMappable for DataEc2LocalGatewayVirtualInterfaceGroup {
     type O = ListRef<DataEc2LocalGatewayVirtualInterfaceGroupRef>;
@@ -167,22 +187,24 @@ pub struct BuildDataEc2LocalGatewayVirtualInterfaceGroup {
 
 impl BuildDataEc2LocalGatewayVirtualInterfaceGroup {
     pub fn build(self, stack: &mut Stack) -> DataEc2LocalGatewayVirtualInterfaceGroup {
-        let out = DataEc2LocalGatewayVirtualInterfaceGroup(Rc::new(DataEc2LocalGatewayVirtualInterfaceGroup_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataEc2LocalGatewayVirtualInterfaceGroupData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                local_gateway_id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataEc2LocalGatewayVirtualInterfaceGroup(Rc::new(
+            DataEc2LocalGatewayVirtualInterfaceGroup_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataEc2LocalGatewayVirtualInterfaceGroupData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    local_gateway_id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -195,10 +217,7 @@ pub struct DataEc2LocalGatewayVirtualInterfaceGroupRef {
 
 impl Ref for DataEc2LocalGatewayVirtualInterfaceGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -218,23 +237,34 @@ impl DataEc2LocalGatewayVirtualInterfaceGroupRef {
 
     #[doc = "Get a reference to the value of field `local_gateway_id` after provisioning.\n"]
     pub fn local_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_gateway_virtual_interface_ids` after provisioning.\n"]
     pub fn local_gateway_virtual_interface_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_gateway_virtual_interface_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.local_gateway_virtual_interface_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -252,7 +282,7 @@ pub struct DataEc2LocalGatewayVirtualInterfaceGroupFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2LocalGatewayVirtualInterfaceGroupFilterEl { }
+impl DataEc2LocalGatewayVirtualInterfaceGroupFilterEl {}
 
 impl ToListMappable for DataEc2LocalGatewayVirtualInterfaceGroupFilterEl {
     type O = BlockAssignable<DataEc2LocalGatewayVirtualInterfaceGroupFilterEl>;
@@ -288,7 +318,10 @@ pub struct DataEc2LocalGatewayVirtualInterfaceGroupFilterElRef {
 }
 
 impl Ref for DataEc2LocalGatewayVirtualInterfaceGroupFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2LocalGatewayVirtualInterfaceGroupFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2LocalGatewayVirtualInterfaceGroupFilterElRef {
         DataEc2LocalGatewayVirtualInterfaceGroupFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -342,7 +375,9 @@ pub struct BuildDataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl {}
 
 impl BuildDataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl {
     pub fn build(self) -> DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl {
-        DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl { read: core::default::Default::default() }
+        DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 
@@ -352,7 +387,10 @@ pub struct DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsElRef {
 }
 
 impl Ref for DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsElRef {
         DataEc2LocalGatewayVirtualInterfaceGroupTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

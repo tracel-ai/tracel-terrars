@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecuritylakeCustomLogSourceData {
@@ -61,7 +61,8 @@ impl SecuritylakeCustomLogSource {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl SecuritylakeCustomLogSource {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl SecuritylakeCustomLogSource {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,8 +111,7 @@ impl SecuritylakeCustomLogSource {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -114,26 +124,35 @@ impl SecuritylakeCustomLogSource {
     }
 
     #[doc = "Set the field `configuration`.\n"]
-    pub fn set_configuration(self, v: impl Into<BlockAssignable<SecuritylakeCustomLogSourceConfigurationEl>>) -> Self {
+    pub fn set_configuration(
+        self,
+        v: impl Into<BlockAssignable<SecuritylakeCustomLogSourceConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
     pub fn attributes(&self) -> ListRef<SecuritylakeCustomLogSourceAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_classes` after provisioning.\n"]
     pub fn event_classes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.event_classes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.event_classes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -143,38 +162,56 @@ impl SecuritylakeCustomLogSource {
 
     #[doc = "Get a reference to the value of field `provider_details` after provisioning.\n"]
     pub fn provider_details(&self) -> ListRef<SecuritylakeCustomLogSourceProviderDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provider_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provider_details", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_name` after provisioning.\n"]
     pub fn source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<SecuritylakeCustomLogSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SecuritylakeCustomLogSource {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecuritylakeCustomLogSource { }
+impl Resource for SecuritylakeCustomLogSource {}
 
 impl ToListMappable for SecuritylakeCustomLogSource {
     type O = ListRef<SecuritylakeCustomLogSourceRef>;
@@ -235,10 +272,7 @@ pub struct SecuritylakeCustomLogSourceRef {
 
 impl Ref for SecuritylakeCustomLogSourceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -253,12 +287,18 @@ impl SecuritylakeCustomLogSourceRef {
 
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
     pub fn attributes(&self) -> ListRef<SecuritylakeCustomLogSourceAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_classes` after provisioning.\n"]
     pub fn event_classes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.event_classes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.event_classes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -268,28 +308,42 @@ impl SecuritylakeCustomLogSourceRef {
 
     #[doc = "Get a reference to the value of field `provider_details` after provisioning.\n"]
     pub fn provider_details(&self) -> ListRef<SecuritylakeCustomLogSourceProviderDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provider_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provider_details", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_name` after provisioning.\n"]
     pub fn source_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_version` after provisioning.\n"]
     pub fn source_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<SecuritylakeCustomLogSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -462,7 +516,7 @@ pub struct SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl {
     role_arn: PrimField<String>,
 }
 
-impl SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl { }
+impl SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl {}
 
 impl ToListMappable for SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl {
     type O = BlockAssignable<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl>;
@@ -483,7 +537,9 @@ pub struct BuildSecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl
 
 impl BuildSecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl {
     pub fn build(self) -> SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl {
-        SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl { role_arn: self.role_arn }
+        SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl {
+            role_arn: self.role_arn,
+        }
     }
 }
 
@@ -493,7 +549,10 @@ pub struct SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef {
 }
 
 impl Ref for SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef {
         SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -518,7 +577,7 @@ pub struct SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl {
     principal: PrimField<String>,
 }
 
-impl SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl { }
+impl SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl {}
 
 impl ToListMappable for SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl {
     type O = BlockAssignable<SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl>;
@@ -554,7 +613,10 @@ pub struct SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef {
 }
 
 impl Ref for SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef {
-    fn new(shared: StackShared, base: String) -> SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef {
         SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef {
             shared: shared,
             base: base.to_string(),
@@ -580,14 +642,17 @@ impl SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef {
 
 #[derive(Serialize, Default)]
 struct SecuritylakeCustomLogSourceConfigurationElDynamic {
-    crawler_configuration: Option<DynamicBlock<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl>>,
-    provider_identity: Option<DynamicBlock<SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl>>,
+    crawler_configuration:
+        Option<DynamicBlock<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl>>,
+    provider_identity:
+        Option<DynamicBlock<SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl>>,
 }
 
 #[derive(Serialize)]
 pub struct SecuritylakeCustomLogSourceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    crawler_configuration: Option<Vec<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl>>,
+    crawler_configuration:
+        Option<Vec<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     provider_identity: Option<Vec<SecuritylakeCustomLogSourceConfigurationElProviderIdentityEl>>,
     dynamic: SecuritylakeCustomLogSourceConfigurationElDynamic,
@@ -602,10 +667,10 @@ impl SecuritylakeCustomLogSourceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crawler_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crawler_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -618,10 +683,10 @@ impl SecuritylakeCustomLogSourceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.provider_identity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.provider_identity = Some(d);
-            },
+            }
         }
         self
     }
@@ -671,13 +736,23 @@ impl SecuritylakeCustomLogSourceConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `crawler_configuration` after provisioning.\n"]
-    pub fn crawler_configuration(&self) -> ListRef<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crawler_configuration", self.base))
+    pub fn crawler_configuration(
+        &self,
+    ) -> ListRef<SecuritylakeCustomLogSourceConfigurationElCrawlerConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crawler_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_identity` after provisioning.\n"]
-    pub fn provider_identity(&self) -> ListRef<SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provider_identity", self.base))
+    pub fn provider_identity(
+        &self,
+    ) -> ListRef<SecuritylakeCustomLogSourceConfigurationElProviderIdentityElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provider_identity", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppmeshGatewayRouteData {
@@ -61,8 +61,7 @@ impl DataAppmeshGatewayRoute {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -81,7 +80,10 @@ impl DataAppmeshGatewayRoute {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,58 +93,88 @@ impl DataAppmeshGatewayRoute {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshGatewayRouteSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_gateway_name` after provisioning.\n"]
     pub fn virtual_gateway_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_gateway_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_gateway_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppmeshGatewayRoute {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppmeshGatewayRoute { }
+impl Datasource for DataAppmeshGatewayRoute {}
 
 impl ToListMappable for DataAppmeshGatewayRoute {
     type O = ListRef<DataAppmeshGatewayRouteRef>;
@@ -207,10 +239,7 @@ pub struct DataAppmeshGatewayRouteRef {
 
 impl Ref for DataAppmeshGatewayRouteRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -230,7 +259,10 @@ impl DataAppmeshGatewayRouteRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -240,48 +272,74 @@ impl DataAppmeshGatewayRouteRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_name` after provisioning.\n"]
     pub fn mesh_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mesh_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mesh_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<DataAppmeshGatewayRouteSpecElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spec", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spec", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_gateway_name` after provisioning.\n"]
     pub fn virtual_gateway_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_gateway_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_gateway_name", self.extract_ref()),
+        )
     }
 }
 
@@ -300,7 +358,8 @@ impl DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl {
 }
 
 impl ToListMappable for DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl {
-    type O = BlockAssignable<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>;
+    type O =
+        BlockAssignable<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -345,7 +404,10 @@ impl DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceElRef
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
@@ -354,7 +416,8 @@ pub struct DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    virtual_service: Option<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
 }
 
 impl DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetEl {
@@ -367,7 +430,9 @@ impl DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetEl {
     #[doc = "Set the field `virtual_service`.\n"]
     pub fn set_virtual_service(
         mut self,
-        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>>,
+        v: impl Into<
+            ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceEl>,
+        >,
     ) -> Self {
         self.virtual_service = Some(v.into());
         self
@@ -403,7 +468,10 @@ pub struct DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
         DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
             shared: shared,
             base: base.to_string(),
@@ -425,7 +493,10 @@ impl DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElRef {
     pub fn virtual_service(
         &self,
     ) -> ListRef<DataAppmeshGatewayRouteSpecElGrpcRouteElActionElTargetElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -462,7 +533,9 @@ pub struct BuildDataAppmeshGatewayRouteSpecElGrpcRouteElActionEl {}
 
 impl BuildDataAppmeshGatewayRouteSpecElGrpcRouteElActionEl {
     pub fn build(self) -> DataAppmeshGatewayRouteSpecElGrpcRouteElActionEl {
-        DataAppmeshGatewayRouteSpecElGrpcRouteElActionEl { target: core::default::Default::default() }
+        DataAppmeshGatewayRouteSpecElGrpcRouteElActionEl {
+            target: core::default::Default::default(),
+        }
     }
 }
 
@@ -472,7 +545,10 @@ pub struct DataAppmeshGatewayRouteSpecElGrpcRouteElActionElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElGrpcRouteElActionElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElGrpcRouteElActionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElGrpcRouteElActionElRef {
         DataAppmeshGatewayRouteSpecElGrpcRouteElActionElRef {
             shared: shared,
             base: base.to_string(),
@@ -542,7 +618,10 @@ pub struct DataAppmeshGatewayRouteSpecElGrpcRouteElMatchElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElGrpcRouteElMatchElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElGrpcRouteElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElGrpcRouteElMatchElRef {
         DataAppmeshGatewayRouteSpecElGrpcRouteElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -576,13 +655,19 @@ pub struct DataAppmeshGatewayRouteSpecElGrpcRouteEl {
 
 impl DataAppmeshGatewayRouteSpecElGrpcRouteEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElActionEl>>,
+    ) -> Self {
         self.action = Some(v.into());
         self
     }
 
     #[doc = "Set the field `match_`.\n"]
-    pub fn set_match(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElMatchEl>>) -> Self {
+    pub fn set_match(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteElMatchEl>>,
+    ) -> Self {
         self.match_ = Some(v.into());
         self
     }
@@ -701,7 +786,10 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef {
 
     #[doc = "Get a reference to the value of field `default_target_hostname` after provisioning.\n"]
     pub fn default_target_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_target_hostname", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_target_hostname", self.base),
+        )
     }
 }
 
@@ -735,7 +823,9 @@ pub struct BuildDataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl
 
 impl BuildDataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl {
     pub fn build(self) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl {
-        DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl { exact: core::default::Default::default() }
+        DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl {
+            exact: core::default::Default::default(),
+        }
     }
 }
 
@@ -745,7 +835,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -833,7 +926,10 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
 
     #[doc = "Get a reference to the value of field `default_prefix` after provisioning.\n"]
     pub fn default_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
@@ -845,7 +941,8 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef {
 #[derive(Serialize)]
 pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    hostname: Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl>>,
+    hostname:
+        Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     path: Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -911,7 +1008,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
             shared: shared,
             base: base.to_string(),
@@ -925,17 +1025,23 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef {
     }
 
     #[doc = "Get a reference to the value of field `hostname` after provisioning.\n"]
-    pub fn hostname(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef> {
+    pub fn hostname(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElHostnameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.hostname", self.base))
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
-    pub fn path(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef> {
+    pub fn path(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPathElRef> {
         ListRef::new(self.shared().clone(), format!("{}.path", self.base))
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
-    pub fn prefix(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef> {
+    pub fn prefix(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElPrefixElRef> {
         ListRef::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
 }
@@ -955,7 +1061,8 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
 }
 
 impl ToListMappable for DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
-    type O = BlockAssignable<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>;
+    type O =
+        BlockAssignable<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -969,7 +1076,9 @@ impl ToListMappable for DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetE
 pub struct BuildDataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {}
 
 impl BuildDataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
-    pub fn build(self) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
+    pub fn build(
+        self,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
         DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl {
             virtual_service_name: core::default::Default::default(),
         }
@@ -1000,7 +1109,10 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceElRe
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
@@ -1009,7 +1121,9 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    virtual_service: Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service: Option<
+        ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>,
+    >,
 }
 
 impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetEl {
@@ -1022,7 +1136,9 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetEl {
     #[doc = "Set the field `virtual_service`.\n"]
     pub fn set_virtual_service(
         mut self,
-        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>>,
+        v: impl Into<
+            ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceEl>,
+        >,
     ) -> Self {
         self.virtual_service = Some(v.into());
         self
@@ -1058,7 +1174,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
             shared: shared,
             base: base.to_string(),
@@ -1080,7 +1199,10 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElRef {
     pub fn virtual_service(
         &self,
     ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElTargetElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -1141,7 +1263,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1155,7 +1280,9 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `rewrite` after provisioning.\n"]
-    pub fn rewrite(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef> {
+    pub fn rewrite(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElActionElRewriteElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rewrite", self.base))
     }
 
@@ -1188,7 +1315,8 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl {
 }
 
 impl ToListMappable for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl {
-    type O = BlockAssignable<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>;
+    type O =
+        BlockAssignable<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1250,7 +1378,8 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    range: Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>>,
+    range:
+        Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     regex: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1324,7 +1453,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -1348,7 +1480,9 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `range` after provisioning.\n"]
-    pub fn range(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeElRef> {
+    pub fn range(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.range", self.base))
     }
 
@@ -1426,7 +1560,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -1445,7 +1582,9 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHeaderElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 
@@ -1506,7 +1645,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef {
             shared: shared,
             base: base.to_string(),
@@ -1581,7 +1723,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -1620,7 +1765,8 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl {
 }
 
 impl ToListMappable for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl {
-    type O = BlockAssignable<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>;
+    type O =
+        BlockAssignable<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1672,7 +1818,8 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchElRef 
 #[derive(Serialize)]
 pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterEl {
     #[serde(rename = "match", skip_serializing_if = "Option::is_none")]
-    match_: Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>>,
+    match_:
+        Option<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
 }
@@ -1723,7 +1870,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1737,7 +1887,9 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 
@@ -1760,7 +1912,8 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    query_parameter: Option<SetField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterEl>>,
+    query_parameter:
+        Option<SetField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterEl>>,
 }
 
 impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
@@ -1783,7 +1936,10 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchEl {
     }
 
     #[doc = "Set the field `path`.\n"]
-    pub fn set_path(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathEl>>) -> Self {
+    pub fn set_path(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElPathEl>>,
+    ) -> Self {
         self.path = Some(v.into());
         self
     }
@@ -1843,7 +1999,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
         DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -1862,7 +2021,9 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `hostname` after provisioning.\n"]
-    pub fn hostname(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef> {
+    pub fn hostname(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElHostnameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.hostname", self.base))
     }
 
@@ -1882,8 +2043,13 @@ impl DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `query_parameter` after provisioning.\n"]
-    pub fn query_parameter(&self) -> SetRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.query_parameter", self.base))
+    pub fn query_parameter(
+        &self,
+    ) -> SetRef<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchElQueryParameterElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.query_parameter", self.base),
+        )
     }
 }
 
@@ -1897,13 +2063,19 @@ pub struct DataAppmeshGatewayRouteSpecElHttp2RouteEl {
 
 impl DataAppmeshGatewayRouteSpecElHttp2RouteEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElActionEl>>,
+    ) -> Self {
         self.action = Some(v.into());
         self
     }
 
     #[doc = "Set the field `match_`.\n"]
-    pub fn set_match(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchEl>>) -> Self {
+    pub fn set_match(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteElMatchEl>>,
+    ) -> Self {
         self.match_ = Some(v.into());
         self
     }
@@ -2022,7 +2194,10 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef {
 
     #[doc = "Get a reference to the value of field `default_target_hostname` after provisioning.\n"]
     pub fn default_target_hostname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_target_hostname", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_target_hostname", self.base),
+        )
     }
 }
 
@@ -2056,7 +2231,9 @@ pub struct BuildDataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl 
 
 impl BuildDataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl {
     pub fn build(self) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl {
-        DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl { exact: core::default::Default::default() }
+        DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl {
+            exact: core::default::Default::default(),
+        }
     }
 }
 
@@ -2066,7 +2243,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -2154,7 +2334,10 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
 
     #[doc = "Get a reference to the value of field `default_prefix` after provisioning.\n"]
     pub fn default_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
@@ -2166,7 +2349,8 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef {
 #[derive(Serialize)]
 pub struct DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    hostname: Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl>>,
+    hostname:
+        Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     path: Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2232,7 +2416,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
             shared: shared,
             base: base.to_string(),
@@ -2246,17 +2433,23 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElRef {
     }
 
     #[doc = "Get a reference to the value of field `hostname` after provisioning.\n"]
-    pub fn hostname(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef> {
+    pub fn hostname(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElHostnameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.hostname", self.base))
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
-    pub fn path(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef> {
+    pub fn path(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPathElRef> {
         ListRef::new(self.shared().clone(), format!("{}.path", self.base))
     }
 
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
-    pub fn prefix(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef> {
+    pub fn prefix(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElRewriteElPrefixElRef> {
         ListRef::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
 }
@@ -2276,7 +2469,8 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl {
 }
 
 impl ToListMappable for DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl {
-    type O = BlockAssignable<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>;
+    type O =
+        BlockAssignable<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2321,7 +2515,10 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceElRef
 
     #[doc = "Get a reference to the value of field `virtual_service_name` after provisioning.\n"]
     pub fn virtual_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_service_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_service_name", self.base),
+        )
     }
 }
 
@@ -2330,7 +2527,8 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    virtual_service: Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
+    virtual_service:
+        Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
 }
 
 impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetEl {
@@ -2343,7 +2541,9 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetEl {
     #[doc = "Set the field `virtual_service`.\n"]
     pub fn set_virtual_service(
         mut self,
-        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>>,
+        v: impl Into<
+            ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceEl>,
+        >,
     ) -> Self {
         self.virtual_service = Some(v.into());
         self
@@ -2379,7 +2579,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
             shared: shared,
             base: base.to_string(),
@@ -2401,7 +2604,10 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElRef {
     pub fn virtual_service(
         &self,
     ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElActionElTargetElVirtualServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.virtual_service", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.virtual_service", self.base),
+        )
     }
 }
 
@@ -2462,7 +2668,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElActionElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElActionElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElActionElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElActionElRef {
             shared: shared,
             base: base.to_string(),
@@ -2645,7 +2854,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -2669,7 +2881,9 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `range` after provisioning.\n"]
-    pub fn range(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeElRef> {
+    pub fn range(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.range", self.base))
     }
 
@@ -2747,7 +2961,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -2766,7 +2983,9 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHeaderElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 
@@ -2827,7 +3046,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef {
             shared: shared,
             base: base.to_string(),
@@ -2902,7 +3124,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathElRef {
             shared: shared,
             base: base.to_string(),
@@ -2941,7 +3166,8 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl {
 }
 
 impl ToListMappable for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl {
-    type O = BlockAssignable<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>;
+    type O =
+        BlockAssignable<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2993,7 +3219,8 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchElRef {
 #[derive(Serialize)]
 pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterEl {
     #[serde(rename = "match", skip_serializing_if = "Option::is_none")]
-    match_: Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>>,
+    match_:
+        Option<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
 }
@@ -3044,7 +3271,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -3058,7 +3288,9 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 
@@ -3081,7 +3313,8 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    query_parameter: Option<SetField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterEl>>,
+    query_parameter:
+        Option<SetField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterEl>>,
 }
 
 impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchEl {
@@ -3104,7 +3337,10 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchEl {
     }
 
     #[doc = "Set the field `path`.\n"]
-    pub fn set_path(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathEl>>) -> Self {
+    pub fn set_path(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElPathEl>>,
+    ) -> Self {
         self.path = Some(v.into());
         self
     }
@@ -3164,7 +3400,10 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
 }
 
 impl Ref for DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
-    fn new(shared: StackShared, base: String) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
         DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -3183,7 +3422,9 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `hostname` after provisioning.\n"]
-    pub fn hostname(&self) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef> {
+    pub fn hostname(
+        &self,
+    ) -> ListRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElHostnameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.hostname", self.base))
     }
 
@@ -3203,8 +3444,13 @@ impl DataAppmeshGatewayRouteSpecElHttpRouteElMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `query_parameter` after provisioning.\n"]
-    pub fn query_parameter(&self) -> SetRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.query_parameter", self.base))
+    pub fn query_parameter(
+        &self,
+    ) -> SetRef<DataAppmeshGatewayRouteSpecElHttpRouteElMatchElQueryParameterElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.query_parameter", self.base),
+        )
     }
 }
 
@@ -3218,13 +3464,19 @@ pub struct DataAppmeshGatewayRouteSpecElHttpRouteEl {
 
 impl DataAppmeshGatewayRouteSpecElHttpRouteEl {
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElActionEl>>,
+    ) -> Self {
         self.action = Some(v.into());
         self
     }
 
     #[doc = "Set the field `match_`.\n"]
-    pub fn set_match(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchEl>>) -> Self {
+    pub fn set_match(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteElMatchEl>>,
+    ) -> Self {
         self.match_ = Some(v.into());
         self
     }
@@ -3297,19 +3549,28 @@ pub struct DataAppmeshGatewayRouteSpecEl {
 
 impl DataAppmeshGatewayRouteSpecEl {
     #[doc = "Set the field `grpc_route`.\n"]
-    pub fn set_grpc_route(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteEl>>) -> Self {
+    pub fn set_grpc_route(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElGrpcRouteEl>>,
+    ) -> Self {
         self.grpc_route = Some(v.into());
         self
     }
 
     #[doc = "Set the field `http2_route`.\n"]
-    pub fn set_http2_route(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteEl>>) -> Self {
+    pub fn set_http2_route(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttp2RouteEl>>,
+    ) -> Self {
         self.http2_route = Some(v.into());
         self
     }
 
     #[doc = "Set the field `http_route`.\n"]
-    pub fn set_http_route(mut self, v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteEl>>) -> Self {
+    pub fn set_http_route(
+        mut self,
+        v: impl Into<ListField<DataAppmeshGatewayRouteSpecElHttpRouteEl>>,
+    ) -> Self {
         self.http_route = Some(v.into());
         self
     }

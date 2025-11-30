@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct OpensearchAuthorizeVpcEndpointAccessData {
@@ -55,7 +55,8 @@ impl OpensearchAuthorizeVpcEndpointAccess {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -68,7 +69,7 @@ impl OpensearchAuthorizeVpcEndpointAccess {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -79,17 +80,26 @@ impl OpensearchAuthorizeVpcEndpointAccess {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -97,33 +107,50 @@ impl OpensearchAuthorizeVpcEndpointAccess {
 
     #[doc = "Get a reference to the value of field `account` after provisioning.\n"]
     pub fn account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorized_principal` after provisioning.\n"]
-    pub fn authorized_principal(&self) -> ListRef<OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorized_principal", self.extract_ref()))
+    pub fn authorized_principal(
+        &self,
+    ) -> ListRef<OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorized_principal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for OpensearchAuthorizeVpcEndpointAccess {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for OpensearchAuthorizeVpcEndpointAccess { }
+impl Resource for OpensearchAuthorizeVpcEndpointAccess {}
 
 impl ToListMappable for OpensearchAuthorizeVpcEndpointAccess {
     type O = ListRef<OpensearchAuthorizeVpcEndpointAccessRef>;
@@ -158,19 +185,20 @@ pub struct BuildOpensearchAuthorizeVpcEndpointAccess {
 
 impl BuildOpensearchAuthorizeVpcEndpointAccess {
     pub fn build(self, stack: &mut Stack) -> OpensearchAuthorizeVpcEndpointAccess {
-        let out = OpensearchAuthorizeVpcEndpointAccess(Rc::new(OpensearchAuthorizeVpcEndpointAccess_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(OpensearchAuthorizeVpcEndpointAccessData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                account: self.account,
-                domain_name: self.domain_name,
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            OpensearchAuthorizeVpcEndpointAccess(Rc::new(OpensearchAuthorizeVpcEndpointAccess_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(OpensearchAuthorizeVpcEndpointAccessData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    account: self.account,
+                    domain_name: self.domain_name,
+                    region: core::default::Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -183,10 +211,7 @@ pub struct OpensearchAuthorizeVpcEndpointAccessRef {
 
 impl Ref for OpensearchAuthorizeVpcEndpointAccessRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -201,23 +226,36 @@ impl OpensearchAuthorizeVpcEndpointAccessRef {
 
     #[doc = "Get a reference to the value of field `account` after provisioning.\n"]
     pub fn account(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorized_principal` after provisioning.\n"]
-    pub fn authorized_principal(&self) -> ListRef<OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorized_principal", self.extract_ref()))
+    pub fn authorized_principal(
+        &self,
+    ) -> ListRef<OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorized_principal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -272,7 +310,10 @@ pub struct OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef {
 }
 
 impl Ref for OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef {
-    fn new(shared: StackShared, base: String) -> OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef {
         OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef {
             shared: shared,
             base: base.to_string(),
@@ -292,6 +333,9 @@ impl OpensearchAuthorizeVpcEndpointAccessAuthorizedPrincipalElRef {
 
     #[doc = "Get a reference to the value of field `principal_type` after provisioning.\n"]
     pub fn principal_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal_type", self.base),
+        )
     }
 }

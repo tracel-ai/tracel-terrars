@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodedeployDeploymentConfigData {
@@ -65,7 +65,8 @@ impl CodedeployDeploymentConfig {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl CodedeployDeploymentConfig {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl CodedeployDeploymentConfig {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +121,7 @@ impl CodedeployDeploymentConfig {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -125,10 +135,10 @@ impl CodedeployDeploymentConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().minimum_healthy_hosts = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.minimum_healthy_hosts = Some(d);
-            },
+            }
         }
         self
     }
@@ -141,23 +151,26 @@ impl CodedeployDeploymentConfig {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().traffic_routing_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.traffic_routing_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `zonal_config`.\n"]
-    pub fn set_zonal_config(self, v: impl Into<BlockAssignable<CodedeployDeploymentConfigZonalConfigEl>>) -> Self {
+    pub fn set_zonal_config(
+        self,
+        v: impl Into<BlockAssignable<CodedeployDeploymentConfigZonalConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().zonal_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.zonal_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -169,17 +182,26 @@ impl CodedeployDeploymentConfig {
 
     #[doc = "Get a reference to the value of field `compute_platform` after provisioning.\n"]
     pub fn compute_platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_config_id` after provisioning.\n"]
     pub fn deployment_config_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_config_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_config_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_config_name` after provisioning.\n"]
     pub fn deployment_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_config_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_config_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -187,35 +209,54 @@ impl CodedeployDeploymentConfig {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_healthy_hosts` after provisioning.\n"]
-    pub fn minimum_healthy_hosts(&self) -> ListRef<CodedeployDeploymentConfigMinimumHealthyHostsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.minimum_healthy_hosts", self.extract_ref()))
+    pub fn minimum_healthy_hosts(
+        &self,
+    ) -> ListRef<CodedeployDeploymentConfigMinimumHealthyHostsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.minimum_healthy_hosts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_routing_config` after provisioning.\n"]
-    pub fn traffic_routing_config(&self) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.traffic_routing_config", self.extract_ref()))
+    pub fn traffic_routing_config(
+        &self,
+    ) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.traffic_routing_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zonal_config` after provisioning.\n"]
     pub fn zonal_config(&self) -> ListRef<CodedeployDeploymentConfigZonalConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.zonal_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.zonal_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodedeployDeploymentConfig {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodedeployDeploymentConfig { }
+impl Resource for CodedeployDeploymentConfig {}
 
 impl ToListMappable for CodedeployDeploymentConfig {
     type O = ListRef<CodedeployDeploymentConfigRef>;
@@ -278,10 +319,7 @@ pub struct CodedeployDeploymentConfigRef {
 
 impl Ref for CodedeployDeploymentConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -301,17 +339,26 @@ impl CodedeployDeploymentConfigRef {
 
     #[doc = "Get a reference to the value of field `compute_platform` after provisioning.\n"]
     pub fn compute_platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_config_id` after provisioning.\n"]
     pub fn deployment_config_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_config_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_config_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_config_name` after provisioning.\n"]
     pub fn deployment_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_config_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_config_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -319,25 +366,40 @@ impl CodedeployDeploymentConfigRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_healthy_hosts` after provisioning.\n"]
-    pub fn minimum_healthy_hosts(&self) -> ListRef<CodedeployDeploymentConfigMinimumHealthyHostsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.minimum_healthy_hosts", self.extract_ref()))
+    pub fn minimum_healthy_hosts(
+        &self,
+    ) -> ListRef<CodedeployDeploymentConfigMinimumHealthyHostsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.minimum_healthy_hosts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_routing_config` after provisioning.\n"]
-    pub fn traffic_routing_config(&self) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.traffic_routing_config", self.extract_ref()))
+    pub fn traffic_routing_config(
+        &self,
+    ) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.traffic_routing_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zonal_config` after provisioning.\n"]
     pub fn zonal_config(&self) -> ListRef<CodedeployDeploymentConfigZonalConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.zonal_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.zonal_config", self.extract_ref()),
+        )
     }
 }
 
@@ -392,7 +454,10 @@ pub struct CodedeployDeploymentConfigMinimumHealthyHostsElRef {
 }
 
 impl Ref for CodedeployDeploymentConfigMinimumHealthyHostsElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentConfigMinimumHealthyHostsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentConfigMinimumHealthyHostsElRef {
         CodedeployDeploymentConfigMinimumHealthyHostsElRef {
             shared: shared,
             base: base.to_string(),
@@ -574,8 +639,10 @@ impl CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearElRef {
 
 #[derive(Serialize, Default)]
 struct CodedeployDeploymentConfigTrafficRoutingConfigElDynamic {
-    time_based_canary: Option<DynamicBlock<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedCanaryEl>>,
-    time_based_linear: Option<DynamicBlock<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearEl>>,
+    time_based_canary:
+        Option<DynamicBlock<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedCanaryEl>>,
+    time_based_linear:
+        Option<DynamicBlock<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearEl>>,
 }
 
 #[derive(Serialize)]
@@ -583,9 +650,11 @@ pub struct CodedeployDeploymentConfigTrafficRoutingConfigEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    time_based_canary: Option<Vec<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedCanaryEl>>,
+    time_based_canary:
+        Option<Vec<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedCanaryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    time_based_linear: Option<Vec<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearEl>>,
+    time_based_linear:
+        Option<Vec<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearEl>>,
     dynamic: CodedeployDeploymentConfigTrafficRoutingConfigElDynamic,
 }
 
@@ -604,10 +673,10 @@ impl CodedeployDeploymentConfigTrafficRoutingConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.time_based_canary = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.time_based_canary = Some(d);
-            },
+            }
         }
         self
     }
@@ -620,10 +689,10 @@ impl CodedeployDeploymentConfigTrafficRoutingConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.time_based_linear = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.time_based_linear = Some(d);
-            },
+            }
         }
         self
     }
@@ -660,7 +729,10 @@ pub struct CodedeployDeploymentConfigTrafficRoutingConfigElRef {
 }
 
 impl Ref for CodedeployDeploymentConfigTrafficRoutingConfigElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentConfigTrafficRoutingConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentConfigTrafficRoutingConfigElRef {
         CodedeployDeploymentConfigTrafficRoutingConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -679,13 +751,23 @@ impl CodedeployDeploymentConfigTrafficRoutingConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `time_based_canary` after provisioning.\n"]
-    pub fn time_based_canary(&self) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedCanaryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.time_based_canary", self.base))
+    pub fn time_based_canary(
+        &self,
+    ) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedCanaryElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.time_based_canary", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_based_linear` after provisioning.\n"]
-    pub fn time_based_linear(&self) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.time_based_linear", self.base))
+    pub fn time_based_linear(
+        &self,
+    ) -> ListRef<CodedeployDeploymentConfigTrafficRoutingConfigElTimeBasedLinearElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.time_based_linear", self.base),
+        )
     }
 }
 
@@ -769,9 +851,8 @@ impl CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneElRef {
 
 #[derive(Serialize, Default)]
 struct CodedeployDeploymentConfigZonalConfigElDynamic {
-    minimum_healthy_hosts_per_zone: Option<
-        DynamicBlock<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneEl>,
-    >,
+    minimum_healthy_hosts_per_zone:
+        Option<DynamicBlock<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneEl>>,
 }
 
 #[derive(Serialize)]
@@ -781,13 +862,17 @@ pub struct CodedeployDeploymentConfigZonalConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     monitor_duration_in_seconds: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    minimum_healthy_hosts_per_zone: Option<Vec<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneEl>>,
+    minimum_healthy_hosts_per_zone:
+        Option<Vec<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneEl>>,
     dynamic: CodedeployDeploymentConfigZonalConfigElDynamic,
 }
 
 impl CodedeployDeploymentConfigZonalConfigEl {
     #[doc = "Set the field `first_zone_monitor_duration_in_seconds`.\n"]
-    pub fn set_first_zone_monitor_duration_in_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_first_zone_monitor_duration_in_seconds(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.first_zone_monitor_duration_in_seconds = Some(v.into());
         self
     }
@@ -801,15 +886,17 @@ impl CodedeployDeploymentConfigZonalConfigEl {
     #[doc = "Set the field `minimum_healthy_hosts_per_zone`.\n"]
     pub fn set_minimum_healthy_hosts_per_zone(
         mut self,
-        v: impl Into<BlockAssignable<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneEl>>,
+        v: impl Into<
+            BlockAssignable<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.minimum_healthy_hosts_per_zone = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.minimum_healthy_hosts_per_zone = Some(d);
-            },
+            }
         }
         self
     }
@@ -861,19 +948,28 @@ impl CodedeployDeploymentConfigZonalConfigElRef {
 
     #[doc = "Get a reference to the value of field `first_zone_monitor_duration_in_seconds` after provisioning.\n"]
     pub fn first_zone_monitor_duration_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.first_zone_monitor_duration_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.first_zone_monitor_duration_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitor_duration_in_seconds` after provisioning.\n"]
     pub fn monitor_duration_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.monitor_duration_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.monitor_duration_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_healthy_hosts_per_zone` after provisioning.\n"]
     pub fn minimum_healthy_hosts_per_zone(
         &self,
     ) -> ListRef<CodedeployDeploymentConfigZonalConfigElMinimumHealthyHostsPerZoneElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.minimum_healthy_hosts_per_zone", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.minimum_healthy_hosts_per_zone", self.base),
+        )
     }
 }
 

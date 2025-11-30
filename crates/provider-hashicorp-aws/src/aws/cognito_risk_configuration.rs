@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CognitoRiskConfigurationData {
@@ -22,11 +22,11 @@ struct CognitoRiskConfigurationData {
     region: Option<PrimField<String>>,
     user_pool_id: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    account_takeover_risk_configuration: Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl>>,
+    account_takeover_risk_configuration:
+        Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    compromised_credentials_risk_configuration: Option<
-        Vec<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEl>,
-    >,
+    compromised_credentials_risk_configuration:
+        Option<Vec<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     risk_exception_configuration: Option<Vec<CognitoRiskConfigurationRiskExceptionConfigurationEl>>,
     dynamic: CognitoRiskConfigurationDynamic,
@@ -67,7 +67,8 @@ impl CognitoRiskConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl CognitoRiskConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl CognitoRiskConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl CognitoRiskConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -127,10 +137,14 @@ impl CognitoRiskConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().account_takeover_risk_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.account_takeover_risk_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .account_takeover_risk_configuration = Some(d);
+            }
         }
         self
     }
@@ -142,11 +156,18 @@ impl CognitoRiskConfiguration {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().compromised_credentials_risk_configuration = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .compromised_credentials_risk_configuration = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.compromised_credentials_risk_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .compromised_credentials_risk_configuration = Some(d);
+            }
         }
         self
     }
@@ -159,17 +180,24 @@ impl CognitoRiskConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().risk_exception_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.risk_exception_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .risk_exception_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -177,22 +205,30 @@ impl CognitoRiskConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `account_takeover_risk_configuration` after provisioning.\n"]
     pub fn account_takeover_risk_configuration(
         &self,
     ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_takeover_risk_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_takeover_risk_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compromised_credentials_risk_configuration` after provisioning.\n"]
@@ -201,23 +237,35 @@ impl CognitoRiskConfiguration {
     ) -> ListRef<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElRef> {
         ListRef::new(
             self.shared().clone(),
-            format!("{}.compromised_credentials_risk_configuration", self.extract_ref()),
+            format!(
+                "{}.compromised_credentials_risk_configuration",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `risk_exception_configuration` after provisioning.\n"]
-    pub fn risk_exception_configuration(&self) -> ListRef<CognitoRiskConfigurationRiskExceptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.risk_exception_configuration", self.extract_ref()))
+    pub fn risk_exception_configuration(
+        &self,
+    ) -> ListRef<CognitoRiskConfigurationRiskExceptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.risk_exception_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CognitoRiskConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CognitoRiskConfiguration { }
+impl Resource for CognitoRiskConfiguration {}
 
 impl ToListMappable for CognitoRiskConfiguration {
     type O = ListRef<CognitoRiskConfigurationRef>;
@@ -280,10 +328,7 @@ pub struct CognitoRiskConfigurationRef {
 
 impl Ref for CognitoRiskConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -298,7 +343,10 @@ impl CognitoRiskConfigurationRef {
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -306,22 +354,30 @@ impl CognitoRiskConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `account_takeover_risk_configuration` after provisioning.\n"]
     pub fn account_takeover_risk_configuration(
         &self,
     ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.account_takeover_risk_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.account_takeover_risk_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compromised_credentials_risk_configuration` after provisioning.\n"]
@@ -330,13 +386,21 @@ impl CognitoRiskConfigurationRef {
     ) -> ListRef<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElRef> {
         ListRef::new(
             self.shared().clone(),
-            format!("{}.compromised_credentials_risk_configuration", self.extract_ref()),
+            format!(
+                "{}.compromised_credentials_risk_configuration",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `risk_exception_configuration` after provisioning.\n"]
-    pub fn risk_exception_configuration(&self) -> ListRef<CognitoRiskConfigurationRiskExceptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.risk_exception_configuration", self.extract_ref()))
+    pub fn risk_exception_configuration(
+        &self,
+    ) -> ListRef<CognitoRiskConfigurationRiskExceptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.risk_exception_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -346,10 +410,14 @@ pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHi
     notify: PrimField<bool>,
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl { }
+impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl {}
 
-impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl {
-    type O = BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl>;
+impl ToListMappable
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl
+{
+    type O = BlockAssignable<
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -368,7 +436,9 @@ pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElAction
 }
 
 impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl {
-    pub fn build(self) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl {
+    pub fn build(
+        self,
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl {
             event_action: self.event_action,
             notify: self.notify,
@@ -415,10 +485,14 @@ pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLo
     notify: PrimField<bool>,
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl { }
+impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl {}
 
-impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl {
-    type O = BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl>;
+impl ToListMappable
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl
+{
+    type O = BlockAssignable<
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -437,7 +511,9 @@ pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElAction
 }
 
 impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl {
-    pub fn build(self) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl {
+    pub fn build(
+        self,
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl {
             event_action: self.event_action,
             notify: self.notify,
@@ -484,10 +560,14 @@ pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMe
     notify: PrimField<bool>,
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl { }
+impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl {}
 
-impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl {
-    type O = BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl>;
+impl ToListMappable
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl
+{
+    type O = BlockAssignable<
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -506,7 +586,9 @@ pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElAction
 }
 
 impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl {
-    pub fn build(self) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl {
+    pub fn build(
+        self,
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl {
             event_action: self.event_action,
             notify: self.notify,
@@ -550,22 +632,35 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumAc
 #[derive(Serialize, Default)]
 struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElDynamic {
     high_action: Option<
-        DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl>,
+        DynamicBlock<
+            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl,
+        >,
     >,
-    low_action: Option<DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl>>,
+    low_action: Option<
+        DynamicBlock<
+            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl,
+        >,
+    >,
     medium_action: Option<
-        DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl>,
+        DynamicBlock<
+            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    high_action: Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl>>,
+    high_action: Option<
+        Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    low_action: Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl>>,
+    low_action:
+        Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    medium_action: Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl>>,
+    medium_action: Option<
+        Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl>,
+    >,
     dynamic: CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElDynamic,
 }
 
@@ -573,22 +668,19 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl {
     #[doc = "Set the field `high_action`.\n"]
     pub fn set_high_action(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.high_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.high_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -596,22 +688,19 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl {
     #[doc = "Set the field `low_action`.\n"]
     pub fn set_low_action(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.low_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.low_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -619,22 +708,19 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl {
     #[doc = "Set the field `medium_action`.\n"]
     pub fn set_medium_action(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.medium_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.medium_action = Some(d);
-            },
+            }
         }
         self
     }
@@ -690,37 +776,47 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElRef {
     #[doc = "Get a reference to the value of field `high_action` after provisioning.\n"]
     pub fn high_action(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionElRef> {
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElHighActionElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.high_action", self.base))
     }
 
     #[doc = "Get a reference to the value of field `low_action` after provisioning.\n"]
     pub fn low_action(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionElRef> {
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElLowActionElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.low_action", self.base))
     }
 
     #[doc = "Get a reference to the value of field `medium_action` after provisioning.\n"]
     pub fn medium_action(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.medium_action", self.base))
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElMediumActionElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.medium_action", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {
+pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl
+{
     html_body: PrimField<String>,
     subject: PrimField<String>,
     text_body: PrimField<String>,
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl { }
+impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {}
 
-impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {
-    type O =
-        BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl>;
+impl ToListMappable
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl
+{
+    type O = BlockAssignable<
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -731,7 +827,8 @@ impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfiguration
     }
 }
 
-pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {
+pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl
+{
     #[doc = ""]
     pub html_body: PrimField<String>,
     #[doc = ""]
@@ -740,10 +837,13 @@ pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotify
     pub text_body: PrimField<String>,
 }
 
-impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {
+impl
+    BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl
+{
     pub fn build(
         self,
-    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl
+    {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailEl {
             html_body: self.html_body,
             subject: self.subject,
@@ -752,7 +852,8 @@ impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfig
     }
 }
 
-pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailElRef {
+pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -769,7 +870,9 @@ impl Ref for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyCon
     }
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailElRef {
+impl
+    CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -791,17 +894,21 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurati
 }
 
 #[derive(Serialize)]
-pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {
+pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl
+{
     html_body: PrimField<String>,
     subject: PrimField<String>,
     text_body: PrimField<String>,
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl { }
+impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {}
 
-impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {
-    type O =
-        BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl>;
+impl ToListMappable
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl
+{
+    type O = BlockAssignable<
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -812,7 +919,8 @@ impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfiguration
     }
 }
 
-pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {
+pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl
+{
     #[doc = ""]
     pub html_body: PrimField<String>,
     #[doc = ""]
@@ -821,8 +929,13 @@ pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotify
     pub text_body: PrimField<String>,
 }
 
-impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {
-    pub fn build(self) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {
+impl
+    BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl
+{
+    pub fn build(
+        self,
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl
+    {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailEl {
             html_body: self.html_body,
             subject: self.subject,
@@ -831,16 +944,20 @@ impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfig
     }
 }
 
-pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef {
+pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef {
+impl Ref
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef {
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef
+    {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef {
             shared: shared,
             base: base.to_string(),
@@ -870,13 +987,17 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurati
 }
 
 #[derive(Serialize)]
-pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl {
+pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl
+{
     html_body: PrimField<String>,
     subject: PrimField<String>,
     text_body: PrimField<String>,
 }
 
-impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl { }
+impl
+    CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl
+{
+}
 
 impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl {
     type O =
@@ -893,7 +1014,8 @@ impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfiguration
     }
 }
 
-pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl {
+pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailEl
+{
     #[doc = ""]
     pub html_body: PrimField<String>,
     #[doc = ""]
@@ -914,7 +1036,8 @@ impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfig
     }
 }
 
-pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailElRef {
+pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1011,10 +1134,10 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurati
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.block_email = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.block_email = Some(d);
-            },
+            }
         }
         self
     }
@@ -1034,10 +1157,10 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurati
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mfa_email = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mfa_email = Some(d);
-            },
+            }
         }
         self
     }
@@ -1057,17 +1180,21 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurati
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.no_action_email = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.no_action_email = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl {
-    type O = BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl>;
+impl ToListMappable
+    for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl
+{
+    type O = BlockAssignable<
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1084,7 +1211,9 @@ pub struct BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotify
 }
 
 impl BuildCognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl {
-    pub fn build(self) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl {
+    pub fn build(
+        self,
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl {
             from: core::default::Default::default(),
             reply_to: core::default::Default::default(),
@@ -1137,30 +1266,36 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurati
     #[doc = "Get a reference to the value of field `block_email` after provisioning.\n"]
     pub fn block_email(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailElRef> {
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElBlockEmailElRef>{
         ListRef::new(self.shared().clone(), format!("{}.block_email", self.base))
     }
 
     #[doc = "Get a reference to the value of field `mfa_email` after provisioning.\n"]
     pub fn mfa_email(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef> {
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElMfaEmailElRef>{
         ListRef::new(self.shared().clone(), format!("{}.mfa_email", self.base))
     }
 
     #[doc = "Get a reference to the value of field `no_action_email` after provisioning.\n"]
     pub fn no_action_email(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.no_action_email", self.base))
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElNoActionEmailElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.no_action_email", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElDynamic {
-    actions: Option<DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl>>,
+    actions:
+        Option<DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl>>,
     notify_configuration: Option<
-        DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl>,
+        DynamicBlock<
+            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl,
+        >,
     >,
 }
 
@@ -1169,7 +1304,9 @@ pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     actions: Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    notify_configuration: Option<Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl>>,
+    notify_configuration: Option<
+        Vec<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl>,
+    >,
     dynamic: CognitoRiskConfigurationAccountTakeoverRiskConfigurationElDynamic,
 }
 
@@ -1177,15 +1314,17 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl {
     #[doc = "Set the field `actions`.\n"]
     pub fn set_actions(
         mut self,
-        v: impl Into<BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl>>,
+        v: impl Into<
+            BlockAssignable<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.actions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.actions = Some(d);
-            },
+            }
         }
         self
     }
@@ -1193,22 +1332,19 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl {
     #[doc = "Set the field `notify_configuration`.\n"]
     pub fn set_notify_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.notify_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.notify_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1244,7 +1380,10 @@ pub struct CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef {
 }
 
 impl Ref for CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef {
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1258,15 +1397,21 @@ impl CognitoRiskConfigurationAccountTakeoverRiskConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `actions` after provisioning.\n"]
-    pub fn actions(&self) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElRef> {
+    pub fn actions(
+        &self,
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElActionsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.actions", self.base))
     }
 
     #[doc = "Get a reference to the value of field `notify_configuration` after provisioning.\n"]
     pub fn notify_configuration(
         &self,
-    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notify_configuration", self.base))
+    ) -> ListRef<CognitoRiskConfigurationAccountTakeoverRiskConfigurationElNotifyConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notify_configuration", self.base),
+        )
     }
 }
 
@@ -1275,10 +1420,11 @@ pub struct CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActi
     event_action: PrimField<String>,
 }
 
-impl CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl { }
+impl CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl {}
 
 impl ToListMappable for CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl {
-    type O = BlockAssignable<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>;
+    type O =
+        BlockAssignable<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1295,7 +1441,9 @@ pub struct BuildCognitoRiskConfigurationCompromisedCredentialsRiskConfigurationE
 }
 
 impl BuildCognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl {
-    pub fn build(self) -> CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl {
+    pub fn build(
+        self,
+    ) -> CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl {
         CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl {
             event_action: self.event_action,
         }
@@ -1332,7 +1480,9 @@ impl CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsElR
 
 #[derive(Serialize, Default)]
 struct CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElDynamic {
-    actions: Option<DynamicBlock<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>>,
+    actions: Option<
+        DynamicBlock<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -1340,7 +1490,8 @@ pub struct CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     event_filter: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    actions: Option<Vec<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>>,
+    actions:
+        Option<Vec<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>>,
     dynamic: CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElDynamic,
 }
 
@@ -1354,15 +1505,19 @@ impl CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEl {
     #[doc = "Set the field `actions`.\n"]
     pub fn set_actions(
         mut self,
-        v: impl Into<BlockAssignable<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.actions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.actions = Some(d);
-            },
+            }
         }
         self
     }
@@ -1420,7 +1575,10 @@ impl CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `actions` after provisioning.\n"]
-    pub fn actions(&self) -> ListRef<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsElRef> {
+    pub fn actions(
+        &self,
+    ) -> ListRef<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationElActionsElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.actions", self.base))
     }
 }
@@ -1476,7 +1634,10 @@ pub struct CognitoRiskConfigurationRiskExceptionConfigurationElRef {
 }
 
 impl Ref for CognitoRiskConfigurationRiskExceptionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CognitoRiskConfigurationRiskExceptionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CognitoRiskConfigurationRiskExceptionConfigurationElRef {
         CognitoRiskConfigurationRiskExceptionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1491,22 +1652,27 @@ impl CognitoRiskConfigurationRiskExceptionConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `blocked_ip_range_list` after provisioning.\n"]
     pub fn blocked_ip_range_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.blocked_ip_range_list", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.blocked_ip_range_list", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skipped_ip_range_list` after provisioning.\n"]
     pub fn skipped_ip_range_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.skipped_ip_range_list", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.skipped_ip_range_list", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CognitoRiskConfigurationDynamic {
-    account_takeover_risk_configuration: Option<
-        DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl>,
-    >,
-    compromised_credentials_risk_configuration: Option<
-        DynamicBlock<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEl>,
-    >,
-    risk_exception_configuration: Option<DynamicBlock<CognitoRiskConfigurationRiskExceptionConfigurationEl>>,
+    account_takeover_risk_configuration:
+        Option<DynamicBlock<CognitoRiskConfigurationAccountTakeoverRiskConfigurationEl>>,
+    compromised_credentials_risk_configuration:
+        Option<DynamicBlock<CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEl>>,
+    risk_exception_configuration:
+        Option<DynamicBlock<CognitoRiskConfigurationRiskExceptionConfigurationEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataRegionsData {
@@ -62,17 +62,20 @@ impl DataRegions {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `all_regions` after provisioning.\n"]
     pub fn all_regions(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.all_regions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.all_regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -82,17 +85,24 @@ impl DataRegions {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataRegions {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataRegions { }
+impl Datasource for DataRegions {}
 
 impl ToListMappable for DataRegions {
     type O = ListRef<DataRegionsRef>;
@@ -148,10 +158,7 @@ pub struct DataRegionsRef {
 
 impl Ref for DataRegionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -166,7 +173,10 @@ impl DataRegionsRef {
 
     #[doc = "Get a reference to the value of field `all_regions` after provisioning.\n"]
     pub fn all_regions(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.all_regions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.all_regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -176,7 +186,10 @@ impl DataRegionsRef {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 }
 
@@ -186,7 +199,7 @@ pub struct DataRegionsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataRegionsFilterEl { }
+impl DataRegionsFilterEl {}
 
 impl ToListMappable for DataRegionsFilterEl {
     type O = BlockAssignable<DataRegionsFilterEl>;

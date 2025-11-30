@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataConnectUserHierarchyStructureData {
@@ -49,16 +49,20 @@ impl DataConnectUserHierarchyStructure {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `hierarchy_structure` after provisioning.\n"]
-    pub fn hierarchy_structure(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hierarchy_structure", self.extract_ref()))
+    pub fn hierarchy_structure(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hierarchy_structure", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -68,23 +72,32 @@ impl DataConnectUserHierarchyStructure {
 
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataConnectUserHierarchyStructure {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataConnectUserHierarchyStructure { }
+impl Datasource for DataConnectUserHierarchyStructure {}
 
 impl ToListMappable for DataConnectUserHierarchyStructure {
     type O = ListRef<DataConnectUserHierarchyStructureRef>;
@@ -141,10 +154,7 @@ pub struct DataConnectUserHierarchyStructureRef {
 
 impl Ref for DataConnectUserHierarchyStructureRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -158,8 +168,13 @@ impl DataConnectUserHierarchyStructureRef {
     }
 
     #[doc = "Get a reference to the value of field `hierarchy_structure` after provisioning.\n"]
-    pub fn hierarchy_structure(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hierarchy_structure", self.extract_ref()))
+    pub fn hierarchy_structure(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hierarchy_structure", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -169,13 +184,18 @@ impl DataConnectUserHierarchyStructureRef {
 
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -239,7 +259,10 @@ pub struct DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
 }
 
 impl Ref for DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
         DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
             shared: shared,
             base: base.to_string(),
@@ -328,7 +351,10 @@ pub struct DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
 }
 
 impl Ref for DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
         DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
             shared: shared,
             base: base.to_string(),
@@ -417,7 +443,10 @@ pub struct DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
 }
 
 impl Ref for DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
         DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
             shared: shared,
             base: base.to_string(),
@@ -598,7 +627,10 @@ pub struct DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
 }
 
 impl Ref for DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
         DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
             shared: shared,
             base: base.to_string(),
@@ -636,7 +668,8 @@ pub struct DataConnectUserHierarchyStructureHierarchyStructureEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     level_one: Option<ListField<DataConnectUserHierarchyStructureHierarchyStructureElLevelOneEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    level_three: Option<ListField<DataConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl>>,
+    level_three:
+        Option<ListField<DataConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     level_two: Option<ListField<DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl>>,
 }
@@ -720,7 +753,10 @@ pub struct DataConnectUserHierarchyStructureHierarchyStructureElRef {
 }
 
 impl Ref for DataConnectUserHierarchyStructureHierarchyStructureElRef {
-    fn new(shared: StackShared, base: String) -> DataConnectUserHierarchyStructureHierarchyStructureElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataConnectUserHierarchyStructureHierarchyStructureElRef {
         DataConnectUserHierarchyStructureHierarchyStructureElRef {
             shared: shared,
             base: base.to_string(),
@@ -734,27 +770,37 @@ impl DataConnectUserHierarchyStructureHierarchyStructureElRef {
     }
 
     #[doc = "Get a reference to the value of field `level_five` after provisioning.\n"]
-    pub fn level_five(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef> {
+    pub fn level_five(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_five", self.base))
     }
 
     #[doc = "Get a reference to the value of field `level_four` after provisioning.\n"]
-    pub fn level_four(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef> {
+    pub fn level_four(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_four", self.base))
     }
 
     #[doc = "Get a reference to the value of field `level_one` after provisioning.\n"]
-    pub fn level_one(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef> {
+    pub fn level_one(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_one", self.base))
     }
 
     #[doc = "Get a reference to the value of field `level_three` after provisioning.\n"]
-    pub fn level_three(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef> {
+    pub fn level_three(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_three", self.base))
     }
 
     #[doc = "Get a reference to the value of field `level_two` after provisioning.\n"]
-    pub fn level_two(&self) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef> {
+    pub fn level_two(
+        &self,
+    ) -> ListRef<DataConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_two", self.base))
     }
 }

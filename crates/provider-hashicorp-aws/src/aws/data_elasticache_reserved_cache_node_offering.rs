@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataElasticacheReservedCacheNodeOfferingData {
@@ -44,8 +44,7 @@ impl DataElasticacheReservedCacheNodeOffering {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -53,48 +52,72 @@ impl DataElasticacheReservedCacheNodeOffering {
 
     #[doc = "Get a reference to the value of field `cache_node_type` after provisioning.\n"]
     pub fn cache_node_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cache_node_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cache_node_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_price` after provisioning.\n"]
     pub fn fixed_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fixed_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fixed_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `offering_id` after provisioning.\n"]
     pub fn offering_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.offering_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.offering_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `offering_type` after provisioning.\n"]
     pub fn offering_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.offering_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.offering_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_description` after provisioning.\n"]
     pub fn product_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataElasticacheReservedCacheNodeOffering {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataElasticacheReservedCacheNodeOffering { }
+impl Datasource for DataElasticacheReservedCacheNodeOffering {}
 
 impl ToListMappable for DataElasticacheReservedCacheNodeOffering {
     type O = ListRef<DataElasticacheReservedCacheNodeOfferingRef>;
@@ -133,20 +156,22 @@ pub struct BuildDataElasticacheReservedCacheNodeOffering {
 
 impl BuildDataElasticacheReservedCacheNodeOffering {
     pub fn build(self, stack: &mut Stack) -> DataElasticacheReservedCacheNodeOffering {
-        let out = DataElasticacheReservedCacheNodeOffering(Rc::new(DataElasticacheReservedCacheNodeOffering_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataElasticacheReservedCacheNodeOfferingData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                cache_node_type: self.cache_node_type,
-                duration: self.duration,
-                offering_type: self.offering_type,
-                product_description: self.product_description,
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out = DataElasticacheReservedCacheNodeOffering(Rc::new(
+            DataElasticacheReservedCacheNodeOffering_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataElasticacheReservedCacheNodeOfferingData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    cache_node_type: self.cache_node_type,
+                    duration: self.duration,
+                    offering_type: self.offering_type,
+                    product_description: self.product_description,
+                    region: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -159,10 +184,7 @@ pub struct DataElasticacheReservedCacheNodeOfferingRef {
 
 impl Ref for DataElasticacheReservedCacheNodeOfferingRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -177,37 +199,57 @@ impl DataElasticacheReservedCacheNodeOfferingRef {
 
     #[doc = "Get a reference to the value of field `cache_node_type` after provisioning.\n"]
     pub fn cache_node_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cache_node_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cache_node_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.duration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.duration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_price` after provisioning.\n"]
     pub fn fixed_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fixed_price", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fixed_price", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `offering_id` after provisioning.\n"]
     pub fn offering_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.offering_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.offering_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `offering_type` after provisioning.\n"]
     pub fn offering_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.offering_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.offering_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_description` after provisioning.\n"]
     pub fn product_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

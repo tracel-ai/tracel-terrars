@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOdbGiVersionsData {
@@ -42,8 +42,7 @@ impl DataOdbGiVersions {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -55,31 +54,42 @@ impl DataOdbGiVersions {
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `gi_versions` after provisioning.\nInformation about a specific version of Oracle Grid Infrastructure (GI) software that can be installed on a VM cluster."]
+    #[doc = "Get a reference to the value of field `gi_versions` after provisioning.\nInformation about a specific version of Oracle Grid Infrastructure (GI) software that can be installed on a VM cluster."]
     pub fn gi_versions(&self) -> ListRef<DataOdbGiVersionsGiVersionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.gi_versions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.gi_versions", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shape` after provisioning.\nThe system shape."]
     pub fn shape(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shape", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shape", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOdbGiVersions {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOdbGiVersions { }
+impl Datasource for DataOdbGiVersions {}
 
 impl ToListMappable for DataOdbGiVersions {
     type O = ListRef<DataOdbGiVersionsRef>;
@@ -133,10 +143,7 @@ pub struct DataOdbGiVersionsRef {
 
 impl Ref for DataOdbGiVersionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -149,21 +156,28 @@ impl DataOdbGiVersionsRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `gi_versions` after provisioning.\nInformation about a specific version of Oracle Grid Infrastructure (GI) software that can be installed on a VM cluster."]
+    #[doc = "Get a reference to the value of field `gi_versions` after provisioning.\nInformation about a specific version of Oracle Grid Infrastructure (GI) software that can be installed on a VM cluster."]
     pub fn gi_versions(&self) -> ListRef<DataOdbGiVersionsGiVersionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.gi_versions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.gi_versions", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shape` after provisioning.\nThe system shape."]
     pub fn shape(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shape", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shape", self.extract_ref()),
+        )
     }
 }
 
@@ -197,7 +211,9 @@ pub struct BuildDataOdbGiVersionsGiVersionsEl {}
 
 impl BuildDataOdbGiVersionsGiVersionsEl {
     pub fn build(self) -> DataOdbGiVersionsGiVersionsEl {
-        DataOdbGiVersionsGiVersionsEl { version: core::default::Default::default() }
+        DataOdbGiVersionsGiVersionsEl {
+            version: core::default::Default::default(),
+        }
     }
 }
 

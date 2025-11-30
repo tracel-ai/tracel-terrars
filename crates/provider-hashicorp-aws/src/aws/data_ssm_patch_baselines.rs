@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSsmPatchBaselinesData {
@@ -51,8 +51,7 @@ impl DataSsmPatchBaselines {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,43 +62,58 @@ impl DataSsmPatchBaselines {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `baseline_identities` after provisioning.\n"]
     pub fn baseline_identities(&self) -> ListRef<DataSsmPatchBaselinesBaselineIdentitiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_identities", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_identities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_baselines` after provisioning.\n"]
     pub fn default_baselines(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_baselines", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_baselines", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<DataSsmPatchBaselinesFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSsmPatchBaselines {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSsmPatchBaselines { }
+impl Datasource for DataSsmPatchBaselines {}
 
 impl ToListMappable for DataSsmPatchBaselines {
     type O = ListRef<DataSsmPatchBaselinesRef>;
@@ -155,10 +169,7 @@ pub struct DataSsmPatchBaselinesRef {
 
 impl Ref for DataSsmPatchBaselinesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -173,23 +184,34 @@ impl DataSsmPatchBaselinesRef {
 
     #[doc = "Get a reference to the value of field `baseline_identities` after provisioning.\n"]
     pub fn baseline_identities(&self) -> ListRef<DataSsmPatchBaselinesBaselineIdentitiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_identities", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_identities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_baselines` after provisioning.\n"]
     pub fn default_baselines(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_baselines", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_baselines", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<DataSsmPatchBaselinesFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 }
 
@@ -286,7 +308,10 @@ impl DataSsmPatchBaselinesBaselineIdentitiesElRef {
 
     #[doc = "Get a reference to the value of field `baseline_description` after provisioning.\n"]
     pub fn baseline_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.baseline_description", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.baseline_description", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `baseline_id` after provisioning.\n"]
@@ -296,17 +321,26 @@ impl DataSsmPatchBaselinesBaselineIdentitiesElRef {
 
     #[doc = "Get a reference to the value of field `baseline_name` after provisioning.\n"]
     pub fn baseline_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.baseline_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.baseline_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_baseline` after provisioning.\n"]
     pub fn default_baseline(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_baseline", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_baseline", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operating_system` after provisioning.\n"]
     pub fn operating_system(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operating_system", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.operating_system", self.base),
+        )
     }
 }
 
@@ -316,7 +350,7 @@ pub struct DataSsmPatchBaselinesFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataSsmPatchBaselinesFilterEl { }
+impl DataSsmPatchBaselinesFilterEl {}
 
 impl ToListMappable for DataSsmPatchBaselinesFilterEl {
     type O = BlockAssignable<DataSsmPatchBaselinesFilterEl>;

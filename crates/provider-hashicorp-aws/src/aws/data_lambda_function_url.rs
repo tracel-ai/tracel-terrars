@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLambdaFunctionUrlData {
@@ -57,8 +57,7 @@ impl DataLambdaFunctionUrl {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,32 +65,50 @@ impl DataLambdaFunctionUrl {
 
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cors` after provisioning.\n"]
     pub fn cors(&self) -> ListRef<DataLambdaFunctionUrlCorsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cors", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_url` after provisioning.\n"]
     pub fn function_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -101,38 +118,56 @@ impl DataLambdaFunctionUrl {
 
     #[doc = "Get a reference to the value of field `invoke_mode` after provisioning.\n"]
     pub fn invoke_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invoke_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invoke_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.qualifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.qualifier", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url_id` after provisioning.\n"]
     pub fn url_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.url_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.url_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLambdaFunctionUrl {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLambdaFunctionUrl { }
+impl Datasource for DataLambdaFunctionUrl {}
 
 impl ToListMappable for DataLambdaFunctionUrl {
     type O = ListRef<DataLambdaFunctionUrlRef>;
@@ -190,10 +225,7 @@ pub struct DataLambdaFunctionUrlRef {
 
 impl Ref for DataLambdaFunctionUrlRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -208,32 +240,50 @@ impl DataLambdaFunctionUrlRef {
 
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cors` after provisioning.\n"]
     pub fn cors(&self) -> ListRef<DataLambdaFunctionUrlCorsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cors", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_url` after provisioning.\n"]
     pub fn function_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -243,28 +293,42 @@ impl DataLambdaFunctionUrlRef {
 
     #[doc = "Get a reference to the value of field `invoke_mode` after provisioning.\n"]
     pub fn invoke_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invoke_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invoke_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.qualifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.qualifier", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url_id` after provisioning.\n"]
     pub fn url_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.url_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.url_id", self.extract_ref()),
+        )
     }
 }
 
@@ -370,27 +434,42 @@ impl DataLambdaFunctionUrlCorsElRef {
 
     #[doc = "Get a reference to the value of field `allow_credentials` after provisioning.\n"]
     pub fn allow_credentials(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_credentials", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_credentials", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_headers` after provisioning.\n"]
     pub fn allow_headers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.allow_headers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.allow_headers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_methods` after provisioning.\n"]
     pub fn allow_methods(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.allow_methods", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.allow_methods", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_origins` after provisioning.\n"]
     pub fn allow_origins(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.allow_origins", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.allow_origins", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expose_headers` after provisioning.\n"]
     pub fn expose_headers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.expose_headers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.expose_headers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_age` after provisioning.\n"]

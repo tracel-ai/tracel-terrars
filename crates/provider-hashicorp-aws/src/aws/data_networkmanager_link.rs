@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataNetworkmanagerLinkData {
@@ -63,17 +63,26 @@ impl DataNetworkmanagerLink {
 
     #[doc = "Get a reference to the value of field `bandwidth` after provisioning.\n"]
     pub fn bandwidth(&self) -> ListRef<DataNetworkmanagerLinkBandwidthElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.bandwidth", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bandwidth", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_network_id` after provisioning.\n"]
     pub fn global_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -83,37 +92,56 @@ impl DataNetworkmanagerLink {
 
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.link_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.link_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_name` after provisioning.\n"]
     pub fn provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `site_id` after provisioning.\n"]
     pub fn site_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.site_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.site_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataNetworkmanagerLink {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataNetworkmanagerLink { }
+impl Datasource for DataNetworkmanagerLink {}
 
 impl ToListMappable for DataNetworkmanagerLink {
     type O = ListRef<DataNetworkmanagerLinkRef>;
@@ -173,10 +201,7 @@ pub struct DataNetworkmanagerLinkRef {
 
 impl Ref for DataNetworkmanagerLinkRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -196,17 +221,26 @@ impl DataNetworkmanagerLinkRef {
 
     #[doc = "Get a reference to the value of field `bandwidth` after provisioning.\n"]
     pub fn bandwidth(&self) -> ListRef<DataNetworkmanagerLinkBandwidthElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.bandwidth", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bandwidth", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_network_id` after provisioning.\n"]
     pub fn global_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -216,27 +250,42 @@ impl DataNetworkmanagerLinkRef {
 
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.link_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.link_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_name` after provisioning.\n"]
     pub fn provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `site_id` after provisioning.\n"]
     pub fn site_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.site_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.site_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
@@ -306,7 +355,10 @@ impl DataNetworkmanagerLinkBandwidthElRef {
 
     #[doc = "Get a reference to the value of field `download_speed` after provisioning.\n"]
     pub fn download_speed(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.download_speed", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.download_speed", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upload_speed` after provisioning.\n"]

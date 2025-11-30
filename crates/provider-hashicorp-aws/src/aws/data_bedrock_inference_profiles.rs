@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBedrockInferenceProfilesData {
@@ -42,8 +42,7 @@ impl DataBedrockInferenceProfiles {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -56,29 +55,43 @@ impl DataBedrockInferenceProfiles {
     }
 
     #[doc = "Get a reference to the value of field `inference_profile_summaries` after provisioning.\n"]
-    pub fn inference_profile_summaries(&self) -> ListRef<DataBedrockInferenceProfilesInferenceProfileSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inference_profile_summaries", self.extract_ref()))
+    pub fn inference_profile_summaries(
+        &self,
+    ) -> ListRef<DataBedrockInferenceProfilesInferenceProfileSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_profile_summaries", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBedrockInferenceProfiles {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBedrockInferenceProfiles { }
+impl Datasource for DataBedrockInferenceProfiles {}
 
 impl ToListMappable for DataBedrockInferenceProfiles {
     type O = ListRef<DataBedrockInferenceProfilesRef>;
@@ -132,10 +145,7 @@ pub struct DataBedrockInferenceProfilesRef {
 
 impl Ref for DataBedrockInferenceProfilesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -149,19 +159,29 @@ impl DataBedrockInferenceProfilesRef {
     }
 
     #[doc = "Get a reference to the value of field `inference_profile_summaries` after provisioning.\n"]
-    pub fn inference_profile_summaries(&self) -> ListRef<DataBedrockInferenceProfilesInferenceProfileSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inference_profile_summaries", self.extract_ref()))
+    pub fn inference_profile_summaries(
+        &self,
+    ) -> ListRef<DataBedrockInferenceProfilesInferenceProfileSummariesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_profile_summaries", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
@@ -207,7 +227,10 @@ pub struct DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef {
 }
 
 impl Ref for DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef {
-    fn new(shared: StackShared, base: String) -> DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef {
         DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef {
             shared: shared,
             base: base.to_string(),
@@ -343,7 +366,10 @@ pub struct DataBedrockInferenceProfilesInferenceProfileSummariesElRef {
 }
 
 impl Ref for DataBedrockInferenceProfilesInferenceProfileSummariesElRef {
-    fn new(shared: StackShared, base: String) -> DataBedrockInferenceProfilesInferenceProfileSummariesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataBedrockInferenceProfilesInferenceProfileSummariesElRef {
         DataBedrockInferenceProfilesInferenceProfileSummariesElRef {
             shared: shared,
             base: base.to_string(),
@@ -368,21 +394,32 @@ impl DataBedrockInferenceProfilesInferenceProfileSummariesElRef {
 
     #[doc = "Get a reference to the value of field `inference_profile_arn` after provisioning.\n"]
     pub fn inference_profile_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inference_profile_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inference_profile_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_profile_id` after provisioning.\n"]
     pub fn inference_profile_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inference_profile_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inference_profile_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_profile_name` after provisioning.\n"]
     pub fn inference_profile_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inference_profile_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inference_profile_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `models` after provisioning.\n"]
-    pub fn models(&self) -> ListRef<DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef> {
+    pub fn models(
+        &self,
+    ) -> ListRef<DataBedrockInferenceProfilesInferenceProfileSummariesElModelsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.models", self.base))
     }
 

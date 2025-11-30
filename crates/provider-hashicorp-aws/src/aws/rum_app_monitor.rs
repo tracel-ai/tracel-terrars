@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct RumAppMonitorData {
@@ -71,7 +71,8 @@ impl RumAppMonitor {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl RumAppMonitor {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl RumAppMonitor {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -128,8 +139,7 @@ impl RumAppMonitor {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -155,30 +165,36 @@ impl RumAppMonitor {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().app_monitor_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.app_monitor_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `custom_events`.\n"]
-    pub fn set_custom_events(self, v: impl Into<BlockAssignable<RumAppMonitorCustomEventsEl>>) -> Self {
+    pub fn set_custom_events(
+        self,
+        v: impl Into<BlockAssignable<RumAppMonitorCustomEventsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().custom_events = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.custom_events = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `app_monitor_id` after provisioning.\n"]
     pub fn app_monitor_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_monitor_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_monitor_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -188,22 +204,34 @@ impl RumAppMonitor {
 
     #[doc = "Get a reference to the value of field `cw_log_enabled` after provisioning.\n"]
     pub fn cw_log_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cw_log_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cw_log_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cw_log_group` after provisioning.\n"]
     pub fn cw_log_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cw_log_group", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cw_log_group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_list` after provisioning.\n"]
     pub fn domain_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.domain_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.domain_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -213,43 +241,64 @@ impl RumAppMonitor {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `app_monitor_configuration` after provisioning.\n"]
     pub fn app_monitor_configuration(&self) -> ListRef<RumAppMonitorAppMonitorConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.app_monitor_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.app_monitor_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_events` after provisioning.\n"]
     pub fn custom_events(&self) -> ListRef<RumAppMonitorCustomEventsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_events", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_events", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for RumAppMonitor {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for RumAppMonitor { }
+impl Resource for RumAppMonitor {}
 
 impl ToListMappable for RumAppMonitor {
     type O = ListRef<RumAppMonitorRef>;
@@ -315,10 +364,7 @@ pub struct RumAppMonitorRef {
 
 impl Ref for RumAppMonitorRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -333,7 +379,10 @@ impl RumAppMonitorRef {
 
     #[doc = "Get a reference to the value of field `app_monitor_id` after provisioning.\n"]
     pub fn app_monitor_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_monitor_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_monitor_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -343,22 +392,34 @@ impl RumAppMonitorRef {
 
     #[doc = "Get a reference to the value of field `cw_log_enabled` after provisioning.\n"]
     pub fn cw_log_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cw_log_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cw_log_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cw_log_group` after provisioning.\n"]
     pub fn cw_log_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cw_log_group", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cw_log_group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_list` after provisioning.\n"]
     pub fn domain_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.domain_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.domain_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -368,33 +429,50 @@ impl RumAppMonitorRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `app_monitor_configuration` after provisioning.\n"]
     pub fn app_monitor_configuration(&self) -> ListRef<RumAppMonitorAppMonitorConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.app_monitor_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.app_monitor_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_events` after provisioning.\n"]
     pub fn custom_events(&self) -> ListRef<RumAppMonitorCustomEventsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_events", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_events", self.extract_ref()),
+        )
     }
 }
 
@@ -527,7 +605,10 @@ impl RumAppMonitorAppMonitorConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `allow_cookies` after provisioning.\n"]
     pub fn allow_cookies(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_cookies", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_cookies", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_xray` after provisioning.\n"]
@@ -537,32 +618,50 @@ impl RumAppMonitorAppMonitorConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `excluded_pages` after provisioning.\n"]
     pub fn excluded_pages(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_pages", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_pages", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `favorite_pages` after provisioning.\n"]
     pub fn favorite_pages(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.favorite_pages", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.favorite_pages", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guest_role_arn` after provisioning.\n"]
     pub fn guest_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guest_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guest_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `identity_pool_id` after provisioning.\n"]
     pub fn identity_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_pool_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_pool_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `included_pages` after provisioning.\n"]
     pub fn included_pages(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.included_pages", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.included_pages", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_sample_rate` after provisioning.\n"]
     pub fn session_sample_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_sample_rate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_sample_rate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `telemetries` after provisioning.\n"]
@@ -601,7 +700,9 @@ pub struct BuildRumAppMonitorCustomEventsEl {}
 
 impl BuildRumAppMonitorCustomEventsEl {
     pub fn build(self) -> RumAppMonitorCustomEventsEl {
-        RumAppMonitorCustomEventsEl { status: core::default::Default::default() }
+        RumAppMonitorCustomEventsEl {
+            status: core::default::Default::default(),
+        }
     }
 }
 

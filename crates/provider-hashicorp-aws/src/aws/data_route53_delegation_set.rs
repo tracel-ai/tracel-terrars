@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataRoute53DelegationSetData {
@@ -46,7 +46,10 @@ impl DataRoute53DelegationSet {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -56,17 +59,24 @@ impl DataRoute53DelegationSet {
 
     #[doc = "Get a reference to the value of field `name_servers` after provisioning.\n"]
     pub fn name_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.name_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.name_servers", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataRoute53DelegationSet {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataRoute53DelegationSet { }
+impl Datasource for DataRoute53DelegationSet {}
 
 impl ToListMappable for DataRoute53DelegationSet {
     type O = ListRef<DataRoute53DelegationSetRef>;
@@ -121,10 +131,7 @@ pub struct DataRoute53DelegationSetRef {
 
 impl Ref for DataRoute53DelegationSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -144,7 +151,10 @@ impl DataRoute53DelegationSetRef {
 
     #[doc = "Get a reference to the value of field `caller_reference` after provisioning.\n"]
     pub fn caller_reference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_reference", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -154,6 +164,9 @@ impl DataRoute53DelegationSetRef {
 
     #[doc = "Get a reference to the value of field `name_servers` after provisioning.\n"]
     pub fn name_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.name_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.name_servers", self.extract_ref()),
+        )
     }
 }

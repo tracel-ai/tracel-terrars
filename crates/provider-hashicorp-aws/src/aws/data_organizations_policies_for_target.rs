@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOrganizationsPoliciesForTargetData {
@@ -50,7 +50,10 @@ impl DataOrganizationsPoliciesForTarget {
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -65,17 +68,24 @@ impl DataOrganizationsPoliciesForTarget {
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOrganizationsPoliciesForTarget {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOrganizationsPoliciesForTarget { }
+impl Datasource for DataOrganizationsPoliciesForTarget {}
 
 impl ToListMappable for DataOrganizationsPoliciesForTarget {
     type O = ListRef<DataOrganizationsPoliciesForTargetRef>;
@@ -110,18 +120,19 @@ pub struct BuildDataOrganizationsPoliciesForTarget {
 
 impl BuildDataOrganizationsPoliciesForTarget {
     pub fn build(self, stack: &mut Stack) -> DataOrganizationsPoliciesForTarget {
-        let out = DataOrganizationsPoliciesForTarget(Rc::new(DataOrganizationsPoliciesForTarget_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOrganizationsPoliciesForTargetData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                filter: self.filter,
-                id: core::default::Default::default(),
-                target_id: self.target_id,
-            }),
-        }));
+        let out =
+            DataOrganizationsPoliciesForTarget(Rc::new(DataOrganizationsPoliciesForTarget_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOrganizationsPoliciesForTargetData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    filter: self.filter,
+                    id: core::default::Default::default(),
+                    target_id: self.target_id,
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -134,10 +145,7 @@ pub struct DataOrganizationsPoliciesForTargetRef {
 
 impl Ref for DataOrganizationsPoliciesForTargetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -152,7 +160,10 @@ impl DataOrganizationsPoliciesForTargetRef {
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -167,6 +178,9 @@ impl DataOrganizationsPoliciesForTargetRef {
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataApigatewayv2ExportData {
@@ -69,8 +69,7 @@ impl DataApigatewayv2Export {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -84,17 +83,26 @@ impl DataApigatewayv2Export {
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `body` after provisioning.\n"]
     pub fn body(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.body", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.body", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `export_version` after provisioning.\n"]
     pub fn export_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.export_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.export_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -104,38 +112,56 @@ impl DataApigatewayv2Export {
 
     #[doc = "Get a reference to the value of field `include_extensions` after provisioning.\n"]
     pub fn include_extensions(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_extensions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_extensions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_type` after provisioning.\n"]
     pub fn output_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `specification` after provisioning.\n"]
     pub fn specification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.specification", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stage_name` after provisioning.\n"]
     pub fn stage_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stage_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stage_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataApigatewayv2Export {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataApigatewayv2Export { }
+impl Datasource for DataApigatewayv2Export {}
 
 impl ToListMappable for DataApigatewayv2Export {
     type O = ListRef<DataApigatewayv2ExportRef>;
@@ -201,10 +227,7 @@ pub struct DataApigatewayv2ExportRef {
 
 impl Ref for DataApigatewayv2ExportRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -219,17 +242,26 @@ impl DataApigatewayv2ExportRef {
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `body` after provisioning.\n"]
     pub fn body(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.body", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.body", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `export_version` after provisioning.\n"]
     pub fn export_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.export_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.export_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -239,27 +271,41 @@ impl DataApigatewayv2ExportRef {
 
     #[doc = "Get a reference to the value of field `include_extensions` after provisioning.\n"]
     pub fn include_extensions(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_extensions", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_extensions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_type` after provisioning.\n"]
     pub fn output_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `specification` after provisioning.\n"]
     pub fn specification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.specification", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stage_name` after provisioning.\n"]
     pub fn stage_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stage_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stage_name", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BatchComputeEnvironmentData {
@@ -76,7 +76,8 @@ impl BatchComputeEnvironment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -89,7 +90,7 @@ impl BatchComputeEnvironment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -100,12 +101,22 @@ impl BatchComputeEnvironment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -127,8 +138,7 @@ impl BatchComputeEnvironment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -166,10 +176,10 @@ impl BatchComputeEnvironment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().compute_resources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.compute_resources = Some(d);
-            },
+            }
         }
         self
     }
@@ -182,23 +192,26 @@ impl BatchComputeEnvironment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().eks_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.eks_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `update_policy`.\n"]
-    pub fn set_update_policy(self, v: impl Into<BlockAssignable<BatchComputeEnvironmentUpdatePolicyEl>>) -> Self {
+    pub fn set_update_policy(
+        self,
+        v: impl Into<BlockAssignable<BatchComputeEnvironmentUpdatePolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().update_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.update_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -210,7 +223,10 @@ impl BatchComputeEnvironment {
 
     #[doc = "Get a reference to the value of field `ecs_cluster_arn` after provisioning.\n"]
     pub fn ecs_cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ecs_cluster_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ecs_cluster_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -220,78 +236,120 @@ impl BatchComputeEnvironment {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
     pub fn service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_resources` after provisioning.\n"]
     pub fn compute_resources(&self) -> ListRef<BatchComputeEnvironmentComputeResourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_resources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eks_configuration` after provisioning.\n"]
     pub fn eks_configuration(&self) -> ListRef<BatchComputeEnvironmentEksConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eks_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eks_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_policy` after provisioning.\n"]
     pub fn update_policy(&self) -> ListRef<BatchComputeEnvironmentUpdatePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.update_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.update_policy", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BatchComputeEnvironment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BatchComputeEnvironment { }
+impl Resource for BatchComputeEnvironment {}
 
 impl ToListMappable for BatchComputeEnvironment {
     type O = ListRef<BatchComputeEnvironmentRef>;
@@ -359,10 +417,7 @@ pub struct BatchComputeEnvironmentRef {
 
 impl Ref for BatchComputeEnvironmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -382,7 +437,10 @@ impl BatchComputeEnvironmentRef {
 
     #[doc = "Get a reference to the value of field `ecs_cluster_arn` after provisioning.\n"]
     pub fn ecs_cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ecs_cluster_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ecs_cluster_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -392,68 +450,106 @@ impl BatchComputeEnvironmentRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
     pub fn service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_resources` after provisioning.\n"]
     pub fn compute_resources(&self) -> ListRef<BatchComputeEnvironmentComputeResourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_resources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eks_configuration` after provisioning.\n"]
     pub fn eks_configuration(&self) -> ListRef<BatchComputeEnvironmentEksConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eks_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eks_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_policy` after provisioning.\n"]
     pub fn update_policy(&self) -> ListRef<BatchComputeEnvironmentUpdatePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.update_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.update_policy", self.extract_ref()),
+        )
     }
 }
 
@@ -517,7 +613,10 @@ pub struct BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef {
 }
 
 impl Ref for BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef {
         BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -532,12 +631,18 @@ impl BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `image_id_override` after provisioning.\n"]
     pub fn image_id_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_id_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_id_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_kubernetes_version` after provisioning.\n"]
     pub fn image_kubernetes_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_kubernetes_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_kubernetes_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_type` after provisioning.\n"]
@@ -606,7 +711,10 @@ pub struct BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
 }
 
 impl Ref for BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
-    fn new(shared: StackShared, base: String) -> BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
         BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
             shared: shared,
             base: base.to_string(),
@@ -621,12 +729,18 @@ impl BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
 
     #[doc = "Get a reference to the value of field `launch_template_id` after provisioning.\n"]
     pub fn launch_template_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_name` after provisioning.\n"]
     pub fn launch_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
@@ -637,8 +751,10 @@ impl BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef {
 
 #[derive(Serialize, Default)]
 struct BatchComputeEnvironmentComputeResourcesElDynamic {
-    ec2_configuration: Option<DynamicBlock<BatchComputeEnvironmentComputeResourcesElEc2ConfigurationEl>>,
-    launch_template: Option<DynamicBlock<BatchComputeEnvironmentComputeResourcesElLaunchTemplateEl>>,
+    ec2_configuration:
+        Option<DynamicBlock<BatchComputeEnvironmentComputeResourcesElEc2ConfigurationEl>>,
+    launch_template:
+        Option<DynamicBlock<BatchComputeEnvironmentComputeResourcesElLaunchTemplateEl>>,
 }
 
 #[derive(Serialize)]
@@ -759,10 +875,10 @@ impl BatchComputeEnvironmentComputeResourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ec2_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ec2_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -775,10 +891,10 @@ impl BatchComputeEnvironmentComputeResourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_template = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_template = Some(d);
-            },
+            }
         }
         self
     }
@@ -851,17 +967,26 @@ impl BatchComputeEnvironmentComputeResourcesElRef {
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bid_percentage` after provisioning.\n"]
     pub fn bid_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bid_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bid_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_vcpus` after provisioning.\n"]
     pub fn desired_vcpus(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_vcpus", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_vcpus", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ec2_key_pair` after provisioning.\n"]
@@ -876,12 +1001,18 @@ impl BatchComputeEnvironmentComputeResourcesElRef {
 
     #[doc = "Get a reference to the value of field `instance_role` after provisioning.\n"]
     pub fn instance_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_role", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_vcpus` after provisioning.\n"]
@@ -896,17 +1027,26 @@ impl BatchComputeEnvironmentComputeResourcesElRef {
 
     #[doc = "Get a reference to the value of field `placement_group` after provisioning.\n"]
     pub fn placement_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.placement_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.placement_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_iam_fleet_role` after provisioning.\n"]
     pub fn spot_iam_fleet_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_iam_fleet_role", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_iam_fleet_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -925,13 +1065,23 @@ impl BatchComputeEnvironmentComputeResourcesElRef {
     }
 
     #[doc = "Get a reference to the value of field `ec2_configuration` after provisioning.\n"]
-    pub fn ec2_configuration(&self) -> ListRef<BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ec2_configuration", self.base))
+    pub fn ec2_configuration(
+        &self,
+    ) -> ListRef<BatchComputeEnvironmentComputeResourcesElEc2ConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ec2_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
-    pub fn launch_template(&self) -> ListRef<BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template", self.base))
+    pub fn launch_template(
+        &self,
+    ) -> ListRef<BatchComputeEnvironmentComputeResourcesElLaunchTemplateElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.base),
+        )
     }
 }
 
@@ -941,7 +1091,7 @@ pub struct BatchComputeEnvironmentEksConfigurationEl {
     kubernetes_namespace: PrimField<String>,
 }
 
-impl BatchComputeEnvironmentEksConfigurationEl { }
+impl BatchComputeEnvironmentEksConfigurationEl {}
 
 impl ToListMappable for BatchComputeEnvironmentEksConfigurationEl {
     type O = BlockAssignable<BatchComputeEnvironmentEksConfigurationEl>;
@@ -992,12 +1142,18 @@ impl BatchComputeEnvironmentEksConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `eks_cluster_arn` after provisioning.\n"]
     pub fn eks_cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.eks_cluster_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.eks_cluster_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kubernetes_namespace` after provisioning.\n"]
     pub fn kubernetes_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kubernetes_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kubernetes_namespace", self.base),
+        )
     }
 }
 
@@ -1067,12 +1223,18 @@ impl BatchComputeEnvironmentUpdatePolicyElRef {
 
     #[doc = "Get a reference to the value of field `job_execution_timeout_minutes` after provisioning.\n"]
     pub fn job_execution_timeout_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_execution_timeout_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_execution_timeout_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_jobs_on_update` after provisioning.\n"]
     pub fn terminate_jobs_on_update(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_jobs_on_update", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_jobs_on_update", self.base),
+        )
     }
 }
 

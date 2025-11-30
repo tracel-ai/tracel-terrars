@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CognitoLogDeliveryConfigurationData {
@@ -57,7 +57,8 @@ impl CognitoLogDeliveryConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl CognitoLogDeliveryConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,17 +82,26 @@ impl CognitoLogDeliveryConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -105,38 +115,52 @@ impl CognitoLogDeliveryConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().log_configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.log_configurations = Some(d);
-            },
+            }
         }
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configurations` after provisioning.\n"]
-    pub fn log_configurations(&self) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configurations", self.extract_ref()))
+    pub fn log_configurations(
+        &self,
+    ) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configurations", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CognitoLogDeliveryConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CognitoLogDeliveryConfiguration { }
+impl Resource for CognitoLogDeliveryConfiguration {}
 
 impl ToListMappable for CognitoLogDeliveryConfiguration {
     type O = ListRef<CognitoLogDeliveryConfigurationRef>;
@@ -195,10 +219,7 @@ pub struct CognitoLogDeliveryConfigurationRef {
 
 impl Ref for CognitoLogDeliveryConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -211,20 +232,30 @@ impl CognitoLogDeliveryConfigurationRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_configurations` after provisioning.\n"]
-    pub fn log_configurations(&self) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configurations", self.extract_ref()))
+    pub fn log_configurations(
+        &self,
+    ) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configurations", self.extract_ref()),
+        )
     }
 }
 
@@ -242,8 +273,12 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurati
     }
 }
 
-impl ToListMappable for CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl {
-    type O = BlockAssignable<CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl>;
+impl ToListMappable
+    for CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl
+{
+    type O = BlockAssignable<
+        CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -257,7 +292,9 @@ impl ToListMappable for CognitoLogDeliveryConfigurationLogConfigurationsElCloudW
 pub struct BuildCognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl {}
 
 impl BuildCognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl {
-    pub fn build(self) -> CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl {
+    pub fn build(
+        self,
+    ) -> CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl {
         CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl {
             log_group_arn: core::default::Default::default(),
         }
@@ -288,7 +325,10 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurati
 
     #[doc = "Get a reference to the value of field `log_group_arn` after provisioning.\n"]
     pub fn log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_arn", self.base),
+        )
     }
 }
 
@@ -307,7 +347,8 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {
 }
 
 impl ToListMappable for CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {
-    type O = BlockAssignable<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl>;
+    type O =
+        BlockAssignable<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -321,7 +362,9 @@ impl ToListMappable for CognitoLogDeliveryConfigurationLogConfigurationsElFireho
 pub struct BuildCognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {}
 
 impl BuildCognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {
-    pub fn build(self) -> CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {
+    pub fn build(
+        self,
+    ) -> CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {
         CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl {
             stream_arn: core::default::Default::default(),
         }
@@ -423,12 +466,15 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationElRef {
 #[derive(Serialize, Default)]
 struct CognitoLogDeliveryConfigurationLogConfigurationsElDynamic {
     cloud_watch_logs_configuration: Option<
-        DynamicBlock<CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl>,
+        DynamicBlock<
+            CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl,
+        >,
     >,
     firehose_configuration: Option<
         DynamicBlock<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl>,
     >,
-    s3_configuration: Option<DynamicBlock<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationEl>>,
+    s3_configuration:
+        Option<DynamicBlock<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -440,9 +486,11 @@ pub struct CognitoLogDeliveryConfigurationLogConfigurationsEl {
         Vec<CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    firehose_configuration: Option<Vec<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl>>,
+    firehose_configuration:
+        Option<Vec<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3_configuration: Option<Vec<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationEl>>,
+    s3_configuration:
+        Option<Vec<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationEl>>,
     dynamic: CognitoLogDeliveryConfigurationLogConfigurationsElDynamic,
 }
 
@@ -450,22 +498,19 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsEl {
     #[doc = "Set the field `cloud_watch_logs_configuration`.\n"]
     pub fn set_cloud_watch_logs_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloud_watch_logs_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloud_watch_logs_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -473,15 +518,19 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsEl {
     #[doc = "Set the field `firehose_configuration`.\n"]
     pub fn set_firehose_configuration(
         mut self,
-        v: impl Into<BlockAssignable<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -489,15 +538,17 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsEl {
     #[doc = "Set the field `s3_configuration`.\n"]
     pub fn set_s3_configuration(
         mut self,
-        v: impl Into<BlockAssignable<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -541,7 +592,10 @@ pub struct CognitoLogDeliveryConfigurationLogConfigurationsElRef {
 }
 
 impl Ref for CognitoLogDeliveryConfigurationLogConfigurationsElRef {
-    fn new(shared: StackShared, base: String) -> CognitoLogDeliveryConfigurationLogConfigurationsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CognitoLogDeliveryConfigurationLogConfigurationsElRef {
         CognitoLogDeliveryConfigurationLogConfigurationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -567,20 +621,32 @@ impl CognitoLogDeliveryConfigurationLogConfigurationsElRef {
     #[doc = "Get a reference to the value of field `cloud_watch_logs_configuration` after provisioning.\n"]
     pub fn cloud_watch_logs_configuration(
         &self,
-    ) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_watch_logs_configuration", self.base))
+    ) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElCloudWatchLogsConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_watch_logs_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firehose_configuration` after provisioning.\n"]
     pub fn firehose_configuration(
         &self,
     ) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElFirehoseConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.firehose_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.firehose_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_configuration` after provisioning.\n"]
-    pub fn s3_configuration(&self) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_configuration", self.base))
+    pub fn s3_configuration(
+        &self,
+    ) -> ListRef<CognitoLogDeliveryConfigurationLogConfigurationsElS3ConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_configuration", self.base),
+        )
     }
 }
 

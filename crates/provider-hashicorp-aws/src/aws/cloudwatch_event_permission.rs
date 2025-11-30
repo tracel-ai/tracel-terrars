@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchEventPermissionData {
@@ -64,7 +64,8 @@ impl CloudwatchEventPermission {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl CloudwatchEventPermission {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl CloudwatchEventPermission {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -115,34 +126,42 @@ impl CloudwatchEventPermission {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `condition`.\n"]
-    pub fn set_condition(self, v: impl Into<BlockAssignable<CloudwatchEventPermissionConditionEl>>) -> Self {
+    pub fn set_condition(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventPermissionConditionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_bus_name` after provisioning.\n"]
     pub fn event_bus_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_bus_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_bus_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -152,33 +171,48 @@ impl CloudwatchEventPermission {
 
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statement_id` after provisioning.\n"]
     pub fn statement_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statement_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statement_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
     pub fn condition(&self) -> ListRef<CloudwatchEventPermissionConditionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.condition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.condition", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchEventPermission {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchEventPermission { }
+impl Resource for CloudwatchEventPermission {}
 
 impl ToListMappable for CloudwatchEventPermission {
     type O = ListRef<CloudwatchEventPermissionRef>;
@@ -243,10 +277,7 @@ pub struct CloudwatchEventPermissionRef {
 
 impl Ref for CloudwatchEventPermissionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -261,12 +292,18 @@ impl CloudwatchEventPermissionRef {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_bus_name` after provisioning.\n"]
     pub fn event_bus_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_bus_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_bus_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -276,23 +313,34 @@ impl CloudwatchEventPermissionRef {
 
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.principal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statement_id` after provisioning.\n"]
     pub fn statement_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statement_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statement_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
     pub fn condition(&self) -> ListRef<CloudwatchEventPermissionConditionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.condition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.condition", self.extract_ref()),
+        )
     }
 }
 
@@ -304,7 +352,7 @@ pub struct CloudwatchEventPermissionConditionEl {
     value: PrimField<String>,
 }
 
-impl CloudwatchEventPermissionConditionEl { }
+impl CloudwatchEventPermissionConditionEl {}
 
 impl ToListMappable for CloudwatchEventPermissionConditionEl {
     type O = BlockAssignable<CloudwatchEventPermissionConditionEl>;

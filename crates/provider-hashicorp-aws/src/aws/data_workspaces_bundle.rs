@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataWorkspacesBundleData {
@@ -72,8 +72,7 @@ impl DataWorkspacesBundle {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -81,17 +80,26 @@ impl DataWorkspacesBundle {
 
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bundle_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bundle_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_type` after provisioning.\n"]
     pub fn compute_type(&self) -> ListRef<DataWorkspacesBundleComputeTypeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_type", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -101,38 +109,56 @@ impl DataWorkspacesBundle {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_storage` after provisioning.\n"]
     pub fn root_storage(&self) -> ListRef<DataWorkspacesBundleRootStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.root_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.root_storage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_storage` after provisioning.\n"]
     pub fn user_storage(&self) -> ListRef<DataWorkspacesBundleUserStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_storage", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataWorkspacesBundle {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataWorkspacesBundle { }
+impl Datasource for DataWorkspacesBundle {}
 
 impl ToListMappable for DataWorkspacesBundle {
     type O = ListRef<DataWorkspacesBundleRef>;
@@ -189,10 +215,7 @@ pub struct DataWorkspacesBundleRef {
 
 impl Ref for DataWorkspacesBundleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -207,17 +230,26 @@ impl DataWorkspacesBundleRef {
 
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bundle_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bundle_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_type` after provisioning.\n"]
     pub fn compute_type(&self) -> ListRef<DataWorkspacesBundleComputeTypeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_type", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -227,28 +259,42 @@ impl DataWorkspacesBundleRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_storage` after provisioning.\n"]
     pub fn root_storage(&self) -> ListRef<DataWorkspacesBundleRootStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.root_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.root_storage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_storage` after provisioning.\n"]
     pub fn user_storage(&self) -> ListRef<DataWorkspacesBundleUserStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_storage", self.extract_ref()),
+        )
     }
 }
 
@@ -282,7 +328,9 @@ pub struct BuildDataWorkspacesBundleComputeTypeEl {}
 
 impl BuildDataWorkspacesBundleComputeTypeEl {
     pub fn build(self) -> DataWorkspacesBundleComputeTypeEl {
-        DataWorkspacesBundleComputeTypeEl { name: core::default::Default::default() }
+        DataWorkspacesBundleComputeTypeEl {
+            name: core::default::Default::default(),
+        }
     }
 }
 
@@ -341,7 +389,9 @@ pub struct BuildDataWorkspacesBundleRootStorageEl {}
 
 impl BuildDataWorkspacesBundleRootStorageEl {
     pub fn build(self) -> DataWorkspacesBundleRootStorageEl {
-        DataWorkspacesBundleRootStorageEl { capacity: core::default::Default::default() }
+        DataWorkspacesBundleRootStorageEl {
+            capacity: core::default::Default::default(),
+        }
     }
 }
 
@@ -400,7 +450,9 @@ pub struct BuildDataWorkspacesBundleUserStorageEl {}
 
 impl BuildDataWorkspacesBundleUserStorageEl {
     pub fn build(self) -> DataWorkspacesBundleUserStorageEl {
-        DataWorkspacesBundleUserStorageEl { capacity: core::default::Default::default() }
+        DataWorkspacesBundleUserStorageEl {
+            capacity: core::default::Default::default(),
+        }
     }
 }
 

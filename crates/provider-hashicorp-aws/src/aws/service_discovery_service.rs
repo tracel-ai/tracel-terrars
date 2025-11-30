@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ServiceDiscoveryServiceData {
@@ -75,7 +75,8 @@ impl ServiceDiscoveryService {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl ServiceDiscoveryService {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl ServiceDiscoveryService {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -132,8 +143,7 @@ impl ServiceDiscoveryService {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -158,14 +168,17 @@ impl ServiceDiscoveryService {
     }
 
     #[doc = "Set the field `dns_config`.\n"]
-    pub fn set_dns_config(self, v: impl Into<BlockAssignable<ServiceDiscoveryServiceDnsConfigEl>>) -> Self {
+    pub fn set_dns_config(
+        self,
+        v: impl Into<BlockAssignable<ServiceDiscoveryServiceDnsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dns_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dns_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -178,10 +191,10 @@ impl ServiceDiscoveryService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().health_check_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.health_check_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -194,10 +207,10 @@ impl ServiceDiscoveryService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().health_check_custom_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.health_check_custom_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -209,12 +222,18 @@ impl ServiceDiscoveryService {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_destroy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_destroy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -224,58 +243,90 @@ impl ServiceDiscoveryService {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `namespace_id` after provisioning.\n"]
     pub fn namespace_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_config` after provisioning.\n"]
     pub fn dns_config(&self) -> ListRef<ServiceDiscoveryServiceDnsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_config` after provisioning.\n"]
     pub fn health_check_config(&self) -> ListRef<ServiceDiscoveryServiceHealthCheckConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.health_check_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.health_check_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_custom_config` after provisioning.\n"]
-    pub fn health_check_custom_config(&self) -> ListRef<ServiceDiscoveryServiceHealthCheckCustomConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.health_check_custom_config", self.extract_ref()))
+    pub fn health_check_custom_config(
+        &self,
+    ) -> ListRef<ServiceDiscoveryServiceHealthCheckCustomConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.health_check_custom_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ServiceDiscoveryService {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ServiceDiscoveryService { }
+impl Resource for ServiceDiscoveryService {}
 
 impl ToListMappable for ServiceDiscoveryService {
     type O = ListRef<ServiceDiscoveryServiceRef>;
@@ -343,10 +394,7 @@ pub struct ServiceDiscoveryServiceRef {
 
 impl Ref for ServiceDiscoveryServiceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -366,12 +414,18 @@ impl ServiceDiscoveryServiceRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_destroy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_destroy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -381,48 +435,76 @@ impl ServiceDiscoveryServiceRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `namespace_id` after provisioning.\n"]
     pub fn namespace_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_config` after provisioning.\n"]
     pub fn dns_config(&self) -> ListRef<ServiceDiscoveryServiceDnsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_config` after provisioning.\n"]
     pub fn health_check_config(&self) -> ListRef<ServiceDiscoveryServiceHealthCheckConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.health_check_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.health_check_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_custom_config` after provisioning.\n"]
-    pub fn health_check_custom_config(&self) -> ListRef<ServiceDiscoveryServiceHealthCheckCustomConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.health_check_custom_config", self.extract_ref()))
+    pub fn health_check_custom_config(
+        &self,
+    ) -> ListRef<ServiceDiscoveryServiceHealthCheckCustomConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.health_check_custom_config", self.extract_ref()),
+        )
     }
 }
 
@@ -433,7 +515,7 @@ pub struct ServiceDiscoveryServiceDnsConfigElDnsRecordsEl {
     type_: PrimField<String>,
 }
 
-impl ServiceDiscoveryServiceDnsConfigElDnsRecordsEl { }
+impl ServiceDiscoveryServiceDnsConfigElDnsRecordsEl {}
 
 impl ToListMappable for ServiceDiscoveryServiceDnsConfigElDnsRecordsEl {
     type O = BlockAssignable<ServiceDiscoveryServiceDnsConfigElDnsRecordsEl>;
@@ -523,10 +605,10 @@ impl ServiceDiscoveryServiceDnsConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dns_records = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dns_records = Some(d);
-            },
+            }
         }
         self
     }
@@ -586,7 +668,10 @@ impl ServiceDiscoveryServiceDnsConfigElRef {
 
     #[doc = "Get a reference to the value of field `routing_policy` after provisioning.\n"]
     pub fn routing_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.routing_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.routing_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_records` after provisioning.\n"]
@@ -670,12 +755,18 @@ impl ServiceDiscoveryServiceHealthCheckConfigElRef {
 
     #[doc = "Get a reference to the value of field `failure_threshold` after provisioning.\n"]
     pub fn failure_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_threshold", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_path` after provisioning.\n"]
     pub fn resource_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_path", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -714,7 +805,9 @@ pub struct BuildServiceDiscoveryServiceHealthCheckCustomConfigEl {}
 
 impl BuildServiceDiscoveryServiceHealthCheckCustomConfigEl {
     pub fn build(self) -> ServiceDiscoveryServiceHealthCheckCustomConfigEl {
-        ServiceDiscoveryServiceHealthCheckCustomConfigEl { failure_threshold: core::default::Default::default() }
+        ServiceDiscoveryServiceHealthCheckCustomConfigEl {
+            failure_threshold: core::default::Default::default(),
+        }
     }
 }
 
@@ -724,7 +817,10 @@ pub struct ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
 }
 
 impl Ref for ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
-    fn new(shared: StackShared, base: String) -> ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
         ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -739,7 +835,10 @@ impl ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
 
     #[doc = "Get a reference to the value of field `failure_threshold` after provisioning.\n"]
     pub fn failure_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_threshold", self.base),
+        )
     }
 }
 
@@ -747,5 +846,6 @@ impl ServiceDiscoveryServiceHealthCheckCustomConfigElRef {
 struct ServiceDiscoveryServiceDynamic {
     dns_config: Option<DynamicBlock<ServiceDiscoveryServiceDnsConfigEl>>,
     health_check_config: Option<DynamicBlock<ServiceDiscoveryServiceHealthCheckConfigEl>>,
-    health_check_custom_config: Option<DynamicBlock<ServiceDiscoveryServiceHealthCheckCustomConfigEl>>,
+    health_check_custom_config:
+        Option<DynamicBlock<ServiceDiscoveryServiceHealthCheckCustomConfigEl>>,
 }

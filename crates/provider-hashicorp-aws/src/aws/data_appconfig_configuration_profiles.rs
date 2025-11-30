@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppconfigConfigurationProfilesData {
@@ -49,8 +49,7 @@ impl DataAppconfigConfigurationProfiles {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,12 +57,18 @@ impl DataAppconfigConfigurationProfiles {
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_profile_ids` after provisioning.\n"]
     pub fn configuration_profile_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.configuration_profile_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_profile_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -71,20 +76,26 @@ impl DataAppconfigConfigurationProfiles {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppconfigConfigurationProfiles {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppconfigConfigurationProfiles { }
+impl Datasource for DataAppconfigConfigurationProfiles {}
 
 impl ToListMappable for DataAppconfigConfigurationProfiles {
     type O = ListRef<DataAppconfigConfigurationProfilesRef>;
@@ -117,18 +128,19 @@ pub struct BuildDataAppconfigConfigurationProfiles {
 
 impl BuildDataAppconfigConfigurationProfiles {
     pub fn build(self, stack: &mut Stack) -> DataAppconfigConfigurationProfiles {
-        let out = DataAppconfigConfigurationProfiles(Rc::new(DataAppconfigConfigurationProfiles_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataAppconfigConfigurationProfilesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                application_id: self.application_id,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataAppconfigConfigurationProfiles(Rc::new(DataAppconfigConfigurationProfiles_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataAppconfigConfigurationProfilesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    application_id: self.application_id,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -141,10 +153,7 @@ pub struct DataAppconfigConfigurationProfilesRef {
 
 impl Ref for DataAppconfigConfigurationProfilesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -159,12 +168,18 @@ impl DataAppconfigConfigurationProfilesRef {
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_profile_ids` after provisioning.\n"]
     pub fn configuration_profile_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.configuration_profile_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_profile_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -172,9 +187,11 @@ impl DataAppconfigConfigurationProfilesRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontkeyvaluestoreKeysExclusiveData {
@@ -18,7 +18,8 @@ struct CloudfrontkeyvaluestoreKeysExclusiveData {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_batch_size: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_key_value_pair: Option<Vec<CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl>>,
+    resource_key_value_pair:
+        Option<Vec<CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl>>,
     dynamic: CloudfrontkeyvaluestoreKeysExclusiveDynamic,
 }
 
@@ -57,7 +58,8 @@ impl CloudfrontkeyvaluestoreKeysExclusive {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +72,7 @@ impl CloudfrontkeyvaluestoreKeysExclusive {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,17 +83,26 @@ impl CloudfrontkeyvaluestoreKeysExclusive {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `max_batch_size`.\nMaximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first"]
+    #[doc = "Set the field `max_batch_size`.\nMaximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first"]
     pub fn set_max_batch_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_batch_size = Some(v.into());
         self
@@ -105,40 +116,50 @@ impl CloudfrontkeyvaluestoreKeysExclusive {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().resource_key_value_pair = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.resource_key_value_pair = Some(d);
-            },
+            }
         }
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `key_value_store_arn` after provisioning.\nThe Amazon Resource Name (ARN) of the Key Value Store."]
+    #[doc = "Get a reference to the value of field `key_value_store_arn` after provisioning.\nThe Amazon Resource Name (ARN) of the Key Value Store."]
     pub fn key_value_store_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_value_store_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_value_store_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_batch_size` after provisioning.\nMaximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first"]
+    #[doc = "Get a reference to the value of field `max_batch_size` after provisioning.\nMaximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first"]
     pub fn max_batch_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_batch_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_batch_size", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `total_size_in_bytes` after provisioning.\nTotal size of the Key Value Store in bytes."]
+    #[doc = "Get a reference to the value of field `total_size_in_bytes` after provisioning.\nTotal size of the Key Value Store in bytes."]
     pub fn total_size_in_bytes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.total_size_in_bytes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.total_size_in_bytes", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontkeyvaluestoreKeysExclusive {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontkeyvaluestoreKeysExclusive { }
+impl Resource for CloudfrontkeyvaluestoreKeysExclusive {}
 
 impl ToListMappable for CloudfrontkeyvaluestoreKeysExclusive {
     type O = ListRef<CloudfrontkeyvaluestoreKeysExclusiveRef>;
@@ -171,20 +192,21 @@ pub struct BuildCloudfrontkeyvaluestoreKeysExclusive {
 
 impl BuildCloudfrontkeyvaluestoreKeysExclusive {
     pub fn build(self, stack: &mut Stack) -> CloudfrontkeyvaluestoreKeysExclusive {
-        let out = CloudfrontkeyvaluestoreKeysExclusive(Rc::new(CloudfrontkeyvaluestoreKeysExclusive_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(CloudfrontkeyvaluestoreKeysExclusiveData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                key_value_store_arn: self.key_value_store_arn,
-                max_batch_size: core::default::Default::default(),
-                resource_key_value_pair: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            CloudfrontkeyvaluestoreKeysExclusive(Rc::new(CloudfrontkeyvaluestoreKeysExclusive_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(CloudfrontkeyvaluestoreKeysExclusiveData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    key_value_store_arn: self.key_value_store_arn,
+                    max_batch_size: core::default::Default::default(),
+                    resource_key_value_pair: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -197,10 +219,7 @@ pub struct CloudfrontkeyvaluestoreKeysExclusiveRef {
 
 impl Ref for CloudfrontkeyvaluestoreKeysExclusiveRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -213,22 +232,28 @@ impl CloudfrontkeyvaluestoreKeysExclusiveRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `key_value_store_arn` after provisioning.\nThe Amazon Resource Name (ARN) of the Key Value Store."]
+    #[doc = "Get a reference to the value of field `key_value_store_arn` after provisioning.\nThe Amazon Resource Name (ARN) of the Key Value Store."]
     pub fn key_value_store_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_value_store_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_value_store_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `max_batch_size` after provisioning.\nMaximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first"]
+    #[doc = "Get a reference to the value of field `max_batch_size` after provisioning.\nMaximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first"]
     pub fn max_batch_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_batch_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_batch_size", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `total_size_in_bytes` after provisioning.\nTotal size of the Key Value Store in bytes."]
+    #[doc = "Get a reference to the value of field `total_size_in_bytes` after provisioning.\nTotal size of the Key Value Store in bytes."]
     pub fn total_size_in_bytes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.total_size_in_bytes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.total_size_in_bytes", self.extract_ref()),
+        )
     }
 }
 
@@ -238,7 +263,7 @@ pub struct CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl {
     value: PrimField<String>,
 }
 
-impl CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl { }
+impl CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl {}
 
 impl ToListMappable for CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl {
     type O = BlockAssignable<CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl>;
@@ -274,7 +299,10 @@ pub struct CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairElRef {
 }
 
 impl Ref for CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairElRef {
         CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairElRef {
             shared: shared,
             base: base.to_string(),
@@ -300,5 +328,6 @@ impl CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairElRef {
 
 #[derive(Serialize, Default)]
 struct CloudfrontkeyvaluestoreKeysExclusiveDynamic {
-    resource_key_value_pair: Option<DynamicBlock<CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl>>,
+    resource_key_value_pair:
+        Option<DynamicBlock<CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePairEl>>,
 }

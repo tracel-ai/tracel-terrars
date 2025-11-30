@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EmrClusterData {
@@ -119,7 +119,8 @@ impl EmrCluster {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -132,7 +133,7 @@ impl EmrCluster {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -143,12 +144,22 @@ impl EmrCluster {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -231,13 +242,15 @@ impl EmrCluster {
     }
 
     #[doc = "Set the field `placement_group_config`.\n"]
-    pub fn set_placement_group_config(self, v: impl Into<ListField<EmrClusterPlacementGroupConfigEl>>) -> Self {
+    pub fn set_placement_group_config(
+        self,
+        v: impl Into<ListField<EmrClusterPlacementGroupConfigEl>>,
+    ) -> Self {
         self.0.data.borrow_mut().placement_group_config = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -298,117 +311,147 @@ impl EmrCluster {
     }
 
     #[doc = "Set the field `auto_termination_policy`.\n"]
-    pub fn set_auto_termination_policy(self, v: impl Into<BlockAssignable<EmrClusterAutoTerminationPolicyEl>>) -> Self {
+    pub fn set_auto_termination_policy(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterAutoTerminationPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_termination_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_termination_policy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `bootstrap_action`.\n"]
-    pub fn set_bootstrap_action(self, v: impl Into<BlockAssignable<EmrClusterBootstrapActionEl>>) -> Self {
+    pub fn set_bootstrap_action(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterBootstrapActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().bootstrap_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.bootstrap_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `core_instance_fleet`.\n"]
-    pub fn set_core_instance_fleet(self, v: impl Into<BlockAssignable<EmrClusterCoreInstanceFleetEl>>) -> Self {
+    pub fn set_core_instance_fleet(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterCoreInstanceFleetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().core_instance_fleet = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.core_instance_fleet = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `core_instance_group`.\n"]
-    pub fn set_core_instance_group(self, v: impl Into<BlockAssignable<EmrClusterCoreInstanceGroupEl>>) -> Self {
+    pub fn set_core_instance_group(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterCoreInstanceGroupEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().core_instance_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.core_instance_group = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `ec2_attributes`.\n"]
-    pub fn set_ec2_attributes(self, v: impl Into<BlockAssignable<EmrClusterEc2AttributesEl>>) -> Self {
+    pub fn set_ec2_attributes(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterEc2AttributesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ec2_attributes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ec2_attributes = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `kerberos_attributes`.\n"]
-    pub fn set_kerberos_attributes(self, v: impl Into<BlockAssignable<EmrClusterKerberosAttributesEl>>) -> Self {
+    pub fn set_kerberos_attributes(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterKerberosAttributesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kerberos_attributes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kerberos_attributes = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `master_instance_fleet`.\n"]
-    pub fn set_master_instance_fleet(self, v: impl Into<BlockAssignable<EmrClusterMasterInstanceFleetEl>>) -> Self {
+    pub fn set_master_instance_fleet(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterMasterInstanceFleetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().master_instance_fleet = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.master_instance_fleet = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `master_instance_group`.\n"]
-    pub fn set_master_instance_group(self, v: impl Into<BlockAssignable<EmrClusterMasterInstanceGroupEl>>) -> Self {
+    pub fn set_master_instance_group(
+        self,
+        v: impl Into<BlockAssignable<EmrClusterMasterInstanceGroupEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().master_instance_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.master_instance_group = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `additional_info` after provisioning.\n"]
     pub fn additional_info(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_info", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `applications` after provisioning.\n"]
     pub fn applications(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.applications", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.applications", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -418,32 +461,50 @@ impl EmrCluster {
 
     #[doc = "Get a reference to the value of field `autoscaling_role` after provisioning.\n"]
     pub fn autoscaling_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.autoscaling_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_state` after provisioning.\n"]
     pub fn cluster_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configurations` after provisioning.\n"]
     pub fn configurations(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configurations", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configurations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configurations_json` after provisioning.\n"]
     pub fn configurations_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configurations_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configurations_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_ami_id` after provisioning.\n"]
     pub fn custom_ami_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_ami_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_ami_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_root_volume_size` after provisioning.\n"]
     pub fn ebs_root_volume_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_root_volume_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_root_volume_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -453,153 +514,240 @@ impl EmrCluster {
 
     #[doc = "Get a reference to the value of field `keep_job_flow_alive_when_no_steps` after provisioning.\n"]
     pub fn keep_job_flow_alive_when_no_steps(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.keep_job_flow_alive_when_no_steps", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.keep_job_flow_alive_when_no_steps", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `list_steps_states` after provisioning.\n"]
     pub fn list_steps_states(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.list_steps_states", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.list_steps_states", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_encryption_kms_key_id` after provisioning.\n"]
     pub fn log_encryption_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_encryption_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_encryption_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_uri` after provisioning.\n"]
     pub fn log_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_public_dns` after provisioning.\n"]
     pub fn master_public_dns(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.master_public_dns", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.master_public_dns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `os_release_label` after provisioning.\n"]
     pub fn os_release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.os_release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.os_release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_group_config` after provisioning.\n"]
     pub fn placement_group_config(&self) -> ListRef<EmrClusterPlacementGroupConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement_group_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement_group_config", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_down_behavior` after provisioning.\n"]
     pub fn scale_down_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_down_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_down_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
     pub fn service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step` after provisioning.\n"]
     pub fn step(&self) -> ListRef<EmrClusterStepElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.step", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.step", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step_concurrency_level` after provisioning.\n"]
     pub fn step_concurrency_level(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.step_concurrency_level", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.step_concurrency_level", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_protection` after provisioning.\n"]
     pub fn termination_protection(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.termination_protection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.termination_protection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unhealthy_node_replacement` after provisioning.\n"]
     pub fn unhealthy_node_replacement(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unhealthy_node_replacement", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unhealthy_node_replacement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `visible_to_all_users` after provisioning.\n"]
     pub fn visible_to_all_users(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.visible_to_all_users", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.visible_to_all_users", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_termination_policy` after provisioning.\n"]
     pub fn auto_termination_policy(&self) -> ListRef<EmrClusterAutoTerminationPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_termination_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_termination_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_action` after provisioning.\n"]
     pub fn bootstrap_action(&self) -> ListRef<EmrClusterBootstrapActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.bootstrap_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_instance_fleet` after provisioning.\n"]
     pub fn core_instance_fleet(&self) -> ListRef<EmrClusterCoreInstanceFleetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.core_instance_fleet", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.core_instance_fleet", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_instance_group` after provisioning.\n"]
     pub fn core_instance_group(&self) -> ListRef<EmrClusterCoreInstanceGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.core_instance_group", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.core_instance_group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ec2_attributes` after provisioning.\n"]
     pub fn ec2_attributes(&self) -> ListRef<EmrClusterEc2AttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ec2_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ec2_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_attributes` after provisioning.\n"]
     pub fn kerberos_attributes(&self) -> ListRef<EmrClusterKerberosAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kerberos_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kerberos_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_instance_fleet` after provisioning.\n"]
     pub fn master_instance_fleet(&self) -> ListRef<EmrClusterMasterInstanceFleetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.master_instance_fleet", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.master_instance_fleet", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_instance_group` after provisioning.\n"]
     pub fn master_instance_group(&self) -> ListRef<EmrClusterMasterInstanceGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.master_instance_group", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.master_instance_group", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EmrCluster {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EmrCluster { }
+impl Resource for EmrCluster {}
 
 impl ToListMappable for EmrCluster {
     type O = ListRef<EmrClusterRef>;
@@ -694,10 +842,7 @@ pub struct EmrClusterRef {
 
 impl Ref for EmrClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -712,12 +857,18 @@ impl EmrClusterRef {
 
     #[doc = "Get a reference to the value of field `additional_info` after provisioning.\n"]
     pub fn additional_info(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_info", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_info", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `applications` after provisioning.\n"]
     pub fn applications(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.applications", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.applications", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -727,32 +878,50 @@ impl EmrClusterRef {
 
     #[doc = "Get a reference to the value of field `autoscaling_role` after provisioning.\n"]
     pub fn autoscaling_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.autoscaling_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_state` after provisioning.\n"]
     pub fn cluster_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configurations` after provisioning.\n"]
     pub fn configurations(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configurations", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configurations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configurations_json` after provisioning.\n"]
     pub fn configurations_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configurations_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configurations_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_ami_id` after provisioning.\n"]
     pub fn custom_ami_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_ami_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_ami_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_root_volume_size` after provisioning.\n"]
     pub fn ebs_root_volume_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_root_volume_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_root_volume_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -762,143 +931,226 @@ impl EmrClusterRef {
 
     #[doc = "Get a reference to the value of field `keep_job_flow_alive_when_no_steps` after provisioning.\n"]
     pub fn keep_job_flow_alive_when_no_steps(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.keep_job_flow_alive_when_no_steps", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.keep_job_flow_alive_when_no_steps", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `list_steps_states` after provisioning.\n"]
     pub fn list_steps_states(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.list_steps_states", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.list_steps_states", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_encryption_kms_key_id` after provisioning.\n"]
     pub fn log_encryption_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_encryption_kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_encryption_kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_uri` after provisioning.\n"]
     pub fn log_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_uri", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_uri", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_public_dns` after provisioning.\n"]
     pub fn master_public_dns(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.master_public_dns", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.master_public_dns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `os_release_label` after provisioning.\n"]
     pub fn os_release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.os_release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.os_release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_group_config` after provisioning.\n"]
     pub fn placement_group_config(&self) -> ListRef<EmrClusterPlacementGroupConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement_group_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement_group_config", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_down_behavior` after provisioning.\n"]
     pub fn scale_down_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_down_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_down_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role` after provisioning.\n"]
     pub fn service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step` after provisioning.\n"]
     pub fn step(&self) -> ListRef<EmrClusterStepElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.step", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.step", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step_concurrency_level` after provisioning.\n"]
     pub fn step_concurrency_level(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.step_concurrency_level", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.step_concurrency_level", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_protection` after provisioning.\n"]
     pub fn termination_protection(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.termination_protection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.termination_protection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unhealthy_node_replacement` after provisioning.\n"]
     pub fn unhealthy_node_replacement(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unhealthy_node_replacement", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unhealthy_node_replacement", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `visible_to_all_users` after provisioning.\n"]
     pub fn visible_to_all_users(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.visible_to_all_users", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.visible_to_all_users", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_termination_policy` after provisioning.\n"]
     pub fn auto_termination_policy(&self) -> ListRef<EmrClusterAutoTerminationPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_termination_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_termination_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_action` after provisioning.\n"]
     pub fn bootstrap_action(&self) -> ListRef<EmrClusterBootstrapActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.bootstrap_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_instance_fleet` after provisioning.\n"]
     pub fn core_instance_fleet(&self) -> ListRef<EmrClusterCoreInstanceFleetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.core_instance_fleet", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.core_instance_fleet", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_instance_group` after provisioning.\n"]
     pub fn core_instance_group(&self) -> ListRef<EmrClusterCoreInstanceGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.core_instance_group", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.core_instance_group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ec2_attributes` after provisioning.\n"]
     pub fn ec2_attributes(&self) -> ListRef<EmrClusterEc2AttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ec2_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ec2_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kerberos_attributes` after provisioning.\n"]
     pub fn kerberos_attributes(&self) -> ListRef<EmrClusterKerberosAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kerberos_attributes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kerberos_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_instance_fleet` after provisioning.\n"]
     pub fn master_instance_fleet(&self) -> ListRef<EmrClusterMasterInstanceFleetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.master_instance_fleet", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.master_instance_fleet", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_instance_group` after provisioning.\n"]
     pub fn master_instance_group(&self) -> ListRef<EmrClusterMasterInstanceGroupElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.master_instance_group", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.master_instance_group", self.extract_ref()),
+        )
     }
 }
 
@@ -968,12 +1220,18 @@ impl EmrClusterPlacementGroupConfigElRef {
 
     #[doc = "Get a reference to the value of field `instance_role` after provisioning.\n"]
     pub fn instance_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_role", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_strategy` after provisioning.\n"]
     pub fn placement_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.placement_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.placement_strategy", self.base),
+        )
     }
 }
 
@@ -1098,7 +1356,10 @@ impl EmrClusterStepEl {
     }
 
     #[doc = "Set the field `hadoop_jar_step`.\n"]
-    pub fn set_hadoop_jar_step(mut self, v: impl Into<ListField<EmrClusterStepElHadoopJarStepEl>>) -> Self {
+    pub fn set_hadoop_jar_step(
+        mut self,
+        v: impl Into<ListField<EmrClusterStepElHadoopJarStepEl>>,
+    ) -> Self {
         self.hadoop_jar_step = Some(v.into());
         self
     }
@@ -1155,12 +1416,18 @@ impl EmrClusterStepElRef {
 
     #[doc = "Get a reference to the value of field `action_on_failure` after provisioning.\n"]
     pub fn action_on_failure(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_on_failure", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_on_failure", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hadoop_jar_step` after provisioning.\n"]
     pub fn hadoop_jar_step(&self) -> ListRef<EmrClusterStepElHadoopJarStepElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.hadoop_jar_step", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hadoop_jar_step", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1199,7 +1466,9 @@ pub struct BuildEmrClusterAutoTerminationPolicyEl {}
 
 impl BuildEmrClusterAutoTerminationPolicyEl {
     pub fn build(self) -> EmrClusterAutoTerminationPolicyEl {
-        EmrClusterAutoTerminationPolicyEl { idle_timeout: core::default::Default::default() }
+        EmrClusterAutoTerminationPolicyEl {
+            idle_timeout: core::default::Default::default(),
+        }
     }
 }
 
@@ -1377,7 +1646,10 @@ impl EmrClusterCoreInstanceFleetElInstanceTypeConfigsElConfigurationsElRef {
 
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.classification", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.classification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
@@ -1447,7 +1719,10 @@ pub struct EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
 }
 
 impl Ref for EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
-    fn new(shared: StackShared, base: String) -> EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
         EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1477,13 +1752,17 @@ impl EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
 
     #[doc = "Get a reference to the value of field `volumes_per_instance` after provisioning.\n"]
     pub fn volumes_per_instance(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volumes_per_instance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volumes_per_instance", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrClusterCoreInstanceFleetElInstanceTypeConfigsElDynamic {
-    configurations: Option<DynamicBlock<EmrClusterCoreInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
+    configurations:
+        Option<DynamicBlock<EmrClusterCoreInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
     ebs_config: Option<DynamicBlock<EmrClusterCoreInstanceFleetElInstanceTypeConfigsElEbsConfigEl>>,
 }
 
@@ -1511,7 +1790,10 @@ impl EmrClusterCoreInstanceFleetElInstanceTypeConfigsEl {
     }
 
     #[doc = "Set the field `bid_price_as_percentage_of_on_demand_price`.\n"]
-    pub fn set_bid_price_as_percentage_of_on_demand_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_bid_price_as_percentage_of_on_demand_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.bid_price_as_percentage_of_on_demand_price = Some(v.into());
         self
     }
@@ -1525,15 +1807,17 @@ impl EmrClusterCoreInstanceFleetElInstanceTypeConfigsEl {
     #[doc = "Set the field `configurations`.\n"]
     pub fn set_configurations(
         mut self,
-        v: impl Into<BlockAssignable<EmrClusterCoreInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
+        v: impl Into<
+            BlockAssignable<EmrClusterCoreInstanceFleetElInstanceTypeConfigsElConfigurationsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.configurations = Some(d);
-            },
+            }
         }
         self
     }
@@ -1546,10 +1830,10 @@ impl EmrClusterCoreInstanceFleetElInstanceTypeConfigsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1592,7 +1876,10 @@ pub struct EmrClusterCoreInstanceFleetElInstanceTypeConfigsElRef {
 }
 
 impl Ref for EmrClusterCoreInstanceFleetElInstanceTypeConfigsElRef {
-    fn new(shared: StackShared, base: String) -> EmrClusterCoreInstanceFleetElInstanceTypeConfigsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrClusterCoreInstanceFleetElInstanceTypeConfigsElRef {
         EmrClusterCoreInstanceFleetElInstanceTypeConfigsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1612,17 +1899,26 @@ impl EmrClusterCoreInstanceFleetElInstanceTypeConfigsElRef {
 
     #[doc = "Get a reference to the value of field `bid_price_as_percentage_of_on_demand_price` after provisioning.\n"]
     pub fn bid_price_as_percentage_of_on_demand_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bid_price_as_percentage_of_on_demand_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bid_price_as_percentage_of_on_demand_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 }
 
@@ -1631,10 +1927,11 @@ pub struct EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificat
     allocation_strategy: PrimField<String>,
 }
 
-impl EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl { }
+impl EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {}
 
 impl ToListMappable for EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
-    type O = BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>;
+    type O =
+        BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1651,7 +1948,9 @@ pub struct BuildEmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpeci
 }
 
 impl BuildEmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
-    pub fn build(self) -> EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
+    pub fn build(
+        self,
+    ) -> EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
         EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
             allocation_strategy: self.allocation_strategy,
         }
@@ -1682,7 +1981,10 @@ impl EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationElR
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 }
 
@@ -1704,7 +2006,8 @@ impl EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl {
 }
 
 impl ToListMappable for EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl {
-    type O = BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>;
+    type O =
+        BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1759,22 +2062,34 @@ impl EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_duration_minutes` after provisioning.\n"]
     pub fn block_duration_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_duration_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_duration_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout_action` after provisioning.\n"]
     pub fn timeout_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout_duration_minutes` after provisioning.\n"]
     pub fn timeout_duration_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_duration_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_duration_minutes", self.base),
+        )
     }
 }
 
@@ -1791,9 +2106,11 @@ struct EmrClusterCoreInstanceFleetElLaunchSpecificationsElDynamic {
 #[derive(Serialize)]
 pub struct EmrClusterCoreInstanceFleetElLaunchSpecificationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    on_demand_specification: Option<Vec<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>>,
+    on_demand_specification:
+        Option<Vec<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    spot_specification: Option<Vec<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>>,
+    spot_specification:
+        Option<Vec<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>>,
     dynamic: EmrClusterCoreInstanceFleetElLaunchSpecificationsElDynamic,
 }
 
@@ -1801,15 +2118,19 @@ impl EmrClusterCoreInstanceFleetElLaunchSpecificationsEl {
     #[doc = "Set the field `on_demand_specification`.\n"]
     pub fn set_on_demand_specification(
         mut self,
-        v: impl Into<BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_demand_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_demand_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -1817,15 +2138,17 @@ impl EmrClusterCoreInstanceFleetElLaunchSpecificationsEl {
     #[doc = "Set the field `spot_specification`.\n"]
     pub fn set_spot_specification(
         mut self,
-        v: impl Into<BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.spot_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.spot_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -1861,7 +2184,10 @@ pub struct EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef {
 }
 
 impl Ref for EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef {
-    fn new(shared: StackShared, base: String) -> EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef {
         EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1877,22 +2203,30 @@ impl EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef {
     #[doc = "Get a reference to the value of field `on_demand_specification` after provisioning.\n"]
     pub fn on_demand_specification(
         &self,
-    ) -> ListRef<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_specification", self.base))
+    ) -> ListRef<EmrClusterCoreInstanceFleetElLaunchSpecificationsElOnDemandSpecificationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_specification` after provisioning.\n"]
     pub fn spot_specification(
         &self,
     ) -> ListRef<EmrClusterCoreInstanceFleetElLaunchSpecificationsElSpotSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spot_specification", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spot_specification", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrClusterCoreInstanceFleetElDynamic {
     instance_type_configs: Option<DynamicBlock<EmrClusterCoreInstanceFleetElInstanceTypeConfigsEl>>,
-    launch_specifications: Option<DynamicBlock<EmrClusterCoreInstanceFleetElLaunchSpecificationsEl>>,
+    launch_specifications:
+        Option<DynamicBlock<EmrClusterCoreInstanceFleetElLaunchSpecificationsEl>>,
 }
 
 #[derive(Serialize)]
@@ -1937,10 +2271,10 @@ impl EmrClusterCoreInstanceFleetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_type_configs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_type_configs = Some(d);
-            },
+            }
         }
         self
     }
@@ -1953,10 +2287,10 @@ impl EmrClusterCoreInstanceFleetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_specifications = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_specifications = Some(d);
-            },
+            }
         }
         self
     }
@@ -2020,27 +2354,44 @@ impl EmrClusterCoreInstanceFleetElRef {
 
     #[doc = "Get a reference to the value of field `provisioned_on_demand_capacity` after provisioning.\n"]
     pub fn provisioned_on_demand_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_on_demand_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_on_demand_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_spot_capacity` after provisioning.\n"]
     pub fn provisioned_spot_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_spot_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_spot_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_on_demand_capacity` after provisioning.\n"]
     pub fn target_on_demand_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_on_demand_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_on_demand_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_spot_capacity` after provisioning.\n"]
     pub fn target_spot_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_spot_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_spot_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_specifications` after provisioning.\n"]
-    pub fn launch_specifications(&self) -> ListRef<EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_specifications", self.base))
+    pub fn launch_specifications(
+        &self,
+    ) -> ListRef<EmrClusterCoreInstanceFleetElLaunchSpecificationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_specifications", self.base),
+        )
     }
 }
 
@@ -2149,7 +2500,10 @@ impl EmrClusterCoreInstanceGroupElEbsConfigElRef {
 
     #[doc = "Get a reference to the value of field `volumes_per_instance` after provisioning.\n"]
     pub fn volumes_per_instance(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volumes_per_instance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volumes_per_instance", self.base),
+        )
     }
 }
 
@@ -2200,14 +2554,17 @@ impl EmrClusterCoreInstanceGroupEl {
     }
 
     #[doc = "Set the field `ebs_config`.\n"]
-    pub fn set_ebs_config(mut self, v: impl Into<BlockAssignable<EmrClusterCoreInstanceGroupElEbsConfigEl>>) -> Self {
+    pub fn set_ebs_config(
+        mut self,
+        v: impl Into<BlockAssignable<EmrClusterCoreInstanceGroupElEbsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2265,7 +2622,10 @@ impl EmrClusterCoreInstanceGroupElRef {
 
     #[doc = "Get a reference to the value of field `autoscaling_policy` after provisioning.\n"]
     pub fn autoscaling_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.autoscaling_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bid_price` after provisioning.\n"]
@@ -2280,12 +2640,18 @@ impl EmrClusterCoreInstanceGroupElRef {
 
     #[doc = "Get a reference to the value of field `instance_count` after provisioning.\n"]
     pub fn instance_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -2317,7 +2683,10 @@ pub struct EmrClusterEc2AttributesEl {
 
 impl EmrClusterEc2AttributesEl {
     #[doc = "Set the field `additional_master_security_groups`.\n"]
-    pub fn set_additional_master_security_groups(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_additional_master_security_groups(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.additional_master_security_groups = Some(v.into());
         self
     }
@@ -2329,7 +2698,10 @@ impl EmrClusterEc2AttributesEl {
     }
 
     #[doc = "Set the field `emr_managed_master_security_group`.\n"]
-    pub fn set_emr_managed_master_security_group(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_emr_managed_master_security_group(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.emr_managed_master_security_group = Some(v.into());
         self
     }
@@ -2419,27 +2791,42 @@ impl EmrClusterEc2AttributesElRef {
 
     #[doc = "Get a reference to the value of field `additional_master_security_groups` after provisioning.\n"]
     pub fn additional_master_security_groups(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_master_security_groups", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_master_security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_slave_security_groups` after provisioning.\n"]
     pub fn additional_slave_security_groups(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_slave_security_groups", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_slave_security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `emr_managed_master_security_group` after provisioning.\n"]
     pub fn emr_managed_master_security_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.emr_managed_master_security_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.emr_managed_master_security_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `emr_managed_slave_security_group` after provisioning.\n"]
     pub fn emr_managed_slave_security_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.emr_managed_slave_security_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.emr_managed_slave_security_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_profile` after provisioning.\n"]
     pub fn instance_profile(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_profile", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_profile", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_name` after provisioning.\n"]
@@ -2449,7 +2836,10 @@ impl EmrClusterEc2AttributesElRef {
 
     #[doc = "Get a reference to the value of field `service_access_security_group` after provisioning.\n"]
     pub fn service_access_security_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_access_security_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_access_security_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
@@ -2489,7 +2879,10 @@ impl EmrClusterKerberosAttributesEl {
     }
 
     #[doc = "Set the field `cross_realm_trust_principal_password`.\n"]
-    pub fn set_cross_realm_trust_principal_password(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_cross_realm_trust_principal_password(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.cross_realm_trust_principal_password = Some(v.into());
         self
     }
@@ -2547,22 +2940,34 @@ impl EmrClusterKerberosAttributesElRef {
 
     #[doc = "Get a reference to the value of field `ad_domain_join_password` after provisioning.\n"]
     pub fn ad_domain_join_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ad_domain_join_password", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ad_domain_join_password", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ad_domain_join_user` after provisioning.\n"]
     pub fn ad_domain_join_user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ad_domain_join_user", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ad_domain_join_user", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cross_realm_trust_principal_password` after provisioning.\n"]
     pub fn cross_realm_trust_principal_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cross_realm_trust_principal_password", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cross_realm_trust_principal_password", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kdc_admin_password` after provisioning.\n"]
     pub fn kdc_admin_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kdc_admin_password", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kdc_admin_password", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `realm` after provisioning.\n"]
@@ -2640,7 +3045,10 @@ impl EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsElRef {
 
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.classification", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.classification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
@@ -2710,7 +3118,10 @@ pub struct EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
 }
 
 impl Ref for EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
-    fn new(shared: StackShared, base: String) -> EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
         EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2740,14 +3151,19 @@ impl EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigElRef {
 
     #[doc = "Get a reference to the value of field `volumes_per_instance` after provisioning.\n"]
     pub fn volumes_per_instance(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volumes_per_instance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volumes_per_instance", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrClusterMasterInstanceFleetElInstanceTypeConfigsElDynamic {
-    configurations: Option<DynamicBlock<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
-    ebs_config: Option<DynamicBlock<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigEl>>,
+    configurations:
+        Option<DynamicBlock<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
+    ebs_config:
+        Option<DynamicBlock<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -2760,7 +3176,8 @@ pub struct EmrClusterMasterInstanceFleetElInstanceTypeConfigsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     weighted_capacity: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    configurations: Option<Vec<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
+    configurations:
+        Option<Vec<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     ebs_config: Option<Vec<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElEbsConfigEl>>,
     dynamic: EmrClusterMasterInstanceFleetElInstanceTypeConfigsElDynamic,
@@ -2774,7 +3191,10 @@ impl EmrClusterMasterInstanceFleetElInstanceTypeConfigsEl {
     }
 
     #[doc = "Set the field `bid_price_as_percentage_of_on_demand_price`.\n"]
-    pub fn set_bid_price_as_percentage_of_on_demand_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_bid_price_as_percentage_of_on_demand_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.bid_price_as_percentage_of_on_demand_price = Some(v.into());
         self
     }
@@ -2788,15 +3208,17 @@ impl EmrClusterMasterInstanceFleetElInstanceTypeConfigsEl {
     #[doc = "Set the field `configurations`.\n"]
     pub fn set_configurations(
         mut self,
-        v: impl Into<BlockAssignable<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsEl>>,
+        v: impl Into<
+            BlockAssignable<EmrClusterMasterInstanceFleetElInstanceTypeConfigsElConfigurationsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.configurations = Some(d);
-            },
+            }
         }
         self
     }
@@ -2809,10 +3231,10 @@ impl EmrClusterMasterInstanceFleetElInstanceTypeConfigsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2855,7 +3277,10 @@ pub struct EmrClusterMasterInstanceFleetElInstanceTypeConfigsElRef {
 }
 
 impl Ref for EmrClusterMasterInstanceFleetElInstanceTypeConfigsElRef {
-    fn new(shared: StackShared, base: String) -> EmrClusterMasterInstanceFleetElInstanceTypeConfigsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrClusterMasterInstanceFleetElInstanceTypeConfigsElRef {
         EmrClusterMasterInstanceFleetElInstanceTypeConfigsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2875,17 +3300,26 @@ impl EmrClusterMasterInstanceFleetElInstanceTypeConfigsElRef {
 
     #[doc = "Get a reference to the value of field `bid_price_as_percentage_of_on_demand_price` after provisioning.\n"]
     pub fn bid_price_as_percentage_of_on_demand_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bid_price_as_percentage_of_on_demand_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bid_price_as_percentage_of_on_demand_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 }
 
@@ -2894,10 +3328,14 @@ pub struct EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecific
     allocation_strategy: PrimField<String>,
 }
 
-impl EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl { }
+impl EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {}
 
-impl ToListMappable for EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
-    type O = BlockAssignable<EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>;
+impl ToListMappable
+    for EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl
+{
+    type O = BlockAssignable<
+        EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2914,7 +3352,9 @@ pub struct BuildEmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpe
 }
 
 impl BuildEmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
-    pub fn build(self) -> EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
+    pub fn build(
+        self,
+    ) -> EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
         EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl {
             allocation_strategy: self.allocation_strategy,
         }
@@ -2945,7 +3385,10 @@ impl EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationE
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 }
 
@@ -2967,7 +3410,8 @@ impl EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl {
 }
 
 impl ToListMappable for EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl {
-    type O = BlockAssignable<EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>;
+    type O =
+        BlockAssignable<EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3022,22 +3466,34 @@ impl EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationElRef
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_duration_minutes` after provisioning.\n"]
     pub fn block_duration_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_duration_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_duration_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout_action` after provisioning.\n"]
     pub fn timeout_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout_duration_minutes` after provisioning.\n"]
     pub fn timeout_duration_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_duration_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_duration_minutes", self.base),
+        )
     }
 }
 
@@ -3054,9 +3510,11 @@ struct EmrClusterMasterInstanceFleetElLaunchSpecificationsElDynamic {
 #[derive(Serialize)]
 pub struct EmrClusterMasterInstanceFleetElLaunchSpecificationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    on_demand_specification: Option<Vec<EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>>,
+    on_demand_specification:
+        Option<Vec<EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    spot_specification: Option<Vec<EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>>,
+    spot_specification:
+        Option<Vec<EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>>,
     dynamic: EmrClusterMasterInstanceFleetElLaunchSpecificationsElDynamic,
 }
 
@@ -3064,15 +3522,19 @@ impl EmrClusterMasterInstanceFleetElLaunchSpecificationsEl {
     #[doc = "Set the field `on_demand_specification`.\n"]
     pub fn set_on_demand_specification(
         mut self,
-        v: impl Into<BlockAssignable<EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.on_demand_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.on_demand_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3080,15 +3542,19 @@ impl EmrClusterMasterInstanceFleetElLaunchSpecificationsEl {
     #[doc = "Set the field `spot_specification`.\n"]
     pub fn set_spot_specification(
         mut self,
-        v: impl Into<BlockAssignable<EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.spot_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.spot_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3124,7 +3590,10 @@ pub struct EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef {
 }
 
 impl Ref for EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef {
-    fn new(shared: StackShared, base: String) -> EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef {
         EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3140,22 +3609,31 @@ impl EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef {
     #[doc = "Get a reference to the value of field `on_demand_specification` after provisioning.\n"]
     pub fn on_demand_specification(
         &self,
-    ) -> ListRef<EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_specification", self.base))
+    ) -> ListRef<EmrClusterMasterInstanceFleetElLaunchSpecificationsElOnDemandSpecificationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_specification` after provisioning.\n"]
     pub fn spot_specification(
         &self,
     ) -> ListRef<EmrClusterMasterInstanceFleetElLaunchSpecificationsElSpotSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spot_specification", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spot_specification", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EmrClusterMasterInstanceFleetElDynamic {
-    instance_type_configs: Option<DynamicBlock<EmrClusterMasterInstanceFleetElInstanceTypeConfigsEl>>,
-    launch_specifications: Option<DynamicBlock<EmrClusterMasterInstanceFleetElLaunchSpecificationsEl>>,
+    instance_type_configs:
+        Option<DynamicBlock<EmrClusterMasterInstanceFleetElInstanceTypeConfigsEl>>,
+    launch_specifications:
+        Option<DynamicBlock<EmrClusterMasterInstanceFleetElLaunchSpecificationsEl>>,
 }
 
 #[derive(Serialize)]
@@ -3200,10 +3678,10 @@ impl EmrClusterMasterInstanceFleetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_type_configs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_type_configs = Some(d);
-            },
+            }
         }
         self
     }
@@ -3216,10 +3694,10 @@ impl EmrClusterMasterInstanceFleetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_specifications = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_specifications = Some(d);
-            },
+            }
         }
         self
     }
@@ -3283,27 +3761,44 @@ impl EmrClusterMasterInstanceFleetElRef {
 
     #[doc = "Get a reference to the value of field `provisioned_on_demand_capacity` after provisioning.\n"]
     pub fn provisioned_on_demand_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_on_demand_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_on_demand_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioned_spot_capacity` after provisioning.\n"]
     pub fn provisioned_spot_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioned_spot_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioned_spot_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_on_demand_capacity` after provisioning.\n"]
     pub fn target_on_demand_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_on_demand_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_on_demand_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_spot_capacity` after provisioning.\n"]
     pub fn target_spot_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_spot_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_spot_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_specifications` after provisioning.\n"]
-    pub fn launch_specifications(&self) -> ListRef<EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_specifications", self.base))
+    pub fn launch_specifications(
+        &self,
+    ) -> ListRef<EmrClusterMasterInstanceFleetElLaunchSpecificationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_specifications", self.base),
+        )
     }
 }
 
@@ -3412,7 +3907,10 @@ impl EmrClusterMasterInstanceGroupElEbsConfigElRef {
 
     #[doc = "Get a reference to the value of field `volumes_per_instance` after provisioning.\n"]
     pub fn volumes_per_instance(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volumes_per_instance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volumes_per_instance", self.base),
+        )
     }
 }
 
@@ -3455,14 +3953,17 @@ impl EmrClusterMasterInstanceGroupEl {
     }
 
     #[doc = "Set the field `ebs_config`.\n"]
-    pub fn set_ebs_config(mut self, v: impl Into<BlockAssignable<EmrClusterMasterInstanceGroupElEbsConfigEl>>) -> Self {
+    pub fn set_ebs_config(
+        mut self,
+        v: impl Into<BlockAssignable<EmrClusterMasterInstanceGroupElEbsConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -3529,12 +4030,18 @@ impl EmrClusterMasterInstanceGroupElRef {
 
     #[doc = "Get a reference to the value of field `instance_count` after provisioning.\n"]
     pub fn instance_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DatasyncTaskData {
@@ -80,7 +80,8 @@ impl DatasyncTask {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -93,7 +94,7 @@ impl DatasyncTask {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -104,12 +105,22 @@ impl DatasyncTask {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,8 +142,7 @@ impl DatasyncTask {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -161,10 +171,10 @@ impl DatasyncTask {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().excludes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.excludes = Some(d);
-            },
+            }
         }
         self
     }
@@ -174,10 +184,10 @@ impl DatasyncTask {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().includes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.includes = Some(d);
-            },
+            }
         }
         self
     }
@@ -187,10 +197,10 @@ impl DatasyncTask {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.options = Some(d);
-            },
+            }
         }
         self
     }
@@ -200,23 +210,26 @@ impl DatasyncTask {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schedule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schedule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `task_report_config`.\n"]
-    pub fn set_task_report_config(self, v: impl Into<BlockAssignable<DatasyncTaskTaskReportConfigEl>>) -> Self {
+    pub fn set_task_report_config(
+        self,
+        v: impl Into<BlockAssignable<DatasyncTaskTaskReportConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().task_report_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.task_report_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -234,12 +247,18 @@ impl DatasyncTask {
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_arn` after provisioning.\n"]
     pub fn cloudwatch_log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_log_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_location_arn` after provisioning.\n"]
     pub fn destination_location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -249,73 +268,112 @@ impl DatasyncTask {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_location_arn` after provisioning.\n"]
     pub fn source_location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_mode` after provisioning.\n"]
     pub fn task_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excludes` after provisioning.\n"]
     pub fn excludes(&self) -> ListRef<DatasyncTaskExcludesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.excludes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.excludes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `includes` after provisioning.\n"]
     pub fn includes(&self) -> ListRef<DatasyncTaskIncludesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.includes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.includes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<DatasyncTaskOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<DatasyncTaskScheduleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_report_config` after provisioning.\n"]
     pub fn task_report_config(&self) -> ListRef<DatasyncTaskTaskReportConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.task_report_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.task_report_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DatasyncTaskTimeoutsElRef {
-        DatasyncTaskTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DatasyncTaskTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DatasyncTask {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DatasyncTask { }
+impl Resource for DatasyncTask {}
 
 impl ToListMappable for DatasyncTask {
     type O = ListRef<DatasyncTaskRef>;
@@ -388,10 +446,7 @@ pub struct DatasyncTaskRef {
 
 impl Ref for DatasyncTaskRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -411,12 +466,18 @@ impl DatasyncTaskRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_arn` after provisioning.\n"]
     pub fn cloudwatch_log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_log_group_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_group_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_location_arn` after provisioning.\n"]
     pub fn destination_location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -426,63 +487,98 @@ impl DatasyncTaskRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_location_arn` after provisioning.\n"]
     pub fn source_location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_mode` after provisioning.\n"]
     pub fn task_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excludes` after provisioning.\n"]
     pub fn excludes(&self) -> ListRef<DatasyncTaskExcludesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.excludes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.excludes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `includes` after provisioning.\n"]
     pub fn includes(&self) -> ListRef<DatasyncTaskIncludesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.includes", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.includes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<DatasyncTaskOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<DatasyncTaskScheduleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_report_config` after provisioning.\n"]
     pub fn task_report_config(&self) -> ListRef<DatasyncTaskTaskReportConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.task_report_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.task_report_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DatasyncTaskTimeoutsElRef {
-        DatasyncTaskTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DatasyncTaskTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -824,7 +920,10 @@ impl DatasyncTaskOptionsElRef {
 
     #[doc = "Get a reference to the value of field `bytes_per_second` after provisioning.\n"]
     pub fn bytes_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bytes_per_second", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bytes_per_second", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gid` after provisioning.\n"]
@@ -849,37 +948,58 @@ impl DatasyncTaskOptionsElRef {
 
     #[doc = "Get a reference to the value of field `overwrite_mode` after provisioning.\n"]
     pub fn overwrite_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overwrite_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overwrite_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `posix_permissions` after provisioning.\n"]
     pub fn posix_permissions(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.posix_permissions", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.posix_permissions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preserve_deleted_files` after provisioning.\n"]
     pub fn preserve_deleted_files(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preserve_deleted_files", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preserve_deleted_files", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preserve_devices` after provisioning.\n"]
     pub fn preserve_devices(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preserve_devices", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preserve_devices", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_descriptor_copy_flags` after provisioning.\n"]
     pub fn security_descriptor_copy_flags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_descriptor_copy_flags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_descriptor_copy_flags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_queueing` after provisioning.\n"]
     pub fn task_queueing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_queueing", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_queueing", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transfer_mode` after provisioning.\n"]
     pub fn transfer_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transfer_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transfer_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uid` after provisioning.\n"]
@@ -898,7 +1018,7 @@ pub struct DatasyncTaskScheduleEl {
     schedule_expression: PrimField<String>,
 }
 
-impl DatasyncTaskScheduleEl { }
+impl DatasyncTaskScheduleEl {}
 
 impl ToListMappable for DatasyncTaskScheduleEl {
     type O = BlockAssignable<DatasyncTaskScheduleEl>;
@@ -919,7 +1039,9 @@ pub struct BuildDatasyncTaskScheduleEl {
 
 impl BuildDatasyncTaskScheduleEl {
     pub fn build(self) -> DatasyncTaskScheduleEl {
-        DatasyncTaskScheduleEl { schedule_expression: self.schedule_expression }
+        DatasyncTaskScheduleEl {
+            schedule_expression: self.schedule_expression,
+        }
     }
 }
 
@@ -944,7 +1066,10 @@ impl DatasyncTaskScheduleElRef {
 
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression", self.base),
+        )
     }
 }
 
@@ -1017,7 +1142,10 @@ pub struct DatasyncTaskTaskReportConfigElReportOverridesElRef {
 }
 
 impl Ref for DatasyncTaskTaskReportConfigElReportOverridesElRef {
-    fn new(shared: StackShared, base: String) -> DatasyncTaskTaskReportConfigElReportOverridesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DatasyncTaskTaskReportConfigElReportOverridesElRef {
         DatasyncTaskTaskReportConfigElReportOverridesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1032,22 +1160,34 @@ impl DatasyncTaskTaskReportConfigElReportOverridesElRef {
 
     #[doc = "Get a reference to the value of field `deleted_override` after provisioning.\n"]
     pub fn deleted_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deleted_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deleted_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skipped_override` after provisioning.\n"]
     pub fn skipped_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skipped_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skipped_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transferred_override` after provisioning.\n"]
     pub fn transferred_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transferred_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transferred_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verified_override` after provisioning.\n"]
     pub fn verified_override(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verified_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verified_override", self.base),
+        )
     }
 }
 
@@ -1117,12 +1257,18 @@ impl DatasyncTaskTaskReportConfigElS3DestinationElRef {
 
     #[doc = "Get a reference to the value of field `bucket_access_role_arn` after provisioning.\n"]
     pub fn bucket_access_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_access_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_access_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
@@ -1179,10 +1325,10 @@ impl DatasyncTaskTaskReportConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.report_overrides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.report_overrides = Some(d);
-            },
+            }
         }
         self
     }
@@ -1195,10 +1341,10 @@ impl DatasyncTaskTaskReportConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -1262,17 +1408,26 @@ impl DatasyncTaskTaskReportConfigElRef {
 
     #[doc = "Get a reference to the value of field `s3_object_versioning` after provisioning.\n"]
     pub fn s3_object_versioning(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_object_versioning", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_object_versioning", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `report_overrides` after provisioning.\n"]
     pub fn report_overrides(&self) -> ListRef<DatasyncTaskTaskReportConfigElReportOverridesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.report_overrides", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.report_overrides", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_destination` after provisioning.\n"]
     pub fn s3_destination(&self) -> ListRef<DatasyncTaskTaskReportConfigElS3DestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_destination", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_destination", self.base),
+        )
     }
 }
 
@@ -1306,7 +1461,9 @@ pub struct BuildDatasyncTaskTimeoutsEl {}
 
 impl BuildDatasyncTaskTimeoutsEl {
     pub fn build(self) -> DatasyncTaskTimeoutsEl {
-        DatasyncTaskTimeoutsEl { create: core::default::Default::default() }
+        DatasyncTaskTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 

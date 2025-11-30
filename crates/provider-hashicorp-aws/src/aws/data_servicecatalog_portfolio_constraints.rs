@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataServicecatalogPortfolioConstraintsData {
@@ -67,27 +67,35 @@ impl DataServicecatalogPortfolioConstraints {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataServicecatalogPortfolioConstraintsTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataServicecatalogPortfolioConstraintsTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `details` after provisioning.\n"]
     pub fn details(&self) -> ListRef<DataServicecatalogPortfolioConstraintsDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -97,18 +105,26 @@ impl DataServicecatalogPortfolioConstraints {
 
     #[doc = "Get a reference to the value of field `portfolio_id` after provisioning.\n"]
     pub fn portfolio_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.portfolio_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.portfolio_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_id` after provisioning.\n"]
     pub fn product_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -122,11 +138,15 @@ impl DataServicecatalogPortfolioConstraints {
 
 impl Referable for DataServicecatalogPortfolioConstraints {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataServicecatalogPortfolioConstraints { }
+impl Datasource for DataServicecatalogPortfolioConstraints {}
 
 impl ToListMappable for DataServicecatalogPortfolioConstraints {
     type O = ListRef<DataServicecatalogPortfolioConstraintsRef>;
@@ -159,21 +179,23 @@ pub struct BuildDataServicecatalogPortfolioConstraints {
 
 impl BuildDataServicecatalogPortfolioConstraints {
     pub fn build(self, stack: &mut Stack) -> DataServicecatalogPortfolioConstraints {
-        let out = DataServicecatalogPortfolioConstraints(Rc::new(DataServicecatalogPortfolioConstraints_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataServicecatalogPortfolioConstraintsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                accept_language: core::default::Default::default(),
-                id: core::default::Default::default(),
-                portfolio_id: self.portfolio_id,
-                product_id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = DataServicecatalogPortfolioConstraints(Rc::new(
+            DataServicecatalogPortfolioConstraints_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataServicecatalogPortfolioConstraintsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    accept_language: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    portfolio_id: self.portfolio_id,
+                    product_id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -186,10 +208,7 @@ pub struct DataServicecatalogPortfolioConstraintsRef {
 
 impl Ref for DataServicecatalogPortfolioConstraintsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -204,12 +223,18 @@ impl DataServicecatalogPortfolioConstraintsRef {
 
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_language", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_language", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `details` after provisioning.\n"]
     pub fn details(&self) -> ListRef<DataServicecatalogPortfolioConstraintsDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -219,18 +244,26 @@ impl DataServicecatalogPortfolioConstraintsRef {
 
     #[doc = "Get a reference to the value of field `portfolio_id` after provisioning.\n"]
     pub fn portfolio_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.portfolio_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.portfolio_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `product_id` after provisioning.\n"]
     pub fn product_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.product_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.product_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -329,7 +362,10 @@ pub struct DataServicecatalogPortfolioConstraintsDetailsElRef {
 }
 
 impl Ref for DataServicecatalogPortfolioConstraintsDetailsElRef {
-    fn new(shared: StackShared, base: String) -> DataServicecatalogPortfolioConstraintsDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataServicecatalogPortfolioConstraintsDetailsElRef {
         DataServicecatalogPortfolioConstraintsDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -344,7 +380,10 @@ impl DataServicecatalogPortfolioConstraintsDetailsElRef {
 
     #[doc = "Get a reference to the value of field `constraint_id` after provisioning.\n"]
     pub fn constraint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.constraint_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.constraint_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
@@ -403,7 +442,9 @@ pub struct BuildDataServicecatalogPortfolioConstraintsTimeoutsEl {}
 
 impl BuildDataServicecatalogPortfolioConstraintsTimeoutsEl {
     pub fn build(self) -> DataServicecatalogPortfolioConstraintsTimeoutsEl {
-        DataServicecatalogPortfolioConstraintsTimeoutsEl { read: core::default::Default::default() }
+        DataServicecatalogPortfolioConstraintsTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 
@@ -413,7 +454,10 @@ pub struct DataServicecatalogPortfolioConstraintsTimeoutsElRef {
 }
 
 impl Ref for DataServicecatalogPortfolioConstraintsTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DataServicecatalogPortfolioConstraintsTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataServicecatalogPortfolioConstraintsTimeoutsElRef {
         DataServicecatalogPortfolioConstraintsTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

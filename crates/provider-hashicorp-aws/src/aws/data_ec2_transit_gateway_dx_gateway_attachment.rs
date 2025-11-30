@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2TransitGatewayDxGatewayAttachmentData {
@@ -65,8 +65,7 @@ impl DataEc2TransitGatewayDxGatewayAttachment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -85,20 +84,26 @@ impl DataEc2TransitGatewayDxGatewayAttachment {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2TransitGatewayDxGatewayAttachmentFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2TransitGatewayDxGatewayAttachmentFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -110,7 +115,10 @@ impl DataEc2TransitGatewayDxGatewayAttachment {
 
     #[doc = "Get a reference to the value of field `dx_gateway_id` after provisioning.\n"]
     pub fn dx_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dx_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dx_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -118,20 +126,28 @@ impl DataEc2TransitGatewayDxGatewayAttachment {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -145,11 +161,15 @@ impl DataEc2TransitGatewayDxGatewayAttachment {
 
 impl Referable for DataEc2TransitGatewayDxGatewayAttachment {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2TransitGatewayDxGatewayAttachment { }
+impl Datasource for DataEc2TransitGatewayDxGatewayAttachment {}
 
 impl ToListMappable for DataEc2TransitGatewayDxGatewayAttachment {
     type O = ListRef<DataEc2TransitGatewayDxGatewayAttachmentRef>;
@@ -180,23 +200,25 @@ pub struct BuildDataEc2TransitGatewayDxGatewayAttachment {
 
 impl BuildDataEc2TransitGatewayDxGatewayAttachment {
     pub fn build(self, stack: &mut Stack) -> DataEc2TransitGatewayDxGatewayAttachment {
-        let out = DataEc2TransitGatewayDxGatewayAttachment(Rc::new(DataEc2TransitGatewayDxGatewayAttachment_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataEc2TransitGatewayDxGatewayAttachmentData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                dx_gateway_id: core::default::Default::default(),
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                transit_gateway_id: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataEc2TransitGatewayDxGatewayAttachment(Rc::new(
+            DataEc2TransitGatewayDxGatewayAttachment_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataEc2TransitGatewayDxGatewayAttachmentData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    dx_gateway_id: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    transit_gateway_id: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -209,10 +231,7 @@ pub struct DataEc2TransitGatewayDxGatewayAttachmentRef {
 
 impl Ref for DataEc2TransitGatewayDxGatewayAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -232,7 +251,10 @@ impl DataEc2TransitGatewayDxGatewayAttachmentRef {
 
     #[doc = "Get a reference to the value of field `dx_gateway_id` after provisioning.\n"]
     pub fn dx_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dx_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dx_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -240,20 +262,28 @@ impl DataEc2TransitGatewayDxGatewayAttachmentRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -271,7 +301,7 @@ pub struct DataEc2TransitGatewayDxGatewayAttachmentFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2TransitGatewayDxGatewayAttachmentFilterEl { }
+impl DataEc2TransitGatewayDxGatewayAttachmentFilterEl {}
 
 impl ToListMappable for DataEc2TransitGatewayDxGatewayAttachmentFilterEl {
     type O = BlockAssignable<DataEc2TransitGatewayDxGatewayAttachmentFilterEl>;
@@ -307,7 +337,10 @@ pub struct DataEc2TransitGatewayDxGatewayAttachmentFilterElRef {
 }
 
 impl Ref for DataEc2TransitGatewayDxGatewayAttachmentFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayDxGatewayAttachmentFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayDxGatewayAttachmentFilterElRef {
         DataEc2TransitGatewayDxGatewayAttachmentFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -361,7 +394,9 @@ pub struct BuildDataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl {}
 
 impl BuildDataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl {
     pub fn build(self) -> DataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl {
-        DataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl { read: core::default::Default::default() }
+        DataEc2TransitGatewayDxGatewayAttachmentTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 
@@ -371,7 +406,10 @@ pub struct DataEc2TransitGatewayDxGatewayAttachmentTimeoutsElRef {
 }
 
 impl Ref for DataEc2TransitGatewayDxGatewayAttachmentTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayDxGatewayAttachmentTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayDxGatewayAttachmentTimeoutsElRef {
         DataEc2TransitGatewayDxGatewayAttachmentTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

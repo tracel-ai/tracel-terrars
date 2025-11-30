@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AutoscalingPolicyData {
@@ -37,7 +37,8 @@ struct AutoscalingPolicyData {
     #[serde(skip_serializing_if = "Option::is_none")]
     scaling_adjustment: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    predictive_scaling_configuration: Option<Vec<AutoscalingPolicyPredictiveScalingConfigurationEl>>,
+    predictive_scaling_configuration:
+        Option<Vec<AutoscalingPolicyPredictiveScalingConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     step_adjustment: Option<Vec<AutoscalingPolicyStepAdjustmentEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -80,7 +81,8 @@ impl AutoscalingPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -93,7 +95,7 @@ impl AutoscalingPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -104,12 +106,22 @@ impl AutoscalingPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -161,8 +173,7 @@ impl AutoscalingPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -182,23 +193,30 @@ impl AutoscalingPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().predictive_scaling_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.predictive_scaling_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .predictive_scaling_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `step_adjustment`.\n"]
-    pub fn set_step_adjustment(self, v: impl Into<BlockAssignable<AutoscalingPolicyStepAdjustmentEl>>) -> Self {
+    pub fn set_step_adjustment(
+        self,
+        v: impl Into<BlockAssignable<AutoscalingPolicyStepAdjustmentEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().step_adjustment = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.step_adjustment = Some(d);
-            },
+            }
         }
         self
     }
@@ -211,17 +229,24 @@ impl AutoscalingPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_tracking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.target_tracking_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .target_tracking_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `adjustment_type` after provisioning.\n"]
     pub fn adjustment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.adjustment_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.adjustment_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -231,22 +256,34 @@ impl AutoscalingPolicy {
 
     #[doc = "Get a reference to the value of field `autoscaling_group_name` after provisioning.\n"]
     pub fn autoscaling_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.autoscaling_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cooldown` after provisioning.\n"]
     pub fn cooldown(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cooldown", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cooldown", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `estimated_instance_warmup` after provisioning.\n"]
     pub fn estimated_instance_warmup(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_instance_warmup", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_instance_warmup", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -256,53 +293,84 @@ impl AutoscalingPolicy {
 
     #[doc = "Get a reference to the value of field `metric_aggregation_type` after provisioning.\n"]
     pub fn metric_aggregation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_aggregation_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_aggregation_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_adjustment_magnitude` after provisioning.\n"]
     pub fn min_adjustment_magnitude(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_adjustment_magnitude", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_adjustment_magnitude", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_type` after provisioning.\n"]
     pub fn policy_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_adjustment` after provisioning.\n"]
     pub fn scaling_adjustment(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_adjustment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_adjustment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predictive_scaling_configuration` after provisioning.\n"]
-    pub fn predictive_scaling_configuration(&self) -> ListRef<AutoscalingPolicyPredictiveScalingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.predictive_scaling_configuration", self.extract_ref()))
+    pub fn predictive_scaling_configuration(
+        &self,
+    ) -> ListRef<AutoscalingPolicyPredictiveScalingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predictive_scaling_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_tracking_configuration` after provisioning.\n"]
-    pub fn target_tracking_configuration(&self) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_tracking_configuration", self.extract_ref()))
+    pub fn target_tracking_configuration(
+        &self,
+    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_tracking_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AutoscalingPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AutoscalingPolicy { }
+impl Resource for AutoscalingPolicy {}
 
 impl ToListMappable for AutoscalingPolicy {
     type O = ListRef<AutoscalingPolicyRef>;
@@ -375,10 +443,7 @@ pub struct AutoscalingPolicyRef {
 
 impl Ref for AutoscalingPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -393,7 +458,10 @@ impl AutoscalingPolicyRef {
 
     #[doc = "Get a reference to the value of field `adjustment_type` after provisioning.\n"]
     pub fn adjustment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.adjustment_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.adjustment_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -403,22 +471,34 @@ impl AutoscalingPolicyRef {
 
     #[doc = "Get a reference to the value of field `autoscaling_group_name` after provisioning.\n"]
     pub fn autoscaling_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.autoscaling_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cooldown` after provisioning.\n"]
     pub fn cooldown(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cooldown", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cooldown", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `estimated_instance_warmup` after provisioning.\n"]
     pub fn estimated_instance_warmup(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_instance_warmup", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_instance_warmup", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -428,48 +508,76 @@ impl AutoscalingPolicyRef {
 
     #[doc = "Get a reference to the value of field `metric_aggregation_type` after provisioning.\n"]
     pub fn metric_aggregation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_aggregation_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_aggregation_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_adjustment_magnitude` after provisioning.\n"]
     pub fn min_adjustment_magnitude(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_adjustment_magnitude", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_adjustment_magnitude", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_type` after provisioning.\n"]
     pub fn policy_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_adjustment` after provisioning.\n"]
     pub fn scaling_adjustment(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_adjustment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_adjustment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predictive_scaling_configuration` after provisioning.\n"]
-    pub fn predictive_scaling_configuration(&self) -> ListRef<AutoscalingPolicyPredictiveScalingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.predictive_scaling_configuration", self.extract_ref()))
+    pub fn predictive_scaling_configuration(
+        &self,
+    ) -> ListRef<AutoscalingPolicyPredictiveScalingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predictive_scaling_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_tracking_configuration` after provisioning.\n"]
-    pub fn target_tracking_configuration(&self) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_tracking_configuration", self.extract_ref()))
+    pub fn target_tracking_configuration(
+        &self,
+    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_tracking_configuration", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl
+{
     name: PrimField<String>,
     value: PrimField<String>,
 }
@@ -493,7 +601,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -511,7 +620,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -606,7 +716,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricEl
+{
     #[doc = ""]
     pub metric_name: PrimField<String>,
     #[doc = ""]
@@ -626,7 +737,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElMetricElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -728,7 +840,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatEl
+{
     #[doc = ""]
     pub stat: PrimField<String>,
 }
@@ -746,7 +859,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElMetricStatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -873,7 +987,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesEl
+{
     #[doc = ""]
     pub id: PrimField<String>,
 }
@@ -893,7 +1008,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElMetricDataQueriesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1005,7 +1121,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationEl {}
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationEl
+{}
 
 impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationEl {
     pub fn build(
@@ -1018,7 +1135,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1051,7 +1169,8 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCusto
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl
+{
     name: PrimField<String>,
     value: PrimField<String>,
 }
@@ -1075,7 +1194,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -1093,7 +1213,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1188,7 +1309,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricEl
+{
     #[doc = ""]
     pub metric_name: PrimField<String>,
     #[doc = ""]
@@ -1208,7 +1330,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElMetricElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1310,7 +1433,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatEl
+{
     #[doc = ""]
     pub stat: PrimField<String>,
 }
@@ -1328,7 +1452,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElMetricStatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1455,7 +1580,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesEl
+{
     #[doc = ""]
     pub id: PrimField<String>,
 }
@@ -1475,7 +1601,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElMetricDataQueriesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1587,7 +1714,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationEl {}
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationEl
+{}
 
 impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationEl {
     pub fn build(
@@ -1600,7 +1728,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1633,7 +1762,8 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCusto
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl
+{
     name: PrimField<String>,
     value: PrimField<String>,
 }
@@ -1657,7 +1787,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -1675,7 +1806,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElDimensionsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1770,7 +1902,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricEl
+{
     #[doc = ""]
     pub metric_name: PrimField<String>,
     #[doc = ""]
@@ -1790,7 +1923,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElMetricElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1892,7 +2026,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatEl
+{
     #[doc = ""]
     pub stat: PrimField<String>,
 }
@@ -1910,7 +2045,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElMetricStatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2037,7 +2173,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesEl
+{
     #[doc = ""]
     pub id: PrimField<String>,
 }
@@ -2057,7 +2194,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElMetricDataQueriesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2169,7 +2307,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationEl {}
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationEl
+{}
 
 impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationEl {
     pub fn build(
@@ -2182,7 +2321,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2215,7 +2355,8 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCusto
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationEl {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationEl
+{
     predefined_metric_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_label: Option<PrimField<String>>,
@@ -2244,7 +2385,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationEl
+{
     #[doc = ""]
     pub predefined_metric_type: PrimField<String>,
 }
@@ -2260,7 +2402,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2294,7 +2437,8 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPrede
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationEl {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationEl
+{
     predefined_metric_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_label: Option<PrimField<String>>,
@@ -2323,7 +2467,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationEl
+{
     #[doc = ""]
     pub predefined_metric_type: PrimField<String>,
 }
@@ -2339,7 +2484,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2373,7 +2519,8 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPrede
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationEl {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationEl
+{
     predefined_metric_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_label: Option<PrimField<String>>,
@@ -2402,7 +2549,8 @@ impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricS
     }
 }
 
-pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationEl {
+pub struct BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationEl
+{
     #[doc = ""]
     pub predefined_metric_type: PrimField<String>,
 }
@@ -2418,7 +2566,8 @@ impl BuildAutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl
     }
 }
 
-pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationElRef {
+pub struct AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2537,10 +2686,10 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.customized_capacity_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.customized_capacity_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -2560,10 +2709,10 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.customized_load_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.customized_load_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -2583,10 +2732,10 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.customized_scaling_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.customized_scaling_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -2606,10 +2755,10 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.predefined_load_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.predefined_load_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -2629,10 +2778,10 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.predefined_metric_pair_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.predefined_metric_pair_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -2652,17 +2801,18 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.predefined_scaling_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.predefined_scaling_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl {
-    type O = BlockAssignable<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl>;
+    type O =
+        BlockAssignable<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2725,8 +2875,11 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef {
         &self,
     ) -> ListRef<
         AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedCapacityMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.customized_capacity_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customized_capacity_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customized_load_metric_specification` after provisioning.\n"]
@@ -2734,8 +2887,11 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef {
         &self,
     ) -> ListRef<
         AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedLoadMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.customized_load_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customized_load_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customized_scaling_metric_specification` after provisioning.\n"]
@@ -2743,8 +2899,11 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef {
         &self,
     ) -> ListRef<
         AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElCustomizedScalingMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.customized_scaling_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customized_scaling_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predefined_load_metric_specification` after provisioning.\n"]
@@ -2752,8 +2911,11 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef {
         &self,
     ) -> ListRef<
         AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedLoadMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.predefined_load_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predefined_load_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predefined_metric_pair_specification` after provisioning.\n"]
@@ -2761,8 +2923,11 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef {
         &self,
     ) -> ListRef<
         AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedMetricPairSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.predefined_metric_pair_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predefined_metric_pair_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predefined_scaling_metric_specification` after provisioning.\n"]
@@ -2770,8 +2935,11 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef {
         &self,
     ) -> ListRef<
         AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElPredefinedScalingMetricSpecificationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.predefined_scaling_metric_specification", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predefined_scaling_metric_specification", self.base),
+        )
     }
 }
 
@@ -2793,7 +2961,8 @@ pub struct AutoscalingPolicyPredictiveScalingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     scheduling_buffer_time: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metric_specification: Option<Vec<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl>>,
+    metric_specification:
+        Option<Vec<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl>>,
     dynamic: AutoscalingPolicyPredictiveScalingConfigurationElDynamic,
 }
 
@@ -2825,15 +2994,17 @@ impl AutoscalingPolicyPredictiveScalingConfigurationEl {
     #[doc = "Set the field `metric_specification`.\n"]
     pub fn set_metric_specification(
         mut self,
-        v: impl Into<BlockAssignable<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -2872,7 +3043,10 @@ pub struct AutoscalingPolicyPredictiveScalingConfigurationElRef {
 }
 
 impl Ref for AutoscalingPolicyPredictiveScalingConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingPolicyPredictiveScalingConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingPolicyPredictiveScalingConfigurationElRef {
         AutoscalingPolicyPredictiveScalingConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2887,12 +3061,18 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `max_capacity_breach_behavior` after provisioning.\n"]
     pub fn max_capacity_breach_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_capacity_breach_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_capacity_breach_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_capacity_buffer` after provisioning.\n"]
     pub fn max_capacity_buffer(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_capacity_buffer", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_capacity_buffer", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
@@ -2902,14 +3082,20 @@ impl AutoscalingPolicyPredictiveScalingConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `scheduling_buffer_time` after provisioning.\n"]
     pub fn scheduling_buffer_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_buffer_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_buffer_time", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_specification` after provisioning.\n"]
     pub fn metric_specification(
         &self,
     ) -> ListRef<AutoscalingPolicyPredictiveScalingConfigurationElMetricSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_specification", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_specification", self.base),
+        )
     }
 }
 
@@ -2984,27 +3170,40 @@ impl AutoscalingPolicyStepAdjustmentElRef {
 
     #[doc = "Get a reference to the value of field `metric_interval_lower_bound` after provisioning.\n"]
     pub fn metric_interval_lower_bound(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_interval_lower_bound", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_interval_lower_bound", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_interval_upper_bound` after provisioning.\n"]
     pub fn metric_interval_upper_bound(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_interval_upper_bound", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_interval_upper_bound", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_adjustment` after provisioning.\n"]
     pub fn scaling_adjustment(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_adjustment", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_adjustment", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl
+{
     name: PrimField<String>,
     value: PrimField<String>,
 }
 
-impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl { }
+impl
+    AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl
+{
+}
 
 impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl {
     type O =
@@ -3021,7 +3220,8 @@ impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomized
     }
 }
 
-pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl {
+pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -3039,7 +3239,8 @@ impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecific
     }
 }
 
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionElRef {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3073,7 +3274,8 @@ impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecification
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElDimensionsEl {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElDimensionsEl
+{
     name: PrimField<String>,
     value: PrimField<String>,
 }
@@ -3097,7 +3299,8 @@ impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomized
     }
 }
 
-pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElDimensionsEl {
+pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElDimensionsEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -3115,7 +3318,8 @@ impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecific
     }
 }
 
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElDimensionsElRef {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElDimensionsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3210,7 +3414,8 @@ impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomized
     }
 }
 
-pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricEl {
+pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricEl
+{
     #[doc = ""]
     pub metric_name: PrimField<String>,
     #[doc = ""]
@@ -3230,7 +3435,8 @@ impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecific
     }
 }
 
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElRef {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElMetricElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3340,7 +3546,8 @@ impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomized
     }
 }
 
-pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatEl {
+pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatEl
+{
     #[doc = ""]
     pub stat: PrimField<String>,
 }
@@ -3359,7 +3566,8 @@ impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecific
     }
 }
 
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElRef {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3465,17 +3673,21 @@ impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecification
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric_stat = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric_stat = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl {
-    type O = BlockAssignable<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl>;
+impl ToListMappable
+    for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl
+{
+    type O = BlockAssignable<
+        AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3486,13 +3698,17 @@ impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomized
     }
 }
 
-pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl {
+pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl
+{
     #[doc = ""]
     pub id: PrimField<String>,
 }
 
 impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl {
-    pub fn build(self) -> AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl
+    {
         AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsEl {
             expression: core::default::Default::default(),
             id: self.id,
@@ -3504,16 +3720,20 @@ impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecific
     }
 }
 
-pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef {
+pub struct AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef {
+impl Ref
+    for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef {
+    ) -> AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef
+    {
         AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3551,7 +3771,7 @@ impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecification
         &self,
     ) -> ListRef<
         AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricsElMetricStatElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.metric_stat", self.base))
     }
 }
@@ -3633,10 +3853,10 @@ impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecification
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric_dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric_dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -3656,17 +3876,21 @@ impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecification
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metrics = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl {
-    type O = BlockAssignable<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl>;
+impl ToListMappable
+    for AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl
+{
+    type O = BlockAssignable<
+        AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3680,7 +3904,9 @@ impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElCustomized
 pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl {}
 
 impl BuildAutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl {
-    pub fn build(self) -> AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl {
         AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl {
             metric_name: core::default::Default::default(),
             namespace: core::default::Default::default(),
@@ -3744,8 +3970,11 @@ impl AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecification
     #[doc = "Get a reference to the value of field `metric_dimension` after provisioning.\n"]
     pub fn metric_dimension(
         &self,
-    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_dimension", self.base))
+    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElMetricDimensionElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_dimension", self.base),
+        )
     }
 }
 
@@ -3764,8 +3993,12 @@ impl AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecification
     }
 }
 
-impl ToListMappable for AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl {
-    type O = BlockAssignable<AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl>;
+impl ToListMappable
+    for AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl
+{
+    type O = BlockAssignable<
+        AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3782,7 +4015,9 @@ pub struct BuildAutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSp
 }
 
 impl BuildAutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl {
-    pub fn build(self) -> AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl {
         AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl {
             predefined_metric_type: self.predefined_metric_type,
             resource_label: core::default::Default::default(),
@@ -3814,12 +4049,18 @@ impl AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecification
 
     #[doc = "Get a reference to the value of field `predefined_metric_type` after provisioning.\n"]
     pub fn predefined_metric_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predefined_metric_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predefined_metric_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_label` after provisioning.\n"]
     pub fn resource_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_label", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_label", self.base),
+        )
     }
 }
 
@@ -3839,13 +4080,11 @@ pub struct AutoscalingPolicyTargetTrackingConfigurationEl {
     disable_scale_in: Option<PrimField<bool>>,
     target_value: PrimField<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    customized_metric_specification: Option<
-        Vec<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl>,
-    >,
+    customized_metric_specification:
+        Option<Vec<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    predefined_metric_specification: Option<
-        Vec<AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl>,
-    >,
+    predefined_metric_specification:
+        Option<Vec<AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl>>,
     dynamic: AutoscalingPolicyTargetTrackingConfigurationElDynamic,
 }
 
@@ -3859,15 +4098,19 @@ impl AutoscalingPolicyTargetTrackingConfigurationEl {
     #[doc = "Set the field `customized_metric_specification`.\n"]
     pub fn set_customized_metric_specification(
         mut self,
-        v: impl Into<BlockAssignable<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.customized_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.customized_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3875,15 +4118,19 @@ impl AutoscalingPolicyTargetTrackingConfigurationEl {
     #[doc = "Set the field `predefined_metric_specification`.\n"]
     pub fn set_predefined_metric_specification(
         mut self,
-        v: impl Into<BlockAssignable<AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.predefined_metric_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.predefined_metric_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3939,7 +4186,10 @@ impl AutoscalingPolicyTargetTrackingConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `disable_scale_in` after provisioning.\n"]
     pub fn disable_scale_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.disable_scale_in", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.disable_scale_in", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_value` after provisioning.\n"]
@@ -3950,21 +4200,31 @@ impl AutoscalingPolicyTargetTrackingConfigurationElRef {
     #[doc = "Get a reference to the value of field `customized_metric_specification` after provisioning.\n"]
     pub fn customized_metric_specification(
         &self,
-    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.customized_metric_specification", self.base))
+    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElCustomizedMetricSpecificationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customized_metric_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predefined_metric_specification` after provisioning.\n"]
     pub fn predefined_metric_specification(
         &self,
-    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.predefined_metric_specification", self.base))
+    ) -> ListRef<AutoscalingPolicyTargetTrackingConfigurationElPredefinedMetricSpecificationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predefined_metric_specification", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AutoscalingPolicyDynamic {
-    predictive_scaling_configuration: Option<DynamicBlock<AutoscalingPolicyPredictiveScalingConfigurationEl>>,
+    predictive_scaling_configuration:
+        Option<DynamicBlock<AutoscalingPolicyPredictiveScalingConfigurationEl>>,
     step_adjustment: Option<DynamicBlock<AutoscalingPolicyStepAdjustmentEl>>,
-    target_tracking_configuration: Option<DynamicBlock<AutoscalingPolicyTargetTrackingConfigurationEl>>,
+    target_tracking_configuration:
+        Option<DynamicBlock<AutoscalingPolicyTargetTrackingConfigurationEl>>,
 }

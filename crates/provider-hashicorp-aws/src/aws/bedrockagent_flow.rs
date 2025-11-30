@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentFlowData {
@@ -66,7 +66,8 @@ impl BedrockagentFlow {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl BedrockagentFlow {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl BedrockagentFlow {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,8 +122,7 @@ impl BedrockagentFlow {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -125,14 +135,17 @@ impl BedrockagentFlow {
     }
 
     #[doc = "Set the field `definition`.\n"]
-    pub fn set_definition(self, v: impl Into<BlockAssignable<BedrockagentFlowDefinitionEl>>) -> Self {
+    pub fn set_definition(
+        self,
+        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().definition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.definition = Some(d);
-            },
+            }
         }
         self
     }
@@ -150,22 +163,34 @@ impl BedrockagentFlow {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_encryption_key_arn` after provisioning.\n"]
     pub fn customer_encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_encryption_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_encryption_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -175,58 +200,88 @@ impl BedrockagentFlow {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> ListRef<BedrockagentFlowDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.definition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentFlowTimeoutsElRef {
-        BedrockagentFlowTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentFlowTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockagentFlow {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentFlow { }
+impl Resource for BedrockagentFlow {}
 
 impl ToListMappable for BedrockagentFlow {
     type O = ListRef<BedrockagentFlowRef>;
@@ -292,10 +347,7 @@ pub struct BedrockagentFlowRef {
 
 impl Ref for BedrockagentFlowRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -315,22 +367,34 @@ impl BedrockagentFlowRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_encryption_key_arn` after provisioning.\n"]
     pub fn customer_encryption_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_encryption_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_encryption_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -340,48 +404,74 @@ impl BedrockagentFlowRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> ListRef<BedrockagentFlowDefinitionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.definition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentFlowTimeoutsElRef {
-        BedrockagentFlowTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentFlowTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -390,7 +480,7 @@ pub struct BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl 
     condition: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl { }
+impl BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl>;
@@ -411,7 +501,9 @@ pub struct BuildBedrockagentFlowDefinitionElConnectionElConfigurationElCondition
 
 impl BuildBedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl {
     pub fn build(self) -> BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl {
-        BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl { condition: self.condition }
+        BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl {
+            condition: self.condition,
+        }
     }
 }
 
@@ -449,7 +541,7 @@ pub struct BedrockagentFlowDefinitionElConnectionElConfigurationElDataEl {
     target_input: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElConnectionElConfigurationElDataEl { }
+impl BedrockagentFlowDefinitionElConnectionElConfigurationElDataEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElConnectionElConfigurationElDataEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElConnectionElConfigurationElDataEl>;
@@ -485,7 +577,10 @@ pub struct BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
         BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
             shared: shared,
             base: base.to_string(),
@@ -500,7 +595,10 @@ impl BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
 
     #[doc = "Get a reference to the value of field `source_output` after provisioning.\n"]
     pub fn source_output(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_output", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_output", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_input` after provisioning.\n"]
@@ -511,7 +609,8 @@ impl BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElConnectionElConfigurationElDynamic {
-    conditional: Option<DynamicBlock<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl>>,
+    conditional:
+        Option<DynamicBlock<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl>>,
     data: Option<DynamicBlock<BedrockagentFlowDefinitionElConnectionElConfigurationElDataEl>>,
 }
 
@@ -528,15 +627,17 @@ impl BedrockagentFlowDefinitionElConnectionElConfigurationEl {
     #[doc = "Set the field `conditional`.\n"]
     pub fn set_conditional(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.conditional = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.conditional = Some(d);
-            },
+            }
         }
         self
     }
@@ -549,10 +650,10 @@ impl BedrockagentFlowDefinitionElConnectionElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.data = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.data = Some(d);
-            },
+            }
         }
         self
     }
@@ -588,7 +689,10 @@ pub struct BedrockagentFlowDefinitionElConnectionElConfigurationElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElConnectionElConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElConnectionElConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElConnectionElConfigurationElRef {
         BedrockagentFlowDefinitionElConnectionElConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -602,12 +706,16 @@ impl BedrockagentFlowDefinitionElConnectionElConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `conditional` after provisioning.\n"]
-    pub fn conditional(&self) -> ListRef<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalElRef> {
+    pub fn conditional(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElConnectionElConfigurationElConditionalElRef> {
         ListRef::new(self.shared().clone(), format!("{}.conditional", self.base))
     }
 
     #[doc = "Get a reference to the value of field `data` after provisioning.\n"]
-    pub fn data(&self) -> ListRef<BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef> {
+    pub fn data(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElConnectionElConfigurationElDataElRef> {
         ListRef::new(self.shared().clone(), format!("{}.data", self.base))
     }
 }
@@ -638,10 +746,10 @@ impl BedrockagentFlowDefinitionElConnectionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -723,8 +831,13 @@ impl BedrockagentFlowDefinitionElConnectionElRef {
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
-    pub fn configuration(&self) -> ListRef<BedrockagentFlowDefinitionElConnectionElConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.base))
+    pub fn configuration(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElConnectionElConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 }
 
@@ -733,7 +846,7 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {
     agent_alias_arn: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl>;
@@ -754,7 +867,9 @@ pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {
     pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {
-        BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl { agent_alias_arn: self.agent_alias_arn }
+        BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl {
+            agent_alias_arn: self.agent_alias_arn,
+        }
     }
 }
 
@@ -764,7 +879,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElAgentElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElAgentElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElAgentElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElAgentElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElAgentElRef {
             shared: shared,
             base: base.to_string(),
@@ -779,14 +897,17 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElAgentElRef {
 
     #[doc = "Get a reference to the value of field `agent_alias_arn` after provisioning.\n"]
     pub fn agent_alias_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.agent_alias_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.agent_alias_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElCollectorEl {}
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElCollectorEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElCollectorEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElCollectorEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElCollectorEl>;
@@ -814,7 +935,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef {
             shared: shared,
             base: base.to_string(),
@@ -844,7 +968,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl {
 }
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl>;
+    type O =
+        BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -904,7 +1029,9 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionElRef 
 
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElNodeElConfigurationElConditionElDynamic {
-    condition: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl>>,
+    condition: Option<
+        DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -918,15 +1045,19 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElConditionEl {
     #[doc = "Set the field `condition`.\n"]
     pub fn set_condition(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -961,7 +1092,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef {
             shared: shared,
             base: base.to_string(),
@@ -975,7 +1109,9 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef {
     }
 
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
-    pub fn condition(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionElRef> {
+    pub fn condition(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElConditionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.condition", self.base))
     }
 }
@@ -986,7 +1122,7 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl {
     language: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl>;
@@ -1022,7 +1158,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1049,7 +1188,7 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef {
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElInputEl {}
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElInputEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElInputEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElInputEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElInputEl>;
@@ -1077,7 +1216,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElInputElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElInputElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElInputElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElInputElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElInputElRef {
             shared: shared,
             base: base.to_string(),
@@ -1094,7 +1236,7 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElInputElRef {
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElIteratorEl {}
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElIteratorEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElIteratorEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElIteratorEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElIteratorEl>;
@@ -1122,7 +1264,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef {
             shared: shared,
             base: base.to_string(),
@@ -1137,16 +1282,20 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef {
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl
+{
     guardrail_identifier: PrimField<String>,
     guardrail_version: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {}
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {
-    type O =
-        BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1157,7 +1306,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElKnowled
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl
+{
     #[doc = ""]
     pub guardrail_identifier: PrimField<String>,
     #[doc = ""]
@@ -1165,7 +1315,10 @@ pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseEl
 }
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationEl {
             guardrail_identifier: self.guardrail_identifier,
             guardrail_version: self.guardrail_version,
@@ -1173,16 +1326,20 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardr
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef {
+impl Ref
+    for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef {
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1197,17 +1354,24 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailCo
 
     #[doc = "Get a reference to the value of field `guardrail_identifier` after provisioning.\n"]
     pub fn guardrail_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_version` after provisioning.\n"]
     pub fn guardrail_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_version", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max_tokens: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1218,7 +1382,9 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInfer
     top_p: Option<PrimField<f64>>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl {
+impl
+    BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl
+{
     #[doc = "Set the field `max_tokens`.\n"]
     pub fn set_max_tokens(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_tokens = Some(v.into());
@@ -1259,7 +1425,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElKnowled
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextEl {
     pub fn build(
@@ -1274,7 +1441,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInfere
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1347,18 +1515,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceCo
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.text = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.text = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl {
-    type O =
-        BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1369,10 +1540,14 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElKnowled
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationEl {
             text: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1380,16 +1555,20 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInfere
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef {
+impl Ref
+    for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef {
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1405,7 +1584,7 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceCo
     #[doc = "Get a reference to the value of field `text` after provisioning.\n"]
     pub fn text(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextElRef> {
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElTextElRef>{
         ListRef::new(self.shared().clone(), format!("{}.text", self.base))
     }
 }
@@ -1459,10 +1638,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.guardrail_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.guardrail_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1482,10 +1661,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inference_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inference_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1529,7 +1708,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
             shared: shared,
             base: base.to_string(),
@@ -1544,7 +1726,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
 
     #[doc = "Get a reference to the value of field `knowledge_base_id` after provisioning.\n"]
     pub fn knowledge_base_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.knowledge_base_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.knowledge_base_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
@@ -1554,21 +1739,34 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef {
 
     #[doc = "Get a reference to the value of field `number_of_results` after provisioning.\n"]
     pub fn number_of_results(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_results", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_results", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_configuration` after provisioning.\n"]
     pub fn guardrail_configuration(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardrail_configuration", self.base))
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElGuardrailConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardrail_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_configuration` after provisioning.\n"]
     pub fn inference_configuration(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inference_configuration", self.base))
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElInferenceConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_configuration", self.base),
+        )
     }
 }
 
@@ -1577,7 +1775,7 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl {
     lambda_arn: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl>;
@@ -1598,7 +1796,9 @@ pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionE
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl {
     pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl {
-        BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl { lambda_arn: self.lambda_arn }
+        BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl {
+            lambda_arn: self.lambda_arn,
+        }
     }
 }
 
@@ -1636,7 +1836,7 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElLexEl {
     locale_id: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElLexEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElLexEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElLexEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElLexEl>;
@@ -1672,7 +1872,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
             shared: shared,
             base: base.to_string(),
@@ -1687,7 +1890,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
 
     #[doc = "Get a reference to the value of field `bot_alias_arn` after provisioning.\n"]
     pub fn bot_alias_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bot_alias_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bot_alias_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `locale_id` after provisioning.\n"]
@@ -1699,7 +1905,7 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElLexElRef {
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElOutputEl {}
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElOutputEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElOutputEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElOutputEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElOutputEl>;
@@ -1727,7 +1933,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElOutputElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElOutputElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElOutputElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElOutputElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElOutputElRef {
             shared: shared,
             base: base.to_string(),
@@ -1747,10 +1956,14 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailCon
     guardrail_version: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl {}
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1769,7 +1982,9 @@ pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardra
 }
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl {
             guardrail_identifier: self.guardrail_identifier,
             guardrail_version: self.guardrail_version,
@@ -1801,17 +2016,24 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigura
 
     #[doc = "Get a reference to the value of field `guardrail_identifier` after provisioning.\n"]
     pub fn guardrail_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_version` after provisioning.\n"]
     pub fn guardrail_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_version", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max_tokens: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1863,7 +2085,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextEl {
     pub fn build(
@@ -1878,7 +2101,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElTextElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1981,7 +2205,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationEl {
     pub fn build(
@@ -1994,7 +2219,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2027,7 +2253,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElInputVariableEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElInputVariableEl
+{
     name: PrimField<String>,
 }
 
@@ -2050,7 +2277,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElInputVariableEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElInputVariableEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
@@ -2065,7 +2293,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElInputVariableElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElInputVariableElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2094,7 +2323,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElCachePointEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElCachePointEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
@@ -2118,7 +2348,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElCachePointEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElCachePointEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2133,7 +2364,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElCachePointElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElCachePointElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2229,7 +2461,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentEl {
     pub fn build(
@@ -2243,7 +2476,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElContentElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2341,7 +2575,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageEl
+{
     #[doc = ""]
     pub role: PrimField<String>,
 }
@@ -2358,7 +2593,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElMessageElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2396,7 +2632,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElCachePointEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElCachePointEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
@@ -2420,7 +2657,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElCachePointEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElCachePointEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2435,7 +2673,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElCachePointElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElCachePointElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2531,7 +2770,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemEl {
     pub fn build(
@@ -2545,7 +2785,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElSystemElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2583,7 +2824,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
@@ -2607,7 +2849,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElCachePointEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2622,7 +2865,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElCachePointElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2651,7 +2895,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     json: Option<PrimField<String>>,
 }
@@ -2679,7 +2924,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaEl {
     pub fn build(
@@ -2691,7 +2937,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElInputSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2788,7 +3035,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
@@ -2806,7 +3054,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElToolSpecElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2942,7 +3191,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolEl {
     pub fn build(
@@ -2956,7 +3206,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2998,7 +3249,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {}
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl
+{}
 
 impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {
 
@@ -3019,7 +3271,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyEl {
     pub fn build(
@@ -3029,7 +3282,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAnyElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3053,7 +3307,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {}
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl
+{}
 
 impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {
 
@@ -3074,7 +3329,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoEl {
     pub fn build(
@@ -3084,7 +3340,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElAutoElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3108,7 +3365,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl
+{
     name: PrimField<String>,
 }
 
@@ -3131,7 +3389,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
@@ -3146,7 +3405,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElToolElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3302,7 +3562,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceEl {
     pub fn build(
@@ -3317,7 +3578,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElToolChoiceElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3461,7 +3723,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationEl {
     pub fn build(
@@ -3475,7 +3738,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElToolConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3678,7 +3942,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatEl {
     pub fn build(
@@ -3694,7 +3959,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElChatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3754,7 +4020,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElCachePointEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElCachePointEl
+{
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
@@ -3778,7 +4045,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElCachePointEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElCachePointEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -3793,7 +4061,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElCachePointElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElCachePointElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3822,7 +4091,8 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElInputVariableEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElInputVariableEl
+{
     name: PrimField<String>,
 }
 
@@ -3845,7 +4115,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElInputVariableEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElInputVariableEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
@@ -3860,7 +4131,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElInputVariableElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElInputVariableElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3983,7 +4255,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextEl
+{
     #[doc = ""]
     pub text: PrimField<String>,
 }
@@ -4001,7 +4274,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElTextElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4141,7 +4415,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationEl {
     pub fn build(
@@ -4155,7 +4430,8 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4253,10 +4529,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inference_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inference_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4276,17 +4552,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.template_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.template_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4297,7 +4577,8 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl
+{
     #[doc = ""]
     pub model_id: PrimField<String>,
     #[doc = ""]
@@ -4305,7 +4586,10 @@ pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceC
 }
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineEl {
             additional_model_request_fields: core::default::Default::default(),
             model_id: self.model_id,
@@ -4317,16 +4601,20 @@ impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigu
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef {
+impl Ref
+    for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef {
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef {
             shared: shared,
             base: base.to_string(),
@@ -4341,7 +4629,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 
     #[doc = "Get a reference to the value of field `additional_model_request_fields` after provisioning.\n"]
     pub fn additional_model_request_fields(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.additional_model_request_fields", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.additional_model_request_fields", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
@@ -4351,7 +4642,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 
     #[doc = "Get a reference to the value of field `template_type` after provisioning.\n"]
     pub fn template_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_configuration` after provisioning.\n"]
@@ -4359,8 +4653,11 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
         &self,
     ) -> ListRef<
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElInferenceConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.inference_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inference_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `template_configuration` after provisioning.\n"]
@@ -4368,21 +4665,28 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
         &self,
     ) -> ListRef<
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElTemplateConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.template_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.template_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl
+{
     prompt_arn: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {}
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {
-    type O =
-        BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4393,29 +4697,37 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl
+{
     #[doc = ""]
     pub prompt_arn: PrimField<String>,
 }
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceEl {
             prompt_arn: self.prompt_arn,
         }
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef {
+impl Ref
+    for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef {
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -4469,10 +4781,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inline = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inline = Some(d);
-            },
+            }
         }
         self
     }
@@ -4492,17 +4804,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4516,7 +4832,9 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElPromptE
 pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl {}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl {
             inline: core::default::Default::default(),
             resource: core::default::Default::default(),
@@ -4550,14 +4868,18 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
     #[doc = "Get a reference to the value of field `inline` after provisioning.\n"]
     pub fn inline(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef> {
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElInlineElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.inline", self.base))
     }
 
     #[doc = "Get a reference to the value of field `resource` after provisioning.\n"]
     pub fn resource(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef> {
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElResourceElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.resource", self.base))
     }
 }
@@ -4565,10 +4887,14 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfiguratio
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElDynamic {
     guardrail_configuration: Option<
-        DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl>,
+        DynamicBlock<
+            BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl,
+        >,
     >,
     source_configuration: Option<
-        DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl>,
+        DynamicBlock<
+            BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl,
+        >,
     >,
 }
 
@@ -4579,7 +4905,8 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptEl {
         Vec<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl>,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_configuration: Option<Vec<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl>>,
+    source_configuration:
+        Option<Vec<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl>>,
     dynamic: BedrockagentFlowDefinitionElNodeElConfigurationElPromptElDynamic,
 }
 
@@ -4587,22 +4914,19 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptEl {
     #[doc = "Set the field `guardrail_configuration`.\n"]
     pub fn set_guardrail_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.guardrail_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.guardrail_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4610,22 +4934,19 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptEl {
     #[doc = "Set the field `source_configuration`.\n"]
     pub fn set_source_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4661,7 +4982,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElPromptElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElPromptElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElPromptElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElPromptElRef {
             shared: shared,
             base: base.to_string(),
@@ -4677,15 +5001,23 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElPromptElRef {
     #[doc = "Get a reference to the value of field `guardrail_configuration` after provisioning.\n"]
     pub fn guardrail_configuration(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.guardrail_configuration", self.base))
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElGuardrailConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.guardrail_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.base))
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElPromptElSourceConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.base),
+        )
     }
 }
 
@@ -4694,10 +5026,14 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceCo
     bucket_name: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El {}
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4708,29 +5044,37 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElRetriev
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El
+{
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El {
             bucket_name: self.bucket_name,
         }
     }
 }
 
-pub struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef {
+pub struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef {
+impl Ref
+    for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef {
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -4751,14 +5095,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigur
 
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElDynamic {
-    s3: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El>>,
+    s3: Option<
+        DynamicBlock<
+            BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El,
+        >,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3: Option<Vec<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El>>,
-    dynamic: BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElDynamic,
+    s3: Option<
+        Vec<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3El>,
+    >,
+    dynamic:
+        BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElDynamic,
 }
 
 impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
@@ -4777,17 +5128,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigur
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4798,10 +5153,13 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElRetriev
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl
+{}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
         BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl {
             s3: core::default::Default::default(),
             dynamic: Default::default(),
@@ -4834,7 +5192,9 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigur
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef> {
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElS3ElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
@@ -4842,7 +5202,9 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigur
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElDynamic {
     service_configuration: Option<
-        DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl>,
+        DynamicBlock<
+            BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl,
+        >,
     >,
 }
 
@@ -4859,22 +5221,19 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalEl {
     #[doc = "Set the field `service_configuration`.\n"]
     pub fn set_service_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.service_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.service_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4909,7 +5268,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef {
             shared: shared,
             base: base.to_string(),
@@ -4925,8 +5287,13 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef {
     #[doc = "Get a reference to the value of field `service_configuration` after provisioning.\n"]
     pub fn service_configuration(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_configuration", self.base))
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElServiceConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_configuration", self.base),
+        )
     }
 }
 
@@ -4935,10 +5302,14 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConf
     bucket_name: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El { }
+impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {}
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4949,13 +5320,16 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElStorage
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El
+{
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {
         BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El {
             bucket_name: self.bucket_name,
         }
@@ -4967,11 +5341,14 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConf
     base: String,
 }
 
-impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef {
+impl Ref
+    for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef {
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef
+    {
         BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -4992,14 +5369,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurat
 
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElDynamic {
-    s3: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El>>,
+    s3: Option<
+        DynamicBlock<
+            BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El,
+        >,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3: Option<Vec<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El>>,
-    dynamic: BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElDynamic,
+    s3: Option<
+        Vec<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3El>,
+    >,
+    dynamic:
+        BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElDynamic,
 }
 
 impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
@@ -5018,17 +5402,21 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurat
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
-    type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl>;
+impl ToListMappable
+    for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5039,10 +5427,13 @@ impl ToListMappable for BedrockagentFlowDefinitionElNodeElConfigurationElStorage
     }
 }
 
-pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {}
+pub struct BuildBedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
+}
 
 impl BuildBedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
-    pub fn build(self) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
         BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl {
             s3: core::default::Default::default(),
             dynamic: Default::default(),
@@ -5073,7 +5464,11 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurat
     }
 
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
-    pub fn s3(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef> {
+    pub fn s3(
+        &self,
+    ) -> ListRef<
+        BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElS3ElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
@@ -5081,14 +5476,18 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurat
 #[derive(Serialize, Default)]
 struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageElDynamic {
     service_configuration: Option<
-        DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl>,
+        DynamicBlock<
+            BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    service_configuration: Option<Vec<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl>>,
+    service_configuration: Option<
+        Vec<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl>,
+    >,
     dynamic: BedrockagentFlowDefinitionElNodeElConfigurationElStorageElDynamic,
 }
 
@@ -5096,22 +5495,19 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageEl {
     #[doc = "Set the field `service_configuration`.\n"]
     pub fn set_service_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.service_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.service_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5146,7 +5542,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef {
             shared: shared,
             base: base.to_string(),
@@ -5162,8 +5561,12 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef {
     #[doc = "Get a reference to the value of field `service_configuration` after provisioning.\n"]
     pub fn service_configuration(
         &self,
-    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_configuration", self.base))
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElServiceConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_configuration", self.base),
+        )
     }
 }
 
@@ -5172,11 +5575,14 @@ struct BedrockagentFlowDefinitionElNodeElConfigurationElDynamic {
     agent: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElAgentEl>>,
     collector: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElCollectorEl>>,
     condition: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElConditionEl>>,
-    inline_code: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl>>,
+    inline_code:
+        Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeEl>>,
     input: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElInputEl>>,
     iterator: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElIteratorEl>>,
-    knowledge_base: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseEl>>,
-    lambda_function: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl>>,
+    knowledge_base:
+        Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseEl>>,
+    lambda_function:
+        Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionEl>>,
     lex: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElLexEl>>,
     output: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElOutputEl>>,
     prompt: Option<DynamicBlock<BedrockagentFlowDefinitionElNodeElConfigurationElPromptEl>>,
@@ -5224,10 +5630,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.agent = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.agent = Some(d);
-            },
+            }
         }
         self
     }
@@ -5240,10 +5646,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.collector = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.collector = Some(d);
-            },
+            }
         }
         self
     }
@@ -5256,10 +5662,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -5272,10 +5678,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inline_code = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inline_code = Some(d);
-            },
+            }
         }
         self
     }
@@ -5288,10 +5694,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input = Some(d);
-            },
+            }
         }
         self
     }
@@ -5304,10 +5710,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.iterator = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.iterator = Some(d);
-            },
+            }
         }
         self
     }
@@ -5320,10 +5726,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.knowledge_base = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.knowledge_base = Some(d);
-            },
+            }
         }
         self
     }
@@ -5336,10 +5742,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function = Some(d);
-            },
+            }
         }
         self
     }
@@ -5352,10 +5758,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lex = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lex = Some(d);
-            },
+            }
         }
         self
     }
@@ -5368,10 +5774,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.output = Some(d);
-            },
+            }
         }
         self
     }
@@ -5384,10 +5790,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prompt = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prompt = Some(d);
-            },
+            }
         }
         self
     }
@@ -5400,10 +5806,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.retrieval = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.retrieval = Some(d);
-            },
+            }
         }
         self
     }
@@ -5416,10 +5822,10 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.storage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.storage = Some(d);
-            },
+            }
         }
         self
     }
@@ -5466,7 +5872,10 @@ pub struct BedrockagentFlowDefinitionElNodeElConfigurationElRef {
 }
 
 impl Ref for BedrockagentFlowDefinitionElNodeElConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentFlowDefinitionElNodeElConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentFlowDefinitionElNodeElConfigurationElRef {
         BedrockagentFlowDefinitionElNodeElConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -5485,17 +5894,23 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `collector` after provisioning.\n"]
-    pub fn collector(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef> {
+    pub fn collector(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElCollectorElRef> {
         ListRef::new(self.shared().clone(), format!("{}.collector", self.base))
     }
 
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
-    pub fn condition(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef> {
+    pub fn condition(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElConditionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.condition", self.base))
     }
 
     #[doc = "Get a reference to the value of field `inline_code` after provisioning.\n"]
-    pub fn inline_code(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef> {
+    pub fn inline_code(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElInlineCodeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.inline_code", self.base))
     }
 
@@ -5505,18 +5920,30 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `iterator` after provisioning.\n"]
-    pub fn iterator(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef> {
+    pub fn iterator(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElIteratorElRef> {
         ListRef::new(self.shared().clone(), format!("{}.iterator", self.base))
     }
 
     #[doc = "Get a reference to the value of field `knowledge_base` after provisioning.\n"]
-    pub fn knowledge_base(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.knowledge_base", self.base))
+    pub fn knowledge_base(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElKnowledgeBaseElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.knowledge_base", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_function` after provisioning.\n"]
-    pub fn lambda_function(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_function", self.base))
+    pub fn lambda_function(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElLambdaFunctionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_function", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lex` after provisioning.\n"]
@@ -5535,12 +5962,16 @@ impl BedrockagentFlowDefinitionElNodeElConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `retrieval` after provisioning.\n"]
-    pub fn retrieval(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef> {
+    pub fn retrieval(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElRetrievalElRef> {
         ListRef::new(self.shared().clone(), format!("{}.retrieval", self.base))
     }
 
     #[doc = "Get a reference to the value of field `storage` after provisioning.\n"]
-    pub fn storage(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef> {
+    pub fn storage(
+        &self,
+    ) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElStorageElRef> {
         ListRef::new(self.shared().clone(), format!("{}.storage", self.base))
     }
 }
@@ -5642,7 +6073,7 @@ pub struct BedrockagentFlowDefinitionElNodeElOutputEl {
     type_: PrimField<String>,
 }
 
-impl BedrockagentFlowDefinitionElNodeElOutputEl { }
+impl BedrockagentFlowDefinitionElNodeElOutputEl {}
 
 impl ToListMappable for BedrockagentFlowDefinitionElNodeElOutputEl {
     type O = BlockAssignable<BedrockagentFlowDefinitionElNodeElOutputEl>;
@@ -5732,36 +6163,42 @@ impl BedrockagentFlowDefinitionElNodeEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `input`.\n"]
-    pub fn set_input(mut self, v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeElInputEl>>) -> Self {
+    pub fn set_input(
+        mut self,
+        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeElInputEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `output`.\n"]
-    pub fn set_output(mut self, v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeElOutputEl>>) -> Self {
+    pub fn set_output(
+        mut self,
+        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeElOutputEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.output = Some(d);
-            },
+            }
         }
         self
     }
@@ -5830,7 +6267,10 @@ impl BedrockagentFlowDefinitionElNodeElRef {
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<BedrockagentFlowDefinitionElNodeElConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
@@ -5861,27 +6301,33 @@ pub struct BedrockagentFlowDefinitionEl {
 
 impl BedrockagentFlowDefinitionEl {
     #[doc = "Set the field `connection`.\n"]
-    pub fn set_connection(mut self, v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElConnectionEl>>) -> Self {
+    pub fn set_connection(
+        mut self,
+        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElConnectionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.connection = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.connection = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `node`.\n"]
-    pub fn set_node(mut self, v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeEl>>) -> Self {
+    pub fn set_node(
+        mut self,
+        v: impl Into<BlockAssignable<BedrockagentFlowDefinitionElNodeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.node = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.node = Some(d);
-            },
+            }
         }
         self
     }
@@ -5952,22 +6398,19 @@ pub struct BedrockagentFlowTimeoutsEl {
 }
 
 impl BedrockagentFlowTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -6017,20 +6460,17 @@ impl BedrockagentFlowTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

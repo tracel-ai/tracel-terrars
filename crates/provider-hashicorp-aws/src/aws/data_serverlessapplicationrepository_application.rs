@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataServerlessapplicationrepositoryApplicationData {
@@ -28,7 +28,9 @@ struct DataServerlessapplicationrepositoryApplication_ {
 }
 
 #[derive(Clone)]
-pub struct DataServerlessapplicationrepositoryApplication(Rc<DataServerlessapplicationrepositoryApplication_>);
+pub struct DataServerlessapplicationrepositoryApplication(
+    Rc<DataServerlessapplicationrepositoryApplication_>,
+);
 
 impl DataServerlessapplicationrepositoryApplication {
     fn shared(&self) -> &StackShared {
@@ -51,8 +53,7 @@ impl DataServerlessapplicationrepositoryApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,7 +67,10 @@ impl DataServerlessapplicationrepositoryApplication {
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -76,43 +80,64 @@ impl DataServerlessapplicationrepositoryApplication {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `required_capabilities` after provisioning.\n"]
     pub fn required_capabilities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.required_capabilities", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.required_capabilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `semantic_version` after provisioning.\n"]
     pub fn semantic_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.semantic_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.semantic_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_code_url` after provisioning.\n"]
     pub fn source_code_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_code_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_code_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `template_url` after provisioning.\n"]
     pub fn template_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_url", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataServerlessapplicationrepositoryApplication {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataServerlessapplicationrepositoryApplication { }
+impl Datasource for DataServerlessapplicationrepositoryApplication {}
 
 impl ToListMappable for DataServerlessapplicationrepositoryApplication {
     type O = ListRef<DataServerlessapplicationrepositoryApplicationRef>;
@@ -145,8 +170,8 @@ pub struct BuildDataServerlessapplicationrepositoryApplication {
 
 impl BuildDataServerlessapplicationrepositoryApplication {
     pub fn build(self, stack: &mut Stack) -> DataServerlessapplicationrepositoryApplication {
-        let out =
-            DataServerlessapplicationrepositoryApplication(Rc::new(DataServerlessapplicationrepositoryApplication_ {
+        let out = DataServerlessapplicationrepositoryApplication(Rc::new(
+            DataServerlessapplicationrepositoryApplication_ {
                 shared: stack.shared.clone(),
                 tf_id: self.tf_id,
                 data: RefCell::new(DataServerlessapplicationrepositoryApplicationData {
@@ -158,7 +183,8 @@ impl BuildDataServerlessapplicationrepositoryApplication {
                     region: core::default::Default::default(),
                     semantic_version: core::default::Default::default(),
                 }),
-            }));
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -171,10 +197,7 @@ pub struct DataServerlessapplicationrepositoryApplicationRef {
 
 impl Ref for DataServerlessapplicationrepositoryApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -189,7 +212,10 @@ impl DataServerlessapplicationrepositoryApplicationRef {
 
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -199,32 +225,49 @@ impl DataServerlessapplicationrepositoryApplicationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `required_capabilities` after provisioning.\n"]
     pub fn required_capabilities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.required_capabilities", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.required_capabilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `semantic_version` after provisioning.\n"]
     pub fn semantic_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.semantic_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.semantic_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_code_url` after provisioning.\n"]
     pub fn source_code_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_code_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_code_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `template_url` after provisioning.\n"]
     pub fn template_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_url", self.extract_ref()),
+        )
     }
 }

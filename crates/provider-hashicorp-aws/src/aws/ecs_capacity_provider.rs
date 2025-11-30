@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EcsCapacityProviderData {
@@ -67,7 +67,8 @@ impl EcsCapacityProvider {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl EcsCapacityProvider {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl EcsCapacityProvider {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl EcsCapacityProvider {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -139,10 +149,10 @@ impl EcsCapacityProvider {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_scaling_group_provider = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_scaling_group_provider = Some(d);
-            },
+            }
         }
         self
     }
@@ -155,10 +165,10 @@ impl EcsCapacityProvider {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().managed_instances_provider = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.managed_instances_provider = Some(d);
-            },
+            }
         }
         self
     }
@@ -170,7 +180,10 @@ impl EcsCapacityProvider {
 
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -180,43 +193,68 @@ impl EcsCapacityProvider {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_group_provider` after provisioning.\n"]
-    pub fn auto_scaling_group_provider(&self) -> ListRef<EcsCapacityProviderAutoScalingGroupProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_scaling_group_provider", self.extract_ref()))
+    pub fn auto_scaling_group_provider(
+        &self,
+    ) -> ListRef<EcsCapacityProviderAutoScalingGroupProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_group_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_instances_provider` after provisioning.\n"]
-    pub fn managed_instances_provider(&self) -> ListRef<EcsCapacityProviderManagedInstancesProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_instances_provider", self.extract_ref()))
+    pub fn managed_instances_provider(
+        &self,
+    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_instances_provider", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EcsCapacityProvider {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EcsCapacityProvider { }
+impl Resource for EcsCapacityProvider {}
 
 impl ToListMappable for EcsCapacityProvider {
     type O = ListRef<EcsCapacityProviderRef>;
@@ -280,10 +318,7 @@ pub struct EcsCapacityProviderRef {
 
 impl Ref for EcsCapacityProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -303,7 +338,10 @@ impl EcsCapacityProviderRef {
 
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -313,33 +351,54 @@ impl EcsCapacityProviderRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_scaling_group_provider` after provisioning.\n"]
-    pub fn auto_scaling_group_provider(&self) -> ListRef<EcsCapacityProviderAutoScalingGroupProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_scaling_group_provider", self.extract_ref()))
+    pub fn auto_scaling_group_provider(
+        &self,
+    ) -> ListRef<EcsCapacityProviderAutoScalingGroupProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_group_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_instances_provider` after provisioning.\n"]
-    pub fn managed_instances_provider(&self) -> ListRef<EcsCapacityProviderManagedInstancesProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_instances_provider", self.extract_ref()))
+    pub fn managed_instances_provider(
+        &self,
+    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_instances_provider", self.extract_ref()),
+        )
     }
 }
 
@@ -421,7 +480,10 @@ pub struct EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
 }
 
 impl Ref for EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
-    fn new(shared: StackShared, base: String) -> EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
         EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
             shared: shared,
             base: base.to_string(),
@@ -436,17 +498,26 @@ impl EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
 
     #[doc = "Get a reference to the value of field `instance_warmup_period` after provisioning.\n"]
     pub fn instance_warmup_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_warmup_period", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_warmup_period", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_scaling_step_size` after provisioning.\n"]
     pub fn maximum_scaling_step_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_scaling_step_size", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_scaling_step_size", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_scaling_step_size` after provisioning.\n"]
     pub fn minimum_scaling_step_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_scaling_step_size", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_scaling_step_size", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -456,13 +527,17 @@ impl EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef {
 
     #[doc = "Get a reference to the value of field `target_capacity` after provisioning.\n"]
     pub fn target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_capacity", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EcsCapacityProviderAutoScalingGroupProviderElDynamic {
-    managed_scaling: Option<DynamicBlock<EcsCapacityProviderAutoScalingGroupProviderElManagedScalingEl>>,
+    managed_scaling:
+        Option<DynamicBlock<EcsCapacityProviderAutoScalingGroupProviderElManagedScalingEl>>,
 }
 
 #[derive(Serialize)]
@@ -498,10 +573,10 @@ impl EcsCapacityProviderAutoScalingGroupProviderEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.managed_scaling = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.managed_scaling = Some(d);
-            },
+            }
         }
         self
     }
@@ -557,27 +632,42 @@ impl EcsCapacityProviderAutoScalingGroupProviderElRef {
 
     #[doc = "Get a reference to the value of field `auto_scaling_group_arn` after provisioning.\n"]
     pub fn auto_scaling_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_scaling_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_scaling_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_draining` after provisioning.\n"]
     pub fn managed_draining(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.managed_draining", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.managed_draining", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_termination_protection` after provisioning.\n"]
     pub fn managed_termination_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.managed_termination_protection", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.managed_termination_protection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `managed_scaling` after provisioning.\n"]
-    pub fn managed_scaling(&self) -> ListRef<EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_scaling", self.base))
+    pub fn managed_scaling(
+        &self,
+    ) -> ListRef<EcsCapacityProviderAutoScalingGroupProviderElManagedScalingElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_scaling", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -613,7 +703,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountEl {
     pub fn build(
@@ -626,7 +717,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -660,7 +752,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -696,7 +789,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
     pub fn build(
@@ -709,7 +803,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -743,7 +838,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -779,7 +875,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
     pub fn build(
@@ -792,7 +889,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -826,7 +924,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -862,7 +961,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuEl {
     pub fn build(
@@ -875,7 +975,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -909,7 +1010,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     min: PrimField<f64>,
@@ -938,7 +1040,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibEl {
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibEl
+{
     #[doc = ""]
     pub min: PrimField<f64>,
 }
@@ -954,7 +1057,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -988,7 +1092,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1024,7 +1129,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsEl {
     pub fn build(
@@ -1037,7 +1143,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1071,7 +1178,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1107,7 +1215,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountEl {
     pub fn build(
@@ -1120,7 +1229,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1154,7 +1264,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1190,7 +1301,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbEl
+{}
 
 impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbEl {
     pub fn build(
@@ -1203,7 +1315,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1237,7 +1350,8 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     min: PrimField<f64>,
@@ -1266,7 +1380,8 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountEl {
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountEl
+{
     #[doc = ""]
     pub min: PrimField<f64>,
 }
@@ -1282,7 +1397,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1451,7 +1567,10 @@ pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl
 
 impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl {
     #[doc = "Set the field `accelerator_manufacturers`.\n"]
-    pub fn set_accelerator_manufacturers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_accelerator_manufacturers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.accelerator_manufacturers = Some(v.into());
         self
     }
@@ -1493,7 +1612,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
     }
 
     #[doc = "Set the field `excluded_instance_types`.\n"]
-    pub fn set_excluded_instance_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_excluded_instance_types(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.excluded_instance_types = Some(v.into());
         self
     }
@@ -1517,13 +1639,19 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
     }
 
     #[doc = "Set the field `max_spot_price_as_percentage_of_optimal_on_demand_price`.\n"]
-    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.max_spot_price_as_percentage_of_optimal_on_demand_price = Some(v.into());
         self
     }
 
     #[doc = "Set the field `on_demand_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_on_demand_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_on_demand_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.on_demand_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -1535,7 +1663,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
     }
 
     #[doc = "Set the field `spot_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_spot_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_spot_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.spot_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -1555,10 +1686,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -1578,10 +1709,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_total_memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_total_memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -1601,10 +1732,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.baseline_ebs_bandwidth_mbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.baseline_ebs_bandwidth_mbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -1624,10 +1755,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_gib_per_vcpu = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_gib_per_vcpu = Some(d);
-            },
+            }
         }
         self
     }
@@ -1647,10 +1778,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -1670,10 +1801,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_bandwidth_gbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_bandwidth_gbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -1693,10 +1824,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_interface_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_interface_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -1716,10 +1847,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.total_local_storage_gb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.total_local_storage_gb = Some(d);
-            },
+            }
         }
         self
     }
@@ -1739,18 +1870,21 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vcpu_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vcpu_count = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl {
-    type O =
-        BlockAssignable<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl>;
+impl ToListMappable
+    for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl
+{
+    type O = BlockAssignable<
+        EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1761,12 +1895,16 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl {}
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl
+{}
 
-impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl {
+impl
+    BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl
+{
     pub fn build(
         self,
-    ) -> EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl {
+    ) -> EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl
+    {
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsEl {
             accelerator_manufacturers: core::default::Default::default(),
             accelerator_names: core::default::Default::default(),
@@ -1797,7 +1935,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElI
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1814,29 +1953,43 @@ impl Ref for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplate
     }
 }
 
-impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElRef {
+impl
+    EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `accelerator_manufacturers` after provisioning.\n"]
     pub fn accelerator_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_names` after provisioning.\n"]
     pub fn accelerator_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_types` after provisioning.\n"]
     pub fn accelerator_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_instance_types` after provisioning.\n"]
     pub fn allowed_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bare_metal` after provisioning.\n"]
@@ -1846,60 +1999,88 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
 
     #[doc = "Get a reference to the value of field `burstable_performance` after provisioning.\n"]
     pub fn burstable_performance(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.burstable_performance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.burstable_performance", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_manufacturers` after provisioning.\n"]
     pub fn cpu_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cpu_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excluded_instance_types` after provisioning.\n"]
     pub fn excluded_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_generations` after provisioning.\n"]
     pub fn instance_generations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_generations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_generations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage` after provisioning.\n"]
     pub fn local_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_storage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage_types` after provisioning.\n"]
     pub fn local_storage_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_storage_types", self.base))
-    }
-
-    #[doc =
-        "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
-    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(
+        SetRef::new(
             self.shared().clone(),
-            format!("{}.max_spot_price_as_percentage_of_optimal_on_demand_price", self.base),
+            format!("{}.local_storage_types", self.base),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
+    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.max_spot_price_as_percentage_of_optimal_on_demand_price",
+                self.base
+            ),
+        )
+    }
+
+    #[doc = "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn on_demand_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.on_demand_max_price_percentage_over_lowest_price", self.base),
+            format!(
+                "{}.on_demand_max_price_percentage_over_lowest_price",
+                self.base
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `require_hibernate_support` after provisioning.\n"]
     pub fn require_hibernate_support(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_hibernate_support", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_hibernate_support", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn spot_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_max_price_percentage_over_lowest_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_max_price_percentage_over_lowest_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_count` after provisioning.\n"]
@@ -1907,8 +2088,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorCountElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_count", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_total_memory_mib` after provisioning.\n"]
@@ -1916,8 +2100,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElAcceleratorTotalMemoryMibElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_total_memory_mib", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_total_memory_mib", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `baseline_ebs_bandwidth_mbps` after provisioning.\n"]
@@ -1925,8 +2112,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_ebs_bandwidth_mbps", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_ebs_bandwidth_mbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_gib_per_vcpu` after provisioning.\n"]
@@ -1934,8 +2124,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryGibPerVcpuElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.memory_gib_per_vcpu", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_gib_per_vcpu", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_mib` after provisioning.\n"]
@@ -1943,7 +2136,7 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElMemoryMibElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.memory_mib", self.base))
     }
 
@@ -1952,8 +2145,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkBandwidthGbpsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.network_bandwidth_gbps", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_bandwidth_gbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_count` after provisioning.\n"]
@@ -1961,8 +2157,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElNetworkInterfaceCountElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface_count", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `total_local_storage_gb` after provisioning.\n"]
@@ -1970,8 +2169,11 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElTotalLocalStorageGbElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.total_local_storage_gb", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.total_local_storage_gb", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vcpu_count` after provisioning.\n"]
@@ -1979,13 +2181,14 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstan
         &self,
     ) -> ListRef<
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElVcpuCountElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.vcpu_count", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     security_groups: Option<SetField<PrimField<String>>>,
     subnets: SetField<PrimField<String>>,
@@ -1999,9 +2202,12 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetwor
     }
 }
 
-impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl {
-    type O =
-        BlockAssignable<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl>;
+impl ToListMappable
+    for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl
+{
+    type O = BlockAssignable<
+        EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2012,15 +2218,19 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl {
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl
+{
     #[doc = ""]
     pub subnets: SetField<PrimField<String>>,
 }
 
-impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl {
+impl
+    BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl
+{
     pub fn build(
         self,
-    ) -> EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl {
+    ) -> EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl
+    {
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationEl {
             security_groups: core::default::Default::default(),
             subnets: self.subnets,
@@ -2028,7 +2238,8 @@ impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElN
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2045,14 +2256,19 @@ impl Ref for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplate
     }
 }
 
-impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationElRef {
+impl
+    EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -2062,15 +2278,19 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetwor
 }
 
 #[derive(Serialize)]
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl
+{
     storage_size_gib: PrimField<f64>,
 }
 
-impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl { }
+impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {}
 
-impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {
-    type O =
-        BlockAssignable<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl>;
+impl ToListMappable
+    for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl
+{
+    type O = BlockAssignable<
+        EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2081,22 +2301,27 @@ impl ToListMappable for EcsCapacityProviderManagedInstancesProviderElInstanceLau
     }
 }
 
-pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {
+pub struct BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl
+{
     #[doc = ""]
     pub storage_size_gib: PrimField<f64>,
 }
 
-impl BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {
+impl
+    BuildEcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl
+{
     pub fn build(
         self,
-    ) -> EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {
+    ) -> EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl
+    {
         EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationEl {
             storage_size_gib: self.storage_size_gib,
         }
     }
 }
 
-pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationElRef {
+pub struct EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2113,14 +2338,19 @@ impl Ref for EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplate
     }
 }
 
-impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationElRef {
+impl
+    EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `storage_size_gib` after provisioning.\n"]
     pub fn storage_size_gib(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_size_gib", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_size_gib", self.base),
+        )
     }
 }
 
@@ -2179,10 +2409,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_requirements = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_requirements = Some(d);
-            },
+            }
         }
         self
     }
@@ -2202,10 +2432,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2225,10 +2455,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.storage_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.storage_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2288,7 +2518,10 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElRef {
 
     #[doc = "Get a reference to the value of field `ec2_instance_profile_arn` after provisioning.\n"]
     pub fn ec2_instance_profile_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ec2_instance_profile_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ec2_instance_profile_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring` after provisioning.\n"]
@@ -2299,30 +2532,38 @@ impl EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElRef {
     #[doc = "Get a reference to the value of field `instance_requirements` after provisioning.\n"]
     pub fn instance_requirements(
         &self,
-    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_requirements", self.base))
+    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElInstanceRequirementsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_requirements", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
-    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.base))
+    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElNetworkConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_configuration` after provisioning.\n"]
     pub fn storage_configuration(
         &self,
-    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_configuration", self.base))
+    ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElStorageConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EcsCapacityProviderManagedInstancesProviderElDynamic {
-    instance_launch_template: Option<
-        DynamicBlock<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl>,
-    >,
+    instance_launch_template:
+        Option<DynamicBlock<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl>>,
 }
 
 #[derive(Serialize)]
@@ -2331,7 +2572,8 @@ pub struct EcsCapacityProviderManagedInstancesProviderEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     propagate_tags: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    instance_launch_template: Option<Vec<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl>>,
+    instance_launch_template:
+        Option<Vec<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl>>,
     dynamic: EcsCapacityProviderManagedInstancesProviderElDynamic,
 }
 
@@ -2345,15 +2587,17 @@ impl EcsCapacityProviderManagedInstancesProviderEl {
     #[doc = "Set the field `instance_launch_template`.\n"]
     pub fn set_instance_launch_template(
         mut self,
-        v: impl Into<BlockAssignable<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl>>,
+        v: impl Into<
+            BlockAssignable<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_launch_template = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_launch_template = Some(d);
-            },
+            }
         }
         self
     }
@@ -2408,24 +2652,34 @@ impl EcsCapacityProviderManagedInstancesProviderElRef {
 
     #[doc = "Get a reference to the value of field `infrastructure_role_arn` after provisioning.\n"]
     pub fn infrastructure_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.infrastructure_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.infrastructure_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_launch_template` after provisioning.\n"]
     pub fn instance_launch_template(
         &self,
     ) -> ListRef<EcsCapacityProviderManagedInstancesProviderElInstanceLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_launch_template", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_launch_template", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EcsCapacityProviderDynamic {
-    auto_scaling_group_provider: Option<DynamicBlock<EcsCapacityProviderAutoScalingGroupProviderEl>>,
+    auto_scaling_group_provider:
+        Option<DynamicBlock<EcsCapacityProviderAutoScalingGroupProviderEl>>,
     managed_instances_provider: Option<DynamicBlock<EcsCapacityProviderManagedInstancesProviderEl>>,
 }

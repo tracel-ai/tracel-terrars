@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVpcPeeringConnectionData {
@@ -116,14 +116,17 @@ impl DataVpcPeeringConnection {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataVpcPeeringConnectionFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataVpcPeeringConnectionFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -136,17 +139,26 @@ impl DataVpcPeeringConnection {
 
     #[doc = "Get a reference to the value of field `accepter` after provisioning.\n"]
     pub fn accepter(&self) -> RecRef<PrimExpr<bool>> {
-        RecRef::new(self.shared().clone(), format!("{}.accepter", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.accepter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_block` after provisioning.\n"]
     pub fn cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_block_set` after provisioning.\n"]
     pub fn cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionCidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_block_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -156,87 +168,138 @@ impl DataVpcPeeringConnection {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_block_set` after provisioning.\n"]
     pub fn ipv6_cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionIpv6CidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv6_cidr_block_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_cidr_block` after provisioning.\n"]
     pub fn peer_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_cidr_block_set` after provisioning.\n"]
     pub fn peer_cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionPeerCidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.peer_cidr_block_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.peer_cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_ipv6_cidr_block_set` after provisioning.\n"]
-    pub fn peer_ipv6_cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionPeerIpv6CidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.peer_ipv6_cidr_block_set", self.extract_ref()))
+    pub fn peer_ipv6_cidr_block_set(
+        &self,
+    ) -> ListRef<DataVpcPeeringConnectionPeerIpv6CidrBlockSetElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.peer_ipv6_cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_owner_id` after provisioning.\n"]
     pub fn peer_owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_region` after provisioning.\n"]
     pub fn peer_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_vpc_id` after provisioning.\n"]
     pub fn peer_vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requester` after provisioning.\n"]
     pub fn requester(&self) -> RecRef<PrimExpr<bool>> {
-        RecRef::new(self.shared().clone(), format!("{}.requester", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.requester", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requester_region` after provisioning.\n"]
     pub fn requester_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.requester_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.requester_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataVpcPeeringConnectionTimeoutsElRef {
-        DataVpcPeeringConnectionTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataVpcPeeringConnectionTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataVpcPeeringConnection {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVpcPeeringConnection { }
+impl Datasource for DataVpcPeeringConnection {}
 
 impl ToListMappable for DataVpcPeeringConnection {
     type O = ListRef<DataVpcPeeringConnectionRef>;
@@ -300,10 +363,7 @@ pub struct DataVpcPeeringConnectionRef {
 
 impl Ref for DataVpcPeeringConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -318,17 +378,26 @@ impl DataVpcPeeringConnectionRef {
 
     #[doc = "Get a reference to the value of field `accepter` after provisioning.\n"]
     pub fn accepter(&self) -> RecRef<PrimExpr<bool>> {
-        RecRef::new(self.shared().clone(), format!("{}.accepter", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.accepter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_block` after provisioning.\n"]
     pub fn cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cidr_block_set` after provisioning.\n"]
     pub fn cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionCidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_block_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -338,77 +407,124 @@ impl DataVpcPeeringConnectionRef {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_block_set` after provisioning.\n"]
     pub fn ipv6_cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionIpv6CidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv6_cidr_block_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_cidr_block` after provisioning.\n"]
     pub fn peer_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_cidr_block_set` after provisioning.\n"]
     pub fn peer_cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionPeerCidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.peer_cidr_block_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.peer_cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_ipv6_cidr_block_set` after provisioning.\n"]
-    pub fn peer_ipv6_cidr_block_set(&self) -> ListRef<DataVpcPeeringConnectionPeerIpv6CidrBlockSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.peer_ipv6_cidr_block_set", self.extract_ref()))
+    pub fn peer_ipv6_cidr_block_set(
+        &self,
+    ) -> ListRef<DataVpcPeeringConnectionPeerIpv6CidrBlockSetElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.peer_ipv6_cidr_block_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_owner_id` after provisioning.\n"]
     pub fn peer_owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_region` after provisioning.\n"]
     pub fn peer_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_vpc_id` after provisioning.\n"]
     pub fn peer_vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requester` after provisioning.\n"]
     pub fn requester(&self) -> RecRef<PrimExpr<bool>> {
-        RecRef::new(self.shared().clone(), format!("{}.requester", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.requester", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requester_region` after provisioning.\n"]
     pub fn requester_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.requester_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.requester_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataVpcPeeringConnectionTimeoutsElRef {
-        DataVpcPeeringConnectionTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataVpcPeeringConnectionTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -442,7 +558,9 @@ pub struct BuildDataVpcPeeringConnectionCidrBlockSetEl {}
 
 impl BuildDataVpcPeeringConnectionCidrBlockSetEl {
     pub fn build(self) -> DataVpcPeeringConnectionCidrBlockSetEl {
-        DataVpcPeeringConnectionCidrBlockSetEl { cidr_block: core::default::Default::default() }
+        DataVpcPeeringConnectionCidrBlockSetEl {
+            cidr_block: core::default::Default::default(),
+        }
     }
 }
 
@@ -501,7 +619,9 @@ pub struct BuildDataVpcPeeringConnectionIpv6CidrBlockSetEl {}
 
 impl BuildDataVpcPeeringConnectionIpv6CidrBlockSetEl {
     pub fn build(self) -> DataVpcPeeringConnectionIpv6CidrBlockSetEl {
-        DataVpcPeeringConnectionIpv6CidrBlockSetEl { ipv6_cidr_block: core::default::Default::default() }
+        DataVpcPeeringConnectionIpv6CidrBlockSetEl {
+            ipv6_cidr_block: core::default::Default::default(),
+        }
     }
 }
 
@@ -526,7 +646,10 @@ impl DataVpcPeeringConnectionIpv6CidrBlockSetElRef {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_block` after provisioning.\n"]
     pub fn ipv6_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_cidr_block", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_block", self.base),
+        )
     }
 }
 
@@ -560,7 +683,9 @@ pub struct BuildDataVpcPeeringConnectionPeerCidrBlockSetEl {}
 
 impl BuildDataVpcPeeringConnectionPeerCidrBlockSetEl {
     pub fn build(self) -> DataVpcPeeringConnectionPeerCidrBlockSetEl {
-        DataVpcPeeringConnectionPeerCidrBlockSetEl { cidr_block: core::default::Default::default() }
+        DataVpcPeeringConnectionPeerCidrBlockSetEl {
+            cidr_block: core::default::Default::default(),
+        }
     }
 }
 
@@ -619,7 +744,9 @@ pub struct BuildDataVpcPeeringConnectionPeerIpv6CidrBlockSetEl {}
 
 impl BuildDataVpcPeeringConnectionPeerIpv6CidrBlockSetEl {
     pub fn build(self) -> DataVpcPeeringConnectionPeerIpv6CidrBlockSetEl {
-        DataVpcPeeringConnectionPeerIpv6CidrBlockSetEl { ipv6_cidr_block: core::default::Default::default() }
+        DataVpcPeeringConnectionPeerIpv6CidrBlockSetEl {
+            ipv6_cidr_block: core::default::Default::default(),
+        }
     }
 }
 
@@ -644,7 +771,10 @@ impl DataVpcPeeringConnectionPeerIpv6CidrBlockSetElRef {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_block` after provisioning.\n"]
     pub fn ipv6_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_cidr_block", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_block", self.base),
+        )
     }
 }
 
@@ -654,7 +784,7 @@ pub struct DataVpcPeeringConnectionFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataVpcPeeringConnectionFilterEl { }
+impl DataVpcPeeringConnectionFilterEl {}
 
 impl ToListMappable for DataVpcPeeringConnectionFilterEl {
     type O = BlockAssignable<DataVpcPeeringConnectionFilterEl>;
@@ -744,7 +874,9 @@ pub struct BuildDataVpcPeeringConnectionTimeoutsEl {}
 
 impl BuildDataVpcPeeringConnectionTimeoutsEl {
     pub fn build(self) -> DataVpcPeeringConnectionTimeoutsEl {
-        DataVpcPeeringConnectionTimeoutsEl { read: core::default::Default::default() }
+        DataVpcPeeringConnectionTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentcoreGatewayData {
@@ -72,7 +72,8 @@ impl BedrockagentcoreGateway {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -85,7 +86,7 @@ impl BedrockagentcoreGateway {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -96,12 +97,22 @@ impl BedrockagentcoreGateway {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -123,8 +134,7 @@ impl BedrockagentcoreGateway {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -144,10 +154,10 @@ impl BedrockagentcoreGateway {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().authorizer_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.authorizer_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -160,10 +170,10 @@ impl BedrockagentcoreGateway {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().protocol_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.protocol_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -176,98 +186,158 @@ impl BedrockagentcoreGateway {
 
     #[doc = "Get a reference to the value of field `authorizer_type` after provisioning.\n"]
     pub fn authorizer_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exception_level` after provisioning.\n"]
     pub fn exception_level(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exception_level", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exception_level", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
     pub fn gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_url` after provisioning.\n"]
     pub fn gateway_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol_type` after provisioning.\n"]
     pub fn protocol_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workload_identity_details` after provisioning.\n"]
-    pub fn workload_identity_details(&self) -> ListRef<BedrockagentcoreGatewayWorkloadIdentityDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.workload_identity_details", self.extract_ref()))
+    pub fn workload_identity_details(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayWorkloadIdentityDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.workload_identity_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_configuration` after provisioning.\n"]
-    pub fn authorizer_configuration(&self) -> ListRef<BedrockagentcoreGatewayAuthorizerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorizer_configuration", self.extract_ref()))
+    pub fn authorizer_configuration(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayAuthorizerConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorizer_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol_configuration` after provisioning.\n"]
-    pub fn protocol_configuration(&self) -> ListRef<BedrockagentcoreGatewayProtocolConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.protocol_configuration", self.extract_ref()))
+    pub fn protocol_configuration(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayProtocolConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.protocol_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreGatewayTimeoutsElRef {
-        BedrockagentcoreGatewayTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentcoreGatewayTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockagentcoreGateway {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentcoreGateway { }
+impl Resource for BedrockagentcoreGateway {}
 
 impl ToListMappable for BedrockagentcoreGateway {
     type O = ListRef<BedrockagentcoreGatewayRef>;
@@ -341,10 +411,7 @@ pub struct BedrockagentcoreGatewayRef {
 
 impl Ref for BedrockagentcoreGatewayRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -359,88 +426,144 @@ impl BedrockagentcoreGatewayRef {
 
     #[doc = "Get a reference to the value of field `authorizer_type` after provisioning.\n"]
     pub fn authorizer_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorizer_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorizer_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exception_level` after provisioning.\n"]
     pub fn exception_level(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exception_level", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exception_level", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
     pub fn gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_url` after provisioning.\n"]
     pub fn gateway_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol_type` after provisioning.\n"]
     pub fn protocol_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workload_identity_details` after provisioning.\n"]
-    pub fn workload_identity_details(&self) -> ListRef<BedrockagentcoreGatewayWorkloadIdentityDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.workload_identity_details", self.extract_ref()))
+    pub fn workload_identity_details(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayWorkloadIdentityDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.workload_identity_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorizer_configuration` after provisioning.\n"]
-    pub fn authorizer_configuration(&self) -> ListRef<BedrockagentcoreGatewayAuthorizerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authorizer_configuration", self.extract_ref()))
+    pub fn authorizer_configuration(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayAuthorizerConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorizer_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol_configuration` after provisioning.\n"]
-    pub fn protocol_configuration(&self) -> ListRef<BedrockagentcoreGatewayProtocolConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.protocol_configuration", self.extract_ref()))
+    pub fn protocol_configuration(
+        &self,
+    ) -> ListRef<BedrockagentcoreGatewayProtocolConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.protocol_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreGatewayTimeoutsElRef {
-        BedrockagentcoreGatewayTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentcoreGatewayTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -474,7 +597,9 @@ pub struct BuildBedrockagentcoreGatewayWorkloadIdentityDetailsEl {}
 
 impl BuildBedrockagentcoreGatewayWorkloadIdentityDetailsEl {
     pub fn build(self) -> BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
-        BedrockagentcoreGatewayWorkloadIdentityDetailsEl { workload_identity_arn: core::default::Default::default() }
+        BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
+            workload_identity_arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -484,7 +609,10 @@ pub struct BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
         BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -499,7 +627,10 @@ impl BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
 
     #[doc = "Get a reference to the value of field `workload_identity_arn` after provisioning.\n"]
     pub fn workload_identity_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workload_identity_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workload_identity_arn", self.base),
+        )
     }
 }
 
@@ -577,31 +708,40 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
 
     #[doc = "Get a reference to the value of field `allowed_audience` after provisioning.\n"]
     pub fn allowed_audience(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_audience", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_audience", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_clients` after provisioning.\n"]
     pub fn allowed_clients(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_clients", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_clients", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `discovery_url` after provisioning.\n"]
     pub fn discovery_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.discovery_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.discovery_url", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayAuthorizerConfigurationElDynamic {
-    custom_jwt_authorizer: Option<
-        DynamicBlock<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>,
-    >,
+    custom_jwt_authorizer:
+        Option<DynamicBlock<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
 }
 
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayAuthorizerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    custom_jwt_authorizer: Option<Vec<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
+    custom_jwt_authorizer:
+        Option<Vec<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
     dynamic: BedrockagentcoreGatewayAuthorizerConfigurationElDynamic,
 }
 
@@ -609,15 +749,17 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationEl {
     #[doc = "Set the field `custom_jwt_authorizer`.\n"]
     pub fn set_custom_jwt_authorizer(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_jwt_authorizer = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_jwt_authorizer = Some(d);
-            },
+            }
         }
         self
     }
@@ -652,7 +794,10 @@ pub struct BedrockagentcoreGatewayAuthorizerConfigurationElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayAuthorizerConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayAuthorizerConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayAuthorizerConfigurationElRef {
         BedrockagentcoreGatewayAuthorizerConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -669,7 +814,10 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationElRef {
     pub fn custom_jwt_authorizer(
         &self,
     ) -> ListRef<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_jwt_authorizer", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_jwt_authorizer", self.base),
+        )
     }
 }
 
@@ -733,7 +881,10 @@ pub struct BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
 }
 
 impl Ref for BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
         BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
             shared: shared,
             base: base.to_string(),
@@ -758,7 +909,10 @@ impl BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
 
     #[doc = "Get a reference to the value of field `supported_versions` after provisioning.\n"]
     pub fn supported_versions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.supported_versions", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.supported_versions", self.base),
+        )
     }
 }
 
@@ -783,10 +937,10 @@ impl BedrockagentcoreGatewayProtocolConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mcp = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mcp = Some(d);
-            },
+            }
         }
         self
     }
@@ -851,22 +1005,19 @@ pub struct BedrockagentcoreGatewayTimeoutsEl {
 }
 
 impl BedrockagentcoreGatewayTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -916,20 +1067,17 @@ impl BedrockagentcoreGatewayTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
@@ -937,6 +1085,7 @@ impl BedrockagentcoreGatewayTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayDynamic {
-    authorizer_configuration: Option<DynamicBlock<BedrockagentcoreGatewayAuthorizerConfigurationEl>>,
+    authorizer_configuration:
+        Option<DynamicBlock<BedrockagentcoreGatewayAuthorizerConfigurationEl>>,
     protocol_configuration: Option<DynamicBlock<BedrockagentcoreGatewayProtocolConfigurationEl>>,
 }

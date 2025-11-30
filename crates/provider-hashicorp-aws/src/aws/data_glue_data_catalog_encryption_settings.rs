@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataGlueDataCatalogEncryptionSettingsData {
@@ -49,8 +49,7 @@ impl DataGlueDataCatalogEncryptionSettings {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,14 +57,20 @@ impl DataGlueDataCatalogEncryptionSettings {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_catalog_encryption_settings` after provisioning.\n"]
     pub fn data_catalog_encryption_settings(
         &self,
     ) -> ListRef<DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_catalog_encryption_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_catalog_encryption_settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -73,20 +78,26 @@ impl DataGlueDataCatalogEncryptionSettings {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataGlueDataCatalogEncryptionSettings {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataGlueDataCatalogEncryptionSettings { }
+impl Datasource for DataGlueDataCatalogEncryptionSettings {}
 
 impl ToListMappable for DataGlueDataCatalogEncryptionSettings {
     type O = ListRef<DataGlueDataCatalogEncryptionSettingsRef>;
@@ -119,18 +130,20 @@ pub struct BuildDataGlueDataCatalogEncryptionSettings {
 
 impl BuildDataGlueDataCatalogEncryptionSettings {
     pub fn build(self, stack: &mut Stack) -> DataGlueDataCatalogEncryptionSettings {
-        let out = DataGlueDataCatalogEncryptionSettings(Rc::new(DataGlueDataCatalogEncryptionSettings_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataGlueDataCatalogEncryptionSettingsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                catalog_id: self.catalog_id,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out = DataGlueDataCatalogEncryptionSettings(Rc::new(
+            DataGlueDataCatalogEncryptionSettings_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataGlueDataCatalogEncryptionSettingsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    catalog_id: self.catalog_id,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -143,10 +156,7 @@ pub struct DataGlueDataCatalogEncryptionSettingsRef {
 
 impl Ref for DataGlueDataCatalogEncryptionSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -161,14 +171,20 @@ impl DataGlueDataCatalogEncryptionSettingsRef {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_catalog_encryption_settings` after provisioning.\n"]
     pub fn data_catalog_encryption_settings(
         &self,
     ) -> ListRef<DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_catalog_encryption_settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_catalog_encryption_settings", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -176,15 +192,18 @@ impl DataGlueDataCatalogEncryptionSettingsRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionEl {
+pub struct DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     aws_kms_key_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -220,7 +239,8 @@ impl ToListMappable for DataGlueDataCatalogEncryptionSettingsDataCatalogEncrypti
     }
 }
 
-pub struct BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionEl {}
+pub struct BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionEl
+{}
 
 impl BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionEl {
     pub fn build(
@@ -233,7 +253,8 @@ impl BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElCo
     }
 }
 
-pub struct DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionElRef {
+pub struct DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -296,8 +317,12 @@ impl DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncrypt
     }
 }
 
-impl ToListMappable for DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl {
-    type O = BlockAssignable<DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl>;
+impl ToListMappable
+    for DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl
+{
+    type O = BlockAssignable<
+        DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -308,10 +333,14 @@ impl ToListMappable for DataGlueDataCatalogEncryptionSettingsDataCatalogEncrypti
     }
 }
 
-pub struct BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl {}
+pub struct BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl
+{}
 
 impl BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl {
-    pub fn build(self) -> DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl {
+    pub fn build(
+        self,
+    ) -> DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl
+    {
         DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestEl {
             catalog_encryption_mode: core::default::Default::default(),
             catalog_encryption_service_role: core::default::Default::default(),
@@ -320,16 +349,20 @@ impl BuildDataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEn
     }
 }
 
-pub struct DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef {
+pub struct DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef {
+impl Ref
+    for DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef {
+    ) -> DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef
+    {
         DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef {
             shared: shared,
             base: base.to_string(),
@@ -344,17 +377,26 @@ impl DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncrypt
 
     #[doc = "Get a reference to the value of field `catalog_encryption_mode` after provisioning.\n"]
     pub fn catalog_encryption_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_encryption_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_encryption_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_encryption_service_role` after provisioning.\n"]
     pub fn catalog_encryption_service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_encryption_service_role", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_encryption_service_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sse_aws_kms_key_id` after provisioning.\n"]
     pub fn sse_aws_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sse_aws_kms_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sse_aws_kms_key_id", self.base),
+        )
     }
 }
 
@@ -454,14 +496,22 @@ impl DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElRef {
         &self,
     ) -> ListRef<
         DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElConnectionPasswordEncryptionElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.connection_password_encryption", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_password_encryption", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_at_rest` after provisioning.\n"]
     pub fn encryption_at_rest(
         &self,
-    ) -> ListRef<DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_at_rest", self.base))
+    ) -> ListRef<
+        DataGlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsElEncryptionAtRestElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_at_rest", self.base),
+        )
     }
 }

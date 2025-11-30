@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecurityhubInsightData {
@@ -60,7 +60,8 @@ impl SecurityhubInsight {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl SecurityhubInsight {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl SecurityhubInsight {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -99,8 +110,7 @@ impl SecurityhubInsight {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -111,10 +121,10 @@ impl SecurityhubInsight {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filters = Some(d);
-            },
+            }
         }
         self
     }
@@ -126,7 +136,10 @@ impl SecurityhubInsight {
 
     #[doc = "Get a reference to the value of field `group_by_attribute` after provisioning.\n"]
     pub fn group_by_attribute(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_by_attribute", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_by_attribute", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -136,28 +149,40 @@ impl SecurityhubInsight {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<SecurityhubInsightFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SecurityhubInsight {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecurityhubInsight { }
+impl Resource for SecurityhubInsight {}
 
 impl ToListMappable for SecurityhubInsight {
     type O = ListRef<SecurityhubInsightRef>;
@@ -220,10 +245,7 @@ pub struct SecurityhubInsightRef {
 
 impl Ref for SecurityhubInsightRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -243,7 +265,10 @@ impl SecurityhubInsightRef {
 
     #[doc = "Get a reference to the value of field `group_by_attribute` after provisioning.\n"]
     pub fn group_by_attribute(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_by_attribute", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_by_attribute", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -253,18 +278,26 @@ impl SecurityhubInsightRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<SecurityhubInsightFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 }
 
@@ -274,7 +307,7 @@ pub struct SecurityhubInsightFiltersElAwsAccountIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElAwsAccountIdEl { }
+impl SecurityhubInsightFiltersElAwsAccountIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElAwsAccountIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElAwsAccountIdEl>;
@@ -340,7 +373,7 @@ pub struct SecurityhubInsightFiltersElCompanyNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElCompanyNameEl { }
+impl SecurityhubInsightFiltersElCompanyNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElCompanyNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElCompanyNameEl>;
@@ -406,7 +439,7 @@ pub struct SecurityhubInsightFiltersElComplianceStatusEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElComplianceStatusEl { }
+impl SecurityhubInsightFiltersElComplianceStatusEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElComplianceStatusEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElComplianceStatusEl>;
@@ -561,7 +594,7 @@ pub struct SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElCreatedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElCreatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElCreatedAtElDateRangeEl>;
@@ -597,7 +630,10 @@ pub struct SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
         SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -658,10 +694,10 @@ impl SecurityhubInsightFiltersElCreatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -822,7 +858,7 @@ pub struct SecurityhubInsightFiltersElDescriptionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElDescriptionEl { }
+impl SecurityhubInsightFiltersElDescriptionEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElDescriptionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElDescriptionEl>;
@@ -942,7 +978,10 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
         SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1031,7 +1070,10 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
         SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
             shared: shared,
             base: base.to_string(),
@@ -1066,7 +1108,7 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl { }
+impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>;
@@ -1135,10 +1177,14 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProduc
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl { }
+impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {}
 
-impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
-    type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl>;
+impl ToListMappable
+    for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl
+{
+    type O = BlockAssignable<
+        SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1157,7 +1203,9 @@ pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsP
 }
 
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
-    pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
+    pub fn build(
+        self,
+    ) -> SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
         SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
             comparison: self.comparison,
             value: self.value,
@@ -1204,7 +1252,7 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl { }
+impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl>;
@@ -1240,7 +1288,10 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
         SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
             shared: shared,
             base: base.to_string(),
@@ -1270,7 +1321,7 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl { }
+impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>;
@@ -1339,7 +1390,7 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElFindingProviderFieldsTypesEl { }
+impl SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsTypesEl>;
@@ -1375,7 +1426,10 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
         SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
             shared: shared,
             base: base.to_string(),
@@ -1405,7 +1459,7 @@ pub struct SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl>;
@@ -1441,7 +1495,10 @@ pub struct SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
         SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1502,10 +1559,10 @@ impl SecurityhubInsightFiltersElFirstObservedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -1566,7 +1623,9 @@ impl SecurityhubInsightFiltersElFirstObservedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -1577,7 +1636,7 @@ pub struct SecurityhubInsightFiltersElGeneratorIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElGeneratorIdEl { }
+impl SecurityhubInsightFiltersElGeneratorIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElGeneratorIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElGeneratorIdEl>;
@@ -1643,7 +1702,7 @@ pub struct SecurityhubInsightFiltersElIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElIdEl { }
+impl SecurityhubInsightFiltersElIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElIdEl>;
@@ -1708,7 +1767,7 @@ pub struct SecurityhubInsightFiltersElKeywordEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElKeywordEl { }
+impl SecurityhubInsightFiltersElKeywordEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElKeywordEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElKeywordEl>;
@@ -1764,7 +1823,7 @@ pub struct SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElLastObservedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElLastObservedAtElDateRangeEl>;
@@ -1800,7 +1859,10 @@ pub struct SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
         SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1861,10 +1923,10 @@ impl SecurityhubInsightFiltersElLastObservedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -1936,7 +1998,7 @@ pub struct SecurityhubInsightFiltersElMalwareNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElMalwareNameEl { }
+impl SecurityhubInsightFiltersElMalwareNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElMalwareNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwareNameEl>;
@@ -2002,7 +2064,7 @@ pub struct SecurityhubInsightFiltersElMalwarePathEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElMalwarePathEl { }
+impl SecurityhubInsightFiltersElMalwarePathEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElMalwarePathEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwarePathEl>;
@@ -2068,7 +2130,7 @@ pub struct SecurityhubInsightFiltersElMalwareStateEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElMalwareStateEl { }
+impl SecurityhubInsightFiltersElMalwareStateEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElMalwareStateEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwareStateEl>;
@@ -2134,7 +2196,7 @@ pub struct SecurityhubInsightFiltersElMalwareTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElMalwareTypeEl { }
+impl SecurityhubInsightFiltersElMalwareTypeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElMalwareTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwareTypeEl>;
@@ -2200,7 +2262,7 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationDomainEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkDestinationDomainEl { }
+impl SecurityhubInsightFiltersElNetworkDestinationDomainEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationDomainEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationDomainEl>;
@@ -2236,7 +2298,10 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
         SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
             shared: shared,
             base: base.to_string(),
@@ -2265,7 +2330,7 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationIpv4El {
     cidr: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkDestinationIpv4El { }
+impl SecurityhubInsightFiltersElNetworkDestinationIpv4El {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationIpv4El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationIpv4El>;
@@ -2296,7 +2361,10 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
         SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
             shared: shared,
             base: base.to_string(),
@@ -2320,7 +2388,7 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationIpv6El {
     cidr: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkDestinationIpv6El { }
+impl SecurityhubInsightFiltersElNetworkDestinationIpv6El {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationIpv6El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationIpv6El>;
@@ -2351,7 +2419,10 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
         SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
             shared: shared,
             base: base.to_string(),
@@ -2430,7 +2501,10 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationPortElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationPortElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkDestinationPortElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElNetworkDestinationPortElRef {
         SecurityhubInsightFiltersElNetworkDestinationPortElRef {
             shared: shared,
             base: base.to_string(),
@@ -2465,7 +2539,7 @@ pub struct SecurityhubInsightFiltersElNetworkDirectionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkDirectionEl { }
+impl SecurityhubInsightFiltersElNetworkDirectionEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDirectionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDirectionEl>;
@@ -2531,7 +2605,7 @@ pub struct SecurityhubInsightFiltersElNetworkProtocolEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkProtocolEl { }
+impl SecurityhubInsightFiltersElNetworkProtocolEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkProtocolEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkProtocolEl>;
@@ -2597,7 +2671,7 @@ pub struct SecurityhubInsightFiltersElNetworkSourceDomainEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkSourceDomainEl { }
+impl SecurityhubInsightFiltersElNetworkSourceDomainEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceDomainEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceDomainEl>;
@@ -2633,7 +2707,10 @@ pub struct SecurityhubInsightFiltersElNetworkSourceDomainElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElNetworkSourceDomainElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkSourceDomainElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElNetworkSourceDomainElRef {
         SecurityhubInsightFiltersElNetworkSourceDomainElRef {
             shared: shared,
             base: base.to_string(),
@@ -2662,7 +2739,7 @@ pub struct SecurityhubInsightFiltersElNetworkSourceIpv4El {
     cidr: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkSourceIpv4El { }
+impl SecurityhubInsightFiltersElNetworkSourceIpv4El {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceIpv4El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceIpv4El>;
@@ -2717,7 +2794,7 @@ pub struct SecurityhubInsightFiltersElNetworkSourceIpv6El {
     cidr: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkSourceIpv6El { }
+impl SecurityhubInsightFiltersElNetworkSourceIpv6El {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceIpv6El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceIpv6El>;
@@ -2773,7 +2850,7 @@ pub struct SecurityhubInsightFiltersElNetworkSourceMacEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNetworkSourceMacEl { }
+impl SecurityhubInsightFiltersElNetworkSourceMacEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceMacEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceMacEl>;
@@ -2928,7 +3005,7 @@ pub struct SecurityhubInsightFiltersElNoteTextEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNoteTextEl { }
+impl SecurityhubInsightFiltersElNoteTextEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNoteTextEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteTextEl>;
@@ -2994,7 +3071,7 @@ pub struct SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl>;
@@ -3030,7 +3107,10 @@ pub struct SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
         SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3091,10 +3171,10 @@ impl SecurityhubInsightFiltersElNoteUpdatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -3166,7 +3246,7 @@ pub struct SecurityhubInsightFiltersElNoteUpdatedByEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElNoteUpdatedByEl { }
+impl SecurityhubInsightFiltersElNoteUpdatedByEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedByEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteUpdatedByEl>;
@@ -3232,7 +3312,7 @@ pub struct SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl>;
@@ -3268,7 +3348,10 @@ pub struct SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
         SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3329,10 +3412,10 @@ impl SecurityhubInsightFiltersElProcessLaunchedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -3393,7 +3476,9 @@ impl SecurityhubInsightFiltersElProcessLaunchedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -3404,7 +3489,7 @@ pub struct SecurityhubInsightFiltersElProcessNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElProcessNameEl { }
+impl SecurityhubInsightFiltersElProcessNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProcessNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessNameEl>;
@@ -3559,7 +3644,7 @@ pub struct SecurityhubInsightFiltersElProcessPathEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElProcessPathEl { }
+impl SecurityhubInsightFiltersElProcessPathEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProcessPathEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessPathEl>;
@@ -3714,7 +3799,7 @@ pub struct SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl>;
@@ -3750,7 +3835,10 @@ pub struct SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
         SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3811,10 +3899,10 @@ impl SecurityhubInsightFiltersElProcessTerminatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -3851,7 +3939,10 @@ pub struct SecurityhubInsightFiltersElProcessTerminatedAtElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElProcessTerminatedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessTerminatedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElProcessTerminatedAtElRef {
         SecurityhubInsightFiltersElProcessTerminatedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -3875,7 +3966,9 @@ impl SecurityhubInsightFiltersElProcessTerminatedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -3886,7 +3979,7 @@ pub struct SecurityhubInsightFiltersElProductArnEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElProductArnEl { }
+impl SecurityhubInsightFiltersElProductArnEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProductArnEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProductArnEl>;
@@ -3953,7 +4046,7 @@ pub struct SecurityhubInsightFiltersElProductFieldsEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElProductFieldsEl { }
+impl SecurityhubInsightFiltersElProductFieldsEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProductFieldsEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProductFieldsEl>;
@@ -4027,7 +4120,7 @@ pub struct SecurityhubInsightFiltersElProductNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElProductNameEl { }
+impl SecurityhubInsightFiltersElProductNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElProductNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProductNameEl>;
@@ -4093,7 +4186,7 @@ pub struct SecurityhubInsightFiltersElRecommendationTextEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElRecommendationTextEl { }
+impl SecurityhubInsightFiltersElRecommendationTextEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElRecommendationTextEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRecommendationTextEl>;
@@ -4129,7 +4222,10 @@ pub struct SecurityhubInsightFiltersElRecommendationTextElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElRecommendationTextElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElRecommendationTextElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElRecommendationTextElRef {
         SecurityhubInsightFiltersElRecommendationTextElRef {
             shared: shared,
             base: base.to_string(),
@@ -4159,7 +4255,7 @@ pub struct SecurityhubInsightFiltersElRecordStateEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElRecordStateEl { }
+impl SecurityhubInsightFiltersElRecordStateEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElRecordStateEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRecordStateEl>;
@@ -4225,7 +4321,7 @@ pub struct SecurityhubInsightFiltersElRelatedFindingsIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElRelatedFindingsIdEl { }
+impl SecurityhubInsightFiltersElRelatedFindingsIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElRelatedFindingsIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRelatedFindingsIdEl>;
@@ -4291,7 +4387,7 @@ pub struct SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElRelatedFindingsProductArnEl { }
+impl SecurityhubInsightFiltersElRelatedFindingsProductArnEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRelatedFindingsProductArnEl>;
@@ -4327,7 +4423,10 @@ pub struct SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
         SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
             shared: shared,
             base: base.to_string(),
@@ -4357,10 +4456,11 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileAr
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
-    type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>;
+    type O =
+        BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4426,7 +4526,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl>;
@@ -4462,7 +4562,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -4491,7 +4594,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
     cidr: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl>;
@@ -4522,7 +4625,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
             shared: shared,
             base: base.to_string(),
@@ -4546,7 +4652,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
     cidr: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl>;
@@ -4577,7 +4683,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
             shared: shared,
             base: base.to_string(),
@@ -4602,7 +4711,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl>;
@@ -4638,7 +4747,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -4668,10 +4780,11 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRang
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
-    type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>;
+    type O =
+        BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4733,7 +4846,9 @@ impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeElRef
 
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDynamic {
-    date_range: Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>>,
+    date_range: Option<
+        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -4743,7 +4858,8 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    date_range: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>>,
+    date_range:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDynamic,
 }
 
@@ -4763,15 +4879,19 @@ impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -4808,7 +4928,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -4832,7 +4955,9 @@ impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -4843,7 +4968,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl>;
@@ -4879,7 +5004,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -4909,7 +5037,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl>;
@@ -4945,7 +5073,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
             shared: shared,
             base: base.to_string(),
@@ -4975,7 +5106,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl { }
+impl SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl>;
@@ -5011,7 +5142,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -5041,10 +5175,11 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRang
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
-    type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>;
+    type O =
+        BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -5106,7 +5241,9 @@ impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeElRef
 
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDynamic {
-    date_range: Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>>,
+    date_range: Option<
+        DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -5116,7 +5253,8 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    date_range: Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>>,
+    date_range:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDynamic,
 }
 
@@ -5136,15 +5274,19 @@ impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -5181,7 +5323,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -5205,7 +5350,9 @@ impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -5216,7 +5363,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl { }
+impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl>;
@@ -5252,7 +5399,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
             shared: shared,
             base: base.to_string(),
@@ -5282,7 +5432,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl { }
+impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl>;
@@ -5318,7 +5468,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -5348,7 +5501,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl { }
+impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl>;
@@ -5384,7 +5537,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
         SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -5414,7 +5570,7 @@ pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl { }
+impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl>;
@@ -5450,7 +5606,10 @@ pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
         SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -5480,7 +5639,7 @@ pub struct SecurityhubInsightFiltersElResourceContainerImageIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceContainerImageIdEl { }
+impl SecurityhubInsightFiltersElResourceContainerImageIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerImageIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerImageIdEl>;
@@ -5516,7 +5675,10 @@ pub struct SecurityhubInsightFiltersElResourceContainerImageIdElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceContainerImageIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceContainerImageIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceContainerImageIdElRef {
         SecurityhubInsightFiltersElResourceContainerImageIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -5546,7 +5708,7 @@ pub struct SecurityhubInsightFiltersElResourceContainerImageNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceContainerImageNameEl { }
+impl SecurityhubInsightFiltersElResourceContainerImageNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerImageNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerImageNameEl>;
@@ -5582,7 +5744,10 @@ pub struct SecurityhubInsightFiltersElResourceContainerImageNameElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceContainerImageNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceContainerImageNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceContainerImageNameElRef {
         SecurityhubInsightFiltersElResourceContainerImageNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -5612,7 +5777,7 @@ pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>;
@@ -5677,7 +5842,8 @@ impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeElRef {
 
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElDynamic {
-    date_range: Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>>,
+    date_range:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>>,
 }
 
 #[derive(Serialize)]
@@ -5707,15 +5873,17 @@ impl SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>>,
+        v: impl Into<
+            BlockAssignable<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -5752,7 +5920,10 @@ pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
         SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -5776,7 +5947,9 @@ impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -5787,7 +5960,7 @@ pub struct SecurityhubInsightFiltersElResourceContainerNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceContainerNameEl { }
+impl SecurityhubInsightFiltersElResourceContainerNameEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerNameEl>;
@@ -5823,7 +5996,10 @@ pub struct SecurityhubInsightFiltersElResourceContainerNameElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceContainerNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceContainerNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceContainerNameElRef {
         SecurityhubInsightFiltersElResourceContainerNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -5854,7 +6030,7 @@ pub struct SecurityhubInsightFiltersElResourceDetailsOtherEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceDetailsOtherEl { }
+impl SecurityhubInsightFiltersElResourceDetailsOtherEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceDetailsOtherEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceDetailsOtherEl>;
@@ -5893,7 +6069,10 @@ pub struct SecurityhubInsightFiltersElResourceDetailsOtherElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElResourceDetailsOtherElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceDetailsOtherElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElResourceDetailsOtherElRef {
         SecurityhubInsightFiltersElResourceDetailsOtherElRef {
             shared: shared,
             base: base.to_string(),
@@ -5928,7 +6107,7 @@ pub struct SecurityhubInsightFiltersElResourceIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceIdEl { }
+impl SecurityhubInsightFiltersElResourceIdEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceIdEl>;
@@ -5994,7 +6173,7 @@ pub struct SecurityhubInsightFiltersElResourcePartitionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourcePartitionEl { }
+impl SecurityhubInsightFiltersElResourcePartitionEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourcePartitionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourcePartitionEl>;
@@ -6060,7 +6239,7 @@ pub struct SecurityhubInsightFiltersElResourceRegionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceRegionEl { }
+impl SecurityhubInsightFiltersElResourceRegionEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceRegionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceRegionEl>;
@@ -6127,7 +6306,7 @@ pub struct SecurityhubInsightFiltersElResourceTagsEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceTagsEl { }
+impl SecurityhubInsightFiltersElResourceTagsEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceTagsEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceTagsEl>;
@@ -6201,7 +6380,7 @@ pub struct SecurityhubInsightFiltersElResourceTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElResourceTypeEl { }
+impl SecurityhubInsightFiltersElResourceTypeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElResourceTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceTypeEl>;
@@ -6267,7 +6446,7 @@ pub struct SecurityhubInsightFiltersElSeverityLabelEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElSeverityLabelEl { }
+impl SecurityhubInsightFiltersElSeverityLabelEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElSeverityLabelEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElSeverityLabelEl>;
@@ -6333,7 +6512,7 @@ pub struct SecurityhubInsightFiltersElSourceUrlEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElSourceUrlEl { }
+impl SecurityhubInsightFiltersElSourceUrlEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElSourceUrlEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElSourceUrlEl>;
@@ -6399,7 +6578,7 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl { }
+impl SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl>;
@@ -6435,7 +6614,10 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
         SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
             shared: shared,
             base: base.to_string(),
@@ -6465,10 +6647,11 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRa
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
-    type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>;
+    type O =
+        BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -6487,7 +6670,9 @@ pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElD
 }
 
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
-    pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
+    pub fn build(
+        self,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
             unit: self.unit,
             value: self.value,
@@ -6530,7 +6715,9 @@ impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeElR
 
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDynamic {
-    date_range: Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>>,
+    date_range: Option<
+        DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -6540,7 +6727,8 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    date_range: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>>,
+    date_range:
+        Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDynamic,
 }
 
@@ -6560,15 +6748,19 @@ impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -6605,7 +6797,10 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
         SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -6629,7 +6824,10 @@ impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -6640,7 +6838,7 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl { }
+impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl>;
@@ -6676,7 +6874,10 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
         SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -6706,7 +6907,7 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl { }
+impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl>;
@@ -6742,7 +6943,10 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
         SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
             shared: shared,
             base: base.to_string(),
@@ -6772,7 +6976,7 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl { }
+impl SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl>;
@@ -6808,7 +7012,10 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
         SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
             shared: shared,
             base: base.to_string(),
@@ -6838,7 +7045,7 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElThreatIntelIndicatorValueEl { }
+impl SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorValueEl>;
@@ -6874,7 +7081,10 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
         SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
             shared: shared,
             base: base.to_string(),
@@ -6904,7 +7114,7 @@ pub struct SecurityhubInsightFiltersElTitleEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElTitleEl { }
+impl SecurityhubInsightFiltersElTitleEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElTitleEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElTitleEl>;
@@ -6970,7 +7180,7 @@ pub struct SecurityhubInsightFiltersElTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElTypeEl { }
+impl SecurityhubInsightFiltersElTypeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElTypeEl>;
@@ -7036,7 +7246,7 @@ pub struct SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubInsightFiltersElUpdatedAtElDateRangeEl { }
+impl SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElUpdatedAtElDateRangeEl>;
@@ -7072,7 +7282,10 @@ pub struct SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
         SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -7133,10 +7346,10 @@ impl SecurityhubInsightFiltersElUpdatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -7209,7 +7422,7 @@ pub struct SecurityhubInsightFiltersElUserDefinedValuesEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElUserDefinedValuesEl { }
+impl SecurityhubInsightFiltersElUserDefinedValuesEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElUserDefinedValuesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElUserDefinedValuesEl>;
@@ -7283,7 +7496,7 @@ pub struct SecurityhubInsightFiltersElVerificationStateEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElVerificationStateEl { }
+impl SecurityhubInsightFiltersElVerificationStateEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElVerificationStateEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElVerificationStateEl>;
@@ -7349,7 +7562,7 @@ pub struct SecurityhubInsightFiltersElWorkflowStatusEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubInsightFiltersElWorkflowStatusEl { }
+impl SecurityhubInsightFiltersElWorkflowStatusEl {}
 
 impl ToListMappable for SecurityhubInsightFiltersElWorkflowStatusEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElWorkflowStatusEl>;
@@ -7418,25 +7631,21 @@ struct SecurityhubInsightFiltersElDynamic {
     created_at: Option<DynamicBlock<SecurityhubInsightFiltersElCreatedAtEl>>,
     criticality: Option<DynamicBlock<SecurityhubInsightFiltersElCriticalityEl>>,
     description: Option<DynamicBlock<SecurityhubInsightFiltersElDescriptionEl>>,
-    finding_provider_fields_confidence: Option<
-        DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl>,
-    >,
-    finding_provider_fields_criticality: Option<
-        DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl>,
-    >,
-    finding_provider_fields_related_findings_id: Option<
-        DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>,
-    >,
+    finding_provider_fields_confidence:
+        Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl>>,
+    finding_provider_fields_criticality:
+        Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl>>,
+    finding_provider_fields_related_findings_id:
+        Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>>,
     finding_provider_fields_related_findings_product_arn: Option<
         DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl>,
     >,
-    finding_provider_fields_severity_label: Option<
-        DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl>,
-    >,
-    finding_provider_fields_severity_original: Option<
-        DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>,
-    >,
-    finding_provider_fields_types: Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsTypesEl>>,
+    finding_provider_fields_severity_label:
+        Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl>>,
+    finding_provider_fields_severity_original:
+        Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>>,
+    finding_provider_fields_types:
+        Option<DynamicBlock<SecurityhubInsightFiltersElFindingProviderFieldsTypesEl>>,
     first_observed_at: Option<DynamicBlock<SecurityhubInsightFiltersElFirstObservedAtEl>>,
     generator_id: Option<DynamicBlock<SecurityhubInsightFiltersElGeneratorIdEl>>,
     id: Option<DynamicBlock<SecurityhubInsightFiltersElIdEl>>,
@@ -7446,10 +7655,14 @@ struct SecurityhubInsightFiltersElDynamic {
     malware_path: Option<DynamicBlock<SecurityhubInsightFiltersElMalwarePathEl>>,
     malware_state: Option<DynamicBlock<SecurityhubInsightFiltersElMalwareStateEl>>,
     malware_type: Option<DynamicBlock<SecurityhubInsightFiltersElMalwareTypeEl>>,
-    network_destination_domain: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationDomainEl>>,
-    network_destination_ipv4: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationIpv4El>>,
-    network_destination_ipv6: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationIpv6El>>,
-    network_destination_port: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationPortEl>>,
+    network_destination_domain:
+        Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationDomainEl>>,
+    network_destination_ipv4:
+        Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationIpv4El>>,
+    network_destination_ipv6:
+        Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationIpv6El>>,
+    network_destination_port:
+        Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDestinationPortEl>>,
     network_direction: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkDirectionEl>>,
     network_protocol: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkProtocolEl>>,
     network_source_domain: Option<DynamicBlock<SecurityhubInsightFiltersElNetworkSourceDomainEl>>,
@@ -7472,47 +7685,45 @@ struct SecurityhubInsightFiltersElDynamic {
     recommendation_text: Option<DynamicBlock<SecurityhubInsightFiltersElRecommendationTextEl>>,
     record_state: Option<DynamicBlock<SecurityhubInsightFiltersElRecordStateEl>>,
     related_findings_id: Option<DynamicBlock<SecurityhubInsightFiltersElRelatedFindingsIdEl>>,
-    related_findings_product_arn: Option<DynamicBlock<SecurityhubInsightFiltersElRelatedFindingsProductArnEl>>,
+    related_findings_product_arn:
+        Option<DynamicBlock<SecurityhubInsightFiltersElRelatedFindingsProductArnEl>>,
     resource_aws_ec2_instance_iam_instance_profile_arn: Option<
         DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>,
     >,
-    resource_aws_ec2_instance_image_id: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl>,
-    >,
-    resource_aws_ec2_instance_ipv4_addresses: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl>,
-    >,
-    resource_aws_ec2_instance_ipv6_addresses: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl>,
-    >,
-    resource_aws_ec2_instance_key_name: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl>,
-    >,
-    resource_aws_ec2_instance_launched_at: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl>,
-    >,
-    resource_aws_ec2_instance_subnet_id: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl>,
-    >,
-    resource_aws_ec2_instance_type: Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl>>,
-    resource_aws_ec2_instance_vpc_id: Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl>>,
-    resource_aws_iam_access_key_created_at: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl>,
-    >,
-    resource_aws_iam_access_key_status: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl>,
-    >,
-    resource_aws_iam_access_key_user_name: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl>,
-    >,
-    resource_aws_s3_bucket_owner_id: Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl>>,
-    resource_aws_s3_bucket_owner_name: Option<
-        DynamicBlock<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl>,
-    >,
-    resource_container_image_id: Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerImageIdEl>>,
-    resource_container_image_name: Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerImageNameEl>>,
-    resource_container_launched_at: Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerLaunchedAtEl>>,
-    resource_container_name: Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerNameEl>>,
+    resource_aws_ec2_instance_image_id:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl>>,
+    resource_aws_ec2_instance_ipv4_addresses:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl>>,
+    resource_aws_ec2_instance_ipv6_addresses:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl>>,
+    resource_aws_ec2_instance_key_name:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl>>,
+    resource_aws_ec2_instance_launched_at:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl>>,
+    resource_aws_ec2_instance_subnet_id:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl>>,
+    resource_aws_ec2_instance_type:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl>>,
+    resource_aws_ec2_instance_vpc_id:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl>>,
+    resource_aws_iam_access_key_created_at:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl>>,
+    resource_aws_iam_access_key_status:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl>>,
+    resource_aws_iam_access_key_user_name:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl>>,
+    resource_aws_s3_bucket_owner_id:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl>>,
+    resource_aws_s3_bucket_owner_name:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl>>,
+    resource_container_image_id:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerImageIdEl>>,
+    resource_container_image_name:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerImageNameEl>>,
+    resource_container_launched_at:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerLaunchedAtEl>>,
+    resource_container_name:
+        Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerNameEl>>,
     resource_details_other: Option<DynamicBlock<SecurityhubInsightFiltersElResourceDetailsOtherEl>>,
     resource_id: Option<DynamicBlock<SecurityhubInsightFiltersElResourceIdEl>>,
     resource_partition: Option<DynamicBlock<SecurityhubInsightFiltersElResourcePartitionEl>>,
@@ -7521,16 +7732,18 @@ struct SecurityhubInsightFiltersElDynamic {
     resource_type: Option<DynamicBlock<SecurityhubInsightFiltersElResourceTypeEl>>,
     severity_label: Option<DynamicBlock<SecurityhubInsightFiltersElSeverityLabelEl>>,
     source_url: Option<DynamicBlock<SecurityhubInsightFiltersElSourceUrlEl>>,
-    threat_intel_indicator_category: Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl>>,
-    threat_intel_indicator_last_observed_at: Option<
-        DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl>,
-    >,
-    threat_intel_indicator_source: Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl>>,
-    threat_intel_indicator_source_url: Option<
-        DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl>,
-    >,
-    threat_intel_indicator_type: Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl>>,
-    threat_intel_indicator_value: Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorValueEl>>,
+    threat_intel_indicator_category:
+        Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl>>,
+    threat_intel_indicator_last_observed_at:
+        Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl>>,
+    threat_intel_indicator_source:
+        Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl>>,
+    threat_intel_indicator_source_url:
+        Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl>>,
+    threat_intel_indicator_type:
+        Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl>>,
+    threat_intel_indicator_value:
+        Option<DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorValueEl>>,
     title: Option<DynamicBlock<SecurityhubInsightFiltersElTitleEl>>,
     type_: Option<DynamicBlock<SecurityhubInsightFiltersElTypeEl>>,
     updated_at: Option<DynamicBlock<SecurityhubInsightFiltersElUpdatedAtEl>>,
@@ -7556,25 +7769,26 @@ pub struct SecurityhubInsightFiltersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<Vec<SecurityhubInsightFiltersElDescriptionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_confidence: Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl>>,
+    finding_provider_fields_confidence:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_criticality: Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl>>,
+    finding_provider_fields_criticality:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_related_findings_id: Option<
-        Vec<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>,
-    >,
+    finding_provider_fields_related_findings_id:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_related_findings_product_arn: Option<
-        Vec<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl>,
-    >,
+    finding_provider_fields_related_findings_product_arn:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_severity_label: Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl>>,
+    finding_provider_fields_severity_label:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_severity_original: Option<
-        Vec<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>,
-    >,
+    finding_provider_fields_severity_original:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    finding_provider_fields_types: Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsTypesEl>>,
+    finding_provider_fields_types:
+        Option<Vec<SecurityhubInsightFiltersElFindingProviderFieldsTypesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     first_observed_at: Option<Vec<SecurityhubInsightFiltersElFirstObservedAtEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7646,47 +7860,58 @@ pub struct SecurityhubInsightFiltersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     related_findings_id: Option<Vec<SecurityhubInsightFiltersElRelatedFindingsIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    related_findings_product_arn: Option<Vec<SecurityhubInsightFiltersElRelatedFindingsProductArnEl>>,
+    related_findings_product_arn:
+        Option<Vec<SecurityhubInsightFiltersElRelatedFindingsProductArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_iam_instance_profile_arn: Option<
-        Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>,
-    >,
+    resource_aws_ec2_instance_iam_instance_profile_arn:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_image_id: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl>>,
+    resource_aws_ec2_instance_image_id:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_ipv4_addresses: Option<
-        Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl>,
-    >,
+    resource_aws_ec2_instance_ipv4_addresses:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_ipv6_addresses: Option<
-        Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl>,
-    >,
+    resource_aws_ec2_instance_ipv6_addresses:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_key_name: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl>>,
+    resource_aws_ec2_instance_key_name:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_launched_at: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl>>,
+    resource_aws_ec2_instance_launched_at:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_subnet_id: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl>>,
+    resource_aws_ec2_instance_subnet_id:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_type: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl>>,
+    resource_aws_ec2_instance_type:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_ec2_instance_vpc_id: Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl>>,
+    resource_aws_ec2_instance_vpc_id:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_iam_access_key_created_at: Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl>>,
+    resource_aws_iam_access_key_created_at:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_iam_access_key_status: Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl>>,
+    resource_aws_iam_access_key_status:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_iam_access_key_user_name: Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl>>,
+    resource_aws_iam_access_key_user_name:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_s3_bucket_owner_id: Option<Vec<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl>>,
+    resource_aws_s3_bucket_owner_id:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_aws_s3_bucket_owner_name: Option<Vec<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl>>,
+    resource_aws_s3_bucket_owner_name:
+        Option<Vec<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_container_image_id: Option<Vec<SecurityhubInsightFiltersElResourceContainerImageIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_container_image_name: Option<Vec<SecurityhubInsightFiltersElResourceContainerImageNameEl>>,
+    resource_container_image_name:
+        Option<Vec<SecurityhubInsightFiltersElResourceContainerImageNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_container_launched_at: Option<Vec<SecurityhubInsightFiltersElResourceContainerLaunchedAtEl>>,
+    resource_container_launched_at:
+        Option<Vec<SecurityhubInsightFiltersElResourceContainerLaunchedAtEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_container_name: Option<Vec<SecurityhubInsightFiltersElResourceContainerNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7706,17 +7931,22 @@ pub struct SecurityhubInsightFiltersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     source_url: Option<Vec<SecurityhubInsightFiltersElSourceUrlEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    threat_intel_indicator_category: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl>>,
+    threat_intel_indicator_category:
+        Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    threat_intel_indicator_last_observed_at: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl>>,
+    threat_intel_indicator_last_observed_at:
+        Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    threat_intel_indicator_source: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl>>,
+    threat_intel_indicator_source:
+        Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    threat_intel_indicator_source_url: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl>>,
+    threat_intel_indicator_source_url:
+        Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     threat_intel_indicator_type: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    threat_intel_indicator_value: Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorValueEl>>,
+    threat_intel_indicator_value:
+        Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorValueEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     title: Option<Vec<SecurityhubInsightFiltersElTitleEl>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -7741,23 +7971,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_account_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_account_id = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `company_name`.\n"]
-    pub fn set_company_name(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElCompanyNameEl>>) -> Self {
+    pub fn set_company_name(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElCompanyNameEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.company_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.company_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -7770,62 +8003,74 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.compliance_status = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.compliance_status = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `confidence`.\n"]
-    pub fn set_confidence(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElConfidenceEl>>) -> Self {
+    pub fn set_confidence(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElConfidenceEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.confidence = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.confidence = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `created_at`.\n"]
-    pub fn set_created_at(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElCreatedAtEl>>) -> Self {
+    pub fn set_created_at(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElCreatedAtEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.created_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.created_at = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `criticality`.\n"]
-    pub fn set_criticality(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElCriticalityEl>>) -> Self {
+    pub fn set_criticality(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElCriticalityEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.criticality = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.criticality = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `description`.\n"]
-    pub fn set_description(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElDescriptionEl>>) -> Self {
+    pub fn set_description(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElDescriptionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.description = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.description = Some(d);
-            },
+            }
         }
         self
     }
@@ -7838,10 +8083,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_confidence = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_provider_fields_confidence = Some(d);
-            },
+            }
         }
         self
     }
@@ -7854,10 +8099,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_criticality = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_provider_fields_criticality = Some(d);
-            },
+            }
         }
         self
     }
@@ -7865,15 +8110,17 @@ impl SecurityhubInsightFiltersEl {
     #[doc = "Set the field `finding_provider_fields_related_findings_id`.\n"]
     pub fn set_finding_provider_fields_related_findings_id(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>>,
+        v: impl Into<
+            BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_related_findings_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_provider_fields_related_findings_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -7881,15 +8128,20 @@ impl SecurityhubInsightFiltersEl {
     #[doc = "Set the field `finding_provider_fields_related_findings_product_arn`.\n"]
     pub fn set_finding_provider_fields_related_findings_product_arn(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_related_findings_product_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.dynamic.finding_provider_fields_related_findings_product_arn = Some(d);
-            },
+                self.dynamic
+                    .finding_provider_fields_related_findings_product_arn = Some(d);
+            }
         }
         self
     }
@@ -7902,10 +8154,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_severity_label = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_provider_fields_severity_label = Some(d);
-            },
+            }
         }
         self
     }
@@ -7913,15 +8165,17 @@ impl SecurityhubInsightFiltersEl {
     #[doc = "Set the field `finding_provider_fields_severity_original`.\n"]
     pub fn set_finding_provider_fields_severity_original(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>>,
+        v: impl Into<
+            BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_severity_original = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_provider_fields_severity_original = Some(d);
-            },
+            }
         }
         self
     }
@@ -7934,10 +8188,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_provider_fields_types = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_provider_fields_types = Some(d);
-            },
+            }
         }
         self
     }
@@ -7950,49 +8204,58 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.first_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.first_observed_at = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `generator_id`.\n"]
-    pub fn set_generator_id(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElGeneratorIdEl>>) -> Self {
+    pub fn set_generator_id(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElGeneratorIdEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.generator_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.generator_id = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `id`.\n"]
-    pub fn set_id(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElIdEl>>) -> Self {
+    pub fn set_id(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElIdEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.id = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `keyword`.\n"]
-    pub fn set_keyword(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElKeywordEl>>) -> Self {
+    pub fn set_keyword(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElKeywordEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.keyword = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.keyword = Some(d);
-            },
+            }
         }
         self
     }
@@ -8005,36 +8268,42 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.last_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.last_observed_at = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `malware_name`.\n"]
-    pub fn set_malware_name(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElMalwareNameEl>>) -> Self {
+    pub fn set_malware_name(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElMalwareNameEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.malware_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.malware_name = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `malware_path`.\n"]
-    pub fn set_malware_path(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElMalwarePathEl>>) -> Self {
+    pub fn set_malware_path(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElMalwarePathEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.malware_path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.malware_path = Some(d);
-            },
+            }
         }
         self
     }
@@ -8047,23 +8316,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.malware_state = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.malware_state = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `malware_type`.\n"]
-    pub fn set_malware_type(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElMalwareTypeEl>>) -> Self {
+    pub fn set_malware_type(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElMalwareTypeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.malware_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.malware_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -8076,10 +8348,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_destination_domain = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_destination_domain = Some(d);
-            },
+            }
         }
         self
     }
@@ -8092,10 +8364,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_destination_ipv4 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_destination_ipv4 = Some(d);
-            },
+            }
         }
         self
     }
@@ -8108,10 +8380,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_destination_ipv6 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_destination_ipv6 = Some(d);
-            },
+            }
         }
         self
     }
@@ -8124,10 +8396,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_destination_port = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_destination_port = Some(d);
-            },
+            }
         }
         self
     }
@@ -8140,10 +8412,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_direction = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_direction = Some(d);
-            },
+            }
         }
         self
     }
@@ -8156,10 +8428,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_protocol = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_protocol = Some(d);
-            },
+            }
         }
         self
     }
@@ -8172,10 +8444,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_source_domain = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_source_domain = Some(d);
-            },
+            }
         }
         self
     }
@@ -8188,10 +8460,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_source_ipv4 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_source_ipv4 = Some(d);
-            },
+            }
         }
         self
     }
@@ -8204,10 +8476,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_source_ipv6 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_source_ipv6 = Some(d);
-            },
+            }
         }
         self
     }
@@ -8220,10 +8492,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_source_mac = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_source_mac = Some(d);
-            },
+            }
         }
         self
     }
@@ -8236,23 +8508,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_source_port = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_source_port = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `note_text`.\n"]
-    pub fn set_note_text(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElNoteTextEl>>) -> Self {
+    pub fn set_note_text(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElNoteTextEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note_text = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note_text = Some(d);
-            },
+            }
         }
         self
     }
@@ -8265,10 +8540,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note_updated_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note_updated_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -8281,10 +8556,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note_updated_by = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note_updated_by = Some(d);
-            },
+            }
         }
         self
     }
@@ -8297,23 +8572,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.process_launched_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.process_launched_at = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `process_name`.\n"]
-    pub fn set_process_name(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProcessNameEl>>) -> Self {
+    pub fn set_process_name(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProcessNameEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.process_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.process_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8326,36 +8604,42 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.process_parent_pid = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.process_parent_pid = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `process_path`.\n"]
-    pub fn set_process_path(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProcessPathEl>>) -> Self {
+    pub fn set_process_path(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProcessPathEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.process_path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.process_path = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `process_pid`.\n"]
-    pub fn set_process_pid(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProcessPidEl>>) -> Self {
+    pub fn set_process_pid(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProcessPidEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.process_pid = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.process_pid = Some(d);
-            },
+            }
         }
         self
     }
@@ -8368,23 +8652,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.process_terminated_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.process_terminated_at = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `product_arn`.\n"]
-    pub fn set_product_arn(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProductArnEl>>) -> Self {
+    pub fn set_product_arn(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProductArnEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.product_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.product_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -8397,23 +8684,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.product_fields = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.product_fields = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `product_name`.\n"]
-    pub fn set_product_name(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProductNameEl>>) -> Self {
+    pub fn set_product_name(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElProductNameEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.product_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.product_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8426,23 +8716,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.recommendation_text = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.recommendation_text = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `record_state`.\n"]
-    pub fn set_record_state(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElRecordStateEl>>) -> Self {
+    pub fn set_record_state(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElRecordStateEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.record_state = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.record_state = Some(d);
-            },
+            }
         }
         self
     }
@@ -8455,10 +8748,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.related_findings_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.related_findings_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8471,10 +8764,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.related_findings_product_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.related_findings_product_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -8482,15 +8775,20 @@ impl SecurityhubInsightFiltersEl {
     #[doc = "Set the field `resource_aws_ec2_instance_iam_instance_profile_arn`.\n"]
     pub fn set_resource_aws_ec2_instance_iam_instance_profile_arn(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_iam_instance_profile_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.dynamic.resource_aws_ec2_instance_iam_instance_profile_arn = Some(d);
-            },
+                self.dynamic
+                    .resource_aws_ec2_instance_iam_instance_profile_arn = Some(d);
+            }
         }
         self
     }
@@ -8503,10 +8801,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_image_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_image_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8519,10 +8817,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_ipv4_addresses = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_ipv4_addresses = Some(d);
-            },
+            }
         }
         self
     }
@@ -8535,10 +8833,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_ipv6_addresses = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_ipv6_addresses = Some(d);
-            },
+            }
         }
         self
     }
@@ -8551,10 +8849,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_key_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_key_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8567,10 +8865,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_launched_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_launched_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -8583,10 +8881,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_subnet_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_subnet_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8599,10 +8897,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -8615,10 +8913,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_ec2_instance_vpc_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_ec2_instance_vpc_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8631,10 +8929,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_iam_access_key_created_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_iam_access_key_created_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -8647,10 +8945,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_iam_access_key_status = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_iam_access_key_status = Some(d);
-            },
+            }
         }
         self
     }
@@ -8663,10 +8961,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_iam_access_key_user_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_iam_access_key_user_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8679,10 +8977,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_s3_bucket_owner_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_s3_bucket_owner_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8695,10 +8993,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_aws_s3_bucket_owner_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_aws_s3_bucket_owner_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8711,10 +9009,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_container_image_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_container_image_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8727,10 +9025,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_container_image_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_container_image_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8743,10 +9041,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_container_launched_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_container_launched_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -8759,10 +9057,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_container_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_container_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -8775,23 +9073,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_details_other = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_details_other = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `resource_id`.\n"]
-    pub fn set_resource_id(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElResourceIdEl>>) -> Self {
+    pub fn set_resource_id(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElResourceIdEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -8804,10 +9105,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_partition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_partition = Some(d);
-            },
+            }
         }
         self
     }
@@ -8820,10 +9121,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_region = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_region = Some(d);
-            },
+            }
         }
         self
     }
@@ -8836,10 +9137,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -8852,10 +9153,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -8868,23 +9169,26 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.severity_label = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.severity_label = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `source_url`.\n"]
-    pub fn set_source_url(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElSourceUrlEl>>) -> Self {
+    pub fn set_source_url(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElSourceUrlEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_url = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_url = Some(d);
-            },
+            }
         }
         self
     }
@@ -8897,10 +9201,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.threat_intel_indicator_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.threat_intel_indicator_category = Some(d);
-            },
+            }
         }
         self
     }
@@ -8913,10 +9217,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.threat_intel_indicator_last_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.threat_intel_indicator_last_observed_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -8929,10 +9233,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.threat_intel_indicator_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.threat_intel_indicator_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -8945,10 +9249,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.threat_intel_indicator_source_url = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.threat_intel_indicator_source_url = Some(d);
-            },
+            }
         }
         self
     }
@@ -8961,10 +9265,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.threat_intel_indicator_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.threat_intel_indicator_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -8977,49 +9281,58 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.threat_intel_indicator_value = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.threat_intel_indicator_value = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `title`.\n"]
-    pub fn set_title(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElTitleEl>>) -> Self {
+    pub fn set_title(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElTitleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.title = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.title = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `type_`.\n"]
-    pub fn set_type(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElTypeEl>>) -> Self {
+    pub fn set_type(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElTypeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.type_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.type_ = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `updated_at`.\n"]
-    pub fn set_updated_at(mut self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersElUpdatedAtEl>>) -> Self {
+    pub fn set_updated_at(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubInsightFiltersElUpdatedAtEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.updated_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.updated_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -9032,10 +9345,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.user_defined_values = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.user_defined_values = Some(d);
-            },
+            }
         }
         self
     }
@@ -9048,10 +9361,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.verification_state = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.verification_state = Some(d);
-            },
+            }
         }
         self
     }
@@ -9064,10 +9377,10 @@ impl SecurityhubInsightFiltersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.workflow_status = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.workflow_status = Some(d);
-            },
+            }
         }
         self
     }

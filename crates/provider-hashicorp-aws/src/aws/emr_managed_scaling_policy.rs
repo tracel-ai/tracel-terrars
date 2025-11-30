@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EmrManagedScalingPolicyData {
@@ -63,7 +63,8 @@ impl EmrManagedScalingPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +77,7 @@ impl EmrManagedScalingPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +88,22 @@ impl EmrManagedScalingPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -102,8 +113,7 @@ impl EmrManagedScalingPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -122,21 +132,27 @@ impl EmrManagedScalingPolicy {
     }
 
     #[doc = "Set the field `compute_limits`.\n"]
-    pub fn set_compute_limits(self, v: impl Into<BlockAssignable<EmrManagedScalingPolicyComputeLimitsEl>>) -> Self {
+    pub fn set_compute_limits(
+        self,
+        v: impl Into<BlockAssignable<EmrManagedScalingPolicyComputeLimitsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().compute_limits = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.compute_limits = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -144,30 +160,42 @@ impl EmrManagedScalingPolicy {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_strategy` after provisioning.\n"]
     pub fn scaling_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `utilization_performance_index` after provisioning.\n"]
     pub fn utilization_performance_index(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.utilization_performance_index", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.utilization_performance_index", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EmrManagedScalingPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EmrManagedScalingPolicy { }
+impl Resource for EmrManagedScalingPolicy {}
 
 impl ToListMappable for EmrManagedScalingPolicy {
     type O = ListRef<EmrManagedScalingPolicyRef>;
@@ -229,10 +257,7 @@ pub struct EmrManagedScalingPolicyRef {
 
 impl Ref for EmrManagedScalingPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -247,7 +272,10 @@ impl EmrManagedScalingPolicyRef {
 
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -255,20 +283,28 @@ impl EmrManagedScalingPolicyRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_strategy` after provisioning.\n"]
     pub fn scaling_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scaling_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scaling_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `utilization_performance_index` after provisioning.\n"]
     pub fn utilization_performance_index(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.utilization_performance_index", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.utilization_performance_index", self.extract_ref()),
+        )
     }
 }
 
@@ -351,22 +387,34 @@ impl EmrManagedScalingPolicyComputeLimitsElRef {
 
     #[doc = "Get a reference to the value of field `maximum_capacity_units` after provisioning.\n"]
     pub fn maximum_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_core_capacity_units` after provisioning.\n"]
     pub fn maximum_core_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_core_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_core_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_ondemand_capacity_units` after provisioning.\n"]
     pub fn maximum_ondemand_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_ondemand_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_ondemand_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_capacity_units` after provisioning.\n"]
     pub fn minimum_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unit_type` after provisioning.\n"]

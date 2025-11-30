@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEmrSupportedInstanceTypesData {
@@ -41,8 +41,7 @@ impl DataEmrSupportedInstanceTypes {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -53,30 +52,44 @@ impl DataEmrSupportedInstanceTypes {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_instance_types` after provisioning.\n"]
-    pub fn supported_instance_types(&self) -> ListRef<DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.supported_instance_types", self.extract_ref()))
+    pub fn supported_instance_types(
+        &self,
+    ) -> ListRef<DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.supported_instance_types", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEmrSupportedInstanceTypes {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEmrSupportedInstanceTypes { }
+impl Datasource for DataEmrSupportedInstanceTypes {}
 
 impl ToListMappable for DataEmrSupportedInstanceTypes {
     type O = ListRef<DataEmrSupportedInstanceTypesRef>;
@@ -132,10 +145,7 @@ pub struct DataEmrSupportedInstanceTypesRef {
 
 impl Ref for DataEmrSupportedInstanceTypesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -153,20 +163,30 @@ impl DataEmrSupportedInstanceTypesRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `release_label` after provisioning.\n"]
     pub fn release_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.release_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.release_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_instance_types` after provisioning.\n"]
-    pub fn supported_instance_types(&self) -> ListRef<DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.supported_instance_types", self.extract_ref()))
+    pub fn supported_instance_types(
+        &self,
+    ) -> ListRef<DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.supported_instance_types", self.extract_ref()),
+        )
     }
 }
 
@@ -302,7 +322,10 @@ pub struct DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
 }
 
 impl Ref for DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
-    fn new(shared: StackShared, base: String) -> DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
         DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
             shared: shared,
             base: base.to_string(),
@@ -322,27 +345,42 @@ impl DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
 
     #[doc = "Get a reference to the value of field `ebs_optimized_available` after provisioning.\n"]
     pub fn ebs_optimized_available(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_optimized_available", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_optimized_available", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_optimized_by_default` after provisioning.\n"]
     pub fn ebs_optimized_by_default(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_optimized_by_default", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_optimized_by_default", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ebs_storage_only` after provisioning.\n"]
     pub fn ebs_storage_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ebs_storage_only", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ebs_storage_only", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_family_id` after provisioning.\n"]
     pub fn instance_family_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_family_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_family_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `is_64_bits_only` after provisioning.\n"]
     pub fn is_64_bits_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_64_bits_only", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_64_bits_only", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_gb` after provisioning.\n"]
@@ -352,7 +390,10 @@ impl DataEmrSupportedInstanceTypesSupportedInstanceTypesElRef {
 
     #[doc = "Get a reference to the value of field `number_of_disks` after provisioning.\n"]
     pub fn number_of_disks(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_disks", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_disks", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_gb` after provisioning.\n"]

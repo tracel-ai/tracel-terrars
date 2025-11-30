@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataVerifiedpermissionsPolicyStoreData {
@@ -41,8 +41,7 @@ impl DataVerifiedpermissionsPolicyStore {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -55,17 +54,26 @@ impl DataVerifiedpermissionsPolicyStore {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\n"]
     pub fn deletion_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -75,33 +83,50 @@ impl DataVerifiedpermissionsPolicyStore {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_settings` after provisioning.\n"]
-    pub fn validation_settings(&self) -> ListRef<DataVerifiedpermissionsPolicyStoreValidationSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_settings", self.extract_ref()))
+    pub fn validation_settings(
+        &self,
+    ) -> ListRef<DataVerifiedpermissionsPolicyStoreValidationSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataVerifiedpermissionsPolicyStore {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataVerifiedpermissionsPolicyStore { }
+impl Datasource for DataVerifiedpermissionsPolicyStore {}
 
 impl ToListMappable for DataVerifiedpermissionsPolicyStore {
     type O = ListRef<DataVerifiedpermissionsPolicyStoreRef>;
@@ -134,17 +159,18 @@ pub struct BuildDataVerifiedpermissionsPolicyStore {
 
 impl BuildDataVerifiedpermissionsPolicyStore {
     pub fn build(self, stack: &mut Stack) -> DataVerifiedpermissionsPolicyStore {
-        let out = DataVerifiedpermissionsPolicyStore(Rc::new(DataVerifiedpermissionsPolicyStore_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataVerifiedpermissionsPolicyStoreData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: self.id,
-                region: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataVerifiedpermissionsPolicyStore(Rc::new(DataVerifiedpermissionsPolicyStore_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataVerifiedpermissionsPolicyStoreData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: self.id,
+                    region: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -157,10 +183,7 @@ pub struct DataVerifiedpermissionsPolicyStoreRef {
 
 impl Ref for DataVerifiedpermissionsPolicyStoreRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -180,17 +203,26 @@ impl DataVerifiedpermissionsPolicyStoreRef {
 
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\n"]
     pub fn deletion_protection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protection", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protection", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -200,23 +232,36 @@ impl DataVerifiedpermissionsPolicyStoreRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_settings` after provisioning.\n"]
-    pub fn validation_settings(&self) -> ListRef<DataVerifiedpermissionsPolicyStoreValidationSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.validation_settings", self.extract_ref()))
+    pub fn validation_settings(
+        &self,
+    ) -> ListRef<DataVerifiedpermissionsPolicyStoreValidationSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.validation_settings", self.extract_ref()),
+        )
     }
 }
 
@@ -250,7 +295,9 @@ pub struct BuildDataVerifiedpermissionsPolicyStoreValidationSettingsEl {}
 
 impl BuildDataVerifiedpermissionsPolicyStoreValidationSettingsEl {
     pub fn build(self) -> DataVerifiedpermissionsPolicyStoreValidationSettingsEl {
-        DataVerifiedpermissionsPolicyStoreValidationSettingsEl { mode: core::default::Default::default() }
+        DataVerifiedpermissionsPolicyStoreValidationSettingsEl {
+            mode: core::default::Default::default(),
+        }
     }
 }
 
@@ -260,7 +307,10 @@ pub struct DataVerifiedpermissionsPolicyStoreValidationSettingsElRef {
 }
 
 impl Ref for DataVerifiedpermissionsPolicyStoreValidationSettingsElRef {
-    fn new(shared: StackShared, base: String) -> DataVerifiedpermissionsPolicyStoreValidationSettingsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataVerifiedpermissionsPolicyStoreValidationSettingsElRef {
         DataVerifiedpermissionsPolicyStoreValidationSettingsElRef {
             shared: shared,
             base: base.to_string(),

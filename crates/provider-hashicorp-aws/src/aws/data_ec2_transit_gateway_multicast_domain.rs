@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2TransitGatewayMulticastDomainData {
@@ -57,8 +57,7 @@ impl DataEc2TransitGatewayMulticastDomain {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -77,20 +76,26 @@ impl DataEc2TransitGatewayMulticastDomain {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2TransitGatewayMulticastDomainFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2TransitGatewayMulticastDomainFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataEc2TransitGatewayMulticastDomainTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataEc2TransitGatewayMulticastDomainTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -102,12 +107,18 @@ impl DataEc2TransitGatewayMulticastDomain {
 
     #[doc = "Get a reference to the value of field `associations` after provisioning.\n"]
     pub fn associations(&self) -> ListRef<DataEc2TransitGatewayMulticastDomainAssociationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.associations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_accept_shared_associations` after provisioning.\n"]
     pub fn auto_accept_shared_associations(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_accept_shared_associations", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_accept_shared_associations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -117,58 +128,90 @@ impl DataEc2TransitGatewayMulticastDomain {
 
     #[doc = "Get a reference to the value of field `igmpv2_support` after provisioning.\n"]
     pub fn igmpv2_support(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.igmpv2_support", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.igmpv2_support", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `members` after provisioning.\n"]
     pub fn members(&self) -> ListRef<DataEc2TransitGatewayMulticastDomainMembersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.members", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.members", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sources` after provisioning.\n"]
     pub fn sources(&self) -> ListRef<DataEc2TransitGatewayMulticastDomainSourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `static_sources_support` after provisioning.\n"]
     pub fn static_sources_support(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.static_sources_support", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.static_sources_support", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_multicast_domain_id` after provisioning.\n"]
     pub fn transit_gateway_multicast_domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -182,11 +225,15 @@ impl DataEc2TransitGatewayMulticastDomain {
 
 impl Referable for DataEc2TransitGatewayMulticastDomain {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2TransitGatewayMulticastDomain { }
+impl Datasource for DataEc2TransitGatewayMulticastDomain {}
 
 impl ToListMappable for DataEc2TransitGatewayMulticastDomain {
     type O = ListRef<DataEc2TransitGatewayMulticastDomainRef>;
@@ -217,22 +264,23 @@ pub struct BuildDataEc2TransitGatewayMulticastDomain {
 
 impl BuildDataEc2TransitGatewayMulticastDomain {
     pub fn build(self, stack: &mut Stack) -> DataEc2TransitGatewayMulticastDomain {
-        let out = DataEc2TransitGatewayMulticastDomain(Rc::new(DataEc2TransitGatewayMulticastDomain_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataEc2TransitGatewayMulticastDomainData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                transit_gateway_multicast_domain_id: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            DataEc2TransitGatewayMulticastDomain(Rc::new(DataEc2TransitGatewayMulticastDomain_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataEc2TransitGatewayMulticastDomainData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    transit_gateway_multicast_domain_id: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -245,10 +293,7 @@ pub struct DataEc2TransitGatewayMulticastDomainRef {
 
 impl Ref for DataEc2TransitGatewayMulticastDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -268,12 +313,18 @@ impl DataEc2TransitGatewayMulticastDomainRef {
 
     #[doc = "Get a reference to the value of field `associations` after provisioning.\n"]
     pub fn associations(&self) -> ListRef<DataEc2TransitGatewayMulticastDomainAssociationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.associations", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_accept_shared_associations` after provisioning.\n"]
     pub fn auto_accept_shared_associations(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_accept_shared_associations", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_accept_shared_associations", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -283,58 +334,90 @@ impl DataEc2TransitGatewayMulticastDomainRef {
 
     #[doc = "Get a reference to the value of field `igmpv2_support` after provisioning.\n"]
     pub fn igmpv2_support(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.igmpv2_support", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.igmpv2_support", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `members` after provisioning.\n"]
     pub fn members(&self) -> ListRef<DataEc2TransitGatewayMulticastDomainMembersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.members", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.members", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sources` after provisioning.\n"]
     pub fn sources(&self) -> ListRef<DataEc2TransitGatewayMulticastDomainSourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `static_sources_support` after provisioning.\n"]
     pub fn static_sources_support(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.static_sources_support", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.static_sources_support", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_multicast_domain_id` after provisioning.\n"]
     pub fn transit_gateway_multicast_domain_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_multicast_domain_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -397,7 +480,10 @@ pub struct DataEc2TransitGatewayMulticastDomainAssociationsElRef {
 }
 
 impl Ref for DataEc2TransitGatewayMulticastDomainAssociationsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayMulticastDomainAssociationsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayMulticastDomainAssociationsElRef {
         DataEc2TransitGatewayMulticastDomainAssociationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -417,7 +503,10 @@ impl DataEc2TransitGatewayMulticastDomainAssociationsElRef {
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.base),
+        )
     }
 }
 
@@ -487,12 +576,18 @@ impl DataEc2TransitGatewayMulticastDomainMembersElRef {
 
     #[doc = "Get a reference to the value of field `group_ip_address` after provisioning.\n"]
     pub fn group_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 }
 
@@ -562,12 +657,18 @@ impl DataEc2TransitGatewayMulticastDomainSourcesElRef {
 
     #[doc = "Get a reference to the value of field `group_ip_address` after provisioning.\n"]
     pub fn group_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_interface_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_interface_id", self.base),
+        )
     }
 }
 
@@ -577,7 +678,7 @@ pub struct DataEc2TransitGatewayMulticastDomainFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2TransitGatewayMulticastDomainFilterEl { }
+impl DataEc2TransitGatewayMulticastDomainFilterEl {}
 
 impl ToListMappable for DataEc2TransitGatewayMulticastDomainFilterEl {
     type O = BlockAssignable<DataEc2TransitGatewayMulticastDomainFilterEl>;
@@ -667,7 +768,9 @@ pub struct BuildDataEc2TransitGatewayMulticastDomainTimeoutsEl {}
 
 impl BuildDataEc2TransitGatewayMulticastDomainTimeoutsEl {
     pub fn build(self) -> DataEc2TransitGatewayMulticastDomainTimeoutsEl {
-        DataEc2TransitGatewayMulticastDomainTimeoutsEl { read: core::default::Default::default() }
+        DataEc2TransitGatewayMulticastDomainTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WorkspaceswebDataProtectionSettingsData {
@@ -26,7 +26,8 @@ struct WorkspaceswebDataProtectionSettingsData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    inline_redaction_configuration: Option<Vec<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationEl>>,
+    inline_redaction_configuration:
+        Option<Vec<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationEl>>,
     dynamic: WorkspaceswebDataProtectionSettingsDynamic,
 }
 
@@ -65,7 +66,8 @@ impl WorkspaceswebDataProtectionSettings {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +80,7 @@ impl WorkspaceswebDataProtectionSettings {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,17 +91,30 @@ impl WorkspaceswebDataProtectionSettings {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
     #[doc = "Set the field `additional_encryption_context`.\n"]
-    pub fn set_additional_encryption_context(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_additional_encryption_context(
+        self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().additional_encryption_context = Some(v.into());
         self
     }
@@ -116,8 +131,7 @@ impl WorkspaceswebDataProtectionSettings {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,75 +151,112 @@ impl WorkspaceswebDataProtectionSettings {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().inline_redaction_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.inline_redaction_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .inline_redaction_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.additional_encryption_context", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.additional_encryption_context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.associated_portal_arns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associated_portal_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_managed_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_protection_settings_arn` after provisioning.\n"]
     pub fn data_protection_settings_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_protection_settings_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_protection_settings_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inline_redaction_configuration` after provisioning.\n"]
     pub fn inline_redaction_configuration(
         &self,
     ) -> ListRef<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inline_redaction_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inline_redaction_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WorkspaceswebDataProtectionSettings {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WorkspaceswebDataProtectionSettings { }
+impl Resource for WorkspaceswebDataProtectionSettings {}
 
 impl ToListMappable for WorkspaceswebDataProtectionSettings {
     type O = ListRef<WorkspaceswebDataProtectionSettingsRef>;
@@ -238,24 +289,25 @@ pub struct BuildWorkspaceswebDataProtectionSettings {
 
 impl BuildWorkspaceswebDataProtectionSettings {
     pub fn build(self, stack: &mut Stack) -> WorkspaceswebDataProtectionSettings {
-        let out = WorkspaceswebDataProtectionSettings(Rc::new(WorkspaceswebDataProtectionSettings_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(WorkspaceswebDataProtectionSettingsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                additional_encryption_context: core::default::Default::default(),
-                customer_managed_key: core::default::Default::default(),
-                description: core::default::Default::default(),
-                display_name: self.display_name,
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                inline_redaction_configuration: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            WorkspaceswebDataProtectionSettings(Rc::new(WorkspaceswebDataProtectionSettings_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(WorkspaceswebDataProtectionSettingsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    additional_encryption_context: core::default::Default::default(),
+                    customer_managed_key: core::default::Default::default(),
+                    description: core::default::Default::default(),
+                    display_name: self.display_name,
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    inline_redaction_configuration: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -268,10 +320,7 @@ pub struct WorkspaceswebDataProtectionSettingsRef {
 
 impl Ref for WorkspaceswebDataProtectionSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -286,60 +335,90 @@ impl WorkspaceswebDataProtectionSettingsRef {
 
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.additional_encryption_context", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.additional_encryption_context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.associated_portal_arns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.associated_portal_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_managed_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_protection_settings_arn` after provisioning.\n"]
     pub fn data_protection_settings_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_protection_settings_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_protection_settings_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inline_redaction_configuration` after provisioning.\n"]
     pub fn inline_redaction_configuration(
         &self,
     ) -> ListRef<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inline_redaction_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inline_redaction_configuration", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternEl {
+pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     keyword_regex: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -377,7 +456,8 @@ impl ToListMappable for WorkspaceswebDataProtectionSettingsInlineRedactionConfig
     }
 }
 
-pub struct BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternEl {
+pub struct BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternEl
+{
     #[doc = ""]
     pub pattern_name: PrimField<String>,
     #[doc = ""]
@@ -397,7 +477,8 @@ impl BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlin
     }
 }
 
-pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternElRef {
+pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -441,7 +522,8 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineReda
 }
 
 #[derive(Serialize)]
-pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderEl {
+pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     redaction_place_holder_text: Option<PrimField<String>>,
     redaction_place_holder_type: PrimField<String>,
@@ -470,7 +552,8 @@ impl ToListMappable for WorkspaceswebDataProtectionSettingsInlineRedactionConfig
     }
 }
 
-pub struct BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderEl {
+pub struct BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderEl
+{
     #[doc = ""]
     pub redaction_place_holder_type: PrimField<String>,
 }
@@ -486,7 +569,8 @@ impl BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlin
     }
 }
 
-pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderElRef {
+pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -596,10 +680,10 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineReda
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_pattern = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_pattern = Some(d);
-            },
+            }
         }
         self
     }
@@ -619,18 +703,21 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineReda
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.redaction_place_holder = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.redaction_place_holder = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl {
-    type O =
-        BlockAssignable<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl>;
+impl ToListMappable
+    for WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl
+{
+    type O = BlockAssignable<
+        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -641,10 +728,16 @@ impl ToListMappable for WorkspaceswebDataProtectionSettingsInlineRedactionConfig
     }
 }
 
-pub struct BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl {}
+pub struct BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl
+{}
 
-impl BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl {
-    pub fn build(self) -> WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl {
+impl
+    BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl
+{
+    pub fn build(
+        self,
+    ) -> WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl
+    {
         WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternEl {
             built_in_pattern_id: core::default::Default::default(),
             confidence_level: core::default::Default::default(),
@@ -657,16 +750,20 @@ impl BuildWorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlin
     }
 }
 
-pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef {
+pub struct WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef {
+impl Ref
+    for WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef {
+    ) -> WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef
+    {
         WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef {
             shared: shared,
             base: base.to_string(),
@@ -681,17 +778,26 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineReda
 
     #[doc = "Get a reference to the value of field `built_in_pattern_id` after provisioning.\n"]
     pub fn built_in_pattern_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.built_in_pattern_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.built_in_pattern_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `confidence_level` after provisioning.\n"]
     pub fn confidence_level(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.confidence_level", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.confidence_level", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enforced_urls` after provisioning.\n"]
     pub fn enforced_urls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.enforced_urls", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.enforced_urls", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exempt_urls` after provisioning.\n"]
@@ -704,8 +810,11 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineReda
         &self,
     ) -> ListRef<
         WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElCustomPatternElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.custom_pattern", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_pattern", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `redaction_place_holder` after provisioning.\n"]
@@ -713,8 +822,11 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineReda
         &self,
     ) -> ListRef<
         WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRedactionPlaceHolderElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.redaction_place_holder", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.redaction_place_holder", self.base),
+        )
     }
 }
 
@@ -774,10 +886,10 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inline_redaction_pattern = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inline_redaction_pattern = Some(d);
-            },
+            }
         }
         self
     }
@@ -833,30 +945,41 @@ impl WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `global_confidence_level` after provisioning.\n"]
     pub fn global_confidence_level(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_confidence_level", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_confidence_level", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_enforced_urls` after provisioning.\n"]
     pub fn global_enforced_urls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.global_enforced_urls", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.global_enforced_urls", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_exempt_urls` after provisioning.\n"]
     pub fn global_exempt_urls(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.global_exempt_urls", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.global_exempt_urls", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inline_redaction_pattern` after provisioning.\n"]
     pub fn inline_redaction_pattern(
         &self,
-    ) -> ListRef<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inline_redaction_pattern", self.base))
+    ) -> ListRef<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationElInlineRedactionPatternElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inline_redaction_pattern", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct WorkspaceswebDataProtectionSettingsDynamic {
-    inline_redaction_configuration: Option<
-        DynamicBlock<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationEl>,
-    >,
+    inline_redaction_configuration:
+        Option<DynamicBlock<WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkInterfaceData {
@@ -99,7 +99,8 @@ impl NetworkInterface {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -112,7 +113,7 @@ impl NetworkInterface {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -123,12 +124,22 @@ impl NetworkInterface {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -234,8 +245,7 @@ impl NetworkInterface {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -266,14 +276,17 @@ impl NetworkInterface {
     }
 
     #[doc = "Set the field `attachment`.\n"]
-    pub fn set_attachment(self, v: impl Into<BlockAssignable<NetworkInterfaceAttachmentEl>>) -> Self {
+    pub fn set_attachment(
+        self,
+        v: impl Into<BlockAssignable<NetworkInterfaceAttachmentEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().attachment = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.attachment = Some(d);
-            },
+            }
         }
         self
     }
@@ -285,12 +298,18 @@ impl NetworkInterface {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_primary_ipv6` after provisioning.\n"]
     pub fn enable_primary_ipv6(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_primary_ipv6", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_primary_ipv6", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -300,133 +319,208 @@ impl NetworkInterface {
 
     #[doc = "Get a reference to the value of field `interface_type` after provisioning.\n"]
     pub fn interface_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interface_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.interface_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_prefix_count` after provisioning.\n"]
     pub fn ipv4_prefix_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv4_prefix_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv4_prefix_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_prefixes` after provisioning.\n"]
     pub fn ipv4_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv4_prefixes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv4_prefixes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_count` after provisioning.\n"]
     pub fn ipv6_address_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_address_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_list` after provisioning.\n"]
     pub fn ipv6_address_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv6_address_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_list_enabled` after provisioning.\n"]
     pub fn ipv6_address_list_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_address_list_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_list_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_addresses` after provisioning.\n"]
     pub fn ipv6_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv6_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_prefix_count` after provisioning.\n"]
     pub fn ipv6_prefix_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_prefix_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_prefix_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_prefixes` after provisioning.\n"]
     pub fn ipv6_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv6_prefixes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_prefixes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mac_address` after provisioning.\n"]
     pub fn mac_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mac_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mac_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outpost_arn` after provisioning.\n"]
     pub fn outpost_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outpost_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outpost_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_name` after provisioning.\n"]
     pub fn private_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip` after provisioning.\n"]
     pub fn private_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ip", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ip", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip_list` after provisioning.\n"]
     pub fn private_ip_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.private_ip_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_ip_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip_list_enabled` after provisioning.\n"]
     pub fn private_ip_list_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ip_list_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ip_list_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ips` after provisioning.\n"]
     pub fn private_ips(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.private_ips", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.private_ips", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ips_count` after provisioning.\n"]
     pub fn private_ips_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ips_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ips_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_dest_check` after provisioning.\n"]
     pub fn source_dest_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_dest_check", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_dest_check", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for NetworkInterface {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkInterface { }
+impl Resource for NetworkInterface {}
 
 impl ToListMappable for NetworkInterface {
     type O = ListRef<NetworkInterfaceRef>;
@@ -506,10 +600,7 @@ pub struct NetworkInterfaceRef {
 
 impl Ref for NetworkInterfaceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -529,12 +620,18 @@ impl NetworkInterfaceRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_primary_ipv6` after provisioning.\n"]
     pub fn enable_primary_ipv6(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_primary_ipv6", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_primary_ipv6", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -544,123 +641,194 @@ impl NetworkInterfaceRef {
 
     #[doc = "Get a reference to the value of field `interface_type` after provisioning.\n"]
     pub fn interface_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interface_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.interface_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_prefix_count` after provisioning.\n"]
     pub fn ipv4_prefix_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv4_prefix_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv4_prefix_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv4_prefixes` after provisioning.\n"]
     pub fn ipv4_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv4_prefixes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv4_prefixes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_count` after provisioning.\n"]
     pub fn ipv6_address_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_address_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_list` after provisioning.\n"]
     pub fn ipv6_address_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv6_address_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_address_list_enabled` after provisioning.\n"]
     pub fn ipv6_address_list_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_address_list_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_address_list_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_addresses` after provisioning.\n"]
     pub fn ipv6_addresses(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv6_addresses", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_addresses", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_prefix_count` after provisioning.\n"]
     pub fn ipv6_prefix_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_prefix_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_prefix_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ipv6_prefixes` after provisioning.\n"]
     pub fn ipv6_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ipv6_prefixes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_prefixes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mac_address` after provisioning.\n"]
     pub fn mac_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.mac_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.mac_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outpost_arn` after provisioning.\n"]
     pub fn outpost_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outpost_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outpost_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_dns_name` after provisioning.\n"]
     pub fn private_dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip` after provisioning.\n"]
     pub fn private_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ip", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ip", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip_list` after provisioning.\n"]
     pub fn private_ip_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.private_ip_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.private_ip_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ip_list_enabled` after provisioning.\n"]
     pub fn private_ip_list_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ip_list_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ip_list_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ips` after provisioning.\n"]
     pub fn private_ips(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.private_ips", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.private_ips", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `private_ips_count` after provisioning.\n"]
     pub fn private_ips_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.private_ips_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.private_ips_count", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_dest_check` after provisioning.\n"]
     pub fn source_dest_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_dest_check", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_dest_check", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
@@ -730,7 +898,10 @@ impl NetworkInterfaceAttachmentElRef {
 
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attachment_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attachment_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_index` after provisioning.\n"]
@@ -745,7 +916,10 @@ impl NetworkInterfaceAttachmentElRef {
 
     #[doc = "Get a reference to the value of field `network_card_index` after provisioning.\n"]
     pub fn network_card_index(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.network_card_index", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.network_card_index", self.base),
+        )
     }
 }
 

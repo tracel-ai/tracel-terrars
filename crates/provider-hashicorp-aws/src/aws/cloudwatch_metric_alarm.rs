@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchMetricAlarmData {
@@ -99,7 +99,8 @@ impl CloudwatchMetricAlarm {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -112,7 +113,7 @@ impl CloudwatchMetricAlarm {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -123,12 +124,22 @@ impl CloudwatchMetricAlarm {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -163,8 +174,14 @@ impl CloudwatchMetricAlarm {
     }
 
     #[doc = "Set the field `evaluate_low_sample_count_percentiles`.\n"]
-    pub fn set_evaluate_low_sample_count_percentiles(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().evaluate_low_sample_count_percentiles = Some(v.into());
+    pub fn set_evaluate_low_sample_count_percentiles(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .evaluate_low_sample_count_percentiles = Some(v.into());
         self
     }
 
@@ -210,8 +227,7 @@ impl CloudwatchMetricAlarm {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -260,36 +276,51 @@ impl CloudwatchMetricAlarm {
     }
 
     #[doc = "Set the field `metric_query`.\n"]
-    pub fn set_metric_query(self, v: impl Into<BlockAssignable<CloudwatchMetricAlarmMetricQueryEl>>) -> Self {
+    pub fn set_metric_query(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchMetricAlarmMetricQueryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().metric_query = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.metric_query = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `actions_enabled` after provisioning.\n"]
     pub fn actions_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.actions_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.actions_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_actions` after provisioning.\n"]
     pub fn alarm_actions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.alarm_actions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.alarm_actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_description` after provisioning.\n"]
     pub fn alarm_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alarm_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alarm_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_name` after provisioning.\n"]
     pub fn alarm_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alarm_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alarm_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -299,32 +330,53 @@ impl CloudwatchMetricAlarm {
 
     #[doc = "Get a reference to the value of field `comparison_operator` after provisioning.\n"]
     pub fn comparison_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comparison_operator", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comparison_operator", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datapoints_to_alarm` after provisioning.\n"]
     pub fn datapoints_to_alarm(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.datapoints_to_alarm", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.datapoints_to_alarm", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimensions` after provisioning.\n"]
     pub fn dimensions(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.dimensions", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.dimensions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `evaluate_low_sample_count_percentiles` after provisioning.\n"]
     pub fn evaluate_low_sample_count_percentiles(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluate_low_sample_count_percentiles", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.evaluate_low_sample_count_percentiles",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `evaluation_periods` after provisioning.\n"]
     pub fn evaluation_periods(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluation_periods", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.evaluation_periods", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `extended_statistic` after provisioning.\n"]
     pub fn extended_statistic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.extended_statistic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.extended_statistic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -334,78 +386,120 @@ impl CloudwatchMetricAlarm {
 
     #[doc = "Get a reference to the value of field `insufficient_data_actions` after provisioning.\n"]
     pub fn insufficient_data_actions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.insufficient_data_actions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.insufficient_data_actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ok_actions` after provisioning.\n"]
     pub fn ok_actions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ok_actions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ok_actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `period` after provisioning.\n"]
     pub fn period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.period", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statistic` after provisioning.\n"]
     pub fn statistic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statistic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statistic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold` after provisioning.\n"]
     pub fn threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold_metric_id` after provisioning.\n"]
     pub fn threshold_metric_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold_metric_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold_metric_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `treat_missing_data` after provisioning.\n"]
     pub fn treat_missing_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.treat_missing_data", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.treat_missing_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unit", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchMetricAlarm {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchMetricAlarm { }
+impl Resource for CloudwatchMetricAlarm {}
 
 impl ToListMappable for CloudwatchMetricAlarm {
     type O = ListRef<CloudwatchMetricAlarmRef>;
@@ -490,10 +584,7 @@ pub struct CloudwatchMetricAlarmRef {
 
 impl Ref for CloudwatchMetricAlarmRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -508,22 +599,34 @@ impl CloudwatchMetricAlarmRef {
 
     #[doc = "Get a reference to the value of field `actions_enabled` after provisioning.\n"]
     pub fn actions_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.actions_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.actions_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_actions` after provisioning.\n"]
     pub fn alarm_actions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.alarm_actions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.alarm_actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_description` after provisioning.\n"]
     pub fn alarm_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alarm_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alarm_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_name` after provisioning.\n"]
     pub fn alarm_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alarm_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alarm_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -533,32 +636,53 @@ impl CloudwatchMetricAlarmRef {
 
     #[doc = "Get a reference to the value of field `comparison_operator` after provisioning.\n"]
     pub fn comparison_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.comparison_operator", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.comparison_operator", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datapoints_to_alarm` after provisioning.\n"]
     pub fn datapoints_to_alarm(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.datapoints_to_alarm", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.datapoints_to_alarm", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimensions` after provisioning.\n"]
     pub fn dimensions(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.dimensions", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.dimensions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `evaluate_low_sample_count_percentiles` after provisioning.\n"]
     pub fn evaluate_low_sample_count_percentiles(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluate_low_sample_count_percentiles", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.evaluate_low_sample_count_percentiles",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `evaluation_periods` after provisioning.\n"]
     pub fn evaluation_periods(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluation_periods", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.evaluation_periods", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `extended_statistic` after provisioning.\n"]
     pub fn extended_statistic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.extended_statistic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.extended_statistic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -568,68 +692,106 @@ impl CloudwatchMetricAlarmRef {
 
     #[doc = "Get a reference to the value of field `insufficient_data_actions` after provisioning.\n"]
     pub fn insufficient_data_actions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.insufficient_data_actions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.insufficient_data_actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.namespace", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ok_actions` after provisioning.\n"]
     pub fn ok_actions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.ok_actions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.ok_actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `period` after provisioning.\n"]
     pub fn period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.period", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statistic` after provisioning.\n"]
     pub fn statistic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statistic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statistic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold` after provisioning.\n"]
     pub fn threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `threshold_metric_id` after provisioning.\n"]
     pub fn threshold_metric_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.threshold_metric_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.threshold_metric_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `treat_missing_data` after provisioning.\n"]
     pub fn treat_missing_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.treat_missing_data", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.treat_missing_data", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unit", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unit", self.extract_ref()),
+        )
     }
 }
 
@@ -805,14 +967,17 @@ impl CloudwatchMetricAlarmMetricQueryEl {
     }
 
     #[doc = "Set the field `metric`.\n"]
-    pub fn set_metric(mut self, v: impl Into<BlockAssignable<CloudwatchMetricAlarmMetricQueryElMetricEl>>) -> Self {
+    pub fn set_metric(
+        mut self,
+        v: impl Into<BlockAssignable<CloudwatchMetricAlarmMetricQueryElMetricEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric = Some(d);
-            },
+            }
         }
         self
     }

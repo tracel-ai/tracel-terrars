@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafregionalRegexMatchSetData {
@@ -59,7 +59,8 @@ impl WafregionalRegexMatchSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl WafregionalRegexMatchSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl WafregionalRegexMatchSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,8 +109,7 @@ impl WafregionalRegexMatchSet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -113,10 +123,10 @@ impl WafregionalRegexMatchSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().regex_match_tuple = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.regex_match_tuple = Some(d);
-            },
+            }
         }
         self
     }
@@ -128,23 +138,32 @@ impl WafregionalRegexMatchSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafregionalRegexMatchSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafregionalRegexMatchSet { }
+impl Resource for WafregionalRegexMatchSet {}
 
 impl ToListMappable for WafregionalRegexMatchSet {
     type O = ListRef<WafregionalRegexMatchSetRef>;
@@ -204,10 +223,7 @@ pub struct WafregionalRegexMatchSetRef {
 
 impl Ref for WafregionalRegexMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -227,13 +243,18 @@ impl WafregionalRegexMatchSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -285,7 +306,10 @@ pub struct WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
 }
 
 impl Ref for WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
-    fn new(shared: StackShared, base: String) -> WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
         WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -332,10 +356,10 @@ impl WafregionalRegexMatchSetRegexMatchTupleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -392,17 +416,28 @@ impl WafregionalRegexMatchSetRegexMatchTupleElRef {
 
     #[doc = "Get a reference to the value of field `regex_pattern_set_id` after provisioning.\n"]
     pub fn regex_pattern_set_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.regex_pattern_set_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.regex_pattern_set_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
-    pub fn field_to_match(&self) -> ListRef<WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+    pub fn field_to_match(
+        &self,
+    ) -> ListRef<WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 

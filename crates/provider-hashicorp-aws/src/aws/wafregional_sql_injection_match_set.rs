@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafregionalSqlInjectionMatchSetData {
@@ -59,7 +59,8 @@ impl WafregionalSqlInjectionMatchSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl WafregionalSqlInjectionMatchSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl WafregionalSqlInjectionMatchSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,8 +109,7 @@ impl WafregionalSqlInjectionMatchSet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -113,10 +123,10 @@ impl WafregionalSqlInjectionMatchSet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sql_injection_match_tuple = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sql_injection_match_tuple = Some(d);
-            },
+            }
         }
         self
     }
@@ -128,23 +138,32 @@ impl WafregionalSqlInjectionMatchSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafregionalSqlInjectionMatchSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafregionalSqlInjectionMatchSet { }
+impl Resource for WafregionalSqlInjectionMatchSet {}
 
 impl ToListMappable for WafregionalSqlInjectionMatchSet {
     type O = ListRef<WafregionalSqlInjectionMatchSetRef>;
@@ -204,10 +223,7 @@ pub struct WafregionalSqlInjectionMatchSetRef {
 
 impl Ref for WafregionalSqlInjectionMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -227,13 +243,18 @@ impl WafregionalSqlInjectionMatchSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -314,14 +335,16 @@ impl WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchElRef {
 
 #[derive(Serialize, Default)]
 struct WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElDynamic {
-    field_to_match: Option<DynamicBlock<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchEl>>,
+    field_to_match:
+        Option<DynamicBlock<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchEl>>,
 }
 
 #[derive(Serialize)]
 pub struct WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleEl {
     text_transformation: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    field_to_match: Option<Vec<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchEl>>,
+    field_to_match:
+        Option<Vec<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchEl>>,
     dynamic: WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElDynamic,
 }
 
@@ -329,15 +352,17 @@ impl WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleEl {
     #[doc = "Set the field `field_to_match`.\n"]
     pub fn set_field_to_match(
         mut self,
-        v: impl Into<BlockAssignable<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchEl>>,
+        v: impl Into<
+            BlockAssignable<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -376,7 +401,10 @@ pub struct WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElRef {
 }
 
 impl Ref for WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElRef {
-    fn new(shared: StackShared, base: String) -> WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElRef {
         WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElRef {
             shared: shared,
             base: base.to_string(),
@@ -391,16 +419,25 @@ impl WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElRef {
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
-    pub fn field_to_match(&self) -> ListRef<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+    pub fn field_to_match(
+        &self,
+    ) -> ListRef<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleElFieldToMatchElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct WafregionalSqlInjectionMatchSetDynamic {
-    sql_injection_match_tuple: Option<DynamicBlock<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleEl>>,
+    sql_injection_match_tuple:
+        Option<DynamicBlock<WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DirectoryServiceRadiusSettingsData {
@@ -67,7 +67,8 @@ impl DirectoryServiceRadiusSettings {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl DirectoryServiceRadiusSettings {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl DirectoryServiceRadiusSettings {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl DirectoryServiceRadiusSettings {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -127,17 +137,26 @@ impl DirectoryServiceRadiusSettings {
 
     #[doc = "Get a reference to the value of field `authentication_protocol` after provisioning.\n"]
     pub fn authentication_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `directory_id` after provisioning.\n"]
     pub fn directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.directory_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.directory_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_label` after provisioning.\n"]
     pub fn display_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -147,38 +166,58 @@ impl DirectoryServiceRadiusSettings {
 
     #[doc = "Get a reference to the value of field `radius_port` after provisioning.\n"]
     pub fn radius_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.radius_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.radius_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `radius_retries` after provisioning.\n"]
     pub fn radius_retries(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.radius_retries", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.radius_retries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `radius_servers` after provisioning.\n"]
     pub fn radius_servers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.radius_servers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.radius_servers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `radius_timeout` after provisioning.\n"]
     pub fn radius_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.radius_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.radius_timeout", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shared_secret` after provisioning.\n"]
     pub fn shared_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shared_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shared_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `use_same_username` after provisioning.\n"]
     pub fn use_same_username(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.use_same_username", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.use_same_username", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -192,11 +231,15 @@ impl DirectoryServiceRadiusSettings {
 
 impl Referable for DirectoryServiceRadiusSettings {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DirectoryServiceRadiusSettings { }
+impl Resource for DirectoryServiceRadiusSettings {}
 
 impl ToListMappable for DirectoryServiceRadiusSettings {
     type O = ListRef<DirectoryServiceRadiusSettingsRef>;
@@ -277,10 +320,7 @@ pub struct DirectoryServiceRadiusSettingsRef {
 
 impl Ref for DirectoryServiceRadiusSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -295,17 +335,26 @@ impl DirectoryServiceRadiusSettingsRef {
 
     #[doc = "Get a reference to the value of field `authentication_protocol` after provisioning.\n"]
     pub fn authentication_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authentication_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authentication_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `directory_id` after provisioning.\n"]
     pub fn directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.directory_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.directory_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_label` after provisioning.\n"]
     pub fn display_label(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_label", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_label", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -315,38 +364,58 @@ impl DirectoryServiceRadiusSettingsRef {
 
     #[doc = "Get a reference to the value of field `radius_port` after provisioning.\n"]
     pub fn radius_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.radius_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.radius_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `radius_retries` after provisioning.\n"]
     pub fn radius_retries(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.radius_retries", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.radius_retries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `radius_servers` after provisioning.\n"]
     pub fn radius_servers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.radius_servers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.radius_servers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `radius_timeout` after provisioning.\n"]
     pub fn radius_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.radius_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.radius_timeout", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `shared_secret` after provisioning.\n"]
     pub fn shared_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.shared_secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.shared_secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `use_same_username` after provisioning.\n"]
     pub fn use_same_username(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.use_same_username", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.use_same_username", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]

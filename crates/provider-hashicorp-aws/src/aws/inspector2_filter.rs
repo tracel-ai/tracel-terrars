@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Inspector2FilterData {
@@ -64,7 +64,8 @@ impl Inspector2Filter {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +78,7 @@ impl Inspector2Filter {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +89,22 @@ impl Inspector2Filter {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -109,8 +120,7 @@ impl Inspector2Filter {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -123,21 +133,27 @@ impl Inspector2Filter {
     }
 
     #[doc = "Set the field `filter_criteria`.\n"]
-    pub fn set_filter_criteria(self, v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaEl>>) -> Self {
+    pub fn set_filter_criteria(
+        self,
+        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter_criteria = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -147,48 +163,72 @@ impl Inspector2Filter {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reason` after provisioning.\n"]
     pub fn reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reason", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<Inspector2FilterFilterCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_criteria", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Inspector2Filter {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Inspector2Filter { }
+impl Resource for Inspector2Filter {}
 
 impl ToListMappable for Inspector2Filter {
     type O = ListRef<Inspector2FilterRef>;
@@ -253,10 +293,7 @@ pub struct Inspector2FilterRef {
 
 impl Ref for Inspector2FilterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -271,7 +308,10 @@ impl Inspector2FilterRef {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -281,38 +321,58 @@ impl Inspector2FilterRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reason` after provisioning.\n"]
     pub fn reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reason", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<Inspector2FilterFilterCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter_criteria", self.extract_ref()),
+        )
     }
 }
 
@@ -322,7 +382,7 @@ pub struct Inspector2FilterFilterCriteriaElAwsAccountIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElAwsAccountIdEl { }
+impl Inspector2FilterFilterCriteriaElAwsAccountIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElAwsAccountIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElAwsAccountIdEl>;
@@ -388,7 +448,7 @@ pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl { }
+impl Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl>;
@@ -424,7 +484,10 @@ pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
         Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -454,7 +517,7 @@ pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl { }
+impl Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl>;
@@ -490,7 +553,10 @@ pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
         Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
             shared: shared,
             base: base.to_string(),
@@ -520,7 +586,7 @@ pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl { }
+impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl>;
@@ -556,7 +622,10 @@ pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
         Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -586,7 +655,7 @@ pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl { }
+impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl>;
@@ -622,7 +691,10 @@ pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
         Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -652,7 +724,7 @@ pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl { }
+impl Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl>;
@@ -688,7 +760,10 @@ pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
         Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
             shared: shared,
             base: base.to_string(),
@@ -718,7 +793,7 @@ pub struct Inspector2FilterFilterCriteriaElComponentIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElComponentIdEl { }
+impl Inspector2FilterFilterCriteriaElComponentIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElComponentIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElComponentIdEl>;
@@ -784,7 +859,7 @@ pub struct Inspector2FilterFilterCriteriaElComponentTypeEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElComponentTypeEl { }
+impl Inspector2FilterFilterCriteriaElComponentTypeEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElComponentTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElComponentTypeEl>;
@@ -820,7 +895,10 @@ pub struct Inspector2FilterFilterCriteriaElComponentTypeElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElComponentTypeElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElComponentTypeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElComponentTypeElRef {
         Inspector2FilterFilterCriteriaElComponentTypeElRef {
             shared: shared,
             base: base.to_string(),
@@ -850,7 +928,7 @@ pub struct Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl { }
+impl Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl>;
@@ -886,7 +964,10 @@ pub struct Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
         Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -916,7 +997,7 @@ pub struct Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl { }
+impl Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl>;
@@ -952,7 +1033,10 @@ pub struct Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
         Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -982,7 +1066,7 @@ pub struct Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl { }
+impl Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl>;
@@ -1018,7 +1102,10 @@ pub struct Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
         Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -1048,7 +1135,7 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEcrImageArchitectureEl { }
+impl Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageArchitectureEl>;
@@ -1084,7 +1171,10 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
         Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
             shared: shared,
             base: base.to_string(),
@@ -1114,7 +1204,7 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageHashEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEcrImageHashEl { }
+impl Inspector2FilterFilterCriteriaElEcrImageHashEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageHashEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageHashEl>;
@@ -1180,7 +1270,7 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
     upper_inclusive: PrimField<f64>,
 }
 
-impl Inspector2FilterFilterCriteriaElEcrImageInUseCountEl { }
+impl Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageInUseCountEl>;
@@ -1216,7 +1306,10 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
         Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
             shared: shared,
             base: base.to_string(),
@@ -1231,12 +1324,18 @@ impl Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
 
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lower_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lower_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.upper_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.upper_inclusive", self.base),
+        )
     }
 }
 
@@ -1291,7 +1390,10 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
         Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -1306,12 +1408,18 @@ impl Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_inclusive", self.base),
+        )
     }
 }
 
@@ -1366,7 +1474,10 @@ pub struct Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
         Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -1381,12 +1492,18 @@ impl Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_inclusive", self.base),
+        )
     }
 }
 
@@ -1396,7 +1513,7 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEcrImageRegistryEl { }
+impl Inspector2FilterFilterCriteriaElEcrImageRegistryEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageRegistryEl>;
@@ -1432,7 +1549,10 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
         Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
             shared: shared,
             base: base.to_string(),
@@ -1462,7 +1582,7 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl { }
+impl Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl>;
@@ -1498,7 +1618,10 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
         Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -1528,7 +1651,7 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageTagsEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElEcrImageTagsEl { }
+impl Inspector2FilterFilterCriteriaElEcrImageTagsEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageTagsEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageTagsEl>;
@@ -1594,7 +1717,7 @@ pub struct Inspector2FilterFilterCriteriaElEpssScoreEl {
     upper_inclusive: PrimField<f64>,
 }
 
-impl Inspector2FilterFilterCriteriaElEpssScoreEl { }
+impl Inspector2FilterFilterCriteriaElEpssScoreEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElEpssScoreEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEpssScoreEl>;
@@ -1645,12 +1768,18 @@ impl Inspector2FilterFilterCriteriaElEpssScoreElRef {
 
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lower_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lower_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.upper_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.upper_inclusive", self.base),
+        )
     }
 }
 
@@ -1660,7 +1789,7 @@ pub struct Inspector2FilterFilterCriteriaElExploitAvailableEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElExploitAvailableEl { }
+impl Inspector2FilterFilterCriteriaElExploitAvailableEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElExploitAvailableEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElExploitAvailableEl>;
@@ -1696,7 +1825,10 @@ pub struct Inspector2FilterFilterCriteriaElExploitAvailableElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElExploitAvailableElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElExploitAvailableElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElExploitAvailableElRef {
         Inspector2FilterFilterCriteriaElExploitAvailableElRef {
             shared: shared,
             base: base.to_string(),
@@ -1726,7 +1858,7 @@ pub struct Inspector2FilterFilterCriteriaElFindingArnEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElFindingArnEl { }
+impl Inspector2FilterFilterCriteriaElFindingArnEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElFindingArnEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFindingArnEl>;
@@ -1792,7 +1924,7 @@ pub struct Inspector2FilterFilterCriteriaElFindingStatusEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElFindingStatusEl { }
+impl Inspector2FilterFilterCriteriaElFindingStatusEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElFindingStatusEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFindingStatusEl>;
@@ -1828,7 +1960,10 @@ pub struct Inspector2FilterFilterCriteriaElFindingStatusElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElFindingStatusElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElFindingStatusElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElFindingStatusElRef {
         Inspector2FilterFilterCriteriaElFindingStatusElRef {
             shared: shared,
             base: base.to_string(),
@@ -1858,7 +1993,7 @@ pub struct Inspector2FilterFilterCriteriaElFindingTypeEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElFindingTypeEl { }
+impl Inspector2FilterFilterCriteriaElFindingTypeEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElFindingTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFindingTypeEl>;
@@ -1969,7 +2104,10 @@ pub struct Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
         Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -1984,12 +2122,18 @@ impl Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_inclusive", self.base),
+        )
     }
 }
 
@@ -1999,7 +2143,7 @@ pub struct Inspector2FilterFilterCriteriaElFixAvailableEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElFixAvailableEl { }
+impl Inspector2FilterFilterCriteriaElFixAvailableEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElFixAvailableEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFixAvailableEl>;
@@ -2065,7 +2209,7 @@ pub struct Inspector2FilterFilterCriteriaElInspectorScoreEl {
     upper_inclusive: PrimField<f64>,
 }
 
-impl Inspector2FilterFilterCriteriaElInspectorScoreEl { }
+impl Inspector2FilterFilterCriteriaElInspectorScoreEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElInspectorScoreEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElInspectorScoreEl>;
@@ -2101,7 +2245,10 @@ pub struct Inspector2FilterFilterCriteriaElInspectorScoreElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElInspectorScoreElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElInspectorScoreElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElInspectorScoreElRef {
         Inspector2FilterFilterCriteriaElInspectorScoreElRef {
             shared: shared,
             base: base.to_string(),
@@ -2116,12 +2263,18 @@ impl Inspector2FilterFilterCriteriaElInspectorScoreElRef {
 
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lower_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lower_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.upper_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.upper_inclusive", self.base),
+        )
     }
 }
 
@@ -2131,7 +2284,7 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl { }
+impl Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl>;
@@ -2167,7 +2320,10 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
         Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
             shared: shared,
             base: base.to_string(),
@@ -2242,7 +2398,10 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
         Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -2257,12 +2416,18 @@ impl Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_inclusive", self.base),
+        )
     }
 }
 
@@ -2272,7 +2437,7 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl { }
+impl Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl>;
@@ -2308,7 +2473,10 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
         Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
             shared: shared,
             base: base.to_string(),
@@ -2338,7 +2506,7 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElLambdaFunctionNameEl { }
+impl Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionNameEl>;
@@ -2374,7 +2542,10 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
         Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -2404,7 +2575,7 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl { }
+impl Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl>;
@@ -2440,7 +2611,10 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
         Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
             shared: shared,
             base: base.to_string(),
@@ -2515,7 +2689,10 @@ pub struct Inspector2FilterFilterCriteriaElLastObservedAtElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElLastObservedAtElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElLastObservedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElLastObservedAtElRef {
         Inspector2FilterFilterCriteriaElLastObservedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -2530,12 +2707,18 @@ impl Inspector2FilterFilterCriteriaElLastObservedAtElRef {
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_inclusive", self.base),
+        )
     }
 }
 
@@ -2545,7 +2728,7 @@ pub struct Inspector2FilterFilterCriteriaElNetworkProtocolEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElNetworkProtocolEl { }
+impl Inspector2FilterFilterCriteriaElNetworkProtocolEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElNetworkProtocolEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElNetworkProtocolEl>;
@@ -2581,7 +2764,10 @@ pub struct Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
         Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
             shared: shared,
             base: base.to_string(),
@@ -2611,7 +2797,7 @@ pub struct Inspector2FilterFilterCriteriaElPortRangeEl {
     end_inclusive: PrimField<f64>,
 }
 
-impl Inspector2FilterFilterCriteriaElPortRangeEl { }
+impl Inspector2FilterFilterCriteriaElPortRangeEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElPortRangeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElPortRangeEl>;
@@ -2662,12 +2848,18 @@ impl Inspector2FilterFilterCriteriaElPortRangeElRef {
 
     #[doc = "Get a reference to the value of field `begin_inclusive` after provisioning.\n"]
     pub fn begin_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.begin_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.begin_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 }
 
@@ -2677,7 +2869,7 @@ pub struct Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl { }
+impl Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl>;
@@ -2713,7 +2905,10 @@ pub struct Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
         Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2743,7 +2938,7 @@ pub struct Inspector2FilterFilterCriteriaElResourceIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElResourceIdEl { }
+impl Inspector2FilterFilterCriteriaElResourceIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElResourceIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElResourceIdEl>;
@@ -2810,7 +3005,7 @@ pub struct Inspector2FilterFilterCriteriaElResourceTagsEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElResourceTagsEl { }
+impl Inspector2FilterFilterCriteriaElResourceTagsEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElResourceTagsEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElResourceTagsEl>;
@@ -2884,7 +3079,7 @@ pub struct Inspector2FilterFilterCriteriaElResourceTypeEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElResourceTypeEl { }
+impl Inspector2FilterFilterCriteriaElResourceTypeEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElResourceTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElResourceTypeEl>;
@@ -2950,7 +3145,7 @@ pub struct Inspector2FilterFilterCriteriaElSeverityEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElSeverityEl { }
+impl Inspector2FilterFilterCriteriaElSeverityEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElSeverityEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElSeverityEl>;
@@ -3016,7 +3211,7 @@ pub struct Inspector2FilterFilterCriteriaElTitleEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElTitleEl { }
+impl Inspector2FilterFilterCriteriaElTitleEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElTitleEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElTitleEl>;
@@ -3142,12 +3337,18 @@ impl Inspector2FilterFilterCriteriaElUpdatedAtElRef {
 
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_inclusive", self.base),
+        )
     }
 }
 
@@ -3157,7 +3358,7 @@ pub struct Inspector2FilterFilterCriteriaElVendorSeverityEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVendorSeverityEl { }
+impl Inspector2FilterFilterCriteriaElVendorSeverityEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVendorSeverityEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVendorSeverityEl>;
@@ -3193,7 +3394,10 @@ pub struct Inspector2FilterFilterCriteriaElVendorSeverityElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVendorSeverityElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVendorSeverityElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVendorSeverityElRef {
         Inspector2FilterFilterCriteriaElVendorSeverityElRef {
             shared: shared,
             base: base.to_string(),
@@ -3223,7 +3427,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerabilityIdEl { }
+impl Inspector2FilterFilterCriteriaElVulnerabilityIdEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerabilityIdEl>;
@@ -3259,7 +3463,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
         Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -3289,7 +3496,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerabilitySourceEl { }
+impl Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerabilitySourceEl>;
@@ -3325,7 +3532,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
         Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -3355,7 +3565,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl>;
@@ -3424,7 +3634,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
     upper_inclusive: PrimField<f64>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl>;
@@ -3460,7 +3670,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
             shared: shared,
             base: base.to_string(),
@@ -3475,12 +3688,18 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
 
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lower_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lower_inclusive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.upper_inclusive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.upper_inclusive", self.base),
+        )
     }
 }
 
@@ -3490,7 +3709,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl>;
@@ -3526,7 +3745,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
             shared: shared,
             base: base.to_string(),
@@ -3556,7 +3778,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl>;
@@ -3592,7 +3814,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -3622,7 +3847,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl>;
@@ -3658,7 +3883,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
             shared: shared,
             base: base.to_string(),
@@ -3688,10 +3916,11 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayer
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
-    type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>;
+    type O =
+        BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3710,7 +3939,9 @@ pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambda
 }
 
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
-    pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
+    pub fn build(
+        self,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
             comparison: self.comparison,
             value: self.value,
@@ -3757,7 +3988,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>;
@@ -3826,7 +4057,7 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
     value: PrimField<String>,
 }
 
-impl Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl { }
+impl Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {}
 
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl>;
@@ -3862,7 +4093,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3888,7 +4122,8 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
 
 #[derive(Serialize, Default)]
 struct Inspector2FilterFilterCriteriaElVulnerablePackagesElDynamic {
-    architecture: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl>>,
+    architecture:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl>>,
     epoch: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl>>,
     file_path: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl>>,
     name: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl>>,
@@ -3896,7 +4131,8 @@ struct Inspector2FilterFilterCriteriaElVulnerablePackagesElDynamic {
     source_lambda_layer_arn: Option<
         DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>,
     >,
-    source_layer_hash: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>>,
+    source_layer_hash:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>>,
     version: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl>>,
 }
 
@@ -3913,9 +4149,11 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     release: Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_lambda_layer_arn: Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>>,
+    source_lambda_layer_arn:
+        Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_layer_hash: Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>>,
+    source_layer_hash:
+        Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl>>,
     dynamic: Inspector2FilterFilterCriteriaElVulnerablePackagesElDynamic,
@@ -3925,15 +4163,17 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     #[doc = "Set the field `architecture`.\n"]
     pub fn set_architecture(
         mut self,
-        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl>>,
+        v: impl Into<
+            BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.architecture = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.architecture = Some(d);
-            },
+            }
         }
         self
     }
@@ -3946,10 +4186,10 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.epoch = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.epoch = Some(d);
-            },
+            }
         }
         self
     }
@@ -3962,10 +4202,10 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.file_path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.file_path = Some(d);
-            },
+            }
         }
         self
     }
@@ -3978,10 +4218,10 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.name = Some(d);
-            },
+            }
         }
         self
     }
@@ -3994,10 +4234,10 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.release = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.release = Some(d);
-            },
+            }
         }
         self
     }
@@ -4005,15 +4245,19 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     #[doc = "Set the field `source_lambda_layer_arn`.\n"]
     pub fn set_source_lambda_layer_arn(
         mut self,
-        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_lambda_layer_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_lambda_layer_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -4021,15 +4265,17 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     #[doc = "Set the field `source_layer_hash`.\n"]
     pub fn set_source_layer_hash(
         mut self,
-        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>>,
+        v: impl Into<
+            BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_layer_hash = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_layer_hash = Some(d);
-            },
+            }
         }
         self
     }
@@ -4042,10 +4288,10 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.version = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.version = Some(d);
-            },
+            }
         }
         self
     }
@@ -4087,7 +4333,10 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
 }
 
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
             shared: shared,
             base: base.to_string(),
@@ -4101,7 +4350,9 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
     }
 
     #[doc = "Get a reference to the value of field `architecture` after provisioning.\n"]
-    pub fn architecture(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElRef> {
+    pub fn architecture(
+        &self,
+    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElRef> {
         ListRef::new(self.shared().clone(), format!("{}.architecture", self.base))
     }
 
@@ -4111,7 +4362,9 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
     }
 
     #[doc = "Get a reference to the value of field `file_path` after provisioning.\n"]
-    pub fn file_path(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef> {
+    pub fn file_path(
+        &self,
+    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file_path", self.base))
     }
 
@@ -4121,24 +4374,37 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
     }
 
     #[doc = "Get a reference to the value of field `release` after provisioning.\n"]
-    pub fn release(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef> {
+    pub fn release(
+        &self,
+    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef> {
         ListRef::new(self.shared().clone(), format!("{}.release", self.base))
     }
 
     #[doc = "Get a reference to the value of field `source_lambda_layer_arn` after provisioning.\n"]
     pub fn source_lambda_layer_arn(
         &self,
-    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_lambda_layer_arn", self.base))
+    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_lambda_layer_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_layer_hash` after provisioning.\n"]
-    pub fn source_layer_hash(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_layer_hash", self.base))
+    pub fn source_layer_hash(
+        &self,
+    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_layer_hash", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
-    pub fn version(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef> {
+    pub fn version(
+        &self,
+    ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.version", self.base))
     }
 }
@@ -4146,29 +4412,34 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
 #[derive(Serialize, Default)]
 struct Inspector2FilterFilterCriteriaElDynamic {
     aws_account_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElAwsAccountIdEl>>,
-    code_repository_project_name: Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl>>,
-    code_repository_provider_type: Option<
-        DynamicBlock<Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl>,
-    >,
-    code_vulnerability_detector_name: Option<
-        DynamicBlock<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl>,
-    >,
-    code_vulnerability_detector_tags: Option<
-        DynamicBlock<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl>,
-    >,
-    code_vulnerability_file_path: Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl>>,
+    code_repository_project_name:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl>>,
+    code_repository_provider_type:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl>>,
+    code_vulnerability_detector_name:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl>>,
+    code_vulnerability_detector_tags:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl>>,
+    code_vulnerability_file_path:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl>>,
     component_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElComponentIdEl>>,
     component_type: Option<DynamicBlock<Inspector2FilterFilterCriteriaElComponentTypeEl>>,
-    ec2_instance_image_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl>>,
-    ec2_instance_subnet_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl>>,
+    ec2_instance_image_id:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl>>,
+    ec2_instance_subnet_id:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl>>,
     ec2_instance_vpc_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl>>,
-    ecr_image_architecture: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageArchitectureEl>>,
+    ecr_image_architecture:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageArchitectureEl>>,
     ecr_image_hash: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageHashEl>>,
-    ecr_image_in_use_count: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageInUseCountEl>>,
-    ecr_image_last_in_use_at: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl>>,
+    ecr_image_in_use_count:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageInUseCountEl>>,
+    ecr_image_last_in_use_at:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl>>,
     ecr_image_pushed_at: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImagePushedAtEl>>,
     ecr_image_registry: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageRegistryEl>>,
-    ecr_image_repository_name: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl>>,
+    ecr_image_repository_name:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl>>,
     ecr_image_tags: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEcrImageTagsEl>>,
     epss_score: Option<DynamicBlock<Inspector2FilterFilterCriteriaElEpssScoreEl>>,
     exploit_available: Option<DynamicBlock<Inspector2FilterFilterCriteriaElExploitAvailableEl>>,
@@ -4178,19 +4449,21 @@ struct Inspector2FilterFilterCriteriaElDynamic {
     first_observed_at: Option<DynamicBlock<Inspector2FilterFilterCriteriaElFirstObservedAtEl>>,
     fix_available: Option<DynamicBlock<Inspector2FilterFilterCriteriaElFixAvailableEl>>,
     inspector_score: Option<DynamicBlock<Inspector2FilterFilterCriteriaElInspectorScoreEl>>,
-    lambda_function_execution_role_arn: Option<
-        DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl>,
-    >,
-    lambda_function_last_modified_at: Option<
-        DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl>,
-    >,
-    lambda_function_layers: Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl>>,
-    lambda_function_name: Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionNameEl>>,
-    lambda_function_runtime: Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl>>,
+    lambda_function_execution_role_arn:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl>>,
+    lambda_function_last_modified_at:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl>>,
+    lambda_function_layers:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl>>,
+    lambda_function_name:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionNameEl>>,
+    lambda_function_runtime:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl>>,
     last_observed_at: Option<DynamicBlock<Inspector2FilterFilterCriteriaElLastObservedAtEl>>,
     network_protocol: Option<DynamicBlock<Inspector2FilterFilterCriteriaElNetworkProtocolEl>>,
     port_range: Option<DynamicBlock<Inspector2FilterFilterCriteriaElPortRangeEl>>,
-    related_vulnerabilities: Option<DynamicBlock<Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl>>,
+    related_vulnerabilities:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl>>,
     resource_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElResourceIdEl>>,
     resource_tags: Option<DynamicBlock<Inspector2FilterFilterCriteriaElResourceTagsEl>>,
     resource_type: Option<DynamicBlock<Inspector2FilterFilterCriteriaElResourceTypeEl>>,
@@ -4199,7 +4472,8 @@ struct Inspector2FilterFilterCriteriaElDynamic {
     updated_at: Option<DynamicBlock<Inspector2FilterFilterCriteriaElUpdatedAtEl>>,
     vendor_severity: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVendorSeverityEl>>,
     vulnerability_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerabilityIdEl>>,
-    vulnerability_source: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerabilitySourceEl>>,
+    vulnerability_source:
+        Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerabilitySourceEl>>,
     vulnerable_packages: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesEl>>,
 }
 
@@ -4208,15 +4482,20 @@ pub struct Inspector2FilterFilterCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     aws_account_id: Option<Vec<Inspector2FilterFilterCriteriaElAwsAccountIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_repository_project_name: Option<Vec<Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl>>,
+    code_repository_project_name:
+        Option<Vec<Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_repository_provider_type: Option<Vec<Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl>>,
+    code_repository_provider_type:
+        Option<Vec<Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_vulnerability_detector_name: Option<Vec<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl>>,
+    code_vulnerability_detector_name:
+        Option<Vec<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_vulnerability_detector_tags: Option<Vec<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl>>,
+    code_vulnerability_detector_tags:
+        Option<Vec<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    code_vulnerability_file_path: Option<Vec<Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl>>,
+    code_vulnerability_file_path:
+        Option<Vec<Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     component_id: Option<Vec<Inspector2FilterFilterCriteriaElComponentIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4240,7 +4519,8 @@ pub struct Inspector2FilterFilterCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ecr_image_registry: Option<Vec<Inspector2FilterFilterCriteriaElEcrImageRegistryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ecr_image_repository_name: Option<Vec<Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl>>,
+    ecr_image_repository_name:
+        Option<Vec<Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     ecr_image_tags: Option<Vec<Inspector2FilterFilterCriteriaElEcrImageTagsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4260,9 +4540,11 @@ pub struct Inspector2FilterFilterCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     inspector_score: Option<Vec<Inspector2FilterFilterCriteriaElInspectorScoreEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_function_execution_role_arn: Option<Vec<Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl>>,
+    lambda_function_execution_role_arn:
+        Option<Vec<Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_function_last_modified_at: Option<Vec<Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl>>,
+    lambda_function_last_modified_at:
+        Option<Vec<Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     lambda_function_layers: Option<Vec<Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4309,10 +4591,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_account_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_account_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4325,10 +4607,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_repository_project_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_repository_project_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4341,10 +4623,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_repository_provider_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_repository_provider_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -4357,10 +4639,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_vulnerability_detector_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_vulnerability_detector_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4373,10 +4655,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_vulnerability_detector_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_vulnerability_detector_tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -4389,10 +4671,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_vulnerability_file_path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_vulnerability_file_path = Some(d);
-            },
+            }
         }
         self
     }
@@ -4405,10 +4687,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.component_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.component_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4421,10 +4703,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.component_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.component_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -4437,10 +4719,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ec2_instance_image_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ec2_instance_image_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4453,10 +4735,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ec2_instance_subnet_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ec2_instance_subnet_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4469,10 +4751,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ec2_instance_vpc_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ec2_instance_vpc_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4485,10 +4767,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_architecture = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_architecture = Some(d);
-            },
+            }
         }
         self
     }
@@ -4501,10 +4783,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_hash = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_hash = Some(d);
-            },
+            }
         }
         self
     }
@@ -4517,10 +4799,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_in_use_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_in_use_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -4533,10 +4815,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_last_in_use_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_last_in_use_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4549,10 +4831,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_pushed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_pushed_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4565,10 +4847,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_registry = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_registry = Some(d);
-            },
+            }
         }
         self
     }
@@ -4581,10 +4863,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_repository_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_repository_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4597,23 +4879,26 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecr_image_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecr_image_tags = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `epss_score`.\n"]
-    pub fn set_epss_score(mut self, v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElEpssScoreEl>>) -> Self {
+    pub fn set_epss_score(
+        mut self,
+        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElEpssScoreEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.epss_score = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.epss_score = Some(d);
-            },
+            }
         }
         self
     }
@@ -4626,10 +4911,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.exploit_available = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.exploit_available = Some(d);
-            },
+            }
         }
         self
     }
@@ -4642,10 +4927,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -4658,10 +4943,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_status = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_status = Some(d);
-            },
+            }
         }
         self
     }
@@ -4674,10 +4959,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -4690,10 +4975,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.first_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.first_observed_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4706,10 +4991,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.fix_available = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.fix_available = Some(d);
-            },
+            }
         }
         self
     }
@@ -4722,10 +5007,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inspector_score = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inspector_score = Some(d);
-            },
+            }
         }
         self
     }
@@ -4738,10 +5023,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_execution_role_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_execution_role_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -4754,10 +5039,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_last_modified_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_last_modified_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4770,10 +5055,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_layers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_layers = Some(d);
-            },
+            }
         }
         self
     }
@@ -4786,10 +5071,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4802,10 +5087,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_function_runtime = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_function_runtime = Some(d);
-            },
+            }
         }
         self
     }
@@ -4818,10 +5103,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.last_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.last_observed_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4834,23 +5119,26 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_protocol = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_protocol = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `port_range`.\n"]
-    pub fn set_port_range(mut self, v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElPortRangeEl>>) -> Self {
+    pub fn set_port_range(
+        mut self,
+        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElPortRangeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.port_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.port_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -4863,10 +5151,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.related_vulnerabilities = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.related_vulnerabilities = Some(d);
-            },
+            }
         }
         self
     }
@@ -4879,10 +5167,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4895,10 +5183,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -4911,49 +5199,58 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_type = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `severity`.\n"]
-    pub fn set_severity(mut self, v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElSeverityEl>>) -> Self {
+    pub fn set_severity(
+        mut self,
+        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElSeverityEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.severity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.severity = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `title`.\n"]
-    pub fn set_title(mut self, v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElTitleEl>>) -> Self {
+    pub fn set_title(
+        mut self,
+        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElTitleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.title = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.title = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `updated_at`.\n"]
-    pub fn set_updated_at(mut self, v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElUpdatedAtEl>>) -> Self {
+    pub fn set_updated_at(
+        mut self,
+        v: impl Into<BlockAssignable<Inspector2FilterFilterCriteriaElUpdatedAtEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.updated_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.updated_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4966,10 +5263,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vendor_severity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vendor_severity = Some(d);
-            },
+            }
         }
         self
     }
@@ -4982,10 +5279,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vulnerability_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vulnerability_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4998,10 +5295,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vulnerability_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vulnerability_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -5014,10 +5311,10 @@ impl Inspector2FilterFilterCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vulnerable_packages = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vulnerable_packages = Some(d);
-            },
+            }
         }
         self
     }

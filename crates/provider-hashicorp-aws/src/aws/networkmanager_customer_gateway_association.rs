@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkmanagerCustomerGatewayAssociationData {
@@ -60,7 +60,8 @@ impl NetworkmanagerCustomerGatewayAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl NetworkmanagerCustomerGatewayAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl NetworkmanagerCustomerGatewayAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,24 +117,36 @@ impl NetworkmanagerCustomerGatewayAssociation {
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<NetworkmanagerCustomerGatewayAssociationTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<NetworkmanagerCustomerGatewayAssociationTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `customer_gateway_arn` after provisioning.\n"]
     pub fn customer_gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_id` after provisioning.\n"]
     pub fn device_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_network_id` after provisioning.\n"]
     pub fn global_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -133,7 +156,10 @@ impl NetworkmanagerCustomerGatewayAssociation {
 
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.link_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.link_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -147,11 +173,15 @@ impl NetworkmanagerCustomerGatewayAssociation {
 
 impl Referable for NetworkmanagerCustomerGatewayAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkmanagerCustomerGatewayAssociation { }
+impl Resource for NetworkmanagerCustomerGatewayAssociation {}
 
 impl ToListMappable for NetworkmanagerCustomerGatewayAssociation {
     type O = ListRef<NetworkmanagerCustomerGatewayAssociationRef>;
@@ -188,22 +218,24 @@ pub struct BuildNetworkmanagerCustomerGatewayAssociation {
 
 impl BuildNetworkmanagerCustomerGatewayAssociation {
     pub fn build(self, stack: &mut Stack) -> NetworkmanagerCustomerGatewayAssociation {
-        let out = NetworkmanagerCustomerGatewayAssociation(Rc::new(NetworkmanagerCustomerGatewayAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(NetworkmanagerCustomerGatewayAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                customer_gateway_arn: self.customer_gateway_arn,
-                device_id: self.device_id,
-                global_network_id: self.global_network_id,
-                id: core::default::Default::default(),
-                link_id: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-            }),
-        }));
+        let out = NetworkmanagerCustomerGatewayAssociation(Rc::new(
+            NetworkmanagerCustomerGatewayAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(NetworkmanagerCustomerGatewayAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    customer_gateway_arn: self.customer_gateway_arn,
+                    device_id: self.device_id,
+                    global_network_id: self.global_network_id,
+                    id: core::default::Default::default(),
+                    link_id: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -216,10 +248,7 @@ pub struct NetworkmanagerCustomerGatewayAssociationRef {
 
 impl Ref for NetworkmanagerCustomerGatewayAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -234,17 +263,26 @@ impl NetworkmanagerCustomerGatewayAssociationRef {
 
     #[doc = "Get a reference to the value of field `customer_gateway_arn` after provisioning.\n"]
     pub fn customer_gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_id` after provisioning.\n"]
     pub fn device_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `global_network_id` after provisioning.\n"]
     pub fn global_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.global_network_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.global_network_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -254,7 +292,10 @@ impl NetworkmanagerCustomerGatewayAssociationRef {
 
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.link_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.link_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -317,7 +358,10 @@ pub struct NetworkmanagerCustomerGatewayAssociationTimeoutsElRef {
 }
 
 impl Ref for NetworkmanagerCustomerGatewayAssociationTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> NetworkmanagerCustomerGatewayAssociationTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkmanagerCustomerGatewayAssociationTimeoutsElRef {
         NetworkmanagerCustomerGatewayAssociationTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

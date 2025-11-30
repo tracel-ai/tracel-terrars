@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpnConnectionData {
@@ -169,7 +169,8 @@ impl VpnConnection {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -182,7 +183,7 @@ impl VpnConnection {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -193,12 +194,22 @@ impl VpnConnection {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -238,8 +249,7 @@ impl VpnConnection {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -282,8 +292,14 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `transport_transit_gateway_attachment_id`.\n"]
-    pub fn set_transport_transit_gateway_attachment_id(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().transport_transit_gateway_attachment_id = Some(v.into());
+    pub fn set_transport_transit_gateway_attachment_id(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .transport_transit_gateway_attachment_id = Some(v.into());
         self
     }
 
@@ -300,8 +316,14 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel1_enable_tunnel_lifecycle_control`.\n"]
-    pub fn set_tunnel1_enable_tunnel_lifecycle_control(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().tunnel1_enable_tunnel_lifecycle_control = Some(v.into());
+    pub fn set_tunnel1_enable_tunnel_lifecycle_control(
+        self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .tunnel1_enable_tunnel_lifecycle_control = Some(v.into());
         self
     }
 
@@ -324,19 +346,31 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel1_phase1_dh_group_numbers`.\n"]
-    pub fn set_tunnel1_phase1_dh_group_numbers(self, v: impl Into<SetField<PrimField<f64>>>) -> Self {
+    pub fn set_tunnel1_phase1_dh_group_numbers(
+        self,
+        v: impl Into<SetField<PrimField<f64>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel1_phase1_dh_group_numbers = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel1_phase1_encryption_algorithms`.\n"]
-    pub fn set_tunnel1_phase1_encryption_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.0.data.borrow_mut().tunnel1_phase1_encryption_algorithms = Some(v.into());
+    pub fn set_tunnel1_phase1_encryption_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .tunnel1_phase1_encryption_algorithms = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel1_phase1_integrity_algorithms`.\n"]
-    pub fn set_tunnel1_phase1_integrity_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_tunnel1_phase1_integrity_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel1_phase1_integrity_algorithms = Some(v.into());
         self
     }
@@ -348,19 +382,31 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel1_phase2_dh_group_numbers`.\n"]
-    pub fn set_tunnel1_phase2_dh_group_numbers(self, v: impl Into<SetField<PrimField<f64>>>) -> Self {
+    pub fn set_tunnel1_phase2_dh_group_numbers(
+        self,
+        v: impl Into<SetField<PrimField<f64>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel1_phase2_dh_group_numbers = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel1_phase2_encryption_algorithms`.\n"]
-    pub fn set_tunnel1_phase2_encryption_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.0.data.borrow_mut().tunnel1_phase2_encryption_algorithms = Some(v.into());
+    pub fn set_tunnel1_phase2_encryption_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .tunnel1_phase2_encryption_algorithms = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel1_phase2_integrity_algorithms`.\n"]
-    pub fn set_tunnel1_phase2_integrity_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_tunnel1_phase2_integrity_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel1_phase2_integrity_algorithms = Some(v.into());
         self
     }
@@ -414,8 +460,14 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel2_enable_tunnel_lifecycle_control`.\n"]
-    pub fn set_tunnel2_enable_tunnel_lifecycle_control(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().tunnel2_enable_tunnel_lifecycle_control = Some(v.into());
+    pub fn set_tunnel2_enable_tunnel_lifecycle_control(
+        self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .tunnel2_enable_tunnel_lifecycle_control = Some(v.into());
         self
     }
 
@@ -438,19 +490,31 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel2_phase1_dh_group_numbers`.\n"]
-    pub fn set_tunnel2_phase1_dh_group_numbers(self, v: impl Into<SetField<PrimField<f64>>>) -> Self {
+    pub fn set_tunnel2_phase1_dh_group_numbers(
+        self,
+        v: impl Into<SetField<PrimField<f64>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel2_phase1_dh_group_numbers = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel2_phase1_encryption_algorithms`.\n"]
-    pub fn set_tunnel2_phase1_encryption_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.0.data.borrow_mut().tunnel2_phase1_encryption_algorithms = Some(v.into());
+    pub fn set_tunnel2_phase1_encryption_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .tunnel2_phase1_encryption_algorithms = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel2_phase1_integrity_algorithms`.\n"]
-    pub fn set_tunnel2_phase1_integrity_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_tunnel2_phase1_integrity_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel2_phase1_integrity_algorithms = Some(v.into());
         self
     }
@@ -462,19 +526,31 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel2_phase2_dh_group_numbers`.\n"]
-    pub fn set_tunnel2_phase2_dh_group_numbers(self, v: impl Into<SetField<PrimField<f64>>>) -> Self {
+    pub fn set_tunnel2_phase2_dh_group_numbers(
+        self,
+        v: impl Into<SetField<PrimField<f64>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel2_phase2_dh_group_numbers = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel2_phase2_encryption_algorithms`.\n"]
-    pub fn set_tunnel2_phase2_encryption_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.0.data.borrow_mut().tunnel2_phase2_encryption_algorithms = Some(v.into());
+    pub fn set_tunnel2_phase2_encryption_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .tunnel2_phase2_encryption_algorithms = Some(v.into());
         self
     }
 
     #[doc = "Set the field `tunnel2_phase2_integrity_algorithms`.\n"]
-    pub fn set_tunnel2_phase2_integrity_algorithms(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_tunnel2_phase2_integrity_algorithms(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().tunnel2_phase2_integrity_algorithms = Some(v.into());
         self
     }
@@ -534,27 +610,33 @@ impl VpnConnection {
     }
 
     #[doc = "Set the field `tunnel1_log_options`.\n"]
-    pub fn set_tunnel1_log_options(self, v: impl Into<BlockAssignable<VpnConnectionTunnel1LogOptionsEl>>) -> Self {
+    pub fn set_tunnel1_log_options(
+        self,
+        v: impl Into<BlockAssignable<VpnConnectionTunnel1LogOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tunnel1_log_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tunnel1_log_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tunnel2_log_options`.\n"]
-    pub fn set_tunnel2_log_options(self, v: impl Into<BlockAssignable<VpnConnectionTunnel2LogOptionsEl>>) -> Self {
+    pub fn set_tunnel2_log_options(
+        self,
+        v: impl Into<BlockAssignable<VpnConnectionTunnel2LogOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tunnel2_log_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tunnel2_log_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -566,27 +648,42 @@ impl VpnConnection {
 
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_attachment_arn` after provisioning.\n"]
     pub fn core_network_attachment_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_attachment_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_attachment_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_gateway_configuration` after provisioning.\n"]
     pub fn customer_gateway_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_gateway_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_gateway_id` after provisioning.\n"]
     pub fn customer_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_acceleration` after provisioning.\n"]
     pub fn enable_acceleration(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_acceleration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_acceleration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -596,372 +693,597 @@ impl VpnConnection {
 
     #[doc = "Get a reference to the value of field `local_ipv4_network_cidr` after provisioning.\n"]
     pub fn local_ipv4_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_ipv4_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_ipv4_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_ipv6_network_cidr` after provisioning.\n"]
     pub fn local_ipv6_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_ipv6_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_ipv6_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outside_ip_address_type` after provisioning.\n"]
     pub fn outside_ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outside_ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outside_ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preshared_key_arn` after provisioning.\n"]
     pub fn preshared_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preshared_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preshared_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preshared_key_storage` after provisioning.\n"]
     pub fn preshared_key_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preshared_key_storage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preshared_key_storage", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_ipv4_network_cidr` after provisioning.\n"]
     pub fn remote_ipv4_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_ipv4_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_ipv4_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_ipv6_network_cidr` after provisioning.\n"]
     pub fn remote_ipv6_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_ipv6_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_ipv6_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `routes` after provisioning.\n"]
     pub fn routes(&self) -> SetRef<VpnConnectionRoutesElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.routes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.routes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `static_routes_only` after provisioning.\n"]
     pub fn static_routes_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.static_routes_only", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.static_routes_only", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transport_transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transport_transit_gateway_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.transport_transit_gateway_attachment_id", self.extract_ref()),
+            format!(
+                "{}.transport_transit_gateway_attachment_id",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_address` after provisioning.\n"]
     pub fn tunnel1_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_bgp_asn` after provisioning.\n"]
     pub fn tunnel1_bgp_asn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_bgp_asn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_bgp_asn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_bgp_holdtime` after provisioning.\n"]
     pub fn tunnel1_bgp_holdtime(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_bgp_holdtime", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_bgp_holdtime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_cgw_inside_address` after provisioning.\n"]
     pub fn tunnel1_cgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_cgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_cgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_dpd_timeout_action` after provisioning.\n"]
     pub fn tunnel1_dpd_timeout_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_dpd_timeout_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_dpd_timeout_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_dpd_timeout_seconds` after provisioning.\n"]
     pub fn tunnel1_dpd_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_dpd_timeout_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_dpd_timeout_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_enable_tunnel_lifecycle_control` after provisioning.\n"]
     pub fn tunnel1_enable_tunnel_lifecycle_control(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.tunnel1_enable_tunnel_lifecycle_control", self.extract_ref()),
+            format!(
+                "{}.tunnel1_enable_tunnel_lifecycle_control",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_ike_versions` after provisioning.\n"]
     pub fn tunnel1_ike_versions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_ike_versions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_ike_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_inside_cidr` after provisioning.\n"]
     pub fn tunnel1_inside_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_inside_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_inside_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_inside_ipv6_cidr` after provisioning.\n"]
     pub fn tunnel1_inside_ipv6_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_inside_ipv6_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_inside_ipv6_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel1_phase1_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase1_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase1_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase1_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase1_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel1_phase1_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase1_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase1_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase1_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel1_phase1_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_phase1_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase1_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel1_phase2_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase2_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase2_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase2_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase2_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel1_phase2_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase2_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase2_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase2_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel1_phase2_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_phase2_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase2_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_preshared_key` after provisioning.\n"]
     pub fn tunnel1_preshared_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_preshared_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_preshared_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_rekey_fuzz_percentage` after provisioning.\n"]
     pub fn tunnel1_rekey_fuzz_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_rekey_fuzz_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_rekey_fuzz_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_rekey_margin_time_seconds` after provisioning.\n"]
     pub fn tunnel1_rekey_margin_time_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_rekey_margin_time_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_rekey_margin_time_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_replay_window_size` after provisioning.\n"]
     pub fn tunnel1_replay_window_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_replay_window_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_replay_window_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_startup_action` after provisioning.\n"]
     pub fn tunnel1_startup_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_startup_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_startup_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_vgw_inside_address` after provisioning.\n"]
     pub fn tunnel1_vgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_vgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_vgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_address` after provisioning.\n"]
     pub fn tunnel2_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_bgp_asn` after provisioning.\n"]
     pub fn tunnel2_bgp_asn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_bgp_asn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_bgp_asn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_bgp_holdtime` after provisioning.\n"]
     pub fn tunnel2_bgp_holdtime(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_bgp_holdtime", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_bgp_holdtime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_cgw_inside_address` after provisioning.\n"]
     pub fn tunnel2_cgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_cgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_cgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_dpd_timeout_action` after provisioning.\n"]
     pub fn tunnel2_dpd_timeout_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_dpd_timeout_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_dpd_timeout_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_dpd_timeout_seconds` after provisioning.\n"]
     pub fn tunnel2_dpd_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_dpd_timeout_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_dpd_timeout_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_enable_tunnel_lifecycle_control` after provisioning.\n"]
     pub fn tunnel2_enable_tunnel_lifecycle_control(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.tunnel2_enable_tunnel_lifecycle_control", self.extract_ref()),
+            format!(
+                "{}.tunnel2_enable_tunnel_lifecycle_control",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_ike_versions` after provisioning.\n"]
     pub fn tunnel2_ike_versions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_ike_versions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_ike_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_inside_cidr` after provisioning.\n"]
     pub fn tunnel2_inside_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_inside_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_inside_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_inside_ipv6_cidr` after provisioning.\n"]
     pub fn tunnel2_inside_ipv6_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_inside_ipv6_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_inside_ipv6_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel2_phase1_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase1_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase1_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase1_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase1_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel2_phase1_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase1_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase1_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase1_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel2_phase1_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_phase1_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase1_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel2_phase2_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase2_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase2_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase2_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase2_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel2_phase2_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase2_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase2_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase2_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel2_phase2_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_phase2_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase2_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_preshared_key` after provisioning.\n"]
     pub fn tunnel2_preshared_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_preshared_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_preshared_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_rekey_fuzz_percentage` after provisioning.\n"]
     pub fn tunnel2_rekey_fuzz_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_rekey_fuzz_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_rekey_fuzz_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_rekey_margin_time_seconds` after provisioning.\n"]
     pub fn tunnel2_rekey_margin_time_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_rekey_margin_time_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_rekey_margin_time_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_replay_window_size` after provisioning.\n"]
     pub fn tunnel2_replay_window_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_replay_window_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_replay_window_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_startup_action` after provisioning.\n"]
     pub fn tunnel2_startup_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_startup_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_startup_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_vgw_inside_address` after provisioning.\n"]
     pub fn tunnel2_vgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_vgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_vgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel_bandwidth` after provisioning.\n"]
     pub fn tunnel_bandwidth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel_bandwidth", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel_bandwidth", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel_inside_ip_version` after provisioning.\n"]
     pub fn tunnel_inside_ip_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel_inside_ip_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel_inside_ip_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vgw_telemetry` after provisioning.\n"]
     pub fn vgw_telemetry(&self) -> SetRef<VpnConnectionVgwTelemetryElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.vgw_telemetry", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vgw_telemetry", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpn_gateway_id` after provisioning.\n"]
     pub fn vpn_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpn_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpn_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_log_options` after provisioning.\n"]
     pub fn tunnel1_log_options(&self) -> ListRef<VpnConnectionTunnel1LogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tunnel1_log_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_log_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_log_options` after provisioning.\n"]
     pub fn tunnel2_log_options(&self) -> ListRef<VpnConnectionTunnel2LogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tunnel2_log_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_log_options", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpnConnection {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpnConnection { }
+impl Resource for VpnConnection {}
 
 impl ToListMappable for VpnConnection {
     type O = ListRef<VpnConnectionRef>;
@@ -1078,10 +1400,7 @@ pub struct VpnConnectionRef {
 
 impl Ref for VpnConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -1101,27 +1420,42 @@ impl VpnConnectionRef {
 
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `core_network_attachment_arn` after provisioning.\n"]
     pub fn core_network_attachment_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.core_network_attachment_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.core_network_attachment_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_gateway_configuration` after provisioning.\n"]
     pub fn customer_gateway_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_gateway_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_gateway_id` after provisioning.\n"]
     pub fn customer_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_acceleration` after provisioning.\n"]
     pub fn enable_acceleration(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_acceleration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_acceleration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -1131,362 +1465,583 @@ impl VpnConnectionRef {
 
     #[doc = "Get a reference to the value of field `local_ipv4_network_cidr` after provisioning.\n"]
     pub fn local_ipv4_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_ipv4_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_ipv4_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_ipv6_network_cidr` after provisioning.\n"]
     pub fn local_ipv6_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_ipv6_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_ipv6_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outside_ip_address_type` after provisioning.\n"]
     pub fn outside_ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outside_ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outside_ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preshared_key_arn` after provisioning.\n"]
     pub fn preshared_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preshared_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preshared_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preshared_key_storage` after provisioning.\n"]
     pub fn preshared_key_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preshared_key_storage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preshared_key_storage", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_ipv4_network_cidr` after provisioning.\n"]
     pub fn remote_ipv4_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_ipv4_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_ipv4_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_ipv6_network_cidr` after provisioning.\n"]
     pub fn remote_ipv6_network_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_ipv6_network_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_ipv6_network_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `routes` after provisioning.\n"]
     pub fn routes(&self) -> SetRef<VpnConnectionRoutesElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.routes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.routes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `static_routes_only` after provisioning.\n"]
     pub fn static_routes_only(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.static_routes_only", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.static_routes_only", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_attachment_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_attachment_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transport_transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transport_transit_gateway_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.transport_transit_gateway_attachment_id", self.extract_ref()),
+            format!(
+                "{}.transport_transit_gateway_attachment_id",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_address` after provisioning.\n"]
     pub fn tunnel1_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_bgp_asn` after provisioning.\n"]
     pub fn tunnel1_bgp_asn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_bgp_asn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_bgp_asn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_bgp_holdtime` after provisioning.\n"]
     pub fn tunnel1_bgp_holdtime(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_bgp_holdtime", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_bgp_holdtime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_cgw_inside_address` after provisioning.\n"]
     pub fn tunnel1_cgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_cgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_cgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_dpd_timeout_action` after provisioning.\n"]
     pub fn tunnel1_dpd_timeout_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_dpd_timeout_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_dpd_timeout_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_dpd_timeout_seconds` after provisioning.\n"]
     pub fn tunnel1_dpd_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_dpd_timeout_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_dpd_timeout_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_enable_tunnel_lifecycle_control` after provisioning.\n"]
     pub fn tunnel1_enable_tunnel_lifecycle_control(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.tunnel1_enable_tunnel_lifecycle_control", self.extract_ref()),
+            format!(
+                "{}.tunnel1_enable_tunnel_lifecycle_control",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_ike_versions` after provisioning.\n"]
     pub fn tunnel1_ike_versions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_ike_versions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_ike_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_inside_cidr` after provisioning.\n"]
     pub fn tunnel1_inside_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_inside_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_inside_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_inside_ipv6_cidr` after provisioning.\n"]
     pub fn tunnel1_inside_ipv6_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_inside_ipv6_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_inside_ipv6_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel1_phase1_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase1_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase1_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase1_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase1_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel1_phase1_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase1_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase1_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase1_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase1_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel1_phase1_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_phase1_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase1_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel1_phase2_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase2_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase2_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase2_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase2_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel1_phase2_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel1_phase2_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel1_phase2_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase2_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_phase2_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel1_phase2_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_phase2_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_phase2_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_preshared_key` after provisioning.\n"]
     pub fn tunnel1_preshared_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_preshared_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_preshared_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_rekey_fuzz_percentage` after provisioning.\n"]
     pub fn tunnel1_rekey_fuzz_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_rekey_fuzz_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_rekey_fuzz_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_rekey_margin_time_seconds` after provisioning.\n"]
     pub fn tunnel1_rekey_margin_time_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_rekey_margin_time_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_rekey_margin_time_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_replay_window_size` after provisioning.\n"]
     pub fn tunnel1_replay_window_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_replay_window_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_replay_window_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_startup_action` after provisioning.\n"]
     pub fn tunnel1_startup_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_startup_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_startup_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_vgw_inside_address` after provisioning.\n"]
     pub fn tunnel1_vgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel1_vgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_vgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_address` after provisioning.\n"]
     pub fn tunnel2_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_bgp_asn` after provisioning.\n"]
     pub fn tunnel2_bgp_asn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_bgp_asn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_bgp_asn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_bgp_holdtime` after provisioning.\n"]
     pub fn tunnel2_bgp_holdtime(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_bgp_holdtime", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_bgp_holdtime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_cgw_inside_address` after provisioning.\n"]
     pub fn tunnel2_cgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_cgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_cgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_dpd_timeout_action` after provisioning.\n"]
     pub fn tunnel2_dpd_timeout_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_dpd_timeout_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_dpd_timeout_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_dpd_timeout_seconds` after provisioning.\n"]
     pub fn tunnel2_dpd_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_dpd_timeout_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_dpd_timeout_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_enable_tunnel_lifecycle_control` after provisioning.\n"]
     pub fn tunnel2_enable_tunnel_lifecycle_control(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.tunnel2_enable_tunnel_lifecycle_control", self.extract_ref()),
+            format!(
+                "{}.tunnel2_enable_tunnel_lifecycle_control",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_ike_versions` after provisioning.\n"]
     pub fn tunnel2_ike_versions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_ike_versions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_ike_versions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_inside_cidr` after provisioning.\n"]
     pub fn tunnel2_inside_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_inside_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_inside_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_inside_ipv6_cidr` after provisioning.\n"]
     pub fn tunnel2_inside_ipv6_cidr(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_inside_ipv6_cidr", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_inside_ipv6_cidr", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel2_phase1_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase1_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase1_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase1_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase1_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel2_phase1_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase1_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase1_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase1_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase1_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel2_phase1_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_phase1_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase1_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_dh_group_numbers` after provisioning.\n"]
     pub fn tunnel2_phase2_dh_group_numbers(&self) -> SetRef<PrimExpr<f64>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase2_dh_group_numbers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase2_dh_group_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_encryption_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase2_encryption_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase2_encryption_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.tunnel2_phase2_encryption_algorithms",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_integrity_algorithms` after provisioning.\n"]
     pub fn tunnel2_phase2_integrity_algorithms(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tunnel2_phase2_integrity_algorithms", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase2_integrity_algorithms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_phase2_lifetime_seconds` after provisioning.\n"]
     pub fn tunnel2_phase2_lifetime_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_phase2_lifetime_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_phase2_lifetime_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_preshared_key` after provisioning.\n"]
     pub fn tunnel2_preshared_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_preshared_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_preshared_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_rekey_fuzz_percentage` after provisioning.\n"]
     pub fn tunnel2_rekey_fuzz_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_rekey_fuzz_percentage", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_rekey_fuzz_percentage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_rekey_margin_time_seconds` after provisioning.\n"]
     pub fn tunnel2_rekey_margin_time_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_rekey_margin_time_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_rekey_margin_time_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_replay_window_size` after provisioning.\n"]
     pub fn tunnel2_replay_window_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_replay_window_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_replay_window_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_startup_action` after provisioning.\n"]
     pub fn tunnel2_startup_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_startup_action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_startup_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_vgw_inside_address` after provisioning.\n"]
     pub fn tunnel2_vgw_inside_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel2_vgw_inside_address", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_vgw_inside_address", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel_bandwidth` after provisioning.\n"]
     pub fn tunnel_bandwidth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel_bandwidth", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel_bandwidth", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel_inside_ip_version` after provisioning.\n"]
     pub fn tunnel_inside_ip_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tunnel_inside_ip_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tunnel_inside_ip_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vgw_telemetry` after provisioning.\n"]
     pub fn vgw_telemetry(&self) -> SetRef<VpnConnectionVgwTelemetryElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.vgw_telemetry", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vgw_telemetry", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpn_gateway_id` after provisioning.\n"]
     pub fn vpn_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpn_gateway_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpn_gateway_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel1_log_options` after provisioning.\n"]
     pub fn tunnel1_log_options(&self) -> ListRef<VpnConnectionTunnel1LogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tunnel1_log_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel1_log_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tunnel2_log_options` after provisioning.\n"]
     pub fn tunnel2_log_options(&self) -> ListRef<VpnConnectionTunnel2LogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tunnel2_log_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tunnel2_log_options", self.extract_ref()),
+        )
     }
 }
 
@@ -1565,7 +2120,10 @@ impl VpnConnectionRoutesElRef {
 
     #[doc = "Get a reference to the value of field `destination_cidr_block` after provisioning.\n"]
     pub fn destination_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.destination_cidr_block", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.destination_cidr_block", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
@@ -1681,22 +2239,34 @@ impl VpnConnectionVgwTelemetryElRef {
 
     #[doc = "Get a reference to the value of field `accepted_route_count` after provisioning.\n"]
     pub fn accepted_route_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accepted_route_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accepted_route_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_status_change` after provisioning.\n"]
     pub fn last_status_change(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_status_change", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_status_change", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `outside_ip_address` after provisioning.\n"]
     pub fn outside_ip_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outside_ip_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outside_ip_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
@@ -1706,7 +2276,10 @@ impl VpnConnectionVgwTelemetryElRef {
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.base),
+        )
     }
 }
 
@@ -1770,7 +2343,10 @@ pub struct VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef {
 }
 
 impl Ref for VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef {
-    fn new(shared: StackShared, base: String) -> VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef {
         VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1790,18 +2366,25 @@ impl VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef {
 
     #[doc = "Get a reference to the value of field `log_group_arn` after provisioning.\n"]
     pub fn log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_output_format` after provisioning.\n"]
     pub fn log_output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_output_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_output_format", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct VpnConnectionTunnel1LogOptionsElDynamic {
-    cloudwatch_log_options: Option<DynamicBlock<VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsEl>>,
+    cloudwatch_log_options:
+        Option<DynamicBlock<VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsEl>>,
 }
 
 #[derive(Serialize)]
@@ -1820,10 +2403,10 @@ impl VpnConnectionTunnel1LogOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_log_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_log_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -1872,8 +2455,13 @@ impl VpnConnectionTunnel1LogOptionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_options` after provisioning.\n"]
-    pub fn cloudwatch_log_options(&self) -> ListRef<VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_log_options", self.base))
+    pub fn cloudwatch_log_options(
+        &self,
+    ) -> ListRef<VpnConnectionTunnel1LogOptionsElCloudwatchLogOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_options", self.base),
+        )
     }
 }
 
@@ -1937,7 +2525,10 @@ pub struct VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef {
 }
 
 impl Ref for VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef {
-    fn new(shared: StackShared, base: String) -> VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef {
         VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1957,18 +2548,25 @@ impl VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef {
 
     #[doc = "Get a reference to the value of field `log_group_arn` after provisioning.\n"]
     pub fn log_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_output_format` after provisioning.\n"]
     pub fn log_output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_output_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_output_format", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct VpnConnectionTunnel2LogOptionsElDynamic {
-    cloudwatch_log_options: Option<DynamicBlock<VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsEl>>,
+    cloudwatch_log_options:
+        Option<DynamicBlock<VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsEl>>,
 }
 
 #[derive(Serialize)]
@@ -1987,10 +2585,10 @@ impl VpnConnectionTunnel2LogOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_log_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_log_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -2039,8 +2637,13 @@ impl VpnConnectionTunnel2LogOptionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_options` after provisioning.\n"]
-    pub fn cloudwatch_log_options(&self) -> ListRef<VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_log_options", self.base))
+    pub fn cloudwatch_log_options(
+        &self,
+    ) -> ListRef<VpnConnectionTunnel2LogOptionsElCloudwatchLogOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_options", self.base),
+        )
     }
 }
 

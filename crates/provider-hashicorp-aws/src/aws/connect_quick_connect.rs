@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ConnectQuickConnectData {
@@ -66,7 +66,8 @@ impl ConnectQuickConnect {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl ConnectQuickConnect {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl ConnectQuickConnect {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,8 +122,7 @@ impl ConnectQuickConnect {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -138,10 +148,10 @@ impl ConnectQuickConnect {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().quick_connect_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.quick_connect_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -153,7 +163,10 @@ impl ConnectQuickConnect {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -163,48 +176,72 @@ impl ConnectQuickConnect {
 
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quick_connect_id` after provisioning.\n"]
     pub fn quick_connect_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quick_connect_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quick_connect_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quick_connect_config` after provisioning.\n"]
     pub fn quick_connect_config(&self) -> ListRef<ConnectQuickConnectQuickConnectConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.quick_connect_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.quick_connect_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ConnectQuickConnect {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ConnectQuickConnect { }
+impl Resource for ConnectQuickConnect {}
 
 impl ToListMappable for ConnectQuickConnect {
     type O = ListRef<ConnectQuickConnectRef>;
@@ -270,10 +307,7 @@ pub struct ConnectQuickConnectRef {
 
 impl Ref for ConnectQuickConnectRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -293,7 +327,10 @@ impl ConnectQuickConnectRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -303,38 +340,58 @@ impl ConnectQuickConnectRef {
 
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quick_connect_id` after provisioning.\n"]
     pub fn quick_connect_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quick_connect_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quick_connect_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quick_connect_config` after provisioning.\n"]
     pub fn quick_connect_config(&self) -> ListRef<ConnectQuickConnectQuickConnectConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.quick_connect_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.quick_connect_config", self.extract_ref()),
+        )
     }
 }
 
@@ -343,7 +400,7 @@ pub struct ConnectQuickConnectQuickConnectConfigElPhoneConfigEl {
     phone_number: PrimField<String>,
 }
 
-impl ConnectQuickConnectQuickConnectConfigElPhoneConfigEl { }
+impl ConnectQuickConnectQuickConnectConfigElPhoneConfigEl {}
 
 impl ToListMappable for ConnectQuickConnectQuickConnectConfigElPhoneConfigEl {
     type O = BlockAssignable<ConnectQuickConnectQuickConnectConfigElPhoneConfigEl>;
@@ -364,7 +421,9 @@ pub struct BuildConnectQuickConnectQuickConnectConfigElPhoneConfigEl {
 
 impl BuildConnectQuickConnectQuickConnectConfigElPhoneConfigEl {
     pub fn build(self) -> ConnectQuickConnectQuickConnectConfigElPhoneConfigEl {
-        ConnectQuickConnectQuickConnectConfigElPhoneConfigEl { phone_number: self.phone_number }
+        ConnectQuickConnectQuickConnectConfigElPhoneConfigEl {
+            phone_number: self.phone_number,
+        }
     }
 }
 
@@ -374,7 +433,10 @@ pub struct ConnectQuickConnectQuickConnectConfigElPhoneConfigElRef {
 }
 
 impl Ref for ConnectQuickConnectQuickConnectConfigElPhoneConfigElRef {
-    fn new(shared: StackShared, base: String) -> ConnectQuickConnectQuickConnectConfigElPhoneConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConnectQuickConnectQuickConnectConfigElPhoneConfigElRef {
         ConnectQuickConnectQuickConnectConfigElPhoneConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -399,7 +461,7 @@ pub struct ConnectQuickConnectQuickConnectConfigElQueueConfigEl {
     queue_id: PrimField<String>,
 }
 
-impl ConnectQuickConnectQuickConnectConfigElQueueConfigEl { }
+impl ConnectQuickConnectQuickConnectConfigElQueueConfigEl {}
 
 impl ToListMappable for ConnectQuickConnectQuickConnectConfigElQueueConfigEl {
     type O = BlockAssignable<ConnectQuickConnectQuickConnectConfigElQueueConfigEl>;
@@ -435,7 +497,10 @@ pub struct ConnectQuickConnectQuickConnectConfigElQueueConfigElRef {
 }
 
 impl Ref for ConnectQuickConnectQuickConnectConfigElQueueConfigElRef {
-    fn new(shared: StackShared, base: String) -> ConnectQuickConnectQuickConnectConfigElQueueConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConnectQuickConnectQuickConnectConfigElQueueConfigElRef {
         ConnectQuickConnectQuickConnectConfigElQueueConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -450,7 +515,10 @@ impl ConnectQuickConnectQuickConnectConfigElQueueConfigElRef {
 
     #[doc = "Get a reference to the value of field `contact_flow_id` after provisioning.\n"]
     pub fn contact_flow_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.contact_flow_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.contact_flow_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queue_id` after provisioning.\n"]
@@ -465,7 +533,7 @@ pub struct ConnectQuickConnectQuickConnectConfigElUserConfigEl {
     user_id: PrimField<String>,
 }
 
-impl ConnectQuickConnectQuickConnectConfigElUserConfigEl { }
+impl ConnectQuickConnectQuickConnectConfigElUserConfigEl {}
 
 impl ToListMappable for ConnectQuickConnectQuickConnectConfigElUserConfigEl {
     type O = BlockAssignable<ConnectQuickConnectQuickConnectConfigElUserConfigEl>;
@@ -501,7 +569,10 @@ pub struct ConnectQuickConnectQuickConnectConfigElUserConfigElRef {
 }
 
 impl Ref for ConnectQuickConnectQuickConnectConfigElUserConfigElRef {
-    fn new(shared: StackShared, base: String) -> ConnectQuickConnectQuickConnectConfigElUserConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ConnectQuickConnectQuickConnectConfigElUserConfigElRef {
         ConnectQuickConnectQuickConnectConfigElUserConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -516,7 +587,10 @@ impl ConnectQuickConnectQuickConnectConfigElUserConfigElRef {
 
     #[doc = "Get a reference to the value of field `contact_flow_id` after provisioning.\n"]
     pub fn contact_flow_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.contact_flow_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.contact_flow_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
@@ -553,10 +627,10 @@ impl ConnectQuickConnectQuickConnectConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.phone_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.phone_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -569,10 +643,10 @@ impl ConnectQuickConnectQuickConnectConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.queue_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.queue_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -585,10 +659,10 @@ impl ConnectQuickConnectQuickConnectConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.user_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.user_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -644,7 +718,10 @@ impl ConnectQuickConnectQuickConnectConfigElRef {
 
     #[doc = "Get a reference to the value of field `quick_connect_type` after provisioning.\n"]
     pub fn quick_connect_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quick_connect_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quick_connect_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `phone_config` after provisioning.\n"]

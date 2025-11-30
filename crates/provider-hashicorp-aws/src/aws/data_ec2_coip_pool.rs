@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2CoipPoolData {
@@ -71,8 +71,7 @@ impl DataEc2CoipPool {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -89,10 +88,10 @@ impl DataEc2CoipPool {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -115,43 +114,64 @@ impl DataEc2CoipPool {
 
     #[doc = "Get a reference to the value of field `local_gateway_route_table_id` after provisioning.\n"]
     pub fn local_gateway_route_table_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_gateway_route_table_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_gateway_route_table_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pool_cidrs` after provisioning.\n"]
     pub fn pool_cidrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.pool_cidrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.pool_cidrs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pool_id` after provisioning.\n"]
     pub fn pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pool_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2CoipPoolTimeoutsElRef {
-        DataEc2CoipPoolTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEc2CoipPoolTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEc2CoipPool {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2CoipPool { }
+impl Datasource for DataEc2CoipPool {}
 
 impl ToListMappable for DataEc2CoipPool {
     type O = ListRef<DataEc2CoipPoolRef>;
@@ -211,10 +231,7 @@ pub struct DataEc2CoipPoolRef {
 
 impl Ref for DataEc2CoipPoolRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -239,33 +256,50 @@ impl DataEc2CoipPoolRef {
 
     #[doc = "Get a reference to the value of field `local_gateway_route_table_id` after provisioning.\n"]
     pub fn local_gateway_route_table_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_gateway_route_table_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_gateway_route_table_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pool_cidrs` after provisioning.\n"]
     pub fn pool_cidrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.pool_cidrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.pool_cidrs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pool_id` after provisioning.\n"]
     pub fn pool_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.pool_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.pool_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2CoipPoolTimeoutsElRef {
-        DataEc2CoipPoolTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEc2CoipPoolTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -275,7 +309,7 @@ pub struct DataEc2CoipPoolFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2CoipPoolFilterEl { }
+impl DataEc2CoipPoolFilterEl {}
 
 impl ToListMappable for DataEc2CoipPoolFilterEl {
     type O = BlockAssignable<DataEc2CoipPoolFilterEl>;
@@ -365,7 +399,9 @@ pub struct BuildDataEc2CoipPoolTimeoutsEl {}
 
 impl BuildDataEc2CoipPoolTimeoutsEl {
     pub fn build(self) -> DataEc2CoipPoolTimeoutsEl {
-        DataEc2CoipPoolTimeoutsEl { read: core::default::Default::default() }
+        DataEc2CoipPoolTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

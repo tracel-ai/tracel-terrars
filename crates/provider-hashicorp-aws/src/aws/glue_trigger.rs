@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlueTriggerData {
@@ -81,7 +81,8 @@ impl GlueTrigger {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl GlueTrigger {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl GlueTrigger {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -132,8 +143,7 @@ impl GlueTrigger {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -174,10 +184,10 @@ impl GlueTrigger {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().actions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.actions = Some(d);
-            },
+            }
         }
         self
     }
@@ -190,10 +200,10 @@ impl GlueTrigger {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().event_batching_condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.event_batching_condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -203,10 +213,10 @@ impl GlueTrigger {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().predicate = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.predicate = Some(d);
-            },
+            }
         }
         self
     }
@@ -224,12 +234,18 @@ impl GlueTrigger {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -239,78 +255,120 @@ impl GlueTrigger {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_on_creation` after provisioning.\n"]
     pub fn start_on_creation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_on_creation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_on_creation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workflow_name` after provisioning.\n"]
     pub fn workflow_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workflow_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workflow_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `actions` after provisioning.\n"]
     pub fn actions(&self) -> ListRef<GlueTriggerActionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.actions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_batching_condition` after provisioning.\n"]
     pub fn event_batching_condition(&self) -> ListRef<GlueTriggerEventBatchingConditionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_batching_condition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_batching_condition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predicate` after provisioning.\n"]
     pub fn predicate(&self) -> ListRef<GlueTriggerPredicateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.predicate", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predicate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> GlueTriggerTimeoutsElRef {
-        GlueTriggerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        GlueTriggerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GlueTrigger {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlueTrigger { }
+impl Resource for GlueTrigger {}
 
 impl ToListMappable for GlueTrigger {
     type O = ListRef<GlueTriggerRef>;
@@ -383,10 +441,7 @@ pub struct GlueTriggerRef {
 
 impl Ref for GlueTriggerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -406,12 +461,18 @@ impl GlueTriggerRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -421,68 +482,106 @@ impl GlueTriggerRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_on_creation` after provisioning.\n"]
     pub fn start_on_creation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_on_creation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_on_creation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workflow_name` after provisioning.\n"]
     pub fn workflow_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workflow_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workflow_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `actions` after provisioning.\n"]
     pub fn actions(&self) -> ListRef<GlueTriggerActionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.actions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.actions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_batching_condition` after provisioning.\n"]
     pub fn event_batching_condition(&self) -> ListRef<GlueTriggerEventBatchingConditionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_batching_condition", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_batching_condition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predicate` after provisioning.\n"]
     pub fn predicate(&self) -> ListRef<GlueTriggerPredicateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.predicate", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.predicate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> GlueTriggerTimeoutsElRef {
-        GlueTriggerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        GlueTriggerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -516,7 +615,9 @@ pub struct BuildGlueTriggerActionsElNotificationPropertyEl {}
 
 impl BuildGlueTriggerActionsElNotificationPropertyEl {
     pub fn build(self) -> GlueTriggerActionsElNotificationPropertyEl {
-        GlueTriggerActionsElNotificationPropertyEl { notify_delay_after: core::default::Default::default() }
+        GlueTriggerActionsElNotificationPropertyEl {
+            notify_delay_after: core::default::Default::default(),
+        }
     }
 }
 
@@ -541,7 +642,10 @@ impl GlueTriggerActionsElNotificationPropertyElRef {
 
     #[doc = "Get a reference to the value of field `notify_delay_after` after provisioning.\n"]
     pub fn notify_delay_after(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notify_delay_after", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notify_delay_after", self.base),
+        )
     }
 }
 
@@ -606,10 +710,10 @@ impl GlueTriggerActionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.notification_property = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.notification_property = Some(d);
-            },
+            }
         }
         self
     }
@@ -679,7 +783,10 @@ impl GlueTriggerActionsElRef {
 
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_configuration", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
@@ -689,7 +796,10 @@ impl GlueTriggerActionsElRef {
 
     #[doc = "Get a reference to the value of field `notification_property` after provisioning.\n"]
     pub fn notification_property(&self) -> ListRef<GlueTriggerActionsElNotificationPropertyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_property", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_property", self.base),
+        )
     }
 }
 
@@ -872,7 +982,10 @@ impl GlueTriggerPredicateElConditionsElRef {
 
     #[doc = "Get a reference to the value of field `logical_operator` after provisioning.\n"]
     pub fn logical_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.logical_operator", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.logical_operator", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
@@ -903,14 +1016,17 @@ impl GlueTriggerPredicateEl {
     }
 
     #[doc = "Set the field `conditions`.\n"]
-    pub fn set_conditions(mut self, v: impl Into<BlockAssignable<GlueTriggerPredicateElConditionsEl>>) -> Self {
+    pub fn set_conditions(
+        mut self,
+        v: impl Into<BlockAssignable<GlueTriggerPredicateElConditionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.conditions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.conditions = Some(d);
-            },
+            }
         }
         self
     }

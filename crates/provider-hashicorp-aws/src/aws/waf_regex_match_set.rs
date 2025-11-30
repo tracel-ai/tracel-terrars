@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct WafRegexMatchSetData {
@@ -57,7 +57,8 @@ impl WafRegexMatchSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +71,7 @@ impl WafRegexMatchSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +82,22 @@ impl WafRegexMatchSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -97,14 +108,17 @@ impl WafRegexMatchSet {
     }
 
     #[doc = "Set the field `regex_match_tuple`.\n"]
-    pub fn set_regex_match_tuple(self, v: impl Into<BlockAssignable<WafRegexMatchSetRegexMatchTupleEl>>) -> Self {
+    pub fn set_regex_match_tuple(
+        self,
+        v: impl Into<BlockAssignable<WafRegexMatchSetRegexMatchTupleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().regex_match_tuple = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.regex_match_tuple = Some(d);
-            },
+            }
         }
         self
     }
@@ -121,17 +135,24 @@ impl WafRegexMatchSet {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for WafRegexMatchSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for WafRegexMatchSet { }
+impl Resource for WafRegexMatchSet {}
 
 impl ToListMappable for WafRegexMatchSet {
     type O = ListRef<WafRegexMatchSetRef>;
@@ -190,10 +211,7 @@ pub struct WafRegexMatchSetRef {
 
 impl Ref for WafRegexMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -218,7 +236,10 @@ impl WafRegexMatchSetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 }
 
@@ -270,7 +291,10 @@ pub struct WafRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
 }
 
 impl Ref for WafRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
-    fn new(shared: StackShared, base: String) -> WafRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> WafRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
         WafRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -317,10 +341,10 @@ impl WafRegexMatchSetRegexMatchTupleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.field_to_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.field_to_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -377,17 +401,26 @@ impl WafRegexMatchSetRegexMatchTupleElRef {
 
     #[doc = "Get a reference to the value of field `regex_pattern_set_id` after provisioning.\n"]
     pub fn regex_pattern_set_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.regex_pattern_set_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.regex_pattern_set_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_transformation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.text_transformation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
     pub fn field_to_match(&self) -> ListRef<WafRegexMatchSetRegexMatchTupleElFieldToMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.field_to_match", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.field_to_match", self.base),
+        )
     }
 }
 

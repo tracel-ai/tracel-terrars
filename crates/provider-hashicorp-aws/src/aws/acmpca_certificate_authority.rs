@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AcmpcaCertificateAuthorityData {
@@ -33,7 +33,8 @@ struct AcmpcaCertificateAuthorityData {
     #[serde(skip_serializing_if = "Option::is_none")]
     usage_mode: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    certificate_authority_configuration: Option<Vec<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationEl>>,
+    certificate_authority_configuration:
+        Option<Vec<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     revocation_configuration: Option<Vec<AcmpcaCertificateAuthorityRevocationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -76,7 +77,8 @@ impl AcmpcaCertificateAuthority {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -89,7 +91,7 @@ impl AcmpcaCertificateAuthority {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -100,12 +102,22 @@ impl AcmpcaCertificateAuthority {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -133,8 +145,7 @@ impl AcmpcaCertificateAuthority {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -172,10 +183,14 @@ impl AcmpcaCertificateAuthority {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().certificate_authority_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.certificate_authority_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .certificate_authority_configuration = Some(d);
+            }
         }
         self
     }
@@ -188,10 +203,10 @@ impl AcmpcaCertificateAuthority {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().revocation_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.revocation_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -209,22 +224,34 @@ impl AcmpcaCertificateAuthority {
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_signing_request` after provisioning.\n"]
     pub fn certificate_signing_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_signing_request", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_signing_request", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -234,65 +261,102 @@ impl AcmpcaCertificateAuthority {
 
     #[doc = "Get a reference to the value of field `key_storage_security_standard` after provisioning.\n"]
     pub fn key_storage_security_standard(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_storage_security_standard", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_storage_security_standard", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_before", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permanent_deletion_time_in_days` after provisioning.\n"]
     pub fn permanent_deletion_time_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permanent_deletion_time_in_days", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permanent_deletion_time_in_days", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `serial` after provisioning.\n"]
     pub fn serial(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.serial", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.serial", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `usage_mode` after provisioning.\n"]
     pub fn usage_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.usage_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.usage_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_authority_configuration` after provisioning.\n"]
     pub fn certificate_authority_configuration(
         &self,
     ) -> ListRef<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificate_authority_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revocation_configuration` after provisioning.\n"]
-    pub fn revocation_configuration(&self) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revocation_configuration", self.extract_ref()))
+    pub fn revocation_configuration(
+        &self,
+    ) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revocation_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -306,11 +370,15 @@ impl AcmpcaCertificateAuthority {
 
 impl Referable for AcmpcaCertificateAuthority {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AcmpcaCertificateAuthority { }
+impl Resource for AcmpcaCertificateAuthority {}
 
 impl ToListMappable for AcmpcaCertificateAuthority {
     type O = ListRef<AcmpcaCertificateAuthorityRef>;
@@ -376,10 +444,7 @@ pub struct AcmpcaCertificateAuthorityRef {
 
 impl Ref for AcmpcaCertificateAuthorityRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -399,22 +464,34 @@ impl AcmpcaCertificateAuthorityRef {
 
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_chain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_chain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_signing_request` after provisioning.\n"]
     pub fn certificate_signing_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_signing_request", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_signing_request", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -424,65 +501,102 @@ impl AcmpcaCertificateAuthorityRef {
 
     #[doc = "Get a reference to the value of field `key_storage_security_standard` after provisioning.\n"]
     pub fn key_storage_security_standard(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_storage_security_standard", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_storage_security_standard", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_after", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.not_before", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permanent_deletion_time_in_days` after provisioning.\n"]
     pub fn permanent_deletion_time_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permanent_deletion_time_in_days", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permanent_deletion_time_in_days", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `serial` after provisioning.\n"]
     pub fn serial(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.serial", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.serial", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `usage_mode` after provisioning.\n"]
     pub fn usage_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.usage_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.usage_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_authority_configuration` after provisioning.\n"]
     pub fn certificate_authority_configuration(
         &self,
     ) -> ListRef<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificate_authority_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_authority_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revocation_configuration` after provisioning.\n"]
-    pub fn revocation_configuration(&self) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revocation_configuration", self.extract_ref()))
+    pub fn revocation_configuration(
+        &self,
+    ) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revocation_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -605,7 +719,8 @@ impl AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl {
 }
 
 impl ToListMappable for AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl {
-    type O = BlockAssignable<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl>;
+    type O =
+        BlockAssignable<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -672,12 +787,18 @@ impl AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectElRef {
 
     #[doc = "Get a reference to the value of field `distinguished_name_qualifier` after provisioning.\n"]
     pub fn distinguished_name_qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.distinguished_name_qualifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.distinguished_name_qualifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `generation_qualifier` after provisioning.\n"]
     pub fn generation_qualifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.generation_qualifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.generation_qualifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `given_name` after provisioning.\n"]
@@ -702,7 +823,10 @@ impl AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectElRef {
 
     #[doc = "Get a reference to the value of field `organizational_unit` after provisioning.\n"]
     pub fn organizational_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.organizational_unit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.organizational_unit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pseudonym` after provisioning.\n"]
@@ -728,7 +852,9 @@ impl AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectElRef {
 
 #[derive(Serialize, Default)]
 struct AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElDynamic {
-    subject: Option<DynamicBlock<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl>>,
+    subject: Option<
+        DynamicBlock<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -744,15 +870,17 @@ impl AcmpcaCertificateAuthorityCertificateAuthorityConfigurationEl {
     #[doc = "Set the field `subject`.\n"]
     pub fn set_subject(
         mut self,
-        v: impl Into<BlockAssignable<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl>>,
+        v: impl Into<
+            BlockAssignable<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.subject = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.subject = Some(d);
-            },
+            }
         }
         self
     }
@@ -794,7 +922,10 @@ pub struct AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef {
 }
 
 impl Ref for AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef {
         AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -809,16 +940,24 @@ impl AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `key_algorithm` after provisioning.\n"]
     pub fn key_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_algorithm", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm` after provisioning.\n"]
     pub fn signing_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subject` after provisioning.\n"]
-    pub fn subject(&self) -> ListRef<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectElRef> {
+    pub fn subject(
+        &self,
+    ) -> ListRef<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationElSubjectElRef> {
         ListRef::new(self.shared().clone(), format!("{}.subject", self.base))
     }
 }
@@ -929,17 +1068,26 @@ impl AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `expiration_in_days` after provisioning.\n"]
     pub fn expiration_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration_in_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expiration_in_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_object_acl` after provisioning.\n"]
     pub fn s3_object_acl(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_object_acl", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_object_acl", self.base),
+        )
     }
 }
 
@@ -959,7 +1107,8 @@ impl AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
 }
 
 impl ToListMappable for AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl {
-    type O = BlockAssignable<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>;
+    type O =
+        BlockAssignable<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1013,13 +1162,17 @@ impl AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `ocsp_custom_cname` after provisioning.\n"]
     pub fn ocsp_custom_cname(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ocsp_custom_cname", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ocsp_custom_cname", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AcmpcaCertificateAuthorityRevocationConfigurationElDynamic {
-    crl_configuration: Option<DynamicBlock<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
+    crl_configuration:
+        Option<DynamicBlock<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
     ocsp_configuration: Option<
         DynamicBlock<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>,
     >,
@@ -1028,9 +1181,11 @@ struct AcmpcaCertificateAuthorityRevocationConfigurationElDynamic {
 #[derive(Serialize)]
 pub struct AcmpcaCertificateAuthorityRevocationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    crl_configuration: Option<Vec<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
+    crl_configuration:
+        Option<Vec<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ocsp_configuration: Option<Vec<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>>,
+    ocsp_configuration:
+        Option<Vec<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>>,
     dynamic: AcmpcaCertificateAuthorityRevocationConfigurationElDynamic,
 }
 
@@ -1038,15 +1193,17 @@ impl AcmpcaCertificateAuthorityRevocationConfigurationEl {
     #[doc = "Set the field `crl_configuration`.\n"]
     pub fn set_crl_configuration(
         mut self,
-        v: impl Into<BlockAssignable<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crl_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crl_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1054,15 +1211,17 @@ impl AcmpcaCertificateAuthorityRevocationConfigurationEl {
     #[doc = "Set the field `ocsp_configuration`.\n"]
     pub fn set_ocsp_configuration(
         mut self,
-        v: impl Into<BlockAssignable<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ocsp_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ocsp_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1098,7 +1257,10 @@ pub struct AcmpcaCertificateAuthorityRevocationConfigurationElRef {
 }
 
 impl Ref for AcmpcaCertificateAuthorityRevocationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> AcmpcaCertificateAuthorityRevocationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AcmpcaCertificateAuthorityRevocationConfigurationElRef {
         AcmpcaCertificateAuthorityRevocationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1112,15 +1274,23 @@ impl AcmpcaCertificateAuthorityRevocationConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `crl_configuration` after provisioning.\n"]
-    pub fn crl_configuration(&self) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crl_configuration", self.base))
+    pub fn crl_configuration(
+        &self,
+    ) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElCrlConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crl_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ocsp_configuration` after provisioning.\n"]
     pub fn ocsp_configuration(
         &self,
     ) -> ListRef<AcmpcaCertificateAuthorityRevocationConfigurationElOcspConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ocsp_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ocsp_configuration", self.base),
+        )
     }
 }
 
@@ -1154,7 +1324,9 @@ pub struct BuildAcmpcaCertificateAuthorityTimeoutsEl {}
 
 impl BuildAcmpcaCertificateAuthorityTimeoutsEl {
     pub fn build(self) -> AcmpcaCertificateAuthorityTimeoutsEl {
-        AcmpcaCertificateAuthorityTimeoutsEl { create: core::default::Default::default() }
+        AcmpcaCertificateAuthorityTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 
@@ -1185,8 +1357,8 @@ impl AcmpcaCertificateAuthorityTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct AcmpcaCertificateAuthorityDynamic {
-    certificate_authority_configuration: Option<
-        DynamicBlock<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationEl>,
-    >,
-    revocation_configuration: Option<DynamicBlock<AcmpcaCertificateAuthorityRevocationConfigurationEl>>,
+    certificate_authority_configuration:
+        Option<DynamicBlock<AcmpcaCertificateAuthorityCertificateAuthorityConfigurationEl>>,
+    revocation_configuration:
+        Option<DynamicBlock<AcmpcaCertificateAuthorityRevocationConfigurationEl>>,
 }

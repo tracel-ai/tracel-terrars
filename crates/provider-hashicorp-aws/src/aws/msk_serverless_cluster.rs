@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct MskServerlessClusterData {
@@ -67,7 +67,8 @@ impl MskServerlessCluster {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl MskServerlessCluster {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl MskServerlessCluster {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl MskServerlessCluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -133,10 +143,10 @@ impl MskServerlessCluster {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().client_authentication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.client_authentication = Some(d);
-            },
+            }
         }
         self
     }
@@ -148,14 +158,17 @@ impl MskServerlessCluster {
     }
 
     #[doc = "Set the field `vpc_config`.\n"]
-    pub fn set_vpc_config(self, v: impl Into<BlockAssignable<MskServerlessClusterVpcConfigEl>>) -> Self {
+    pub fn set_vpc_config(
+        self,
+        v: impl Into<BlockAssignable<MskServerlessClusterVpcConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -167,17 +180,26 @@ impl MskServerlessCluster {
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_uuid` after provisioning.\n"]
     pub fn cluster_uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_uuid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -185,45 +207,66 @@ impl MskServerlessCluster {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_authentication` after provisioning.\n"]
     pub fn client_authentication(&self) -> ListRef<MskServerlessClusterClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskServerlessClusterTimeoutsElRef {
-        MskServerlessClusterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        MskServerlessClusterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<MskServerlessClusterVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for MskServerlessCluster {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for MskServerlessCluster { }
+impl Resource for MskServerlessCluster {}
 
 impl ToListMappable for MskServerlessCluster {
     type O = ListRef<MskServerlessClusterRef>;
@@ -287,10 +330,7 @@ pub struct MskServerlessClusterRef {
 
 impl Ref for MskServerlessClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -310,17 +350,26 @@ impl MskServerlessClusterRef {
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_uuid` after provisioning.\n"]
     pub fn cluster_uuid(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_uuid", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_uuid", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -328,35 +377,52 @@ impl MskServerlessClusterRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_authentication` after provisioning.\n"]
     pub fn client_authentication(&self) -> ListRef<MskServerlessClusterClientAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskServerlessClusterTimeoutsElRef {
-        MskServerlessClusterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        MskServerlessClusterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<MskServerlessClusterVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -365,7 +431,7 @@ pub struct MskServerlessClusterClientAuthenticationElSaslElIamEl {
     enabled: PrimField<bool>,
 }
 
-impl MskServerlessClusterClientAuthenticationElSaslElIamEl { }
+impl MskServerlessClusterClientAuthenticationElSaslElIamEl {}
 
 impl ToListMappable for MskServerlessClusterClientAuthenticationElSaslElIamEl {
     type O = BlockAssignable<MskServerlessClusterClientAuthenticationElSaslElIamEl>;
@@ -386,7 +452,9 @@ pub struct BuildMskServerlessClusterClientAuthenticationElSaslElIamEl {
 
 impl BuildMskServerlessClusterClientAuthenticationElSaslElIamEl {
     pub fn build(self) -> MskServerlessClusterClientAuthenticationElSaslElIamEl {
-        MskServerlessClusterClientAuthenticationElSaslElIamEl { enabled: self.enabled }
+        MskServerlessClusterClientAuthenticationElSaslElIamEl {
+            enabled: self.enabled,
+        }
     }
 }
 
@@ -396,7 +464,10 @@ pub struct MskServerlessClusterClientAuthenticationElSaslElIamElRef {
 }
 
 impl Ref for MskServerlessClusterClientAuthenticationElSaslElIamElRef {
-    fn new(shared: StackShared, base: String) -> MskServerlessClusterClientAuthenticationElSaslElIamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskServerlessClusterClientAuthenticationElSaslElIamElRef {
         MskServerlessClusterClientAuthenticationElSaslElIamElRef {
             shared: shared,
             base: base.to_string(),
@@ -436,10 +507,10 @@ impl MskServerlessClusterClientAuthenticationElSaslEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.iam = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.iam = Some(d);
-            },
+            }
         }
         self
     }
@@ -474,7 +545,10 @@ pub struct MskServerlessClusterClientAuthenticationElSaslElRef {
 }
 
 impl Ref for MskServerlessClusterClientAuthenticationElSaslElRef {
-    fn new(shared: StackShared, base: String) -> MskServerlessClusterClientAuthenticationElSaslElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> MskServerlessClusterClientAuthenticationElSaslElRef {
         MskServerlessClusterClientAuthenticationElSaslElRef {
             shared: shared,
             base: base.to_string(),
@@ -507,14 +581,17 @@ pub struct MskServerlessClusterClientAuthenticationEl {
 
 impl MskServerlessClusterClientAuthenticationEl {
     #[doc = "Set the field `sasl`.\n"]
-    pub fn set_sasl(mut self, v: impl Into<BlockAssignable<MskServerlessClusterClientAuthenticationElSaslEl>>) -> Self {
+    pub fn set_sasl(
+        mut self,
+        v: impl Into<BlockAssignable<MskServerlessClusterClientAuthenticationElSaslEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sasl = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sasl = Some(d);
-            },
+            }
         }
         self
     }
@@ -705,7 +782,10 @@ impl MskServerlessClusterVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]

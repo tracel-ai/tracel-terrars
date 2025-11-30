@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOdbCloudVmClustersData {
@@ -40,33 +40,40 @@ impl DataOdbCloudVmClusters {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `cloud_vm_clusters` after provisioning.\nList of Cloud VM Clusters. It returns only basic information about the cloud VM clusters."]
+    #[doc = "Get a reference to the value of field `cloud_vm_clusters` after provisioning.\nList of Cloud VM Clusters. It returns only basic information about the cloud VM clusters."]
     pub fn cloud_vm_clusters(&self) -> ListRef<DataOdbCloudVmClustersCloudVmClustersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_vm_clusters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_vm_clusters", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOdbCloudVmClusters {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOdbCloudVmClusters { }
+impl Datasource for DataOdbCloudVmClusters {}
 
 impl ToListMappable for DataOdbCloudVmClusters {
     type O = ListRef<DataOdbCloudVmClustersRef>;
@@ -119,10 +126,7 @@ pub struct DataOdbCloudVmClustersRef {
 
 impl Ref for DataOdbCloudVmClustersRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -135,16 +139,20 @@ impl DataOdbCloudVmClustersRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `cloud_vm_clusters` after provisioning.\nList of Cloud VM Clusters. It returns only basic information about the cloud VM clusters."]
+    #[doc = "Get a reference to the value of field `cloud_vm_clusters` after provisioning.\nList of Cloud VM Clusters. It returns only basic information about the cloud VM clusters."]
     pub fn cloud_vm_clusters(&self) -> ListRef<DataOdbCloudVmClustersCloudVmClustersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloud_vm_clusters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloud_vm_clusters", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -273,7 +281,10 @@ impl DataOdbCloudVmClustersCloudVmClustersElRef {
 
     #[doc = "Get a reference to the value of field `cloud_exadata_infrastructure_id` after provisioning.\n"]
     pub fn cloud_exadata_infrastructure_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_exadata_infrastructure_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_exadata_infrastructure_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
@@ -288,7 +299,10 @@ impl DataOdbCloudVmClustersCloudVmClustersElRef {
 
     #[doc = "Get a reference to the value of field `oci_resource_anchor_name` after provisioning.\n"]
     pub fn oci_resource_anchor_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.oci_resource_anchor_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.oci_resource_anchor_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oci_url` after provisioning.\n"]
@@ -303,6 +317,9 @@ impl DataOdbCloudVmClustersCloudVmClustersElRef {
 
     #[doc = "Get a reference to the value of field `odb_network_id` after provisioning.\n"]
     pub fn odb_network_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.odb_network_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.odb_network_id", self.base),
+        )
     }
 }

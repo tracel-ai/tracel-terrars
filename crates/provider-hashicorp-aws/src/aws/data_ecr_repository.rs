@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEcrRepositoryData {
@@ -53,8 +53,7 @@ impl DataEcrRepository {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -78,8 +77,13 @@ impl DataEcrRepository {
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(&self) -> ListRef<DataEcrRepositoryEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+    pub fn encryption_configuration(
+        &self,
+    ) -> ListRef<DataEcrRepositoryEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -88,61 +92,96 @@ impl DataEcrRepository {
     }
 
     #[doc = "Get a reference to the value of field `image_scanning_configuration` after provisioning.\n"]
-    pub fn image_scanning_configuration(&self) -> ListRef<DataEcrRepositoryImageScanningConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_scanning_configuration", self.extract_ref()))
+    pub fn image_scanning_configuration(
+        &self,
+    ) -> ListRef<DataEcrRepositoryImageScanningConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_scanning_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_tag_mutability` after provisioning.\n"]
     pub fn image_tag_mutability(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_tag_mutability", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_tag_mutability", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_tag_mutability_exclusion_filter` after provisioning.\n"]
     pub fn image_tag_mutability_exclusion_filter(
         &self,
     ) -> ListRef<DataEcrRepositoryImageTagMutabilityExclusionFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_tag_mutability_exclusion_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.image_tag_mutability_exclusion_filter",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `most_recent_image_tags` after provisioning.\n"]
     pub fn most_recent_image_tags(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.most_recent_image_tags", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.most_recent_image_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository_url` after provisioning.\n"]
     pub fn repository_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEcrRepository {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEcrRepository { }
+impl Datasource for DataEcrRepository {}
 
 impl ToListMappable for DataEcrRepository {
     type O = ListRef<DataEcrRepositoryRef>;
@@ -201,10 +240,7 @@ pub struct DataEcrRepositoryRef {
 
 impl Ref for DataEcrRepositoryRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -223,8 +259,13 @@ impl DataEcrRepositoryRef {
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(&self) -> ListRef<DataEcrRepositoryEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.extract_ref()))
+    pub fn encryption_configuration(
+        &self,
+    ) -> ListRef<DataEcrRepositoryEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -233,51 +274,82 @@ impl DataEcrRepositoryRef {
     }
 
     #[doc = "Get a reference to the value of field `image_scanning_configuration` after provisioning.\n"]
-    pub fn image_scanning_configuration(&self) -> ListRef<DataEcrRepositoryImageScanningConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_scanning_configuration", self.extract_ref()))
+    pub fn image_scanning_configuration(
+        &self,
+    ) -> ListRef<DataEcrRepositoryImageScanningConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_scanning_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_tag_mutability` after provisioning.\n"]
     pub fn image_tag_mutability(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_tag_mutability", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_tag_mutability", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_tag_mutability_exclusion_filter` after provisioning.\n"]
     pub fn image_tag_mutability_exclusion_filter(
         &self,
     ) -> ListRef<DataEcrRepositoryImageTagMutabilityExclusionFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_tag_mutability_exclusion_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.image_tag_mutability_exclusion_filter",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `most_recent_image_tags` after provisioning.\n"]
     pub fn most_recent_image_tags(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.most_recent_image_tags", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.most_recent_image_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository_url` after provisioning.\n"]
     pub fn repository_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -347,7 +419,10 @@ impl DataEcrRepositoryEncryptionConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `encryption_type` after provisioning.\n"]
     pub fn encryption_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key` after provisioning.\n"]
@@ -386,7 +461,9 @@ pub struct BuildDataEcrRepositoryImageScanningConfigurationEl {}
 
 impl BuildDataEcrRepositoryImageScanningConfigurationEl {
     pub fn build(self) -> DataEcrRepositoryImageScanningConfigurationEl {
-        DataEcrRepositoryImageScanningConfigurationEl { scan_on_push: core::default::Default::default() }
+        DataEcrRepositoryImageScanningConfigurationEl {
+            scan_on_push: core::default::Default::default(),
+        }
     }
 }
 
@@ -466,7 +543,10 @@ pub struct DataEcrRepositoryImageTagMutabilityExclusionFilterElRef {
 }
 
 impl Ref for DataEcrRepositoryImageTagMutabilityExclusionFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataEcrRepositoryImageTagMutabilityExclusionFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEcrRepositoryImageTagMutabilityExclusionFilterElRef {
         DataEcrRepositoryImageTagMutabilityExclusionFilterElRef {
             shared: shared,
             base: base.to_string(),

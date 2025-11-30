@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOpensearchserverlessVpcEndpointData {
@@ -49,17 +49,18 @@ impl DataOpensearchserverlessVpcEndpoint {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_date` after provisioning.\nThe date the endpoint was created."]
+    #[doc = "Get a reference to the value of field `created_date` after provisioning.\nThe date the endpoint was created."]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -69,47 +70,64 @@ impl DataOpensearchserverlessVpcEndpoint {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the endpoint."]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `security_group_ids` after provisioning.\nThe IDs of the security groups that define the ports, protocols, and sources for inbound traffic that you are authorizing into your endpoint."]
+    #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\nThe IDs of the security groups that define the ports, protocols, and sources for inbound traffic that you are authorizing into your endpoint."]
     pub fn security_group_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `subnet_ids` after provisioning.\nThe IDs of the subnets from which you access OpenSearch Serverless."]
+    #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\nThe IDs of the subnets from which you access OpenSearch Serverless."]
     pub fn subnet_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\nThe unique identifier of the endpoint."]
+    #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\nThe unique identifier of the endpoint."]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `vpc_id` after provisioning.\nThe ID of the VPC from which you access OpenSearch Serverless."]
+    #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\nThe ID of the VPC from which you access OpenSearch Serverless."]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOpensearchserverlessVpcEndpoint {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOpensearchserverlessVpcEndpoint { }
+impl Datasource for DataOpensearchserverlessVpcEndpoint {}
 
 impl ToListMappable for DataOpensearchserverlessVpcEndpoint {
     type O = ListRef<DataOpensearchserverlessVpcEndpointRef>;
@@ -142,18 +160,19 @@ pub struct BuildDataOpensearchserverlessVpcEndpoint {
 
 impl BuildDataOpensearchserverlessVpcEndpoint {
     pub fn build(self, stack: &mut Stack) -> DataOpensearchserverlessVpcEndpoint {
-        let out = DataOpensearchserverlessVpcEndpoint(Rc::new(DataOpensearchserverlessVpcEndpoint_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOpensearchserverlessVpcEndpointData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                vpc_endpoint_id: self.vpc_endpoint_id,
-            }),
-        }));
+        let out =
+            DataOpensearchserverlessVpcEndpoint(Rc::new(DataOpensearchserverlessVpcEndpoint_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOpensearchserverlessVpcEndpointData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    vpc_endpoint_id: self.vpc_endpoint_id,
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -166,10 +185,7 @@ pub struct DataOpensearchserverlessVpcEndpointRef {
 
 impl Ref for DataOpensearchserverlessVpcEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -182,10 +198,12 @@ impl DataOpensearchserverlessVpcEndpointRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `created_date` after provisioning.\nThe date the endpoint was created."]
+    #[doc = "Get a reference to the value of field `created_date` after provisioning.\nThe date the endpoint was created."]
     pub fn created_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -195,36 +213,49 @@ impl DataOpensearchserverlessVpcEndpointRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the endpoint."]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `security_group_ids` after provisioning.\nThe IDs of the security groups that define the ports, protocols, and sources for inbound traffic that you are authorizing into your endpoint."]
+    #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\nThe IDs of the security groups that define the ports, protocols, and sources for inbound traffic that you are authorizing into your endpoint."]
     pub fn security_group_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `subnet_ids` after provisioning.\nThe IDs of the subnets from which you access OpenSearch Serverless."]
+    #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\nThe IDs of the subnets from which you access OpenSearch Serverless."]
     pub fn subnet_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\nThe unique identifier of the endpoint."]
+    #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\nThe unique identifier of the endpoint."]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_endpoint_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `vpc_id` after provisioning.\nThe ID of the VPC from which you access OpenSearch Serverless."]
+    #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\nThe ID of the VPC from which you access OpenSearch Serverless."]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }

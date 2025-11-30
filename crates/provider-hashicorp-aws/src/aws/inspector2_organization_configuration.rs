@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Inspector2OrganizationConfigurationData {
@@ -60,7 +60,8 @@ impl Inspector2OrganizationConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl Inspector2OrganizationConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl Inspector2OrganizationConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -99,8 +110,7 @@ impl Inspector2OrganizationConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -114,10 +124,10 @@ impl Inspector2OrganizationConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_enable = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_enable = Some(d);
-            },
+            }
         }
         self
     }
@@ -135,18 +145,26 @@ impl Inspector2OrganizationConfiguration {
 
     #[doc = "Get a reference to the value of field `max_account_limit_reached` after provisioning.\n"]
     pub fn max_account_limit_reached(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_account_limit_reached", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_account_limit_reached", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_enable` after provisioning.\n"]
     pub fn auto_enable(&self) -> ListRef<Inspector2OrganizationConfigurationAutoEnableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_enable", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_enable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -160,11 +178,15 @@ impl Inspector2OrganizationConfiguration {
 
 impl Referable for Inspector2OrganizationConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Inspector2OrganizationConfiguration { }
+impl Resource for Inspector2OrganizationConfiguration {}
 
 impl ToListMappable for Inspector2OrganizationConfiguration {
     type O = ListRef<Inspector2OrganizationConfigurationRef>;
@@ -195,21 +217,22 @@ pub struct BuildInspector2OrganizationConfiguration {
 
 impl BuildInspector2OrganizationConfiguration {
     pub fn build(self, stack: &mut Stack) -> Inspector2OrganizationConfiguration {
-        let out = Inspector2OrganizationConfiguration(Rc::new(Inspector2OrganizationConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(Inspector2OrganizationConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                auto_enable: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            Inspector2OrganizationConfiguration(Rc::new(Inspector2OrganizationConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(Inspector2OrganizationConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    auto_enable: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -222,10 +245,7 @@ pub struct Inspector2OrganizationConfigurationRef {
 
 impl Ref for Inspector2OrganizationConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -245,18 +265,26 @@ impl Inspector2OrganizationConfigurationRef {
 
     #[doc = "Get a reference to the value of field `max_account_limit_reached` after provisioning.\n"]
     pub fn max_account_limit_reached(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_account_limit_reached", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_account_limit_reached", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_enable` after provisioning.\n"]
     pub fn auto_enable(&self) -> ListRef<Inspector2OrganizationConfigurationAutoEnableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_enable", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_enable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -337,7 +365,10 @@ pub struct Inspector2OrganizationConfigurationAutoEnableElRef {
 }
 
 impl Ref for Inspector2OrganizationConfigurationAutoEnableElRef {
-    fn new(shared: StackShared, base: String) -> Inspector2OrganizationConfigurationAutoEnableElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Inspector2OrganizationConfigurationAutoEnableElRef {
         Inspector2OrganizationConfigurationAutoEnableElRef {
             shared: shared,
             base: base.to_string(),
@@ -352,7 +383,10 @@ impl Inspector2OrganizationConfigurationAutoEnableElRef {
 
     #[doc = "Get a reference to the value of field `code_repository` after provisioning.\n"]
     pub fn code_repository(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code_repository", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code_repository", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ec2` after provisioning.\n"]

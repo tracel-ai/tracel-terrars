@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataResourceexplorer2SearchData {
@@ -43,8 +43,7 @@ impl DataResourceexplorer2Search {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,38 +62,56 @@ impl DataResourceexplorer2Search {
 
     #[doc = "Get a reference to the value of field `query_string` after provisioning.\n"]
     pub fn query_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_string", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_count` after provisioning.\n"]
     pub fn resource_count(&self) -> ListRef<DataResourceexplorer2SearchResourceCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_count", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> ListRef<DataResourceexplorer2SearchResourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `view_arn` after provisioning.\n"]
     pub fn view_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.view_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.view_arn", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataResourceexplorer2Search {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataResourceexplorer2Search { }
+impl Datasource for DataResourceexplorer2Search {}
 
 impl ToListMappable for DataResourceexplorer2Search {
     type O = ListRef<DataResourceexplorer2SearchRef>;
@@ -151,10 +168,7 @@ pub struct DataResourceexplorer2SearchRef {
 
 impl Ref for DataResourceexplorer2SearchRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -174,28 +188,42 @@ impl DataResourceexplorer2SearchRef {
 
     #[doc = "Get a reference to the value of field `query_string` after provisioning.\n"]
     pub fn query_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_string", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_count` after provisioning.\n"]
     pub fn resource_count(&self) -> ListRef<DataResourceexplorer2SearchResourceCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_count", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> ListRef<DataResourceexplorer2SearchResourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `view_arn` after provisioning.\n"]
     pub fn view_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.view_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.view_arn", self.extract_ref()),
+        )
     }
 }
 
@@ -270,7 +298,10 @@ impl DataResourceexplorer2SearchResourceCountElRef {
 
     #[doc = "Get a reference to the value of field `total_resources` after provisioning.\n"]
     pub fn total_resources(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.total_resources", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.total_resources", self.base),
+        )
     }
 }
 
@@ -334,7 +365,10 @@ pub struct DataResourceexplorer2SearchResourcesElPropertiesElRef {
 }
 
 impl Ref for DataResourceexplorer2SearchResourcesElPropertiesElRef {
-    fn new(shared: StackShared, base: String) -> DataResourceexplorer2SearchResourcesElPropertiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataResourceexplorer2SearchResourcesElPropertiesElRef {
         DataResourceexplorer2SearchResourcesElPropertiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -354,7 +388,10 @@ impl DataResourceexplorer2SearchResourcesElPropertiesElRef {
 
     #[doc = "Get a reference to the value of field `last_reported_at` after provisioning.\n"]
     pub fn last_reported_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_reported_at", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_reported_at", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -482,12 +519,18 @@ impl DataResourceexplorer2SearchResourcesElRef {
 
     #[doc = "Get a reference to the value of field `last_reported_at` after provisioning.\n"]
     pub fn last_reported_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_reported_at", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_reported_at", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owning_account_id` after provisioning.\n"]
     pub fn owning_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owning_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owning_account_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
@@ -502,7 +545,10 @@ impl DataResourceexplorer2SearchResourcesElRef {
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]

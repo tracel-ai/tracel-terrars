@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AmplifyDomainAssociationData {
@@ -66,7 +66,8 @@ impl AmplifyDomainAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl AmplifyDomainAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl AmplifyDomainAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,8 +122,7 @@ impl AmplifyDomainAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -132,30 +142,36 @@ impl AmplifyDomainAssociation {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().certificate_settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.certificate_settings = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sub_domain`.\n"]
-    pub fn set_sub_domain(self, v: impl Into<BlockAssignable<AmplifyDomainAssociationSubDomainEl>>) -> Self {
+    pub fn set_sub_domain(
+        self,
+        v: impl Into<BlockAssignable<AmplifyDomainAssociationSubDomainEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sub_domain = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sub_domain = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `app_id` after provisioning.\n"]
     pub fn app_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -165,17 +181,26 @@ impl AmplifyDomainAssociation {
 
     #[doc = "Get a reference to the value of field `certificate_verification_dns_record` after provisioning.\n"]
     pub fn certificate_verification_dns_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_verification_dns_record", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_verification_dns_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_auto_sub_domain` after provisioning.\n"]
     pub fn enable_auto_sub_domain(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_auto_sub_domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_auto_sub_domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -183,30 +208,44 @@ impl AmplifyDomainAssociation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_verification` after provisioning.\n"]
     pub fn wait_for_verification(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_verification", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_verification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_settings` after provisioning.\n"]
-    pub fn certificate_settings(&self) -> ListRef<AmplifyDomainAssociationCertificateSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificate_settings", self.extract_ref()))
+    pub fn certificate_settings(
+        &self,
+    ) -> ListRef<AmplifyDomainAssociationCertificateSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AmplifyDomainAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AmplifyDomainAssociation { }
+impl Resource for AmplifyDomainAssociation {}
 
 impl ToListMappable for AmplifyDomainAssociation {
     type O = ListRef<AmplifyDomainAssociationRef>;
@@ -272,10 +311,7 @@ pub struct AmplifyDomainAssociationRef {
 
 impl Ref for AmplifyDomainAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -290,7 +326,10 @@ impl AmplifyDomainAssociationRef {
 
     #[doc = "Get a reference to the value of field `app_id` after provisioning.\n"]
     pub fn app_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -300,17 +339,26 @@ impl AmplifyDomainAssociationRef {
 
     #[doc = "Get a reference to the value of field `certificate_verification_dns_record` after provisioning.\n"]
     pub fn certificate_verification_dns_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_verification_dns_record", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_verification_dns_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_auto_sub_domain` after provisioning.\n"]
     pub fn enable_auto_sub_domain(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_auto_sub_domain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_auto_sub_domain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -318,20 +366,30 @@ impl AmplifyDomainAssociationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_verification` after provisioning.\n"]
     pub fn wait_for_verification(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_verification", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_verification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `certificate_settings` after provisioning.\n"]
-    pub fn certificate_settings(&self) -> ListRef<AmplifyDomainAssociationCertificateSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.certificate_settings", self.extract_ref()))
+    pub fn certificate_settings(
+        &self,
+    ) -> ListRef<AmplifyDomainAssociationCertificateSettingsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.certificate_settings", self.extract_ref()),
+        )
     }
 }
 
@@ -398,12 +456,18 @@ impl AmplifyDomainAssociationCertificateSettingsElRef {
 
     #[doc = "Get a reference to the value of field `certificate_verification_dns_record` after provisioning.\n"]
     pub fn certificate_verification_dns_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_verification_dns_record", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_verification_dns_record", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_certificate_arn` after provisioning.\n"]
     pub fn custom_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -418,7 +482,7 @@ pub struct AmplifyDomainAssociationSubDomainEl {
     prefix: PrimField<String>,
 }
 
-impl AmplifyDomainAssociationSubDomainEl { }
+impl AmplifyDomainAssociationSubDomainEl {}
 
 impl ToListMappable for AmplifyDomainAssociationSubDomainEl {
     type O = BlockAssignable<AmplifyDomainAssociationSubDomainEl>;

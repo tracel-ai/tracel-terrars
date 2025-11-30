@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIpRangesData {
@@ -65,12 +65,18 @@ impl DataIpRanges {
 
     #[doc = "Get a reference to the value of field `cidr_blocks` after provisioning.\n"]
     pub fn cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_blocks", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_blocks", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -80,22 +86,34 @@ impl DataIpRanges {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_blocks` after provisioning.\n"]
     pub fn ipv6_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv6_cidr_blocks", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_blocks", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `services` after provisioning.\n"]
     pub fn services(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.services", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.services", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sync_token` after provisioning.\n"]
     pub fn sync_token(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sync_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sync_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -106,11 +124,15 @@ impl DataIpRanges {
 
 impl Referable for DataIpRanges {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIpRanges { }
+impl Datasource for DataIpRanges {}
 
 impl ToListMappable for DataIpRanges {
     type O = ListRef<DataIpRangesRef>;
@@ -168,10 +190,7 @@ pub struct DataIpRangesRef {
 
 impl Ref for DataIpRangesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -186,12 +205,18 @@ impl DataIpRangesRef {
 
     #[doc = "Get a reference to the value of field `cidr_blocks` after provisioning.\n"]
     pub fn cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.cidr_blocks", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cidr_blocks", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]
     pub fn create_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -201,22 +226,34 @@ impl DataIpRangesRef {
 
     #[doc = "Get a reference to the value of field `ipv6_cidr_blocks` after provisioning.\n"]
     pub fn ipv6_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.ipv6_cidr_blocks", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ipv6_cidr_blocks", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `services` after provisioning.\n"]
     pub fn services(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.services", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.services", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sync_token` after provisioning.\n"]
     pub fn sync_token(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sync_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sync_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]

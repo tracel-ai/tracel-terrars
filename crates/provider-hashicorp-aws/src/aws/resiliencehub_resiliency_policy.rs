@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ResiliencehubResiliencyPolicyData {
@@ -66,7 +66,8 @@ impl ResiliencehubResiliencyPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl ResiliencehubResiliencyPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,17 +91,26 @@ impl ResiliencehubResiliencyPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `data_location_constraint`.\nSpecifies a high-level geographical location constraint for where resilience policy data can be stored."]
+    #[doc = "Set the field `data_location_constraint`.\nSpecifies a high-level geographical location constraint for where resilience policy data can be stored."]
     pub fn set_data_location_constraint(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().data_location_constraint = Some(v.into());
         self
@@ -112,8 +122,7 @@ impl ResiliencehubResiliencyPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,14 +135,17 @@ impl ResiliencehubResiliencyPolicy {
     }
 
     #[doc = "Set the field `policy`.\n"]
-    pub fn set_policy(self, v: impl Into<BlockAssignable<ResiliencehubResiliencyPolicyPolicyEl>>) -> Self {
+    pub fn set_policy(
+        self,
+        v: impl Into<BlockAssignable<ResiliencehubResiliencyPolicyPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -149,53 +161,76 @@ impl ResiliencehubResiliencyPolicy {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_location_constraint` after provisioning.\nSpecifies a high-level geographical location constraint for where resilience policy data can be stored."]
+    #[doc = "Get a reference to the value of field `data_location_constraint` after provisioning.\nSpecifies a high-level geographical location constraint for where resilience policy data can be stored."]
     pub fn data_location_constraint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_location_constraint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_location_constraint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\nThe description for the policy."]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `estimated_cost_tier` after provisioning.\nSpecifies the estimated cost tier of the resiliency policy."]
+    #[doc = "Get a reference to the value of field `estimated_cost_tier` after provisioning.\nSpecifies the estimated cost tier of the resiliency policy."]
     pub fn estimated_cost_tier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_cost_tier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_cost_tier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the policy."]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `tier` after provisioning.\nThe tier for the resiliency policy, ranging from the highest severity (MissionCritical) to lowest (NonCritical)."]
+    #[doc = "Get a reference to the value of field `tier` after provisioning.\nThe tier for the resiliency policy, ranging from the highest severity (MissionCritical) to lowest (NonCritical)."]
     pub fn tier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> ListRef<ResiliencehubResiliencyPolicyPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -209,11 +244,15 @@ impl ResiliencehubResiliencyPolicy {
 
 impl Referable for ResiliencehubResiliencyPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ResiliencehubResiliencyPolicy { }
+impl Resource for ResiliencehubResiliencyPolicy {}
 
 impl ToListMappable for ResiliencehubResiliencyPolicy {
     type O = ListRef<ResiliencehubResiliencyPolicyRef>;
@@ -242,8 +281,7 @@ pub struct BuildResiliencehubResiliencyPolicy {
     pub tf_id: String,
     #[doc = "The name of the policy."]
     pub name: PrimField<String>,
-    #[doc =
-        "The tier for the resiliency policy, ranging from the highest severity (MissionCritical) to lowest (NonCritical)."]
+    #[doc = "The tier for the resiliency policy, ranging from the highest severity (MissionCritical) to lowest (NonCritical)."]
     pub tier: PrimField<String>,
 }
 
@@ -280,10 +318,7 @@ pub struct ResiliencehubResiliencyPolicyRef {
 
 impl Ref for ResiliencehubResiliencyPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -301,53 +336,76 @@ impl ResiliencehubResiliencyPolicyRef {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `data_location_constraint` after provisioning.\nSpecifies a high-level geographical location constraint for where resilience policy data can be stored."]
+    #[doc = "Get a reference to the value of field `data_location_constraint` after provisioning.\nSpecifies a high-level geographical location constraint for where resilience policy data can be stored."]
     pub fn data_location_constraint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_location_constraint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_location_constraint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\nThe description for the policy."]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `estimated_cost_tier` after provisioning.\nSpecifies the estimated cost tier of the resiliency policy."]
+    #[doc = "Get a reference to the value of field `estimated_cost_tier` after provisioning.\nSpecifies the estimated cost tier of the resiliency policy."]
     pub fn estimated_cost_tier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.estimated_cost_tier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.estimated_cost_tier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the policy."]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `tier` after provisioning.\nThe tier for the resiliency policy, ranging from the highest severity (MissionCritical) to lowest (NonCritical)."]
+    #[doc = "Get a reference to the value of field `tier` after provisioning.\nThe tier for the resiliency policy, ranging from the highest severity (MissionCritical) to lowest (NonCritical)."]
     pub fn tier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> ListRef<ResiliencehubResiliencyPolicyPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -365,7 +423,7 @@ pub struct ResiliencehubResiliencyPolicyPolicyElAzEl {
     rto: PrimField<String>,
 }
 
-impl ResiliencehubResiliencyPolicyPolicyElAzEl { }
+impl ResiliencehubResiliencyPolicyPolicyElAzEl {}
 
 impl ToListMappable for ResiliencehubResiliencyPolicyPolicyElAzEl {
     type O = BlockAssignable<ResiliencehubResiliencyPolicyPolicyElAzEl>;
@@ -414,14 +472,12 @@ impl ResiliencehubResiliencyPolicyPolicyElAzElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
     pub fn rpo(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rpo", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
     pub fn rto(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rto", self.base))
     }
@@ -433,7 +489,7 @@ pub struct ResiliencehubResiliencyPolicyPolicyElHardwareEl {
     rto: PrimField<String>,
 }
 
-impl ResiliencehubResiliencyPolicyPolicyElHardwareEl { }
+impl ResiliencehubResiliencyPolicyPolicyElHardwareEl {}
 
 impl ToListMappable for ResiliencehubResiliencyPolicyPolicyElHardwareEl {
     type O = BlockAssignable<ResiliencehubResiliencyPolicyPolicyElHardwareEl>;
@@ -469,7 +525,10 @@ pub struct ResiliencehubResiliencyPolicyPolicyElHardwareElRef {
 }
 
 impl Ref for ResiliencehubResiliencyPolicyPolicyElHardwareElRef {
-    fn new(shared: StackShared, base: String) -> ResiliencehubResiliencyPolicyPolicyElHardwareElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ResiliencehubResiliencyPolicyPolicyElHardwareElRef {
         ResiliencehubResiliencyPolicyPolicyElHardwareElRef {
             shared: shared,
             base: base.to_string(),
@@ -482,14 +541,12 @@ impl ResiliencehubResiliencyPolicyPolicyElHardwareElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
     pub fn rpo(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rpo", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
     pub fn rto(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rto", self.base))
     }
@@ -559,14 +616,12 @@ impl ResiliencehubResiliencyPolicyPolicyElRegionElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
     pub fn rpo(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rpo", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
     pub fn rto(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rto", self.base))
     }
@@ -578,7 +633,7 @@ pub struct ResiliencehubResiliencyPolicyPolicyElSoftwareEl {
     rto: PrimField<String>,
 }
 
-impl ResiliencehubResiliencyPolicyPolicyElSoftwareEl { }
+impl ResiliencehubResiliencyPolicyPolicyElSoftwareEl {}
 
 impl ToListMappable for ResiliencehubResiliencyPolicyPolicyElSoftwareEl {
     type O = BlockAssignable<ResiliencehubResiliencyPolicyPolicyElSoftwareEl>;
@@ -614,7 +669,10 @@ pub struct ResiliencehubResiliencyPolicyPolicyElSoftwareElRef {
 }
 
 impl Ref for ResiliencehubResiliencyPolicyPolicyElSoftwareElRef {
-    fn new(shared: StackShared, base: String) -> ResiliencehubResiliencyPolicyPolicyElSoftwareElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ResiliencehubResiliencyPolicyPolicyElSoftwareElRef {
         ResiliencehubResiliencyPolicyPolicyElSoftwareElRef {
             shared: shared,
             base: base.to_string(),
@@ -627,14 +685,12 @@ impl ResiliencehubResiliencyPolicyPolicyElSoftwareElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rpo` after provisioning.\nRecovery Point Objective (RPO) as a Go duration."]
     pub fn rpo(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rpo", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
+    #[doc = "Get a reference to the value of field `rto` after provisioning.\nRecovery Time Objective (RTO) as a Go duration."]
     pub fn rto(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rto", self.base))
     }
@@ -663,14 +719,17 @@ pub struct ResiliencehubResiliencyPolicyPolicyEl {
 
 impl ResiliencehubResiliencyPolicyPolicyEl {
     #[doc = "Set the field `az`.\n"]
-    pub fn set_az(mut self, v: impl Into<BlockAssignable<ResiliencehubResiliencyPolicyPolicyElAzEl>>) -> Self {
+    pub fn set_az(
+        mut self,
+        v: impl Into<BlockAssignable<ResiliencehubResiliencyPolicyPolicyElAzEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.az = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.az = Some(d);
-            },
+            }
         }
         self
     }
@@ -683,23 +742,26 @@ impl ResiliencehubResiliencyPolicyPolicyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hardware = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hardware = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `region`.\n"]
-    pub fn set_region(mut self, v: impl Into<BlockAssignable<ResiliencehubResiliencyPolicyPolicyElRegionEl>>) -> Self {
+    pub fn set_region(
+        mut self,
+        v: impl Into<BlockAssignable<ResiliencehubResiliencyPolicyPolicyElRegionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.region = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.region = Some(d);
-            },
+            }
         }
         self
     }
@@ -712,10 +774,10 @@ impl ResiliencehubResiliencyPolicyPolicyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.software = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.software = Some(d);
-            },
+            }
         }
         self
     }
@@ -798,22 +860,19 @@ pub struct ResiliencehubResiliencyPolicyTimeoutsEl {
 }
 
 impl ResiliencehubResiliencyPolicyTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -863,20 +922,17 @@ impl ResiliencehubResiliencyPolicyTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

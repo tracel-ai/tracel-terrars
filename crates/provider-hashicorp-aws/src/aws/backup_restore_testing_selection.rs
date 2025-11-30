@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BackupRestoreTestingSelectionData {
@@ -27,7 +27,8 @@ struct BackupRestoreTestingSelectionData {
     #[serde(skip_serializing_if = "Option::is_none")]
     validation_window_hours: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    protected_resource_conditions: Option<Vec<BackupRestoreTestingSelectionProtectedResourceConditionsEl>>,
+    protected_resource_conditions:
+        Option<Vec<BackupRestoreTestingSelectionProtectedResourceConditionsEl>>,
     dynamic: BackupRestoreTestingSelectionDynamic,
 }
 
@@ -66,7 +67,8 @@ impl BackupRestoreTestingSelection {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +81,7 @@ impl BackupRestoreTestingSelection {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +92,22 @@ impl BackupRestoreTestingSelection {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -105,8 +117,7 @@ impl BackupRestoreTestingSelection {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -132,70 +143,104 @@ impl BackupRestoreTestingSelection {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().protected_resource_conditions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.protected_resource_conditions = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .protected_resource_conditions = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protected_resource_arns` after provisioning.\n"]
     pub fn protected_resource_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.protected_resource_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.protected_resource_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protected_resource_type` after provisioning.\n"]
     pub fn protected_resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protected_resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protected_resource_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_metadata_overrides` after provisioning.\n"]
     pub fn restore_metadata_overrides(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.restore_metadata_overrides", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.restore_metadata_overrides", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_testing_plan_name` after provisioning.\n"]
     pub fn restore_testing_plan_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_testing_plan_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_testing_plan_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_window_hours` after provisioning.\n"]
     pub fn validation_window_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_window_hours", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_window_hours", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protected_resource_conditions` after provisioning.\n"]
     pub fn protected_resource_conditions(
         &self,
     ) -> ListRef<BackupRestoreTestingSelectionProtectedResourceConditionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.protected_resource_conditions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.protected_resource_conditions", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BackupRestoreTestingSelection {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BackupRestoreTestingSelection { }
+impl Resource for BackupRestoreTestingSelection {}
 
 impl ToListMappable for BackupRestoreTestingSelection {
     type O = ListRef<BackupRestoreTestingSelectionRef>;
@@ -266,10 +311,7 @@ pub struct BackupRestoreTestingSelectionRef {
 
 impl Ref for BackupRestoreTestingSelectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -284,50 +326,76 @@ impl BackupRestoreTestingSelectionRef {
 
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protected_resource_arns` after provisioning.\n"]
     pub fn protected_resource_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.protected_resource_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.protected_resource_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protected_resource_type` after provisioning.\n"]
     pub fn protected_resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protected_resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protected_resource_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_metadata_overrides` after provisioning.\n"]
     pub fn restore_metadata_overrides(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.restore_metadata_overrides", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.restore_metadata_overrides", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `restore_testing_plan_name` after provisioning.\n"]
     pub fn restore_testing_plan_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.restore_testing_plan_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.restore_testing_plan_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `validation_window_hours` after provisioning.\n"]
     pub fn validation_window_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.validation_window_hours", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.validation_window_hours", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protected_resource_conditions` after provisioning.\n"]
     pub fn protected_resource_conditions(
         &self,
     ) -> ListRef<BackupRestoreTestingSelectionProtectedResourceConditionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.protected_resource_conditions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.protected_resource_conditions", self.extract_ref()),
+        )
     }
 }
 
@@ -337,10 +405,11 @@ pub struct BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqual
     value: PrimField<String>,
 }
 
-impl BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl { }
+impl BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl {}
 
 impl ToListMappable for BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl {
-    type O = BlockAssignable<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>;
+    type O =
+        BlockAssignable<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -406,10 +475,14 @@ pub struct BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEq
     value: PrimField<String>,
 }
 
-impl BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl { }
+impl BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl {}
 
-impl ToListMappable for BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl {
-    type O = BlockAssignable<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl>;
+impl ToListMappable
+    for BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl
+{
+    type O = BlockAssignable<
+        BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -428,7 +501,9 @@ pub struct BuildBackupRestoreTestingSelectionProtectedResourceConditionsElString
 }
 
 impl BuildBackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl {
-    pub fn build(self) -> BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl {
+    pub fn build(
+        self,
+    ) -> BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl {
         BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl {
             key: self.key,
             value: self.value,
@@ -471,7 +546,9 @@ impl BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl
 
 #[derive(Serialize, Default)]
 struct BackupRestoreTestingSelectionProtectedResourceConditionsElDynamic {
-    string_equals: Option<DynamicBlock<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>>,
+    string_equals: Option<
+        DynamicBlock<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>,
+    >,
     string_not_equals: Option<
         DynamicBlock<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl>,
     >,
@@ -480,9 +557,11 @@ struct BackupRestoreTestingSelectionProtectedResourceConditionsElDynamic {
 #[derive(Serialize)]
 pub struct BackupRestoreTestingSelectionProtectedResourceConditionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    string_equals: Option<Vec<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>>,
+    string_equals:
+        Option<Vec<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    string_not_equals: Option<Vec<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl>>,
+    string_not_equals:
+        Option<Vec<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl>>,
     dynamic: BackupRestoreTestingSelectionProtectedResourceConditionsElDynamic,
 }
 
@@ -490,15 +569,19 @@ impl BackupRestoreTestingSelectionProtectedResourceConditionsEl {
     #[doc = "Set the field `string_equals`.\n"]
     pub fn set_string_equals(
         mut self,
-        v: impl Into<BlockAssignable<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.string_equals = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.string_equals = Some(d);
-            },
+            }
         }
         self
     }
@@ -506,15 +589,19 @@ impl BackupRestoreTestingSelectionProtectedResourceConditionsEl {
     #[doc = "Set the field `string_not_equals`.\n"]
     pub fn set_string_not_equals(
         mut self,
-        v: impl Into<BlockAssignable<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.string_not_equals = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.string_not_equals = Some(d);
-            },
+            }
         }
         self
     }
@@ -550,7 +637,10 @@ pub struct BackupRestoreTestingSelectionProtectedResourceConditionsElRef {
 }
 
 impl Ref for BackupRestoreTestingSelectionProtectedResourceConditionsElRef {
-    fn new(shared: StackShared, base: String) -> BackupRestoreTestingSelectionProtectedResourceConditionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BackupRestoreTestingSelectionProtectedResourceConditionsElRef {
         BackupRestoreTestingSelectionProtectedResourceConditionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -564,19 +654,29 @@ impl BackupRestoreTestingSelectionProtectedResourceConditionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `string_equals` after provisioning.\n"]
-    pub fn string_equals(&self) -> ListRef<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.string_equals", self.base))
+    pub fn string_equals(
+        &self,
+    ) -> ListRef<BackupRestoreTestingSelectionProtectedResourceConditionsElStringEqualsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.string_equals", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `string_not_equals` after provisioning.\n"]
     pub fn string_not_equals(
         &self,
-    ) -> ListRef<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.string_not_equals", self.base))
+    ) -> ListRef<BackupRestoreTestingSelectionProtectedResourceConditionsElStringNotEqualsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.string_not_equals", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct BackupRestoreTestingSelectionDynamic {
-    protected_resource_conditions: Option<DynamicBlock<BackupRestoreTestingSelectionProtectedResourceConditionsEl>>,
+    protected_resource_conditions:
+        Option<DynamicBlock<BackupRestoreTestingSelectionProtectedResourceConditionsEl>>,
 }

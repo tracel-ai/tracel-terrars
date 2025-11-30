@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamAccessKeysData {
@@ -49,7 +49,10 @@ impl DataIamAccessKeys {
 
     #[doc = "Get a reference to the value of field `access_keys` after provisioning.\n"]
     pub fn access_keys(&self) -> SetRef<DataIamAccessKeysAccessKeysElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.access_keys", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.access_keys", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -59,17 +62,24 @@ impl DataIamAccessKeys {
 
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamAccessKeys {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamAccessKeys { }
+impl Datasource for DataIamAccessKeys {}
 
 impl ToListMappable for DataIamAccessKeys {
     type O = ListRef<DataIamAccessKeysRef>;
@@ -125,10 +135,7 @@ pub struct DataIamAccessKeysRef {
 
 impl Ref for DataIamAccessKeysRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -143,7 +150,10 @@ impl DataIamAccessKeysRef {
 
     #[doc = "Get a reference to the value of field `access_keys` after provisioning.\n"]
     pub fn access_keys(&self) -> SetRef<DataIamAccessKeysAccessKeysElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.access_keys", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.access_keys", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -153,7 +163,10 @@ impl DataIamAccessKeysRef {
 
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user", self.extract_ref()),
+        )
     }
 }
 
@@ -232,7 +245,10 @@ impl DataIamAccessKeysAccessKeysElRef {
 
     #[doc = "Get a reference to the value of field `access_key_id` after provisioning.\n"]
     pub fn access_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_date` after provisioning.\n"]

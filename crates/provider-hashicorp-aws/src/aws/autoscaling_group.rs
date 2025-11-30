@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AutoscalingGroupData {
@@ -81,7 +81,8 @@ struct AutoscalingGroupData {
     #[serde(skip_serializing_if = "Option::is_none")]
     availability_zone_distribution: Option<Vec<AutoscalingGroupAvailabilityZoneDistributionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_reservation_specification: Option<Vec<AutoscalingGroupCapacityReservationSpecificationEl>>,
+    capacity_reservation_specification:
+        Option<Vec<AutoscalingGroupCapacityReservationSpecificationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     initial_lifecycle_hook: Option<Vec<AutoscalingGroupInitialLifecycleHookEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -138,7 +139,8 @@ impl AutoscalingGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -151,7 +153,7 @@ impl AutoscalingGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -162,12 +164,22 @@ impl AutoscalingGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -309,8 +321,7 @@ impl AutoscalingGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -366,10 +377,14 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().availability_zone_distribution = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.availability_zone_distribution = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .availability_zone_distribution = Some(d);
+            }
         }
         self
     }
@@ -382,10 +397,14 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity_reservation_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.capacity_reservation_specification = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .capacity_reservation_specification = Some(d);
+            }
         }
         self
     }
@@ -398,10 +417,10 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().initial_lifecycle_hook = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.initial_lifecycle_hook = Some(d);
-            },
+            }
         }
         self
     }
@@ -414,36 +433,42 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_maintenance_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_maintenance_policy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `instance_refresh`.\n"]
-    pub fn set_instance_refresh(self, v: impl Into<BlockAssignable<AutoscalingGroupInstanceRefreshEl>>) -> Self {
+    pub fn set_instance_refresh(
+        self,
+        v: impl Into<BlockAssignable<AutoscalingGroupInstanceRefreshEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().instance_refresh = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.instance_refresh = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `launch_template`.\n"]
-    pub fn set_launch_template(self, v: impl Into<BlockAssignable<AutoscalingGroupLaunchTemplateEl>>) -> Self {
+    pub fn set_launch_template(
+        self,
+        v: impl Into<BlockAssignable<AutoscalingGroupLaunchTemplateEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().launch_template = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.launch_template = Some(d);
-            },
+            }
         }
         self
     }
@@ -456,10 +481,10 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().mixed_instances_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.mixed_instances_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -469,10 +494,10 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.tag = Some(d);
-            },
+            }
         }
         self
     }
@@ -484,14 +509,17 @@ impl AutoscalingGroup {
     }
 
     #[doc = "Set the field `traffic_source`.\n"]
-    pub fn set_traffic_source(self, v: impl Into<BlockAssignable<AutoscalingGroupTrafficSourceEl>>) -> Self {
+    pub fn set_traffic_source(
+        self,
+        v: impl Into<BlockAssignable<AutoscalingGroupTrafficSourceEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().traffic_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.traffic_source = Some(d);
-            },
+            }
         }
         self
     }
@@ -501,10 +529,10 @@ impl AutoscalingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().warm_pool = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.warm_pool = Some(d);
-            },
+            }
         }
         self
     }
@@ -516,62 +544,98 @@ impl AutoscalingGroup {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_rebalance` after provisioning.\n"]
     pub fn capacity_rebalance(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_rebalance", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_rebalance", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_cooldown` after provisioning.\n"]
     pub fn default_cooldown(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_cooldown", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_cooldown", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_instance_warmup` after provisioning.\n"]
     pub fn default_instance_warmup(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_instance_warmup", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_instance_warmup", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_capacity_type` after provisioning.\n"]
     pub fn desired_capacity_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_capacity_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_capacity_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled_metrics` after provisioning.\n"]
     pub fn enabled_metrics(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.enabled_metrics", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.enabled_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete` after provisioning.\n"]
     pub fn force_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete_warm_pool` after provisioning.\n"]
     pub fn force_delete_warm_pool(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete_warm_pool", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete_warm_pool", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_grace_period` after provisioning.\n"]
     pub fn health_check_grace_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_grace_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_grace_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_type` after provisioning.\n"]
     pub fn health_check_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -581,163 +645,262 @@ impl AutoscalingGroup {
 
     #[doc = "Get a reference to the value of field `ignore_failed_scaling_activities` after provisioning.\n"]
     pub fn ignore_failed_scaling_activities(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ignore_failed_scaling_activities", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ignore_failed_scaling_activities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_configuration` after provisioning.\n"]
     pub fn launch_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancers` after provisioning.\n"]
     pub fn load_balancers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.load_balancers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_instance_lifetime` after provisioning.\n"]
     pub fn max_instance_lifetime(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_instance_lifetime", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_instance_lifetime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metrics_granularity` after provisioning.\n"]
     pub fn metrics_granularity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metrics_granularity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metrics_granularity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_elb_capacity` after provisioning.\n"]
     pub fn min_elb_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_elb_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_elb_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_group` after provisioning.\n"]
     pub fn placement_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.placement_group", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.placement_group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predicted_capacity` after provisioning.\n"]
     pub fn predicted_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predicted_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predicted_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protect_from_scale_in` after provisioning.\n"]
     pub fn protect_from_scale_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protect_from_scale_in", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protect_from_scale_in", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_linked_role_arn` after provisioning.\n"]
     pub fn service_linked_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_linked_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_linked_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `suspended_processes` after provisioning.\n"]
     pub fn suspended_processes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.suspended_processes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.suspended_processes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_group_arns` after provisioning.\n"]
     pub fn target_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.target_group_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.target_group_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_policies` after provisioning.\n"]
     pub fn termination_policies(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.termination_policies", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.termination_policies", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_zone_identifier` after provisioning.\n"]
     pub fn vpc_zone_identifier(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_zone_identifier", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_zone_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_capacity_timeout` after provisioning.\n"]
     pub fn wait_for_capacity_timeout(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_capacity_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_capacity_timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_elb_capacity` after provisioning.\n"]
     pub fn wait_for_elb_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_elb_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_elb_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warm_pool_size` after provisioning.\n"]
     pub fn warm_pool_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warm_pool_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warm_pool_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `availability_zone_distribution` after provisioning.\n"]
-    pub fn availability_zone_distribution(&self) -> ListRef<AutoscalingGroupAvailabilityZoneDistributionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.availability_zone_distribution", self.extract_ref()))
+    pub fn availability_zone_distribution(
+        &self,
+    ) -> ListRef<AutoscalingGroupAvailabilityZoneDistributionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_distribution", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_specification` after provisioning.\n"]
-    pub fn capacity_reservation_specification(&self) -> ListRef<AutoscalingGroupCapacityReservationSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_specification", self.extract_ref()))
+    pub fn capacity_reservation_specification(
+        &self,
+    ) -> ListRef<AutoscalingGroupCapacityReservationSpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_maintenance_policy` after provisioning.\n"]
-    pub fn instance_maintenance_policy(&self) -> ListRef<AutoscalingGroupInstanceMaintenancePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_maintenance_policy", self.extract_ref()))
+    pub fn instance_maintenance_policy(
+        &self,
+    ) -> ListRef<AutoscalingGroupInstanceMaintenancePolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_maintenance_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_refresh` after provisioning.\n"]
     pub fn instance_refresh(&self) -> ListRef<AutoscalingGroupInstanceRefreshElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_refresh", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_refresh", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
     pub fn launch_template(&self) -> ListRef<AutoscalingGroupLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mixed_instances_policy` after provisioning.\n"]
     pub fn mixed_instances_policy(&self) -> ListRef<AutoscalingGroupMixedInstancesPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mixed_instances_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mixed_instances_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AutoscalingGroupTimeoutsElRef {
-        AutoscalingGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        AutoscalingGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warm_pool` after provisioning.\n"]
     pub fn warm_pool(&self) -> ListRef<AutoscalingGroupWarmPoolElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.warm_pool", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.warm_pool", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AutoscalingGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AutoscalingGroup { }
+impl Resource for AutoscalingGroup {}
 
 impl ToListMappable for AutoscalingGroup {
     type O = ListRef<AutoscalingGroupRef>;
@@ -839,10 +1002,7 @@ pub struct AutoscalingGroupRef {
 
 impl Ref for AutoscalingGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -862,62 +1022,98 @@ impl AutoscalingGroupRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.availability_zones", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_rebalance` after provisioning.\n"]
     pub fn capacity_rebalance(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_rebalance", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_rebalance", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_cooldown` after provisioning.\n"]
     pub fn default_cooldown(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_cooldown", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_cooldown", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_instance_warmup` after provisioning.\n"]
     pub fn default_instance_warmup(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_instance_warmup", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_instance_warmup", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_capacity_type` after provisioning.\n"]
     pub fn desired_capacity_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_capacity_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_capacity_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled_metrics` after provisioning.\n"]
     pub fn enabled_metrics(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.enabled_metrics", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.enabled_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete` after provisioning.\n"]
     pub fn force_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete_warm_pool` after provisioning.\n"]
     pub fn force_delete_warm_pool(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete_warm_pool", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete_warm_pool", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_grace_period` after provisioning.\n"]
     pub fn health_check_grace_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_grace_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_grace_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_type` after provisioning.\n"]
     pub fn health_check_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -927,153 +1123,248 @@ impl AutoscalingGroupRef {
 
     #[doc = "Get a reference to the value of field `ignore_failed_scaling_activities` after provisioning.\n"]
     pub fn ignore_failed_scaling_activities(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ignore_failed_scaling_activities", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ignore_failed_scaling_activities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_configuration` after provisioning.\n"]
     pub fn launch_configuration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_configuration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancers` after provisioning.\n"]
     pub fn load_balancers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.load_balancers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_instance_lifetime` after provisioning.\n"]
     pub fn max_instance_lifetime(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_instance_lifetime", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_instance_lifetime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metrics_granularity` after provisioning.\n"]
     pub fn metrics_granularity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metrics_granularity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metrics_granularity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_elb_capacity` after provisioning.\n"]
     pub fn min_elb_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_elb_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_elb_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement_group` after provisioning.\n"]
     pub fn placement_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.placement_group", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.placement_group", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `predicted_capacity` after provisioning.\n"]
     pub fn predicted_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.predicted_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.predicted_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protect_from_scale_in` after provisioning.\n"]
     pub fn protect_from_scale_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protect_from_scale_in", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protect_from_scale_in", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_linked_role_arn` after provisioning.\n"]
     pub fn service_linked_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_linked_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_linked_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `suspended_processes` after provisioning.\n"]
     pub fn suspended_processes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.suspended_processes", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.suspended_processes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_group_arns` after provisioning.\n"]
     pub fn target_group_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.target_group_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.target_group_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_policies` after provisioning.\n"]
     pub fn termination_policies(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.termination_policies", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.termination_policies", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_zone_identifier` after provisioning.\n"]
     pub fn vpc_zone_identifier(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.vpc_zone_identifier", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_zone_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_capacity_timeout` after provisioning.\n"]
     pub fn wait_for_capacity_timeout(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_capacity_timeout", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_capacity_timeout", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_elb_capacity` after provisioning.\n"]
     pub fn wait_for_elb_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_elb_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_elb_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warm_pool_size` after provisioning.\n"]
     pub fn warm_pool_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.warm_pool_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.warm_pool_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `availability_zone_distribution` after provisioning.\n"]
-    pub fn availability_zone_distribution(&self) -> ListRef<AutoscalingGroupAvailabilityZoneDistributionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.availability_zone_distribution", self.extract_ref()))
+    pub fn availability_zone_distribution(
+        &self,
+    ) -> ListRef<AutoscalingGroupAvailabilityZoneDistributionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_distribution", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_specification` after provisioning.\n"]
-    pub fn capacity_reservation_specification(&self) -> ListRef<AutoscalingGroupCapacityReservationSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_specification", self.extract_ref()))
+    pub fn capacity_reservation_specification(
+        &self,
+    ) -> ListRef<AutoscalingGroupCapacityReservationSpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_maintenance_policy` after provisioning.\n"]
-    pub fn instance_maintenance_policy(&self) -> ListRef<AutoscalingGroupInstanceMaintenancePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_maintenance_policy", self.extract_ref()))
+    pub fn instance_maintenance_policy(
+        &self,
+    ) -> ListRef<AutoscalingGroupInstanceMaintenancePolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_maintenance_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_refresh` after provisioning.\n"]
     pub fn instance_refresh(&self) -> ListRef<AutoscalingGroupInstanceRefreshElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_refresh", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_refresh", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
     pub fn launch_template(&self) -> ListRef<AutoscalingGroupLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mixed_instances_policy` after provisioning.\n"]
     pub fn mixed_instances_policy(&self) -> ListRef<AutoscalingGroupMixedInstancesPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mixed_instances_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mixed_instances_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AutoscalingGroupTimeoutsElRef {
-        AutoscalingGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        AutoscalingGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `warm_pool` after provisioning.\n"]
     pub fn warm_pool(&self) -> ListRef<AutoscalingGroupWarmPoolElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.warm_pool", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.warm_pool", self.extract_ref()),
+        )
     }
 }
 
@@ -1134,7 +1425,10 @@ impl AutoscalingGroupAvailabilityZoneDistributionElRef {
 
     #[doc = "Get a reference to the value of field `capacity_distribution_strategy` after provisioning.\n"]
     pub fn capacity_distribution_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_distribution_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_distribution_strategy", self.base),
+        )
     }
 }
 
@@ -1148,20 +1442,30 @@ pub struct AutoscalingGroupCapacityReservationSpecificationElCapacityReservation
 
 impl AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {
     #[doc = "Set the field `capacity_reservation_ids`.\n"]
-    pub fn set_capacity_reservation_ids(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_capacity_reservation_ids(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.capacity_reservation_ids = Some(v.into());
         self
     }
 
     #[doc = "Set the field `capacity_reservation_resource_group_arns`.\n"]
-    pub fn set_capacity_reservation_resource_group_arns(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_capacity_reservation_resource_group_arns(
+        mut self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.capacity_reservation_resource_group_arns = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {
-    type O = BlockAssignable<AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl>;
+impl ToListMappable
+    for AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl
+{
+    type O = BlockAssignable<
+        AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1175,7 +1479,9 @@ impl ToListMappable for AutoscalingGroupCapacityReservationSpecificationElCapaci
 pub struct BuildAutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {}
 
 impl BuildAutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {
-    pub fn build(self) -> AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {
         AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl {
             capacity_reservation_ids: core::default::Default::default(),
             capacity_reservation_resource_group_arns: core::default::Default::default(),
@@ -1207,12 +1513,18 @@ impl AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTarget
 
     #[doc = "Get a reference to the value of field `capacity_reservation_ids` after provisioning.\n"]
     pub fn capacity_reservation_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_ids", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_resource_group_arns` after provisioning.\n"]
     pub fn capacity_reservation_resource_group_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_resource_group_arns", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_resource_group_arns", self.base),
+        )
     }
 }
 
@@ -1228,9 +1540,8 @@ pub struct AutoscalingGroupCapacityReservationSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     capacity_reservation_preference: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_reservation_target: Option<
-        Vec<AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl>,
-    >,
+    capacity_reservation_target:
+        Option<Vec<AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl>>,
     dynamic: AutoscalingGroupCapacityReservationSpecificationElDynamic,
 }
 
@@ -1244,15 +1555,19 @@ impl AutoscalingGroupCapacityReservationSpecificationEl {
     #[doc = "Set the field `capacity_reservation_target`.\n"]
     pub fn set_capacity_reservation_target(
         mut self,
-        v: impl Into<BlockAssignable<AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_reservation_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_reservation_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -1288,7 +1603,10 @@ pub struct AutoscalingGroupCapacityReservationSpecificationElRef {
 }
 
 impl Ref for AutoscalingGroupCapacityReservationSpecificationElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingGroupCapacityReservationSpecificationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingGroupCapacityReservationSpecificationElRef {
         AutoscalingGroupCapacityReservationSpecificationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1303,14 +1621,21 @@ impl AutoscalingGroupCapacityReservationSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `capacity_reservation_preference` after provisioning.\n"]
     pub fn capacity_reservation_preference(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_reservation_preference", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_preference", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_target` after provisioning.\n"]
     pub fn capacity_reservation_target(
         &self,
-    ) -> ListRef<AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_target", self.base))
+    ) -> ListRef<AutoscalingGroupCapacityReservationSpecificationElCapacityReservationTargetElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_target", self.base),
+        )
     }
 }
 
@@ -1416,17 +1741,26 @@ impl AutoscalingGroupInitialLifecycleHookElRef {
 
     #[doc = "Get a reference to the value of field `default_result` after provisioning.\n"]
     pub fn default_result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_result", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_result", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `heartbeat_timeout` after provisioning.\n"]
     pub fn heartbeat_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.heartbeat_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.heartbeat_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_transition` after provisioning.\n"]
     pub fn lifecycle_transition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lifecycle_transition", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_transition", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1436,12 +1770,18 @@ impl AutoscalingGroupInitialLifecycleHookElRef {
 
     #[doc = "Get a reference to the value of field `notification_metadata` after provisioning.\n"]
     pub fn notification_metadata(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_metadata", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_metadata", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_target_arn` after provisioning.\n"]
     pub fn notification_target_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_target_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_target_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1456,7 +1796,7 @@ pub struct AutoscalingGroupInstanceMaintenancePolicyEl {
     min_healthy_percentage: PrimField<f64>,
 }
 
-impl AutoscalingGroupInstanceMaintenancePolicyEl { }
+impl AutoscalingGroupInstanceMaintenancePolicyEl {}
 
 impl ToListMappable for AutoscalingGroupInstanceMaintenancePolicyEl {
     type O = BlockAssignable<AutoscalingGroupInstanceMaintenancePolicyEl>;
@@ -1507,12 +1847,18 @@ impl AutoscalingGroupInstanceMaintenancePolicyElRef {
 
     #[doc = "Get a reference to the value of field `max_healthy_percentage` after provisioning.\n"]
     pub fn max_healthy_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_healthy_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_healthy_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_healthy_percentage` after provisioning.\n"]
     pub fn min_healthy_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_healthy_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_healthy_percentage", self.base),
+        )
     }
 }
 
@@ -1582,7 +1928,8 @@ impl AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationElRef {
 
 #[derive(Serialize, Default)]
 struct AutoscalingGroupInstanceRefreshElPreferencesElDynamic {
-    alarm_specification: Option<DynamicBlock<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationEl>>,
+    alarm_specification:
+        Option<DynamicBlock<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationEl>>,
 }
 
 #[derive(Serialize)]
@@ -1606,7 +1953,8 @@ pub struct AutoscalingGroupInstanceRefreshElPreferencesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     standby_instances: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    alarm_specification: Option<Vec<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationEl>>,
+    alarm_specification:
+        Option<Vec<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationEl>>,
     dynamic: AutoscalingGroupInstanceRefreshElPreferencesElDynamic,
 }
 
@@ -1668,15 +2016,17 @@ impl AutoscalingGroupInstanceRefreshElPreferencesEl {
     #[doc = "Set the field `alarm_specification`.\n"]
     pub fn set_alarm_specification(
         mut self,
-        v: impl Into<BlockAssignable<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationEl>>,
+        v: impl Into<
+            BlockAssignable<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.alarm_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.alarm_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -1735,52 +2085,84 @@ impl AutoscalingGroupInstanceRefreshElPreferencesElRef {
 
     #[doc = "Get a reference to the value of field `auto_rollback` after provisioning.\n"]
     pub fn auto_rollback(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_rollback", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_rollback", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `checkpoint_delay` after provisioning.\n"]
     pub fn checkpoint_delay(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.checkpoint_delay", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.checkpoint_delay", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `checkpoint_percentages` after provisioning.\n"]
     pub fn checkpoint_percentages(&self) -> ListRef<PrimExpr<f64>> {
-        ListRef::new(self.shared().clone(), format!("{}.checkpoint_percentages", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.checkpoint_percentages", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_warmup` after provisioning.\n"]
     pub fn instance_warmup(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_warmup", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_warmup", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_healthy_percentage` after provisioning.\n"]
     pub fn max_healthy_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_healthy_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_healthy_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_healthy_percentage` after provisioning.\n"]
     pub fn min_healthy_percentage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_healthy_percentage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_healthy_percentage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scale_in_protected_instances` after provisioning.\n"]
     pub fn scale_in_protected_instances(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scale_in_protected_instances", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scale_in_protected_instances", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skip_matching` after provisioning.\n"]
     pub fn skip_matching(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.skip_matching", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.skip_matching", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `standby_instances` after provisioning.\n"]
     pub fn standby_instances(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.standby_instances", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.standby_instances", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_specification` after provisioning.\n"]
-    pub fn alarm_specification(&self) -> ListRef<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alarm_specification", self.base))
+    pub fn alarm_specification(
+        &self,
+    ) -> ListRef<AutoscalingGroupInstanceRefreshElPreferencesElAlarmSpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alarm_specification", self.base),
+        )
     }
 }
 
@@ -1814,10 +2196,10 @@ impl AutoscalingGroupInstanceRefreshEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.preferences = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.preferences = Some(d);
-            },
+            }
         }
         self
     }
@@ -2005,7 +2387,10 @@ impl AutoscalingGroupMixedInstancesPolicyElInstancesDistributionEl {
     }
 
     #[doc = "Set the field `on_demand_percentage_above_base_capacity`.\n"]
-    pub fn set_on_demand_percentage_above_base_capacity(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_on_demand_percentage_above_base_capacity(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.on_demand_percentage_above_base_capacity = Some(v.into());
         self
     }
@@ -2062,7 +2447,10 @@ pub struct AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef {
 }
 
 impl Ref for AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef {
         AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef {
             shared: shared,
             base: base.to_string(),
@@ -2077,32 +2465,50 @@ impl AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef {
 
     #[doc = "Get a reference to the value of field `on_demand_allocation_strategy` after provisioning.\n"]
     pub fn on_demand_allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_base_capacity` after provisioning.\n"]
     pub fn on_demand_base_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_base_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_base_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_percentage_above_base_capacity` after provisioning.\n"]
     pub fn on_demand_percentage_above_base_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_percentage_above_base_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_percentage_above_base_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_allocation_strategy` after provisioning.\n"]
     pub fn spot_allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_instance_pools` after provisioning.\n"]
     pub fn spot_instance_pools(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_instance_pools", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_instance_pools", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_max_price` after provisioning.\n"]
     pub fn spot_max_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_max_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_max_price", self.base),
+        )
     }
 }
 
@@ -2136,8 +2542,12 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecifi
     }
 }
 
-impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl {
-    type O = BlockAssignable<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl>;
+impl ToListMappable
+    for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl
+{
+    type O = BlockAssignable<
+        AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2148,10 +2558,13 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLa
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl {
-    pub fn build(self) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl {
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl {
             launch_template_id: core::default::Default::default(),
             launch_template_name: core::default::Default::default(),
@@ -2165,11 +2578,14 @@ pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateS
     base: String,
 }
 
-impl Ref for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef {
+impl Ref
+    for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef {
+    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef
+    {
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2184,12 +2600,18 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecifi
 
     #[doc = "Get a reference to the value of field `launch_template_id` after provisioning.\n"]
     pub fn launch_template_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_name` after provisioning.\n"]
     pub fn launch_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
@@ -2199,7 +2621,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecifi
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2235,7 +2658,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountEl {
     pub fn build(
@@ -2248,7 +2672,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2282,7 +2707,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2318,7 +2744,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
     pub fn build(
@@ -2331,7 +2758,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2365,7 +2793,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2401,7 +2830,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
     pub fn build(
@@ -2414,7 +2844,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2448,7 +2879,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2484,7 +2916,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
     pub fn build(
@@ -2497,7 +2930,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2531,7 +2965,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2567,7 +3002,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibEl {
     pub fn build(
@@ -2580,7 +3016,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2614,7 +3051,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2650,7 +3088,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
     pub fn build(
@@ -2663,7 +3102,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2697,7 +3137,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2733,7 +3174,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
     pub fn build(
@@ -2746,7 +3188,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2780,7 +3223,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2816,7 +3260,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
     pub fn build(
@@ -2829,7 +3274,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2863,7 +3309,8 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2899,7 +3346,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountEl {
     pub fn build(
@@ -2912,7 +3360,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3077,7 +3526,10 @@ pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInsta
 
 impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `accelerator_manufacturers`.\n"]
-    pub fn set_accelerator_manufacturers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_accelerator_manufacturers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.accelerator_manufacturers = Some(v.into());
         self
     }
@@ -3119,7 +3571,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
     }
 
     #[doc = "Set the field `excluded_instance_types`.\n"]
-    pub fn set_excluded_instance_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_excluded_instance_types(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.excluded_instance_types = Some(v.into());
         self
     }
@@ -3143,13 +3598,19 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
     }
 
     #[doc = "Set the field `max_spot_price_as_percentage_of_optimal_on_demand_price`.\n"]
-    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.max_spot_price_as_percentage_of_optimal_on_demand_price = Some(v.into());
         self
     }
 
     #[doc = "Set the field `on_demand_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_on_demand_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_on_demand_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.on_demand_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -3161,7 +3622,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
     }
 
     #[doc = "Set the field `spot_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_spot_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_spot_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.spot_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -3181,10 +3645,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -3204,10 +3668,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_total_memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_total_memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -3227,10 +3691,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.baseline_ebs_bandwidth_mbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.baseline_ebs_bandwidth_mbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -3250,10 +3714,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_gib_per_vcpu = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_gib_per_vcpu = Some(d);
-            },
+            }
         }
         self
     }
@@ -3273,10 +3737,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -3296,10 +3760,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_bandwidth_gbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_bandwidth_gbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -3319,10 +3783,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_interface_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_interface_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -3342,10 +3806,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.total_local_storage_gb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.total_local_storage_gb = Some(d);
-            },
+            }
         }
         self
     }
@@ -3365,17 +3829,21 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vcpu_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vcpu_count = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl {
-    type O = BlockAssignable<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl>;
+impl ToListMappable
+    for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl
+{
+    type O = BlockAssignable<
+        AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3386,10 +3854,14 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl {
-    pub fn build(self) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl {
+    pub fn build(
+        self,
+    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl
+    {
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsEl {
             accelerator_manufacturers: core::default::Default::default(),
             accelerator_names: core::default::Default::default(),
@@ -3402,7 +3874,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
             instance_generations: core::default::Default::default(),
             local_storage: core::default::Default::default(),
             local_storage_types: core::default::Default::default(),
-            max_spot_price_as_percentage_of_optimal_on_demand_price: core::default::Default::default(),
+            max_spot_price_as_percentage_of_optimal_on_demand_price:
+                core::default::Default::default(),
             on_demand_max_price_percentage_over_lowest_price: core::default::Default::default(),
             require_hibernate_support: core::default::Default::default(),
             spot_max_price_percentage_over_lowest_price: core::default::Default::default(),
@@ -3420,16 +3893,20 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstan
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef {
+impl Ref
+    for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef {
+    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef
+    {
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3444,22 +3921,34 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 
     #[doc = "Get a reference to the value of field `accelerator_manufacturers` after provisioning.\n"]
     pub fn accelerator_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_names` after provisioning.\n"]
     pub fn accelerator_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_types` after provisioning.\n"]
     pub fn accelerator_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_instance_types` after provisioning.\n"]
     pub fn allowed_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bare_metal` after provisioning.\n"]
@@ -3469,60 +3958,88 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
 
     #[doc = "Get a reference to the value of field `burstable_performance` after provisioning.\n"]
     pub fn burstable_performance(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.burstable_performance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.burstable_performance", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_manufacturers` after provisioning.\n"]
     pub fn cpu_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cpu_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excluded_instance_types` after provisioning.\n"]
     pub fn excluded_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_generations` after provisioning.\n"]
     pub fn instance_generations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_generations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_generations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage` after provisioning.\n"]
     pub fn local_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_storage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage_types` after provisioning.\n"]
     pub fn local_storage_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_storage_types", self.base))
-    }
-
-    #[doc =
-        "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
-    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(
+        SetRef::new(
             self.shared().clone(),
-            format!("{}.max_spot_price_as_percentage_of_optimal_on_demand_price", self.base),
+            format!("{}.local_storage_types", self.base),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
+    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.max_spot_price_as_percentage_of_optimal_on_demand_price",
+                self.base
+            ),
+        )
+    }
+
+    #[doc = "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn on_demand_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.on_demand_max_price_percentage_over_lowest_price", self.base),
+            format!(
+                "{}.on_demand_max_price_percentage_over_lowest_price",
+                self.base
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `require_hibernate_support` after provisioning.\n"]
     pub fn require_hibernate_support(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_hibernate_support", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_hibernate_support", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn spot_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_max_price_percentage_over_lowest_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_max_price_percentage_over_lowest_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_count` after provisioning.\n"]
@@ -3530,8 +4047,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorCountElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_count", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_total_memory_mib` after provisioning.\n"]
@@ -3539,8 +4059,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_total_memory_mib", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_total_memory_mib", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `baseline_ebs_bandwidth_mbps` after provisioning.\n"]
@@ -3548,8 +4071,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_ebs_bandwidth_mbps", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_ebs_bandwidth_mbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_gib_per_vcpu` after provisioning.\n"]
@@ -3557,8 +4083,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryGibPerVcpuElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.memory_gib_per_vcpu", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_gib_per_vcpu", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_mib` after provisioning.\n"]
@@ -3566,7 +4095,7 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElMemoryMibElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.memory_mib", self.base))
     }
 
@@ -3575,8 +4104,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.network_bandwidth_gbps", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_bandwidth_gbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_count` after provisioning.\n"]
@@ -3584,8 +4116,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface_count", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `total_local_storage_gb` after provisioning.\n"]
@@ -3593,8 +4128,11 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.total_local_storage_gb", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.total_local_storage_gb", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vcpu_count` after provisioning.\n"]
@@ -3602,13 +4140,14 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceReq
         &self,
     ) -> ListRef<
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElVcpuCountElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.vcpu_count", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationEl {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     launch_template_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3652,7 +4191,8 @@ impl ToListMappable for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOv
     }
 }
 
-pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationEl {}
+pub struct BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationEl
+{}
 
 impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationEl {
     pub fn build(
@@ -3666,7 +4206,8 @@ impl BuildAutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunch
     }
 }
 
-pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationElRef {
+pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3683,19 +4224,27 @@ impl Ref for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLau
     }
 }
 
-impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationElRef {
+impl
+    AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `launch_template_id` after provisioning.\n"]
     pub fn launch_template_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_name` after provisioning.\n"]
     pub fn launch_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
@@ -3759,10 +4308,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_requirements = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_requirements = Some(d);
-            },
+            }
         }
         self
     }
@@ -3782,10 +4331,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_template_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_template_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3823,7 +4372,10 @@ pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef {
 }
 
 impl Ref for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef {
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef {
             shared: shared,
             base: base.to_string(),
@@ -3838,35 +4390,52 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_requirements` after provisioning.\n"]
     pub fn instance_requirements(
         &self,
-    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_requirements", self.base))
+    ) -> ListRef<
+        AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElInstanceRequirementsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_requirements", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_specification` after provisioning.\n"]
     pub fn launch_template_specification(
         &self,
-    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template_specification", self.base))
+    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElLaunchTemplateSpecificationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_specification", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElDynamic {
     launch_template_specification: Option<
-        DynamicBlock<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl>,
+        DynamicBlock<
+            AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl,
+        >,
     >,
-    override_: Option<DynamicBlock<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideEl>>,
+    override_:
+        Option<DynamicBlock<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideEl>>,
 }
 
 #[derive(Serialize)]
@@ -3884,22 +4453,19 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateEl {
     #[doc = "Set the field `launch_template_specification`.\n"]
     pub fn set_launch_template_specification(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_template_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_template_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -3912,10 +4478,10 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.override_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.override_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -3951,7 +4517,10 @@ pub struct AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef {
 }
 
 impl Ref for AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef {
         AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef {
             shared: shared,
             base: base.to_string(),
@@ -3967,26 +4536,35 @@ impl AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef {
     #[doc = "Get a reference to the value of field `launch_template_specification` after provisioning.\n"]
     pub fn launch_template_specification(
         &self,
-    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template_specification", self.base))
+    ) -> ListRef<
+        AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElLaunchTemplateSpecificationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
-    pub fn override_(&self) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef> {
+    pub fn override_(
+        &self,
+    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElOverrideElRef> {
         ListRef::new(self.shared().clone(), format!("{}.override", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct AutoscalingGroupMixedInstancesPolicyElDynamic {
-    instances_distribution: Option<DynamicBlock<AutoscalingGroupMixedInstancesPolicyElInstancesDistributionEl>>,
+    instances_distribution:
+        Option<DynamicBlock<AutoscalingGroupMixedInstancesPolicyElInstancesDistributionEl>>,
     launch_template: Option<DynamicBlock<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateEl>>,
 }
 
 #[derive(Serialize)]
 pub struct AutoscalingGroupMixedInstancesPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    instances_distribution: Option<Vec<AutoscalingGroupMixedInstancesPolicyElInstancesDistributionEl>>,
+    instances_distribution:
+        Option<Vec<AutoscalingGroupMixedInstancesPolicyElInstancesDistributionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     launch_template: Option<Vec<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateEl>>,
     dynamic: AutoscalingGroupMixedInstancesPolicyElDynamic,
@@ -4001,10 +4579,10 @@ impl AutoscalingGroupMixedInstancesPolicyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instances_distribution = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instances_distribution = Some(d);
-            },
+            }
         }
         self
     }
@@ -4017,10 +4595,10 @@ impl AutoscalingGroupMixedInstancesPolicyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_template = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_template = Some(d);
-            },
+            }
         }
         self
     }
@@ -4070,13 +4648,23 @@ impl AutoscalingGroupMixedInstancesPolicyElRef {
     }
 
     #[doc = "Get a reference to the value of field `instances_distribution` after provisioning.\n"]
-    pub fn instances_distribution(&self) -> ListRef<AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instances_distribution", self.base))
+    pub fn instances_distribution(
+        &self,
+    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElInstancesDistributionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instances_distribution", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template` after provisioning.\n"]
-    pub fn launch_template(&self) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template", self.base))
+    pub fn launch_template(
+        &self,
+    ) -> ListRef<AutoscalingGroupMixedInstancesPolicyElLaunchTemplateElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template", self.base),
+        )
     }
 }
 
@@ -4087,7 +4675,7 @@ pub struct AutoscalingGroupTagEl {
     value: PrimField<String>,
 }
 
-impl AutoscalingGroupTagEl { }
+impl AutoscalingGroupTagEl {}
 
 impl ToListMappable for AutoscalingGroupTagEl {
     type O = BlockAssignable<AutoscalingGroupTagEl>;
@@ -4146,7 +4734,10 @@ impl AutoscalingGroupTagElRef {
 
     #[doc = "Get a reference to the value of field `propagate_at_launch` after provisioning.\n"]
     pub fn propagate_at_launch(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_at_launch", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_at_launch", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
@@ -4331,7 +4922,9 @@ pub struct BuildAutoscalingGroupWarmPoolElInstanceReusePolicyEl {}
 
 impl BuildAutoscalingGroupWarmPoolElInstanceReusePolicyEl {
     pub fn build(self) -> AutoscalingGroupWarmPoolElInstanceReusePolicyEl {
-        AutoscalingGroupWarmPoolElInstanceReusePolicyEl { reuse_on_scale_in: core::default::Default::default() }
+        AutoscalingGroupWarmPoolElInstanceReusePolicyEl {
+            reuse_on_scale_in: core::default::Default::default(),
+        }
     }
 }
 
@@ -4341,7 +4934,10 @@ pub struct AutoscalingGroupWarmPoolElInstanceReusePolicyElRef {
 }
 
 impl Ref for AutoscalingGroupWarmPoolElInstanceReusePolicyElRef {
-    fn new(shared: StackShared, base: String) -> AutoscalingGroupWarmPoolElInstanceReusePolicyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AutoscalingGroupWarmPoolElInstanceReusePolicyElRef {
         AutoscalingGroupWarmPoolElInstanceReusePolicyElRef {
             shared: shared,
             base: base.to_string(),
@@ -4356,7 +4952,10 @@ impl AutoscalingGroupWarmPoolElInstanceReusePolicyElRef {
 
     #[doc = "Get a reference to the value of field `reuse_on_scale_in` after provisioning.\n"]
     pub fn reuse_on_scale_in(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reuse_on_scale_in", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reuse_on_scale_in", self.base),
+        )
     }
 }
 
@@ -4405,10 +5004,10 @@ impl AutoscalingGroupWarmPoolEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_reuse_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_reuse_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -4461,7 +5060,10 @@ impl AutoscalingGroupWarmPoolElRef {
 
     #[doc = "Get a reference to the value of field `max_group_prepared_capacity` after provisioning.\n"]
     pub fn max_group_prepared_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_group_prepared_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_group_prepared_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
@@ -4475,15 +5077,22 @@ impl AutoscalingGroupWarmPoolElRef {
     }
 
     #[doc = "Get a reference to the value of field `instance_reuse_policy` after provisioning.\n"]
-    pub fn instance_reuse_policy(&self) -> ListRef<AutoscalingGroupWarmPoolElInstanceReusePolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_reuse_policy", self.base))
+    pub fn instance_reuse_policy(
+        &self,
+    ) -> ListRef<AutoscalingGroupWarmPoolElInstanceReusePolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_reuse_policy", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AutoscalingGroupDynamic {
-    availability_zone_distribution: Option<DynamicBlock<AutoscalingGroupAvailabilityZoneDistributionEl>>,
-    capacity_reservation_specification: Option<DynamicBlock<AutoscalingGroupCapacityReservationSpecificationEl>>,
+    availability_zone_distribution:
+        Option<DynamicBlock<AutoscalingGroupAvailabilityZoneDistributionEl>>,
+    capacity_reservation_specification:
+        Option<DynamicBlock<AutoscalingGroupCapacityReservationSpecificationEl>>,
     initial_lifecycle_hook: Option<DynamicBlock<AutoscalingGroupInitialLifecycleHookEl>>,
     instance_maintenance_policy: Option<DynamicBlock<AutoscalingGroupInstanceMaintenancePolicyEl>>,
     instance_refresh: Option<DynamicBlock<AutoscalingGroupInstanceRefreshEl>>,

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodecommitApprovalRuleTemplateAssociationData {
@@ -29,7 +29,9 @@ struct CodecommitApprovalRuleTemplateAssociation_ {
 }
 
 #[derive(Clone)]
-pub struct CodecommitApprovalRuleTemplateAssociation(Rc<CodecommitApprovalRuleTemplateAssociation_>);
+pub struct CodecommitApprovalRuleTemplateAssociation(
+    Rc<CodecommitApprovalRuleTemplateAssociation_>,
+);
 
 impl CodecommitApprovalRuleTemplateAssociation {
     fn shared(&self) -> &StackShared {
@@ -57,7 +59,8 @@ impl CodecommitApprovalRuleTemplateAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +73,7 @@ impl CodecommitApprovalRuleTemplateAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +84,22 @@ impl CodecommitApprovalRuleTemplateAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -96,8 +109,7 @@ impl CodecommitApprovalRuleTemplateAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -105,7 +117,10 @@ impl CodecommitApprovalRuleTemplateAssociation {
 
     #[doc = "Get a reference to the value of field `approval_rule_template_name` after provisioning.\n"]
     pub fn approval_rule_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approval_rule_template_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.approval_rule_template_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -113,25 +128,34 @@ impl CodecommitApprovalRuleTemplateAssociation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodecommitApprovalRuleTemplateAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodecommitApprovalRuleTemplateAssociation { }
+impl Resource for CodecommitApprovalRuleTemplateAssociation {}
 
 impl ToListMappable for CodecommitApprovalRuleTemplateAssociation {
     type O = ListRef<CodecommitApprovalRuleTemplateAssociationRef>;
@@ -166,20 +190,22 @@ pub struct BuildCodecommitApprovalRuleTemplateAssociation {
 
 impl BuildCodecommitApprovalRuleTemplateAssociation {
     pub fn build(self, stack: &mut Stack) -> CodecommitApprovalRuleTemplateAssociation {
-        let out = CodecommitApprovalRuleTemplateAssociation(Rc::new(CodecommitApprovalRuleTemplateAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(CodecommitApprovalRuleTemplateAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                approval_rule_template_name: self.approval_rule_template_name,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                repository_name: self.repository_name,
-            }),
-        }));
+        let out = CodecommitApprovalRuleTemplateAssociation(Rc::new(
+            CodecommitApprovalRuleTemplateAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(CodecommitApprovalRuleTemplateAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    approval_rule_template_name: self.approval_rule_template_name,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    repository_name: self.repository_name,
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -192,10 +218,7 @@ pub struct CodecommitApprovalRuleTemplateAssociationRef {
 
 impl Ref for CodecommitApprovalRuleTemplateAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -210,7 +233,10 @@ impl CodecommitApprovalRuleTemplateAssociationRef {
 
     #[doc = "Get a reference to the value of field `approval_rule_template_name` after provisioning.\n"]
     pub fn approval_rule_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.approval_rule_template_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.approval_rule_template_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -218,14 +244,19 @@ impl CodecommitApprovalRuleTemplateAssociationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.extract_ref()),
+        )
     }
 }

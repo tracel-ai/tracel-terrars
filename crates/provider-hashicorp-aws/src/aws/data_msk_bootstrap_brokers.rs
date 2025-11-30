@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataMskBootstrapBrokersData {
@@ -49,8 +49,7 @@ impl DataMskBootstrapBrokers {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,53 +57,79 @@ impl DataMskBootstrapBrokers {
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers` after provisioning.\n"]
     pub fn bootstrap_brokers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_public_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_iam(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_iam", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_iam",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_scram(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_scram", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_scram",
+                self.extract_ref()
+            ),
         )
     }
 
@@ -112,13 +137,19 @@ impl DataMskBootstrapBrokers {
     pub fn bootstrap_brokers_vpc_connectivity_tls(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_tls", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_tls",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `cluster_arn` after provisioning.\n"]
     pub fn cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -126,20 +157,26 @@ impl DataMskBootstrapBrokers {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataMskBootstrapBrokers {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataMskBootstrapBrokers { }
+impl Datasource for DataMskBootstrapBrokers {}
 
 impl ToListMappable for DataMskBootstrapBrokers {
     type O = ListRef<DataMskBootstrapBrokersRef>;
@@ -196,10 +233,7 @@ pub struct DataMskBootstrapBrokersRef {
 
 impl Ref for DataMskBootstrapBrokersRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -214,53 +248,79 @@ impl DataMskBootstrapBrokersRef {
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers` after provisioning.\n"]
     pub fn bootstrap_brokers(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_public_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_public_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_public_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_public_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_public_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_iam(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_iam", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_sasl_scram(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_sasl_scram", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_tls` after provisioning.\n"]
     pub fn bootstrap_brokers_tls(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bootstrap_brokers_tls", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bootstrap_brokers_tls", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_iam` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_iam(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_iam", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_iam",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `bootstrap_brokers_vpc_connectivity_sasl_scram` after provisioning.\n"]
     pub fn bootstrap_brokers_vpc_connectivity_sasl_scram(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_sasl_scram", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_sasl_scram",
+                self.extract_ref()
+            ),
         )
     }
 
@@ -268,13 +328,19 @@ impl DataMskBootstrapBrokersRef {
     pub fn bootstrap_brokers_vpc_connectivity_tls(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.bootstrap_brokers_vpc_connectivity_tls", self.extract_ref()),
+            format!(
+                "{}.bootstrap_brokers_vpc_connectivity_tls",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `cluster_arn` after provisioning.\n"]
     pub fn cluster_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -282,9 +348,11 @@ impl DataMskBootstrapBrokersRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

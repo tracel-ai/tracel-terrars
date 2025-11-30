@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SyntheticsCanaryData {
@@ -89,7 +89,8 @@ impl SyntheticsCanary {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -102,7 +103,7 @@ impl SyntheticsCanary {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -113,12 +114,22 @@ impl SyntheticsCanary {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -140,8 +151,7 @@ impl SyntheticsCanary {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -196,27 +206,33 @@ impl SyntheticsCanary {
     }
 
     #[doc = "Set the field `artifact_config`.\n"]
-    pub fn set_artifact_config(self, v: impl Into<BlockAssignable<SyntheticsCanaryArtifactConfigEl>>) -> Self {
+    pub fn set_artifact_config(
+        self,
+        v: impl Into<BlockAssignable<SyntheticsCanaryArtifactConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().artifact_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.artifact_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `run_config`.\n"]
-    pub fn set_run_config(self, v: impl Into<BlockAssignable<SyntheticsCanaryRunConfigEl>>) -> Self {
+    pub fn set_run_config(
+        self,
+        v: impl Into<BlockAssignable<SyntheticsCanaryRunConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().run_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.run_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -226,23 +242,26 @@ impl SyntheticsCanary {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schedule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schedule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `vpc_config`.\n"]
-    pub fn set_vpc_config(self, v: impl Into<BlockAssignable<SyntheticsCanaryVpcConfigEl>>) -> Self {
+    pub fn set_vpc_config(
+        self,
+        v: impl Into<BlockAssignable<SyntheticsCanaryVpcConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -254,32 +273,50 @@ impl SyntheticsCanary {
 
     #[doc = "Get a reference to the value of field `artifact_s3_location` after provisioning.\n"]
     pub fn artifact_s3_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.artifact_s3_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.artifact_s3_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_lambda` after provisioning.\n"]
     pub fn delete_lambda(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_lambda", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_lambda", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engine_arn` after provisioning.\n"]
     pub fn engine_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_retention_period` after provisioning.\n"]
     pub fn failure_retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `handler` after provisioning.\n"]
     pub fn handler(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.handler", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.handler", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -289,103 +326,160 @@ impl SyntheticsCanary {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_version` after provisioning.\n"]
     pub fn runtime_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.runtime_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.runtime_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_key` after provisioning.\n"]
     pub fn s3_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_version` after provisioning.\n"]
     pub fn s3_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_location_arn` after provisioning.\n"]
     pub fn source_location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_canary` after provisioning.\n"]
     pub fn start_canary(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_canary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_canary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `success_retention_period` after provisioning.\n"]
     pub fn success_retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeline` after provisioning.\n"]
     pub fn timeline(&self) -> ListRef<SyntheticsCanaryTimelineElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timeline", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timeline", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zip_file` after provisioning.\n"]
     pub fn zip_file(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zip_file", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zip_file", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `artifact_config` after provisioning.\n"]
     pub fn artifact_config(&self) -> ListRef<SyntheticsCanaryArtifactConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.artifact_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.artifact_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_config` after provisioning.\n"]
     pub fn run_config(&self) -> ListRef<SyntheticsCanaryRunConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.run_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.run_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<SyntheticsCanaryScheduleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<SyntheticsCanaryVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SyntheticsCanary {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SyntheticsCanary { }
+impl Resource for SyntheticsCanary {}
 
 impl ToListMappable for SyntheticsCanary {
     type O = ListRef<SyntheticsCanaryRef>;
@@ -470,10 +564,7 @@ pub struct SyntheticsCanaryRef {
 
 impl Ref for SyntheticsCanaryRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -493,32 +584,50 @@ impl SyntheticsCanaryRef {
 
     #[doc = "Get a reference to the value of field `artifact_s3_location` after provisioning.\n"]
     pub fn artifact_s3_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.artifact_s3_location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.artifact_s3_location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_lambda` after provisioning.\n"]
     pub fn delete_lambda(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_lambda", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_lambda", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engine_arn` after provisioning.\n"]
     pub fn engine_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `failure_retention_period` after provisioning.\n"]
     pub fn failure_retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `handler` after provisioning.\n"]
     pub fn handler(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.handler", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.handler", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -528,93 +637,146 @@ impl SyntheticsCanaryRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_version` after provisioning.\n"]
     pub fn runtime_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.runtime_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.runtime_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_key` after provisioning.\n"]
     pub fn s3_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_version` after provisioning.\n"]
     pub fn s3_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_location_arn` after provisioning.\n"]
     pub fn source_location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_canary` after provisioning.\n"]
     pub fn start_canary(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_canary", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_canary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `success_retention_period` after provisioning.\n"]
     pub fn success_retention_period(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_retention_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_retention_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeline` after provisioning.\n"]
     pub fn timeline(&self) -> ListRef<SyntheticsCanaryTimelineElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timeline", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timeline", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zip_file` after provisioning.\n"]
     pub fn zip_file(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zip_file", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zip_file", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `artifact_config` after provisioning.\n"]
     pub fn artifact_config(&self) -> ListRef<SyntheticsCanaryArtifactConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.artifact_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.artifact_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_config` after provisioning.\n"]
     pub fn run_config(&self) -> ListRef<SyntheticsCanaryRunConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.run_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.run_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<SyntheticsCanaryScheduleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<SyntheticsCanaryVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -707,7 +869,10 @@ impl SyntheticsCanaryTimelineElRef {
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_started` after provisioning.\n"]
@@ -787,7 +952,10 @@ impl SyntheticsCanaryArtifactConfigElS3EncryptionElRef {
 
     #[doc = "Get a reference to the value of field `encryption_mode` after provisioning.\n"]
     pub fn encryption_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
@@ -817,10 +985,10 @@ impl SyntheticsCanaryArtifactConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_encryption = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_encryption = Some(d);
-            },
+            }
         }
         self
     }
@@ -870,7 +1038,10 @@ impl SyntheticsCanaryArtifactConfigElRef {
 
     #[doc = "Get a reference to the value of field `s3_encryption` after provisioning.\n"]
     pub fn s3_encryption(&self) -> ListRef<SyntheticsCanaryArtifactConfigElS3EncryptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_encryption", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_encryption", self.base),
+        )
     }
 }
 
@@ -967,17 +1138,26 @@ impl SyntheticsCanaryRunConfigElRef {
 
     #[doc = "Get a reference to the value of field `active_tracing` after provisioning.\n"]
     pub fn active_tracing(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.active_tracing", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.active_tracing", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_variables` after provisioning.\n"]
     pub fn environment_variables(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.environment_variables", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.environment_variables", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ephemeral_storage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ephemeral_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_in_mb` after provisioning.\n"]
@@ -987,7 +1167,10 @@ impl SyntheticsCanaryRunConfigElRef {
 
     #[doc = "Get a reference to the value of field `timeout_in_seconds` after provisioning.\n"]
     pub fn timeout_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_in_seconds", self.base),
+        )
     }
 }
 
@@ -996,7 +1179,7 @@ pub struct SyntheticsCanaryScheduleElRetryConfigEl {
     max_retries: PrimField<f64>,
 }
 
-impl SyntheticsCanaryScheduleElRetryConfigEl { }
+impl SyntheticsCanaryScheduleElRetryConfigEl {}
 
 impl ToListMappable for SyntheticsCanaryScheduleElRetryConfigEl {
     type O = BlockAssignable<SyntheticsCanaryScheduleElRetryConfigEl>;
@@ -1017,7 +1200,9 @@ pub struct BuildSyntheticsCanaryScheduleElRetryConfigEl {
 
 impl BuildSyntheticsCanaryScheduleElRetryConfigEl {
     pub fn build(self) -> SyntheticsCanaryScheduleElRetryConfigEl {
-        SyntheticsCanaryScheduleElRetryConfigEl { max_retries: self.max_retries }
+        SyntheticsCanaryScheduleElRetryConfigEl {
+            max_retries: self.max_retries,
+        }
     }
 }
 
@@ -1069,14 +1254,17 @@ impl SyntheticsCanaryScheduleEl {
     }
 
     #[doc = "Set the field `retry_config`.\n"]
-    pub fn set_retry_config(mut self, v: impl Into<BlockAssignable<SyntheticsCanaryScheduleElRetryConfigEl>>) -> Self {
+    pub fn set_retry_config(
+        mut self,
+        v: impl Into<BlockAssignable<SyntheticsCanaryScheduleElRetryConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.retry_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.retry_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1131,7 +1319,10 @@ impl SyntheticsCanaryScheduleElRef {
 
     #[doc = "Get a reference to the value of field `duration_in_seconds` after provisioning.\n"]
     pub fn duration_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.duration_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.duration_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expression` after provisioning.\n"]
@@ -1220,12 +1411,18 @@ impl SyntheticsCanaryVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `ipv6_allowed_for_dual_stack` after provisioning.\n"]
     pub fn ipv6_allowed_for_dual_stack(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ipv6_allowed_for_dual_stack", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ipv6_allowed_for_dual_stack", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]

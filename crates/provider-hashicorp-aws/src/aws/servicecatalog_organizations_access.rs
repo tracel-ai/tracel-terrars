@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ServicecatalogOrganizationsAccessData {
@@ -56,7 +56,8 @@ impl ServicecatalogOrganizationsAccess {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -69,7 +70,7 @@ impl ServicecatalogOrganizationsAccess {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -80,12 +81,22 @@ impl ServicecatalogOrganizationsAccess {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,7 +114,10 @@ impl ServicecatalogOrganizationsAccess {
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -122,11 +136,15 @@ impl ServicecatalogOrganizationsAccess {
 
 impl Referable for ServicecatalogOrganizationsAccess {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ServicecatalogOrganizationsAccess { }
+impl Resource for ServicecatalogOrganizationsAccess {}
 
 impl ToListMappable for ServicecatalogOrganizationsAccess {
     type O = ListRef<ServicecatalogOrganizationsAccessRef>;
@@ -184,10 +202,7 @@ pub struct ServicecatalogOrganizationsAccessRef {
 
 impl Ref for ServicecatalogOrganizationsAccessRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -202,7 +217,10 @@ impl ServicecatalogOrganizationsAccessRef {
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -249,7 +267,9 @@ pub struct BuildServicecatalogOrganizationsAccessTimeoutsEl {}
 
 impl BuildServicecatalogOrganizationsAccessTimeoutsEl {
     pub fn build(self) -> ServicecatalogOrganizationsAccessTimeoutsEl {
-        ServicecatalogOrganizationsAccessTimeoutsEl { read: core::default::Default::default() }
+        ServicecatalogOrganizationsAccessTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

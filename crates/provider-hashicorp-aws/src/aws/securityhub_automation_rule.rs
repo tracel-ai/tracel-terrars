@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SecurityhubAutomationRuleData {
@@ -67,7 +67,8 @@ impl SecurityhubAutomationRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl SecurityhubAutomationRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl SecurityhubAutomationRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl SecurityhubAutomationRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,27 +136,33 @@ impl SecurityhubAutomationRule {
     }
 
     #[doc = "Set the field `actions`.\n"]
-    pub fn set_actions(self, v: impl Into<BlockAssignable<SecurityhubAutomationRuleActionsEl>>) -> Self {
+    pub fn set_actions(
+        self,
+        v: impl Into<BlockAssignable<SecurityhubAutomationRuleActionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().actions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.actions = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `criteria`.\n"]
-    pub fn set_criteria(self, v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaEl>>) -> Self {
+    pub fn set_criteria(
+        self,
+        v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.criteria = Some(d);
-            },
+            }
         }
         self
     }
@@ -158,7 +174,10 @@ impl SecurityhubAutomationRule {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -168,53 +187,80 @@ impl SecurityhubAutomationRule {
 
     #[doc = "Get a reference to the value of field `is_terminal` after provisioning.\n"]
     pub fn is_terminal(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_terminal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_terminal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_order` after provisioning.\n"]
     pub fn rule_order(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_order", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_order", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_status` after provisioning.\n"]
     pub fn rule_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `criteria` after provisioning.\n"]
     pub fn criteria(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.criteria", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SecurityhubAutomationRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SecurityhubAutomationRule { }
+impl Resource for SecurityhubAutomationRule {}
 
 impl ToListMappable for SecurityhubAutomationRule {
     type O = ListRef<SecurityhubAutomationRuleRef>;
@@ -283,10 +329,7 @@ pub struct SecurityhubAutomationRuleRef {
 
 impl Ref for SecurityhubAutomationRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -306,7 +349,10 @@ impl SecurityhubAutomationRuleRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -316,43 +362,66 @@ impl SecurityhubAutomationRuleRef {
 
     #[doc = "Get a reference to the value of field `is_terminal` after provisioning.\n"]
     pub fn is_terminal(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.is_terminal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.is_terminal", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_order` after provisioning.\n"]
     pub fn rule_order(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_order", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_order", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_status` after provisioning.\n"]
     pub fn rule_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `criteria` after provisioning.\n"]
     pub fn criteria(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.criteria", self.extract_ref()),
+        )
     }
 }
 
@@ -362,7 +431,7 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
     updated_by: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl { }
+impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
     type O = BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl>;
@@ -398,7 +467,10 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
             shared: shared,
             base: base.to_string(),
@@ -428,10 +500,11 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFinding
     product_arn: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl { }
+impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
-    type O = BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>;
+    type O =
+        BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -636,9 +709,13 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRef {
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElDynamic {
     note: Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl>>,
-    related_findings: Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>>,
-    severity: Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl>>,
-    workflow: Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl>>,
+    related_findings: Option<
+        DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>,
+    >,
+    severity:
+        Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl>>,
+    workflow:
+        Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl>>,
 }
 
 #[derive(Serialize)]
@@ -656,7 +733,8 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     note: Option<Vec<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    related_findings: Option<Vec<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>>,
+    related_findings:
+        Option<Vec<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     severity: Option<Vec<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -703,10 +781,10 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note = Some(d);
-            },
+            }
         }
         self
     }
@@ -714,15 +792,19 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     #[doc = "Set the field `related_findings`.\n"]
     pub fn set_related_findings(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.related_findings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.related_findings = Some(d);
-            },
+            }
         }
         self
     }
@@ -735,10 +817,10 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.severity = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.severity = Some(d);
-            },
+            }
         }
         self
     }
@@ -751,10 +833,10 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.workflow = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.workflow = Some(d);
-            },
+            }
         }
         self
     }
@@ -797,7 +879,10 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
             shared: shared,
             base: base.to_string(),
@@ -827,33 +912,46 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
 
     #[doc = "Get a reference to the value of field `user_defined_fields` after provisioning.\n"]
     pub fn user_defined_fields(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.user_defined_fields", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.user_defined_fields", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verification_state` after provisioning.\n"]
     pub fn verification_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verification_state", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verification_state", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `note` after provisioning.\n"]
-    pub fn note(&self) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef> {
+    pub fn note(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef> {
         ListRef::new(self.shared().clone(), format!("{}.note", self.base))
     }
 
     #[doc = "Get a reference to the value of field `severity` after provisioning.\n"]
-    pub fn severity(&self) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRef> {
+    pub fn severity(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRef> {
         ListRef::new(self.shared().clone(), format!("{}.severity", self.base))
     }
 
     #[doc = "Get a reference to the value of field `workflow` after provisioning.\n"]
-    pub fn workflow(&self) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRef> {
+    pub fn workflow(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRef> {
         ListRef::new(self.shared().clone(), format!("{}.workflow", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleActionsElDynamic {
-    finding_fields_update: Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl>>,
+    finding_fields_update:
+        Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl>>,
 }
 
 #[derive(Serialize)]
@@ -880,10 +978,10 @@ impl SecurityhubAutomationRuleActionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.finding_fields_update = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.finding_fields_update = Some(d);
-            },
+            }
         }
         self
     }
@@ -938,8 +1036,13 @@ impl SecurityhubAutomationRuleActionsElRef {
     }
 
     #[doc = "Get a reference to the value of field `finding_fields_update` after provisioning.\n"]
-    pub fn finding_fields_update(&self) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.finding_fields_update", self.base))
+    pub fn finding_fields_update(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.finding_fields_update", self.base),
+        )
     }
 }
 
@@ -949,7 +1052,7 @@ pub struct SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElAwsAccountIdEl { }
+impl SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElAwsAccountIdEl>;
@@ -985,7 +1088,10 @@ pub struct SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
         SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -1015,7 +1121,7 @@ pub struct SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElAwsAccountNameEl { }
+impl SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElAwsAccountNameEl>;
@@ -1051,7 +1157,10 @@ pub struct SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
         SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -1081,7 +1190,7 @@ pub struct SecurityhubAutomationRuleCriteriaElCompanyNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElCompanyNameEl { }
+impl SecurityhubAutomationRuleCriteriaElCompanyNameEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElCompanyNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElCompanyNameEl>;
@@ -1117,7 +1226,10 @@ pub struct SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
         SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -1147,7 +1259,7 @@ pub struct SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl 
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl { }
+impl SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>;
@@ -1216,7 +1328,7 @@ pub struct SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl { }
+impl SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl>;
@@ -1252,7 +1364,10 @@ pub struct SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
         SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -1282,7 +1397,7 @@ pub struct SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElComplianceStatusEl { }
+impl SecurityhubAutomationRuleCriteriaElComplianceStatusEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceStatusEl>;
@@ -1318,7 +1433,10 @@ pub struct SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
         SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
             shared: shared,
             base: base.to_string(),
@@ -1420,7 +1538,10 @@ pub struct SecurityhubAutomationRuleCriteriaElConfidenceElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElConfidenceElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElConfidenceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElConfidenceElRef {
         SecurityhubAutomationRuleCriteriaElConfidenceElRef {
             shared: shared,
             base: base.to_string(),
@@ -1465,7 +1586,7 @@ pub struct SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl { }
+impl SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl>;
@@ -1501,7 +1622,10 @@ pub struct SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
         SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1562,10 +1686,10 @@ impl SecurityhubAutomationRuleCriteriaElCreatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -1626,7 +1750,9 @@ impl SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -1709,7 +1835,10 @@ pub struct SecurityhubAutomationRuleCriteriaElCriticalityElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElCriticalityElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElCriticalityElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElCriticalityElRef {
         SecurityhubAutomationRuleCriteriaElCriticalityElRef {
             shared: shared,
             base: base.to_string(),
@@ -1754,7 +1883,7 @@ pub struct SecurityhubAutomationRuleCriteriaElDescriptionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElDescriptionEl { }
+impl SecurityhubAutomationRuleCriteriaElDescriptionEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElDescriptionEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElDescriptionEl>;
@@ -1790,7 +1919,10 @@ pub struct SecurityhubAutomationRuleCriteriaElDescriptionElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElDescriptionElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElDescriptionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElDescriptionElRef {
         SecurityhubAutomationRuleCriteriaElDescriptionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1820,7 +1952,7 @@ pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl { }
+impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl>;
@@ -1856,7 +1988,10 @@ pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
         SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1882,7 +2017,8 @@ impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
 
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElDynamic {
-    date_range: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl>>,
+    date_range:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl>>,
 }
 
 #[derive(Serialize)]
@@ -1917,10 +2053,10 @@ impl SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -1957,7 +2093,10 @@ pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
         SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -1981,7 +2120,9 @@ impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -1992,7 +2133,7 @@ pub struct SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElGeneratorIdEl { }
+impl SecurityhubAutomationRuleCriteriaElGeneratorIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElGeneratorIdEl>;
@@ -2028,7 +2169,10 @@ pub struct SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
         SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -2058,7 +2202,7 @@ pub struct SecurityhubAutomationRuleCriteriaElIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElIdEl { }
+impl SecurityhubAutomationRuleCriteriaElIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElIdEl>;
@@ -2124,7 +2268,7 @@ pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl { }
+impl SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl>;
@@ -2160,7 +2304,10 @@ pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
         SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -2186,7 +2333,8 @@ impl SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
 
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElLastObservedAtElDynamic {
-    date_range: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl>>,
+    date_range:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl>>,
 }
 
 #[derive(Serialize)]
@@ -2221,10 +2369,10 @@ impl SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -2261,7 +2409,10 @@ pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
         SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -2285,7 +2436,9 @@ impl SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -2296,7 +2449,7 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteTextEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElNoteTextEl { }
+impl SecurityhubAutomationRuleCriteriaElNoteTextEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteTextEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteTextEl>;
@@ -2362,7 +2515,7 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl { }
+impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl>;
@@ -2398,7 +2551,10 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
         SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -2459,10 +2615,10 @@ impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -2499,7 +2655,10 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
         SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
             shared: shared,
             base: base.to_string(),
@@ -2523,7 +2682,9 @@ impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -2534,7 +2695,7 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl { }
+impl SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl>;
@@ -2570,7 +2731,10 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
         SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
             shared: shared,
             base: base.to_string(),
@@ -2600,7 +2764,7 @@ pub struct SecurityhubAutomationRuleCriteriaElProductArnEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElProductArnEl { }
+impl SecurityhubAutomationRuleCriteriaElProductArnEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElProductArnEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElProductArnEl>;
@@ -2636,7 +2800,10 @@ pub struct SecurityhubAutomationRuleCriteriaElProductArnElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElProductArnElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElProductArnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElProductArnElRef {
         SecurityhubAutomationRuleCriteriaElProductArnElRef {
             shared: shared,
             base: base.to_string(),
@@ -2666,7 +2833,7 @@ pub struct SecurityhubAutomationRuleCriteriaElProductNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElProductNameEl { }
+impl SecurityhubAutomationRuleCriteriaElProductNameEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElProductNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElProductNameEl>;
@@ -2702,7 +2869,10 @@ pub struct SecurityhubAutomationRuleCriteriaElProductNameElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElProductNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElProductNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElProductNameElRef {
         SecurityhubAutomationRuleCriteriaElProductNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -2732,7 +2902,7 @@ pub struct SecurityhubAutomationRuleCriteriaElRecordStateEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElRecordStateEl { }
+impl SecurityhubAutomationRuleCriteriaElRecordStateEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElRecordStateEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElRecordStateEl>;
@@ -2768,7 +2938,10 @@ pub struct SecurityhubAutomationRuleCriteriaElRecordStateElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElRecordStateElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElRecordStateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElRecordStateElRef {
         SecurityhubAutomationRuleCriteriaElRecordStateElRef {
             shared: shared,
             base: base.to_string(),
@@ -2798,7 +2971,7 @@ pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl { }
+impl SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl>;
@@ -2834,7 +3007,10 @@ pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
         SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -2864,7 +3040,7 @@ pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl { }
+impl SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl>;
@@ -2900,7 +3076,10 @@ pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
         SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
             shared: shared,
             base: base.to_string(),
@@ -2930,7 +3109,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl>;
@@ -2966,7 +3145,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
         SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
             shared: shared,
             base: base.to_string(),
@@ -2996,7 +3178,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl>;
@@ -3032,7 +3214,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
         SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
             shared: shared,
             base: base.to_string(),
@@ -3063,7 +3248,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl>;
@@ -3102,7 +3287,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
         SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
             shared: shared,
             base: base.to_string(),
@@ -3137,7 +3325,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceIdEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceIdEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceIdEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceIdEl>;
@@ -3173,7 +3361,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceIdElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceIdElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceIdElRef {
         SecurityhubAutomationRuleCriteriaElResourceIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -3203,7 +3394,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourcePartitionEl { }
+impl SecurityhubAutomationRuleCriteriaElResourcePartitionEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourcePartitionEl>;
@@ -3239,7 +3430,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
         SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3269,7 +3463,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceRegionEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceRegionEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceRegionEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceRegionEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceRegionEl>;
@@ -3305,7 +3499,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
         SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
             shared: shared,
             base: base.to_string(),
@@ -3336,7 +3533,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceTagsEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceTagsEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceTagsEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceTagsEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceTagsEl>;
@@ -3375,7 +3572,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
         SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3410,7 +3610,7 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElResourceTypeEl { }
+impl SecurityhubAutomationRuleCriteriaElResourceTypeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceTypeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceTypeEl>;
@@ -3446,7 +3646,10 @@ pub struct SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
         SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3476,7 +3679,7 @@ pub struct SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElSeverityLabelEl { }
+impl SecurityhubAutomationRuleCriteriaElSeverityLabelEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElSeverityLabelEl>;
@@ -3512,7 +3715,10 @@ pub struct SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
         SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
             shared: shared,
             base: base.to_string(),
@@ -3542,7 +3748,7 @@ pub struct SecurityhubAutomationRuleCriteriaElSourceUrlEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElSourceUrlEl { }
+impl SecurityhubAutomationRuleCriteriaElSourceUrlEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElSourceUrlEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElSourceUrlEl>;
@@ -3608,7 +3814,7 @@ pub struct SecurityhubAutomationRuleCriteriaElTitleEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElTitleEl { }
+impl SecurityhubAutomationRuleCriteriaElTitleEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElTitleEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElTitleEl>;
@@ -3674,7 +3880,7 @@ pub struct SecurityhubAutomationRuleCriteriaElTypeEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElTypeEl { }
+impl SecurityhubAutomationRuleCriteriaElTypeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElTypeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElTypeEl>;
@@ -3740,7 +3946,7 @@ pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
     value: PrimField<f64>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl { }
+impl SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl>;
@@ -3776,7 +3982,10 @@ pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
         SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3837,10 +4046,10 @@ impl SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.date_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.date_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -3901,7 +4110,9 @@ impl SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
     }
 
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
-    pub fn date_range(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef> {
+    pub fn date_range(
+        &self,
+    ) -> ListRef<SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
@@ -3913,7 +4124,7 @@ pub struct SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl { }
+impl SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl>;
@@ -3952,7 +4163,10 @@ pub struct SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
         SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
             shared: shared,
             base: base.to_string(),
@@ -3987,7 +4201,7 @@ pub struct SecurityhubAutomationRuleCriteriaElVerificationStateEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElVerificationStateEl { }
+impl SecurityhubAutomationRuleCriteriaElVerificationStateEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElVerificationStateEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElVerificationStateEl>;
@@ -4023,7 +4237,10 @@ pub struct SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
         SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
             shared: shared,
             base: base.to_string(),
@@ -4053,7 +4270,7 @@ pub struct SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
     value: PrimField<String>,
 }
 
-impl SecurityhubAutomationRuleCriteriaElWorkflowStatusEl { }
+impl SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {}
 
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElWorkflowStatusEl>;
@@ -4089,7 +4306,10 @@ pub struct SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
 }
 
 impl Ref for SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
-    fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
         SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
             shared: shared,
             base: base.to_string(),
@@ -4118,12 +4338,10 @@ struct SecurityhubAutomationRuleCriteriaElDynamic {
     aws_account_id: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElAwsAccountIdEl>>,
     aws_account_name: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElAwsAccountNameEl>>,
     company_name: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElCompanyNameEl>>,
-    compliance_associated_standards_id: Option<
-        DynamicBlock<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>,
-    >,
-    compliance_security_control_id: Option<
-        DynamicBlock<SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl>,
-    >,
+    compliance_associated_standards_id:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>>,
+    compliance_security_control_id:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl>>,
     compliance_status: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElComplianceStatusEl>>,
     confidence: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElConfidenceEl>>,
     created_at: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElCreatedAtEl>>,
@@ -4139,15 +4357,19 @@ struct SecurityhubAutomationRuleCriteriaElDynamic {
     product_arn: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElProductArnEl>>,
     product_name: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElProductNameEl>>,
     record_state: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElRecordStateEl>>,
-    related_findings_id: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl>>,
-    related_findings_product_arn: Option<
-        DynamicBlock<SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl>,
-    >,
-    resource_application_arn: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl>>,
-    resource_application_name: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl>>,
-    resource_details_other: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl>>,
+    related_findings_id:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl>>,
+    related_findings_product_arn:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl>>,
+    resource_application_arn:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl>>,
+    resource_application_name:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl>>,
+    resource_details_other:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl>>,
     resource_id: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceIdEl>>,
-    resource_partition: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourcePartitionEl>>,
+    resource_partition:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourcePartitionEl>>,
     resource_region: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceRegionEl>>,
     resource_tags: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceTagsEl>>,
     resource_type: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElResourceTypeEl>>,
@@ -4156,8 +4378,10 @@ struct SecurityhubAutomationRuleCriteriaElDynamic {
     title: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElTitleEl>>,
     type_: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElTypeEl>>,
     updated_at: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElUpdatedAtEl>>,
-    user_defined_fields: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl>>,
-    verification_state: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElVerificationStateEl>>,
+    user_defined_fields:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl>>,
+    verification_state:
+        Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElVerificationStateEl>>,
     workflow_status: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElWorkflowStatusEl>>,
 }
 
@@ -4170,9 +4394,11 @@ pub struct SecurityhubAutomationRuleCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     company_name: Option<Vec<SecurityhubAutomationRuleCriteriaElCompanyNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    compliance_associated_standards_id: Option<Vec<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>>,
+    compliance_associated_standards_id:
+        Option<Vec<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    compliance_security_control_id: Option<Vec<SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl>>,
+    compliance_security_control_id:
+        Option<Vec<SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     compliance_status: Option<Vec<SecurityhubAutomationRuleCriteriaElComplianceStatusEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4206,11 +4432,14 @@ pub struct SecurityhubAutomationRuleCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     related_findings_id: Option<Vec<SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    related_findings_product_arn: Option<Vec<SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl>>,
+    related_findings_product_arn:
+        Option<Vec<SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_application_arn: Option<Vec<SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl>>,
+    resource_application_arn:
+        Option<Vec<SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resource_application_name: Option<Vec<SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl>>,
+    resource_application_name:
+        Option<Vec<SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_details_other: Option<Vec<SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4251,10 +4480,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_account_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_account_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4267,10 +4496,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.aws_account_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.aws_account_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4283,10 +4512,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.company_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.company_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4294,15 +4523,17 @@ impl SecurityhubAutomationRuleCriteriaEl {
     #[doc = "Set the field `compliance_associated_standards_id`.\n"]
     pub fn set_compliance_associated_standards_id(
         mut self,
-        v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>>,
+        v: impl Into<
+            BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.compliance_associated_standards_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.compliance_associated_standards_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4315,10 +4546,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.compliance_security_control_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.compliance_security_control_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4331,10 +4562,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.compliance_status = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.compliance_status = Some(d);
-            },
+            }
         }
         self
     }
@@ -4347,10 +4578,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.confidence = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.confidence = Some(d);
-            },
+            }
         }
         self
     }
@@ -4363,10 +4594,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.created_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.created_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4379,10 +4610,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.criticality = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.criticality = Some(d);
-            },
+            }
         }
         self
     }
@@ -4395,10 +4626,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.description = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.description = Some(d);
-            },
+            }
         }
         self
     }
@@ -4411,10 +4642,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.first_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.first_observed_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4427,23 +4658,26 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.generator_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.generator_id = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `id`.\n"]
-    pub fn set_id(mut self, v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElIdEl>>) -> Self {
+    pub fn set_id(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElIdEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4456,10 +4690,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.last_observed_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.last_observed_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4472,10 +4706,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note_text = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note_text = Some(d);
-            },
+            }
         }
         self
     }
@@ -4488,10 +4722,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note_updated_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note_updated_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4504,10 +4738,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.note_updated_by = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.note_updated_by = Some(d);
-            },
+            }
         }
         self
     }
@@ -4520,10 +4754,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.product_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.product_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -4536,10 +4770,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.product_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.product_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4552,10 +4786,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.record_state = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.record_state = Some(d);
-            },
+            }
         }
         self
     }
@@ -4568,10 +4802,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.related_findings_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.related_findings_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4584,10 +4818,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.related_findings_product_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.related_findings_product_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -4600,10 +4834,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_application_arn = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_application_arn = Some(d);
-            },
+            }
         }
         self
     }
@@ -4616,10 +4850,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_application_name = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_application_name = Some(d);
-            },
+            }
         }
         self
     }
@@ -4632,10 +4866,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_details_other = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_details_other = Some(d);
-            },
+            }
         }
         self
     }
@@ -4648,10 +4882,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -4664,10 +4898,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_partition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_partition = Some(d);
-            },
+            }
         }
         self
     }
@@ -4680,10 +4914,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_region = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_region = Some(d);
-            },
+            }
         }
         self
     }
@@ -4696,10 +4930,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -4712,10 +4946,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resource_type = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resource_type = Some(d);
-            },
+            }
         }
         self
     }
@@ -4728,10 +4962,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.severity_label = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.severity_label = Some(d);
-            },
+            }
         }
         self
     }
@@ -4744,36 +4978,42 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_url = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_url = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `title`.\n"]
-    pub fn set_title(mut self, v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElTitleEl>>) -> Self {
+    pub fn set_title(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElTitleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.title = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.title = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `type_`.\n"]
-    pub fn set_type(mut self, v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElTypeEl>>) -> Self {
+    pub fn set_type(
+        mut self,
+        v: impl Into<BlockAssignable<SecurityhubAutomationRuleCriteriaElTypeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.type_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.type_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -4786,10 +5026,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.updated_at = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.updated_at = Some(d);
-            },
+            }
         }
         self
     }
@@ -4802,10 +5042,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.user_defined_fields = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.user_defined_fields = Some(d);
-            },
+            }
         }
         self
     }
@@ -4818,10 +5058,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.verification_state = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.verification_state = Some(d);
-            },
+            }
         }
         self
     }
@@ -4834,10 +5074,10 @@ impl SecurityhubAutomationRuleCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.workflow_status = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.workflow_status = Some(d);
-            },
+            }
         }
         self
     }

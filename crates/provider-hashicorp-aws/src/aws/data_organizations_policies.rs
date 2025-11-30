@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOrganizationsPoliciesData {
@@ -49,7 +49,10 @@ impl DataOrganizationsPolicies {
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -65,11 +68,15 @@ impl DataOrganizationsPolicies {
 
 impl Referable for DataOrganizationsPolicies {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOrganizationsPolicies { }
+impl Datasource for DataOrganizationsPolicies {}
 
 impl ToListMappable for DataOrganizationsPolicies {
     type O = ListRef<DataOrganizationsPoliciesRef>;
@@ -125,10 +132,7 @@ pub struct DataOrganizationsPoliciesRef {
 
 impl Ref for DataOrganizationsPoliciesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -143,7 +147,10 @@ impl DataOrganizationsPoliciesRef {
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]

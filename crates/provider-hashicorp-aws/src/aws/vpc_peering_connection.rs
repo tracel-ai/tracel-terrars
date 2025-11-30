@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpcPeeringConnectionData {
@@ -74,7 +74,8 @@ impl VpcPeeringConnection {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +88,7 @@ impl VpcPeeringConnection {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +99,22 @@ impl VpcPeeringConnection {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,8 +142,7 @@ impl VpcPeeringConnection {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -151,27 +161,33 @@ impl VpcPeeringConnection {
     }
 
     #[doc = "Set the field `accepter`.\n"]
-    pub fn set_accepter(self, v: impl Into<BlockAssignable<VpcPeeringConnectionAccepterEl>>) -> Self {
+    pub fn set_accepter(
+        self,
+        v: impl Into<BlockAssignable<VpcPeeringConnectionAccepterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().accepter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.accepter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `requester`.\n"]
-    pub fn set_requester(self, v: impl Into<BlockAssignable<VpcPeeringConnectionRequesterEl>>) -> Self {
+    pub fn set_requester(
+        self,
+        v: impl Into<BlockAssignable<VpcPeeringConnectionRequesterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().requester = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.requester = Some(d);
-            },
+            }
         }
         self
     }
@@ -184,12 +200,18 @@ impl VpcPeeringConnection {
 
     #[doc = "Get a reference to the value of field `accept_status` after provisioning.\n"]
     pub fn accept_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_accept` after provisioning.\n"]
     pub fn auto_accept(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_accept", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_accept", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -199,63 +221,96 @@ impl VpcPeeringConnection {
 
     #[doc = "Get a reference to the value of field `peer_owner_id` after provisioning.\n"]
     pub fn peer_owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_region` after provisioning.\n"]
     pub fn peer_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_vpc_id` after provisioning.\n"]
     pub fn peer_vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_vpc_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accepter` after provisioning.\n"]
     pub fn accepter(&self) -> ListRef<VpcPeeringConnectionAccepterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accepter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accepter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requester` after provisioning.\n"]
     pub fn requester(&self) -> ListRef<VpcPeeringConnectionRequesterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.requester", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.requester", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcPeeringConnectionTimeoutsElRef {
-        VpcPeeringConnectionTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpcPeeringConnectionTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpcPeeringConnection {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpcPeeringConnection { }
+impl Resource for VpcPeeringConnection {}
 
 impl ToListMappable for VpcPeeringConnection {
     type O = ListRef<VpcPeeringConnectionRef>;
@@ -325,10 +380,7 @@ pub struct VpcPeeringConnectionRef {
 
 impl Ref for VpcPeeringConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -343,12 +395,18 @@ impl VpcPeeringConnectionRef {
 
     #[doc = "Get a reference to the value of field `accept_status` after provisioning.\n"]
     pub fn accept_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.accept_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.accept_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_accept` after provisioning.\n"]
     pub fn auto_accept(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_accept", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_accept", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -358,53 +416,82 @@ impl VpcPeeringConnectionRef {
 
     #[doc = "Get a reference to the value of field `peer_owner_id` after provisioning.\n"]
     pub fn peer_owner_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_owner_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_owner_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_region` after provisioning.\n"]
     pub fn peer_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `peer_vpc_id` after provisioning.\n"]
     pub fn peer_vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.peer_vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.peer_vpc_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accepter` after provisioning.\n"]
     pub fn accepter(&self) -> ListRef<VpcPeeringConnectionAccepterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accepter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accepter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requester` after provisioning.\n"]
     pub fn requester(&self) -> ListRef<VpcPeeringConnectionRequesterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.requester", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.requester", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcPeeringConnectionTimeoutsElRef {
-        VpcPeeringConnectionTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpcPeeringConnectionTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -438,7 +525,9 @@ pub struct BuildVpcPeeringConnectionAccepterEl {}
 
 impl BuildVpcPeeringConnectionAccepterEl {
     pub fn build(self) -> VpcPeeringConnectionAccepterEl {
-        VpcPeeringConnectionAccepterEl { allow_remote_vpc_dns_resolution: core::default::Default::default() }
+        VpcPeeringConnectionAccepterEl {
+            allow_remote_vpc_dns_resolution: core::default::Default::default(),
+        }
     }
 }
 
@@ -463,7 +552,10 @@ impl VpcPeeringConnectionAccepterElRef {
 
     #[doc = "Get a reference to the value of field `allow_remote_vpc_dns_resolution` after provisioning.\n"]
     pub fn allow_remote_vpc_dns_resolution(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_remote_vpc_dns_resolution", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_remote_vpc_dns_resolution", self.base),
+        )
     }
 }
 
@@ -497,7 +589,9 @@ pub struct BuildVpcPeeringConnectionRequesterEl {}
 
 impl BuildVpcPeeringConnectionRequesterEl {
     pub fn build(self) -> VpcPeeringConnectionRequesterEl {
-        VpcPeeringConnectionRequesterEl { allow_remote_vpc_dns_resolution: core::default::Default::default() }
+        VpcPeeringConnectionRequesterEl {
+            allow_remote_vpc_dns_resolution: core::default::Default::default(),
+        }
     }
 }
 
@@ -522,7 +616,10 @@ impl VpcPeeringConnectionRequesterElRef {
 
     #[doc = "Get a reference to the value of field `allow_remote_vpc_dns_resolution` after provisioning.\n"]
     pub fn allow_remote_vpc_dns_resolution(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_remote_vpc_dns_resolution", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_remote_vpc_dns_resolution", self.base),
+        )
     }
 }
 

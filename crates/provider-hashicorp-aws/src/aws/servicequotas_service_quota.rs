@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ServicequotasServiceQuotaData {
@@ -58,7 +58,8 @@ impl ServicequotasServiceQuota {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +72,7 @@ impl ServicequotasServiceQuota {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,12 +83,22 @@ impl ServicequotasServiceQuota {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -97,8 +108,7 @@ impl ServicequotasServiceQuota {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -106,7 +116,10 @@ impl ServicequotasServiceQuota {
 
     #[doc = "Get a reference to the value of field `adjustable` after provisioning.\n"]
     pub fn adjustable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.adjustable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.adjustable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -116,7 +129,10 @@ impl ServicequotasServiceQuota {
 
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_value", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -126,58 +142,88 @@ impl ServicequotasServiceQuota {
 
     #[doc = "Get a reference to the value of field `quota_code` after provisioning.\n"]
     pub fn quota_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quota_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quota_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quota_name` after provisioning.\n"]
     pub fn quota_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quota_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quota_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `request_id` after provisioning.\n"]
     pub fn request_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.request_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.request_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `request_status` after provisioning.\n"]
     pub fn request_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.request_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.request_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_code` after provisioning.\n"]
     pub fn service_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `usage_metric` after provisioning.\n"]
     pub fn usage_metric(&self) -> ListRef<ServicequotasServiceQuotaUsageMetricElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.usage_metric", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.usage_metric", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.value", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ServicequotasServiceQuota {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ServicequotasServiceQuota { }
+impl Resource for ServicequotasServiceQuota {}
 
 impl ToListMappable for ServicequotasServiceQuota {
     type O = ListRef<ServicequotasServiceQuotaRef>;
@@ -241,10 +287,7 @@ pub struct ServicequotasServiceQuotaRef {
 
 impl Ref for ServicequotasServiceQuotaRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,7 +302,10 @@ impl ServicequotasServiceQuotaRef {
 
     #[doc = "Get a reference to the value of field `adjustable` after provisioning.\n"]
     pub fn adjustable(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.adjustable", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.adjustable", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -269,7 +315,10 @@ impl ServicequotasServiceQuotaRef {
 
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_value", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -279,48 +328,74 @@ impl ServicequotasServiceQuotaRef {
 
     #[doc = "Get a reference to the value of field `quota_code` after provisioning.\n"]
     pub fn quota_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quota_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quota_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `quota_name` after provisioning.\n"]
     pub fn quota_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.quota_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.quota_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `request_id` after provisioning.\n"]
     pub fn request_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.request_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.request_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `request_status` after provisioning.\n"]
     pub fn request_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.request_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.request_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_code` after provisioning.\n"]
     pub fn service_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `usage_metric` after provisioning.\n"]
     pub fn usage_metric(&self) -> ListRef<ServicequotasServiceQuotaUsageMetricElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.usage_metric", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.usage_metric", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.value", self.extract_ref()),
+        )
     }
 }
 
@@ -393,7 +468,10 @@ pub struct ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef {
 }
 
 impl Ref for ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef {
-    fn new(shared: StackShared, base: String) -> ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef {
         ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -513,8 +591,13 @@ impl ServicequotasServiceQuotaUsageMetricElRef {
     }
 
     #[doc = "Get a reference to the value of field `metric_dimensions` after provisioning.\n"]
-    pub fn metric_dimensions(&self) -> ListRef<ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_dimensions", self.base))
+    pub fn metric_dimensions(
+        &self,
+    ) -> ListRef<ServicequotasServiceQuotaUsageMetricElMetricDimensionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_dimensions", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
@@ -524,11 +607,17 @@ impl ServicequotasServiceQuotaUsageMetricElRef {
 
     #[doc = "Get a reference to the value of field `metric_namespace` after provisioning.\n"]
     pub fn metric_namespace(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_namespace", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metric_statistic_recommendation` after provisioning.\n"]
     pub fn metric_statistic_recommendation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metric_statistic_recommendation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metric_statistic_recommendation", self.base),
+        )
     }
 }

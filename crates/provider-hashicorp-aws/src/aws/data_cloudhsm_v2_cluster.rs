@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudhsmV2ClusterData {
@@ -57,8 +57,7 @@ impl DataCloudhsmV2Cluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -66,17 +65,26 @@ impl DataCloudhsmV2Cluster {
 
     #[doc = "Get a reference to the value of field `cluster_certificates` after provisioning.\n"]
     pub fn cluster_certificates(&self) -> ListRef<DataCloudhsmV2ClusterClusterCertificatesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_certificates", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_certificates", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_state` after provisioning.\n"]
     pub fn cluster_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -84,35 +92,50 @@ impl DataCloudhsmV2Cluster {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudhsmV2Cluster {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudhsmV2Cluster { }
+impl Datasource for DataCloudhsmV2Cluster {}
 
 impl ToListMappable for DataCloudhsmV2Cluster {
     type O = ListRef<DataCloudhsmV2ClusterRef>;
@@ -170,10 +193,7 @@ pub struct DataCloudhsmV2ClusterRef {
 
 impl Ref for DataCloudhsmV2ClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -188,17 +208,26 @@ impl DataCloudhsmV2ClusterRef {
 
     #[doc = "Get a reference to the value of field `cluster_certificates` after provisioning.\n"]
     pub fn cluster_certificates(&self) -> ListRef<DataCloudhsmV2ClusterClusterCertificatesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cluster_certificates", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cluster_certificates", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_state` after provisioning.\n"]
     pub fn cluster_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -206,25 +235,36 @@ impl DataCloudhsmV2ClusterRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.subnet_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 }
 
@@ -268,7 +308,10 @@ impl DataCloudhsmV2ClusterClusterCertificatesEl {
     }
 
     #[doc = "Set the field `manufacturer_hardware_certificate`.\n"]
-    pub fn set_manufacturer_hardware_certificate(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_manufacturer_hardware_certificate(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.manufacturer_hardware_certificate = Some(v.into());
         self
     }
@@ -321,12 +364,18 @@ impl DataCloudhsmV2ClusterClusterCertificatesElRef {
 
     #[doc = "Get a reference to the value of field `aws_hardware_certificate` after provisioning.\n"]
     pub fn aws_hardware_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_hardware_certificate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_hardware_certificate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_certificate` after provisioning.\n"]
     pub fn cluster_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster_certificate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster_certificate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster_csr` after provisioning.\n"]
@@ -336,11 +385,17 @@ impl DataCloudhsmV2ClusterClusterCertificatesElRef {
 
     #[doc = "Get a reference to the value of field `hsm_certificate` after provisioning.\n"]
     pub fn hsm_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hsm_certificate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hsm_certificate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `manufacturer_hardware_certificate` after provisioning.\n"]
     pub fn manufacturer_hardware_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.manufacturer_hardware_certificate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.manufacturer_hardware_certificate", self.base),
+        )
     }
 }

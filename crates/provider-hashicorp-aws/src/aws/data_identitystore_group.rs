@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIdentitystoreGroupData {
@@ -60,8 +60,7 @@ impl DataIdentitystoreGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -75,32 +74,44 @@ impl DataIdentitystoreGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().alternate_identifier = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.alternate_identifier = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_ids` after provisioning.\n"]
     pub fn external_ids(&self) -> ListRef<DataIdentitystoreGroupExternalIdsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.external_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.external_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -110,28 +121,40 @@ impl DataIdentitystoreGroup {
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alternate_identifier` after provisioning.\n"]
     pub fn alternate_identifier(&self) -> ListRef<DataIdentitystoreGroupAlternateIdentifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alternate_identifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alternate_identifier", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIdentitystoreGroup {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIdentitystoreGroup { }
+impl Datasource for DataIdentitystoreGroup {}
 
 impl ToListMappable for DataIdentitystoreGroup {
     type O = ListRef<DataIdentitystoreGroupRef>;
@@ -191,10 +214,7 @@ pub struct DataIdentitystoreGroupRef {
 
 impl Ref for DataIdentitystoreGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -209,22 +229,34 @@ impl DataIdentitystoreGroupRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_ids` after provisioning.\n"]
     pub fn external_ids(&self) -> ListRef<DataIdentitystoreGroupExternalIdsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.external_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.external_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -234,18 +266,26 @@ impl DataIdentitystoreGroupRef {
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alternate_identifier` after provisioning.\n"]
     pub fn alternate_identifier(&self) -> ListRef<DataIdentitystoreGroupAlternateIdentifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alternate_identifier", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alternate_identifier", self.extract_ref()),
+        )
     }
 }
 
@@ -330,7 +370,7 @@ pub struct DataIdentitystoreGroupAlternateIdentifierElExternalIdEl {
     issuer: PrimField<String>,
 }
 
-impl DataIdentitystoreGroupAlternateIdentifierElExternalIdEl { }
+impl DataIdentitystoreGroupAlternateIdentifierElExternalIdEl {}
 
 impl ToListMappable for DataIdentitystoreGroupAlternateIdentifierElExternalIdEl {
     type O = BlockAssignable<DataIdentitystoreGroupAlternateIdentifierElExternalIdEl>;
@@ -366,7 +406,10 @@ pub struct DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef {
 }
 
 impl Ref for DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef {
-    fn new(shared: StackShared, base: String) -> DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef {
         DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef {
             shared: shared,
             base: base.to_string(),
@@ -396,7 +439,7 @@ pub struct DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl {
     attribute_value: PrimField<String>,
 }
 
-impl DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl { }
+impl DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl {}
 
 impl ToListMappable for DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl {
     type O = BlockAssignable<DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl>;
@@ -432,7 +475,10 @@ pub struct DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef {
 }
 
 impl Ref for DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef {
-    fn new(shared: StackShared, base: String) -> DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef {
         DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef {
             shared: shared,
             base: base.to_string(),
@@ -447,19 +493,26 @@ impl DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef {
 
     #[doc = "Get a reference to the value of field `attribute_path` after provisioning.\n"]
     pub fn attribute_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attribute_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attribute_path", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attribute_value` after provisioning.\n"]
     pub fn attribute_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attribute_value", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attribute_value", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct DataIdentitystoreGroupAlternateIdentifierElDynamic {
     external_id: Option<DynamicBlock<DataIdentitystoreGroupAlternateIdentifierElExternalIdEl>>,
-    unique_attribute: Option<DynamicBlock<DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl>>,
+    unique_attribute:
+        Option<DynamicBlock<DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeEl>>,
 }
 
 #[derive(Serialize)]
@@ -480,10 +533,10 @@ impl DataIdentitystoreGroupAlternateIdentifierEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.external_id = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.external_id = Some(d);
-            },
+            }
         }
         self
     }
@@ -496,10 +549,10 @@ impl DataIdentitystoreGroupAlternateIdentifierEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.unique_attribute = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.unique_attribute = Some(d);
-            },
+            }
         }
         self
     }
@@ -549,13 +602,20 @@ impl DataIdentitystoreGroupAlternateIdentifierElRef {
     }
 
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
-    pub fn external_id(&self) -> ListRef<DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef> {
+    pub fn external_id(
+        &self,
+    ) -> ListRef<DataIdentitystoreGroupAlternateIdentifierElExternalIdElRef> {
         ListRef::new(self.shared().clone(), format!("{}.external_id", self.base))
     }
 
     #[doc = "Get a reference to the value of field `unique_attribute` after provisioning.\n"]
-    pub fn unique_attribute(&self) -> ListRef<DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.unique_attribute", self.base))
+    pub fn unique_attribute(
+        &self,
+    ) -> ListRef<DataIdentitystoreGroupAlternateIdentifierElUniqueAttributeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.unique_attribute", self.base),
+        )
     }
 }
 

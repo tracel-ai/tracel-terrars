@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppintegrationsEventIntegrationData {
@@ -51,8 +51,7 @@ impl DataAppintegrationsEventIntegration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,17 +70,26 @@ impl DataAppintegrationsEventIntegration {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_filter` after provisioning.\n"]
     pub fn event_filter(&self) -> ListRef<DataAppintegrationsEventIntegrationEventFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eventbridge_bus` after provisioning.\n"]
     pub fn eventbridge_bus(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.eventbridge_bus", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.eventbridge_bus", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,28 +99,40 @@ impl DataAppintegrationsEventIntegration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppintegrationsEventIntegration {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppintegrationsEventIntegration { }
+impl Datasource for DataAppintegrationsEventIntegration {}
 
 impl ToListMappable for DataAppintegrationsEventIntegration {
     type O = ListRef<DataAppintegrationsEventIntegrationRef>;
@@ -145,19 +165,20 @@ pub struct BuildDataAppintegrationsEventIntegration {
 
 impl BuildDataAppintegrationsEventIntegration {
     pub fn build(self, stack: &mut Stack) -> DataAppintegrationsEventIntegration {
-        let out = DataAppintegrationsEventIntegration(Rc::new(DataAppintegrationsEventIntegration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataAppintegrationsEventIntegrationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                name: self.name,
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-            }),
-        }));
+        let out =
+            DataAppintegrationsEventIntegration(Rc::new(DataAppintegrationsEventIntegration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataAppintegrationsEventIntegrationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    name: self.name,
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -170,10 +191,7 @@ pub struct DataAppintegrationsEventIntegrationRef {
 
 impl Ref for DataAppintegrationsEventIntegrationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -193,17 +211,26 @@ impl DataAppintegrationsEventIntegrationRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `event_filter` after provisioning.\n"]
     pub fn event_filter(&self) -> ListRef<DataAppintegrationsEventIntegrationEventFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eventbridge_bus` after provisioning.\n"]
     pub fn eventbridge_bus(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.eventbridge_bus", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.eventbridge_bus", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -213,18 +240,26 @@ impl DataAppintegrationsEventIntegrationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -258,7 +293,9 @@ pub struct BuildDataAppintegrationsEventIntegrationEventFilterEl {}
 
 impl BuildDataAppintegrationsEventIntegrationEventFilterEl {
     pub fn build(self) -> DataAppintegrationsEventIntegrationEventFilterEl {
-        DataAppintegrationsEventIntegrationEventFilterEl { source: core::default::Default::default() }
+        DataAppintegrationsEventIntegrationEventFilterEl {
+            source: core::default::Default::default(),
+        }
     }
 }
 
@@ -268,7 +305,10 @@ pub struct DataAppintegrationsEventIntegrationEventFilterElRef {
 }
 
 impl Ref for DataAppintegrationsEventIntegrationEventFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataAppintegrationsEventIntegrationEventFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppintegrationsEventIntegrationEventFilterElRef {
         DataAppintegrationsEventIntegrationEventFilterElRef {
             shared: shared,
             base: base.to_string(),

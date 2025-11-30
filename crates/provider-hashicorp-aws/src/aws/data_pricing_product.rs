@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataPricingProductData {
@@ -55,10 +55,10 @@ impl DataPricingProduct {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filters = Some(d);
-            },
+            }
         }
         self
     }
@@ -70,27 +70,40 @@ impl DataPricingProduct {
 
     #[doc = "Get a reference to the value of field `result` after provisioning.\n"]
     pub fn result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.result", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.result", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_code` after provisioning.\n"]
     pub fn service_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<DataPricingProductFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataPricingProduct {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataPricingProduct { }
+impl Datasource for DataPricingProduct {}
 
 impl ToListMappable for DataPricingProduct {
     type O = ListRef<DataPricingProductRef>;
@@ -148,10 +161,7 @@ pub struct DataPricingProductRef {
 
 impl Ref for DataPricingProductRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -171,17 +181,26 @@ impl DataPricingProductRef {
 
     #[doc = "Get a reference to the value of field `result` after provisioning.\n"]
     pub fn result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.result", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.result", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_code` after provisioning.\n"]
     pub fn service_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<DataPricingProductFiltersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters", self.extract_ref()),
+        )
     }
 }
 
@@ -191,7 +210,7 @@ pub struct DataPricingProductFiltersEl {
     value: PrimField<String>,
 }
 
-impl DataPricingProductFiltersEl { }
+impl DataPricingProductFiltersEl {}
 
 impl ToListMappable for DataPricingProductFiltersEl {
     type O = BlockAssignable<DataPricingProductFiltersEl>;

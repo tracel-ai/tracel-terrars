@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Ec2FleetData {
@@ -94,7 +94,8 @@ impl Ec2Fleet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -107,7 +108,7 @@ impl Ec2Fleet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -118,12 +119,22 @@ impl Ec2Fleet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -163,8 +174,7 @@ impl Ec2Fleet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -219,40 +229,49 @@ impl Ec2Fleet {
     }
 
     #[doc = "Set the field `fleet_instance_set`.\n"]
-    pub fn set_fleet_instance_set(self, v: impl Into<BlockAssignable<Ec2FleetFleetInstanceSetEl>>) -> Self {
+    pub fn set_fleet_instance_set(
+        self,
+        v: impl Into<BlockAssignable<Ec2FleetFleetInstanceSetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().fleet_instance_set = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.fleet_instance_set = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `launch_template_config`.\n"]
-    pub fn set_launch_template_config(self, v: impl Into<BlockAssignable<Ec2FleetLaunchTemplateConfigEl>>) -> Self {
+    pub fn set_launch_template_config(
+        self,
+        v: impl Into<BlockAssignable<Ec2FleetLaunchTemplateConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().launch_template_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.launch_template_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `on_demand_options`.\n"]
-    pub fn set_on_demand_options(self, v: impl Into<BlockAssignable<Ec2FleetOnDemandOptionsEl>>) -> Self {
+    pub fn set_on_demand_options(
+        self,
+        v: impl Into<BlockAssignable<Ec2FleetOnDemandOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().on_demand_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.on_demand_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -262,10 +281,10 @@ impl Ec2Fleet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().spot_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.spot_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -278,10 +297,14 @@ impl Ec2Fleet {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_capacity_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.target_capacity_specification = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .target_capacity_specification = Some(d);
+            }
         }
         self
     }
@@ -299,27 +322,42 @@ impl Ec2Fleet {
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excess_capacity_termination_policy` after provisioning.\n"]
     pub fn excess_capacity_termination_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.excess_capacity_termination_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.excess_capacity_termination_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_state` after provisioning.\n"]
     pub fn fleet_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fleet_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fleet_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fulfilled_capacity` after provisioning.\n"]
     pub fn fulfilled_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fulfilled_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fulfilled_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fulfilled_on_demand_capacity` after provisioning.\n"]
     pub fn fulfilled_on_demand_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fulfilled_on_demand_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fulfilled_on_demand_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -327,90 +365,140 @@ impl Ec2Fleet {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replace_unhealthy_instances` after provisioning.\n"]
     pub fn replace_unhealthy_instances(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replace_unhealthy_instances", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replace_unhealthy_instances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances` after provisioning.\n"]
     pub fn terminate_instances(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances_with_expiration` after provisioning.\n"]
     pub fn terminate_instances_with_expiration(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances_with_expiration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances_with_expiration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_from` after provisioning.\n"]
     pub fn valid_from(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_from", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_from", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
     pub fn valid_until(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_until", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_until", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_instance_set` after provisioning.\n"]
     pub fn fleet_instance_set(&self) -> ListRef<Ec2FleetFleetInstanceSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fleet_instance_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fleet_instance_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_config` after provisioning.\n"]
     pub fn launch_template_config(&self) -> ListRef<Ec2FleetLaunchTemplateConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_options` after provisioning.\n"]
     pub fn on_demand_options(&self) -> ListRef<Ec2FleetOnDemandOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_options` after provisioning.\n"]
     pub fn spot_options(&self) -> ListRef<Ec2FleetSpotOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spot_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spot_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity_specification` after provisioning.\n"]
-    pub fn target_capacity_specification(&self) -> ListRef<Ec2FleetTargetCapacitySpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_capacity_specification", self.extract_ref()))
+    pub fn target_capacity_specification(
+        &self,
+    ) -> ListRef<Ec2FleetTargetCapacitySpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_capacity_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Ec2FleetTimeoutsElRef {
-        Ec2FleetTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Ec2FleetTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Ec2Fleet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Ec2Fleet { }
+impl Resource for Ec2Fleet {}
 
 impl ToListMappable for Ec2Fleet {
     type O = ListRef<Ec2FleetRef>;
@@ -485,10 +573,7 @@ pub struct Ec2FleetRef {
 
 impl Ref for Ec2FleetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -508,27 +593,42 @@ impl Ec2FleetRef {
 
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.context", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.context", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excess_capacity_termination_policy` after provisioning.\n"]
     pub fn excess_capacity_termination_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.excess_capacity_termination_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.excess_capacity_termination_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_state` after provisioning.\n"]
     pub fn fleet_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fleet_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fleet_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fulfilled_capacity` after provisioning.\n"]
     pub fn fulfilled_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fulfilled_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fulfilled_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fulfilled_on_demand_capacity` after provisioning.\n"]
     pub fn fulfilled_on_demand_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fulfilled_on_demand_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fulfilled_on_demand_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -536,80 +636,126 @@ impl Ec2FleetRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `replace_unhealthy_instances` after provisioning.\n"]
     pub fn replace_unhealthy_instances(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replace_unhealthy_instances", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replace_unhealthy_instances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances` after provisioning.\n"]
     pub fn terminate_instances(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instances_with_expiration` after provisioning.\n"]
     pub fn terminate_instances_with_expiration(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instances_with_expiration", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instances_with_expiration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_from` after provisioning.\n"]
     pub fn valid_from(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_from", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_from", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_until` after provisioning.\n"]
     pub fn valid_until(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.valid_until", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.valid_until", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_instance_set` after provisioning.\n"]
     pub fn fleet_instance_set(&self) -> ListRef<Ec2FleetFleetInstanceSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fleet_instance_set", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fleet_instance_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_config` after provisioning.\n"]
     pub fn launch_template_config(&self) -> ListRef<Ec2FleetLaunchTemplateConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_options` after provisioning.\n"]
     pub fn on_demand_options(&self) -> ListRef<Ec2FleetOnDemandOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_demand_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_demand_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_options` after provisioning.\n"]
     pub fn spot_options(&self) -> ListRef<Ec2FleetSpotOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.spot_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.spot_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity_specification` after provisioning.\n"]
-    pub fn target_capacity_specification(&self) -> ListRef<Ec2FleetTargetCapacitySpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_capacity_specification", self.extract_ref()))
+    pub fn target_capacity_specification(
+        &self,
+    ) -> ListRef<Ec2FleetTargetCapacitySpecificationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_capacity_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Ec2FleetTimeoutsElRef {
-        Ec2FleetTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Ec2FleetTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -702,7 +848,10 @@ impl Ec2FleetFleetInstanceSetElRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle` after provisioning.\n"]
@@ -772,7 +921,10 @@ pub struct Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
 }
 
 impl Ref for Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
-    fn new(shared: StackShared, base: String) -> Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
         Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
             shared: shared,
             base: base.to_string(),
@@ -787,12 +939,18 @@ impl Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `launch_template_id` after provisioning.\n"]
     pub fn launch_template_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_template_name` after provisioning.\n"]
     pub fn launch_template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_template_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_template_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
@@ -823,8 +981,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCo
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -835,10 +997,13 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {
+}
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -880,7 +1045,8 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCo
 }
 
 #[derive(Serialize)]
-pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
+pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -901,9 +1067,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTo
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
-    type O =
-        BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -914,10 +1083,16 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{}
 
-impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
+impl
+    BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+{
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -925,16 +1100,20 @@ impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAccelera
     }
 }
 
-pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+impl Ref
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef {
             shared: shared,
             base: base.to_string(),
@@ -959,7 +1138,8 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTo
 }
 
 #[derive(Serialize)]
-pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
+pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -980,9 +1160,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBa
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
-    type O =
-        BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -993,10 +1176,14 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+{}
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1004,16 +1191,20 @@ impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaseline
     }
 }
 
-pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+impl Ref
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1059,8 +1250,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerV
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1071,10 +1266,13 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
+}
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1131,7 +1329,8 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl {
 }
 
 impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl>;
+    type O =
+        BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1148,7 +1347,9 @@ pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMe
 }
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl {
             max: core::default::Default::default(),
             min: self.min,
@@ -1211,8 +1412,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwi
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1223,10 +1428,13 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl
+{}
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1239,11 +1447,14 @@ pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetwork
     base: String,
 }
 
-impl Ref for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef {
+impl Ref
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef {
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1289,8 +1500,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterf
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1301,10 +1516,13 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl
+{}
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1312,16 +1530,20 @@ impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkI
     }
 }
 
-pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef {
+pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef {
+impl Ref
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef {
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef {
             shared: shared,
             base: base.to_string(),
@@ -1367,8 +1589,12 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalSto
     }
 }
 
-impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl>;
+impl ToListMappable
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl
+{
+    type O = BlockAssignable<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1379,10 +1605,13 @@ impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirem
     }
 }
 
-pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {}
+pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl
+{}
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl {
             max: core::default::Default::default(),
             min: core::default::Default::default(),
@@ -1395,11 +1624,14 @@ pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLo
     base: String,
 }
 
-impl Ref for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef {
+impl Ref
+    for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef {
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef
+    {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef {
             shared: shared,
             base: base.to_string(),
@@ -1439,7 +1671,8 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl {
 }
 
 impl ToListMappable for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl {
-    type O = BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl>;
+    type O =
+        BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1456,7 +1689,9 @@ pub struct BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVc
 }
 
 impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl {
-    pub fn build(self) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl {
+    pub fn build(
+        self,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl {
             max: core::default::Default::default(),
             min: self.min,
@@ -1589,7 +1824,10 @@ pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
 
 impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `accelerator_manufacturers`.\n"]
-    pub fn set_accelerator_manufacturers(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_accelerator_manufacturers(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.accelerator_manufacturers = Some(v.into());
         self
     }
@@ -1631,7 +1869,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `excluded_instance_types`.\n"]
-    pub fn set_excluded_instance_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_excluded_instance_types(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.excluded_instance_types = Some(v.into());
         self
     }
@@ -1655,13 +1896,19 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `max_spot_price_as_percentage_of_optimal_on_demand_price`.\n"]
-    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_max_spot_price_as_percentage_of_optimal_on_demand_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.max_spot_price_as_percentage_of_optimal_on_demand_price = Some(v.into());
         self
     }
 
     #[doc = "Set the field `on_demand_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_on_demand_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_on_demand_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.on_demand_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -1673,7 +1920,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     }
 
     #[doc = "Set the field `spot_max_price_percentage_over_lowest_price`.\n"]
-    pub fn set_spot_max_price_percentage_over_lowest_price(mut self, v: impl Into<PrimField<f64>>) -> Self {
+    pub fn set_spot_max_price_percentage_over_lowest_price(
+        mut self,
+        v: impl Into<PrimField<f64>>,
+    ) -> Self {
         self.spot_max_price_percentage_over_lowest_price = Some(v.into());
         self
     }
@@ -1681,22 +1931,19 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `accelerator_count`.\n"]
     pub fn set_accelerator_count(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -1716,10 +1963,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.accelerator_total_memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.accelerator_total_memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -1739,10 +1986,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.baseline_ebs_bandwidth_mbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.baseline_ebs_bandwidth_mbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -1750,22 +1997,19 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `memory_gib_per_vcpu`.\n"]
     pub fn set_memory_gib_per_vcpu(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_gib_per_vcpu = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_gib_per_vcpu = Some(d);
-            },
+            }
         }
         self
     }
@@ -1773,15 +2017,19 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `memory_mib`.\n"]
     pub fn set_memory_mib(
         mut self,
-        v: impl Into<BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.memory_mib = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.memory_mib = Some(d);
-            },
+            }
         }
         self
     }
@@ -1801,10 +2049,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_bandwidth_gbps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_bandwidth_gbps = Some(d);
-            },
+            }
         }
         self
     }
@@ -1824,10 +2072,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_interface_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_interface_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -1835,22 +2083,19 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `total_local_storage_gb`.\n"]
     pub fn set_total_local_storage_gb(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.total_local_storage_gb = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.total_local_storage_gb = Some(d);
-            },
+            }
         }
         self
     }
@@ -1858,15 +2103,19 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
     #[doc = "Set the field `vcpu_count`.\n"]
     pub fn set_vcpu_count(
         mut self,
-        v: impl Into<BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vcpu_count = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vcpu_count = Some(d);
-            },
+            }
         }
         self
     }
@@ -1900,7 +2149,8 @@ impl BuildEc2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl {
             instance_generations: core::default::Default::default(),
             local_storage: core::default::Default::default(),
             local_storage_types: core::default::Default::default(),
-            max_spot_price_as_percentage_of_optimal_on_demand_price: core::default::Default::default(),
+            max_spot_price_as_percentage_of_optimal_on_demand_price:
+                core::default::Default::default(),
             on_demand_max_price_percentage_over_lowest_price: core::default::Default::default(),
             require_hibernate_support: core::default::Default::default(),
             spot_max_price_percentage_over_lowest_price: core::default::Default::default(),
@@ -1924,7 +2174,10 @@ pub struct Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
 }
 
 impl Ref for Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
-    fn new(shared: StackShared, base: String) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
         Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1939,22 +2192,34 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
 
     #[doc = "Get a reference to the value of field `accelerator_manufacturers` after provisioning.\n"]
     pub fn accelerator_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_names` after provisioning.\n"]
     pub fn accelerator_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_names", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_types` after provisioning.\n"]
     pub fn accelerator_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.accelerator_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allowed_instance_types` after provisioning.\n"]
     pub fn allowed_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.allowed_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bare_metal` after provisioning.\n"]
@@ -1964,125 +2229,189 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef {
 
     #[doc = "Get a reference to the value of field `burstable_performance` after provisioning.\n"]
     pub fn burstable_performance(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.burstable_performance", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.burstable_performance", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cpu_manufacturers` after provisioning.\n"]
     pub fn cpu_manufacturers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.cpu_manufacturers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.cpu_manufacturers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `excluded_instance_types` after provisioning.\n"]
     pub fn excluded_instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.excluded_instance_types", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.excluded_instance_types", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_generations` after provisioning.\n"]
     pub fn instance_generations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_generations", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_generations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage` after provisioning.\n"]
     pub fn local_storage(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_storage", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `local_storage_types` after provisioning.\n"]
     pub fn local_storage_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.local_storage_types", self.base))
-    }
-
-    #[doc =
-        "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
-    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(
+        SetRef::new(
             self.shared().clone(),
-            format!("{}.max_spot_price_as_percentage_of_optimal_on_demand_price", self.base),
+            format!("{}.local_storage_types", self.base),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `max_spot_price_as_percentage_of_optimal_on_demand_price` after provisioning.\n"]
+    pub fn max_spot_price_as_percentage_of_optimal_on_demand_price(&self) -> PrimExpr<f64> {
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.max_spot_price_as_percentage_of_optimal_on_demand_price",
+                self.base
+            ),
+        )
+    }
+
+    #[doc = "Get a reference to the value of field `on_demand_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn on_demand_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.on_demand_max_price_percentage_over_lowest_price", self.base),
+            format!(
+                "{}.on_demand_max_price_percentage_over_lowest_price",
+                self.base
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `require_hibernate_support` after provisioning.\n"]
     pub fn require_hibernate_support(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_hibernate_support", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_hibernate_support", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_max_price_percentage_over_lowest_price` after provisioning.\n"]
     pub fn spot_max_price_percentage_over_lowest_price(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_max_price_percentage_over_lowest_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_max_price_percentage_over_lowest_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_count` after provisioning.\n"]
     pub fn accelerator_count(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_count", self.base))
+    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorCountElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `accelerator_total_memory_mib` after provisioning.\n"]
     pub fn accelerator_total_memory_mib(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.accelerator_total_memory_mib", self.base))
+    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElAcceleratorTotalMemoryMibElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.accelerator_total_memory_mib", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `baseline_ebs_bandwidth_mbps` after provisioning.\n"]
     pub fn baseline_ebs_bandwidth_mbps(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.baseline_ebs_bandwidth_mbps", self.base))
+    ) -> ListRef<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElBaselineEbsBandwidthMbpsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.baseline_ebs_bandwidth_mbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_gib_per_vcpu` after provisioning.\n"]
     pub fn memory_gib_per_vcpu(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.memory_gib_per_vcpu", self.base))
+    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryGibPerVcpuElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.memory_gib_per_vcpu", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `memory_mib` after provisioning.\n"]
-    pub fn memory_mib(&self) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibElRef> {
+    pub fn memory_mib(
+        &self,
+    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElMemoryMibElRef> {
         ListRef::new(self.shared().clone(), format!("{}.memory_mib", self.base))
     }
 
     #[doc = "Get a reference to the value of field `network_bandwidth_gbps` after provisioning.\n"]
     pub fn network_bandwidth_gbps(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_bandwidth_gbps", self.base))
+    ) -> ListRef<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkBandwidthGbpsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_bandwidth_gbps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_interface_count` after provisioning.\n"]
     pub fn network_interface_count(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_interface_count", self.base))
+    ) -> ListRef<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElNetworkInterfaceCountElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_interface_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `total_local_storage_gb` after provisioning.\n"]
     pub fn total_local_storage_gb(
         &self,
-    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.total_local_storage_gb", self.base))
+    ) -> ListRef<
+        Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElTotalLocalStorageGbElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.total_local_storage_gb", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vcpu_count` after provisioning.\n"]
-    pub fn vcpu_count(&self) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountElRef> {
+    pub fn vcpu_count(
+        &self,
+    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElVcpuCountElRef> {
         ListRef::new(self.shared().clone(), format!("{}.vcpu_count", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct Ec2FleetLaunchTemplateConfigElOverrideElDynamic {
-    instance_requirements: Option<DynamicBlock<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl>>,
+    instance_requirements:
+        Option<DynamicBlock<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl>>,
 }
 
 #[derive(Serialize)]
@@ -2100,7 +2429,8 @@ pub struct Ec2FleetLaunchTemplateConfigElOverrideEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     weighted_capacity: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    instance_requirements: Option<Vec<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl>>,
+    instance_requirements:
+        Option<Vec<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsEl>>,
     dynamic: Ec2FleetLaunchTemplateConfigElOverrideElDynamic,
 }
 
@@ -2149,10 +2479,10 @@ impl Ec2FleetLaunchTemplateConfigElOverrideEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.instance_requirements = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.instance_requirements = Some(d);
-            },
+            }
         }
         self
     }
@@ -2208,12 +2538,18 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_price` after provisioning.\n"]
@@ -2233,25 +2569,35 @@ impl Ec2FleetLaunchTemplateConfigElOverrideElRef {
 
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.weighted_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.weighted_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_requirements` after provisioning.\n"]
-    pub fn instance_requirements(&self) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_requirements", self.base))
+    pub fn instance_requirements(
+        &self,
+    ) -> ListRef<Ec2FleetLaunchTemplateConfigElOverrideElInstanceRequirementsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_requirements", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct Ec2FleetLaunchTemplateConfigElDynamic {
-    launch_template_specification: Option<DynamicBlock<Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
+    launch_template_specification:
+        Option<DynamicBlock<Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
     override_: Option<DynamicBlock<Ec2FleetLaunchTemplateConfigElOverrideEl>>,
 }
 
 #[derive(Serialize)]
 pub struct Ec2FleetLaunchTemplateConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    launch_template_specification: Option<Vec<Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
+    launch_template_specification:
+        Option<Vec<Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationEl>>,
     #[serde(rename = "override", skip_serializing_if = "Option::is_none")]
     override_: Option<Vec<Ec2FleetLaunchTemplateConfigElOverrideEl>>,
     dynamic: Ec2FleetLaunchTemplateConfigElDynamic,
@@ -2266,23 +2612,26 @@ impl Ec2FleetLaunchTemplateConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.launch_template_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.launch_template_specification = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `override_`.\n"]
-    pub fn set_override(mut self, v: impl Into<BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideEl>>) -> Self {
+    pub fn set_override(
+        mut self,
+        v: impl Into<BlockAssignable<Ec2FleetLaunchTemplateConfigElOverrideEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.override_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.override_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -2335,7 +2684,10 @@ impl Ec2FleetLaunchTemplateConfigElRef {
     pub fn launch_template_specification(
         &self,
     ) -> ListRef<Ec2FleetLaunchTemplateConfigElLaunchTemplateSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.launch_template_specification", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.launch_template_specification", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
@@ -2374,7 +2726,9 @@ pub struct BuildEc2FleetOnDemandOptionsElCapacityReservationOptionsEl {}
 
 impl BuildEc2FleetOnDemandOptionsElCapacityReservationOptionsEl {
     pub fn build(self) -> Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl {
-        Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl { usage_strategy: core::default::Default::default() }
+        Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl {
+            usage_strategy: core::default::Default::default(),
+        }
     }
 }
 
@@ -2384,7 +2738,10 @@ pub struct Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef {
 }
 
 impl Ref for Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef {
-    fn new(shared: StackShared, base: String) -> Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef {
         Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2399,13 +2756,17 @@ impl Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef {
 
     #[doc = "Get a reference to the value of field `usage_strategy` after provisioning.\n"]
     pub fn usage_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.usage_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.usage_strategy", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct Ec2FleetOnDemandOptionsElDynamic {
-    capacity_reservation_options: Option<DynamicBlock<Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl>>,
+    capacity_reservation_options:
+        Option<DynamicBlock<Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl>>,
 }
 
 #[derive(Serialize)]
@@ -2421,7 +2782,8 @@ pub struct Ec2FleetOnDemandOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     single_instance_type: Option<PrimField<bool>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_reservation_options: Option<Vec<Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl>>,
+    capacity_reservation_options:
+        Option<Vec<Ec2FleetOnDemandOptionsElCapacityReservationOptionsEl>>,
     dynamic: Ec2FleetOnDemandOptionsElDynamic,
 }
 
@@ -2464,10 +2826,10 @@ impl Ec2FleetOnDemandOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_reservation_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_reservation_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -2522,32 +2884,52 @@ impl Ec2FleetOnDemandOptionsElRef {
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_total_price` after provisioning.\n"]
     pub fn max_total_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_total_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_total_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_target_capacity` after provisioning.\n"]
     pub fn min_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_target_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_target_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_availability_zone` after provisioning.\n"]
     pub fn single_availability_zone(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_instance_type` after provisioning.\n"]
     pub fn single_instance_type(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `capacity_reservation_options` after provisioning.\n"]
-    pub fn capacity_reservation_options(&self) -> ListRef<Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_reservation_options", self.base))
+    pub fn capacity_reservation_options(
+        &self,
+    ) -> ListRef<Ec2FleetOnDemandOptionsElCapacityReservationOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_reservation_options", self.base),
+        )
     }
 }
 
@@ -2602,7 +2984,10 @@ pub struct Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef {
 }
 
 impl Ref for Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef {
-    fn new(shared: StackShared, base: String) -> Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef {
         Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef {
             shared: shared,
             base: base.to_string(),
@@ -2617,24 +3002,32 @@ impl Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef {
 
     #[doc = "Get a reference to the value of field `replacement_strategy` after provisioning.\n"]
     pub fn replacement_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replacement_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replacement_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_delay` after provisioning.\n"]
     pub fn termination_delay(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.termination_delay", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.termination_delay", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct Ec2FleetSpotOptionsElMaintenanceStrategiesElDynamic {
-    capacity_rebalance: Option<DynamicBlock<Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceEl>>,
+    capacity_rebalance:
+        Option<DynamicBlock<Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceEl>>,
 }
 
 #[derive(Serialize)]
 pub struct Ec2FleetSpotOptionsElMaintenanceStrategiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_rebalance: Option<Vec<Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceEl>>,
+    capacity_rebalance:
+        Option<Vec<Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceEl>>,
     dynamic: Ec2FleetSpotOptionsElMaintenanceStrategiesElDynamic,
 }
 
@@ -2647,10 +3040,10 @@ impl Ec2FleetSpotOptionsElMaintenanceStrategiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_rebalance = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_rebalance = Some(d);
-            },
+            }
         }
         self
     }
@@ -2699,8 +3092,13 @@ impl Ec2FleetSpotOptionsElMaintenanceStrategiesElRef {
     }
 
     #[doc = "Get a reference to the value of field `capacity_rebalance` after provisioning.\n"]
-    pub fn capacity_rebalance(&self) -> ListRef<Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_rebalance", self.base))
+    pub fn capacity_rebalance(
+        &self,
+    ) -> ListRef<Ec2FleetSpotOptionsElMaintenanceStrategiesElCapacityRebalanceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_rebalance", self.base),
+        )
     }
 }
 
@@ -2781,10 +3179,10 @@ impl Ec2FleetSpotOptionsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.maintenance_strategies = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.maintenance_strategies = Some(d);
-            },
+            }
         }
         self
     }
@@ -2841,42 +3239,68 @@ impl Ec2FleetSpotOptionsElRef {
 
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allocation_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allocation_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_interruption_behavior` after provisioning.\n"]
     pub fn instance_interruption_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_interruption_behavior", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_interruption_behavior", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_pools_to_use_count` after provisioning.\n"]
     pub fn instance_pools_to_use_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_pools_to_use_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_pools_to_use_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_total_price` after provisioning.\n"]
     pub fn max_total_price(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_total_price", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_total_price", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `min_target_capacity` after provisioning.\n"]
     pub fn min_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.min_target_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.min_target_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_availability_zone` after provisioning.\n"]
     pub fn single_availability_zone(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_instance_type` after provisioning.\n"]
     pub fn single_instance_type(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.single_instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.single_instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maintenance_strategies` after provisioning.\n"]
-    pub fn maintenance_strategies(&self) -> ListRef<Ec2FleetSpotOptionsElMaintenanceStrategiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.maintenance_strategies", self.base))
+    pub fn maintenance_strategies(
+        &self,
+    ) -> ListRef<Ec2FleetSpotOptionsElMaintenanceStrategiesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.maintenance_strategies", self.base),
+        )
     }
 }
 
@@ -2964,27 +3388,42 @@ impl Ec2FleetTargetCapacitySpecificationElRef {
 
     #[doc = "Get a reference to the value of field `default_target_capacity_type` after provisioning.\n"]
     pub fn default_target_capacity_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_target_capacity_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.default_target_capacity_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_demand_target_capacity` after provisioning.\n"]
     pub fn on_demand_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_demand_target_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_demand_target_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `spot_target_capacity` after provisioning.\n"]
     pub fn spot_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.spot_target_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.spot_target_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_capacity_unit_type` after provisioning.\n"]
     pub fn target_capacity_unit_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_capacity_unit_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_capacity_unit_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `total_target_capacity` after provisioning.\n"]
     pub fn total_target_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.total_target_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.total_target_capacity", self.base),
+        )
     }
 }
 

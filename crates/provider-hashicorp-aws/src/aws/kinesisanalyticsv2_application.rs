@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Kinesisanalyticsv2ApplicationData {
@@ -36,7 +36,8 @@ struct Kinesisanalyticsv2ApplicationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     application_configuration: Option<Vec<Kinesisanalyticsv2ApplicationApplicationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_logging_options: Option<Vec<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl>>,
+    cloudwatch_logging_options:
+        Option<Vec<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<Kinesisanalyticsv2ApplicationTimeoutsEl>,
     dynamic: Kinesisanalyticsv2ApplicationDynamic,
@@ -77,7 +78,8 @@ impl Kinesisanalyticsv2Application {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -90,7 +92,7 @@ impl Kinesisanalyticsv2Application {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -101,12 +103,22 @@ impl Kinesisanalyticsv2Application {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -134,8 +146,7 @@ impl Kinesisanalyticsv2Application {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -167,10 +178,10 @@ impl Kinesisanalyticsv2Application {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().application_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.application_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -183,10 +194,10 @@ impl Kinesisanalyticsv2Application {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cloudwatch_logging_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cloudwatch_logging_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -199,7 +210,10 @@ impl Kinesisanalyticsv2Application {
 
     #[doc = "Get a reference to the value of field `application_mode` after provisioning.\n"]
     pub fn application_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -209,17 +223,26 @@ impl Kinesisanalyticsv2Application {
 
     #[doc = "Get a reference to the value of field `create_timestamp` after provisioning.\n"]
     pub fn create_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_stop` after provisioning.\n"]
     pub fn force_stop(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_stop", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_stop", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -229,63 +252,102 @@ impl Kinesisanalyticsv2Application {
 
     #[doc = "Get a reference to the value of field `last_update_timestamp` after provisioning.\n"]
     pub fn last_update_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_update_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_update_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_environment` after provisioning.\n"]
     pub fn runtime_environment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.runtime_environment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.runtime_environment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_execution_role` after provisioning.\n"]
     pub fn service_execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_execution_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_execution_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_application` after provisioning.\n"]
     pub fn start_application(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_application", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_application", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_configuration` after provisioning.\n"]
-    pub fn application_configuration(&self) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_configuration", self.extract_ref()))
+    pub fn application_configuration(
+        &self,
+    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logging_options` after provisioning.\n"]
-    pub fn cloudwatch_logging_options(&self) -> ListRef<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logging_options", self.extract_ref()))
+    pub fn cloudwatch_logging_options(
+        &self,
+    ) -> ListRef<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logging_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -299,11 +361,15 @@ impl Kinesisanalyticsv2Application {
 
 impl Referable for Kinesisanalyticsv2Application {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Kinesisanalyticsv2Application { }
+impl Resource for Kinesisanalyticsv2Application {}
 
 impl ToListMappable for Kinesisanalyticsv2Application {
     type O = ListRef<Kinesisanalyticsv2ApplicationRef>;
@@ -377,10 +443,7 @@ pub struct Kinesisanalyticsv2ApplicationRef {
 
 impl Ref for Kinesisanalyticsv2ApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -395,7 +458,10 @@ impl Kinesisanalyticsv2ApplicationRef {
 
     #[doc = "Get a reference to the value of field `application_mode` after provisioning.\n"]
     pub fn application_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.application_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.application_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -405,17 +471,26 @@ impl Kinesisanalyticsv2ApplicationRef {
 
     #[doc = "Get a reference to the value of field `create_timestamp` after provisioning.\n"]
     pub fn create_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_stop` after provisioning.\n"]
     pub fn force_stop(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_stop", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_stop", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -425,63 +500,102 @@ impl Kinesisanalyticsv2ApplicationRef {
 
     #[doc = "Get a reference to the value of field `last_update_timestamp` after provisioning.\n"]
     pub fn last_update_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_update_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_update_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime_environment` after provisioning.\n"]
     pub fn runtime_environment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.runtime_environment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.runtime_environment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_execution_role` after provisioning.\n"]
     pub fn service_execution_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_execution_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_execution_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_application` after provisioning.\n"]
     pub fn start_application(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_application", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_application", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_configuration` after provisioning.\n"]
-    pub fn application_configuration(&self) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_configuration", self.extract_ref()))
+    pub fn application_configuration(
+        &self,
+    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logging_options` after provisioning.\n"]
-    pub fn cloudwatch_logging_options(&self) -> ListRef<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logging_options", self.extract_ref()))
+    pub fn cloudwatch_logging_options(
+        &self,
+    ) -> ListRef<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logging_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -494,7 +608,8 @@ impl Kinesisanalyticsv2ApplicationRef {
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElS3ContentLocationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElS3ContentLocationEl
+{
     bucket_arn: PrimField<String>,
     file_key: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -524,7 +639,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElA
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElS3ContentLocationEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElS3ContentLocationEl
+{
     #[doc = ""]
     pub bucket_arn: PrimField<String>,
     #[doc = ""]
@@ -543,7 +659,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCode
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElS3ContentLocationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElS3ContentLocationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -649,7 +766,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElA
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentEl {
     pub fn build(
@@ -663,7 +781,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCode
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -735,17 +854,21 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.code_content = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.code_content = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl {
-    type O = BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl>;
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl
+{
+    type O = BlockAssignable<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -756,13 +879,16 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElA
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl
+{
     #[doc = ""]
     pub code_content_type: PrimField<String>,
 }
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl {
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationEl {
             code_content_type: self.code_content_type,
             code_content: core::default::Default::default(),
@@ -771,16 +897,20 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCode
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef {
+impl Ref
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef {
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -795,7 +925,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfi
 
     #[doc = "Get a reference to the value of field `code_content_type` after provisioning.\n"]
     pub fn code_content_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code_content_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code_content_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `code_content` after provisioning.\n"]
@@ -803,21 +936,25 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfi
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElCodeContentElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.code_content", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl
+{
     snapshots_enabled: PrimField<bool>,
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl { }
+impl Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {}
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {
-    type O =
-        BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl>;
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl
+{
+    type O = BlockAssignable<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -828,29 +965,39 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElA
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl
+{
     #[doc = ""]
     pub snapshots_enabled: PrimField<bool>,
 }
 
-impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {
+impl
+    BuildKinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl
+{
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationEl {
             snapshots_enabled: self.snapshots_enabled,
         }
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef {
+impl Ref
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef {
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -865,17 +1012,21 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotC
 
     #[doc = "Get a reference to the value of field `snapshots_enabled` after provisioning.\n"]
     pub fn snapshots_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.snapshots_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.snapshots_enabled", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl
+{
     property_group_id: PrimField<String>,
     property_map: RecField<PrimField<String>>,
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl { }
+impl Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl {}
 
 impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl {
     type O =
@@ -892,7 +1043,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElE
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupEl
+{
     #[doc = ""]
     pub property_group_id: PrimField<String>,
     #[doc = ""]
@@ -910,7 +1062,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentProp
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -927,14 +1080,19 @@ impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentP
     }
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupElRef {
+impl
+    Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElPropertyGroupElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `property_group_id` after provisioning.\n"]
     pub fn property_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.property_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.property_group_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `property_map` after provisioning.\n"]
@@ -975,17 +1133,21 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertie
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.property_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.property_group = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl {
-    type O = BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl>;
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl
+{
+    type O = BlockAssignable<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -999,7 +1161,9 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElE
 pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl {}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl {
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl {
             property_group: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1031,7 +1195,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertie
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     checkpoint_interval: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1076,7 +1241,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElF
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationEl
+{
     #[doc = ""]
     pub configuration_type: PrimField<String>,
 }
@@ -1094,7 +1260,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicatio
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1138,7 +1305,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationEl
+{
     configuration_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     log_level: Option<PrimField<String>>,
@@ -1175,7 +1343,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElF
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationEl
+{
     #[doc = ""]
     pub configuration_type: PrimField<String>,
 }
@@ -1192,7 +1361,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicatio
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1231,7 +1401,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     auto_scaling_enabled: Option<PrimField<bool>>,
     configuration_type: PrimField<String>,
@@ -1276,7 +1447,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElF
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationEl
+{
     #[doc = ""]
     pub configuration_type: PrimField<String>,
 }
@@ -1294,7 +1466,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicatio
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1395,10 +1568,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.checkpoint_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.checkpoint_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1418,10 +1591,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.monitoring_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.monitoring_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1441,17 +1614,21 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parallelism_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parallelism_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl {
-    type O = BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl>;
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl
+{
+    type O = BlockAssignable<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1462,10 +1639,14 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElF
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl {
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationEl {
             checkpoint_configuration: core::default::Default::default(),
             monitoring_configuration: core::default::Default::default(),
@@ -1475,16 +1656,20 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicatio
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef {
+impl Ref
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef {
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1502,8 +1687,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElCheckpointConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.checkpoint_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.checkpoint_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `monitoring_configuration` after provisioning.\n"]
@@ -1511,8 +1699,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElMonitoringConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.monitoring_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.monitoring_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parallelism_configuration` after provisioning.\n"]
@@ -1520,13 +1711,17 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConf
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElParallelismConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.parallelism_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.parallelism_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     application_restore_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1562,7 +1757,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElR
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationEl {
     pub fn build(
@@ -1575,7 +1771,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfiguratio
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1609,12 +1806,15 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElAp
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     allow_non_restored_state: Option<PrimField<bool>>,
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl {
+impl
+    Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl
+{
     #[doc = "Set the field `allow_non_restored_state`.\n"]
     pub fn set_allow_non_restored_state(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.allow_non_restored_state = Some(v.into());
@@ -1637,7 +1837,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElR
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationEl {
     pub fn build(
@@ -1649,7 +1850,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfiguratio
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1720,10 +1922,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.application_restore_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.application_restore_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1743,17 +1945,18 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.flink_run_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.flink_run_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
-    type O = BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl>;
+    type O =
+        BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1767,7 +1970,9 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElR
 pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl {
             application_restore_configuration: core::default::Default::default(),
             flink_run_configuration: core::default::Default::default(),
@@ -1803,20 +2008,27 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElRe
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElApplicationRestoreConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.application_restore_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_restore_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flink_run_configuration` after provisioning.\n"]
     pub fn flink_run_configuration(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.flink_run_configuration", self.base))
+    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElFlinkRunConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.flink_run_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     count: Option<PrimField<f64>>,
 }
@@ -1844,7 +2056,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismEl {
     pub fn build(
@@ -1856,7 +2069,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1885,7 +2099,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElInputLambdaProcessorEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElInputLambdaProcessorEl
+{
     resource_arn: PrimField<String>,
 }
 
@@ -1908,7 +2123,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElInputLambdaProcessorEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElInputLambdaProcessorEl
+{
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
@@ -1923,7 +2139,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElInputLambdaProcessorElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElInputLambdaProcessorElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2011,7 +2228,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationEl {
     pub fn build(
@@ -2024,7 +2242,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2057,7 +2276,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordColumnEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordColumnEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     mapping: Option<PrimField<String>>,
     name: PrimField<String>,
@@ -2087,7 +2307,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordColumnEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordColumnEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -2106,7 +2327,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordColumnElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordColumnElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2145,7 +2367,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl
+{
     record_column_delimiter: PrimField<String>,
     record_row_delimiter: PrimField<String>,
 }
@@ -2169,7 +2392,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl
+{
     #[doc = ""]
     pub record_column_delimiter: PrimField<String>,
     #[doc = ""]
@@ -2187,7 +2411,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElCsvMappingParametersElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElCsvMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2221,7 +2446,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl
+{
     record_row_path: PrimField<String>,
 }
 
@@ -2244,7 +2470,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl
+{
     #[doc = ""]
     pub record_row_path: PrimField<String>,
 }
@@ -2259,7 +2486,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElJsonMappingParametersElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElJsonMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2381,7 +2609,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersEl {
     pub fn build(
@@ -2395,7 +2624,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2497,7 +2727,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatEl
+{
     #[doc = ""]
     pub record_format_type: PrimField<String>,
 }
@@ -2514,7 +2745,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRecordFormatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2653,7 +2885,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaEl {
     pub fn build(
@@ -2668,7 +2901,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2715,7 +2949,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     input_starting_position: Option<PrimField<String>>,
 }
@@ -2743,7 +2978,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationEl {
     pub fn build(
@@ -2755,7 +2991,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2784,7 +3021,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputEl
+{
     resource_arn: PrimField<String>,
 }
 
@@ -2807,7 +3045,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputEl
+{
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
@@ -2822,7 +3061,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2851,7 +3091,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputEl
+{
     resource_arn: PrimField<String>,
 }
 
@@ -2874,7 +3115,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputEl
+{
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
@@ -2889,7 +3131,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3007,10 +3250,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_parallelism = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_parallelism = Some(d);
-            },
+            }
         }
         self
     }
@@ -3030,10 +3273,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_processing_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_processing_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3053,10 +3296,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -3076,10 +3319,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input_starting_position_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input_starting_position_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3099,10 +3342,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_firehose_input = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_firehose_input = Some(d);
-            },
+            }
         }
         self
     }
@@ -3122,18 +3365,21 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_streams_input = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_streams_input = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl {
-    type O =
-        BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl>;
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl
+{
+    type O = BlockAssignable<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3144,15 +3390,19 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl
+{
     #[doc = ""]
     pub name_prefix: PrimField<String>,
 }
 
-impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl {
+impl
+    BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl
+{
     pub fn build(
         self,
-    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl {
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputEl {
             name_prefix: self.name_prefix,
             input_parallelism: core::default::Default::default(),
@@ -3166,7 +3416,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3183,14 +3434,19 @@ impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicati
     }
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElRef {
+impl
+    Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `in_app_stream_names` after provisioning.\n"]
     pub fn in_app_stream_names(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.in_app_stream_names", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.in_app_stream_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_id` after provisioning.\n"]
@@ -3208,8 +3464,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputParallelismElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.input_parallelism", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_parallelism", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_processing_configuration` after provisioning.\n"]
@@ -3217,8 +3476,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputProcessingConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.input_processing_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_processing_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_schema` after provisioning.\n"]
@@ -3226,7 +3488,7 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputSchemaElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.input_schema", self.base))
     }
 
@@ -3235,8 +3497,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElInputStartingPositionConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.input_starting_position_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_starting_position_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_firehose_input` after provisioning.\n"]
@@ -3244,8 +3509,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisFirehoseInputElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_firehose_input", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_firehose_input", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_streams_input` after provisioning.\n"]
@@ -3253,13 +3521,17 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElKinesisStreamsInputElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_streams_input", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_streams_input", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaEl
+{
     record_format_type: PrimField<String>,
 }
 
@@ -3282,7 +3554,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaEl
+{
     #[doc = ""]
     pub record_format_type: PrimField<String>,
 }
@@ -3297,7 +3570,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3326,7 +3600,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputEl
+{
     resource_arn: PrimField<String>,
 }
 
@@ -3349,7 +3624,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputEl
+{
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
@@ -3364,7 +3640,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3393,7 +3670,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputEl
+{
     resource_arn: PrimField<String>,
 }
 
@@ -3416,7 +3694,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputEl
+{
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
@@ -3431,7 +3710,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3460,7 +3740,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputEl
+{
     resource_arn: PrimField<String>,
 }
 
@@ -3481,7 +3762,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputEl
+{
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
@@ -3496,7 +3778,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3594,10 +3877,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination_schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination_schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -3617,10 +3900,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_firehose_output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_firehose_output = Some(d);
-            },
+            }
         }
         self
     }
@@ -3640,10 +3923,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_streams_output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_streams_output = Some(d);
-            },
+            }
         }
         self
     }
@@ -3663,16 +3946,18 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_output = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputEl {
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputEl
+{
     type O =
         BlockAssignable<
             Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputEl,
@@ -3687,7 +3972,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
@@ -3707,7 +3993,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3724,7 +4011,9 @@ impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicati
     }
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElRef {
+impl
+    Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -3744,8 +4033,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElDestinationSchemaElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.destination_schema", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_schema", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_firehose_output` after provisioning.\n"]
@@ -3753,8 +4045,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisFirehoseOutputElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_firehose_output", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_firehose_output", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_streams_output` after provisioning.\n"]
@@ -3762,8 +4057,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElKinesisStreamsOutputElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_streams_output", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_streams_output", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_output` after provisioning.\n"]
@@ -3771,13 +4069,17 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElOutputElLambdaOutputElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_output", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_output", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordColumnEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordColumnEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     mapping: Option<PrimField<String>>,
     name: PrimField<String>,
@@ -3807,7 +4109,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordColumnEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordColumnEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -3826,7 +4129,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordColumnElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordColumnElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3865,7 +4169,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl
+{
     record_column_delimiter: PrimField<String>,
     record_row_delimiter: PrimField<String>,
 }
@@ -3889,7 +4194,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElCsvMappingParametersEl
+{
     #[doc = ""]
     pub record_column_delimiter: PrimField<String>,
     #[doc = ""]
@@ -3907,7 +4213,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElCsvMappingParametersElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElCsvMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3941,7 +4248,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl
+{
     record_row_path: PrimField<String>,
 }
 
@@ -3964,7 +4272,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElJsonMappingParametersEl
+{
     #[doc = ""]
     pub record_row_path: PrimField<String>,
 }
@@ -3979,7 +4288,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElJsonMappingParametersElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElJsonMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4101,7 +4411,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersEl {
     pub fn build(
@@ -4115,7 +4426,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4217,7 +4529,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatEl
+{
     #[doc = ""]
     pub record_format_type: PrimField<String>,
 }
@@ -4234,7 +4547,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRecordFormatElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4373,7 +4687,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaEl {
     pub fn build(
@@ -4388,7 +4703,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElReferenceSchemaElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4435,7 +4751,8 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
 }
 
 #[derive(Serialize)]
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElS3ReferenceDataSourceEl {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElS3ReferenceDataSourceEl
+{
     bucket_arn: PrimField<String>,
     file_key: PrimField<String>,
 }
@@ -4459,7 +4776,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElS3ReferenceDataSourceEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElS3ReferenceDataSourceEl
+{
     #[doc = ""]
     pub bucket_arn: PrimField<String>,
     #[doc = ""]
@@ -4477,7 +4795,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElS3ReferenceDataSourceElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElS3ReferenceDataSourceElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4605,7 +4924,8 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceEl {
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceEl
+{
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
@@ -4623,7 +4943,8 @@ impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationC
     }
 }
 
-pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElRef {
+pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4718,10 +5039,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.input = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.input = Some(d);
-            },
+            }
         }
         self
     }
@@ -4741,10 +5062,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.output = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.output = Some(d);
-            },
+            }
         }
         self
     }
@@ -4764,17 +5085,21 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.reference_data_source = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.reference_data_source = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl {
-    type O = BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl>;
+impl ToListMappable
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl
+{
+    type O = BlockAssignable<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4785,10 +5110,13 @@ impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElS
     }
 }
 
-pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl {}
+pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl
+{}
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl {
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationEl {
             input: core::default::Default::default(),
             output: core::default::Default::default(),
@@ -4803,11 +5131,14 @@ pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplication
     base: String,
 }
 
-impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef {
+impl Ref
+    for Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef {
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef
+    {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -4823,7 +5154,7 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElRef> {
+    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElInputElRef>{
         ListRef::new(self.shared().clone(), format!("{}.input", self.base))
     }
 
@@ -4832,8 +5163,11 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfig
         &self,
     ) -> ListRef<
         Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElReferenceDataSourceElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.reference_data_source", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reference_data_source", self.base),
+        )
     }
 }
 
@@ -4843,10 +5177,11 @@ pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurati
     subnet_ids: SetField<PrimField<String>>,
 }
 
-impl Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl { }
+impl Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl {}
 
 impl ToListMappable for Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl {
-    type O = BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl>;
+    type O =
+        BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4865,7 +5200,9 @@ pub struct BuildKinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfig
 }
 
 impl BuildKinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl {
-    pub fn build(self) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl {
+    pub fn build(
+        self,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl {
             security_group_ids: self.security_group_ids,
             subnet_ids: self.subnet_ids,
@@ -4897,7 +5234,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationElRe
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
@@ -4907,7 +5247,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationElRe
 
     #[doc = "Get a reference to the value of field `vpc_configuration_id` after provisioning.\n"]
     pub fn vpc_configuration_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_configuration_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_configuration_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
@@ -4984,10 +5327,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.application_code_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.application_code_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5007,10 +5350,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.application_snapshot_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.application_snapshot_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5018,22 +5361,19 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
     #[doc = "Set the field `environment_properties`.\n"]
     pub fn set_environment_properties(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.environment_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.environment_properties = Some(d);
-            },
+            }
         }
         self
     }
@@ -5053,10 +5393,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.flink_application_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.flink_application_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5064,15 +5404,19 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
     #[doc = "Set the field `run_configuration`.\n"]
     pub fn set_run_configuration(
         mut self,
-        v: impl Into<BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.run_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.run_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5092,10 +5436,10 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sql_application_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sql_application_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5103,15 +5447,19 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationEl {
     #[doc = "Set the field `vpc_configuration`.\n"]
     pub fn set_vpc_configuration(
         mut self,
-        v: impl Into<BlockAssignable<Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.vpc_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.vpc_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -5152,7 +5500,10 @@ pub struct Kinesisanalyticsv2ApplicationApplicationConfigurationElRef {
 }
 
 impl Ref for Kinesisanalyticsv2ApplicationApplicationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Kinesisanalyticsv2ApplicationApplicationConfigurationElRef {
         Kinesisanalyticsv2ApplicationApplicationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -5168,50 +5519,78 @@ impl Kinesisanalyticsv2ApplicationApplicationConfigurationElRef {
     #[doc = "Get a reference to the value of field `application_code_configuration` after provisioning.\n"]
     pub fn application_code_configuration(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_code_configuration", self.base))
+    ) -> ListRef<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationCodeConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_code_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `application_snapshot_configuration` after provisioning.\n"]
     pub fn application_snapshot_configuration(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.application_snapshot_configuration", self.base))
+    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElApplicationSnapshotConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.application_snapshot_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_properties` after provisioning.\n"]
     pub fn environment_properties(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.environment_properties", self.base))
+    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElEnvironmentPropertiesElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.environment_properties", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flink_application_configuration` after provisioning.\n"]
     pub fn flink_application_configuration(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.flink_application_configuration", self.base))
+    ) -> ListRef<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElFlinkApplicationConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.flink_application_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_configuration` after provisioning.\n"]
     pub fn run_configuration(
         &self,
     ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElRunConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.run_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.run_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sql_application_configuration` after provisioning.\n"]
     pub fn sql_application_configuration(
         &self,
-    ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sql_application_configuration", self.base))
+    ) -> ListRef<
+        Kinesisanalyticsv2ApplicationApplicationConfigurationElSqlApplicationConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sql_application_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_configuration` after provisioning.\n"]
     pub fn vpc_configuration(
         &self,
     ) -> ListRef<Kinesisanalyticsv2ApplicationApplicationConfigurationElVpcConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_configuration", self.base),
+        )
     }
 }
 
@@ -5220,7 +5599,7 @@ pub struct Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {
     log_stream_arn: PrimField<String>,
 }
 
-impl Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl { }
+impl Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {}
 
 impl ToListMappable for Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {
     type O = BlockAssignable<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl>;
@@ -5241,7 +5620,9 @@ pub struct BuildKinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {
 
 impl BuildKinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {
     pub fn build(self) -> Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {
-        Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl { log_stream_arn: self.log_stream_arn }
+        Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl {
+            log_stream_arn: self.log_stream_arn,
+        }
     }
 }
 
@@ -5251,7 +5632,10 @@ pub struct Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef {
 }
 
 impl Ref for Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef {
-    fn new(shared: StackShared, base: String) -> Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef {
         Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -5266,12 +5650,18 @@ impl Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_logging_option_id` after provisioning.\n"]
     pub fn cloudwatch_logging_option_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_logging_option_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logging_option_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_stream_arn` after provisioning.\n"]
     pub fn log_stream_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_stream_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_stream_arn", self.base),
+        )
     }
 }
 
@@ -5366,6 +5756,8 @@ impl Kinesisanalyticsv2ApplicationTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct Kinesisanalyticsv2ApplicationDynamic {
-    application_configuration: Option<DynamicBlock<Kinesisanalyticsv2ApplicationApplicationConfigurationEl>>,
-    cloudwatch_logging_options: Option<DynamicBlock<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl>>,
+    application_configuration:
+        Option<DynamicBlock<Kinesisanalyticsv2ApplicationApplicationConfigurationEl>>,
+    cloudwatch_logging_options:
+        Option<DynamicBlock<Kinesisanalyticsv2ApplicationCloudwatchLoggingOptionsEl>>,
 }

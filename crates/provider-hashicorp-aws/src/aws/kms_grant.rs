@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct KmsGrantData {
@@ -69,7 +69,8 @@ impl KmsGrant {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl KmsGrant {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl KmsGrant {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -120,8 +131,7 @@ impl KmsGrant {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -144,32 +154,44 @@ impl KmsGrant {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().constraints = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.constraints = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `grant_creation_tokens` after provisioning.\n"]
     pub fn grant_creation_tokens(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.grant_creation_tokens", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.grant_creation_tokens", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_id` after provisioning.\n"]
     pub fn grant_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grant_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grant_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_token` after provisioning.\n"]
     pub fn grant_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grant_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grant_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grantee_principal` after provisioning.\n"]
     pub fn grantee_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grantee_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grantee_principal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -179,43 +201,64 @@ impl KmsGrant {
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operations` after provisioning.\n"]
     pub fn operations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.operations", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.operations", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retire_on_delete` after provisioning.\n"]
     pub fn retire_on_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retire_on_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retire_on_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retiring_principal` after provisioning.\n"]
     pub fn retiring_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retiring_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retiring_principal", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for KmsGrant {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for KmsGrant { }
+impl Resource for KmsGrant {}
 
 impl ToListMappable for KmsGrant {
     type O = ListRef<KmsGrantRef>;
@@ -285,10 +328,7 @@ pub struct KmsGrantRef {
 
 impl Ref for KmsGrantRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -303,22 +343,34 @@ impl KmsGrantRef {
 
     #[doc = "Get a reference to the value of field `grant_creation_tokens` after provisioning.\n"]
     pub fn grant_creation_tokens(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.grant_creation_tokens", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.grant_creation_tokens", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_id` after provisioning.\n"]
     pub fn grant_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grant_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grant_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grant_token` after provisioning.\n"]
     pub fn grant_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grant_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grant_token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `grantee_principal` after provisioning.\n"]
     pub fn grantee_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.grantee_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.grantee_principal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -328,33 +380,50 @@ impl KmsGrantRef {
 
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `operations` after provisioning.\n"]
     pub fn operations(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.operations", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.operations", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retire_on_delete` after provisioning.\n"]
     pub fn retire_on_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retire_on_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retire_on_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retiring_principal` after provisioning.\n"]
     pub fn retiring_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retiring_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retiring_principal", self.extract_ref()),
+        )
     }
 }
 
@@ -368,13 +437,19 @@ pub struct KmsGrantConstraintsEl {
 
 impl KmsGrantConstraintsEl {
     #[doc = "Set the field `encryption_context_equals`.\n"]
-    pub fn set_encryption_context_equals(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_encryption_context_equals(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.encryption_context_equals = Some(v.into());
         self
     }
 
     #[doc = "Set the field `encryption_context_subset`.\n"]
-    pub fn set_encryption_context_subset(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_encryption_context_subset(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.encryption_context_subset = Some(v.into());
         self
     }
@@ -424,12 +499,18 @@ impl KmsGrantConstraintsElRef {
 
     #[doc = "Get a reference to the value of field `encryption_context_equals` after provisioning.\n"]
     pub fn encryption_context_equals(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.encryption_context_equals", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_context_equals", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_context_subset` after provisioning.\n"]
     pub fn encryption_context_subset(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.encryption_context_subset", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_context_subset", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpclatticeTargetGroupData {
@@ -67,7 +67,8 @@ impl VpclatticeTargetGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl VpclatticeTargetGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl VpclatticeTargetGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl VpclatticeTargetGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -130,10 +140,10 @@ impl VpclatticeTargetGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.config = Some(d);
-            },
+            }
         }
         self
     }
@@ -156,53 +166,80 @@ impl VpclatticeTargetGroup {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `config` after provisioning.\n"]
     pub fn config(&self) -> ListRef<VpclatticeTargetGroupConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeTargetGroupTimeoutsElRef {
-        VpclatticeTargetGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpclatticeTargetGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpclatticeTargetGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpclatticeTargetGroup { }
+impl Resource for VpclatticeTargetGroup {}
 
 impl ToListMappable for VpclatticeTargetGroup {
     type O = ListRef<VpclatticeTargetGroupRef>;
@@ -268,10 +305,7 @@ pub struct VpclatticeTargetGroupRef {
 
 impl Ref for VpclatticeTargetGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -296,43 +330,66 @@ impl VpclatticeTargetGroupRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `config` after provisioning.\n"]
     pub fn config(&self) -> ListRef<VpclatticeTargetGroupConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeTargetGroupTimeoutsElRef {
-        VpclatticeTargetGroupTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpclatticeTargetGroupTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -366,7 +423,9 @@ pub struct BuildVpclatticeTargetGroupConfigElHealthCheckElMatcherEl {}
 
 impl BuildVpclatticeTargetGroupConfigElHealthCheckElMatcherEl {
     pub fn build(self) -> VpclatticeTargetGroupConfigElHealthCheckElMatcherEl {
-        VpclatticeTargetGroupConfigElHealthCheckElMatcherEl { value: core::default::Default::default() }
+        VpclatticeTargetGroupConfigElHealthCheckElMatcherEl {
+            value: core::default::Default::default(),
+        }
     }
 }
 
@@ -376,7 +435,10 @@ pub struct VpclatticeTargetGroupConfigElHealthCheckElMatcherElRef {
 }
 
 impl Ref for VpclatticeTargetGroupConfigElHealthCheckElMatcherElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeTargetGroupConfigElHealthCheckElMatcherElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeTargetGroupConfigElHealthCheckElMatcherElRef {
         VpclatticeTargetGroupConfigElHealthCheckElMatcherElRef {
             shared: shared,
             base: base.to_string(),
@@ -488,10 +550,10 @@ impl VpclatticeTargetGroupConfigElHealthCheckEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.matcher = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.matcher = Some(d);
-            },
+            }
         }
         self
     }
@@ -555,17 +617,26 @@ impl VpclatticeTargetGroupConfigElHealthCheckElRef {
 
     #[doc = "Get a reference to the value of field `health_check_interval_seconds` after provisioning.\n"]
     pub fn health_check_interval_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_interval_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_interval_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_timeout_seconds` after provisioning.\n"]
     pub fn health_check_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_timeout_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `healthy_threshold_count` after provisioning.\n"]
     pub fn healthy_threshold_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.healthy_threshold_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.healthy_threshold_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -585,12 +656,18 @@ impl VpclatticeTargetGroupConfigElHealthCheckElRef {
 
     #[doc = "Get a reference to the value of field `protocol_version` after provisioning.\n"]
     pub fn protocol_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unhealthy_threshold_count` after provisioning.\n"]
     pub fn unhealthy_threshold_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unhealthy_threshold_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unhealthy_threshold_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `matcher` after provisioning.\n"]
@@ -668,10 +745,10 @@ impl VpclatticeTargetGroupConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.health_check = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.health_check = Some(d);
-            },
+            }
         }
         self
     }
@@ -727,12 +804,18 @@ impl VpclatticeTargetGroupConfigElRef {
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_event_structure_version` after provisioning.\n"]
     pub fn lambda_event_structure_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_event_structure_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_event_structure_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
@@ -747,12 +830,18 @@ impl VpclatticeTargetGroupConfigElRef {
 
     #[doc = "Get a reference to the value of field `protocol_version` after provisioning.\n"]
     pub fn protocol_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_identifier` after provisioning.\n"]
     pub fn vpc_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check` after provisioning.\n"]

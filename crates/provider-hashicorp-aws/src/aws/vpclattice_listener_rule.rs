@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpclatticeListenerRuleData {
@@ -70,7 +70,8 @@ impl VpclatticeListenerRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -83,7 +84,7 @@ impl VpclatticeListenerRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -94,12 +95,22 @@ impl VpclatticeListenerRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -109,8 +120,7 @@ impl VpclatticeListenerRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -133,10 +143,10 @@ impl VpclatticeListenerRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
@@ -146,10 +156,10 @@ impl VpclatticeListenerRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -172,68 +182,104 @@ impl VpclatticeListenerRule {
 
     #[doc = "Get a reference to the value of field `listener_identifier` after provisioning.\n"]
     pub fn listener_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_id` after provisioning.\n"]
     pub fn rule_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<VpclatticeListenerRuleActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
     pub fn match_(&self) -> ListRef<VpclatticeListenerRuleMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.match", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.match", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeListenerRuleTimeoutsElRef {
-        VpclatticeListenerRuleTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpclatticeListenerRuleTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpclatticeListenerRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpclatticeListenerRule { }
+impl Resource for VpclatticeListenerRule {}
 
 impl ToListMappable for VpclatticeListenerRule {
     type O = ListRef<VpclatticeListenerRuleRef>;
@@ -306,10 +352,7 @@ pub struct VpclatticeListenerRuleRef {
 
 impl Ref for VpclatticeListenerRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -334,58 +377,90 @@ impl VpclatticeListenerRuleRef {
 
     #[doc = "Get a reference to the value of field `listener_identifier` after provisioning.\n"]
     pub fn listener_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule_id` after provisioning.\n"]
     pub fn rule_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_identifier", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_identifier", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<VpclatticeListenerRuleActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
     pub fn match_(&self) -> ListRef<VpclatticeListenerRuleMatchElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.match", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.match", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeListenerRuleTimeoutsElRef {
-        VpclatticeListenerRuleTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        VpclatticeListenerRuleTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -394,7 +469,7 @@ pub struct VpclatticeListenerRuleActionElFixedResponseEl {
     status_code: PrimField<f64>,
 }
 
-impl VpclatticeListenerRuleActionElFixedResponseEl { }
+impl VpclatticeListenerRuleActionElFixedResponseEl {}
 
 impl ToListMappable for VpclatticeListenerRuleActionElFixedResponseEl {
     type O = BlockAssignable<VpclatticeListenerRuleActionElFixedResponseEl>;
@@ -415,7 +490,9 @@ pub struct BuildVpclatticeListenerRuleActionElFixedResponseEl {
 
 impl BuildVpclatticeListenerRuleActionElFixedResponseEl {
     pub fn build(self) -> VpclatticeListenerRuleActionElFixedResponseEl {
-        VpclatticeListenerRuleActionElFixedResponseEl { status_code: self.status_code }
+        VpclatticeListenerRuleActionElFixedResponseEl {
+            status_code: self.status_code,
+        }
     }
 }
 
@@ -491,7 +568,10 @@ pub struct VpclatticeListenerRuleActionElForwardElTargetGroupsElRef {
 }
 
 impl Ref for VpclatticeListenerRuleActionElForwardElTargetGroupsElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeListenerRuleActionElForwardElTargetGroupsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeListenerRuleActionElForwardElTargetGroupsElRef {
         VpclatticeListenerRuleActionElForwardElTargetGroupsElRef {
             shared: shared,
             base: base.to_string(),
@@ -506,7 +586,10 @@ impl VpclatticeListenerRuleActionElForwardElTargetGroupsElRef {
 
     #[doc = "Get a reference to the value of field `target_group_identifier` after provisioning.\n"]
     pub fn target_group_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -536,10 +619,10 @@ impl VpclatticeListenerRuleActionElForwardEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_groups = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_groups = Some(d);
-            },
+            }
         }
         self
     }
@@ -588,8 +671,13 @@ impl VpclatticeListenerRuleActionElForwardElRef {
     }
 
     #[doc = "Get a reference to the value of field `target_groups` after provisioning.\n"]
-    pub fn target_groups(&self) -> ListRef<VpclatticeListenerRuleActionElForwardElTargetGroupsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_groups", self.base))
+    pub fn target_groups(
+        &self,
+    ) -> ListRef<VpclatticeListenerRuleActionElForwardElTargetGroupsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_groups", self.base),
+        )
     }
 }
 
@@ -617,23 +705,26 @@ impl VpclatticeListenerRuleActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.fixed_response = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.fixed_response = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `forward`.\n"]
-    pub fn set_forward(mut self, v: impl Into<BlockAssignable<VpclatticeListenerRuleActionElForwardEl>>) -> Self {
+    pub fn set_forward(
+        mut self,
+        v: impl Into<BlockAssignable<VpclatticeListenerRuleActionElForwardEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.forward = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.forward = Some(d);
-            },
+            }
         }
         self
     }
@@ -684,7 +775,10 @@ impl VpclatticeListenerRuleActionElRef {
 
     #[doc = "Get a reference to the value of field `fixed_response` after provisioning.\n"]
     pub fn fixed_response(&self) -> ListRef<VpclatticeListenerRuleActionElFixedResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fixed_response", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fixed_response", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward` after provisioning.\n"]
@@ -753,7 +847,10 @@ pub struct VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef {
 }
 
 impl Ref for VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef {
         VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -812,10 +909,10 @@ impl VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -855,7 +952,10 @@ pub struct VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
 }
 
 impl Ref for VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
         VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
             shared: shared,
             base: base.to_string(),
@@ -870,7 +970,10 @@ impl VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
 
     #[doc = "Get a reference to the value of field `case_sensitive` after provisioning.\n"]
     pub fn case_sensitive(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.case_sensitive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.case_sensitive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -879,7 +982,9 @@ impl VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef {
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
-    pub fn match_(&self) -> ListRef<VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef> {
+    pub fn match_(
+        &self,
+    ) -> ListRef<VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElMatchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.match", self.base))
     }
 }
@@ -935,7 +1040,10 @@ pub struct VpclatticeListenerRuleMatchElHttpMatchElPathMatchElMatchElRef {
 }
 
 impl Ref for VpclatticeListenerRuleMatchElHttpMatchElPathMatchElMatchElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeListenerRuleMatchElHttpMatchElPathMatchElMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeListenerRuleMatchElHttpMatchElPathMatchElMatchElRef {
         VpclatticeListenerRuleMatchElHttpMatchElPathMatchElMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -988,10 +1096,10 @@ impl VpclatticeListenerRuleMatchElHttpMatchElPathMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.match_ = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.match_ = Some(d);
-            },
+            }
         }
         self
     }
@@ -1027,7 +1135,10 @@ pub struct VpclatticeListenerRuleMatchElHttpMatchElPathMatchElRef {
 }
 
 impl Ref for VpclatticeListenerRuleMatchElHttpMatchElPathMatchElRef {
-    fn new(shared: StackShared, base: String) -> VpclatticeListenerRuleMatchElHttpMatchElPathMatchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VpclatticeListenerRuleMatchElHttpMatchElPathMatchElRef {
         VpclatticeListenerRuleMatchElHttpMatchElPathMatchElRef {
             shared: shared,
             base: base.to_string(),
@@ -1042,7 +1153,10 @@ impl VpclatticeListenerRuleMatchElHttpMatchElPathMatchElRef {
 
     #[doc = "Get a reference to the value of field `case_sensitive` after provisioning.\n"]
     pub fn case_sensitive(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.case_sensitive", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.case_sensitive", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `match_` after provisioning.\n"]
@@ -1083,10 +1197,10 @@ impl VpclatticeListenerRuleMatchElHttpMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header_matches = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header_matches = Some(d);
-            },
+            }
         }
         self
     }
@@ -1099,10 +1213,10 @@ impl VpclatticeListenerRuleMatchElHttpMatchEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.path_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.path_match = Some(d);
-            },
+            }
         }
         self
     }
@@ -1158,8 +1272,13 @@ impl VpclatticeListenerRuleMatchElHttpMatchElRef {
     }
 
     #[doc = "Get a reference to the value of field `header_matches` after provisioning.\n"]
-    pub fn header_matches(&self) -> ListRef<VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.header_matches", self.base))
+    pub fn header_matches(
+        &self,
+    ) -> ListRef<VpclatticeListenerRuleMatchElHttpMatchElHeaderMatchesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.header_matches", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_match` after provisioning.\n"]
@@ -1182,14 +1301,17 @@ pub struct VpclatticeListenerRuleMatchEl {
 
 impl VpclatticeListenerRuleMatchEl {
     #[doc = "Set the field `http_match`.\n"]
-    pub fn set_http_match(mut self, v: impl Into<BlockAssignable<VpclatticeListenerRuleMatchElHttpMatchEl>>) -> Self {
+    pub fn set_http_match(
+        mut self,
+        v: impl Into<BlockAssignable<VpclatticeListenerRuleMatchElHttpMatchEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_match = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_match = Some(d);
-            },
+            }
         }
         self
     }

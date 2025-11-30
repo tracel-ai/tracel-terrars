@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchLogAccountPolicyData {
@@ -62,7 +62,8 @@ impl CloudwatchLogAccountPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -75,7 +76,7 @@ impl CloudwatchLogAccountPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -86,12 +87,22 @@ impl CloudwatchLogAccountPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -101,8 +112,7 @@ impl CloudwatchLogAccountPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -127,43 +137,64 @@ impl CloudwatchLogAccountPolicy {
 
     #[doc = "Get a reference to the value of field `policy_document` after provisioning.\n"]
     pub fn policy_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_document", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_document", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_name` after provisioning.\n"]
     pub fn policy_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_type` after provisioning.\n"]
     pub fn policy_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `selection_criteria` after provisioning.\n"]
     pub fn selection_criteria(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.selection_criteria", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.selection_criteria", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchLogAccountPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchLogAccountPolicy { }
+impl Resource for CloudwatchLogAccountPolicy {}
 
 impl ToListMappable for CloudwatchLogAccountPolicy {
     type O = ListRef<CloudwatchLogAccountPolicyRef>;
@@ -229,10 +260,7 @@ pub struct CloudwatchLogAccountPolicyRef {
 
 impl Ref for CloudwatchLogAccountPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -252,32 +280,49 @@ impl CloudwatchLogAccountPolicyRef {
 
     #[doc = "Get a reference to the value of field `policy_document` after provisioning.\n"]
     pub fn policy_document(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_document", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_document", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_name` after provisioning.\n"]
     pub fn policy_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_type` after provisioning.\n"]
     pub fn policy_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `selection_criteria` after provisioning.\n"]
     pub fn selection_criteria(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.selection_criteria", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.selection_criteria", self.extract_ref()),
+        )
     }
 }

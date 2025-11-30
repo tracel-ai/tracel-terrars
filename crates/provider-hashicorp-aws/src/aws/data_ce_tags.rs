@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCeTagsData {
@@ -74,10 +74,10 @@ impl DataCeTags {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -87,10 +87,10 @@ impl DataCeTags {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sort_by = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sort_by = Some(d);
-            },
+            }
         }
         self
     }
@@ -100,10 +100,10 @@ impl DataCeTags {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().time_period = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.time_period = Some(d);
-            },
+            }
         }
         self
     }
@@ -115,42 +115,64 @@ impl DataCeTags {
 
     #[doc = "Get a reference to the value of field `search_string` after provisioning.\n"]
     pub fn search_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.search_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.search_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_key` after provisioning.\n"]
     pub fn tag_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tag_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tag_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<DataCeTagsFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sort_by` after provisioning.\n"]
     pub fn sort_by(&self) -> ListRef<DataCeTagsSortByElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sort_by", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sort_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_period` after provisioning.\n"]
     pub fn time_period(&self) -> ListRef<DataCeTagsTimePeriodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.time_period", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.time_period", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCeTags {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCeTags { }
+impl Datasource for DataCeTags {}
 
 impl ToListMappable for DataCeTags {
     type O = ListRef<DataCeTagsRef>;
@@ -209,10 +231,7 @@ pub struct DataCeTagsRef {
 
 impl Ref for DataCeTagsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -232,32 +251,50 @@ impl DataCeTagsRef {
 
     #[doc = "Get a reference to the value of field `search_string` after provisioning.\n"]
     pub fn search_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.search_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.search_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_key` after provisioning.\n"]
     pub fn tag_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tag_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tag_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<DataCeTagsFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sort_by` after provisioning.\n"]
     pub fn sort_by(&self) -> ListRef<DataCeTagsSortByElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sort_by", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sort_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `time_period` after provisioning.\n"]
     pub fn time_period(&self) -> ListRef<DataCeTagsTimePeriodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.time_period", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.time_period", self.extract_ref()),
+        )
     }
 }
 
@@ -341,7 +378,10 @@ impl DataCeTagsFilterElAndElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -430,7 +470,10 @@ impl DataCeTagsFilterElAndElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -519,7 +562,10 @@ impl DataCeTagsFilterElAndElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -548,40 +594,49 @@ pub struct DataCeTagsFilterElAndEl {
 
 impl DataCeTagsFilterElAndEl {
     #[doc = "Set the field `cost_category`.\n"]
-    pub fn set_cost_category(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElAndElCostCategoryEl>>) -> Self {
+    pub fn set_cost_category(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElAndElCostCategoryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dimension`.\n"]
-    pub fn set_dimension(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElAndElDimensionEl>>) -> Self {
+    pub fn set_dimension(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElAndElDimensionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tags`.\n"]
-    pub fn set_tags(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElAndElTagsEl>>) -> Self {
+    pub fn set_tags(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElAndElTagsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -633,7 +688,10 @@ impl DataCeTagsFilterElAndElRef {
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeTagsFilterElAndElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
@@ -727,7 +785,10 @@ impl DataCeTagsFilterElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -816,7 +877,10 @@ impl DataCeTagsFilterElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -905,7 +969,10 @@ impl DataCeTagsFilterElNotElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -994,7 +1061,10 @@ impl DataCeTagsFilterElNotElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1083,7 +1153,10 @@ impl DataCeTagsFilterElNotElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1112,40 +1185,49 @@ pub struct DataCeTagsFilterElNotEl {
 
 impl DataCeTagsFilterElNotEl {
     #[doc = "Set the field `cost_category`.\n"]
-    pub fn set_cost_category(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElNotElCostCategoryEl>>) -> Self {
+    pub fn set_cost_category(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElNotElCostCategoryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dimension`.\n"]
-    pub fn set_dimension(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElNotElDimensionEl>>) -> Self {
+    pub fn set_dimension(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElNotElDimensionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `tags`.\n"]
-    pub fn set_tags(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElNotElTagsEl>>) -> Self {
+    pub fn set_tags(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElNotElTagsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -1197,7 +1279,10 @@ impl DataCeTagsFilterElNotElRef {
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeTagsFilterElNotElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
@@ -1291,7 +1376,10 @@ impl DataCeTagsFilterElOrElCostCategoryElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1380,7 +1468,10 @@ impl DataCeTagsFilterElOrElDimensionElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1469,7 +1560,10 @@ impl DataCeTagsFilterElOrElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1498,27 +1592,33 @@ pub struct DataCeTagsFilterElOrEl {
 
 impl DataCeTagsFilterElOrEl {
     #[doc = "Set the field `cost_category`.\n"]
-    pub fn set_cost_category(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElOrElCostCategoryEl>>) -> Self {
+    pub fn set_cost_category(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElOrElCostCategoryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dimension`.\n"]
-    pub fn set_dimension(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElOrElDimensionEl>>) -> Self {
+    pub fn set_dimension(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElOrElDimensionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -1528,10 +1628,10 @@ impl DataCeTagsFilterElOrEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -1583,7 +1683,10 @@ impl DataCeTagsFilterElOrElRef {
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeTagsFilterElOrElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
@@ -1677,7 +1780,10 @@ impl DataCeTagsFilterElTagsElRef {
 
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.match_options", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.match_options", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
@@ -1719,36 +1825,42 @@ impl DataCeTagsFilterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `cost_category`.\n"]
-    pub fn set_cost_category(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElCostCategoryEl>>) -> Self {
+    pub fn set_cost_category(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElCostCategoryEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cost_category = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cost_category = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dimension`.\n"]
-    pub fn set_dimension(mut self, v: impl Into<BlockAssignable<DataCeTagsFilterElDimensionEl>>) -> Self {
+    pub fn set_dimension(
+        mut self,
+        v: impl Into<BlockAssignable<DataCeTagsFilterElDimensionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension = Some(d);
-            },
+            }
         }
         self
     }
@@ -1758,10 +1870,10 @@ impl DataCeTagsFilterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.not = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.not = Some(d);
-            },
+            }
         }
         self
     }
@@ -1771,10 +1883,10 @@ impl DataCeTagsFilterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.or = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.or = Some(d);
-            },
+            }
         }
         self
     }
@@ -1784,10 +1896,10 @@ impl DataCeTagsFilterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -1842,7 +1954,10 @@ impl DataCeTagsFilterElRef {
 
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeTagsFilterElCostCategoryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cost_category", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cost_category", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
@@ -1942,7 +2057,7 @@ pub struct DataCeTagsTimePeriodEl {
     start: PrimField<String>,
 }
 
-impl DataCeTagsTimePeriodEl { }
+impl DataCeTagsTimePeriodEl {}
 
 impl ToListMappable for DataCeTagsTimePeriodEl {
     type O = BlockAssignable<DataCeTagsTimePeriodEl>;

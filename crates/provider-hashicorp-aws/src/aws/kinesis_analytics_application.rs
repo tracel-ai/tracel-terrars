@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct KinesisAnalyticsApplicationData {
@@ -75,7 +75,8 @@ impl KinesisAnalyticsApplication {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl KinesisAnalyticsApplication {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl KinesisAnalyticsApplication {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -126,8 +137,7 @@ impl KinesisAnalyticsApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -159,36 +169,42 @@ impl KinesisAnalyticsApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cloudwatch_logging_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cloudwatch_logging_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `inputs`.\n"]
-    pub fn set_inputs(self, v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsEl>>) -> Self {
+    pub fn set_inputs(
+        self,
+        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().inputs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.inputs = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `outputs`.\n"]
-    pub fn set_outputs(self, v: impl Into<BlockAssignable<KinesisAnalyticsApplicationOutputsEl>>) -> Self {
+    pub fn set_outputs(
+        self,
+        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationOutputsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().outputs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.outputs = Some(d);
-            },
+            }
         }
         self
     }
@@ -201,10 +217,10 @@ impl KinesisAnalyticsApplication {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().reference_data_sources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.reference_data_sources = Some(d);
-            },
+            }
         }
         self
     }
@@ -216,17 +232,26 @@ impl KinesisAnalyticsApplication {
 
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_timestamp` after provisioning.\n"]
     pub fn create_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -236,68 +261,108 @@ impl KinesisAnalyticsApplication {
 
     #[doc = "Get a reference to the value of field `last_update_timestamp` after provisioning.\n"]
     pub fn last_update_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_update_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_update_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_application` after provisioning.\n"]
     pub fn start_application(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_application", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_application", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logging_options` after provisioning.\n"]
-    pub fn cloudwatch_logging_options(&self) -> ListRef<KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logging_options", self.extract_ref()))
+    pub fn cloudwatch_logging_options(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logging_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inputs` after provisioning.\n"]
     pub fn inputs(&self) -> ListRef<KinesisAnalyticsApplicationInputsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inputs", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inputs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reference_data_sources` after provisioning.\n"]
-    pub fn reference_data_sources(&self) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reference_data_sources", self.extract_ref()))
+    pub fn reference_data_sources(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reference_data_sources", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for KinesisAnalyticsApplication {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for KinesisAnalyticsApplication { }
+impl Resource for KinesisAnalyticsApplication {}
 
 impl ToListMappable for KinesisAnalyticsApplication {
     type O = ListRef<KinesisAnalyticsApplicationRef>;
@@ -365,10 +430,7 @@ pub struct KinesisAnalyticsApplicationRef {
 
 impl Ref for KinesisAnalyticsApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -388,17 +450,26 @@ impl KinesisAnalyticsApplicationRef {
 
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_timestamp` after provisioning.\n"]
     pub fn create_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -408,58 +479,94 @@ impl KinesisAnalyticsApplicationRef {
 
     #[doc = "Get a reference to the value of field `last_update_timestamp` after provisioning.\n"]
     pub fn last_update_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_update_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_update_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_application` after provisioning.\n"]
     pub fn start_application(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_application", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_application", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logging_options` after provisioning.\n"]
-    pub fn cloudwatch_logging_options(&self) -> ListRef<KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logging_options", self.extract_ref()))
+    pub fn cloudwatch_logging_options(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logging_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inputs` after provisioning.\n"]
     pub fn inputs(&self) -> ListRef<KinesisAnalyticsApplicationInputsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.inputs", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.inputs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reference_data_sources` after provisioning.\n"]
-    pub fn reference_data_sources(&self) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.reference_data_sources", self.extract_ref()))
+    pub fn reference_data_sources(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.reference_data_sources", self.extract_ref()),
+        )
     }
 }
 
@@ -469,7 +576,7 @@ pub struct KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl { }
+impl KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl>;
@@ -505,7 +612,10 @@ pub struct KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef {
         KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -525,7 +635,10 @@ impl KinesisAnalyticsApplicationCloudwatchLoggingOptionsElRef {
 
     #[doc = "Get a reference to the value of field `log_stream_arn` after provisioning.\n"]
     pub fn log_stream_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_stream_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_stream_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -540,7 +653,7 @@ pub struct KinesisAnalyticsApplicationInputsElKinesisFirehoseEl {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationInputsElKinesisFirehoseEl { }
+impl KinesisAnalyticsApplicationInputsElKinesisFirehoseEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationInputsElKinesisFirehoseEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationInputsElKinesisFirehoseEl>;
@@ -576,7 +689,10 @@ pub struct KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef {
         KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef {
             shared: shared,
             base: base.to_string(),
@@ -606,7 +722,7 @@ pub struct KinesisAnalyticsApplicationInputsElKinesisStreamEl {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationInputsElKinesisStreamEl { }
+impl KinesisAnalyticsApplicationInputsElKinesisStreamEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationInputsElKinesisStreamEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationInputsElKinesisStreamEl>;
@@ -642,7 +758,10 @@ pub struct KinesisAnalyticsApplicationInputsElKinesisStreamElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationInputsElKinesisStreamElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationInputsElKinesisStreamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationInputsElKinesisStreamElRef {
         KinesisAnalyticsApplicationInputsElKinesisStreamElRef {
             shared: shared,
             base: base.to_string(),
@@ -696,7 +815,9 @@ pub struct BuildKinesisAnalyticsApplicationInputsElParallelismEl {}
 
 impl BuildKinesisAnalyticsApplicationInputsElParallelismEl {
     pub fn build(self) -> KinesisAnalyticsApplicationInputsElParallelismEl {
-        KinesisAnalyticsApplicationInputsElParallelismEl { count: core::default::Default::default() }
+        KinesisAnalyticsApplicationInputsElParallelismEl {
+            count: core::default::Default::default(),
+        }
     }
 }
 
@@ -706,7 +827,10 @@ pub struct KinesisAnalyticsApplicationInputsElParallelismElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationInputsElParallelismElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationInputsElParallelismElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationInputsElParallelismElRef {
         KinesisAnalyticsApplicationInputsElParallelismElRef {
             shared: shared,
             base: base.to_string(),
@@ -731,7 +855,7 @@ pub struct KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl 
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl { }
+impl KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl>;
@@ -796,7 +920,8 @@ impl KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaElRef {
 
 #[derive(Serialize, Default)]
 struct KinesisAnalyticsApplicationInputsElProcessingConfigurationElDynamic {
-    lambda: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl>>,
+    lambda:
+        Option<DynamicBlock<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl>>,
 }
 
 #[derive(Serialize)]
@@ -810,15 +935,17 @@ impl KinesisAnalyticsApplicationInputsElProcessingConfigurationEl {
     #[doc = "Set the field `lambda`.\n"]
     pub fn set_lambda(
         mut self,
-        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl>>,
+        v: impl Into<
+            BlockAssignable<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda = Some(d);
-            },
+            }
         }
         self
     }
@@ -853,7 +980,10 @@ pub struct KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef {
         KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -867,7 +997,9 @@ impl KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `lambda` after provisioning.\n"]
-    pub fn lambda(&self) -> ListRef<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaElRef> {
+    pub fn lambda(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElProcessingConfigurationElLambdaElRef> {
         ListRef::new(self.shared().clone(), format!("{}.lambda", self.base))
     }
 }
@@ -923,7 +1055,10 @@ pub struct KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef {
         KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef {
             shared: shared,
             base: base.to_string(),
@@ -958,10 +1093,14 @@ pub struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParam
     record_row_delimiter: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl { }
+impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl {}
 
-impl ToListMappable for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl {
-    type O = BlockAssignable<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl>;
+impl ToListMappable
+    for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl
+{
+    type O = BlockAssignable<
+        KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -980,7 +1119,9 @@ pub struct BuildKinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMapping
 }
 
 impl BuildKinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl {
-    pub fn build(self) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl {
+    pub fn build(
+        self,
+    ) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl {
         KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl {
             record_column_delimiter: self.record_column_delimiter,
             record_row_delimiter: self.record_row_delimiter,
@@ -1012,12 +1153,18 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersE
 
     #[doc = "Get a reference to the value of field `record_column_delimiter` after provisioning.\n"]
     pub fn record_column_delimiter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_column_delimiter", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_column_delimiter", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `record_row_delimiter` after provisioning.\n"]
     pub fn record_row_delimiter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_row_delimiter", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_row_delimiter", self.base),
+        )
     }
 }
 
@@ -1026,10 +1173,14 @@ pub struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParam
     record_row_path: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl { }
+impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl {}
 
-impl ToListMappable for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl {
-    type O = BlockAssignable<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl>;
+impl ToListMappable
+    for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl
+{
+    type O = BlockAssignable<
+        KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1046,7 +1197,9 @@ pub struct BuildKinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMapping
 }
 
 impl BuildKinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl {
-    pub fn build(self) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl {
+    pub fn build(
+        self,
+    ) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl {
         KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl {
             record_row_path: self.record_row_path,
         }
@@ -1077,22 +1230,37 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersE
 
     #[doc = "Get a reference to the value of field `record_row_path` after provisioning.\n"]
     pub fn record_row_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_row_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_row_path", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElDynamic {
-    csv: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl>>,
-    json: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl>>,
+    csv: Option<
+        DynamicBlock<
+            KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl,
+        >,
+    >,
+    json: Option<
+        DynamicBlock<
+            KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl,
+        >,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    csv: Option<Vec<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl>>,
+    csv: Option<
+        Vec<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    json: Option<Vec<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl>>,
+    json: Option<
+        Vec<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl>,
+    >,
     dynamic: KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElDynamic,
 }
 
@@ -1100,22 +1268,19 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersE
     #[doc = "Set the field `csv`.\n"]
     pub fn set_csv(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.csv = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.csv = Some(d);
-            },
+            }
         }
         self
     }
@@ -1123,29 +1288,30 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersE
     #[doc = "Set the field `json`.\n"]
     pub fn set_json(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.json = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.json = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {
-    type O = BlockAssignable<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl>;
+impl ToListMappable
+    for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl
+{
+    type O = BlockAssignable<
+        KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1159,7 +1325,9 @@ impl ToListMappable for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatE
 pub struct BuildKinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {}
 
 impl BuildKinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {
-    pub fn build(self) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {
+    pub fn build(
+        self,
+    ) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {
         KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl {
             csv: core::default::Default::default(),
             json: core::default::Default::default(),
@@ -1191,12 +1359,19 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersE
     }
 
     #[doc = "Get a reference to the value of field `csv` after provisioning.\n"]
-    pub fn csv(&self) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvElRef> {
+    pub fn csv(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElCsvElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.csv", self.base))
     }
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
-    pub fn json(&self) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonElRef> {
+    pub fn json(
+        &self,
+    ) -> ListRef<
+        KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElJsonElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.json", self.base))
     }
 }
@@ -1211,7 +1386,8 @@ struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElDynamic {
 #[derive(Serialize)]
 pub struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    mapping_parameters: Option<Vec<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl>>,
+    mapping_parameters:
+        Option<Vec<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl>>,
     dynamic: KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElDynamic,
 }
 
@@ -1219,15 +1395,19 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatEl {
     #[doc = "Set the field `mapping_parameters`.\n"]
     pub fn set_mapping_parameters(
         mut self,
-        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl>>,
+        v: impl Into<
+            BlockAssignable<
+                KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mapping_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mapping_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1262,7 +1442,10 @@ pub struct KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef {
         KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef {
             shared: shared,
             base: base.to_string(),
@@ -1277,20 +1460,28 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef {
 
     #[doc = "Get a reference to the value of field `record_format_type` after provisioning.\n"]
     pub fn record_format_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_format_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_format_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mapping_parameters` after provisioning.\n"]
     pub fn mapping_parameters(
         &self,
-    ) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mapping_parameters", self.base))
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElMappingParametersElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mapping_parameters", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct KinesisAnalyticsApplicationInputsElSchemaElDynamic {
-    record_columns: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsEl>>,
+    record_columns:
+        Option<DynamicBlock<KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsEl>>,
     record_format: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatEl>>,
 }
 
@@ -1320,10 +1511,10 @@ impl KinesisAnalyticsApplicationInputsElSchemaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.record_columns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.record_columns = Some(d);
-            },
+            }
         }
         self
     }
@@ -1336,10 +1527,10 @@ impl KinesisAnalyticsApplicationInputsElSchemaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.record_format = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.record_format = Some(d);
-            },
+            }
         }
         self
     }
@@ -1391,17 +1582,30 @@ impl KinesisAnalyticsApplicationInputsElSchemaElRef {
 
     #[doc = "Get a reference to the value of field `record_encoding` after provisioning.\n"]
     pub fn record_encoding(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_encoding", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_encoding", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `record_columns` after provisioning.\n"]
-    pub fn record_columns(&self) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.record_columns", self.base))
+    pub fn record_columns(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordColumnsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.record_columns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `record_format` after provisioning.\n"]
-    pub fn record_format(&self) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.record_format", self.base))
+    pub fn record_format(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElSchemaElRecordFormatElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.record_format", self.base),
+        )
     }
 }
 
@@ -1465,7 +1669,10 @@ impl KinesisAnalyticsApplicationInputsElStartingPositionConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.starting_position", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.starting_position", self.base),
+        )
     }
 }
 
@@ -1474,11 +1681,11 @@ struct KinesisAnalyticsApplicationInputsElDynamic {
     kinesis_firehose: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElKinesisFirehoseEl>>,
     kinesis_stream: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElKinesisStreamEl>>,
     parallelism: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElParallelismEl>>,
-    processing_configuration: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElProcessingConfigurationEl>>,
+    processing_configuration:
+        Option<DynamicBlock<KinesisAnalyticsApplicationInputsElProcessingConfigurationEl>>,
     schema: Option<DynamicBlock<KinesisAnalyticsApplicationInputsElSchemaEl>>,
-    starting_position_configuration: Option<
-        DynamicBlock<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationEl>,
-    >,
+    starting_position_configuration:
+        Option<DynamicBlock<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -1491,11 +1698,13 @@ pub struct KinesisAnalyticsApplicationInputsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     parallelism: Option<Vec<KinesisAnalyticsApplicationInputsElParallelismEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    processing_configuration: Option<Vec<KinesisAnalyticsApplicationInputsElProcessingConfigurationEl>>,
+    processing_configuration:
+        Option<Vec<KinesisAnalyticsApplicationInputsElProcessingConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     schema: Option<Vec<KinesisAnalyticsApplicationInputsElSchemaEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    starting_position_configuration: Option<Vec<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationEl>>,
+    starting_position_configuration:
+        Option<Vec<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationEl>>,
     dynamic: KinesisAnalyticsApplicationInputsElDynamic,
 }
 
@@ -1508,10 +1717,10 @@ impl KinesisAnalyticsApplicationInputsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -1524,10 +1733,10 @@ impl KinesisAnalyticsApplicationInputsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_stream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_stream = Some(d);
-            },
+            }
         }
         self
     }
@@ -1540,10 +1749,10 @@ impl KinesisAnalyticsApplicationInputsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parallelism = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parallelism = Some(d);
-            },
+            }
         }
         self
     }
@@ -1556,23 +1765,26 @@ impl KinesisAnalyticsApplicationInputsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.processing_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.processing_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `schema`.\n"]
-    pub fn set_schema(mut self, v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsElSchemaEl>>) -> Self {
+    pub fn set_schema(
+        mut self,
+        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsElSchemaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -1580,15 +1792,17 @@ impl KinesisAnalyticsApplicationInputsEl {
     #[doc = "Set the field `starting_position_configuration`.\n"]
     pub fn set_starting_position_configuration(
         mut self,
-        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.starting_position_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.starting_position_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1661,13 +1875,21 @@ impl KinesisAnalyticsApplicationInputsElRef {
     }
 
     #[doc = "Get a reference to the value of field `kinesis_firehose` after provisioning.\n"]
-    pub fn kinesis_firehose(&self) -> ListRef<KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_firehose", self.base))
+    pub fn kinesis_firehose(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElKinesisFirehoseElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_firehose", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream` after provisioning.\n"]
     pub fn kinesis_stream(&self) -> ListRef<KinesisAnalyticsApplicationInputsElKinesisStreamElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parallelism` after provisioning.\n"]
@@ -1676,8 +1898,13 @@ impl KinesisAnalyticsApplicationInputsElRef {
     }
 
     #[doc = "Get a reference to the value of field `processing_configuration` after provisioning.\n"]
-    pub fn processing_configuration(&self) -> ListRef<KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.processing_configuration", self.base))
+    pub fn processing_configuration(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationInputsElProcessingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.processing_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
@@ -1689,7 +1916,10 @@ impl KinesisAnalyticsApplicationInputsElRef {
     pub fn starting_position_configuration(
         &self,
     ) -> ListRef<KinesisAnalyticsApplicationInputsElStartingPositionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.starting_position_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.starting_position_configuration", self.base),
+        )
     }
 }
 
@@ -1699,7 +1929,7 @@ pub struct KinesisAnalyticsApplicationOutputsElKinesisFirehoseEl {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationOutputsElKinesisFirehoseEl { }
+impl KinesisAnalyticsApplicationOutputsElKinesisFirehoseEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationOutputsElKinesisFirehoseEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationOutputsElKinesisFirehoseEl>;
@@ -1735,7 +1965,10 @@ pub struct KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef {
         KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef {
             shared: shared,
             base: base.to_string(),
@@ -1765,7 +1998,7 @@ pub struct KinesisAnalyticsApplicationOutputsElKinesisStreamEl {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationOutputsElKinesisStreamEl { }
+impl KinesisAnalyticsApplicationOutputsElKinesisStreamEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationOutputsElKinesisStreamEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationOutputsElKinesisStreamEl>;
@@ -1801,7 +2034,10 @@ pub struct KinesisAnalyticsApplicationOutputsElKinesisStreamElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationOutputsElKinesisStreamElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationOutputsElKinesisStreamElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationOutputsElKinesisStreamElRef {
         KinesisAnalyticsApplicationOutputsElKinesisStreamElRef {
             shared: shared,
             base: base.to_string(),
@@ -1831,7 +2067,7 @@ pub struct KinesisAnalyticsApplicationOutputsElLambdaEl {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationOutputsElLambdaEl { }
+impl KinesisAnalyticsApplicationOutputsElLambdaEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationOutputsElLambdaEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationOutputsElLambdaEl>;
@@ -1896,7 +2132,7 @@ pub struct KinesisAnalyticsApplicationOutputsElSchemaEl {
     record_format_type: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationOutputsElSchemaEl { }
+impl KinesisAnalyticsApplicationOutputsElSchemaEl {}
 
 impl ToListMappable for KinesisAnalyticsApplicationOutputsElSchemaEl {
     type O = BlockAssignable<KinesisAnalyticsApplicationOutputsElSchemaEl>;
@@ -1917,7 +2153,9 @@ pub struct BuildKinesisAnalyticsApplicationOutputsElSchemaEl {
 
 impl BuildKinesisAnalyticsApplicationOutputsElSchemaEl {
     pub fn build(self) -> KinesisAnalyticsApplicationOutputsElSchemaEl {
-        KinesisAnalyticsApplicationOutputsElSchemaEl { record_format_type: self.record_format_type }
+        KinesisAnalyticsApplicationOutputsElSchemaEl {
+            record_format_type: self.record_format_type,
+        }
     }
 }
 
@@ -1942,7 +2180,10 @@ impl KinesisAnalyticsApplicationOutputsElSchemaElRef {
 
     #[doc = "Get a reference to the value of field `record_format_type` after provisioning.\n"]
     pub fn record_format_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_format_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_format_type", self.base),
+        )
     }
 }
 
@@ -1977,10 +2218,10 @@ impl KinesisAnalyticsApplicationOutputsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -1993,36 +2234,42 @@ impl KinesisAnalyticsApplicationOutputsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_stream = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_stream = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `lambda`.\n"]
-    pub fn set_lambda(mut self, v: impl Into<BlockAssignable<KinesisAnalyticsApplicationOutputsElLambdaEl>>) -> Self {
+    pub fn set_lambda(
+        mut self,
+        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationOutputsElLambdaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `schema`.\n"]
-    pub fn set_schema(mut self, v: impl Into<BlockAssignable<KinesisAnalyticsApplicationOutputsElSchemaEl>>) -> Self {
+    pub fn set_schema(
+        mut self,
+        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationOutputsElSchemaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -2088,13 +2335,23 @@ impl KinesisAnalyticsApplicationOutputsElRef {
     }
 
     #[doc = "Get a reference to the value of field `kinesis_firehose` after provisioning.\n"]
-    pub fn kinesis_firehose(&self) -> ListRef<KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_firehose", self.base))
+    pub fn kinesis_firehose(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationOutputsElKinesisFirehoseElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_firehose", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream` after provisioning.\n"]
-    pub fn kinesis_stream(&self) -> ListRef<KinesisAnalyticsApplicationOutputsElKinesisStreamElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream", self.base))
+    pub fn kinesis_stream(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationOutputsElKinesisStreamElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda` after provisioning.\n"]
@@ -2115,7 +2372,7 @@ pub struct KinesisAnalyticsApplicationReferenceDataSourcesElS3El {
     role_arn: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationReferenceDataSourcesElS3El { }
+impl KinesisAnalyticsApplicationReferenceDataSourcesElS3El {}
 
 impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElS3El {
     type O = BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElS3El>;
@@ -2154,7 +2411,10 @@ pub struct KinesisAnalyticsApplicationReferenceDataSourcesElS3ElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationReferenceDataSourcesElS3ElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationReferenceDataSourcesElS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationReferenceDataSourcesElS3ElRef {
         KinesisAnalyticsApplicationReferenceDataSourcesElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -2200,7 +2460,8 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl {
 }
 
 impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl {
-    type O = BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>;
+    type O =
+        BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2267,12 +2528,16 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsElRef
 }
 
 #[derive(Serialize)]
-pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl {
+pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl
+{
     record_column_delimiter: PrimField<String>,
     record_row_delimiter: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl { }
+impl
+    KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl
+{
+}
 
 impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl {
     type O =
@@ -2289,7 +2554,8 @@ impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaE
     }
 }
 
-pub struct BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl {
+pub struct BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvEl
+{
     #[doc = ""]
     pub record_column_delimiter: PrimField<String>,
     #[doc = ""]
@@ -2307,7 +2573,8 @@ impl BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatE
     }
 }
 
-pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvElRef {
+pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2341,11 +2608,15 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMapp
 }
 
 #[derive(Serialize)]
-pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl {
+pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl
+{
     record_row_path: PrimField<String>,
 }
 
-impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl { }
+impl
+    KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl
+{
+}
 
 impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl {
     type O =
@@ -2362,7 +2633,8 @@ impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaE
     }
 }
 
-pub struct BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl {
+pub struct BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonEl
+{
     #[doc = ""]
     pub record_row_path: PrimField<String>,
 }
@@ -2377,7 +2649,8 @@ impl BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatE
     }
 }
 
-pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonElRef {
+pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2440,10 +2713,10 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMapp
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.csv = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.csv = Some(d);
-            },
+            }
         }
         self
     }
@@ -2463,18 +2736,21 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMapp
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.json = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.json = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl {
-    type O =
-        BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl>;
+impl ToListMappable
+    for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl
+{
+    type O = BlockAssignable<
+        KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2485,10 +2761,16 @@ impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaE
     }
 }
 
-pub struct BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl {}
+pub struct BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl
+{}
 
-impl BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl {
-    pub fn build(self) -> KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl {
+impl
+    BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl
+{
+    pub fn build(
+        self,
+    ) -> KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl
+    {
         KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersEl {
             csv: core::default::Default::default(),
             json: core::default::Default::default(),
@@ -2497,7 +2779,8 @@ impl BuildKinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatE
     }
 }
 
-pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElRef {
+pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2522,14 +2805,14 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMapp
     #[doc = "Get a reference to the value of field `csv` after provisioning.\n"]
     pub fn csv(
         &self,
-    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvElRef> {
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElCsvElRef>{
         ListRef::new(self.shared().clone(), format!("{}.csv", self.base))
     }
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(
         &self,
-    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonElRef> {
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElJsonElRef>{
         ListRef::new(self.shared().clone(), format!("{}.json", self.base))
     }
 }
@@ -2566,17 +2849,18 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mapping_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mapping_parameters = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl {
-    type O = BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>;
+    type O =
+        BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2622,21 +2906,31 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElRef 
 
     #[doc = "Get a reference to the value of field `record_format_type` after provisioning.\n"]
     pub fn record_format_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_format_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_format_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mapping_parameters` after provisioning.\n"]
     pub fn mapping_parameters(
         &self,
-    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mapping_parameters", self.base))
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElMappingParametersElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mapping_parameters", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElDynamic {
-    record_columns: Option<DynamicBlock<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>>,
-    record_format: Option<DynamicBlock<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>>,
+    record_columns: Option<
+        DynamicBlock<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>,
+    >,
+    record_format: Option<
+        DynamicBlock<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -2644,9 +2938,11 @@ pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     record_encoding: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    record_columns: Option<Vec<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>>,
+    record_columns:
+        Option<Vec<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    record_format: Option<Vec<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>>,
+    record_format:
+        Option<Vec<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>>,
     dynamic: KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElDynamic,
 }
 
@@ -2660,15 +2956,19 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaEl {
     #[doc = "Set the field `record_columns`.\n"]
     pub fn set_record_columns(
         mut self,
-        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.record_columns = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.record_columns = Some(d);
-            },
+            }
         }
         self
     }
@@ -2676,15 +2976,19 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaEl {
     #[doc = "Set the field `record_format`.\n"]
     pub fn set_record_format(
         mut self,
-        v: impl Into<BlockAssignable<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl>>,
+        v: impl Into<
+            BlockAssignable<
+                KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.record_format = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.record_format = Some(d);
-            },
+            }
         }
         self
     }
@@ -2721,7 +3025,10 @@ pub struct KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRef {
         KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRef {
             shared: shared,
             base: base.to_string(),
@@ -2736,17 +3043,30 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRef {
 
     #[doc = "Get a reference to the value of field `record_encoding` after provisioning.\n"]
     pub fn record_encoding(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.record_encoding", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.record_encoding", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `record_columns` after provisioning.\n"]
-    pub fn record_columns(&self) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.record_columns", self.base))
+    pub fn record_columns(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordColumnsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.record_columns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `record_format` after provisioning.\n"]
-    pub fn record_format(&self) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.record_format", self.base))
+    pub fn record_format(
+        &self,
+    ) -> ListRef<KinesisAnalyticsApplicationReferenceDataSourcesElSchemaElRecordFormatElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.record_format", self.base),
+        )
     }
 }
 
@@ -2775,10 +3095,10 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -2791,10 +3111,10 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.schema = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.schema = Some(d);
-            },
+            }
         }
         self
     }
@@ -2834,7 +3154,10 @@ pub struct KinesisAnalyticsApplicationReferenceDataSourcesElRef {
 }
 
 impl Ref for KinesisAnalyticsApplicationReferenceDataSourcesElRef {
-    fn new(shared: StackShared, base: String) -> KinesisAnalyticsApplicationReferenceDataSourcesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KinesisAnalyticsApplicationReferenceDataSourcesElRef {
         KinesisAnalyticsApplicationReferenceDataSourcesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2870,7 +3193,8 @@ impl KinesisAnalyticsApplicationReferenceDataSourcesElRef {
 
 #[derive(Serialize, Default)]
 struct KinesisAnalyticsApplicationDynamic {
-    cloudwatch_logging_options: Option<DynamicBlock<KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl>>,
+    cloudwatch_logging_options:
+        Option<DynamicBlock<KinesisAnalyticsApplicationCloudwatchLoggingOptionsEl>>,
     inputs: Option<DynamicBlock<KinesisAnalyticsApplicationInputsEl>>,
     outputs: Option<DynamicBlock<KinesisAnalyticsApplicationOutputsEl>>,
     reference_data_sources: Option<DynamicBlock<KinesisAnalyticsApplicationReferenceDataSourcesEl>>,

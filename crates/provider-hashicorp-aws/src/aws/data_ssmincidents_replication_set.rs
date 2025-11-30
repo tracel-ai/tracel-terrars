@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSsmincidentsReplicationSetData {
@@ -61,12 +61,18 @@ impl DataSsmincidentsReplicationSet {
 
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protected` after provisioning.\n"]
     pub fn deletion_protected(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protected", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protected", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -76,37 +82,56 @@ impl DataSsmincidentsReplicationSet {
 
     #[doc = "Get a reference to the value of field `last_modified_by` after provisioning.\n"]
     pub fn last_modified_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> SetRef<DataSsmincidentsReplicationSetRegionElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<DataSsmincidentsReplicationSetRegionsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSsmincidentsReplicationSet {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSsmincidentsReplicationSet { }
+impl Datasource for DataSsmincidentsReplicationSet {}
 
 impl ToListMappable for DataSsmincidentsReplicationSet {
     type O = ListRef<DataSsmincidentsReplicationSetRef>;
@@ -160,10 +185,7 @@ pub struct DataSsmincidentsReplicationSetRef {
 
 impl Ref for DataSsmincidentsReplicationSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -183,12 +205,18 @@ impl DataSsmincidentsReplicationSetRef {
 
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deletion_protected` after provisioning.\n"]
     pub fn deletion_protected(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deletion_protected", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deletion_protected", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -198,27 +226,42 @@ impl DataSsmincidentsReplicationSetRef {
 
     #[doc = "Get a reference to the value of field `last_modified_by` after provisioning.\n"]
     pub fn last_modified_by(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_by", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_by", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> SetRef<DataSsmincidentsReplicationSetRegionElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<DataSsmincidentsReplicationSetRegionsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.regions", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.regions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 }
 
@@ -321,7 +364,10 @@ impl DataSsmincidentsReplicationSetRegionElRef {
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.base),
+        )
     }
 }
 
@@ -424,6 +470,9 @@ impl DataSsmincidentsReplicationSetRegionsElRef {
 
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_message", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_message", self.base),
+        )
     }
 }

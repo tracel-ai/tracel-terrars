@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataElasticBeanstalkApplicationData {
@@ -49,16 +49,20 @@ impl DataElasticBeanstalkApplication {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `appversion_lifecycle` after provisioning.\n"]
-    pub fn appversion_lifecycle(&self) -> ListRef<DataElasticBeanstalkApplicationAppversionLifecycleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.appversion_lifecycle", self.extract_ref()))
+    pub fn appversion_lifecycle(
+        &self,
+    ) -> ListRef<DataElasticBeanstalkApplicationAppversionLifecycleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.appversion_lifecycle", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -68,7 +72,10 @@ impl DataElasticBeanstalkApplication {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -78,23 +85,32 @@ impl DataElasticBeanstalkApplication {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataElasticBeanstalkApplication {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataElasticBeanstalkApplication { }
+impl Datasource for DataElasticBeanstalkApplication {}
 
 impl ToListMappable for DataElasticBeanstalkApplication {
     type O = ListRef<DataElasticBeanstalkApplicationRef>;
@@ -151,10 +167,7 @@ pub struct DataElasticBeanstalkApplicationRef {
 
 impl Ref for DataElasticBeanstalkApplicationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -168,8 +181,13 @@ impl DataElasticBeanstalkApplicationRef {
     }
 
     #[doc = "Get a reference to the value of field `appversion_lifecycle` after provisioning.\n"]
-    pub fn appversion_lifecycle(&self) -> ListRef<DataElasticBeanstalkApplicationAppversionLifecycleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.appversion_lifecycle", self.extract_ref()))
+    pub fn appversion_lifecycle(
+        &self,
+    ) -> ListRef<DataElasticBeanstalkApplicationAppversionLifecycleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.appversion_lifecycle", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -179,7 +197,10 @@ impl DataElasticBeanstalkApplicationRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -189,13 +210,18 @@ impl DataElasticBeanstalkApplicationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -268,7 +294,10 @@ pub struct DataElasticBeanstalkApplicationAppversionLifecycleElRef {
 }
 
 impl Ref for DataElasticBeanstalkApplicationAppversionLifecycleElRef {
-    fn new(shared: StackShared, base: String) -> DataElasticBeanstalkApplicationAppversionLifecycleElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataElasticBeanstalkApplicationAppversionLifecycleElRef {
         DataElasticBeanstalkApplicationAppversionLifecycleElRef {
             shared: shared,
             base: base.to_string(),
@@ -283,12 +312,18 @@ impl DataElasticBeanstalkApplicationAppversionLifecycleElRef {
 
     #[doc = "Get a reference to the value of field `delete_source_from_s3` after provisioning.\n"]
     pub fn delete_source_from_s3(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_source_from_s3", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_source_from_s3", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_age_in_days` after provisioning.\n"]
     pub fn max_age_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_age_in_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_age_in_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_count` after provisioning.\n"]

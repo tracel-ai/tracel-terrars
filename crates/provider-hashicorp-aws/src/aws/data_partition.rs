@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataPartitionData {
@@ -48,7 +48,10 @@ impl DataPartition {
 
     #[doc = "Get a reference to the value of field `dns_suffix` after provisioning.\n"]
     pub fn dns_suffix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_suffix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_suffix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -58,22 +61,32 @@ impl DataPartition {
 
     #[doc = "Get a reference to the value of field `partition` after provisioning.\n"]
     pub fn partition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reverse_dns_prefix` after provisioning.\n"]
     pub fn reverse_dns_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reverse_dns_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reverse_dns_prefix", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataPartition {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataPartition { }
+impl Datasource for DataPartition {}
 
 impl ToListMappable for DataPartition {
     type O = ListRef<DataPartitionRef>;
@@ -126,10 +139,7 @@ pub struct DataPartitionRef {
 
 impl Ref for DataPartitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -144,7 +154,10 @@ impl DataPartitionRef {
 
     #[doc = "Get a reference to the value of field `dns_suffix` after provisioning.\n"]
     pub fn dns_suffix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_suffix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_suffix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -154,11 +167,17 @@ impl DataPartitionRef {
 
     #[doc = "Get a reference to the value of field `partition` after provisioning.\n"]
     pub fn partition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reverse_dns_prefix` after provisioning.\n"]
     pub fn reverse_dns_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reverse_dns_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reverse_dns_prefix", self.extract_ref()),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataBedrockFoundationModelsData {
@@ -72,8 +72,7 @@ impl DataBedrockFoundationModels {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -81,22 +80,34 @@ impl DataBedrockFoundationModels {
 
     #[doc = "Get a reference to the value of field `by_customization_type` after provisioning.\n"]
     pub fn by_customization_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_customization_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_customization_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `by_inference_type` after provisioning.\n"]
     pub fn by_inference_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_inference_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_inference_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `by_output_modality` after provisioning.\n"]
     pub fn by_output_modality(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_output_modality", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_output_modality", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `by_provider` after provisioning.\n"]
     pub fn by_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_provider", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -106,23 +117,32 @@ impl DataBedrockFoundationModels {
 
     #[doc = "Get a reference to the value of field `model_summaries` after provisioning.\n"]
     pub fn model_summaries(&self) -> ListRef<DataBedrockFoundationModelsModelSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.model_summaries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.model_summaries", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataBedrockFoundationModels {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataBedrockFoundationModels { }
+impl Datasource for DataBedrockFoundationModels {}
 
 impl ToListMappable for DataBedrockFoundationModels {
     type O = ListRef<DataBedrockFoundationModelsRef>;
@@ -179,10 +199,7 @@ pub struct DataBedrockFoundationModelsRef {
 
 impl Ref for DataBedrockFoundationModelsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -197,22 +214,34 @@ impl DataBedrockFoundationModelsRef {
 
     #[doc = "Get a reference to the value of field `by_customization_type` after provisioning.\n"]
     pub fn by_customization_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_customization_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_customization_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `by_inference_type` after provisioning.\n"]
     pub fn by_inference_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_inference_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_inference_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `by_output_modality` after provisioning.\n"]
     pub fn by_output_modality(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_output_modality", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_output_modality", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `by_provider` after provisioning.\n"]
     pub fn by_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.by_provider", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.by_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -222,13 +251,18 @@ impl DataBedrockFoundationModelsRef {
 
     #[doc = "Get a reference to the value of field `model_summaries` after provisioning.\n"]
     pub fn model_summaries(&self) -> ListRef<DataBedrockFoundationModelsModelSummariesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.model_summaries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.model_summaries", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -256,13 +290,19 @@ pub struct DataBedrockFoundationModelsModelSummariesEl {
 
 impl DataBedrockFoundationModelsModelSummariesEl {
     #[doc = "Set the field `customizations_supported`.\n"]
-    pub fn set_customizations_supported(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_customizations_supported(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.customizations_supported = Some(v.into());
         self
     }
 
     #[doc = "Set the field `inference_types_supported`.\n"]
-    pub fn set_inference_types_supported(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_inference_types_supported(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.inference_types_supported = Some(v.into());
         self
     }
@@ -361,17 +401,26 @@ impl DataBedrockFoundationModelsModelSummariesElRef {
 
     #[doc = "Get a reference to the value of field `customizations_supported` after provisioning.\n"]
     pub fn customizations_supported(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.customizations_supported", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.customizations_supported", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inference_types_supported` after provisioning.\n"]
     pub fn inference_types_supported(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.inference_types_supported", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.inference_types_supported", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_modalities` after provisioning.\n"]
     pub fn input_modalities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.input_modalities", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.input_modalities", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `model_arn` after provisioning.\n"]
@@ -391,16 +440,25 @@ impl DataBedrockFoundationModelsModelSummariesElRef {
 
     #[doc = "Get a reference to the value of field `output_modalities` after provisioning.\n"]
     pub fn output_modalities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.output_modalities", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.output_modalities", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_name` after provisioning.\n"]
     pub fn provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_streaming_supported` after provisioning.\n"]
     pub fn response_streaming_supported(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_streaming_supported", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_streaming_supported", self.base),
+        )
     }
 }

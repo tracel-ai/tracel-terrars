@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AppsyncFunctionData {
@@ -75,7 +75,8 @@ impl AppsyncFunction {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl AppsyncFunction {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl AppsyncFunction {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -138,8 +149,7 @@ impl AppsyncFunction {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -162,30 +172,36 @@ impl AppsyncFunction {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().runtime = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.runtime = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sync_config`.\n"]
-    pub fn set_sync_config(self, v: impl Into<BlockAssignable<AppsyncFunctionSyncConfigEl>>) -> Self {
+    pub fn set_sync_config(
+        self,
+        v: impl Into<BlockAssignable<AppsyncFunctionSyncConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sync_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sync_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -195,27 +211,42 @@ impl AppsyncFunction {
 
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_source` after provisioning.\n"]
     pub fn data_source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_id` after provisioning.\n"]
     pub fn function_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_version` after provisioning.\n"]
     pub fn function_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -225,48 +256,72 @@ impl AppsyncFunction {
 
     #[doc = "Get a reference to the value of field `max_batch_size` after provisioning.\n"]
     pub fn max_batch_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_batch_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_batch_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `request_mapping_template` after provisioning.\n"]
     pub fn request_mapping_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.request_mapping_template", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.request_mapping_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_mapping_template` after provisioning.\n"]
     pub fn response_mapping_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_mapping_template", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_mapping_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> ListRef<AppsyncFunctionRuntimeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sync_config` after provisioning.\n"]
     pub fn sync_config(&self) -> ListRef<AppsyncFunctionSyncConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sync_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sync_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AppsyncFunction {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AppsyncFunction { }
+impl Resource for AppsyncFunction {}
 
 impl ToListMappable for AppsyncFunction {
     type O = ListRef<AppsyncFunctionRef>;
@@ -339,10 +394,7 @@ pub struct AppsyncFunctionRef {
 
 impl Ref for AppsyncFunctionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -357,7 +409,10 @@ impl AppsyncFunctionRef {
 
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -367,27 +422,42 @@ impl AppsyncFunctionRef {
 
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_source` after provisioning.\n"]
     pub fn data_source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_id` after provisioning.\n"]
     pub fn function_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `function_version` after provisioning.\n"]
     pub fn function_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.function_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.function_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -397,38 +467,58 @@ impl AppsyncFunctionRef {
 
     #[doc = "Get a reference to the value of field `max_batch_size` after provisioning.\n"]
     pub fn max_batch_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_batch_size", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_batch_size", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `request_mapping_template` after provisioning.\n"]
     pub fn request_mapping_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.request_mapping_template", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.request_mapping_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `response_mapping_template` after provisioning.\n"]
     pub fn response_mapping_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.response_mapping_template", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.response_mapping_template", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> ListRef<AppsyncFunctionRuntimeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.runtime", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.runtime", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sync_config` after provisioning.\n"]
     pub fn sync_config(&self) -> ListRef<AppsyncFunctionSyncConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sync_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sync_config", self.extract_ref()),
+        )
     }
 }
 
@@ -438,7 +528,7 @@ pub struct AppsyncFunctionRuntimeEl {
     runtime_version: PrimField<String>,
 }
 
-impl AppsyncFunctionRuntimeEl { }
+impl AppsyncFunctionRuntimeEl {}
 
 impl ToListMappable for AppsyncFunctionRuntimeEl {
     type O = BlockAssignable<AppsyncFunctionRuntimeEl>;
@@ -494,7 +584,10 @@ impl AppsyncFunctionRuntimeElRef {
 
     #[doc = "Get a reference to the value of field `runtime_version` after provisioning.\n"]
     pub fn runtime_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.runtime_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.runtime_version", self.base),
+        )
     }
 }
 
@@ -540,7 +633,10 @@ pub struct AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
 }
 
 impl Ref for AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
-    fn new(shared: StackShared, base: String) -> AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
         AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -555,13 +651,17 @@ impl AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
 
     #[doc = "Get a reference to the value of field `lambda_conflict_handler_arn` after provisioning.\n"]
     pub fn lambda_conflict_handler_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_conflict_handler_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_conflict_handler_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AppsyncFunctionSyncConfigElDynamic {
-    lambda_conflict_handler_config: Option<DynamicBlock<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>>,
+    lambda_conflict_handler_config:
+        Option<DynamicBlock<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -571,7 +671,8 @@ pub struct AppsyncFunctionSyncConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     conflict_handler: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_conflict_handler_config: Option<Vec<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>>,
+    lambda_conflict_handler_config:
+        Option<Vec<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>>,
     dynamic: AppsyncFunctionSyncConfigElDynamic,
 }
 
@@ -596,10 +697,10 @@ impl AppsyncFunctionSyncConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_conflict_handler_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_conflict_handler_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -651,17 +752,28 @@ impl AppsyncFunctionSyncConfigElRef {
 
     #[doc = "Get a reference to the value of field `conflict_detection` after provisioning.\n"]
     pub fn conflict_detection(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.conflict_detection", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.conflict_detection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `conflict_handler` after provisioning.\n"]
     pub fn conflict_handler(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.conflict_handler", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.conflict_handler", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_conflict_handler_config` after provisioning.\n"]
-    pub fn lambda_conflict_handler_config(&self) -> ListRef<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_conflict_handler_config", self.base))
+    pub fn lambda_conflict_handler_config(
+        &self,
+    ) -> ListRef<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_conflict_handler_config", self.base),
+        )
     }
 }
 

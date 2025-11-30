@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataImagebuilderDistributionConfigurationsData {
@@ -28,7 +28,9 @@ struct DataImagebuilderDistributionConfigurations_ {
 }
 
 #[derive(Clone)]
-pub struct DataImagebuilderDistributionConfigurations(Rc<DataImagebuilderDistributionConfigurations_>);
+pub struct DataImagebuilderDistributionConfigurations(
+    Rc<DataImagebuilderDistributionConfigurations_>,
+);
 
 impl DataImagebuilderDistributionConfigurations {
     fn shared(&self) -> &StackShared {
@@ -51,29 +53,34 @@ impl DataImagebuilderDistributionConfigurations {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataImagebuilderDistributionConfigurationsFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataImagebuilderDistributionConfigurationsFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -83,23 +90,32 @@ impl DataImagebuilderDistributionConfigurations {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataImagebuilderDistributionConfigurations {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataImagebuilderDistributionConfigurations { }
+impl Datasource for DataImagebuilderDistributionConfigurations {}
 
 impl ToListMappable for DataImagebuilderDistributionConfigurations {
     type O = ListRef<DataImagebuilderDistributionConfigurationsRef>;
@@ -130,19 +146,21 @@ pub struct BuildDataImagebuilderDistributionConfigurations {
 
 impl BuildDataImagebuilderDistributionConfigurations {
     pub fn build(self, stack: &mut Stack) -> DataImagebuilderDistributionConfigurations {
-        let out = DataImagebuilderDistributionConfigurations(Rc::new(DataImagebuilderDistributionConfigurations_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataImagebuilderDistributionConfigurationsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataImagebuilderDistributionConfigurations(Rc::new(
+            DataImagebuilderDistributionConfigurations_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataImagebuilderDistributionConfigurationsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -155,10 +173,7 @@ pub struct DataImagebuilderDistributionConfigurationsRef {
 
 impl Ref for DataImagebuilderDistributionConfigurationsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -173,7 +188,10 @@ impl DataImagebuilderDistributionConfigurationsRef {
 
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -183,13 +201,18 @@ impl DataImagebuilderDistributionConfigurationsRef {
 
     #[doc = "Get a reference to the value of field `names` after provisioning.\n"]
     pub fn names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.names", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -199,7 +222,7 @@ pub struct DataImagebuilderDistributionConfigurationsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataImagebuilderDistributionConfigurationsFilterEl { }
+impl DataImagebuilderDistributionConfigurationsFilterEl {}
 
 impl ToListMappable for DataImagebuilderDistributionConfigurationsFilterEl {
     type O = BlockAssignable<DataImagebuilderDistributionConfigurationsFilterEl>;
@@ -235,7 +258,10 @@ pub struct DataImagebuilderDistributionConfigurationsFilterElRef {
 }
 
 impl Ref for DataImagebuilderDistributionConfigurationsFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataImagebuilderDistributionConfigurationsFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataImagebuilderDistributionConfigurationsFilterElRef {
         DataImagebuilderDistributionConfigurationsFilterElRef {
             shared: shared,
             base: base.to_string(),

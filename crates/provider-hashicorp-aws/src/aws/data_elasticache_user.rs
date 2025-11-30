@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataElasticacheUserData {
@@ -86,8 +86,7 @@ impl DataElasticacheUser {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -107,22 +106,28 @@ impl DataElasticacheUser {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().authentication_mode = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.authentication_mode = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `access_string` after provisioning.\n"]
     pub fn access_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -132,43 +137,64 @@ impl DataElasticacheUser {
 
     #[doc = "Get a reference to the value of field `no_password_required` after provisioning.\n"]
     pub fn no_password_required(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.no_password_required", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.no_password_required", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `passwords` after provisioning.\n"]
     pub fn passwords(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.passwords", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.passwords", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
     pub fn user_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authentication_mode` after provisioning.\n"]
     pub fn authentication_mode(&self) -> ListRef<DataElasticacheUserAuthenticationModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_mode", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataElasticacheUser {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataElasticacheUser { }
+impl Datasource for DataElasticacheUser {}
 
 impl ToListMappable for DataElasticacheUser {
     type O = ListRef<DataElasticacheUserRef>;
@@ -232,10 +258,7 @@ pub struct DataElasticacheUserRef {
 
 impl Ref for DataElasticacheUserRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -250,12 +273,18 @@ impl DataElasticacheUserRef {
 
     #[doc = "Get a reference to the value of field `access_string` after provisioning.\n"]
     pub fn access_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_string", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -265,33 +294,50 @@ impl DataElasticacheUserRef {
 
     #[doc = "Get a reference to the value of field `no_password_required` after provisioning.\n"]
     pub fn no_password_required(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.no_password_required", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.no_password_required", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `passwords` after provisioning.\n"]
     pub fn passwords(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.passwords", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.passwords", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
     pub fn user_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authentication_mode` after provisioning.\n"]
     pub fn authentication_mode(&self) -> ListRef<DataElasticacheUserAuthenticationModeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_mode", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_mode", self.extract_ref()),
+        )
     }
 }
 
@@ -361,7 +407,10 @@ impl DataElasticacheUserAuthenticationModeElRef {
 
     #[doc = "Get a reference to the value of field `password_count` after provisioning.\n"]
     pub fn password_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]

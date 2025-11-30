@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53KeySigningKeyData {
@@ -60,7 +60,8 @@ impl Route53KeySigningKey {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl Route53KeySigningKey {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl Route53KeySigningKey {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -113,37 +124,58 @@ impl Route53KeySigningKey {
 
     #[doc = "Get a reference to the value of field `digest_algorithm_mnemonic` after provisioning.\n"]
     pub fn digest_algorithm_mnemonic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.digest_algorithm_mnemonic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.digest_algorithm_mnemonic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `digest_algorithm_type` after provisioning.\n"]
     pub fn digest_algorithm_type(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.digest_algorithm_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.digest_algorithm_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `digest_value` after provisioning.\n"]
     pub fn digest_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.digest_value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.digest_value", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dnskey_record` after provisioning.\n"]
     pub fn dnskey_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dnskey_record", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dnskey_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ds_record` after provisioning.\n"]
     pub fn ds_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ds_record", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ds_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flag` after provisioning.\n"]
     pub fn flag(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -153,52 +185,80 @@ impl Route53KeySigningKey {
 
     #[doc = "Get a reference to the value of field `key_management_service_arn` after provisioning.\n"]
     pub fn key_management_service_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_management_service_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_management_service_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_tag` after provisioning.\n"]
     pub fn key_tag(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_tag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_tag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm_mnemonic` after provisioning.\n"]
     pub fn signing_algorithm_mnemonic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm_mnemonic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm_mnemonic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm_type` after provisioning.\n"]
     pub fn signing_algorithm_type(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Route53KeySigningKeyTimeoutsElRef {
-        Route53KeySigningKeyTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Route53KeySigningKeyTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53KeySigningKey {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53KeySigningKey { }
+impl Resource for Route53KeySigningKey {}
 
 impl ToListMappable for Route53KeySigningKey {
     type O = ListRef<Route53KeySigningKeyRef>;
@@ -263,10 +323,7 @@ pub struct Route53KeySigningKeyRef {
 
 impl Ref for Route53KeySigningKeyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -281,37 +338,58 @@ impl Route53KeySigningKeyRef {
 
     #[doc = "Get a reference to the value of field `digest_algorithm_mnemonic` after provisioning.\n"]
     pub fn digest_algorithm_mnemonic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.digest_algorithm_mnemonic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.digest_algorithm_mnemonic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `digest_algorithm_type` after provisioning.\n"]
     pub fn digest_algorithm_type(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.digest_algorithm_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.digest_algorithm_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `digest_value` after provisioning.\n"]
     pub fn digest_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.digest_value", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.digest_value", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dnskey_record` after provisioning.\n"]
     pub fn dnskey_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dnskey_record", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dnskey_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ds_record` after provisioning.\n"]
     pub fn ds_record(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ds_record", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ds_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flag` after provisioning.\n"]
     pub fn flag(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.flag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.flag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -321,42 +399,66 @@ impl Route53KeySigningKeyRef {
 
     #[doc = "Get a reference to the value of field `key_management_service_arn` after provisioning.\n"]
     pub fn key_management_service_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_management_service_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_management_service_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_tag` after provisioning.\n"]
     pub fn key_tag(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_tag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_tag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_key", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_key", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm_mnemonic` after provisioning.\n"]
     pub fn signing_algorithm_mnemonic(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm_mnemonic", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm_mnemonic", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_algorithm_type` after provisioning.\n"]
     pub fn signing_algorithm_type(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_algorithm_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_algorithm_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Route53KeySigningKeyTimeoutsElRef {
-        Route53KeySigningKeyTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Route53KeySigningKeyTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 

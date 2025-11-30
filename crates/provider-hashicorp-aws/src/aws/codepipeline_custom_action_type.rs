@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodepipelineCustomActionTypeData {
@@ -71,7 +71,8 @@ impl CodepipelineCustomActionType {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl CodepipelineCustomActionType {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl CodepipelineCustomActionType {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +121,7 @@ impl CodepipelineCustomActionType {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,10 +147,10 @@ impl CodepipelineCustomActionType {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration_property = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration_property = Some(d);
-            },
+            }
         }
         self
     }
@@ -153,10 +163,10 @@ impl CodepipelineCustomActionType {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().input_artifact_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.input_artifact_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -169,23 +179,26 @@ impl CodepipelineCustomActionType {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().output_artifact_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.output_artifact_details = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `settings`.\n"]
-    pub fn set_settings(self, v: impl Into<BlockAssignable<CodepipelineCustomActionTypeSettingsEl>>) -> Self {
+    pub fn set_settings(
+        self,
+        v: impl Into<BlockAssignable<CodepipelineCustomActionTypeSettingsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().settings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.settings = Some(d);
-            },
+            }
         }
         self
     }
@@ -197,7 +210,10 @@ impl CodepipelineCustomActionType {
 
     #[doc = "Get a reference to the value of field `category` after provisioning.\n"]
     pub fn category(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.category", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.category", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -207,63 +223,102 @@ impl CodepipelineCustomActionType {
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_name` after provisioning.\n"]
     pub fn provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_property` after provisioning.\n"]
-    pub fn configuration_property(&self) -> ListRef<CodepipelineCustomActionTypeConfigurationPropertyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_property", self.extract_ref()))
+    pub fn configuration_property(
+        &self,
+    ) -> ListRef<CodepipelineCustomActionTypeConfigurationPropertyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_property", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_artifact_details` after provisioning.\n"]
-    pub fn input_artifact_details(&self) -> ListRef<CodepipelineCustomActionTypeInputArtifactDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_artifact_details", self.extract_ref()))
+    pub fn input_artifact_details(
+        &self,
+    ) -> ListRef<CodepipelineCustomActionTypeInputArtifactDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_artifact_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_artifact_details` after provisioning.\n"]
-    pub fn output_artifact_details(&self) -> ListRef<CodepipelineCustomActionTypeOutputArtifactDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_artifact_details", self.extract_ref()))
+    pub fn output_artifact_details(
+        &self,
+    ) -> ListRef<CodepipelineCustomActionTypeOutputArtifactDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_artifact_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `settings` after provisioning.\n"]
     pub fn settings(&self) -> ListRef<CodepipelineCustomActionTypeSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.settings", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodepipelineCustomActionType {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodepipelineCustomActionType { }
+impl Resource for CodepipelineCustomActionType {}
 
 impl ToListMappable for CodepipelineCustomActionType {
     type O = ListRef<CodepipelineCustomActionTypeRef>;
@@ -334,10 +389,7 @@ pub struct CodepipelineCustomActionTypeRef {
 
 impl Ref for CodepipelineCustomActionTypeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -357,7 +409,10 @@ impl CodepipelineCustomActionTypeRef {
 
     #[doc = "Get a reference to the value of field `category` after provisioning.\n"]
     pub fn category(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.category", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.category", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -367,53 +422,88 @@ impl CodepipelineCustomActionTypeRef {
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provider_name` after provisioning.\n"]
     pub fn provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration_property` after provisioning.\n"]
-    pub fn configuration_property(&self) -> ListRef<CodepipelineCustomActionTypeConfigurationPropertyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration_property", self.extract_ref()))
+    pub fn configuration_property(
+        &self,
+    ) -> ListRef<CodepipelineCustomActionTypeConfigurationPropertyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration_property", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_artifact_details` after provisioning.\n"]
-    pub fn input_artifact_details(&self) -> ListRef<CodepipelineCustomActionTypeInputArtifactDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_artifact_details", self.extract_ref()))
+    pub fn input_artifact_details(
+        &self,
+    ) -> ListRef<CodepipelineCustomActionTypeInputArtifactDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_artifact_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_artifact_details` after provisioning.\n"]
-    pub fn output_artifact_details(&self) -> ListRef<CodepipelineCustomActionTypeOutputArtifactDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.output_artifact_details", self.extract_ref()))
+    pub fn output_artifact_details(
+        &self,
+    ) -> ListRef<CodepipelineCustomActionTypeOutputArtifactDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_artifact_details", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `settings` after provisioning.\n"]
     pub fn settings(&self) -> ListRef<CodepipelineCustomActionTypeSettingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.settings", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.settings", self.extract_ref()),
+        )
     }
 }
 
@@ -494,7 +584,10 @@ pub struct CodepipelineCustomActionTypeConfigurationPropertyElRef {
 }
 
 impl Ref for CodepipelineCustomActionTypeConfigurationPropertyElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineCustomActionTypeConfigurationPropertyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineCustomActionTypeConfigurationPropertyElRef {
         CodepipelineCustomActionTypeConfigurationPropertyElRef {
             shared: shared,
             base: base.to_string(),
@@ -549,7 +642,7 @@ pub struct CodepipelineCustomActionTypeInputArtifactDetailsEl {
     minimum_count: PrimField<f64>,
 }
 
-impl CodepipelineCustomActionTypeInputArtifactDetailsEl { }
+impl CodepipelineCustomActionTypeInputArtifactDetailsEl {}
 
 impl ToListMappable for CodepipelineCustomActionTypeInputArtifactDetailsEl {
     type O = BlockAssignable<CodepipelineCustomActionTypeInputArtifactDetailsEl>;
@@ -585,7 +678,10 @@ pub struct CodepipelineCustomActionTypeInputArtifactDetailsElRef {
 }
 
 impl Ref for CodepipelineCustomActionTypeInputArtifactDetailsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineCustomActionTypeInputArtifactDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineCustomActionTypeInputArtifactDetailsElRef {
         CodepipelineCustomActionTypeInputArtifactDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -600,12 +696,18 @@ impl CodepipelineCustomActionTypeInputArtifactDetailsElRef {
 
     #[doc = "Get a reference to the value of field `maximum_count` after provisioning.\n"]
     pub fn maximum_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_count` after provisioning.\n"]
     pub fn minimum_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_count", self.base),
+        )
     }
 }
 
@@ -615,7 +717,7 @@ pub struct CodepipelineCustomActionTypeOutputArtifactDetailsEl {
     minimum_count: PrimField<f64>,
 }
 
-impl CodepipelineCustomActionTypeOutputArtifactDetailsEl { }
+impl CodepipelineCustomActionTypeOutputArtifactDetailsEl {}
 
 impl ToListMappable for CodepipelineCustomActionTypeOutputArtifactDetailsEl {
     type O = BlockAssignable<CodepipelineCustomActionTypeOutputArtifactDetailsEl>;
@@ -651,7 +753,10 @@ pub struct CodepipelineCustomActionTypeOutputArtifactDetailsElRef {
 }
 
 impl Ref for CodepipelineCustomActionTypeOutputArtifactDetailsElRef {
-    fn new(shared: StackShared, base: String) -> CodepipelineCustomActionTypeOutputArtifactDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodepipelineCustomActionTypeOutputArtifactDetailsElRef {
         CodepipelineCustomActionTypeOutputArtifactDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -666,12 +771,18 @@ impl CodepipelineCustomActionTypeOutputArtifactDetailsElRef {
 
     #[doc = "Get a reference to the value of field `maximum_count` after provisioning.\n"]
     pub fn maximum_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_count` after provisioning.\n"]
     pub fn minimum_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_count", self.base),
+        )
     }
 }
 
@@ -759,29 +870,44 @@ impl CodepipelineCustomActionTypeSettingsElRef {
 
     #[doc = "Get a reference to the value of field `entity_url_template` after provisioning.\n"]
     pub fn entity_url_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.entity_url_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.entity_url_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_url_template` after provisioning.\n"]
     pub fn execution_url_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_url_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_url_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision_url_template` after provisioning.\n"]
     pub fn revision_url_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision_url_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision_url_template", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `third_party_configuration_url` after provisioning.\n"]
     pub fn third_party_configuration_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.third_party_configuration_url", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.third_party_configuration_url", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CodepipelineCustomActionTypeDynamic {
-    configuration_property: Option<DynamicBlock<CodepipelineCustomActionTypeConfigurationPropertyEl>>,
-    input_artifact_details: Option<DynamicBlock<CodepipelineCustomActionTypeInputArtifactDetailsEl>>,
-    output_artifact_details: Option<DynamicBlock<CodepipelineCustomActionTypeOutputArtifactDetailsEl>>,
+    configuration_property:
+        Option<DynamicBlock<CodepipelineCustomActionTypeConfigurationPropertyEl>>,
+    input_artifact_details:
+        Option<DynamicBlock<CodepipelineCustomActionTypeInputArtifactDetailsEl>>,
+    output_artifact_details:
+        Option<DynamicBlock<CodepipelineCustomActionTypeOutputArtifactDetailsEl>>,
     settings: Option<DynamicBlock<CodepipelineCustomActionTypeSettingsEl>>,
 }

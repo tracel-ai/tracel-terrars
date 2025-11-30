@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3controlDirectoryBucketAccessPointScopeData {
@@ -58,7 +58,8 @@ impl S3controlDirectoryBucketAccessPointScope {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +72,7 @@ impl S3controlDirectoryBucketAccessPointScope {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,64 +83,91 @@ impl S3controlDirectoryBucketAccessPointScope {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `scope`.\n"]
-    pub fn set_scope(self, v: impl Into<BlockAssignable<S3controlDirectoryBucketAccessPointScopeScopeEl>>) -> Self {
+    pub fn set_scope(
+        self,
+        v: impl Into<BlockAssignable<S3controlDirectoryBucketAccessPointScopeScopeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scope = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scope = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<S3controlDirectoryBucketAccessPointScopeScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3controlDirectoryBucketAccessPointScope {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3controlDirectoryBucketAccessPointScope { }
+impl Resource for S3controlDirectoryBucketAccessPointScope {}
 
 impl ToListMappable for S3controlDirectoryBucketAccessPointScope {
     type O = ListRef<S3controlDirectoryBucketAccessPointScopeRef>;
@@ -174,21 +202,23 @@ pub struct BuildS3controlDirectoryBucketAccessPointScope {
 
 impl BuildS3controlDirectoryBucketAccessPointScope {
     pub fn build(self, stack: &mut Stack) -> S3controlDirectoryBucketAccessPointScope {
-        let out = S3controlDirectoryBucketAccessPointScope(Rc::new(S3controlDirectoryBucketAccessPointScope_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(S3controlDirectoryBucketAccessPointScopeData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                account_id: self.account_id,
-                name: self.name,
-                region: core::default::Default::default(),
-                scope: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = S3controlDirectoryBucketAccessPointScope(Rc::new(
+            S3controlDirectoryBucketAccessPointScope_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(S3controlDirectoryBucketAccessPointScopeData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    account_id: self.account_id,
+                    name: self.name,
+                    region: core::default::Default::default(),
+                    scope: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -201,10 +231,7 @@ pub struct S3controlDirectoryBucketAccessPointScopeRef {
 
 impl Ref for S3controlDirectoryBucketAccessPointScopeRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -219,23 +246,34 @@ impl S3controlDirectoryBucketAccessPointScopeRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<S3controlDirectoryBucketAccessPointScopeScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 }
 
@@ -290,7 +328,10 @@ pub struct S3controlDirectoryBucketAccessPointScopeScopeElRef {
 }
 
 impl Ref for S3controlDirectoryBucketAccessPointScopeScopeElRef {
-    fn new(shared: StackShared, base: String) -> S3controlDirectoryBucketAccessPointScopeScopeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3controlDirectoryBucketAccessPointScopeScopeElRef {
         S3controlDirectoryBucketAccessPointScopeScopeElRef {
             shared: shared,
             base: base.to_string(),

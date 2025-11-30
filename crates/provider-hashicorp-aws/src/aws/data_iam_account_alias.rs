@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamAccountAliasData {
@@ -48,7 +48,10 @@ impl DataIamAccountAlias {
 
     #[doc = "Get a reference to the value of field `account_alias` after provisioning.\n"]
     pub fn account_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -59,11 +62,15 @@ impl DataIamAccountAlias {
 
 impl Referable for DataIamAccountAlias {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamAccountAlias { }
+impl Datasource for DataIamAccountAlias {}
 
 impl ToListMappable for DataIamAccountAlias {
     type O = ListRef<DataIamAccountAliasRef>;
@@ -116,10 +123,7 @@ pub struct DataIamAccountAliasRef {
 
 impl Ref for DataIamAccountAliasRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -134,7 +138,10 @@ impl DataIamAccountAliasRef {
 
     #[doc = "Get a reference to the value of field `account_alias` after provisioning.\n"]
     pub fn account_alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]

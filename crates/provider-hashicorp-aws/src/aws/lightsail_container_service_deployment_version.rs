@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LightsailContainerServiceDeploymentVersionData {
@@ -35,7 +35,9 @@ struct LightsailContainerServiceDeploymentVersion_ {
 }
 
 #[derive(Clone)]
-pub struct LightsailContainerServiceDeploymentVersion(Rc<LightsailContainerServiceDeploymentVersion_>);
+pub struct LightsailContainerServiceDeploymentVersion(
+    Rc<LightsailContainerServiceDeploymentVersion_>,
+);
 
 impl LightsailContainerServiceDeploymentVersion {
     fn shared(&self) -> &StackShared {
@@ -63,7 +65,8 @@ impl LightsailContainerServiceDeploymentVersion {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +79,7 @@ impl LightsailContainerServiceDeploymentVersion {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +90,22 @@ impl LightsailContainerServiceDeploymentVersion {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -102,8 +115,7 @@ impl LightsailContainerServiceDeploymentVersion {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -117,10 +129,10 @@ impl LightsailContainerServiceDeploymentVersion {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().container = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.container = Some(d);
-            },
+            }
         }
         self
     }
@@ -133,23 +145,29 @@ impl LightsailContainerServiceDeploymentVersion {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().public_endpoint = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.public_endpoint = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<LightsailContainerServiceDeploymentVersionTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<LightsailContainerServiceDeploymentVersionTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -157,30 +175,46 @@ impl LightsailContainerServiceDeploymentVersion {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_endpoint` after provisioning.\n"]
-    pub fn public_endpoint(&self) -> ListRef<LightsailContainerServiceDeploymentVersionPublicEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.public_endpoint", self.extract_ref()))
+    pub fn public_endpoint(
+        &self,
+    ) -> ListRef<LightsailContainerServiceDeploymentVersionPublicEndpointElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.public_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -194,11 +228,15 @@ impl LightsailContainerServiceDeploymentVersion {
 
 impl Referable for LightsailContainerServiceDeploymentVersion {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LightsailContainerServiceDeploymentVersion { }
+impl Resource for LightsailContainerServiceDeploymentVersion {}
 
 impl ToListMappable for LightsailContainerServiceDeploymentVersion {
     type O = ListRef<LightsailContainerServiceDeploymentVersionRef>;
@@ -231,23 +269,25 @@ pub struct BuildLightsailContainerServiceDeploymentVersion {
 
 impl BuildLightsailContainerServiceDeploymentVersion {
     pub fn build(self, stack: &mut Stack) -> LightsailContainerServiceDeploymentVersion {
-        let out = LightsailContainerServiceDeploymentVersion(Rc::new(LightsailContainerServiceDeploymentVersion_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(LightsailContainerServiceDeploymentVersionData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                service_name: self.service_name,
-                container: core::default::Default::default(),
-                public_endpoint: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = LightsailContainerServiceDeploymentVersion(Rc::new(
+            LightsailContainerServiceDeploymentVersion_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(LightsailContainerServiceDeploymentVersionData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    service_name: self.service_name,
+                    container: core::default::Default::default(),
+                    public_endpoint: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -260,10 +300,7 @@ pub struct LightsailContainerServiceDeploymentVersionRef {
 
 impl Ref for LightsailContainerServiceDeploymentVersionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -278,7 +315,10 @@ impl LightsailContainerServiceDeploymentVersionRef {
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -286,30 +326,46 @@ impl LightsailContainerServiceDeploymentVersionRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_endpoint` after provisioning.\n"]
-    pub fn public_endpoint(&self) -> ListRef<LightsailContainerServiceDeploymentVersionPublicEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.public_endpoint", self.extract_ref()))
+    pub fn public_endpoint(
+        &self,
+    ) -> ListRef<LightsailContainerServiceDeploymentVersionPublicEndpointElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.public_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -390,7 +446,10 @@ pub struct LightsailContainerServiceDeploymentVersionContainerElRef {
 }
 
 impl Ref for LightsailContainerServiceDeploymentVersionContainerElRef {
-    fn new(shared: StackShared, base: String) -> LightsailContainerServiceDeploymentVersionContainerElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LightsailContainerServiceDeploymentVersionContainerElRef {
         LightsailContainerServiceDeploymentVersionContainerElRef {
             shared: shared,
             base: base.to_string(),
@@ -410,7 +469,10 @@ impl LightsailContainerServiceDeploymentVersionContainerElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
@@ -484,7 +546,8 @@ impl LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl {
 }
 
 impl ToListMappable for LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl {
-    type O = BlockAssignable<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>;
+    type O =
+        BlockAssignable<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -534,12 +597,18 @@ impl LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckElRef 
 
     #[doc = "Get a reference to the value of field `healthy_threshold` after provisioning.\n"]
     pub fn healthy_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.healthy_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.healthy_threshold", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `interval_seconds` after provisioning.\n"]
     pub fn interval_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interval_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.interval_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -549,23 +618,34 @@ impl LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckElRef 
 
     #[doc = "Get a reference to the value of field `success_codes` after provisioning.\n"]
     pub fn success_codes(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.success_codes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.success_codes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout_seconds` after provisioning.\n"]
     pub fn timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unhealthy_threshold` after provisioning.\n"]
     pub fn unhealthy_threshold(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unhealthy_threshold", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unhealthy_threshold", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct LightsailContainerServiceDeploymentVersionPublicEndpointElDynamic {
-    health_check: Option<DynamicBlock<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>>,
+    health_check: Option<
+        DynamicBlock<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -573,7 +653,8 @@ pub struct LightsailContainerServiceDeploymentVersionPublicEndpointEl {
     container_name: PrimField<String>,
     container_port: PrimField<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    health_check: Option<Vec<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>>,
+    health_check:
+        Option<Vec<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>>,
     dynamic: LightsailContainerServiceDeploymentVersionPublicEndpointElDynamic,
 }
 
@@ -581,15 +662,19 @@ impl LightsailContainerServiceDeploymentVersionPublicEndpointEl {
     #[doc = "Set the field `health_check`.\n"]
     pub fn set_health_check(
         mut self,
-        v: impl Into<BlockAssignable<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl>>,
+        v: impl Into<
+            BlockAssignable<
+                LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.health_check = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.health_check = Some(d);
-            },
+            }
         }
         self
     }
@@ -631,7 +716,10 @@ pub struct LightsailContainerServiceDeploymentVersionPublicEndpointElRef {
 }
 
 impl Ref for LightsailContainerServiceDeploymentVersionPublicEndpointElRef {
-    fn new(shared: StackShared, base: String) -> LightsailContainerServiceDeploymentVersionPublicEndpointElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LightsailContainerServiceDeploymentVersionPublicEndpointElRef {
         LightsailContainerServiceDeploymentVersionPublicEndpointElRef {
             shared: shared,
             base: base.to_string(),
@@ -646,16 +734,24 @@ impl LightsailContainerServiceDeploymentVersionPublicEndpointElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_port` after provisioning.\n"]
     pub fn container_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check` after provisioning.\n"]
-    pub fn health_check(&self) -> ListRef<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckElRef> {
+    pub fn health_check(
+        &self,
+    ) -> ListRef<LightsailContainerServiceDeploymentVersionPublicEndpointElHealthCheckElRef> {
         ListRef::new(self.shared().clone(), format!("{}.health_check", self.base))
     }
 }
@@ -690,7 +786,9 @@ pub struct BuildLightsailContainerServiceDeploymentVersionTimeoutsEl {}
 
 impl BuildLightsailContainerServiceDeploymentVersionTimeoutsEl {
     pub fn build(self) -> LightsailContainerServiceDeploymentVersionTimeoutsEl {
-        LightsailContainerServiceDeploymentVersionTimeoutsEl { create: core::default::Default::default() }
+        LightsailContainerServiceDeploymentVersionTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 
@@ -700,7 +798,10 @@ pub struct LightsailContainerServiceDeploymentVersionTimeoutsElRef {
 }
 
 impl Ref for LightsailContainerServiceDeploymentVersionTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> LightsailContainerServiceDeploymentVersionTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LightsailContainerServiceDeploymentVersionTimeoutsElRef {
         LightsailContainerServiceDeploymentVersionTimeoutsElRef {
             shared: shared,
             base: base.to_string(),
@@ -722,5 +823,6 @@ impl LightsailContainerServiceDeploymentVersionTimeoutsElRef {
 #[derive(Serialize, Default)]
 struct LightsailContainerServiceDeploymentVersionDynamic {
     container: Option<DynamicBlock<LightsailContainerServiceDeploymentVersionContainerEl>>,
-    public_endpoint: Option<DynamicBlock<LightsailContainerServiceDeploymentVersionPublicEndpointEl>>,
+    public_endpoint:
+        Option<DynamicBlock<LightsailContainerServiceDeploymentVersionPublicEndpointEl>>,
 }

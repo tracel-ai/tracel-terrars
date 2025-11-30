@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudwatchLogDataProtectionPolicyDocumentData {
@@ -33,7 +33,9 @@ struct DataCloudwatchLogDataProtectionPolicyDocument_ {
 }
 
 #[derive(Clone)]
-pub struct DataCloudwatchLogDataProtectionPolicyDocument(Rc<DataCloudwatchLogDataProtectionPolicyDocument_>);
+pub struct DataCloudwatchLogDataProtectionPolicyDocument(
+    Rc<DataCloudwatchLogDataProtectionPolicyDocument_>,
+);
 
 impl DataCloudwatchLogDataProtectionPolicyDocument {
     fn shared(&self) -> &StackShared {
@@ -76,10 +78,10 @@ impl DataCloudwatchLogDataProtectionPolicyDocument {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -92,17 +94,20 @@ impl DataCloudwatchLogDataProtectionPolicyDocument {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().statement = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.statement = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -112,37 +117,60 @@ impl DataCloudwatchLogDataProtectionPolicyDocument {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
-    pub fn configuration(&self) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+    pub fn configuration(
+        &self,
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statement` after provisioning.\n"]
-    pub fn statement(&self) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.statement", self.extract_ref()))
+    pub fn statement(
+        &self,
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.statement", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudwatchLogDataProtectionPolicyDocument {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudwatchLogDataProtectionPolicyDocument { }
+impl Datasource for DataCloudwatchLogDataProtectionPolicyDocument {}
 
 impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocument {
     type O = ListRef<DataCloudwatchLogDataProtectionPolicyDocumentRef>;
@@ -175,8 +203,8 @@ pub struct BuildDataCloudwatchLogDataProtectionPolicyDocument {
 
 impl BuildDataCloudwatchLogDataProtectionPolicyDocument {
     pub fn build(self, stack: &mut Stack) -> DataCloudwatchLogDataProtectionPolicyDocument {
-        let out =
-            DataCloudwatchLogDataProtectionPolicyDocument(Rc::new(DataCloudwatchLogDataProtectionPolicyDocument_ {
+        let out = DataCloudwatchLogDataProtectionPolicyDocument(Rc::new(
+            DataCloudwatchLogDataProtectionPolicyDocument_ {
                 shared: stack.shared.clone(),
                 tf_id: self.tf_id,
                 data: RefCell::new(DataCloudwatchLogDataProtectionPolicyDocumentData {
@@ -191,7 +219,8 @@ impl BuildDataCloudwatchLogDataProtectionPolicyDocument {
                     statement: core::default::Default::default(),
                     dynamic: Default::default(),
                 }),
-            }));
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -204,10 +233,7 @@ pub struct DataCloudwatchLogDataProtectionPolicyDocumentRef {
 
 impl Ref for DataCloudwatchLogDataProtectionPolicyDocumentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -222,7 +248,10 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -232,27 +261,46 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentRef {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
-    pub fn configuration(&self) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+    pub fn configuration(
+        &self,
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `statement` after provisioning.\n"]
-    pub fn statement(&self) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.statement", self.extract_ref()))
+    pub fn statement(
+        &self,
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.statement", self.extract_ref()),
+        )
     }
 }
 
@@ -262,10 +310,14 @@ pub struct DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDat
     regex: PrimField<String>,
 }
 
-impl DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl { }
+impl DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl {}
 
-impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl {
-    type O = BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl>;
+impl ToListMappable
+    for DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl
+{
+    type O = BlockAssignable<
+        DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -284,7 +336,9 @@ pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCust
 }
 
 impl BuildDataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl {
-    pub fn build(self) -> DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl {
+    pub fn build(
+        self,
+    ) -> DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl {
         DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl {
             name: self.name,
             regex: self.regex,
@@ -328,7 +382,9 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdent
 #[derive(Serialize, Default)]
 struct DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElDynamic {
     custom_data_identifier: Option<
-        DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl>,
+        DynamicBlock<
+            DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl,
+        >,
     >,
 }
 
@@ -345,22 +401,19 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentConfigurationEl {
     #[doc = "Set the field `custom_data_identifier`.\n"]
     pub fn set_custom_data_identifier(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_data_identifier = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_data_identifier = Some(d);
-            },
+            }
         }
         self
     }
@@ -395,7 +448,10 @@ pub struct DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef {
 }
 
 impl Ref for DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef {
         DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -411,13 +467,19 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElRef {
     #[doc = "Get a reference to the value of field `custom_data_identifier` after provisioning.\n"]
     pub fn custom_data_identifier(
         &self,
-    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_data_identifier", self.base))
+    ) -> ListRef<
+        DataCloudwatchLogDataProtectionPolicyDocumentConfigurationElCustomDataIdentifierElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_data_identifier", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElCloudwatchLogsEl {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElCloudwatchLogsEl
+{
     log_group: PrimField<String>,
 }
 
@@ -440,7 +502,8 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
     }
 }
 
-pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElCloudwatchLogsEl {
+pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElCloudwatchLogsEl
+{
     #[doc = ""]
     pub log_group: PrimField<String>,
 }
@@ -455,7 +518,8 @@ impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAud
     }
 }
 
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElCloudwatchLogsElRef {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElCloudwatchLogsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -484,7 +548,8 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElF
 }
 
 #[derive(Serialize)]
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElFirehoseEl {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElFirehoseEl
+{
     delivery_stream: PrimField<String>,
 }
 
@@ -505,7 +570,8 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
     }
 }
 
-pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElFirehoseEl {
+pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElFirehoseEl
+{
     #[doc = ""]
     pub delivery_stream: PrimField<String>,
 }
@@ -520,7 +586,8 @@ impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAud
     }
 }
 
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElFirehoseElRef {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElFirehoseElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -549,7 +616,8 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElF
 }
 
 #[derive(Serialize)]
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElS3El {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElS3El
+{
     bucket: PrimField<String>,
 }
 
@@ -570,7 +638,8 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
     }
 }
 
-pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElS3El {
+pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElS3El
+{
     #[doc = ""]
     pub bucket: PrimField<String>,
 }
@@ -585,7 +654,8 @@ impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAud
     }
 }
 
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElS3ElRef {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElS3ElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -649,7 +719,9 @@ pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAu
     dynamic: DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElDynamic,
 }
 
-impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationEl {
+impl
+    DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationEl
+{
     #[doc = "Set the field `cloudwatch_logs`.\n"]
     pub fn set_cloudwatch_logs(
         mut self,
@@ -665,10 +737,10 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElF
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -688,10 +760,10 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElF
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -711,10 +783,10 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElF
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -735,7 +807,8 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
     }
 }
 
-pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationEl {}
+pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationEl
+{}
 
 impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationEl {
     pub fn build(
@@ -750,7 +823,8 @@ impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAud
     }
 }
 
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElRef {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -832,17 +906,18 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl 
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.findings_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.findings_destination = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl {
-    type O = BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl>;
+    type O =
+        BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -856,7 +931,9 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
 pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl {}
 
 impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl {
-    pub fn build(self) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl {
+    pub fn build(
+        self,
+    ) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl {
         DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl {
             findings_destination: core::default::Default::default(),
             dynamic: Default::default(),
@@ -889,19 +966,26 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElR
     #[doc = "Get a reference to the value of field `findings_destination` after provisioning.\n"]
     pub fn findings_destination(
         &self,
-    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.findings_destination", self.base))
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElFindingsDestinationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.findings_destination", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {}
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl
+{}
 
-impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl { }
+impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {}
 
-impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {
-    type O =
-        BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl>;
+impl ToListMappable
+    for DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl
+{
+    type O = BlockAssignable<
+        DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -912,17 +996,22 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
     }
 }
 
-pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {}
+pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl
+{}
 
-impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {
+impl
+    BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl
+{
     pub fn build(
         self,
-    ) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {
+    ) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl
+    {
         DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigEl {}
     }
 }
 
-pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigElRef {
+pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -939,7 +1028,9 @@ impl Ref for DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl
     }
 }
 
-impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigElRef {
+impl
+    DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -975,17 +1066,21 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidenti
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mask_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mask_config = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl {
-    type O = BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl>;
+impl ToListMappable
+    for DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl
+{
+    type O = BlockAssignable<
+        DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -999,7 +1094,9 @@ impl ToListMappable for DataCloudwatchLogDataProtectionPolicyDocumentStatementEl
 pub struct BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl {}
 
 impl BuildDataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl {
-    pub fn build(self) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl {
+    pub fn build(
+        self,
+    ) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl {
         DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl {
             mask_config: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1032,16 +1129,20 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidenti
     #[doc = "Get a reference to the value of field `mask_config` after provisioning.\n"]
     pub fn mask_config(
         &self,
-    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigElRef> {
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElMaskConfigElRef>{
         ListRef::new(self.shared().clone(), format!("{}.mask_config", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDynamic {
-    audit: Option<DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl>>,
+    audit: Option<
+        DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl>,
+    >,
     deidentify: Option<
-        DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl>,
+        DynamicBlock<
+            DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl,
+        >,
     >,
 }
 
@@ -1050,7 +1151,9 @@ pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     audit: Option<Vec<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    deidentify: Option<Vec<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl>>,
+    deidentify: Option<
+        Vec<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl>,
+    >,
     dynamic: DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDynamic,
 }
 
@@ -1058,15 +1161,19 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl {
     #[doc = "Set the field `audit`.\n"]
     pub fn set_audit(
         mut self,
-        v: impl Into<BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl>>,
+        v: impl Into<
+            BlockAssignable<
+                DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.audit = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.audit = Some(d);
-            },
+            }
         }
         self
     }
@@ -1074,22 +1181,19 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl {
     #[doc = "Set the field `deidentify`.\n"]
     pub fn set_deidentify(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.deidentify = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.deidentify = Some(d);
-            },
+            }
         }
         self
     }
@@ -1142,21 +1246,26 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElRef {
     }
 
     #[doc = "Get a reference to the value of field `audit` after provisioning.\n"]
-    pub fn audit(&self) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElRef> {
+    pub fn audit(
+        &self,
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElAuditElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.audit", self.base))
     }
 
     #[doc = "Get a reference to the value of field `deidentify` after provisioning.\n"]
     pub fn deidentify(
         &self,
-    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElRef> {
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElDeidentifyElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.deidentify", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElDynamic {
-    operation: Option<DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl>>,
+    operation:
+        Option<DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl>>,
 }
 
 #[derive(Serialize)]
@@ -1179,15 +1288,17 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementEl {
     #[doc = "Set the field `operation`.\n"]
     pub fn set_operation(
         mut self,
-        v: impl Into<BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl>>,
+        v: impl Into<
+            BlockAssignable<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.operation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.operation = Some(d);
-            },
+            }
         }
         self
     }
@@ -1227,7 +1338,10 @@ pub struct DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
 }
 
 impl Ref for DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
         DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
             shared: shared,
             base: base.to_string(),
@@ -1242,7 +1356,10 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
 
     #[doc = "Get a reference to the value of field `data_identifiers` after provisioning.\n"]
     pub fn data_identifiers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.data_identifiers", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.data_identifiers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sid` after provisioning.\n"]
@@ -1251,13 +1368,16 @@ impl DataCloudwatchLogDataProtectionPolicyDocumentStatementElRef {
     }
 
     #[doc = "Get a reference to the value of field `operation` after provisioning.\n"]
-    pub fn operation(&self) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElRef> {
+    pub fn operation(
+        &self,
+    ) -> ListRef<DataCloudwatchLogDataProtectionPolicyDocumentStatementElOperationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.operation", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct DataCloudwatchLogDataProtectionPolicyDocumentDynamic {
-    configuration: Option<DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationEl>>,
+    configuration:
+        Option<DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentConfigurationEl>>,
     statement: Option<DynamicBlock<DataCloudwatchLogDataProtectionPolicyDocumentStatementEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamPrincipalPolicySimulationData {
@@ -63,83 +63,91 @@ impl DataIamPrincipalPolicySimulation {
         self
     }
 
-    #[doc =
-        "Set the field `caller_arn`.\nARN of a user to use as the caller of the simulated requests. If not specified, defaults to the principal specified in policy_source_arn, if it is a user ARN."]
+    #[doc = "Set the field `caller_arn`.\nARN of a user to use as the caller of the simulated requests. If not specified, defaults to the principal specified in policy_source_arn, if it is a user ARN."]
     pub fn set_caller_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().caller_arn = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `permissions_boundary_policies_json`.\nAdditional permission boundary policies to use in the simulation."]
-    pub fn set_permissions_boundary_policies_json(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    #[doc = "Set the field `permissions_boundary_policies_json`.\nAdditional permission boundary policies to use in the simulation."]
+    pub fn set_permissions_boundary_policies_json(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().permissions_boundary_policies_json = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `resource_arns`.\nARNs of specific resources to use as the targets of the specified actions during simulation. If not specified, the simulator assumes \"*\" which represents general access across all resources."]
+    #[doc = "Set the field `resource_arns`.\nARNs of specific resources to use as the targets of the specified actions during simulation. If not specified, the simulator assumes \"*\" which represents general access across all resources."]
     pub fn set_resource_arns(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().resource_arns = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `resource_handling_option`.\nSpecifies the type of simulation to run. Some API operations need a particular resource handling option in order to produce a correct reesult."]
+    #[doc = "Set the field `resource_handling_option`.\nSpecifies the type of simulation to run. Some API operations need a particular resource handling option in order to produce a correct reesult."]
     pub fn set_resource_handling_option(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resource_handling_option = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `resource_owner_account_id`.\nAn AWS account ID to use as the simulated owner for any resource whose ARN does not include a specific owner account ID. Defaults to the account given as part of caller_arn."]
+    #[doc = "Set the field `resource_owner_account_id`.\nAn AWS account ID to use as the simulated owner for any resource whose ARN does not include a specific owner account ID. Defaults to the account given as part of caller_arn."]
     pub fn set_resource_owner_account_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resource_owner_account_id = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `resource_policy_json`.\nA resource policy to associate with all of the target resources for simulation purposes. The policy simulator does not automatically retrieve resource-level policies, so if a resource policy is crucial to your test then you must specify here the same policy document associated with your target resource(s)."]
+    #[doc = "Set the field `resource_policy_json`.\nA resource policy to associate with all of the target resources for simulation purposes. The policy simulator does not automatically retrieve resource-level policies, so if a resource policy is crucial to your test then you must specify here the same policy document associated with your target resource(s)."]
     pub fn set_resource_policy_json(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resource_policy_json = Some(v.into());
         self
     }
 
     #[doc = "Set the field `context`.\n"]
-    pub fn set_context(self, v: impl Into<BlockAssignable<DataIamPrincipalPolicySimulationContextEl>>) -> Self {
+    pub fn set_context(
+        self,
+        v: impl Into<BlockAssignable<DataIamPrincipalPolicySimulationContextEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().context = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.context = Some(d);
-            },
+            }
         }
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `action_names` after provisioning.\nOne or more names of actions, like \"iam:CreateUser\", that should be included in the simulation."]
+    #[doc = "Get a reference to the value of field `action_names` after provisioning.\nOne or more names of actions, like \"iam:CreateUser\", that should be included in the simulation."]
     pub fn action_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.action_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.action_names", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `additional_policies_json` after provisioning.\nAdditional principal-based policies to use in the simulation."]
+    #[doc = "Get a reference to the value of field `additional_policies_json` after provisioning.\nAdditional principal-based policies to use in the simulation."]
     pub fn additional_policies_json(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_policies_json", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_policies_json", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `all_allowed` after provisioning.\nA summary of the results attribute which is true if all of the results have decision \"allowed\", and false otherwise."]
+    #[doc = "Get a reference to the value of field `all_allowed` after provisioning.\nA summary of the results attribute which is true if all of the results have decision \"allowed\", and false otherwise."]
     pub fn all_allowed(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.all_allowed", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.all_allowed", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `caller_arn` after provisioning.\nARN of a user to use as the caller of the simulated requests. If not specified, defaults to the principal specified in policy_source_arn, if it is a user ARN."]
+    #[doc = "Get a reference to the value of field `caller_arn` after provisioning.\nARN of a user to use as the caller of the simulated requests. If not specified, defaults to the principal specified in policy_source_arn, if it is a user ARN."]
     pub fn caller_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\nDo not use"]
@@ -147,55 +155,74 @@ impl DataIamPrincipalPolicySimulation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `permissions_boundary_policies_json` after provisioning.\nAdditional permission boundary policies to use in the simulation."]
+    #[doc = "Get a reference to the value of field `permissions_boundary_policies_json` after provisioning.\nAdditional permission boundary policies to use in the simulation."]
     pub fn permissions_boundary_policies_json(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.permissions_boundary_policies_json", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.permissions_boundary_policies_json", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `policy_source_arn` after provisioning.\nARN of the principal (e.g. user, role) whose existing configured access policies will be used as the basis for the simulation. If you specify a role ARN here, you can also set caller_arn to simulate a particular user acting with the given role."]
+    #[doc = "Get a reference to the value of field `policy_source_arn` after provisioning.\nARN of the principal (e.g. user, role) whose existing configured access policies will be used as the basis for the simulation. If you specify a role ARN here, you can also set caller_arn to simulate a particular user acting with the given role."]
     pub fn policy_source_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_source_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_source_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_arns` after provisioning.\nARNs of specific resources to use as the targets of the specified actions during simulation. If not specified, the simulator assumes \"*\" which represents general access across all resources."]
+    #[doc = "Get a reference to the value of field `resource_arns` after provisioning.\nARNs of specific resources to use as the targets of the specified actions during simulation. If not specified, the simulator assumes \"*\" which represents general access across all resources."]
     pub fn resource_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_arns", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_handling_option` after provisioning.\nSpecifies the type of simulation to run. Some API operations need a particular resource handling option in order to produce a correct reesult."]
+    #[doc = "Get a reference to the value of field `resource_handling_option` after provisioning.\nSpecifies the type of simulation to run. Some API operations need a particular resource handling option in order to produce a correct reesult."]
     pub fn resource_handling_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_handling_option", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_handling_option", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_owner_account_id` after provisioning.\nAn AWS account ID to use as the simulated owner for any resource whose ARN does not include a specific owner account ID. Defaults to the account given as part of caller_arn."]
+    #[doc = "Get a reference to the value of field `resource_owner_account_id` after provisioning.\nAn AWS account ID to use as the simulated owner for any resource whose ARN does not include a specific owner account ID. Defaults to the account given as part of caller_arn."]
     pub fn resource_owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner_account_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_policy_json` after provisioning.\nA resource policy to associate with all of the target resources for simulation purposes. The policy simulator does not automatically retrieve resource-level policies, so if a resource policy is crucial to your test then you must specify here the same policy document associated with your target resource(s)."]
+    #[doc = "Get a reference to the value of field `resource_policy_json` after provisioning.\nA resource policy to associate with all of the target resources for simulation purposes. The policy simulator does not automatically retrieve resource-level policies, so if a resource policy is crucial to your test then you must specify here the same policy document associated with your target resource(s)."]
     pub fn resource_policy_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_policy_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_policy_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `results` after provisioning.\n"]
     pub fn results(&self) -> SetRef<DataIamPrincipalPolicySimulationResultsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.results", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.results", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIamPrincipalPolicySimulation {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamPrincipalPolicySimulation { }
+impl Datasource for DataIamPrincipalPolicySimulation {}
 
 impl ToListMappable for DataIamPrincipalPolicySimulation {
     type O = ListRef<DataIamPrincipalPolicySimulationRef>;
@@ -224,8 +251,7 @@ pub struct BuildDataIamPrincipalPolicySimulation {
     pub tf_id: String,
     #[doc = "One or more names of actions, like \"iam:CreateUser\", that should be included in the simulation."]
     pub action_names: SetField<PrimField<String>>,
-    #[doc =
-        "ARN of the principal (e.g. user, role) whose existing configured access policies will be used as the basis for the simulation. If you specify a role ARN here, you can also set caller_arn to simulate a particular user acting with the given role."]
+    #[doc = "ARN of the principal (e.g. user, role) whose existing configured access policies will be used as the basis for the simulation. If you specify a role ARN here, you can also set caller_arn to simulate a particular user acting with the given role."]
     pub policy_source_arn: PrimField<String>,
 }
 
@@ -263,10 +289,7 @@ pub struct DataIamPrincipalPolicySimulationRef {
 
 impl Ref for DataIamPrincipalPolicySimulationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -279,28 +302,36 @@ impl DataIamPrincipalPolicySimulationRef {
         self.base.clone()
     }
 
-    #[doc =
-        "Get a reference to the value of field `action_names` after provisioning.\nOne or more names of actions, like \"iam:CreateUser\", that should be included in the simulation."]
+    #[doc = "Get a reference to the value of field `action_names` after provisioning.\nOne or more names of actions, like \"iam:CreateUser\", that should be included in the simulation."]
     pub fn action_names(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.action_names", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.action_names", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `additional_policies_json` after provisioning.\nAdditional principal-based policies to use in the simulation."]
+    #[doc = "Get a reference to the value of field `additional_policies_json` after provisioning.\nAdditional principal-based policies to use in the simulation."]
     pub fn additional_policies_json(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_policies_json", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_policies_json", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `all_allowed` after provisioning.\nA summary of the results attribute which is true if all of the results have decision \"allowed\", and false otherwise."]
+    #[doc = "Get a reference to the value of field `all_allowed` after provisioning.\nA summary of the results attribute which is true if all of the results have decision \"allowed\", and false otherwise."]
     pub fn all_allowed(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.all_allowed", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.all_allowed", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `caller_arn` after provisioning.\nARN of a user to use as the caller of the simulated requests. If not specified, defaults to the principal specified in policy_source_arn, if it is a user ARN."]
+    #[doc = "Get a reference to the value of field `caller_arn` after provisioning.\nARN of a user to use as the caller of the simulated requests. If not specified, defaults to the principal specified in policy_source_arn, if it is a user ARN."]
     pub fn caller_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.caller_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.caller_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\nDo not use"]
@@ -308,45 +339,60 @@ impl DataIamPrincipalPolicySimulationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `permissions_boundary_policies_json` after provisioning.\nAdditional permission boundary policies to use in the simulation."]
+    #[doc = "Get a reference to the value of field `permissions_boundary_policies_json` after provisioning.\nAdditional permission boundary policies to use in the simulation."]
     pub fn permissions_boundary_policies_json(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.permissions_boundary_policies_json", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.permissions_boundary_policies_json", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `policy_source_arn` after provisioning.\nARN of the principal (e.g. user, role) whose existing configured access policies will be used as the basis for the simulation. If you specify a role ARN here, you can also set caller_arn to simulate a particular user acting with the given role."]
+    #[doc = "Get a reference to the value of field `policy_source_arn` after provisioning.\nARN of the principal (e.g. user, role) whose existing configured access policies will be used as the basis for the simulation. If you specify a role ARN here, you can also set caller_arn to simulate a particular user acting with the given role."]
     pub fn policy_source_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_source_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_source_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_arns` after provisioning.\nARNs of specific resources to use as the targets of the specified actions during simulation. If not specified, the simulator assumes \"*\" which represents general access across all resources."]
+    #[doc = "Get a reference to the value of field `resource_arns` after provisioning.\nARNs of specific resources to use as the targets of the specified actions during simulation. If not specified, the simulator assumes \"*\" which represents general access across all resources."]
     pub fn resource_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_arns", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_handling_option` after provisioning.\nSpecifies the type of simulation to run. Some API operations need a particular resource handling option in order to produce a correct reesult."]
+    #[doc = "Get a reference to the value of field `resource_handling_option` after provisioning.\nSpecifies the type of simulation to run. Some API operations need a particular resource handling option in order to produce a correct reesult."]
     pub fn resource_handling_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_handling_option", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_handling_option", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_owner_account_id` after provisioning.\nAn AWS account ID to use as the simulated owner for any resource whose ARN does not include a specific owner account ID. Defaults to the account given as part of caller_arn."]
+    #[doc = "Get a reference to the value of field `resource_owner_account_id` after provisioning.\nAn AWS account ID to use as the simulated owner for any resource whose ARN does not include a specific owner account ID. Defaults to the account given as part of caller_arn."]
     pub fn resource_owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_owner_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_owner_account_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `resource_policy_json` after provisioning.\nA resource policy to associate with all of the target resources for simulation purposes. The policy simulator does not automatically retrieve resource-level policies, so if a resource policy is crucial to your test then you must specify here the same policy document associated with your target resource(s)."]
+    #[doc = "Get a reference to the value of field `resource_policy_json` after provisioning.\nA resource policy to associate with all of the target resources for simulation purposes. The policy simulator does not automatically retrieve resource-level policies, so if a resource policy is crucial to your test then you must specify here the same policy document associated with your target resource(s)."]
     pub fn resource_policy_json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_policy_json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_policy_json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `results` after provisioning.\n"]
     pub fn results(&self) -> SetRef<DataIamPrincipalPolicySimulationResultsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.results", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.results", self.extract_ref()),
+        )
     }
 }
 
@@ -401,7 +447,10 @@ pub struct DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef {
 }
 
 impl Ref for DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef {
-    fn new(shared: StackShared, base: String) -> DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef {
         DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef {
             shared: shared,
             base: base.to_string(),
@@ -416,12 +465,18 @@ impl DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef {
 
     #[doc = "Get a reference to the value of field `source_policy_id` after provisioning.\n"]
     pub fn source_policy_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_policy_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_policy_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_policy_type` after provisioning.\n"]
     pub fn source_policy_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_policy_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_policy_type", self.base),
+        )
     }
 }
 
@@ -436,7 +491,8 @@ pub struct DataIamPrincipalPolicySimulationResultsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     decision_details: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    matched_statements: Option<SetField<DataIamPrincipalPolicySimulationResultsElMatchedStatementsEl>>,
+    matched_statements:
+        Option<SetField<DataIamPrincipalPolicySimulationResultsElMatchedStatementsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     missing_context_keys: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -554,17 +610,28 @@ impl DataIamPrincipalPolicySimulationResultsElRef {
 
     #[doc = "Get a reference to the value of field `decision_details` after provisioning.\n"]
     pub fn decision_details(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.decision_details", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.decision_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `matched_statements` after provisioning.\n"]
-    pub fn matched_statements(&self) -> SetRef<DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.matched_statements", self.base))
+    pub fn matched_statements(
+        &self,
+    ) -> SetRef<DataIamPrincipalPolicySimulationResultsElMatchedStatementsElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.matched_statements", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `missing_context_keys` after provisioning.\n"]
     pub fn missing_context_keys(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.missing_context_keys", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.missing_context_keys", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
@@ -581,7 +648,7 @@ pub struct DataIamPrincipalPolicySimulationContextEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataIamPrincipalPolicySimulationContextEl { }
+impl DataIamPrincipalPolicySimulationContextEl {}
 
 impl ToListMappable for DataIamPrincipalPolicySimulationContextEl {
     type O = BlockAssignable<DataIamPrincipalPolicySimulationContextEl>;
@@ -600,8 +667,7 @@ pub struct BuildDataIamPrincipalPolicySimulationContextEl {
     pub key: PrimField<String>,
     #[doc = "The type that the simulator should use to interpret the strings given in argument \"values\"."]
     pub type_: PrimField<String>,
-    #[doc =
-        "One or more values to assign to the context key, given as a string in a syntax appropriate for the selected value type."]
+    #[doc = "One or more values to assign to the context key, given as a string in a syntax appropriate for the selected value type."]
     pub values: SetField<PrimField<String>>,
 }
 
@@ -634,20 +700,17 @@ impl DataIamPrincipalPolicySimulationContextElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `key` after provisioning.\nThe key name of the context entry, such as \"aws:CurrentTime\"."]
+    #[doc = "Get a reference to the value of field `key` after provisioning.\nThe key name of the context entry, such as \"aws:CurrentTime\"."]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `type_` after provisioning.\nThe type that the simulator should use to interpret the strings given in argument \"values\"."]
+    #[doc = "Get a reference to the value of field `type_` after provisioning.\nThe type that the simulator should use to interpret the strings given in argument \"values\"."]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `values` after provisioning.\nOne or more values to assign to the context key, given as a string in a syntax appropriate for the selected value type."]
+    #[doc = "Get a reference to the value of field `values` after provisioning.\nOne or more values to assign to the context key, given as a string in a syntax appropriate for the selected value type."]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }

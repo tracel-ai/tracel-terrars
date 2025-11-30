@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CleanroomsCollaborationData {
@@ -71,7 +71,8 @@ impl CleanroomsCollaboration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl CleanroomsCollaboration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl CleanroomsCollaboration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +121,7 @@ impl CleanroomsCollaboration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -137,23 +147,26 @@ impl CleanroomsCollaboration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().data_encryption_metadata = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.data_encryption_metadata = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `member`.\n"]
-    pub fn set_member(self, v: impl Into<BlockAssignable<CleanroomsCollaborationMemberEl>>) -> Self {
+    pub fn set_member(
+        self,
+        v: impl Into<BlockAssignable<CleanroomsCollaborationMemberEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().member = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.member = Some(d);
-            },
+            }
         }
         self
     }
@@ -166,7 +179,10 @@ impl CleanroomsCollaboration {
 
     #[doc = "Get a reference to the value of field `analytics_engine` after provisioning.\n"]
     pub fn analytics_engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.analytics_engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.analytics_engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -176,22 +192,34 @@ impl CleanroomsCollaboration {
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creator_display_name` after provisioning.\n"]
     pub fn creator_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creator_display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creator_display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creator_member_abilities` after provisioning.\n"]
     pub fn creator_member_abilities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.creator_member_abilities", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.creator_member_abilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -201,53 +229,82 @@ impl CleanroomsCollaboration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_log_status` after provisioning.\n"]
     pub fn query_log_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_log_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_log_status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_encryption_metadata` after provisioning.\n"]
-    pub fn data_encryption_metadata(&self) -> ListRef<CleanroomsCollaborationDataEncryptionMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_encryption_metadata", self.extract_ref()))
+    pub fn data_encryption_metadata(
+        &self,
+    ) -> ListRef<CleanroomsCollaborationDataEncryptionMetadataElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_encryption_metadata", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CleanroomsCollaborationTimeoutsElRef {
-        CleanroomsCollaborationTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CleanroomsCollaborationTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CleanroomsCollaboration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CleanroomsCollaboration { }
+impl Resource for CleanroomsCollaboration {}
 
 impl ToListMappable for CleanroomsCollaboration {
     type O = ListRef<CleanroomsCollaborationRef>;
@@ -323,10 +380,7 @@ pub struct CleanroomsCollaborationRef {
 
 impl Ref for CleanroomsCollaborationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -341,7 +395,10 @@ impl CleanroomsCollaborationRef {
 
     #[doc = "Get a reference to the value of field `analytics_engine` after provisioning.\n"]
     pub fn analytics_engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.analytics_engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.analytics_engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -351,22 +408,34 @@ impl CleanroomsCollaborationRef {
 
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.create_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.create_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creator_display_name` after provisioning.\n"]
     pub fn creator_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creator_display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creator_display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creator_member_abilities` after provisioning.\n"]
     pub fn creator_member_abilities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.creator_member_abilities", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.creator_member_abilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -376,43 +445,68 @@ impl CleanroomsCollaborationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_log_status` after provisioning.\n"]
     pub fn query_log_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_log_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_log_status", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.update_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.update_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_encryption_metadata` after provisioning.\n"]
-    pub fn data_encryption_metadata(&self) -> ListRef<CleanroomsCollaborationDataEncryptionMetadataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_encryption_metadata", self.extract_ref()))
+    pub fn data_encryption_metadata(
+        &self,
+    ) -> ListRef<CleanroomsCollaborationDataEncryptionMetadataElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_encryption_metadata", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CleanroomsCollaborationTimeoutsElRef {
-        CleanroomsCollaborationTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CleanroomsCollaborationTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -424,7 +518,7 @@ pub struct CleanroomsCollaborationDataEncryptionMetadataEl {
     preserve_nulls: PrimField<bool>,
 }
 
-impl CleanroomsCollaborationDataEncryptionMetadataEl { }
+impl CleanroomsCollaborationDataEncryptionMetadataEl {}
 
 impl ToListMappable for CleanroomsCollaborationDataEncryptionMetadataEl {
     type O = BlockAssignable<CleanroomsCollaborationDataEncryptionMetadataEl>;
@@ -454,7 +548,8 @@ impl BuildCleanroomsCollaborationDataEncryptionMetadataEl {
         CleanroomsCollaborationDataEncryptionMetadataEl {
             allow_clear_text: self.allow_clear_text,
             allow_duplicates: self.allow_duplicates,
-            allow_joins_on_columns_with_different_names: self.allow_joins_on_columns_with_different_names,
+            allow_joins_on_columns_with_different_names: self
+                .allow_joins_on_columns_with_different_names,
             preserve_nulls: self.preserve_nulls,
         }
     }
@@ -466,7 +561,10 @@ pub struct CleanroomsCollaborationDataEncryptionMetadataElRef {
 }
 
 impl Ref for CleanroomsCollaborationDataEncryptionMetadataElRef {
-    fn new(shared: StackShared, base: String) -> CleanroomsCollaborationDataEncryptionMetadataElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CleanroomsCollaborationDataEncryptionMetadataElRef {
         CleanroomsCollaborationDataEncryptionMetadataElRef {
             shared: shared,
             base: base.to_string(),
@@ -481,22 +579,34 @@ impl CleanroomsCollaborationDataEncryptionMetadataElRef {
 
     #[doc = "Get a reference to the value of field `allow_clear_text` after provisioning.\n"]
     pub fn allow_clear_text(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_clear_text", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_clear_text", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_duplicates` after provisioning.\n"]
     pub fn allow_duplicates(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_duplicates", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_duplicates", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_joins_on_columns_with_different_names` after provisioning.\n"]
     pub fn allow_joins_on_columns_with_different_names(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_joins_on_columns_with_different_names", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_joins_on_columns_with_different_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preserve_nulls` after provisioning.\n"]
     pub fn preserve_nulls(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preserve_nulls", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preserve_nulls", self.base),
+        )
     }
 }
 
@@ -507,7 +617,7 @@ pub struct CleanroomsCollaborationMemberEl {
     member_abilities: ListField<PrimField<String>>,
 }
 
-impl CleanroomsCollaborationMemberEl { }
+impl CleanroomsCollaborationMemberEl {}
 
 impl ToListMappable for CleanroomsCollaborationMemberEl {
     type O = BlockAssignable<CleanroomsCollaborationMemberEl>;
@@ -571,7 +681,10 @@ impl CleanroomsCollaborationMemberElRef {
 
     #[doc = "Get a reference to the value of field `member_abilities` after provisioning.\n"]
     pub fn member_abilities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.member_abilities", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.member_abilities", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]

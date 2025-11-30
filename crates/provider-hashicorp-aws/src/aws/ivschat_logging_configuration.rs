@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IvschatLoggingConfigurationData {
@@ -66,7 +66,8 @@ impl IvschatLoggingConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl IvschatLoggingConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl IvschatLoggingConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,8 +122,7 @@ impl IvschatLoggingConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -138,10 +148,10 @@ impl IvschatLoggingConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().destination_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.destination_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -164,33 +174,52 @@ impl IvschatLoggingConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_configuration` after provisioning.\n"]
-    pub fn destination_configuration(&self) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_configuration", self.extract_ref()))
+    pub fn destination_configuration(
+        &self,
+    ) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -204,11 +233,15 @@ impl IvschatLoggingConfiguration {
 
 impl Referable for IvschatLoggingConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IvschatLoggingConfiguration { }
+impl Resource for IvschatLoggingConfiguration {}
 
 impl ToListMappable for IvschatLoggingConfiguration {
     type O = ListRef<IvschatLoggingConfigurationRef>;
@@ -269,10 +302,7 @@ pub struct IvschatLoggingConfigurationRef {
 
 impl Ref for IvschatLoggingConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -297,33 +327,52 @@ impl IvschatLoggingConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_configuration` after provisioning.\n"]
-    pub fn destination_configuration(&self) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_configuration", self.extract_ref()))
+    pub fn destination_configuration(
+        &self,
+    ) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -340,7 +389,7 @@ pub struct IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl
     log_group_name: PrimField<String>,
 }
 
-impl IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl { }
+impl IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl {}
 
 impl ToListMappable for IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl {
     type O = BlockAssignable<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>;
@@ -361,7 +410,9 @@ pub struct BuildIvschatLoggingConfigurationDestinationConfigurationElCloudwatchL
 
 impl BuildIvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl {
     pub fn build(self) -> IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl {
-        IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl { log_group_name: self.log_group_name }
+        IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl {
+            log_group_name: self.log_group_name,
+        }
     }
 }
 
@@ -389,7 +440,10 @@ impl IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsElRef {
 
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_group_name", self.base),
+        )
     }
 }
 
@@ -398,7 +452,7 @@ pub struct IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl {
     delivery_stream_name: PrimField<String>,
 }
 
-impl IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl { }
+impl IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl {}
 
 impl ToListMappable for IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl {
     type O = BlockAssignable<IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl>;
@@ -431,7 +485,10 @@ pub struct IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef {
 }
 
 impl Ref for IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef {
-    fn new(shared: StackShared, base: String) -> IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef {
         IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef {
             shared: shared,
             base: base.to_string(),
@@ -446,7 +503,10 @@ impl IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef {
 
     #[doc = "Get a reference to the value of field `delivery_stream_name` after provisioning.\n"]
     pub fn delivery_stream_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream_name", self.base),
+        )
     }
 }
 
@@ -455,7 +515,7 @@ pub struct IvschatLoggingConfigurationDestinationConfigurationElS3El {
     bucket_name: PrimField<String>,
 }
 
-impl IvschatLoggingConfigurationDestinationConfigurationElS3El { }
+impl IvschatLoggingConfigurationDestinationConfigurationElS3El {}
 
 impl ToListMappable for IvschatLoggingConfigurationDestinationConfigurationElS3El {
     type O = BlockAssignable<IvschatLoggingConfigurationDestinationConfigurationElS3El>;
@@ -476,7 +536,9 @@ pub struct BuildIvschatLoggingConfigurationDestinationConfigurationElS3El {
 
 impl BuildIvschatLoggingConfigurationDestinationConfigurationElS3El {
     pub fn build(self) -> IvschatLoggingConfigurationDestinationConfigurationElS3El {
-        IvschatLoggingConfigurationDestinationConfigurationElS3El { bucket_name: self.bucket_name }
+        IvschatLoggingConfigurationDestinationConfigurationElS3El {
+            bucket_name: self.bucket_name,
+        }
     }
 }
 
@@ -486,7 +548,10 @@ pub struct IvschatLoggingConfigurationDestinationConfigurationElS3ElRef {
 }
 
 impl Ref for IvschatLoggingConfigurationDestinationConfigurationElS3ElRef {
-    fn new(shared: StackShared, base: String) -> IvschatLoggingConfigurationDestinationConfigurationElS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> IvschatLoggingConfigurationDestinationConfigurationElS3ElRef {
         IvschatLoggingConfigurationDestinationConfigurationElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -507,7 +572,8 @@ impl IvschatLoggingConfigurationDestinationConfigurationElS3ElRef {
 
 #[derive(Serialize, Default)]
 struct IvschatLoggingConfigurationDestinationConfigurationElDynamic {
-    cloudwatch_logs: Option<DynamicBlock<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>>,
+    cloudwatch_logs:
+        Option<DynamicBlock<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>>,
     firehose: Option<DynamicBlock<IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl>>,
     s3: Option<DynamicBlock<IvschatLoggingConfigurationDestinationConfigurationElS3El>>,
 }
@@ -515,7 +581,8 @@ struct IvschatLoggingConfigurationDestinationConfigurationElDynamic {
 #[derive(Serialize)]
 pub struct IvschatLoggingConfigurationDestinationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_logs: Option<Vec<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>>,
+    cloudwatch_logs:
+        Option<Vec<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     firehose: Option<Vec<IvschatLoggingConfigurationDestinationConfigurationElFirehoseEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -527,15 +594,17 @@ impl IvschatLoggingConfigurationDestinationConfigurationEl {
     #[doc = "Set the field `cloudwatch_logs`.\n"]
     pub fn set_cloudwatch_logs(
         mut self,
-        v: impl Into<BlockAssignable<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>>,
+        v: impl Into<
+            BlockAssignable<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -548,10 +617,10 @@ impl IvschatLoggingConfigurationDestinationConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -564,10 +633,10 @@ impl IvschatLoggingConfigurationDestinationConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -604,7 +673,10 @@ pub struct IvschatLoggingConfigurationDestinationConfigurationElRef {
 }
 
 impl Ref for IvschatLoggingConfigurationDestinationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> IvschatLoggingConfigurationDestinationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> IvschatLoggingConfigurationDestinationConfigurationElRef {
         IvschatLoggingConfigurationDestinationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -618,12 +690,19 @@ impl IvschatLoggingConfigurationDestinationConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
-    pub fn cloudwatch_logs(&self) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs", self.base))
+    pub fn cloudwatch_logs(
+        &self,
+    ) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElCloudwatchLogsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firehose` after provisioning.\n"]
-    pub fn firehose(&self) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef> {
+    pub fn firehose(
+        &self,
+    ) -> ListRef<IvschatLoggingConfigurationDestinationConfigurationElFirehoseElRef> {
         ListRef::new(self.shared().clone(), format!("{}.firehose", self.base))
     }
 
@@ -724,5 +803,6 @@ impl IvschatLoggingConfigurationTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct IvschatLoggingConfigurationDynamic {
-    destination_configuration: Option<DynamicBlock<IvschatLoggingConfigurationDestinationConfigurationEl>>,
+    destination_configuration:
+        Option<DynamicBlock<IvschatLoggingConfigurationDestinationConfigurationEl>>,
 }

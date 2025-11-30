@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct FmsPolicyData {
@@ -86,7 +86,8 @@ impl FmsPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -99,7 +100,7 @@ impl FmsPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -110,12 +111,22 @@ impl FmsPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -143,8 +154,7 @@ impl FmsPolicy {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -203,10 +213,10 @@ impl FmsPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().exclude_map = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.exclude_map = Some(d);
-            },
+            }
         }
         self
     }
@@ -216,10 +226,10 @@ impl FmsPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().include_map = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.include_map = Some(d);
-            },
+            }
         }
         self
     }
@@ -232,10 +242,14 @@ impl FmsPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().security_service_policy_data = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.security_service_policy_data = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .security_service_policy_data = Some(d);
+            }
         }
         self
     }
@@ -247,22 +261,34 @@ impl FmsPolicy {
 
     #[doc = "Get a reference to the value of field `delete_all_policy_resources` after provisioning.\n"]
     pub fn delete_all_policy_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_all_policy_resources", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_all_policy_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_unused_fm_managed_resources` after provisioning.\n"]
     pub fn delete_unused_fm_managed_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_unused_fm_managed_resources", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_unused_fm_managed_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_resource_tags` after provisioning.\n"]
     pub fn exclude_resource_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_resource_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_resource_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -272,83 +298,128 @@ impl FmsPolicy {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_update_token` after provisioning.\n"]
     pub fn policy_update_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_update_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_update_token", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remediation_enabled` after provisioning.\n"]
     pub fn remediation_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remediation_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remediation_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_set_ids` after provisioning.\n"]
     pub fn resource_set_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_set_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_set_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tag_logical_operator` after provisioning.\n"]
     pub fn resource_tag_logical_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_tag_logical_operator", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_logical_operator", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.resource_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type_list` after provisioning.\n"]
     pub fn resource_type_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_type_list", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_type_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_map` after provisioning.\n"]
     pub fn exclude_map(&self) -> ListRef<FmsPolicyExcludeMapElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.exclude_map", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.exclude_map", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_map` after provisioning.\n"]
     pub fn include_map(&self) -> ListRef<FmsPolicyIncludeMapElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.include_map", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.include_map", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_service_policy_data` after provisioning.\n"]
     pub fn security_service_policy_data(&self) -> ListRef<FmsPolicySecurityServicePolicyDataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_service_policy_data", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_service_policy_data", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for FmsPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for FmsPolicy { }
+impl Resource for FmsPolicy {}
 
 impl ToListMappable for FmsPolicy {
     type O = ListRef<FmsPolicyRef>;
@@ -424,10 +495,7 @@ pub struct FmsPolicyRef {
 
 impl Ref for FmsPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -447,22 +515,34 @@ impl FmsPolicyRef {
 
     #[doc = "Get a reference to the value of field `delete_all_policy_resources` after provisioning.\n"]
     pub fn delete_all_policy_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_all_policy_resources", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_all_policy_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_unused_fm_managed_resources` after provisioning.\n"]
     pub fn delete_unused_fm_managed_resources(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delete_unused_fm_managed_resources", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delete_unused_fm_managed_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_resource_tags` after provisioning.\n"]
     pub fn exclude_resource_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_resource_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_resource_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -472,73 +552,114 @@ impl FmsPolicyRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policy_update_token` after provisioning.\n"]
     pub fn policy_update_token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_update_token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_update_token", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remediation_enabled` after provisioning.\n"]
     pub fn remediation_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remediation_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remediation_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_set_ids` after provisioning.\n"]
     pub fn resource_set_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_set_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_set_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tag_logical_operator` after provisioning.\n"]
     pub fn resource_tag_logical_operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_tag_logical_operator", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_tag_logical_operator", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.resource_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type_list` after provisioning.\n"]
     pub fn resource_type_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resource_type_list", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resource_type_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exclude_map` after provisioning.\n"]
     pub fn exclude_map(&self) -> ListRef<FmsPolicyExcludeMapElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.exclude_map", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.exclude_map", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `include_map` after provisioning.\n"]
     pub fn include_map(&self) -> ListRef<FmsPolicyIncludeMapElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.include_map", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.include_map", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_service_policy_data` after provisioning.\n"]
     pub fn security_service_policy_data(&self) -> ListRef<FmsPolicySecurityServicePolicyDataElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_service_policy_data", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_service_policy_data", self.extract_ref()),
+        )
     }
 }
 
@@ -693,7 +814,8 @@ impl FmsPolicyIncludeMapElRef {
 }
 
 #[derive(Serialize)]
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeEl {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     code: Option<PrimField<f64>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -729,7 +851,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeEl {}
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeEl
+{}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeEl {
     pub fn build(
@@ -742,7 +865,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElIcmpTypeCodeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -776,7 +900,8 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElN
 }
 
 #[derive(Serialize)]
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeEl {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     from: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -812,7 +937,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeEl {}
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeEl
+{}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeEl {
     pub fn build(
@@ -825,7 +951,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElPortRangeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -971,7 +1098,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryEl {
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryEl
+{
     #[doc = ""]
     pub egress: PrimField<bool>,
     #[doc = ""]
@@ -997,7 +1125,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElFirstEntryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1064,7 +1193,8 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElN
 }
 
 #[derive(Serialize)]
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeEl {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     code: Option<PrimField<f64>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -1100,7 +1230,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeEl {}
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeEl
+{}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeEl {
     pub fn build(
@@ -1113,7 +1244,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElIcmpTypeCodeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1147,7 +1279,8 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElN
 }
 
 #[derive(Serialize)]
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeEl {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     from: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1183,7 +1316,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeEl {}
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeEl
+{}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeEl {
     pub fn build(
@@ -1196,7 +1330,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElPortRangeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1342,7 +1477,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryEl {
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryEl
+{
     #[doc = ""]
     pub egress: PrimField<bool>,
     #[doc = ""]
@@ -1368,7 +1504,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElLastEntryElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1465,7 +1602,9 @@ pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPol
     dynamic: FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElDynamic,
 }
 
-impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetEl {
+impl
+    FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetEl
+{
     #[doc = "Set the field `first_entry`.\n"]
     pub fn set_first_entry(
         mut self,
@@ -1481,10 +1620,10 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElN
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.first_entry = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.first_entry = Some(d);
-            },
+            }
         }
         self
     }
@@ -1504,10 +1643,10 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElN
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.last_entry = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.last_entry = Some(d);
-            },
+            }
         }
         self
     }
@@ -1528,7 +1667,8 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
     }
 }
 
-pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetEl {
+pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetEl
+{
     #[doc = ""]
     pub force_remediate_for_first_entries: PrimField<bool>,
     #[doc = ""]
@@ -1549,7 +1689,8 @@ impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPoli
     }
 }
 
-pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElRef {
+pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1614,17 +1755,18 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl 
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_acl_entry_set = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_acl_entry_set = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl {
-    type O = BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl>;
+    type O =
+        BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1638,7 +1780,9 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
 pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl {}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl {
-    pub fn build(self) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl {
+    pub fn build(
+        self,
+    ) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl {
         FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl {
             network_acl_entry_set: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1671,8 +1815,11 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElR
     #[doc = "Get a reference to the value of field `network_acl_entry_set` after provisioning.\n"]
     pub fn network_acl_entry_set(
         &self,
-    ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_acl_entry_set", self.base))
+    ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElNetworkAclEntrySetElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_acl_entry_set", self.base),
+        )
     }
 }
 
@@ -1691,7 +1838,8 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {
 }
 
 impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {
-    type O = BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl>;
+    type O =
+        BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1705,7 +1853,9 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElNetwor
 pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {
-    pub fn build(self) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {
+    pub fn build(
+        self,
+    ) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {
         FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl {
             firewall_deployment_model: core::default::Default::default(),
         }
@@ -1736,7 +1886,10 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyElRe
 
     #[doc = "Get a reference to the value of field `firewall_deployment_model` after provisioning.\n"]
     pub fn firewall_deployment_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_deployment_model", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_deployment_model", self.base),
+        )
     }
 }
 
@@ -1754,8 +1907,12 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyE
     }
 }
 
-impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl {
-    type O = BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl>;
+impl ToListMappable
+    for FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl
+{
+    type O = BlockAssignable<
+        FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1769,7 +1926,9 @@ impl ToListMappable for FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdP
 pub struct BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl {}
 
 impl BuildFmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl {
-    pub fn build(self) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl {
+    pub fn build(
+        self,
+    ) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl {
         FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl {
             firewall_deployment_model: core::default::Default::default(),
         }
@@ -1800,7 +1959,10 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyE
 
     #[doc = "Get a reference to the value of field `firewall_deployment_model` after provisioning.\n"]
     pub fn firewall_deployment_model(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_deployment_model", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_deployment_model", self.base),
+        )
     }
 }
 
@@ -1820,13 +1982,14 @@ struct FmsPolicySecurityServicePolicyDataElPolicyOptionElDynamic {
 #[derive(Serialize)]
 pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_acl_common_policy: Option<Vec<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl>>,
+    network_acl_common_policy:
+        Option<Vec<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_firewall_policy: Option<Vec<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl>>,
+    network_firewall_policy:
+        Option<Vec<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    third_party_firewall_policy: Option<
-        Vec<FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl>,
-    >,
+    third_party_firewall_policy:
+        Option<Vec<FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl>>,
     dynamic: FmsPolicySecurityServicePolicyDataElPolicyOptionElDynamic,
 }
 
@@ -1834,15 +1997,19 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionEl {
     #[doc = "Set the field `network_acl_common_policy`.\n"]
     pub fn set_network_acl_common_policy(
         mut self,
-        v: impl Into<BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl>>,
+        v: impl Into<
+            BlockAssignable<
+                FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_acl_common_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_acl_common_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1850,15 +2017,19 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionEl {
     #[doc = "Set the field `network_firewall_policy`.\n"]
     pub fn set_network_firewall_policy(
         mut self,
-        v: impl Into<BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl>>,
+        v: impl Into<
+            BlockAssignable<
+                FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_firewall_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_firewall_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1866,15 +2037,19 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionEl {
     #[doc = "Set the field `third_party_firewall_policy`.\n"]
     pub fn set_third_party_firewall_policy(
         mut self,
-        v: impl Into<BlockAssignable<FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl>>,
+        v: impl Into<
+            BlockAssignable<
+                FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.third_party_firewall_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.third_party_firewall_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1911,7 +2086,10 @@ pub struct FmsPolicySecurityServicePolicyDataElPolicyOptionElRef {
 }
 
 impl Ref for FmsPolicySecurityServicePolicyDataElPolicyOptionElRef {
-    fn new(shared: StackShared, base: String) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FmsPolicySecurityServicePolicyDataElPolicyOptionElRef {
         FmsPolicySecurityServicePolicyDataElPolicyOptionElRef {
             shared: shared,
             base: base.to_string(),
@@ -1927,22 +2105,33 @@ impl FmsPolicySecurityServicePolicyDataElPolicyOptionElRef {
     #[doc = "Get a reference to the value of field `network_acl_common_policy` after provisioning.\n"]
     pub fn network_acl_common_policy(
         &self,
-    ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_acl_common_policy", self.base))
+    ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkAclCommonPolicyElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_acl_common_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_firewall_policy` after provisioning.\n"]
     pub fn network_firewall_policy(
         &self,
     ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElNetworkFirewallPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_firewall_policy", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_firewall_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `third_party_firewall_policy` after provisioning.\n"]
     pub fn third_party_firewall_policy(
         &self,
-    ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.third_party_firewall_policy", self.base))
+    ) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElThirdPartyFirewallPolicyElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.third_party_firewall_policy", self.base),
+        )
     }
 }
 
@@ -1977,10 +2166,10 @@ impl FmsPolicySecurityServicePolicyDataEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.policy_option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.policy_option = Some(d);
-            },
+            }
         }
         self
     }
@@ -2035,7 +2224,10 @@ impl FmsPolicySecurityServicePolicyDataElRef {
 
     #[doc = "Get a reference to the value of field `managed_service_data` after provisioning.\n"]
     pub fn managed_service_data(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.managed_service_data", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.managed_service_data", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -2045,7 +2237,10 @@ impl FmsPolicySecurityServicePolicyDataElRef {
 
     #[doc = "Get a reference to the value of field `policy_option` after provisioning.\n"]
     pub fn policy_option(&self) -> ListRef<FmsPolicySecurityServicePolicyDataElPolicyOptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.policy_option", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.policy_option", self.base),
+        )
     }
 }
 

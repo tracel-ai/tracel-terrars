@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ElastictranscoderPipelineData {
@@ -35,7 +35,8 @@ struct ElastictranscoderPipelineData {
     #[serde(skip_serializing_if = "Option::is_none")]
     thumbnail_config: Option<Vec<ElastictranscoderPipelineThumbnailConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    thumbnail_config_permissions: Option<Vec<ElastictranscoderPipelineThumbnailConfigPermissionsEl>>,
+    thumbnail_config_permissions:
+        Option<Vec<ElastictranscoderPipelineThumbnailConfigPermissionsEl>>,
     dynamic: ElastictranscoderPipelineDynamic,
 }
 
@@ -74,7 +75,8 @@ impl ElastictranscoderPipeline {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -87,7 +89,7 @@ impl ElastictranscoderPipeline {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -98,12 +100,22 @@ impl ElastictranscoderPipeline {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -131,22 +143,24 @@ impl ElastictranscoderPipeline {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `content_config`.\n"]
-    pub fn set_content_config(self, v: impl Into<BlockAssignable<ElastictranscoderPipelineContentConfigEl>>) -> Self {
+    pub fn set_content_config(
+        self,
+        v: impl Into<BlockAssignable<ElastictranscoderPipelineContentConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().content_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.content_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -159,23 +173,26 @@ impl ElastictranscoderPipeline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().content_config_permissions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.content_config_permissions = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `notifications`.\n"]
-    pub fn set_notifications(self, v: impl Into<BlockAssignable<ElastictranscoderPipelineNotificationsEl>>) -> Self {
+    pub fn set_notifications(
+        self,
+        v: impl Into<BlockAssignable<ElastictranscoderPipelineNotificationsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().notifications = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.notifications = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,10 +205,10 @@ impl ElastictranscoderPipeline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().thumbnail_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.thumbnail_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -204,10 +221,14 @@ impl ElastictranscoderPipeline {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().thumbnail_config_permissions = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.thumbnail_config_permissions = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .thumbnail_config_permissions = Some(d);
+            }
         }
         self
     }
@@ -219,7 +240,10 @@ impl ElastictranscoderPipeline {
 
     #[doc = "Get a reference to the value of field `aws_kms_key_arn` after provisioning.\n"]
     pub fn aws_kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -229,53 +253,80 @@ impl ElastictranscoderPipeline {
 
     #[doc = "Get a reference to the value of field `input_bucket` after provisioning.\n"]
     pub fn input_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_bucket` after provisioning.\n"]
     pub fn output_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_bucket", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `content_config` after provisioning.\n"]
     pub fn content_config(&self) -> ListRef<ElastictranscoderPipelineContentConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notifications` after provisioning.\n"]
     pub fn notifications(&self) -> ListRef<ElastictranscoderPipelineNotificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notifications", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notifications", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `thumbnail_config` after provisioning.\n"]
     pub fn thumbnail_config(&self) -> ListRef<ElastictranscoderPipelineThumbnailConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.thumbnail_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.thumbnail_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ElastictranscoderPipeline {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ElastictranscoderPipeline { }
+impl Resource for ElastictranscoderPipeline {}
 
 impl ToListMappable for ElastictranscoderPipeline {
     type O = ListRef<ElastictranscoderPipelineRef>;
@@ -345,10 +396,7 @@ pub struct ElastictranscoderPipelineRef {
 
 impl Ref for ElastictranscoderPipelineRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -368,7 +416,10 @@ impl ElastictranscoderPipelineRef {
 
     #[doc = "Get a reference to the value of field `aws_kms_key_arn` after provisioning.\n"]
     pub fn aws_kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -378,43 +429,66 @@ impl ElastictranscoderPipelineRef {
 
     #[doc = "Get a reference to the value of field `input_bucket` after provisioning.\n"]
     pub fn input_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_bucket` after provisioning.\n"]
     pub fn output_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_bucket", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `content_config` after provisioning.\n"]
     pub fn content_config(&self) -> ListRef<ElastictranscoderPipelineContentConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notifications` after provisioning.\n"]
     pub fn notifications(&self) -> ListRef<ElastictranscoderPipelineNotificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notifications", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notifications", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `thumbnail_config` after provisioning.\n"]
     pub fn thumbnail_config(&self) -> ListRef<ElastictranscoderPipelineThumbnailConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.thumbnail_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.thumbnail_config", self.extract_ref()),
+        )
     }
 }
 
@@ -489,7 +563,10 @@ impl ElastictranscoderPipelineContentConfigElRef {
 
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_class", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_class", self.base),
+        )
     }
 }
 
@@ -553,7 +630,10 @@ pub struct ElastictranscoderPipelineContentConfigPermissionsElRef {
 }
 
 impl Ref for ElastictranscoderPipelineContentConfigPermissionsElRef {
-    fn new(shared: StackShared, base: String) -> ElastictranscoderPipelineContentConfigPermissionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ElastictranscoderPipelineContentConfigPermissionsElRef {
         ElastictranscoderPipelineContentConfigPermissionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -756,7 +836,10 @@ impl ElastictranscoderPipelineThumbnailConfigElRef {
 
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_class", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_class", self.base),
+        )
     }
 }
 
@@ -820,7 +903,10 @@ pub struct ElastictranscoderPipelineThumbnailConfigPermissionsElRef {
 }
 
 impl Ref for ElastictranscoderPipelineThumbnailConfigPermissionsElRef {
-    fn new(shared: StackShared, base: String) -> ElastictranscoderPipelineThumbnailConfigPermissionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ElastictranscoderPipelineThumbnailConfigPermissionsElRef {
         ElastictranscoderPipelineThumbnailConfigPermissionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -852,8 +938,10 @@ impl ElastictranscoderPipelineThumbnailConfigPermissionsElRef {
 #[derive(Serialize, Default)]
 struct ElastictranscoderPipelineDynamic {
     content_config: Option<DynamicBlock<ElastictranscoderPipelineContentConfigEl>>,
-    content_config_permissions: Option<DynamicBlock<ElastictranscoderPipelineContentConfigPermissionsEl>>,
+    content_config_permissions:
+        Option<DynamicBlock<ElastictranscoderPipelineContentConfigPermissionsEl>>,
     notifications: Option<DynamicBlock<ElastictranscoderPipelineNotificationsEl>>,
     thumbnail_config: Option<DynamicBlock<ElastictranscoderPipelineThumbnailConfigEl>>,
-    thumbnail_config_permissions: Option<DynamicBlock<ElastictranscoderPipelineThumbnailConfigPermissionsEl>>,
+    thumbnail_config_permissions:
+        Option<DynamicBlock<ElastictranscoderPipelineThumbnailConfigPermissionsEl>>,
 }

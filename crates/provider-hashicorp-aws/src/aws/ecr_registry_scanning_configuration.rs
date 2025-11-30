@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EcrRegistryScanningConfigurationData {
@@ -59,7 +59,8 @@ impl EcrRegistryScanningConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl EcrRegistryScanningConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl EcrRegistryScanningConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,22 +109,24 @@ impl EcrRegistryScanningConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(self, v: impl Into<BlockAssignable<EcrRegistryScanningConfigurationRuleEl>>) -> Self {
+    pub fn set_rule(
+        self,
+        v: impl Into<BlockAssignable<EcrRegistryScanningConfigurationRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -123,30 +136,42 @@ impl EcrRegistryScanningConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scan_type` after provisioning.\n"]
     pub fn scan_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EcrRegistryScanningConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EcrRegistryScanningConfiguration { }
+impl Resource for EcrRegistryScanningConfiguration {}
 
 impl ToListMappable for EcrRegistryScanningConfiguration {
     type O = ListRef<EcrRegistryScanningConfigurationRef>;
@@ -206,10 +231,7 @@ pub struct EcrRegistryScanningConfigurationRef {
 
 impl Ref for EcrRegistryScanningConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -227,20 +249,28 @@ impl EcrRegistryScanningConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scan_type` after provisioning.\n"]
     pub fn scan_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_type", self.extract_ref()),
+        )
     }
 }
 
@@ -250,7 +280,7 @@ pub struct EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
     filter_type: PrimField<String>,
 }
 
-impl EcrRegistryScanningConfigurationRuleElRepositoryFilterEl { }
+impl EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {}
 
 impl ToListMappable for EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
     type O = BlockAssignable<EcrRegistryScanningConfigurationRuleElRepositoryFilterEl>;
@@ -286,7 +316,10 @@ pub struct EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
 }
 
 impl Ref for EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
-    fn new(shared: StackShared, base: String) -> EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
         EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -312,7 +345,8 @@ impl EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
 
 #[derive(Serialize, Default)]
 struct EcrRegistryScanningConfigurationRuleElDynamic {
-    repository_filter: Option<DynamicBlock<EcrRegistryScanningConfigurationRuleElRepositoryFilterEl>>,
+    repository_filter:
+        Option<DynamicBlock<EcrRegistryScanningConfigurationRuleElRepositoryFilterEl>>,
 }
 
 #[derive(Serialize)]
@@ -332,10 +366,10 @@ impl EcrRegistryScanningConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.repository_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.repository_filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -389,7 +423,10 @@ impl EcrRegistryScanningConfigurationRuleElRef {
 
     #[doc = "Get a reference to the value of field `scan_frequency` after provisioning.\n"]
     pub fn scan_frequency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scan_frequency", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scan_frequency", self.base),
+        )
     }
 }
 

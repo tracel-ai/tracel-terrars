@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SchedulerScheduleData {
@@ -81,7 +81,8 @@ impl SchedulerSchedule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl SchedulerSchedule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl SchedulerSchedule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -162,8 +173,7 @@ impl SchedulerSchedule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -188,14 +198,17 @@ impl SchedulerSchedule {
     }
 
     #[doc = "Set the field `flexible_time_window`.\n"]
-    pub fn set_flexible_time_window(self, v: impl Into<BlockAssignable<SchedulerScheduleFlexibleTimeWindowEl>>) -> Self {
+    pub fn set_flexible_time_window(
+        self,
+        v: impl Into<BlockAssignable<SchedulerScheduleFlexibleTimeWindowEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().flexible_time_window = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.flexible_time_window = Some(d);
-            },
+            }
         }
         self
     }
@@ -205,17 +218,20 @@ impl SchedulerSchedule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `action_after_completion` after provisioning.\n"]
     pub fn action_after_completion(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_after_completion", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_after_completion", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -225,17 +241,26 @@ impl SchedulerSchedule {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_date` after provisioning.\n"]
     pub fn end_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -245,63 +270,96 @@ impl SchedulerSchedule {
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_expression_timezone` after provisioning.\n"]
     pub fn schedule_expression_timezone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression_timezone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression_timezone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_date` after provisioning.\n"]
     pub fn start_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flexible_time_window` after provisioning.\n"]
     pub fn flexible_time_window(&self) -> ListRef<SchedulerScheduleFlexibleTimeWindowElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.flexible_time_window", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.flexible_time_window", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> ListRef<SchedulerScheduleTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SchedulerSchedule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SchedulerSchedule { }
+impl Resource for SchedulerSchedule {}
 
 impl ToListMappable for SchedulerSchedule {
     type O = ListRef<SchedulerScheduleRef>;
@@ -372,10 +430,7 @@ pub struct SchedulerScheduleRef {
 
 impl Ref for SchedulerScheduleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -390,7 +445,10 @@ impl SchedulerScheduleRef {
 
     #[doc = "Get a reference to the value of field `action_after_completion` after provisioning.\n"]
     pub fn action_after_completion(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_after_completion", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_after_completion", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -400,17 +458,26 @@ impl SchedulerScheduleRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `end_date` after provisioning.\n"]
     pub fn end_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.end_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.end_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -420,53 +487,82 @@ impl SchedulerScheduleRef {
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_expression_timezone` after provisioning.\n"]
     pub fn schedule_expression_timezone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression_timezone", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression_timezone", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `start_date` after provisioning.\n"]
     pub fn start_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.start_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.start_date", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `flexible_time_window` after provisioning.\n"]
     pub fn flexible_time_window(&self) -> ListRef<SchedulerScheduleFlexibleTimeWindowElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.flexible_time_window", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.flexible_time_window", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> ListRef<SchedulerScheduleTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target", self.extract_ref()),
+        )
     }
 }
 
@@ -532,7 +628,10 @@ impl SchedulerScheduleFlexibleTimeWindowElRef {
 
     #[doc = "Get a reference to the value of field `maximum_window_in_minutes` after provisioning.\n"]
     pub fn maximum_window_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_window_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_window_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
@@ -546,7 +645,7 @@ pub struct SchedulerScheduleTargetElDeadLetterConfigEl {
     arn: PrimField<String>,
 }
 
-impl SchedulerScheduleTargetElDeadLetterConfigEl { }
+impl SchedulerScheduleTargetElDeadLetterConfigEl {}
 
 impl ToListMappable for SchedulerScheduleTargetElDeadLetterConfigEl {
     type O = BlockAssignable<SchedulerScheduleTargetElDeadLetterConfigEl>;
@@ -675,7 +774,10 @@ impl SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyElRef {
 
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -740,7 +842,10 @@ pub struct SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef {
 }
 
 impl Ref for SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef {
         SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -755,12 +860,18 @@ impl SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assign_public_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assign_public_ip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -817,7 +928,10 @@ pub struct SchedulerScheduleTargetElEcsParametersElPlacementConstraintsElRef {
 }
 
 impl Ref for SchedulerScheduleTargetElEcsParametersElPlacementConstraintsElRef {
-    fn new(shared: StackShared, base: String) -> SchedulerScheduleTargetElEcsParametersElPlacementConstraintsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SchedulerScheduleTargetElEcsParametersElPlacementConstraintsElRef {
         SchedulerScheduleTargetElEcsParametersElPlacementConstraintsElRef {
             shared: shared,
             base: base.to_string(),
@@ -889,7 +1003,10 @@ pub struct SchedulerScheduleTargetElEcsParametersElPlacementStrategyElRef {
 }
 
 impl Ref for SchedulerScheduleTargetElEcsParametersElPlacementStrategyElRef {
-    fn new(shared: StackShared, base: String) -> SchedulerScheduleTargetElEcsParametersElPlacementStrategyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SchedulerScheduleTargetElEcsParametersElPlacementStrategyElRef {
         SchedulerScheduleTargetElEcsParametersElPlacementStrategyElRef {
             shared: shared,
             base: base.to_string(),
@@ -915,12 +1032,14 @@ impl SchedulerScheduleTargetElEcsParametersElPlacementStrategyElRef {
 
 #[derive(Serialize, Default)]
 struct SchedulerScheduleTargetElEcsParametersElDynamic {
-    capacity_provider_strategy: Option<
-        DynamicBlock<SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyEl>,
-    >,
-    network_configuration: Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElNetworkConfigurationEl>>,
-    placement_constraints: Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElPlacementConstraintsEl>>,
-    placement_strategy: Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElPlacementStrategyEl>>,
+    capacity_provider_strategy:
+        Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyEl>>,
+    network_configuration:
+        Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElNetworkConfigurationEl>>,
+    placement_constraints:
+        Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElPlacementConstraintsEl>>,
+    placement_strategy:
+        Option<DynamicBlock<SchedulerScheduleTargetElEcsParametersElPlacementStrategyEl>>,
 }
 
 #[derive(Serialize)]
@@ -945,11 +1064,14 @@ pub struct SchedulerScheduleTargetElEcsParametersEl {
     task_count: Option<PrimField<f64>>,
     task_definition_arn: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_provider_strategy: Option<Vec<SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyEl>>,
+    capacity_provider_strategy:
+        Option<Vec<SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    network_configuration: Option<Vec<SchedulerScheduleTargetElEcsParametersElNetworkConfigurationEl>>,
+    network_configuration:
+        Option<Vec<SchedulerScheduleTargetElEcsParametersElNetworkConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    placement_constraints: Option<Vec<SchedulerScheduleTargetElEcsParametersElPlacementConstraintsEl>>,
+    placement_constraints:
+        Option<Vec<SchedulerScheduleTargetElEcsParametersElPlacementConstraintsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     placement_strategy: Option<Vec<SchedulerScheduleTargetElEcsParametersElPlacementStrategyEl>>,
     dynamic: SchedulerScheduleTargetElEcsParametersElDynamic,
@@ -1013,15 +1135,17 @@ impl SchedulerScheduleTargetElEcsParametersEl {
     #[doc = "Set the field `capacity_provider_strategy`.\n"]
     pub fn set_capacity_provider_strategy(
         mut self,
-        v: impl Into<BlockAssignable<SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyEl>>,
+        v: impl Into<
+            BlockAssignable<SchedulerScheduleTargetElEcsParametersElCapacityProviderStrategyEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_provider_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_provider_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1034,10 +1158,10 @@ impl SchedulerScheduleTargetElEcsParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1050,10 +1174,10 @@ impl SchedulerScheduleTargetElEcsParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.placement_constraints = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.placement_constraints = Some(d);
-            },
+            }
         }
         self
     }
@@ -1066,10 +1190,10 @@ impl SchedulerScheduleTargetElEcsParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.placement_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.placement_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1135,12 +1259,18 @@ impl SchedulerScheduleTargetElEcsParametersElRef {
 
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_ecs_managed_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_ecs_managed_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_execute_command", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_execute_command", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
@@ -1155,12 +1285,18 @@ impl SchedulerScheduleTargetElEcsParametersElRef {
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reference_id` after provisioning.\n"]
@@ -1180,12 +1316,20 @@ impl SchedulerScheduleTargetElEcsParametersElRef {
 
     #[doc = "Get a reference to the value of field `task_definition_arn` after provisioning.\n"]
     pub fn task_definition_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
-    pub fn network_configuration(&self) -> ListRef<SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.base))
+    pub fn network_configuration(
+        &self,
+    ) -> ListRef<SchedulerScheduleTargetElEcsParametersElNetworkConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.base),
+        )
     }
 }
 
@@ -1195,7 +1339,7 @@ pub struct SchedulerScheduleTargetElEventbridgeParametersEl {
     source: PrimField<String>,
 }
 
-impl SchedulerScheduleTargetElEventbridgeParametersEl { }
+impl SchedulerScheduleTargetElEventbridgeParametersEl {}
 
 impl ToListMappable for SchedulerScheduleTargetElEventbridgeParametersEl {
     type O = BlockAssignable<SchedulerScheduleTargetElEventbridgeParametersEl>;
@@ -1231,7 +1375,10 @@ pub struct SchedulerScheduleTargetElEventbridgeParametersElRef {
 }
 
 impl Ref for SchedulerScheduleTargetElEventbridgeParametersElRef {
-    fn new(shared: StackShared, base: String) -> SchedulerScheduleTargetElEventbridgeParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SchedulerScheduleTargetElEventbridgeParametersElRef {
         SchedulerScheduleTargetElEventbridgeParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1260,7 +1407,7 @@ pub struct SchedulerScheduleTargetElKinesisParametersEl {
     partition_key: PrimField<String>,
 }
 
-impl SchedulerScheduleTargetElKinesisParametersEl { }
+impl SchedulerScheduleTargetElKinesisParametersEl {}
 
 impl ToListMappable for SchedulerScheduleTargetElKinesisParametersEl {
     type O = BlockAssignable<SchedulerScheduleTargetElKinesisParametersEl>;
@@ -1281,7 +1428,9 @@ pub struct BuildSchedulerScheduleTargetElKinesisParametersEl {
 
 impl BuildSchedulerScheduleTargetElKinesisParametersEl {
     pub fn build(self) -> SchedulerScheduleTargetElKinesisParametersEl {
-        SchedulerScheduleTargetElKinesisParametersEl { partition_key: self.partition_key }
+        SchedulerScheduleTargetElKinesisParametersEl {
+            partition_key: self.partition_key,
+        }
     }
 }
 
@@ -1306,7 +1455,10 @@ impl SchedulerScheduleTargetElKinesisParametersElRef {
 
     #[doc = "Get a reference to the value of field `partition_key` after provisioning.\n"]
     pub fn partition_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_key", self.base),
+        )
     }
 }
 
@@ -1376,12 +1528,18 @@ impl SchedulerScheduleTargetElRetryPolicyElRef {
 
     #[doc = "Get a reference to the value of field `maximum_event_age_in_seconds` after provisioning.\n"]
     pub fn maximum_event_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_event_age_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_event_age_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.base),
+        )
     }
 }
 
@@ -1391,10 +1549,11 @@ pub struct SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParamet
     value: PrimField<String>,
 }
 
-impl SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl { }
+impl SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl {}
 
 impl ToListMappable for SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl {
-    type O = BlockAssignable<SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl>;
+    type O =
+        BlockAssignable<SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1413,7 +1572,9 @@ pub struct BuildSchedulerScheduleTargetElSagemakerPipelineParametersElPipelinePa
 }
 
 impl BuildSchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl {
-    pub fn build(self) -> SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl {
+    pub fn build(
+        self,
+    ) -> SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl {
         SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl {
             name: self.name,
             value: self.value,
@@ -1464,7 +1625,8 @@ struct SchedulerScheduleTargetElSagemakerPipelineParametersElDynamic {
 #[derive(Serialize)]
 pub struct SchedulerScheduleTargetElSagemakerPipelineParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pipeline_parameter: Option<Vec<SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl>>,
+    pipeline_parameter:
+        Option<Vec<SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl>>,
     dynamic: SchedulerScheduleTargetElSagemakerPipelineParametersElDynamic,
 }
 
@@ -1472,15 +1634,19 @@ impl SchedulerScheduleTargetElSagemakerPipelineParametersEl {
     #[doc = "Set the field `pipeline_parameter`.\n"]
     pub fn set_pipeline_parameter(
         mut self,
-        v: impl Into<BlockAssignable<SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SchedulerScheduleTargetElSagemakerPipelineParametersElPipelineParameterEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pipeline_parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pipeline_parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1515,7 +1681,10 @@ pub struct SchedulerScheduleTargetElSagemakerPipelineParametersElRef {
 }
 
 impl Ref for SchedulerScheduleTargetElSagemakerPipelineParametersElRef {
-    fn new(shared: StackShared, base: String) -> SchedulerScheduleTargetElSagemakerPipelineParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SchedulerScheduleTargetElSagemakerPipelineParametersElRef {
         SchedulerScheduleTargetElSagemakerPipelineParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1559,7 +1728,9 @@ pub struct BuildSchedulerScheduleTargetElSqsParametersEl {}
 
 impl BuildSchedulerScheduleTargetElSqsParametersEl {
     pub fn build(self) -> SchedulerScheduleTargetElSqsParametersEl {
-        SchedulerScheduleTargetElSqsParametersEl { message_group_id: core::default::Default::default() }
+        SchedulerScheduleTargetElSqsParametersEl {
+            message_group_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -1584,7 +1755,10 @@ impl SchedulerScheduleTargetElSqsParametersElRef {
 
     #[doc = "Get a reference to the value of field `message_group_id` after provisioning.\n"]
     pub fn message_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_group_id", self.base),
+        )
     }
 }
 
@@ -1595,7 +1769,8 @@ struct SchedulerScheduleTargetElDynamic {
     eventbridge_parameters: Option<DynamicBlock<SchedulerScheduleTargetElEventbridgeParametersEl>>,
     kinesis_parameters: Option<DynamicBlock<SchedulerScheduleTargetElKinesisParametersEl>>,
     retry_policy: Option<DynamicBlock<SchedulerScheduleTargetElRetryPolicyEl>>,
-    sagemaker_pipeline_parameters: Option<DynamicBlock<SchedulerScheduleTargetElSagemakerPipelineParametersEl>>,
+    sagemaker_pipeline_parameters:
+        Option<DynamicBlock<SchedulerScheduleTargetElSagemakerPipelineParametersEl>>,
     sqs_parameters: Option<DynamicBlock<SchedulerScheduleTargetElSqsParametersEl>>,
 }
 
@@ -1616,7 +1791,8 @@ pub struct SchedulerScheduleTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     retry_policy: Option<Vec<SchedulerScheduleTargetElRetryPolicyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    sagemaker_pipeline_parameters: Option<Vec<SchedulerScheduleTargetElSagemakerPipelineParametersEl>>,
+    sagemaker_pipeline_parameters:
+        Option<Vec<SchedulerScheduleTargetElSagemakerPipelineParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     sqs_parameters: Option<Vec<SchedulerScheduleTargetElSqsParametersEl>>,
     dynamic: SchedulerScheduleTargetElDynamic,
@@ -1637,10 +1813,10 @@ impl SchedulerScheduleTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dead_letter_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dead_letter_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1653,10 +1829,10 @@ impl SchedulerScheduleTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ecs_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ecs_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1669,10 +1845,10 @@ impl SchedulerScheduleTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.eventbridge_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.eventbridge_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1685,23 +1861,26 @@ impl SchedulerScheduleTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_parameters = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `retry_policy`.\n"]
-    pub fn set_retry_policy(mut self, v: impl Into<BlockAssignable<SchedulerScheduleTargetElRetryPolicyEl>>) -> Self {
+    pub fn set_retry_policy(
+        mut self,
+        v: impl Into<BlockAssignable<SchedulerScheduleTargetElRetryPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.retry_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.retry_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1714,10 +1893,10 @@ impl SchedulerScheduleTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sagemaker_pipeline_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sagemaker_pipeline_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1730,10 +1909,10 @@ impl SchedulerScheduleTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sqs_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sqs_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1812,22 +1991,36 @@ impl SchedulerScheduleTargetElRef {
 
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<SchedulerScheduleTargetElDeadLetterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dead_letter_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dead_letter_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_parameters` after provisioning.\n"]
     pub fn ecs_parameters(&self) -> ListRef<SchedulerScheduleTargetElEcsParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecs_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecs_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eventbridge_parameters` after provisioning.\n"]
-    pub fn eventbridge_parameters(&self) -> ListRef<SchedulerScheduleTargetElEventbridgeParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eventbridge_parameters", self.base))
+    pub fn eventbridge_parameters(
+        &self,
+    ) -> ListRef<SchedulerScheduleTargetElEventbridgeParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eventbridge_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_parameters` after provisioning.\n"]
     pub fn kinesis_parameters(&self) -> ListRef<SchedulerScheduleTargetElKinesisParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_policy` after provisioning.\n"]
@@ -1836,13 +2029,21 @@ impl SchedulerScheduleTargetElRef {
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_pipeline_parameters` after provisioning.\n"]
-    pub fn sagemaker_pipeline_parameters(&self) -> ListRef<SchedulerScheduleTargetElSagemakerPipelineParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sagemaker_pipeline_parameters", self.base))
+    pub fn sagemaker_pipeline_parameters(
+        &self,
+    ) -> ListRef<SchedulerScheduleTargetElSagemakerPipelineParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_pipeline_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_parameters` after provisioning.\n"]
     pub fn sqs_parameters(&self) -> ListRef<SchedulerScheduleTargetElSqsParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_parameters", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DevicefarmNetworkProfileData {
@@ -81,7 +81,8 @@ impl DevicefarmNetworkProfile {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -94,7 +95,7 @@ impl DevicefarmNetworkProfile {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -105,12 +106,22 @@ impl DevicefarmNetworkProfile {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -150,8 +161,7 @@ impl DevicefarmNetworkProfile {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -206,27 +216,42 @@ impl DevicefarmNetworkProfile {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_bandwidth_bits` after provisioning.\n"]
     pub fn downlink_bandwidth_bits(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_bandwidth_bits", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_bandwidth_bits", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_delay_ms` after provisioning.\n"]
     pub fn downlink_delay_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_delay_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_delay_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_jitter_ms` after provisioning.\n"]
     pub fn downlink_jitter_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_jitter_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_jitter_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_loss_percent` after provisioning.\n"]
     pub fn downlink_loss_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_loss_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_loss_percent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -236,63 +261,96 @@ impl DevicefarmNetworkProfile {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_arn` after provisioning.\n"]
     pub fn project_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_bandwidth_bits` after provisioning.\n"]
     pub fn uplink_bandwidth_bits(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_bandwidth_bits", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_bandwidth_bits", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_delay_ms` after provisioning.\n"]
     pub fn uplink_delay_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_delay_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_delay_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_jitter_ms` after provisioning.\n"]
     pub fn uplink_jitter_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_jitter_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_jitter_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_loss_percent` after provisioning.\n"]
     pub fn uplink_loss_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_loss_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_loss_percent", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DevicefarmNetworkProfile {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DevicefarmNetworkProfile { }
+impl Resource for DevicefarmNetworkProfile {}
 
 impl ToListMappable for DevicefarmNetworkProfile {
     type O = ListRef<DevicefarmNetworkProfileRef>;
@@ -365,10 +423,7 @@ pub struct DevicefarmNetworkProfileRef {
 
 impl Ref for DevicefarmNetworkProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -388,27 +443,42 @@ impl DevicefarmNetworkProfileRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_bandwidth_bits` after provisioning.\n"]
     pub fn downlink_bandwidth_bits(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_bandwidth_bits", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_bandwidth_bits", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_delay_ms` after provisioning.\n"]
     pub fn downlink_delay_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_delay_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_delay_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_jitter_ms` after provisioning.\n"]
     pub fn downlink_jitter_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_jitter_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_jitter_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `downlink_loss_percent` after provisioning.\n"]
     pub fn downlink_loss_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.downlink_loss_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.downlink_loss_percent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -418,52 +488,81 @@ impl DevicefarmNetworkProfileRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_arn` after provisioning.\n"]
     pub fn project_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_bandwidth_bits` after provisioning.\n"]
     pub fn uplink_bandwidth_bits(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_bandwidth_bits", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_bandwidth_bits", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_delay_ms` after provisioning.\n"]
     pub fn uplink_delay_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_delay_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_delay_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_jitter_ms` after provisioning.\n"]
     pub fn uplink_jitter_ms(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_jitter_ms", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_jitter_ms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uplink_loss_percent` after provisioning.\n"]
     pub fn uplink_loss_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uplink_loss_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.uplink_loss_percent", self.extract_ref()),
+        )
     }
 }

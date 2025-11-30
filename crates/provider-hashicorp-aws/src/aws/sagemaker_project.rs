@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SagemakerProjectData {
@@ -26,7 +26,8 @@ struct SagemakerProjectData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    service_catalog_provisioning_details: Option<Vec<SagemakerProjectServiceCatalogProvisioningDetailsEl>>,
+    service_catalog_provisioning_details:
+        Option<Vec<SagemakerProjectServiceCatalogProvisioningDetailsEl>>,
     dynamic: SagemakerProjectDynamic,
 }
 
@@ -65,7 +66,8 @@ impl SagemakerProject {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +80,7 @@ impl SagemakerProject {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +91,22 @@ impl SagemakerProject {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,8 +122,7 @@ impl SagemakerProject {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -136,11 +147,18 @@ impl SagemakerProject {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().service_catalog_provisioning_details = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .service_catalog_provisioning_details = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.service_catalog_provisioning_details = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .service_catalog_provisioning_details = Some(d);
+            }
         }
         self
     }
@@ -157,50 +175,77 @@ impl SagemakerProject {
 
     #[doc = "Get a reference to the value of field `project_description` after provisioning.\n"]
     pub fn project_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_id` after provisioning.\n"]
     pub fn project_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_catalog_provisioning_details` after provisioning.\n"]
     pub fn service_catalog_provisioning_details(
         &self,
     ) -> ListRef<SagemakerProjectServiceCatalogProvisioningDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_catalog_provisioning_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.service_catalog_provisioning_details",
+                self.extract_ref()
+            ),
+        )
     }
 }
 
 impl Referable for SagemakerProject {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SagemakerProject { }
+impl Resource for SagemakerProject {}
 
 impl ToListMappable for SagemakerProject {
     type O = ListRef<SagemakerProjectRef>;
@@ -263,10 +308,7 @@ pub struct SagemakerProjectRef {
 
 impl Ref for SagemakerProjectRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -291,40 +333,63 @@ impl SagemakerProjectRef {
 
     #[doc = "Get a reference to the value of field `project_description` after provisioning.\n"]
     pub fn project_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_id` after provisioning.\n"]
     pub fn project_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_catalog_provisioning_details` after provisioning.\n"]
     pub fn service_catalog_provisioning_details(
         &self,
     ) -> ListRef<SagemakerProjectServiceCatalogProvisioningDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_catalog_provisioning_details", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.service_catalog_provisioning_details",
+                self.extract_ref()
+            ),
+        )
     }
 }
 
@@ -344,7 +409,8 @@ impl SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl 
 }
 
 impl ToListMappable for SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl {
-    type O = BlockAssignable<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl>;
+    type O =
+        BlockAssignable<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -361,7 +427,9 @@ pub struct BuildSagemakerProjectServiceCatalogProvisioningDetailsElProvisioningP
 }
 
 impl BuildSagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl {
-    pub fn build(self) -> SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl {
+    pub fn build(
+        self,
+    ) -> SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl {
         SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl {
             key: self.key,
             value: core::default::Default::default(),
@@ -417,7 +485,8 @@ pub struct SagemakerProjectServiceCatalogProvisioningDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     provisioning_artifact_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    provisioning_parameter: Option<Vec<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl>>,
+    provisioning_parameter:
+        Option<Vec<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl>>,
     dynamic: SagemakerProjectServiceCatalogProvisioningDetailsElDynamic,
 }
 
@@ -437,15 +506,19 @@ impl SagemakerProjectServiceCatalogProvisioningDetailsEl {
     #[doc = "Set the field `provisioning_parameter`.\n"]
     pub fn set_provisioning_parameter(
         mut self,
-        v: impl Into<BlockAssignable<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.provisioning_parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.provisioning_parameter = Some(d);
-            },
+            }
         }
         self
     }
@@ -486,7 +559,10 @@ pub struct SagemakerProjectServiceCatalogProvisioningDetailsElRef {
 }
 
 impl Ref for SagemakerProjectServiceCatalogProvisioningDetailsElRef {
-    fn new(shared: StackShared, base: String) -> SagemakerProjectServiceCatalogProvisioningDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SagemakerProjectServiceCatalogProvisioningDetailsElRef {
         SagemakerProjectServiceCatalogProvisioningDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -511,18 +587,26 @@ impl SagemakerProjectServiceCatalogProvisioningDetailsElRef {
 
     #[doc = "Get a reference to the value of field `provisioning_artifact_id` after provisioning.\n"]
     pub fn provisioning_artifact_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provisioning_artifact_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provisioning_artifact_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `provisioning_parameter` after provisioning.\n"]
     pub fn provisioning_parameter(
         &self,
-    ) -> ListRef<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.provisioning_parameter", self.base))
+    ) -> ListRef<SagemakerProjectServiceCatalogProvisioningDetailsElProvisioningParameterElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.provisioning_parameter", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SagemakerProjectDynamic {
-    service_catalog_provisioning_details: Option<DynamicBlock<SagemakerProjectServiceCatalogProvisioningDetailsEl>>,
+    service_catalog_provisioning_details:
+        Option<DynamicBlock<SagemakerProjectServiceCatalogProvisioningDetailsEl>>,
 }

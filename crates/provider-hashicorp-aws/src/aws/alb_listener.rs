@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AlbListenerData {
@@ -34,7 +34,8 @@ struct AlbListenerData {
     #[serde(skip_serializing_if = "Option::is_none")]
     routing_http_request_x_amzn_mtls_clientcert_leaf_header_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name: Option<PrimField<String>>,
+    routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name:
+        Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     routing_http_request_x_amzn_mtls_clientcert_subject_header_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -117,7 +118,8 @@ impl AlbListener {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -130,7 +132,7 @@ impl AlbListener {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -141,12 +143,22 @@ impl AlbListener {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -180,16 +192,21 @@ impl AlbListener {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_request_x_amzn_mtls_clientcert_header_name`.\n"]
-    pub fn set_routing_http_request_x_amzn_mtls_clientcert_header_name(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_mtls_clientcert_header_name = Some(v.into());
+    pub fn set_routing_http_request_x_amzn_mtls_clientcert_header_name(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_mtls_clientcert_header_name = Some(v.into());
         self
     }
 
@@ -198,7 +215,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_mtls_clientcert_issuer_header_name = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_mtls_clientcert_issuer_header_name = Some(v.into());
         self
     }
 
@@ -207,7 +227,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_mtls_clientcert_leaf_header_name = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_mtls_clientcert_leaf_header_name = Some(v.into());
         self
     }
 
@@ -216,8 +239,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name =
-            Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name = Some(v.into());
         self
     }
 
@@ -226,7 +251,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_mtls_clientcert_subject_header_name = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_mtls_clientcert_subject_header_name = Some(v.into());
         self
     }
 
@@ -235,19 +263,34 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_mtls_clientcert_validity_header_name = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_mtls_clientcert_validity_header_name = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_request_x_amzn_tls_cipher_suite_header_name`.\n"]
-    pub fn set_routing_http_request_x_amzn_tls_cipher_suite_header_name(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_tls_cipher_suite_header_name = Some(v.into());
+    pub fn set_routing_http_request_x_amzn_tls_cipher_suite_header_name(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_tls_cipher_suite_header_name = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_request_x_amzn_tls_version_header_name`.\n"]
-    pub fn set_routing_http_request_x_amzn_tls_version_header_name(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().routing_http_request_x_amzn_tls_version_header_name = Some(v.into());
+    pub fn set_routing_http_request_x_amzn_tls_version_header_name(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_request_x_amzn_tls_version_header_name = Some(v.into());
         self
     }
 
@@ -256,8 +299,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_access_control_allow_credentials_header_value =
-            Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_access_control_allow_credentials_header_value = Some(v.into());
         self
     }
 
@@ -266,7 +311,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_access_control_allow_headers_header_value = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_access_control_allow_headers_header_value = Some(v.into());
         self
     }
 
@@ -275,7 +323,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_access_control_allow_methods_header_value = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_access_control_allow_methods_header_value = Some(v.into());
         self
     }
 
@@ -284,7 +335,10 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_access_control_allow_origin_header_value = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_access_control_allow_origin_header_value = Some(v.into());
         self
     }
 
@@ -293,13 +347,22 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_access_control_expose_headers_header_value = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_access_control_expose_headers_header_value = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_response_access_control_max_age_header_value`.\n"]
-    pub fn set_routing_http_response_access_control_max_age_header_value(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().routing_http_response_access_control_max_age_header_value = Some(v.into());
+    pub fn set_routing_http_response_access_control_max_age_header_value(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_access_control_max_age_header_value = Some(v.into());
         self
     }
 
@@ -308,13 +371,19 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_content_security_policy_header_value = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_content_security_policy_header_value = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_response_server_enabled`.\n"]
     pub fn set_routing_http_response_server_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().routing_http_response_server_enabled = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_server_enabled = Some(v.into());
         self
     }
 
@@ -323,19 +392,34 @@ impl AlbListener {
         self,
         v: impl Into<PrimField<String>>,
     ) -> Self {
-        self.0.data.borrow_mut().routing_http_response_strict_transport_security_header_value = Some(v.into());
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_strict_transport_security_header_value = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_response_x_content_type_options_header_value`.\n"]
-    pub fn set_routing_http_response_x_content_type_options_header_value(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().routing_http_response_x_content_type_options_header_value = Some(v.into());
+    pub fn set_routing_http_response_x_content_type_options_header_value(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_x_content_type_options_header_value = Some(v.into());
         self
     }
 
     #[doc = "Set the field `routing_http_response_x_frame_options_header_value`.\n"]
-    pub fn set_routing_http_response_x_frame_options_header_value(self, v: impl Into<PrimField<String>>) -> Self {
-        self.0.data.borrow_mut().routing_http_response_x_frame_options_header_value = Some(v.into());
+    pub fn set_routing_http_response_x_frame_options_header_value(
+        self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .routing_http_response_x_frame_options_header_value = Some(v.into());
         self
     }
 
@@ -364,27 +448,33 @@ impl AlbListener {
     }
 
     #[doc = "Set the field `default_action`.\n"]
-    pub fn set_default_action(self, v: impl Into<BlockAssignable<AlbListenerDefaultActionEl>>) -> Self {
+    pub fn set_default_action(
+        self,
+        v: impl Into<BlockAssignable<AlbListenerDefaultActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().default_action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.default_action = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `mutual_authentication`.\n"]
-    pub fn set_mutual_authentication(self, v: impl Into<BlockAssignable<AlbListenerMutualAuthenticationEl>>) -> Self {
+    pub fn set_mutual_authentication(
+        self,
+        v: impl Into<BlockAssignable<AlbListenerMutualAuthenticationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().mutual_authentication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.mutual_authentication = Some(d);
-            },
+            }
         }
         self
     }
@@ -397,7 +487,10 @@ impl AlbListener {
 
     #[doc = "Get a reference to the value of field `alpn_policy` after provisioning.\n"]
     pub fn alpn_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alpn_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alpn_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -407,7 +500,10 @@ impl AlbListener {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -417,235 +513,331 @@ impl AlbListener {
 
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_mtls_clientcert_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_issuer_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_issuer_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_issuer_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_issuer_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_issuer_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_issuer_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_leaf_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_leaf_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_mtls_clientcert_leaf_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_leaf_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_leaf_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_subject_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_subject_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_subject_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_subject_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_subject_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_subject_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_validity_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_validity_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_validity_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_validity_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_validity_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_validity_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_tls_cipher_suite_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_tls_cipher_suite_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_tls_cipher_suite_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_tls_cipher_suite_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_tls_cipher_suite_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_tls_version_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_tls_version_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_tls_version_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_tls_version_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_tls_version_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_credentials_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_credentials_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_credentials_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_credentials_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_credentials_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_credentials_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_headers_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_headers_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_headers_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_headers_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_headers_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_headers_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_methods_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_methods_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_methods_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_methods_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_methods_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_methods_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_origin_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_origin_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_origin_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_origin_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_origin_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_origin_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_expose_headers_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_expose_headers_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_expose_headers_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_expose_headers_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_expose_headers_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_expose_headers_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_max_age_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_max_age_header_value` after provisioning.\n"]
     pub fn routing_http_response_access_control_max_age_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_max_age_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_max_age_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_content_security_policy_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_content_security_policy_header_value` after provisioning.\n"]
     pub fn routing_http_response_content_security_policy_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_content_security_policy_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_content_security_policy_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `routing_http_response_server_enabled` after provisioning.\n"]
     pub fn routing_http_response_server_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.routing_http_response_server_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.routing_http_response_server_enabled",
+                self.extract_ref()
+            ),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_strict_transport_security_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_strict_transport_security_header_value` after provisioning.\n"]
     pub fn routing_http_response_strict_transport_security_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_strict_transport_security_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_strict_transport_security_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_x_content_type_options_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_x_content_type_options_header_value` after provisioning.\n"]
     pub fn routing_http_response_x_content_type_options_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_x_content_type_options_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_x_content_type_options_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_x_frame_options_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_x_frame_options_header_value` after provisioning.\n"]
     pub fn routing_http_response_x_frame_options_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_x_frame_options_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_x_frame_options_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `ssl_policy` after provisioning.\n"]
     pub fn ssl_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssl_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssl_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tcp_idle_timeout_seconds` after provisioning.\n"]
     pub fn tcp_idle_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tcp_idle_timeout_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tcp_idle_timeout_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<AlbListenerDefaultActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutual_authentication` after provisioning.\n"]
     pub fn mutual_authentication(&self) -> ListRef<AlbListenerMutualAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mutual_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mutual_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AlbListenerTimeoutsElRef {
-        AlbListenerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        AlbListenerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AlbListener {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AlbListener { }
+impl Resource for AlbListener {}
 
 impl ToListMappable for AlbListener {
     type O = ListRef<AlbListenerRef>;
@@ -693,28 +885,43 @@ impl BuildAlbListener {
                 port: core::default::Default::default(),
                 protocol: core::default::Default::default(),
                 region: core::default::Default::default(),
-                routing_http_request_x_amzn_mtls_clientcert_header_name: core::default::Default::default(),
-                routing_http_request_x_amzn_mtls_clientcert_issuer_header_name: core::default::Default::default(),
-                routing_http_request_x_amzn_mtls_clientcert_leaf_header_name: core::default::Default::default(),
-                routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name: core
-                ::default
-                ::Default
-                ::default(),
-                routing_http_request_x_amzn_mtls_clientcert_subject_header_name: core::default::Default::default(),
-                routing_http_request_x_amzn_mtls_clientcert_validity_header_name: core::default::Default::default(),
-                routing_http_request_x_amzn_tls_cipher_suite_header_name: core::default::Default::default(),
-                routing_http_request_x_amzn_tls_version_header_name: core::default::Default::default(),
-                routing_http_response_access_control_allow_credentials_header_value: core::default::Default::default(),
-                routing_http_response_access_control_allow_headers_header_value: core::default::Default::default(),
-                routing_http_response_access_control_allow_methods_header_value: core::default::Default::default(),
-                routing_http_response_access_control_allow_origin_header_value: core::default::Default::default(),
-                routing_http_response_access_control_expose_headers_header_value: core::default::Default::default(),
-                routing_http_response_access_control_max_age_header_value: core::default::Default::default(),
-                routing_http_response_content_security_policy_header_value: core::default::Default::default(),
+                routing_http_request_x_amzn_mtls_clientcert_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_mtls_clientcert_issuer_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_mtls_clientcert_leaf_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_mtls_clientcert_subject_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_mtls_clientcert_validity_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_tls_cipher_suite_header_name:
+                    core::default::Default::default(),
+                routing_http_request_x_amzn_tls_version_header_name:
+                    core::default::Default::default(),
+                routing_http_response_access_control_allow_credentials_header_value:
+                    core::default::Default::default(),
+                routing_http_response_access_control_allow_headers_header_value:
+                    core::default::Default::default(),
+                routing_http_response_access_control_allow_methods_header_value:
+                    core::default::Default::default(),
+                routing_http_response_access_control_allow_origin_header_value:
+                    core::default::Default::default(),
+                routing_http_response_access_control_expose_headers_header_value:
+                    core::default::Default::default(),
+                routing_http_response_access_control_max_age_header_value:
+                    core::default::Default::default(),
+                routing_http_response_content_security_policy_header_value:
+                    core::default::Default::default(),
                 routing_http_response_server_enabled: core::default::Default::default(),
-                routing_http_response_strict_transport_security_header_value: core::default::Default::default(),
-                routing_http_response_x_content_type_options_header_value: core::default::Default::default(),
-                routing_http_response_x_frame_options_header_value: core::default::Default::default(),
+                routing_http_response_strict_transport_security_header_value:
+                    core::default::Default::default(),
+                routing_http_response_x_content_type_options_header_value:
+                    core::default::Default::default(),
+                routing_http_response_x_frame_options_header_value: core::default::Default::default(
+                ),
                 ssl_policy: core::default::Default::default(),
                 tags: core::default::Default::default(),
                 tags_all: core::default::Default::default(),
@@ -737,10 +944,7 @@ pub struct AlbListenerRef {
 
 impl Ref for AlbListenerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -755,7 +959,10 @@ impl AlbListenerRef {
 
     #[doc = "Get a reference to the value of field `alpn_policy` after provisioning.\n"]
     pub fn alpn_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alpn_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alpn_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -765,7 +972,10 @@ impl AlbListenerRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -775,225 +985,317 @@ impl AlbListenerRef {
 
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_mtls_clientcert_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_issuer_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_issuer_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_issuer_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_issuer_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_issuer_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_issuer_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_leaf_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_leaf_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_mtls_clientcert_leaf_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_leaf_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_leaf_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_subject_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_subject_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_subject_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_subject_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_subject_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_subject_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_validity_header_name` after provisioning.\n"]
-    pub fn routing_http_request_x_amzn_mtls_clientcert_validity_header_name(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_mtls_clientcert_validity_header_name` after provisioning.\n"]
+    pub fn routing_http_request_x_amzn_mtls_clientcert_validity_header_name(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_mtls_clientcert_validity_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_mtls_clientcert_validity_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_tls_cipher_suite_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_tls_cipher_suite_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_tls_cipher_suite_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_tls_cipher_suite_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_tls_cipher_suite_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_request_x_amzn_tls_version_header_name` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_request_x_amzn_tls_version_header_name` after provisioning.\n"]
     pub fn routing_http_request_x_amzn_tls_version_header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_request_x_amzn_tls_version_header_name", self.extract_ref()),
+            format!(
+                "{}.routing_http_request_x_amzn_tls_version_header_name",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_credentials_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_credentials_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_credentials_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_credentials_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_credentials_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_credentials_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_headers_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_headers_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_headers_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_headers_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_headers_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_headers_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_methods_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_methods_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_methods_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_methods_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_methods_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_methods_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_allow_origin_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_allow_origin_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_allow_origin_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_allow_origin_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_allow_origin_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_allow_origin_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_expose_headers_header_value` after provisioning.\n"]
-    pub fn routing_http_response_access_control_expose_headers_header_value(&self) -> PrimExpr<String> {
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_expose_headers_header_value` after provisioning.\n"]
+    pub fn routing_http_response_access_control_expose_headers_header_value(
+        &self,
+    ) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_expose_headers_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_expose_headers_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_access_control_max_age_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_access_control_max_age_header_value` after provisioning.\n"]
     pub fn routing_http_response_access_control_max_age_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_access_control_max_age_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_access_control_max_age_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_content_security_policy_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_content_security_policy_header_value` after provisioning.\n"]
     pub fn routing_http_response_content_security_policy_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_content_security_policy_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_content_security_policy_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `routing_http_response_server_enabled` after provisioning.\n"]
     pub fn routing_http_response_server_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.routing_http_response_server_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.routing_http_response_server_enabled",
+                self.extract_ref()
+            ),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_strict_transport_security_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_strict_transport_security_header_value` after provisioning.\n"]
     pub fn routing_http_response_strict_transport_security_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_strict_transport_security_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_strict_transport_security_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_x_content_type_options_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_x_content_type_options_header_value` after provisioning.\n"]
     pub fn routing_http_response_x_content_type_options_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_x_content_type_options_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_x_content_type_options_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
-    #[doc =
-        "Get a reference to the value of field `routing_http_response_x_frame_options_header_value` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `routing_http_response_x_frame_options_header_value` after provisioning.\n"]
     pub fn routing_http_response_x_frame_options_header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.routing_http_response_x_frame_options_header_value", self.extract_ref()),
+            format!(
+                "{}.routing_http_response_x_frame_options_header_value",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `ssl_policy` after provisioning.\n"]
     pub fn ssl_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssl_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssl_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tcp_idle_timeout_seconds` after provisioning.\n"]
     pub fn tcp_idle_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.tcp_idle_timeout_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.tcp_idle_timeout_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<AlbListenerDefaultActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutual_authentication` after provisioning.\n"]
     pub fn mutual_authentication(&self) -> ListRef<AlbListenerMutualAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mutual_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mutual_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AlbListenerTimeoutsElRef {
-        AlbListenerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        AlbListenerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -1016,7 +1318,10 @@ pub struct AlbListenerDefaultActionElAuthenticateCognitoEl {
 
 impl AlbListenerDefaultActionElAuthenticateCognitoEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
-    pub fn set_authentication_request_extra_params(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_authentication_request_extra_params(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
@@ -1088,7 +1393,10 @@ pub struct AlbListenerDefaultActionElAuthenticateCognitoElRef {
 }
 
 impl Ref for AlbListenerDefaultActionElAuthenticateCognitoElRef {
-    fn new(shared: StackShared, base: String) -> AlbListenerDefaultActionElAuthenticateCognitoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AlbListenerDefaultActionElAuthenticateCognitoElRef {
         AlbListenerDefaultActionElAuthenticateCognitoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1103,12 +1411,18 @@ impl AlbListenerDefaultActionElAuthenticateCognitoElRef {
 
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.authentication_request_extra_params", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_request_extra_params", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_unauthenticated_request` after provisioning.\n"]
     pub fn on_unauthenticated_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_unauthenticated_request", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_unauthenticated_request", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -1118,27 +1432,42 @@ impl AlbListenerDefaultActionElAuthenticateCognitoElRef {
 
     #[doc = "Get a reference to the value of field `session_cookie_name` after provisioning.\n"]
     pub fn session_cookie_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_cookie_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_cookie_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\n"]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_arn` after provisioning.\n"]
     pub fn user_pool_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_client_id` after provisioning.\n"]
     pub fn user_pool_client_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_client_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_client_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_domain` after provisioning.\n"]
     pub fn user_pool_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_domain", self.base),
+        )
     }
 }
 
@@ -1164,7 +1493,10 @@ pub struct AlbListenerDefaultActionElAuthenticateOidcEl {
 
 impl AlbListenerDefaultActionElAuthenticateOidcEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
-    pub fn set_authentication_request_extra_params(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_authentication_request_extra_params(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
@@ -1260,12 +1592,18 @@ impl AlbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.authentication_request_extra_params", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_request_extra_params", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -1275,7 +1613,10 @@ impl AlbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -1285,7 +1626,10 @@ impl AlbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `on_unauthenticated_request` after provisioning.\n"]
     pub fn on_unauthenticated_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_unauthenticated_request", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_unauthenticated_request", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -1295,22 +1639,34 @@ impl AlbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `session_cookie_name` after provisioning.\n"]
     pub fn session_cookie_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_cookie_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_cookie_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\n"]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_endpoint` after provisioning.\n"]
     pub fn token_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_info_endpoint` after provisioning.\n"]
     pub fn user_info_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_info_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_info_endpoint", self.base),
+        )
     }
 }
 
@@ -1446,7 +1802,10 @@ pub struct AlbListenerDefaultActionElForwardElStickinessElRef {
 }
 
 impl Ref for AlbListenerDefaultActionElForwardElStickinessElRef {
-    fn new(shared: StackShared, base: String) -> AlbListenerDefaultActionElForwardElStickinessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AlbListenerDefaultActionElForwardElStickinessElRef {
         AlbListenerDefaultActionElForwardElStickinessElRef {
             shared: shared,
             base: base.to_string(),
@@ -1517,7 +1876,10 @@ pub struct AlbListenerDefaultActionElForwardElTargetGroupElRef {
 }
 
 impl Ref for AlbListenerDefaultActionElForwardElTargetGroupElRef {
-    fn new(shared: StackShared, base: String) -> AlbListenerDefaultActionElForwardElTargetGroupElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AlbListenerDefaultActionElForwardElTargetGroupElRef {
         AlbListenerDefaultActionElForwardElTargetGroupElRef {
             shared: shared,
             base: base.to_string(),
@@ -1565,10 +1927,10 @@ impl AlbListenerDefaultActionElForwardEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.stickiness = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.stickiness = Some(d);
-            },
+            }
         }
         self
     }
@@ -1581,10 +1943,10 @@ impl AlbListenerDefaultActionElForwardEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_group = Some(d);
-            },
+            }
         }
         self
     }
@@ -1646,7 +2008,7 @@ pub struct AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl {
     values: SetField<PrimField<String>>,
 }
 
-impl AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl { }
+impl AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl {}
 
 impl ToListMappable for AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl {
     type O = BlockAssignable<AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl>;
@@ -1685,7 +2047,10 @@ pub struct AlbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
 }
 
 impl Ref for AlbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
-    fn new(shared: StackShared, base: String) -> AlbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AlbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
         AlbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
             shared: shared,
             base: base.to_string(),
@@ -1716,7 +2081,8 @@ impl AlbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
 
 #[derive(Serialize, Default)]
 struct AlbListenerDefaultActionElJwtValidationElDynamic {
-    additional_claim: Option<DynamicBlock<AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl>>,
+    additional_claim:
+        Option<DynamicBlock<AlbListenerDefaultActionElJwtValidationElAdditionalClaimEl>>,
 }
 
 #[derive(Serialize)]
@@ -1737,10 +2103,10 @@ impl AlbListenerDefaultActionElJwtValidationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.additional_claim = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.additional_claim = Some(d);
-            },
+            }
         }
         self
     }
@@ -1802,7 +2168,10 @@ impl AlbListenerDefaultActionElJwtValidationElRef {
 
     #[doc = "Get a reference to the value of field `jwks_endpoint` after provisioning.\n"]
     pub fn jwks_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.jwks_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.jwks_endpoint", self.base),
+        )
     }
 }
 
@@ -1987,10 +2356,10 @@ impl AlbListenerDefaultActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.authenticate_cognito = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.authenticate_cognito = Some(d);
-            },
+            }
         }
         self
     }
@@ -2003,10 +2372,10 @@ impl AlbListenerDefaultActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.authenticate_oidc = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.authenticate_oidc = Some(d);
-            },
+            }
         }
         self
     }
@@ -2019,23 +2388,26 @@ impl AlbListenerDefaultActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.fixed_response = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.fixed_response = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `forward`.\n"]
-    pub fn set_forward(mut self, v: impl Into<BlockAssignable<AlbListenerDefaultActionElForwardEl>>) -> Self {
+    pub fn set_forward(
+        mut self,
+        v: impl Into<BlockAssignable<AlbListenerDefaultActionElForwardEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.forward = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.forward = Some(d);
-            },
+            }
         }
         self
     }
@@ -2048,23 +2420,26 @@ impl AlbListenerDefaultActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.jwt_validation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.jwt_validation = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `redirect`.\n"]
-    pub fn set_redirect(mut self, v: impl Into<BlockAssignable<AlbListenerDefaultActionElRedirectEl>>) -> Self {
+    pub fn set_redirect(
+        mut self,
+        v: impl Into<BlockAssignable<AlbListenerDefaultActionElRedirectEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.redirect = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.redirect = Some(d);
-            },
+            }
         }
         self
     }
@@ -2130,7 +2505,10 @@ impl AlbListenerDefaultActionElRef {
 
     #[doc = "Get a reference to the value of field `target_group_arn` after provisioning.\n"]
     pub fn target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -2139,18 +2517,29 @@ impl AlbListenerDefaultActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `authenticate_cognito` after provisioning.\n"]
-    pub fn authenticate_cognito(&self) -> ListRef<AlbListenerDefaultActionElAuthenticateCognitoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authenticate_cognito", self.base))
+    pub fn authenticate_cognito(
+        &self,
+    ) -> ListRef<AlbListenerDefaultActionElAuthenticateCognitoElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authenticate_cognito", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authenticate_oidc` after provisioning.\n"]
     pub fn authenticate_oidc(&self) -> ListRef<AlbListenerDefaultActionElAuthenticateOidcElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authenticate_oidc", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authenticate_oidc", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_response` after provisioning.\n"]
     pub fn fixed_response(&self) -> ListRef<AlbListenerDefaultActionElFixedResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fixed_response", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fixed_response", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward` after provisioning.\n"]
@@ -2160,7 +2549,10 @@ impl AlbListenerDefaultActionElRef {
 
     #[doc = "Get a reference to the value of field `jwt_validation` after provisioning.\n"]
     pub fn jwt_validation(&self) -> ListRef<AlbListenerDefaultActionElJwtValidationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_validation", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_validation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `redirect` after provisioning.\n"]
@@ -2249,12 +2641,18 @@ impl AlbListenerMutualAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `advertise_trust_store_ca_names` after provisioning.\n"]
     pub fn advertise_trust_store_ca_names(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.advertise_trust_store_ca_names", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.advertise_trust_store_ca_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ignore_client_certificate_expiry` after provisioning.\n"]
     pub fn ignore_client_certificate_expiry(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ignore_client_certificate_expiry", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ignore_client_certificate_expiry", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
@@ -2264,7 +2662,10 @@ impl AlbListenerMutualAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `trust_store_arn` after provisioning.\n"]
     pub fn trust_store_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_store_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_store_arn", self.base),
+        )
     }
 }
 

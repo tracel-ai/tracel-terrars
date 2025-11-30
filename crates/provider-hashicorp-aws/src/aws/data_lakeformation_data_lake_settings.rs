@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLakeformationDataLakeSettingsData {
@@ -56,8 +56,7 @@ impl DataLakeformationDataLakeSettings {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -65,46 +64,73 @@ impl DataLakeformationDataLakeSettings {
 
     #[doc = "Get a reference to the value of field `admins` after provisioning.\n"]
     pub fn admins(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.admins", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.admins", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_external_data_filtering` after provisioning.\n"]
     pub fn allow_external_data_filtering(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_external_data_filtering", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_external_data_filtering", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_full_table_external_data_access` after provisioning.\n"]
     pub fn allow_full_table_external_data_access(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_full_table_external_data_access", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.allow_full_table_external_data_access",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorized_session_tag_value_list` after provisioning.\n"]
     pub fn authorized_session_tag_value_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.authorized_session_tag_value_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorized_session_tag_value_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_database_default_permissions` after provisioning.\n"]
     pub fn create_database_default_permissions(
         &self,
     ) -> ListRef<DataLakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.create_database_default_permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.create_database_default_permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_table_default_permissions` after provisioning.\n"]
     pub fn create_table_default_permissions(
         &self,
     ) -> ListRef<DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.create_table_default_permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.create_table_default_permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_data_filtering_allow_list` after provisioning.\n"]
     pub fn external_data_filtering_allow_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.external_data_filtering_allow_list", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.external_data_filtering_allow_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -114,33 +140,48 @@ impl DataLakeformationDataLakeSettings {
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_only_admins` after provisioning.\n"]
     pub fn read_only_admins(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.read_only_admins", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.read_only_admins", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_resource_owners` after provisioning.\n"]
     pub fn trusted_resource_owners(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_resource_owners", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_resource_owners", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLakeformationDataLakeSettings {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLakeformationDataLakeSettings { }
+impl Datasource for DataLakeformationDataLakeSettings {}
 
 impl ToListMappable for DataLakeformationDataLakeSettings {
     type O = ListRef<DataLakeformationDataLakeSettingsRef>;
@@ -195,10 +236,7 @@ pub struct DataLakeformationDataLakeSettingsRef {
 
 impl Ref for DataLakeformationDataLakeSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -213,46 +251,73 @@ impl DataLakeformationDataLakeSettingsRef {
 
     #[doc = "Get a reference to the value of field `admins` after provisioning.\n"]
     pub fn admins(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.admins", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.admins", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_external_data_filtering` after provisioning.\n"]
     pub fn allow_external_data_filtering(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_external_data_filtering", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_external_data_filtering", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_full_table_external_data_access` after provisioning.\n"]
     pub fn allow_full_table_external_data_access(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_full_table_external_data_access", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!(
+                "{}.allow_full_table_external_data_access",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorized_session_tag_value_list` after provisioning.\n"]
     pub fn authorized_session_tag_value_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.authorized_session_tag_value_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authorized_session_tag_value_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_database_default_permissions` after provisioning.\n"]
     pub fn create_database_default_permissions(
         &self,
     ) -> ListRef<DataLakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.create_database_default_permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.create_database_default_permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `create_table_default_permissions` after provisioning.\n"]
     pub fn create_table_default_permissions(
         &self,
     ) -> ListRef<DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.create_table_default_permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.create_table_default_permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_data_filtering_allow_list` after provisioning.\n"]
     pub fn external_data_filtering_allow_list(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.external_data_filtering_allow_list", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.external_data_filtering_allow_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -262,23 +327,34 @@ impl DataLakeformationDataLakeSettingsRef {
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `read_only_admins` after provisioning.\n"]
     pub fn read_only_admins(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.read_only_admins", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.read_only_admins", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trusted_resource_owners` after provisioning.\n"]
     pub fn trusted_resource_owners(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.trusted_resource_owners", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.trusted_resource_owners", self.extract_ref()),
+        )
     }
 }
 
@@ -411,7 +487,10 @@ pub struct DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef {
 }
 
 impl Ref for DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef {
-    fn new(shared: StackShared, base: String) -> DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef {
         DataLakeformationDataLakeSettingsCreateTableDefaultPermissionsElRef {
             shared: shared,
             base: base.to_string(),

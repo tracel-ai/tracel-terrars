@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontContinuousDeploymentPolicyData {
@@ -16,7 +16,8 @@ struct CloudfrontContinuousDeploymentPolicyData {
     for_each: Option<String>,
     enabled: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    staging_distribution_dns_names: Option<Vec<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNamesEl>>,
+    staging_distribution_dns_names:
+        Option<Vec<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNamesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     traffic_config: Option<Vec<CloudfrontContinuousDeploymentPolicyTrafficConfigEl>>,
     dynamic: CloudfrontContinuousDeploymentPolicyDynamic,
@@ -57,7 +58,8 @@ impl CloudfrontContinuousDeploymentPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -70,7 +72,7 @@ impl CloudfrontContinuousDeploymentPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -81,12 +83,22 @@ impl CloudfrontContinuousDeploymentPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,10 +110,14 @@ impl CloudfrontContinuousDeploymentPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().staging_distribution_dns_names = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.staging_distribution_dns_names = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .staging_distribution_dns_names = Some(d);
+            }
         }
         self
     }
@@ -114,10 +130,10 @@ impl CloudfrontContinuousDeploymentPolicy {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().traffic_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.traffic_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -129,12 +145,18 @@ impl CloudfrontContinuousDeploymentPolicy {
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -144,29 +166,44 @@ impl CloudfrontContinuousDeploymentPolicy {
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `staging_distribution_dns_names` after provisioning.\n"]
     pub fn staging_distribution_dns_names(
         &self,
     ) -> ListRef<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNamesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.staging_distribution_dns_names", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.staging_distribution_dns_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_config` after provisioning.\n"]
-    pub fn traffic_config(&self) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.traffic_config", self.extract_ref()))
+    pub fn traffic_config(
+        &self,
+    ) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.traffic_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontContinuousDeploymentPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontContinuousDeploymentPolicy { }
+impl Resource for CloudfrontContinuousDeploymentPolicy {}
 
 impl ToListMappable for CloudfrontContinuousDeploymentPolicy {
     type O = ListRef<CloudfrontContinuousDeploymentPolicyRef>;
@@ -199,20 +236,21 @@ pub struct BuildCloudfrontContinuousDeploymentPolicy {
 
 impl BuildCloudfrontContinuousDeploymentPolicy {
     pub fn build(self, stack: &mut Stack) -> CloudfrontContinuousDeploymentPolicy {
-        let out = CloudfrontContinuousDeploymentPolicy(Rc::new(CloudfrontContinuousDeploymentPolicy_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(CloudfrontContinuousDeploymentPolicyData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                enabled: self.enabled,
-                staging_distribution_dns_names: core::default::Default::default(),
-                traffic_config: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            CloudfrontContinuousDeploymentPolicy(Rc::new(CloudfrontContinuousDeploymentPolicy_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(CloudfrontContinuousDeploymentPolicyData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    enabled: self.enabled,
+                    staging_distribution_dns_names: core::default::Default::default(),
+                    traffic_config: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -225,10 +263,7 @@ pub struct CloudfrontContinuousDeploymentPolicyRef {
 
 impl Ref for CloudfrontContinuousDeploymentPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -248,12 +283,18 @@ impl CloudfrontContinuousDeploymentPolicyRef {
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -263,19 +304,30 @@ impl CloudfrontContinuousDeploymentPolicyRef {
 
     #[doc = "Get a reference to the value of field `last_modified_time` after provisioning.\n"]
     pub fn last_modified_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `staging_distribution_dns_names` after provisioning.\n"]
     pub fn staging_distribution_dns_names(
         &self,
     ) -> ListRef<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNamesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.staging_distribution_dns_names", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.staging_distribution_dns_names", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_config` after provisioning.\n"]
-    pub fn traffic_config(&self) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.traffic_config", self.extract_ref()))
+    pub fn traffic_config(
+        &self,
+    ) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.traffic_config", self.extract_ref()),
+        )
     }
 }
 
@@ -359,10 +411,11 @@ pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfig
     value: PrimField<String>,
 }
 
-impl CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl { }
+impl CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl {}
 
 impl ToListMappable for CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl {
-    type O = BlockAssignable<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl>;
+    type O =
+        BlockAssignable<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -423,12 +476,16 @@ impl CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigElRef 
 }
 
 #[derive(Serialize)]
-pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl {
+pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl
+{
     idle_ttl: PrimField<f64>,
     maximum_ttl: PrimField<f64>,
 }
 
-impl CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl { }
+impl
+    CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl
+{
+}
 
 impl ToListMappable for CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl {
     type O =
@@ -445,7 +502,8 @@ impl ToListMappable for CloudfrontContinuousDeploymentPolicyTrafficConfigElSingl
     }
 }
 
-pub struct BuildCloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl {
+pub struct BuildCloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigEl
+{
     #[doc = ""]
     pub idle_ttl: PrimField<f64>,
     #[doc = ""]
@@ -463,7 +521,8 @@ impl BuildCloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigE
     }
 }
 
-pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigElRef {
+pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -529,17 +588,18 @@ impl CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.session_stickiness_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.session_stickiness_config = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl {
-    type O = BlockAssignable<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl>;
+    type O =
+        BlockAssignable<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -595,8 +655,11 @@ impl CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElRef 
     #[doc = "Get a reference to the value of field `session_stickiness_config` after provisioning.\n"]
     pub fn session_stickiness_config(
         &self,
-    ) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.session_stickiness_config", self.base))
+    ) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElSessionStickinessConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.session_stickiness_config", self.base),
+        )
     }
 }
 
@@ -615,9 +678,11 @@ pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    single_header_config: Option<Vec<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl>>,
+    single_header_config:
+        Option<Vec<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    single_weight_config: Option<Vec<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl>>,
+    single_weight_config:
+        Option<Vec<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl>>,
     dynamic: CloudfrontContinuousDeploymentPolicyTrafficConfigElDynamic,
 }
 
@@ -625,15 +690,19 @@ impl CloudfrontContinuousDeploymentPolicyTrafficConfigEl {
     #[doc = "Set the field `single_header_config`.\n"]
     pub fn set_single_header_config(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.single_header_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.single_header_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -641,15 +710,19 @@ impl CloudfrontContinuousDeploymentPolicyTrafficConfigEl {
     #[doc = "Set the field `single_weight_config`.\n"]
     pub fn set_single_weight_config(
         mut self,
-        v: impl Into<BlockAssignable<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.single_weight_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.single_weight_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -689,7 +762,10 @@ pub struct CloudfrontContinuousDeploymentPolicyTrafficConfigElRef {
 }
 
 impl Ref for CloudfrontContinuousDeploymentPolicyTrafficConfigElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontContinuousDeploymentPolicyTrafficConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontContinuousDeploymentPolicyTrafficConfigElRef {
         CloudfrontContinuousDeploymentPolicyTrafficConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -711,21 +787,26 @@ impl CloudfrontContinuousDeploymentPolicyTrafficConfigElRef {
     pub fn single_header_config(
         &self,
     ) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleHeaderConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.single_header_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.single_header_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `single_weight_config` after provisioning.\n"]
     pub fn single_weight_config(
         &self,
     ) -> ListRef<CloudfrontContinuousDeploymentPolicyTrafficConfigElSingleWeightConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.single_weight_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.single_weight_config", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CloudfrontContinuousDeploymentPolicyDynamic {
-    staging_distribution_dns_names: Option<
-        DynamicBlock<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNamesEl>,
-    >,
+    staging_distribution_dns_names:
+        Option<DynamicBlock<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNamesEl>>,
     traffic_config: Option<DynamicBlock<CloudfrontContinuousDeploymentPolicyTrafficConfigEl>>,
 }

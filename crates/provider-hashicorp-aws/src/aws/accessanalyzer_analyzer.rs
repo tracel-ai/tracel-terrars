@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct AccessanalyzerAnalyzerData {
@@ -65,7 +65,8 @@ impl AccessanalyzerAnalyzer {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl AccessanalyzerAnalyzer {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl AccessanalyzerAnalyzer {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,8 +115,7 @@ impl AccessanalyzerAnalyzer {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -130,21 +140,27 @@ impl AccessanalyzerAnalyzer {
     }
 
     #[doc = "Set the field `configuration`.\n"]
-    pub fn set_configuration(self, v: impl Into<BlockAssignable<AccessanalyzerAnalyzerConfigurationEl>>) -> Self {
+    pub fn set_configuration(
+        self,
+        v: impl Into<BlockAssignable<AccessanalyzerAnalyzerConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `analyzer_name` after provisioning.\n"]
     pub fn analyzer_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.analyzer_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.analyzer_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -157,40 +173,58 @@ impl AccessanalyzerAnalyzer {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for AccessanalyzerAnalyzer {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for AccessanalyzerAnalyzer { }
+impl Resource for AccessanalyzerAnalyzer {}
 
 impl ToListMappable for AccessanalyzerAnalyzer {
     type O = ListRef<AccessanalyzerAnalyzerRef>;
@@ -253,10 +287,7 @@ pub struct AccessanalyzerAnalyzerRef {
 
 impl Ref for AccessanalyzerAnalyzerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -271,7 +302,10 @@ impl AccessanalyzerAnalyzerRef {
 
     #[doc = "Get a reference to the value of field `analyzer_name` after provisioning.\n"]
     pub fn analyzer_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.analyzer_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.analyzer_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -284,30 +318,44 @@ impl AccessanalyzerAnalyzerRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -341,8 +389,12 @@ impl AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusio
     }
 }
 
-impl ToListMappable for AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl {
-    type O = BlockAssignable<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl>;
+impl ToListMappable
+    for AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl
+{
+    type O = BlockAssignable<
+        AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -356,7 +408,9 @@ impl ToListMappable for AccessanalyzerAnalyzerConfigurationElInternalAccessElAna
 pub struct BuildAccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl {}
 
 impl BuildAccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl {
-    pub fn build(self) -> AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl {
+    pub fn build(
+        self,
+    ) -> AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl {
         AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl {
             account_ids: core::default::Default::default(),
             resource_arns: core::default::Default::default(),
@@ -394,24 +448,35 @@ impl AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusio
 
     #[doc = "Get a reference to the value of field `resource_arns` after provisioning.\n"]
     pub fn resource_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_arns", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_arns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_types", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_types", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElDynamic {
-    inclusion: Option<DynamicBlock<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl>>,
+    inclusion: Option<
+        DynamicBlock<
+            AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl,
+        >,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    inclusion: Option<Vec<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl>>,
+    inclusion:
+        Option<Vec<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl>>,
     dynamic: AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElDynamic,
 }
 
@@ -419,22 +484,19 @@ impl AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleEl {
     #[doc = "Set the field `inclusion`.\n"]
     pub fn set_inclusion(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.inclusion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.inclusion = Some(d);
-            },
+            }
         }
         self
     }
@@ -488,14 +550,16 @@ impl AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElRef {
     #[doc = "Get a reference to the value of field `inclusion` after provisioning.\n"]
     pub fn inclusion(
         &self,
-    ) -> ListRef<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionElRef> {
+    ) -> ListRef<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElInclusionElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.inclusion", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct AccessanalyzerAnalyzerConfigurationElInternalAccessElDynamic {
-    analysis_rule: Option<DynamicBlock<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleEl>>,
+    analysis_rule:
+        Option<DynamicBlock<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleEl>>,
 }
 
 #[derive(Serialize)]
@@ -509,15 +573,17 @@ impl AccessanalyzerAnalyzerConfigurationElInternalAccessEl {
     #[doc = "Set the field `analysis_rule`.\n"]
     pub fn set_analysis_rule(
         mut self,
-        v: impl Into<BlockAssignable<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleEl>>,
+        v: impl Into<
+            BlockAssignable<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.analysis_rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.analysis_rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -552,7 +618,10 @@ pub struct AccessanalyzerAnalyzerConfigurationElInternalAccessElRef {
 }
 
 impl Ref for AccessanalyzerAnalyzerConfigurationElInternalAccessElRef {
-    fn new(shared: StackShared, base: String) -> AccessanalyzerAnalyzerConfigurationElInternalAccessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AccessanalyzerAnalyzerConfigurationElInternalAccessElRef {
         AccessanalyzerAnalyzerConfigurationElInternalAccessElRef {
             shared: shared,
             base: base.to_string(),
@@ -566,8 +635,13 @@ impl AccessanalyzerAnalyzerConfigurationElInternalAccessElRef {
     }
 
     #[doc = "Get a reference to the value of field `analysis_rule` after provisioning.\n"]
-    pub fn analysis_rule(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.analysis_rule", self.base))
+    pub fn analysis_rule(
+        &self,
+    ) -> ListRef<AccessanalyzerAnalyzerConfigurationElInternalAccessElAnalysisRuleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.analysis_rule", self.base),
+        )
     }
 }
 
@@ -587,14 +661,21 @@ impl AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionE
     }
 
     #[doc = "Set the field `resource_tags`.\n"]
-    pub fn set_resource_tags(mut self, v: impl Into<ListField<RecField<PrimField<String>>>>) -> Self {
+    pub fn set_resource_tags(
+        mut self,
+        v: impl Into<ListField<RecField<PrimField<String>>>>,
+    ) -> Self {
         self.resource_tags = Some(v.into());
         self
     }
 }
 
-impl ToListMappable for AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl {
-    type O = BlockAssignable<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl>;
+impl ToListMappable
+    for AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl
+{
+    type O = BlockAssignable<
+        AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -608,7 +689,9 @@ impl ToListMappable for AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnaly
 pub struct BuildAccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl {}
 
 impl BuildAccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl {
-    pub fn build(self) -> AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl {
+    pub fn build(
+        self,
+    ) -> AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl {
         AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl {
             account_ids: core::default::Default::default(),
             resource_tags: core::default::Default::default(),
@@ -645,19 +728,25 @@ impl AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionE
 
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> ListRef<RecRef<PrimExpr<String>>> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_tags", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tags", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElDynamic {
-    exclusion: Option<DynamicBlock<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl>>,
+    exclusion: Option<
+        DynamicBlock<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    exclusion: Option<Vec<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl>>,
+    exclusion:
+        Option<Vec<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl>>,
     dynamic: AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElDynamic,
 }
 
@@ -665,15 +754,19 @@ impl AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleEl {
     #[doc = "Set the field `exclusion`.\n"]
     pub fn set_exclusion(
         mut self,
-        v: impl Into<BlockAssignable<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl>>,
+        v: impl Into<
+            BlockAssignable<
+                AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.exclusion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.exclusion = Some(d);
-            },
+            }
         }
         self
     }
@@ -725,14 +818,18 @@ impl AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElRef {
     }
 
     #[doc = "Get a reference to the value of field `exclusion` after provisioning.\n"]
-    pub fn exclusion(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionElRef> {
+    pub fn exclusion(
+        &self,
+    ) -> ListRef<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElExclusionElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.exclusion", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct AccessanalyzerAnalyzerConfigurationElUnusedAccessElDynamic {
-    analysis_rule: Option<DynamicBlock<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleEl>>,
+    analysis_rule:
+        Option<DynamicBlock<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleEl>>,
 }
 
 #[derive(Serialize)]
@@ -759,10 +856,10 @@ impl AccessanalyzerAnalyzerConfigurationElUnusedAccessEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.analysis_rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.analysis_rule = Some(d);
-            },
+            }
         }
         self
     }
@@ -798,7 +895,10 @@ pub struct AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef {
 }
 
 impl Ref for AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef {
-    fn new(shared: StackShared, base: String) -> AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef {
         AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef {
             shared: shared,
             base: base.to_string(),
@@ -813,12 +913,20 @@ impl AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef {
 
     #[doc = "Get a reference to the value of field `unused_access_age` after provisioning.\n"]
     pub fn unused_access_age(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.unused_access_age", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.unused_access_age", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `analysis_rule` after provisioning.\n"]
-    pub fn analysis_rule(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.analysis_rule", self.base))
+    pub fn analysis_rule(
+        &self,
+    ) -> ListRef<AccessanalyzerAnalyzerConfigurationElUnusedAccessElAnalysisRuleElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.analysis_rule", self.base),
+        )
     }
 }
 
@@ -846,10 +954,10 @@ impl AccessanalyzerAnalyzerConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.internal_access = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.internal_access = Some(d);
-            },
+            }
         }
         self
     }
@@ -862,10 +970,10 @@ impl AccessanalyzerAnalyzerConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.unused_access = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.unused_access = Some(d);
-            },
+            }
         }
         self
     }
@@ -915,13 +1023,21 @@ impl AccessanalyzerAnalyzerConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `internal_access` after provisioning.\n"]
-    pub fn internal_access(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElInternalAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.internal_access", self.base))
+    pub fn internal_access(
+        &self,
+    ) -> ListRef<AccessanalyzerAnalyzerConfigurationElInternalAccessElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.internal_access", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `unused_access` after provisioning.\n"]
     pub fn unused_access(&self) -> ListRef<AccessanalyzerAnalyzerConfigurationElUnusedAccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.unused_access", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.unused_access", self.base),
+        )
     }
 }
 

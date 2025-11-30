@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct EcsServiceData {
@@ -127,7 +127,8 @@ impl EcsService {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -140,7 +141,7 @@ impl EcsService {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -151,12 +152,22 @@ impl EcsService {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -250,8 +261,7 @@ impl EcsService {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -304,10 +314,10 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().alarms = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.alarms = Some(d);
-            },
+            }
         }
         self
     }
@@ -320,10 +330,10 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().capacity_provider_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.capacity_provider_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -336,10 +346,10 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().deployment_circuit_breaker = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.deployment_circuit_breaker = Some(d);
-            },
+            }
         }
         self
     }
@@ -352,49 +362,58 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().deployment_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.deployment_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `deployment_controller`.\n"]
-    pub fn set_deployment_controller(self, v: impl Into<BlockAssignable<EcsServiceDeploymentControllerEl>>) -> Self {
+    pub fn set_deployment_controller(
+        self,
+        v: impl Into<BlockAssignable<EcsServiceDeploymentControllerEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().deployment_controller = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.deployment_controller = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `load_balancer`.\n"]
-    pub fn set_load_balancer(self, v: impl Into<BlockAssignable<EcsServiceLoadBalancerEl>>) -> Self {
+    pub fn set_load_balancer(
+        self,
+        v: impl Into<BlockAssignable<EcsServiceLoadBalancerEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().load_balancer = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.load_balancer = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `network_configuration`.\n"]
-    pub fn set_network_configuration(self, v: impl Into<BlockAssignable<EcsServiceNetworkConfigurationEl>>) -> Self {
+    pub fn set_network_configuration(
+        self,
+        v: impl Into<BlockAssignable<EcsServiceNetworkConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -407,23 +426,26 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ordered_placement_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ordered_placement_strategy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `placement_constraints`.\n"]
-    pub fn set_placement_constraints(self, v: impl Into<BlockAssignable<EcsServicePlacementConstraintsEl>>) -> Self {
+    pub fn set_placement_constraints(
+        self,
+        v: impl Into<BlockAssignable<EcsServicePlacementConstraintsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().placement_constraints = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.placement_constraints = Some(d);
-            },
+            }
         }
         self
     }
@@ -436,23 +458,30 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().service_connect_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.service_connect_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .service_connect_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `service_registries`.\n"]
-    pub fn set_service_registries(self, v: impl Into<BlockAssignable<EcsServiceServiceRegistriesEl>>) -> Self {
+    pub fn set_service_registries(
+        self,
+        v: impl Into<BlockAssignable<EcsServiceServiceRegistriesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().service_registries = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.service_registries = Some(d);
-            },
+            }
         }
         self
     }
@@ -464,14 +493,17 @@ impl EcsService {
     }
 
     #[doc = "Set the field `volume_configuration`.\n"]
-    pub fn set_volume_configuration(self, v: impl Into<BlockAssignable<EcsServiceVolumeConfigurationEl>>) -> Self {
+    pub fn set_volume_configuration(
+        self,
+        v: impl Into<BlockAssignable<EcsServiceVolumeConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().volume_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.volume_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -484,10 +516,10 @@ impl EcsService {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_lattice_configurations = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_lattice_configurations = Some(d);
-            },
+            }
         }
         self
     }
@@ -499,57 +531,90 @@ impl EcsService {
 
     #[doc = "Get a reference to the value of field `availability_zone_rebalancing` after provisioning.\n"]
     pub fn availability_zone_rebalancing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_rebalancing", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_rebalancing", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_maximum_percent` after provisioning.\n"]
     pub fn deployment_maximum_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_maximum_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_maximum_percent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_minimum_healthy_percent` after provisioning.\n"]
     pub fn deployment_minimum_healthy_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_minimum_healthy_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_minimum_healthy_percent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_count` after provisioning.\n"]
     pub fn desired_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_ecs_managed_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_ecs_managed_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_execute_command", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_execute_command", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete` after provisioning.\n"]
     pub fn force_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_new_deployment` after provisioning.\n"]
     pub fn force_new_deployment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_new_deployment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_new_deployment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_grace_period_seconds` after provisioning.\n"]
     pub fn health_check_grace_period_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_grace_period_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_grace_period_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_role` after provisioning.\n"]
     pub fn iam_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -559,123 +624,194 @@ impl EcsService {
 
     #[doc = "Get a reference to the value of field `launch_type` after provisioning.\n"]
     pub fn launch_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduling_strategy` after provisioning.\n"]
     pub fn scheduling_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sigint_rollback` after provisioning.\n"]
     pub fn sigint_rollback(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sigint_rollback", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sigint_rollback", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `triggers` after provisioning.\n"]
     pub fn triggers(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.triggers", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.triggers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_steady_state` after provisioning.\n"]
     pub fn wait_for_steady_state(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_steady_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_steady_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarms` after provisioning.\n"]
     pub fn alarms(&self) -> ListRef<EcsServiceAlarmsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alarms", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alarms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_circuit_breaker` after provisioning.\n"]
     pub fn deployment_circuit_breaker(&self) -> ListRef<EcsServiceDeploymentCircuitBreakerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_circuit_breaker", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_circuit_breaker", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_configuration` after provisioning.\n"]
     pub fn deployment_configuration(&self) -> ListRef<EcsServiceDeploymentConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_controller` after provisioning.\n"]
     pub fn deployment_controller(&self) -> ListRef<EcsServiceDeploymentControllerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_controller", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_controller", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<EcsServiceNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ordered_placement_strategy` after provisioning.\n"]
     pub fn ordered_placement_strategy(&self) -> ListRef<EcsServiceOrderedPlacementStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ordered_placement_strategy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ordered_placement_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_connect_configuration` after provisioning.\n"]
-    pub fn service_connect_configuration(&self) -> ListRef<EcsServiceServiceConnectConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_connect_configuration", self.extract_ref()))
+    pub fn service_connect_configuration(
+        &self,
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_connect_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_registries` after provisioning.\n"]
     pub fn service_registries(&self) -> ListRef<EcsServiceServiceRegistriesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_registries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_registries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EcsServiceTimeoutsElRef {
-        EcsServiceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EcsServiceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_configuration` after provisioning.\n"]
     pub fn volume_configuration(&self) -> ListRef<EcsServiceVolumeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.volume_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.volume_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for EcsService {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for EcsService { }
+impl Resource for EcsService {}
 
 impl ToListMappable for EcsService {
     type O = ListRef<EcsServiceRef>;
@@ -769,10 +905,7 @@ pub struct EcsServiceRef {
 
 impl Ref for EcsServiceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -792,57 +925,90 @@ impl EcsServiceRef {
 
     #[doc = "Get a reference to the value of field `availability_zone_rebalancing` after provisioning.\n"]
     pub fn availability_zone_rebalancing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone_rebalancing", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone_rebalancing", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cluster", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cluster", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_maximum_percent` after provisioning.\n"]
     pub fn deployment_maximum_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_maximum_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_maximum_percent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_minimum_healthy_percent` after provisioning.\n"]
     pub fn deployment_minimum_healthy_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_minimum_healthy_percent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_minimum_healthy_percent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `desired_count` after provisioning.\n"]
     pub fn desired_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_count", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_count", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_ecs_managed_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_ecs_managed_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_execute_command", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_execute_command", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_delete` after provisioning.\n"]
     pub fn force_delete(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_delete", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_delete", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_new_deployment` after provisioning.\n"]
     pub fn force_new_deployment(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_new_deployment", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_new_deployment", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `health_check_grace_period_seconds` after provisioning.\n"]
     pub fn health_check_grace_period_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_grace_period_seconds", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_grace_period_seconds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iam_role` after provisioning.\n"]
     pub fn iam_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -852,113 +1018,180 @@ impl EcsServiceRef {
 
     #[doc = "Get a reference to the value of field `launch_type` after provisioning.\n"]
     pub fn launch_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduling_strategy` after provisioning.\n"]
     pub fn scheduling_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sigint_rollback` after provisioning.\n"]
     pub fn sigint_rollback(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sigint_rollback", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sigint_rollback", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `triggers` after provisioning.\n"]
     pub fn triggers(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.triggers", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.triggers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_for_steady_state` after provisioning.\n"]
     pub fn wait_for_steady_state(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_for_steady_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_for_steady_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarms` after provisioning.\n"]
     pub fn alarms(&self) -> ListRef<EcsServiceAlarmsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alarms", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alarms", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_circuit_breaker` after provisioning.\n"]
     pub fn deployment_circuit_breaker(&self) -> ListRef<EcsServiceDeploymentCircuitBreakerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_circuit_breaker", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_circuit_breaker", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_configuration` after provisioning.\n"]
     pub fn deployment_configuration(&self) -> ListRef<EcsServiceDeploymentConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_controller` after provisioning.\n"]
     pub fn deployment_controller(&self) -> ListRef<EcsServiceDeploymentControllerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_controller", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_controller", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<EcsServiceNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ordered_placement_strategy` after provisioning.\n"]
     pub fn ordered_placement_strategy(&self) -> ListRef<EcsServiceOrderedPlacementStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ordered_placement_strategy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ordered_placement_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_connect_configuration` after provisioning.\n"]
-    pub fn service_connect_configuration(&self) -> ListRef<EcsServiceServiceConnectConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_connect_configuration", self.extract_ref()))
+    pub fn service_connect_configuration(
+        &self,
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_connect_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_registries` after provisioning.\n"]
     pub fn service_registries(&self) -> ListRef<EcsServiceServiceRegistriesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.service_registries", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.service_registries", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EcsServiceTimeoutsElRef {
-        EcsServiceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        EcsServiceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_configuration` after provisioning.\n"]
     pub fn volume_configuration(&self) -> ListRef<EcsServiceVolumeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.volume_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.volume_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -969,7 +1202,7 @@ pub struct EcsServiceAlarmsEl {
     rollback: PrimField<bool>,
 }
 
-impl EcsServiceAlarmsEl { }
+impl EcsServiceAlarmsEl {}
 
 impl ToListMappable for EcsServiceAlarmsEl {
     type O = BlockAssignable<EcsServiceAlarmsEl>;
@@ -1113,7 +1346,10 @@ impl EcsServiceCapacityProviderStrategyElRef {
 
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -1128,7 +1364,7 @@ pub struct EcsServiceDeploymentCircuitBreakerEl {
     rollback: PrimField<bool>,
 }
 
-impl EcsServiceDeploymentCircuitBreakerEl { }
+impl EcsServiceDeploymentCircuitBreakerEl {}
 
 impl ToListMappable for EcsServiceDeploymentCircuitBreakerEl {
     type O = BlockAssignable<EcsServiceDeploymentCircuitBreakerEl>;
@@ -1239,7 +1475,10 @@ pub struct EcsServiceDeploymentConfigurationElCanaryConfigurationElRef {
 }
 
 impl Ref for EcsServiceDeploymentConfigurationElCanaryConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceDeploymentConfigurationElCanaryConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceDeploymentConfigurationElCanaryConfigurationElRef {
         EcsServiceDeploymentConfigurationElCanaryConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1254,12 +1493,18 @@ impl EcsServiceDeploymentConfigurationElCanaryConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `canary_bake_time_in_minutes` after provisioning.\n"]
     pub fn canary_bake_time_in_minutes(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.canary_bake_time_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.canary_bake_time_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `canary_percent` after provisioning.\n"]
     pub fn canary_percent(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.canary_percent", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.canary_percent", self.base),
+        )
     }
 }
 
@@ -1318,7 +1563,10 @@ pub struct EcsServiceDeploymentConfigurationElLifecycleHookElRef {
 }
 
 impl Ref for EcsServiceDeploymentConfigurationElLifecycleHookElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceDeploymentConfigurationElLifecycleHookElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceDeploymentConfigurationElLifecycleHookElRef {
         EcsServiceDeploymentConfigurationElLifecycleHookElRef {
             shared: shared,
             base: base.to_string(),
@@ -1338,12 +1586,18 @@ impl EcsServiceDeploymentConfigurationElLifecycleHookElRef {
 
     #[doc = "Get a reference to the value of field `hook_target_arn` after provisioning.\n"]
     pub fn hook_target_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hook_target_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hook_target_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lifecycle_stages` after provisioning.\n"]
     pub fn lifecycle_stages(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.lifecycle_stages", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lifecycle_stages", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1403,7 +1657,10 @@ pub struct EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
 }
 
 impl Ref for EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
         EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1418,7 +1675,10 @@ impl EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `step_bake_time_in_minutes` after provisioning.\n"]
     pub fn step_bake_time_in_minutes(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.step_bake_time_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.step_bake_time_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step_percent` after provisioning.\n"]
@@ -1429,9 +1689,11 @@ impl EcsServiceDeploymentConfigurationElLinearConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct EcsServiceDeploymentConfigurationElDynamic {
-    canary_configuration: Option<DynamicBlock<EcsServiceDeploymentConfigurationElCanaryConfigurationEl>>,
+    canary_configuration:
+        Option<DynamicBlock<EcsServiceDeploymentConfigurationElCanaryConfigurationEl>>,
     lifecycle_hook: Option<DynamicBlock<EcsServiceDeploymentConfigurationElLifecycleHookEl>>,
-    linear_configuration: Option<DynamicBlock<EcsServiceDeploymentConfigurationElLinearConfigurationEl>>,
+    linear_configuration:
+        Option<DynamicBlock<EcsServiceDeploymentConfigurationElLinearConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -1470,10 +1732,10 @@ impl EcsServiceDeploymentConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.canary_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.canary_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1486,10 +1748,10 @@ impl EcsServiceDeploymentConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lifecycle_hook = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lifecycle_hook = Some(d);
-            },
+            }
         }
         self
     }
@@ -1502,10 +1764,10 @@ impl EcsServiceDeploymentConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.linear_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.linear_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1559,7 +1821,10 @@ impl EcsServiceDeploymentConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `bake_time_in_minutes` after provisioning.\n"]
     pub fn bake_time_in_minutes(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bake_time_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bake_time_in_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `strategy` after provisioning.\n"]
@@ -1568,13 +1833,23 @@ impl EcsServiceDeploymentConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `canary_configuration` after provisioning.\n"]
-    pub fn canary_configuration(&self) -> ListRef<EcsServiceDeploymentConfigurationElCanaryConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.canary_configuration", self.base))
+    pub fn canary_configuration(
+        &self,
+    ) -> ListRef<EcsServiceDeploymentConfigurationElCanaryConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.canary_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `linear_configuration` after provisioning.\n"]
-    pub fn linear_configuration(&self) -> ListRef<EcsServiceDeploymentConfigurationElLinearConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.linear_configuration", self.base))
+    pub fn linear_configuration(
+        &self,
+    ) -> ListRef<EcsServiceDeploymentConfigurationElLinearConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.linear_configuration", self.base),
+        )
     }
 }
 
@@ -1608,7 +1883,9 @@ pub struct BuildEcsServiceDeploymentControllerEl {}
 
 impl BuildEcsServiceDeploymentControllerEl {
     pub fn build(self) -> EcsServiceDeploymentControllerEl {
-        EcsServiceDeploymentControllerEl { type_: core::default::Default::default() }
+        EcsServiceDeploymentControllerEl {
+            type_: core::default::Default::default(),
+        }
     }
 }
 
@@ -1692,7 +1969,10 @@ pub struct EcsServiceLoadBalancerElAdvancedConfigurationElRef {
 }
 
 impl Ref for EcsServiceLoadBalancerElAdvancedConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceLoadBalancerElAdvancedConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceLoadBalancerElAdvancedConfigurationElRef {
         EcsServiceLoadBalancerElAdvancedConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1707,12 +1987,18 @@ impl EcsServiceLoadBalancerElAdvancedConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `alternate_target_group_arn` after provisioning.\n"]
     pub fn alternate_target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alternate_target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alternate_target_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `production_listener_rule` after provisioning.\n"]
     pub fn production_listener_rule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.production_listener_rule", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.production_listener_rule", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
@@ -1722,7 +2008,10 @@ impl EcsServiceLoadBalancerElAdvancedConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `test_listener_rule` after provisioning.\n"]
     pub fn test_listener_rule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.test_listener_rule", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.test_listener_rule", self.base),
+        )
     }
 }
 
@@ -1765,10 +2054,10 @@ impl EcsServiceLoadBalancerEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.advanced_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.advanced_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1827,12 +2116,18 @@ impl EcsServiceLoadBalancerElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_port` after provisioning.\n"]
     pub fn container_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `elb_name` after provisioning.\n"]
@@ -1842,12 +2137,20 @@ impl EcsServiceLoadBalancerElRef {
 
     #[doc = "Get a reference to the value of field `target_group_arn` after provisioning.\n"]
     pub fn target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `advanced_configuration` after provisioning.\n"]
-    pub fn advanced_configuration(&self) -> ListRef<EcsServiceLoadBalancerElAdvancedConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.advanced_configuration", self.base))
+    pub fn advanced_configuration(
+        &self,
+    ) -> ListRef<EcsServiceLoadBalancerElAdvancedConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.advanced_configuration", self.base),
+        )
     }
 }
 
@@ -1922,12 +2225,18 @@ impl EcsServiceNetworkConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assign_public_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assign_public_ip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -2086,10 +2395,11 @@ pub struct EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOption
     value_from: PrimField<String>,
 }
 
-impl EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl { }
+impl EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl {}
 
 impl ToListMappable for EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl {
-    type O = BlockAssignable<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>;
+    type O =
+        BlockAssignable<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2151,7 +2461,9 @@ impl EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionElRef 
 
 #[derive(Serialize, Default)]
 struct EcsServiceServiceConnectConfigurationElLogConfigurationElDynamic {
-    secret_option: Option<DynamicBlock<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>>,
+    secret_option: Option<
+        DynamicBlock<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -2160,7 +2472,8 @@ pub struct EcsServiceServiceConnectConfigurationElLogConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     options: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    secret_option: Option<Vec<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>>,
+    secret_option:
+        Option<Vec<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>>,
     dynamic: EcsServiceServiceConnectConfigurationElLogConfigurationElDynamic,
 }
 
@@ -2174,15 +2487,19 @@ impl EcsServiceServiceConnectConfigurationElLogConfigurationEl {
     #[doc = "Set the field `secret_option`.\n"]
     pub fn set_secret_option(
         mut self,
-        v: impl Into<BlockAssignable<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.secret_option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.secret_option = Some(d);
-            },
+            }
         }
         self
     }
@@ -2222,7 +2539,10 @@ pub struct EcsServiceServiceConnectConfigurationElLogConfigurationElRef {
 }
 
 impl Ref for EcsServiceServiceConnectConfigurationElLogConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceServiceConnectConfigurationElLogConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceServiceConnectConfigurationElLogConfigurationElRef {
         EcsServiceServiceConnectConfigurationElLogConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2246,17 +2566,26 @@ impl EcsServiceServiceConnectConfigurationElLogConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `secret_option` after provisioning.\n"]
-    pub fn secret_option(&self) -> ListRef<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.secret_option", self.base))
+    pub fn secret_option(
+        &self,
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElLogConfigurationElSecretOptionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.secret_option", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl {
+pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl
+{
     exact: PrimField<String>,
 }
 
-impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl { }
+impl
+    EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl
+{
+}
 
 impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl {
     type O =
@@ -2273,7 +2602,8 @@ impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElClientAl
     }
 }
 
-pub struct BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl {
+pub struct BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueEl
+{
     #[doc = ""]
     pub exact: PrimField<String>,
 }
@@ -2288,7 +2618,8 @@ impl BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTraff
     }
 }
 
-pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueElRef {
+pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2347,18 +2678,21 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRul
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.value = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.value = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl {
-    type O =
-        BlockAssignable<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl>;
+impl ToListMappable
+    for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl
+{
+    type O = BlockAssignable<
+        EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2369,13 +2703,17 @@ impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElClientAl
     }
 }
 
-pub struct BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl {
+pub struct BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
 }
 
 impl BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl {
-    pub fn build(self) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl {
+    pub fn build(
+        self,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl
+    {
         EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl {
             name: self.name,
             value: core::default::Default::default(),
@@ -2384,16 +2722,20 @@ impl BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTraff
     }
 }
 
-pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef {
+pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef {
+impl Ref
+    for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef {
+    ) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef
+    {
         EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef {
             shared: shared,
             base: base.to_string(),
@@ -2414,7 +2756,7 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRul
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(
         &self,
-    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueElRef> {
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElValueElRef>{
         ListRef::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
@@ -2422,14 +2764,20 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRul
 #[derive(Serialize, Default)]
 struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElDynamic {
     header: Option<
-        DynamicBlock<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl>,
+        DynamicBlock<
+            EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    header: Option<Vec<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl>>,
+    header: Option<
+        Vec<
+            EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderEl,
+        >,
+    >,
     dynamic: EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElDynamic,
 }
 
@@ -2449,17 +2797,21 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRul
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.header = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {
-    type O = BlockAssignable<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl>;
+impl ToListMappable
+    for EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl
+{
+    type O = BlockAssignable<
+        EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2473,7 +2825,9 @@ impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElClientAl
 pub struct BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {}
 
 impl BuildEcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {
-    pub fn build(self) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {
+    pub fn build(
+        self,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {
         EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl {
             header: core::default::Default::default(),
             dynamic: Default::default(),
@@ -2506,7 +2860,9 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRul
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(
         &self,
-    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef> {
+    ) -> ListRef<
+        EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElHeaderElRef,
+    > {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
 }
@@ -2514,7 +2870,9 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRul
 #[derive(Serialize, Default)]
 struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElDynamic {
     test_traffic_rules: Option<
-        DynamicBlock<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl>,
+        DynamicBlock<
+            EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl,
+        >,
     >,
 }
 
@@ -2524,7 +2882,9 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasEl {
     dns_name: Option<PrimField<String>>,
     port: PrimField<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    test_traffic_rules: Option<Vec<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl>>,
+    test_traffic_rules: Option<
+        Vec<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl>,
+    >,
     dynamic: EcsServiceServiceConnectConfigurationElServiceElClientAliasElDynamic,
 }
 
@@ -2538,22 +2898,19 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasEl {
     #[doc = "Set the field `test_traffic_rules`.\n"]
     pub fn set_test_traffic_rules(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.test_traffic_rules = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.test_traffic_rules = Some(d);
-            },
+            }
         }
         self
     }
@@ -2593,7 +2950,10 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef {
 }
 
 impl Ref for EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef {
         EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef {
             shared: shared,
             base: base.to_string(),
@@ -2619,8 +2979,12 @@ impl EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef {
     #[doc = "Get a reference to the value of field `test_traffic_rules` after provisioning.\n"]
     pub fn test_traffic_rules(
         &self,
-    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.test_traffic_rules", self.base))
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElTestTrafficRulesElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.test_traffic_rules", self.base),
+        )
     }
 }
 
@@ -2675,7 +3039,10 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElTimeoutElRef {
 }
 
 impl Ref for EcsServiceServiceConnectConfigurationElServiceElTimeoutElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceServiceConnectConfigurationElServiceElTimeoutElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElTimeoutElRef {
         EcsServiceServiceConnectConfigurationElServiceElTimeoutElRef {
             shared: shared,
             base: base.to_string(),
@@ -2690,12 +3057,18 @@ impl EcsServiceServiceConnectConfigurationElServiceElTimeoutElRef {
 
     #[doc = "Get a reference to the value of field `idle_timeout_seconds` after provisioning.\n"]
     pub fn idle_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.idle_timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.idle_timeout_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `per_request_timeout_seconds` after provisioning.\n"]
     pub fn per_request_timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.per_request_timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.per_request_timeout_seconds", self.base),
+        )
     }
 }
 
@@ -2704,10 +3077,11 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthor
     aws_pca_authority_arn: PrimField<String>,
 }
 
-impl EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl { }
+impl EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl {}
 
 impl ToListMappable for EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl {
-    type O = BlockAssignable<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl>;
+    type O =
+        BlockAssignable<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2724,7 +3098,9 @@ pub struct BuildEcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertA
 }
 
 impl BuildEcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl {
-    pub fn build(self) -> EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl {
+    pub fn build(
+        self,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl {
         EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl {
             aws_pca_authority_arn: self.aws_pca_authority_arn,
         }
@@ -2755,7 +3131,10 @@ impl EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityElR
 
     #[doc = "Get a reference to the value of field `aws_pca_authority_arn` after provisioning.\n"]
     pub fn aws_pca_authority_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_pca_authority_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_pca_authority_arn", self.base),
+        )
     }
 }
 
@@ -2773,7 +3152,8 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElTlsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     role_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    issuer_cert_authority: Option<Vec<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl>>,
+    issuer_cert_authority:
+        Option<Vec<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl>>,
     dynamic: EcsServiceServiceConnectConfigurationElServiceElTlsElDynamic,
 }
 
@@ -2793,15 +3173,19 @@ impl EcsServiceServiceConnectConfigurationElServiceElTlsEl {
     #[doc = "Set the field `issuer_cert_authority`.\n"]
     pub fn set_issuer_cert_authority(
         mut self,
-        v: impl Into<BlockAssignable<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl>>,
+        v: impl Into<
+            BlockAssignable<
+                EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.issuer_cert_authority = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.issuer_cert_authority = Some(d);
-            },
+            }
         }
         self
     }
@@ -2838,7 +3222,10 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElTlsElRef {
 }
 
 impl Ref for EcsServiceServiceConnectConfigurationElServiceElTlsElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceServiceConnectConfigurationElServiceElTlsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElTlsElRef {
         EcsServiceServiceConnectConfigurationElServiceElTlsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2864,14 +3251,19 @@ impl EcsServiceServiceConnectConfigurationElServiceElTlsElRef {
     #[doc = "Get a reference to the value of field `issuer_cert_authority` after provisioning.\n"]
     pub fn issuer_cert_authority(
         &self,
-    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.issuer_cert_authority", self.base))
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElTlsElIssuerCertAuthorityElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.issuer_cert_authority", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct EcsServiceServiceConnectConfigurationElServiceElDynamic {
-    client_alias: Option<DynamicBlock<EcsServiceServiceConnectConfigurationElServiceElClientAliasEl>>,
+    client_alias:
+        Option<DynamicBlock<EcsServiceServiceConnectConfigurationElServiceElClientAliasEl>>,
     timeout: Option<DynamicBlock<EcsServiceServiceConnectConfigurationElServiceElTimeoutEl>>,
     tls: Option<DynamicBlock<EcsServiceServiceConnectConfigurationElServiceElTlsEl>>,
 }
@@ -2913,10 +3305,10 @@ impl EcsServiceServiceConnectConfigurationElServiceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.client_alias = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.client_alias = Some(d);
-            },
+            }
         }
         self
     }
@@ -2929,10 +3321,10 @@ impl EcsServiceServiceConnectConfigurationElServiceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.timeout = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.timeout = Some(d);
-            },
+            }
         }
         self
     }
@@ -2945,10 +3337,10 @@ impl EcsServiceServiceConnectConfigurationElServiceEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tls = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tls = Some(d);
-            },
+            }
         }
         self
     }
@@ -2991,7 +3383,10 @@ pub struct EcsServiceServiceConnectConfigurationElServiceElRef {
 }
 
 impl Ref for EcsServiceServiceConnectConfigurationElServiceElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceServiceConnectConfigurationElServiceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceServiceConnectConfigurationElServiceElRef {
         EcsServiceServiceConnectConfigurationElServiceElRef {
             shared: shared,
             base: base.to_string(),
@@ -3006,12 +3401,18 @@ impl EcsServiceServiceConnectConfigurationElServiceElRef {
 
     #[doc = "Get a reference to the value of field `discovery_name` after provisioning.\n"]
     pub fn discovery_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.discovery_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.discovery_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ingress_port_override` after provisioning.\n"]
     pub fn ingress_port_override(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ingress_port_override", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ingress_port_override", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port_name` after provisioning.\n"]
@@ -3020,7 +3421,9 @@ impl EcsServiceServiceConnectConfigurationElServiceElRef {
     }
 
     #[doc = "Get a reference to the value of field `client_alias` after provisioning.\n"]
-    pub fn client_alias(&self) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef> {
+    pub fn client_alias(
+        &self,
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElServiceElClientAliasElRef> {
         ListRef::new(self.shared().clone(), format!("{}.client_alias", self.base))
     }
 
@@ -3037,7 +3440,8 @@ impl EcsServiceServiceConnectConfigurationElServiceElRef {
 
 #[derive(Serialize, Default)]
 struct EcsServiceServiceConnectConfigurationElDynamic {
-    log_configuration: Option<DynamicBlock<EcsServiceServiceConnectConfigurationElLogConfigurationEl>>,
+    log_configuration:
+        Option<DynamicBlock<EcsServiceServiceConnectConfigurationElLogConfigurationEl>>,
     service: Option<DynamicBlock<EcsServiceServiceConnectConfigurationElServiceEl>>,
 }
 
@@ -3068,10 +3472,10 @@ impl EcsServiceServiceConnectConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.log_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.log_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3084,10 +3488,10 @@ impl EcsServiceServiceConnectConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.service = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.service = Some(d);
-            },
+            }
         }
         self
     }
@@ -3152,8 +3556,13 @@ impl EcsServiceServiceConnectConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
-    pub fn log_configuration(&self) -> ListRef<EcsServiceServiceConnectConfigurationElLogConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.log_configuration", self.base))
+    pub fn log_configuration(
+        &self,
+    ) -> ListRef<EcsServiceServiceConnectConfigurationElLogConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.log_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service` after provisioning.\n"]
@@ -3242,12 +3651,18 @@ impl EcsServiceServiceRegistriesElRef {
 
     #[doc = "Get a reference to the value of field `container_name` after provisioning.\n"]
     pub fn container_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_port` after provisioning.\n"]
     pub fn container_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_port", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_port", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
@@ -3424,12 +3839,18 @@ impl EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsElRef {
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
@@ -3440,7 +3861,8 @@ impl EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsElRef {
 
 #[derive(Serialize, Default)]
 struct EcsServiceVolumeConfigurationElManagedEbsVolumeElDynamic {
-    tag_specifications: Option<DynamicBlock<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsEl>>,
+    tag_specifications:
+        Option<DynamicBlock<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsEl>>,
 }
 
 #[derive(Serialize)]
@@ -3465,7 +3887,8 @@ pub struct EcsServiceVolumeConfigurationElManagedEbsVolumeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     volume_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    tag_specifications: Option<Vec<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsEl>>,
+    tag_specifications:
+        Option<Vec<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsEl>>,
     dynamic: EcsServiceVolumeConfigurationElManagedEbsVolumeElDynamic,
 }
 
@@ -3527,15 +3950,17 @@ impl EcsServiceVolumeConfigurationElManagedEbsVolumeEl {
     #[doc = "Set the field `tag_specifications`.\n"]
     pub fn set_tag_specifications(
         mut self,
-        v: impl Into<BlockAssignable<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsEl>>,
+        v: impl Into<
+            BlockAssignable<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_specifications = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_specifications = Some(d);
-            },
+            }
         }
         self
     }
@@ -3583,7 +4008,10 @@ pub struct EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
 }
 
 impl Ref for EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
-    fn new(shared: StackShared, base: String) -> EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
         EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
             shared: shared,
             base: base.to_string(),
@@ -3603,7 +4031,10 @@ impl EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
 
     #[doc = "Get a reference to the value of field `file_system_type` after provisioning.\n"]
     pub fn file_system_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
@@ -3638,7 +4069,10 @@ impl EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
 
     #[doc = "Get a reference to the value of field `volume_initialization_rate` after provisioning.\n"]
     pub fn volume_initialization_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.volume_initialization_rate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.volume_initialization_rate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_type` after provisioning.\n"]
@@ -3647,8 +4081,13 @@ impl EcsServiceVolumeConfigurationElManagedEbsVolumeElRef {
     }
 
     #[doc = "Get a reference to the value of field `tag_specifications` after provisioning.\n"]
-    pub fn tag_specifications(&self) -> ListRef<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_specifications", self.base))
+    pub fn tag_specifications(
+        &self,
+    ) -> ListRef<EcsServiceVolumeConfigurationElManagedEbsVolumeElTagSpecificationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_specifications", self.base),
+        )
     }
 }
 
@@ -3674,10 +4113,10 @@ impl EcsServiceVolumeConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.managed_ebs_volume = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.managed_ebs_volume = Some(d);
-            },
+            }
         }
         self
     }
@@ -3735,8 +4174,13 @@ impl EcsServiceVolumeConfigurationElRef {
     }
 
     #[doc = "Get a reference to the value of field `managed_ebs_volume` after provisioning.\n"]
-    pub fn managed_ebs_volume(&self) -> ListRef<EcsServiceVolumeConfigurationElManagedEbsVolumeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_ebs_volume", self.base))
+    pub fn managed_ebs_volume(
+        &self,
+    ) -> ListRef<EcsServiceVolumeConfigurationElManagedEbsVolumeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_ebs_volume", self.base),
+        )
     }
 }
 
@@ -3747,7 +4191,7 @@ pub struct EcsServiceVpcLatticeConfigurationsEl {
     target_group_arn: PrimField<String>,
 }
 
-impl EcsServiceVpcLatticeConfigurationsEl { }
+impl EcsServiceVpcLatticeConfigurationsEl {}
 
 impl ToListMappable for EcsServiceVpcLatticeConfigurationsEl {
     type O = BlockAssignable<EcsServiceVpcLatticeConfigurationsEl>;
@@ -3811,7 +4255,10 @@ impl EcsServiceVpcLatticeConfigurationsElRef {
 
     #[doc = "Get a reference to the value of field `target_group_arn` after provisioning.\n"]
     pub fn target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_arn", self.base),
+        )
     }
 }
 

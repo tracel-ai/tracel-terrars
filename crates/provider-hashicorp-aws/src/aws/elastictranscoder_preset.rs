@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ElastictranscoderPresetData {
@@ -75,7 +75,8 @@ impl ElastictranscoderPreset {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl ElastictranscoderPreset {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl ElastictranscoderPreset {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -126,8 +137,7 @@ impl ElastictranscoderPreset {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -150,10 +160,10 @@ impl ElastictranscoderPreset {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().audio = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.audio = Some(d);
-            },
+            }
         }
         self
     }
@@ -166,23 +176,26 @@ impl ElastictranscoderPreset {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().audio_codec_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.audio_codec_options = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `thumbnails`.\n"]
-    pub fn set_thumbnails(self, v: impl Into<BlockAssignable<ElastictranscoderPresetThumbnailsEl>>) -> Self {
+    pub fn set_thumbnails(
+        self,
+        v: impl Into<BlockAssignable<ElastictranscoderPresetThumbnailsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().thumbnails = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.thumbnails = Some(d);
-            },
+            }
         }
         self
     }
@@ -192,23 +205,26 @@ impl ElastictranscoderPreset {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().video = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.video = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `video_watermarks`.\n"]
-    pub fn set_video_watermarks(self, v: impl Into<BlockAssignable<ElastictranscoderPresetVideoWatermarksEl>>) -> Self {
+    pub fn set_video_watermarks(
+        self,
+        v: impl Into<BlockAssignable<ElastictranscoderPresetVideoWatermarksEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().video_watermarks = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.video_watermarks = Some(d);
-            },
+            }
         }
         self
     }
@@ -220,12 +236,18 @@ impl ElastictranscoderPreset {
 
     #[doc = "Get a reference to the value of field `container` after provisioning.\n"]
     pub fn container(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -235,53 +257,80 @@ impl ElastictranscoderPreset {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `video_codec_options` after provisioning.\n"]
     pub fn video_codec_options(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.video_codec_options", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.video_codec_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `audio` after provisioning.\n"]
     pub fn audio(&self) -> ListRef<ElastictranscoderPresetAudioElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.audio", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.audio", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `audio_codec_options` after provisioning.\n"]
     pub fn audio_codec_options(&self) -> ListRef<ElastictranscoderPresetAudioCodecOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.audio_codec_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.audio_codec_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `thumbnails` after provisioning.\n"]
     pub fn thumbnails(&self) -> ListRef<ElastictranscoderPresetThumbnailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.thumbnails", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.thumbnails", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `video` after provisioning.\n"]
     pub fn video(&self) -> ListRef<ElastictranscoderPresetVideoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.video", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.video", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ElastictranscoderPreset {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ElastictranscoderPreset { }
+impl Resource for ElastictranscoderPreset {}
 
 impl ToListMappable for ElastictranscoderPreset {
     type O = ListRef<ElastictranscoderPresetRef>;
@@ -349,10 +398,7 @@ pub struct ElastictranscoderPresetRef {
 
 impl Ref for ElastictranscoderPresetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -372,12 +418,18 @@ impl ElastictranscoderPresetRef {
 
     #[doc = "Get a reference to the value of field `container` after provisioning.\n"]
     pub fn container(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -387,43 +439,66 @@ impl ElastictranscoderPresetRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `video_codec_options` after provisioning.\n"]
     pub fn video_codec_options(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.video_codec_options", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.video_codec_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `audio` after provisioning.\n"]
     pub fn audio(&self) -> ListRef<ElastictranscoderPresetAudioElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.audio", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.audio", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `audio_codec_options` after provisioning.\n"]
     pub fn audio_codec_options(&self) -> ListRef<ElastictranscoderPresetAudioCodecOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.audio_codec_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.audio_codec_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `thumbnails` after provisioning.\n"]
     pub fn thumbnails(&self) -> ListRef<ElastictranscoderPresetThumbnailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.thumbnails", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.thumbnails", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `video` after provisioning.\n"]
     pub fn video(&self) -> ListRef<ElastictranscoderPresetVideoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.video", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.video", self.extract_ref()),
+        )
     }
 }
 
@@ -520,7 +595,10 @@ impl ElastictranscoderPresetAudioElRef {
 
     #[doc = "Get a reference to the value of field `audio_packing_mode` after provisioning.\n"]
     pub fn audio_packing_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.audio_packing_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.audio_packing_mode", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bit_rate` after provisioning.\n"]
@@ -792,7 +870,10 @@ impl ElastictranscoderPresetThumbnailsElRef {
 
     #[doc = "Get a reference to the value of field `padding_policy` after provisioning.\n"]
     pub fn padding_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.padding_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.padding_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolution` after provisioning.\n"]
@@ -802,7 +883,10 @@ impl ElastictranscoderPresetThumbnailsElRef {
 
     #[doc = "Get a reference to the value of field `sizing_policy` after provisioning.\n"]
     pub fn sizing_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sizing_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sizing_policy", self.base),
+        )
     }
 }
 
@@ -986,7 +1070,10 @@ impl ElastictranscoderPresetVideoElRef {
 
     #[doc = "Get a reference to the value of field `display_aspect_ratio` after provisioning.\n"]
     pub fn display_aspect_ratio(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_aspect_ratio", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_aspect_ratio", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_gop` after provisioning.\n"]
@@ -1001,12 +1088,18 @@ impl ElastictranscoderPresetVideoElRef {
 
     #[doc = "Get a reference to the value of field `keyframes_max_dist` after provisioning.\n"]
     pub fn keyframes_max_dist(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.keyframes_max_dist", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.keyframes_max_dist", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_frame_rate` after provisioning.\n"]
     pub fn max_frame_rate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_frame_rate", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_frame_rate", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_height` after provisioning.\n"]
@@ -1021,7 +1114,10 @@ impl ElastictranscoderPresetVideoElRef {
 
     #[doc = "Get a reference to the value of field `padding_policy` after provisioning.\n"]
     pub fn padding_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.padding_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.padding_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resolution` after provisioning.\n"]
@@ -1031,7 +1127,10 @@ impl ElastictranscoderPresetVideoElRef {
 
     #[doc = "Get a reference to the value of field `sizing_policy` after provisioning.\n"]
     pub fn sizing_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sizing_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sizing_policy", self.base),
+        )
     }
 }
 
@@ -1173,12 +1272,18 @@ impl ElastictranscoderPresetVideoWatermarksElRef {
 
     #[doc = "Get a reference to the value of field `horizontal_align` after provisioning.\n"]
     pub fn horizontal_align(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.horizontal_align", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.horizontal_align", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `horizontal_offset` after provisioning.\n"]
     pub fn horizontal_offset(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.horizontal_offset", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.horizontal_offset", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -1203,7 +1308,10 @@ impl ElastictranscoderPresetVideoWatermarksElRef {
 
     #[doc = "Get a reference to the value of field `sizing_policy` after provisioning.\n"]
     pub fn sizing_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sizing_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sizing_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
@@ -1213,12 +1321,18 @@ impl ElastictranscoderPresetVideoWatermarksElRef {
 
     #[doc = "Get a reference to the value of field `vertical_align` after provisioning.\n"]
     pub fn vertical_align(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vertical_align", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vertical_align", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vertical_offset` after provisioning.\n"]
     pub fn vertical_offset(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vertical_offset", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vertical_offset", self.base),
+        )
     }
 }
 

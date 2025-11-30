@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Macie2FindingsFilterData {
@@ -73,7 +73,8 @@ impl Macie2FindingsFilter {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -86,7 +87,7 @@ impl Macie2FindingsFilter {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -97,12 +98,22 @@ impl Macie2FindingsFilter {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -136,8 +147,7 @@ impl Macie2FindingsFilter {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -156,14 +166,17 @@ impl Macie2FindingsFilter {
     }
 
     #[doc = "Set the field `finding_criteria`.\n"]
-    pub fn set_finding_criteria(self, v: impl Into<BlockAssignable<Macie2FindingsFilterFindingCriteriaEl>>) -> Self {
+    pub fn set_finding_criteria(
+        self,
+        v: impl Into<BlockAssignable<Macie2FindingsFilterFindingCriteriaEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().finding_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.finding_criteria = Some(d);
-            },
+            }
         }
         self
     }
@@ -176,7 +189,10 @@ impl Macie2FindingsFilter {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -186,7 +202,10 @@ impl Macie2FindingsFilter {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -196,53 +215,80 @@ impl Macie2FindingsFilter {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.position", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.position", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `finding_criteria` after provisioning.\n"]
     pub fn finding_criteria(&self) -> ListRef<Macie2FindingsFilterFindingCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.finding_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.finding_criteria", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Macie2FindingsFilterTimeoutsElRef {
-        Macie2FindingsFilterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Macie2FindingsFilterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Macie2FindingsFilter {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Macie2FindingsFilter { }
+impl Resource for Macie2FindingsFilter {}
 
 impl ToListMappable for Macie2FindingsFilter {
     type O = ListRef<Macie2FindingsFilterRef>;
@@ -309,10 +355,7 @@ pub struct Macie2FindingsFilterRef {
 
 impl Ref for Macie2FindingsFilterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -327,7 +370,10 @@ impl Macie2FindingsFilterRef {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -337,7 +383,10 @@ impl Macie2FindingsFilterRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -347,43 +396,66 @@ impl Macie2FindingsFilterRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.position", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.position", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `finding_criteria` after provisioning.\n"]
     pub fn finding_criteria(&self) -> ListRef<Macie2FindingsFilterFindingCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.finding_criteria", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.finding_criteria", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Macie2FindingsFilterTimeoutsElRef {
-        Macie2FindingsFilterTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Macie2FindingsFilterTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -488,7 +560,10 @@ pub struct Macie2FindingsFilterFindingCriteriaElCriterionElRef {
 }
 
 impl Ref for Macie2FindingsFilterFindingCriteriaElCriterionElRef {
-    fn new(shared: StackShared, base: String) -> Macie2FindingsFilterFindingCriteriaElCriterionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Macie2FindingsFilterFindingCriteriaElCriterionElRef {
         Macie2FindingsFilterFindingCriteriaElCriterionElRef {
             shared: shared,
             base: base.to_string(),
@@ -508,7 +583,10 @@ impl Macie2FindingsFilterFindingCriteriaElCriterionElRef {
 
     #[doc = "Get a reference to the value of field `eq_exact_match` after provisioning.\n"]
     pub fn eq_exact_match(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.eq_exact_match", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.eq_exact_match", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `field` after provisioning.\n"]
@@ -563,10 +641,10 @@ impl Macie2FindingsFilterFindingCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.criterion = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.criterion = Some(d);
-            },
+            }
         }
         self
     }
@@ -645,7 +723,9 @@ pub struct BuildMacie2FindingsFilterTimeoutsEl {}
 
 impl BuildMacie2FindingsFilterTimeoutsEl {
     pub fn build(self) -> Macie2FindingsFilterTimeoutsEl {
-        Macie2FindingsFilterTimeoutsEl { create: core::default::Default::default() }
+        Macie2FindingsFilterTimeoutsEl {
+            create: core::default::Default::default(),
+        }
     }
 }
 

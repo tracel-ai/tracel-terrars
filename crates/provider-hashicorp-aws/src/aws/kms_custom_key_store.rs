@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct KmsCustomKeyStoreData {
@@ -38,7 +38,8 @@ struct KmsCustomKeyStoreData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<KmsCustomKeyStoreTimeoutsEl>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    xks_proxy_authentication_credential: Option<Vec<KmsCustomKeyStoreXksProxyAuthenticationCredentialEl>>,
+    xks_proxy_authentication_credential:
+        Option<Vec<KmsCustomKeyStoreXksProxyAuthenticationCredentialEl>>,
     dynamic: KmsCustomKeyStoreDynamic,
 }
 
@@ -77,7 +78,8 @@ impl KmsCustomKeyStore {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -90,7 +92,7 @@ impl KmsCustomKeyStore {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -101,12 +103,22 @@ impl KmsCustomKeyStore {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -134,8 +146,7 @@ impl KmsCustomKeyStore {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -185,27 +196,40 @@ impl KmsCustomKeyStore {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().xks_proxy_authentication_credential = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.xks_proxy_authentication_credential = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .xks_proxy_authentication_credential = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `cloud_hsm_cluster_id` after provisioning.\n"]
     pub fn cloud_hsm_cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_hsm_cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_hsm_cluster_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_key_store_name` after provisioning.\n"]
     pub fn custom_key_store_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_key_store_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_key_store_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_key_store_type` after provisioning.\n"]
     pub fn custom_key_store_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_key_store_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_key_store_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -215,58 +239,90 @@ impl KmsCustomKeyStore {
 
     #[doc = "Get a reference to the value of field `key_store_password` after provisioning.\n"]
     pub fn key_store_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_store_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_store_password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_anchor_certificate` after provisioning.\n"]
     pub fn trust_anchor_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_anchor_certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_anchor_certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_connectivity` after provisioning.\n"]
     pub fn xks_proxy_connectivity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_connectivity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_connectivity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_uri_endpoint` after provisioning.\n"]
     pub fn xks_proxy_uri_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_uri_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_uri_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_uri_path` after provisioning.\n"]
     pub fn xks_proxy_uri_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_uri_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_uri_path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_vpc_endpoint_service_name` after provisioning.\n"]
     pub fn xks_proxy_vpc_endpoint_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_vpc_endpoint_service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_vpc_endpoint_service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KmsCustomKeyStoreTimeoutsElRef {
-        KmsCustomKeyStoreTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        KmsCustomKeyStoreTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_authentication_credential` after provisioning.\n"]
-    pub fn xks_proxy_authentication_credential(&self) -> ListRef<KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.xks_proxy_authentication_credential", self.extract_ref()))
+    pub fn xks_proxy_authentication_credential(
+        &self,
+    ) -> ListRef<KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_authentication_credential", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for KmsCustomKeyStore {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for KmsCustomKeyStore { }
+impl Resource for KmsCustomKeyStore {}
 
 impl ToListMappable for KmsCustomKeyStore {
     type O = ListRef<KmsCustomKeyStoreRef>;
@@ -335,10 +391,7 @@ pub struct KmsCustomKeyStoreRef {
 
 impl Ref for KmsCustomKeyStoreRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -353,17 +406,26 @@ impl KmsCustomKeyStoreRef {
 
     #[doc = "Get a reference to the value of field `cloud_hsm_cluster_id` after provisioning.\n"]
     pub fn cloud_hsm_cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloud_hsm_cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloud_hsm_cluster_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_key_store_name` after provisioning.\n"]
     pub fn custom_key_store_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_key_store_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_key_store_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_key_store_type` after provisioning.\n"]
     pub fn custom_key_store_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_key_store_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_key_store_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -373,48 +435,76 @@ impl KmsCustomKeyStoreRef {
 
     #[doc = "Get a reference to the value of field `key_store_password` after provisioning.\n"]
     pub fn key_store_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_store_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_store_password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_anchor_certificate` after provisioning.\n"]
     pub fn trust_anchor_certificate(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_anchor_certificate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_anchor_certificate", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_connectivity` after provisioning.\n"]
     pub fn xks_proxy_connectivity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_connectivity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_connectivity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_uri_endpoint` after provisioning.\n"]
     pub fn xks_proxy_uri_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_uri_endpoint", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_uri_endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_uri_path` after provisioning.\n"]
     pub fn xks_proxy_uri_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_uri_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_uri_path", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_vpc_endpoint_service_name` after provisioning.\n"]
     pub fn xks_proxy_vpc_endpoint_service_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.xks_proxy_vpc_endpoint_service_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_vpc_endpoint_service_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KmsCustomKeyStoreTimeoutsElRef {
-        KmsCustomKeyStoreTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        KmsCustomKeyStoreTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `xks_proxy_authentication_credential` after provisioning.\n"]
-    pub fn xks_proxy_authentication_credential(&self) -> ListRef<KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.xks_proxy_authentication_credential", self.extract_ref()))
+    pub fn xks_proxy_authentication_credential(
+        &self,
+    ) -> ListRef<KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.xks_proxy_authentication_credential", self.extract_ref()),
+        )
     }
 }
 
@@ -513,7 +603,7 @@ pub struct KmsCustomKeyStoreXksProxyAuthenticationCredentialEl {
     raw_secret_access_key: PrimField<String>,
 }
 
-impl KmsCustomKeyStoreXksProxyAuthenticationCredentialEl { }
+impl KmsCustomKeyStoreXksProxyAuthenticationCredentialEl {}
 
 impl ToListMappable for KmsCustomKeyStoreXksProxyAuthenticationCredentialEl {
     type O = BlockAssignable<KmsCustomKeyStoreXksProxyAuthenticationCredentialEl>;
@@ -549,7 +639,10 @@ pub struct KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef {
 }
 
 impl Ref for KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef {
-    fn new(shared: StackShared, base: String) -> KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef {
         KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef {
             shared: shared,
             base: base.to_string(),
@@ -564,16 +657,23 @@ impl KmsCustomKeyStoreXksProxyAuthenticationCredentialElRef {
 
     #[doc = "Get a reference to the value of field `access_key_id` after provisioning.\n"]
     pub fn access_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.access_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.access_key_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `raw_secret_access_key` after provisioning.\n"]
     pub fn raw_secret_access_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.raw_secret_access_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.raw_secret_access_key", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct KmsCustomKeyStoreDynamic {
-    xks_proxy_authentication_credential: Option<DynamicBlock<KmsCustomKeyStoreXksProxyAuthenticationCredentialEl>>,
+    xks_proxy_authentication_credential:
+        Option<DynamicBlock<KmsCustomKeyStoreXksProxyAuthenticationCredentialEl>>,
 }

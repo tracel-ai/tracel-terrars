@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataAppstreamImageData {
@@ -74,8 +74,7 @@ impl DataAppstreamImage {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -89,12 +88,18 @@ impl DataAppstreamImage {
 
     #[doc = "Get a reference to the value of field `applications` after provisioning.\n"]
     pub fn applications(&self) -> ListRef<DataAppstreamImageApplicationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.applications", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.applications", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `appstream_agent_version` after provisioning.\n"]
     pub fn appstream_agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.appstream_agent_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.appstream_agent_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -104,93 +109,144 @@ impl DataAppstreamImage {
 
     #[doc = "Get a reference to the value of field `base_image_arn` after provisioning.\n"]
     pub fn base_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_image_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_image_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_builder_name` after provisioning.\n"]
     pub fn image_builder_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_builder_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_builder_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_builder_supported` after provisioning.\n"]
     pub fn image_builder_supported(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_builder_supported", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_builder_supported", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_permissions` after provisioning.\n"]
     pub fn image_permissions(&self) -> ListRef<DataAppstreamImageImagePermissionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `most_recent` after provisioning.\n"]
     pub fn most_recent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.most_recent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.most_recent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_regex` after provisioning.\n"]
     pub fn name_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_regex", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_regex", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_base_image_released_date` after provisioning.\n"]
     pub fn public_base_image_released_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_base_image_released_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_base_image_released_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_change_reason` after provisioning.\n"]
     pub fn state_change_reason(&self) -> ListRef<DataAppstreamImageStateChangeReasonElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.state_change_reason", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.state_change_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataAppstreamImage {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataAppstreamImage { }
+impl Datasource for DataAppstreamImage {}
 
 impl ToListMappable for DataAppstreamImage {
     type O = ListRef<DataAppstreamImageRef>;
@@ -248,10 +304,7 @@ pub struct DataAppstreamImageRef {
 
 impl Ref for DataAppstreamImageRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -266,12 +319,18 @@ impl DataAppstreamImageRef {
 
     #[doc = "Get a reference to the value of field `applications` after provisioning.\n"]
     pub fn applications(&self) -> ListRef<DataAppstreamImageApplicationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.applications", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.applications", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `appstream_agent_version` after provisioning.\n"]
     pub fn appstream_agent_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.appstream_agent_version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.appstream_agent_version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -281,83 +340,130 @@ impl DataAppstreamImageRef {
 
     #[doc = "Get a reference to the value of field `base_image_arn` after provisioning.\n"]
     pub fn base_image_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_image_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_image_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_builder_name` after provisioning.\n"]
     pub fn image_builder_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_builder_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_builder_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_builder_supported` after provisioning.\n"]
     pub fn image_builder_supported(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_builder_supported", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_builder_supported", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `image_permissions` after provisioning.\n"]
     pub fn image_permissions(&self) -> ListRef<DataAppstreamImageImagePermissionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_permissions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_permissions", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `most_recent` after provisioning.\n"]
     pub fn most_recent(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.most_recent", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.most_recent", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_regex` after provisioning.\n"]
     pub fn name_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_regex", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_regex", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `public_base_image_released_date` after provisioning.\n"]
     pub fn public_base_image_released_date(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_base_image_released_date", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_base_image_released_date", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_change_reason` after provisioning.\n"]
     pub fn state_change_reason(&self) -> ListRef<DataAppstreamImageStateChangeReasonElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.state_change_reason", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.state_change_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 }
 
@@ -412,7 +518,10 @@ pub struct DataAppstreamImageApplicationsElIconS3LocationElRef {
 }
 
 impl Ref for DataAppstreamImageApplicationsElIconS3LocationElRef {
-    fn new(shared: StackShared, base: String) -> DataAppstreamImageApplicationsElIconS3LocationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataAppstreamImageApplicationsElIconS3LocationElRef {
         DataAppstreamImageApplicationsElIconS3LocationElRef {
             shared: shared,
             base: base.to_string(),
@@ -622,7 +731,10 @@ impl DataAppstreamImageApplicationsElRef {
 
     #[doc = "Get a reference to the value of field `app_block_arn` after provisioning.\n"]
     pub fn app_block_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_block_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_block_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -652,7 +764,10 @@ impl DataAppstreamImageApplicationsElRef {
 
     #[doc = "Get a reference to the value of field `icon_s3_location` after provisioning.\n"]
     pub fn icon_s3_location(&self) -> ListRef<DataAppstreamImageApplicationsElIconS3LocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.icon_s3_location", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.icon_s3_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `icon_url` after provisioning.\n"]
@@ -662,12 +777,18 @@ impl DataAppstreamImageApplicationsElRef {
 
     #[doc = "Get a reference to the value of field `instance_families` after provisioning.\n"]
     pub fn instance_families(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_families", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_families", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_parameters` after provisioning.\n"]
     pub fn launch_parameters(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.launch_parameters", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.launch_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `launch_path` after provisioning.\n"]
@@ -692,7 +813,10 @@ impl DataAppstreamImageApplicationsElRef {
 
     #[doc = "Get a reference to the value of field `working_directory` after provisioning.\n"]
     pub fn working_directory(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.working_directory", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.working_directory", self.base),
+        )
     }
 }
 
@@ -767,7 +891,10 @@ impl DataAppstreamImageImagePermissionsElRef {
 
     #[doc = "Get a reference to the value of field `allow_image_builder` after provisioning.\n"]
     pub fn allow_image_builder(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_image_builder", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_image_builder", self.base),
+        )
     }
 }
 

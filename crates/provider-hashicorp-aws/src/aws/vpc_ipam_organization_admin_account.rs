@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VpcIpamOrganizationAdminAccountData {
@@ -54,7 +54,8 @@ impl VpcIpamOrganizationAdminAccount {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -67,7 +68,7 @@ impl VpcIpamOrganizationAdminAccount {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -78,12 +79,22 @@ impl VpcIpamOrganizationAdminAccount {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,12 +111,18 @@ impl VpcIpamOrganizationAdminAccount {
 
     #[doc = "Get a reference to the value of field `delegated_admin_account_id` after provisioning.\n"]
     pub fn delegated_admin_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delegated_admin_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delegated_admin_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email` after provisioning.\n"]
     pub fn email(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -115,22 +132,32 @@ impl VpcIpamOrganizationAdminAccount {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_principal` after provisioning.\n"]
     pub fn service_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_principal", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VpcIpamOrganizationAdminAccount {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VpcIpamOrganizationAdminAccount { }
+impl Resource for VpcIpamOrganizationAdminAccount {}
 
 impl ToListMappable for VpcIpamOrganizationAdminAccount {
     type O = ListRef<VpcIpamOrganizationAdminAccountRef>;
@@ -187,10 +214,7 @@ pub struct VpcIpamOrganizationAdminAccountRef {
 
 impl Ref for VpcIpamOrganizationAdminAccountRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -210,12 +234,18 @@ impl VpcIpamOrganizationAdminAccountRef {
 
     #[doc = "Get a reference to the value of field `delegated_admin_account_id` after provisioning.\n"]
     pub fn delegated_admin_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delegated_admin_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delegated_admin_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email` after provisioning.\n"]
     pub fn email(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -225,11 +255,17 @@ impl VpcIpamOrganizationAdminAccountRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_principal` after provisioning.\n"]
     pub fn service_principal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_principal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_principal", self.extract_ref()),
+        )
     }
 }

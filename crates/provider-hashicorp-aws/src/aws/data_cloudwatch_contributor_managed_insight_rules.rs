@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudwatchContributorManagedInsightRulesData {
@@ -24,7 +24,9 @@ struct DataCloudwatchContributorManagedInsightRules_ {
 }
 
 #[derive(Clone)]
-pub struct DataCloudwatchContributorManagedInsightRules(Rc<DataCloudwatchContributorManagedInsightRules_>);
+pub struct DataCloudwatchContributorManagedInsightRules(
+    Rc<DataCloudwatchContributorManagedInsightRules_>,
+);
 
 impl DataCloudwatchContributorManagedInsightRules {
     fn shared(&self) -> &StackShared {
@@ -41,37 +43,50 @@ impl DataCloudwatchContributorManagedInsightRules {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Get a reference to the value of field `managed_rules` after provisioning.\n"]
-    pub fn managed_rules(&self) -> ListRef<DataCloudwatchContributorManagedInsightRulesManagedRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_rules", self.extract_ref()))
+    pub fn managed_rules(
+        &self,
+    ) -> ListRef<DataCloudwatchContributorManagedInsightRulesManagedRulesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_rules", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudwatchContributorManagedInsightRules {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudwatchContributorManagedInsightRules { }
+impl Datasource for DataCloudwatchContributorManagedInsightRules {}
 
 impl ToListMappable for DataCloudwatchContributorManagedInsightRules {
     type O = ListRef<DataCloudwatchContributorManagedInsightRulesRef>;
@@ -104,17 +119,19 @@ pub struct BuildDataCloudwatchContributorManagedInsightRules {
 
 impl BuildDataCloudwatchContributorManagedInsightRules {
     pub fn build(self, stack: &mut Stack) -> DataCloudwatchContributorManagedInsightRules {
-        let out = DataCloudwatchContributorManagedInsightRules(Rc::new(DataCloudwatchContributorManagedInsightRules_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataCloudwatchContributorManagedInsightRulesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                region: core::default::Default::default(),
-                resource_arn: self.resource_arn,
-            }),
-        }));
+        let out = DataCloudwatchContributorManagedInsightRules(Rc::new(
+            DataCloudwatchContributorManagedInsightRules_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataCloudwatchContributorManagedInsightRulesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    region: core::default::Default::default(),
+                    resource_arn: self.resource_arn,
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -127,10 +144,7 @@ pub struct DataCloudwatchContributorManagedInsightRulesRef {
 
 impl Ref for DataCloudwatchContributorManagedInsightRulesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -144,19 +158,29 @@ impl DataCloudwatchContributorManagedInsightRulesRef {
     }
 
     #[doc = "Get a reference to the value of field `managed_rules` after provisioning.\n"]
-    pub fn managed_rules(&self) -> ListRef<DataCloudwatchContributorManagedInsightRulesManagedRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_rules", self.extract_ref()))
+    pub fn managed_rules(
+        &self,
+    ) -> ListRef<DataCloudwatchContributorManagedInsightRulesManagedRulesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_rules", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_arn", self.extract_ref()),
+        )
     }
 }
 
@@ -243,7 +267,8 @@ pub struct DataCloudwatchContributorManagedInsightRulesManagedRulesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    rule_state: Option<ListField<DataCloudwatchContributorManagedInsightRulesManagedRulesElRuleStateEl>>,
+    rule_state:
+        Option<ListField<DataCloudwatchContributorManagedInsightRulesManagedRulesElRuleStateEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     template_name: Option<PrimField<String>>,
 }
@@ -301,7 +326,10 @@ pub struct DataCloudwatchContributorManagedInsightRulesManagedRulesElRef {
 }
 
 impl Ref for DataCloudwatchContributorManagedInsightRulesManagedRulesElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudwatchContributorManagedInsightRulesManagedRulesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudwatchContributorManagedInsightRulesManagedRulesElRef {
         DataCloudwatchContributorManagedInsightRulesManagedRulesElRef {
             shared: shared,
             base: base.to_string(),
@@ -320,12 +348,17 @@ impl DataCloudwatchContributorManagedInsightRulesManagedRulesElRef {
     }
 
     #[doc = "Get a reference to the value of field `rule_state` after provisioning.\n"]
-    pub fn rule_state(&self) -> ListRef<DataCloudwatchContributorManagedInsightRulesManagedRulesElRuleStateElRef> {
+    pub fn rule_state(
+        &self,
+    ) -> ListRef<DataCloudwatchContributorManagedInsightRulesManagedRulesElRuleStateElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule_state", self.base))
     }
 
     #[doc = "Get a reference to the value of field `template_name` after provisioning.\n"]
     pub fn template_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.template_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.template_name", self.base),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct TransferWorkflowData {
@@ -66,7 +66,8 @@ impl TransferWorkflow {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -79,7 +80,7 @@ impl TransferWorkflow {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -90,12 +91,22 @@ impl TransferWorkflow {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,8 +122,7 @@ impl TransferWorkflow {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,14 +141,17 @@ impl TransferWorkflow {
     }
 
     #[doc = "Set the field `on_exception_steps`.\n"]
-    pub fn set_on_exception_steps(self, v: impl Into<BlockAssignable<TransferWorkflowOnExceptionStepsEl>>) -> Self {
+    pub fn set_on_exception_steps(
+        self,
+        v: impl Into<BlockAssignable<TransferWorkflowOnExceptionStepsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().on_exception_steps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.on_exception_steps = Some(d);
-            },
+            }
         }
         self
     }
@@ -148,10 +161,10 @@ impl TransferWorkflow {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().steps = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.steps = Some(d);
-            },
+            }
         }
         self
     }
@@ -163,7 +176,10 @@ impl TransferWorkflow {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -171,40 +187,58 @@ impl TransferWorkflow {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_exception_steps` after provisioning.\n"]
     pub fn on_exception_steps(&self) -> ListRef<TransferWorkflowOnExceptionStepsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_exception_steps", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_exception_steps", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `steps` after provisioning.\n"]
     pub fn steps(&self) -> ListRef<TransferWorkflowStepsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.steps", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.steps", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for TransferWorkflow {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for TransferWorkflow { }
+impl Resource for TransferWorkflow {}
 
 impl ToListMappable for TransferWorkflow {
     type O = ListRef<TransferWorkflowRef>;
@@ -265,10 +299,7 @@ pub struct TransferWorkflowRef {
 
 impl Ref for TransferWorkflowRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -288,7 +319,10 @@ impl TransferWorkflowRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -296,35 +330,50 @@ impl TransferWorkflowRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_exception_steps` after provisioning.\n"]
     pub fn on_exception_steps(&self) -> ListRef<TransferWorkflowOnExceptionStepsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.on_exception_steps", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.on_exception_steps", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `steps` after provisioning.\n"]
     pub fn steps(&self) -> ListRef<TransferWorkflowStepsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.steps", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.steps", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
+pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     file_system_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -360,7 +409,8 @@ impl ToListMappable for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDesti
     }
 }
 
-pub struct BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {}
+pub struct BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{}
 
 impl BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
     pub fn build(
@@ -373,7 +423,8 @@ impl BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLoca
     }
 }
 
-pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
+pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -390,14 +441,19 @@ impl Ref for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileL
     }
 }
 
-impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
+impl
+    TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -407,7 +463,8 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationE
 }
 
 #[derive(Serialize)]
-pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
+pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -428,7 +485,9 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationE
     }
 }
 
-impl ToListMappable for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
+impl ToListMappable
+    for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl
+{
     type O =
         BlockAssignable<
             TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl,
@@ -443,7 +502,8 @@ impl ToListMappable for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDesti
     }
 }
 
-pub struct BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {}
+pub struct BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl
+{}
 
 impl BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
     pub fn build(
@@ -456,7 +516,8 @@ impl BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLoca
     }
 }
 
-pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef {
+pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -473,7 +534,9 @@ impl Ref for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileL
     }
 }
 
-impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef {
+impl
+    TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -528,10 +591,10 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.efs_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.efs_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -551,17 +614,21 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationE
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_file_location = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl {
-    type O = BlockAssignable<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl>;
+impl ToListMappable
+    for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl
+{
+    type O = BlockAssignable<
+        TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -575,7 +642,9 @@ impl ToListMappable for TransferWorkflowOnExceptionStepsElCopyStepDetailsElDesti
 pub struct BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl {}
 
 impl BuildTransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl {
-    pub fn build(self) -> TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl {
+    pub fn build(
+        self,
+    ) -> TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl {
         TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl {
             efs_file_location: core::default::Default::default(),
             s3_file_location: core::default::Default::default(),
@@ -609,15 +678,21 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationE
     #[doc = "Get a reference to the value of field `efs_file_location` after provisioning.\n"]
     pub fn efs_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.efs_file_location", self.base))
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_file_location` after provisioning.\n"]
     pub fn s3_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_file_location", self.base))
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_file_location", self.base),
+        )
     }
 }
 
@@ -637,7 +712,8 @@ pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     source_file_location: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_file_location: Option<Vec<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl>>,
+    destination_file_location:
+        Option<Vec<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl>>,
     dynamic: TransferWorkflowOnExceptionStepsElCopyStepDetailsElDynamic,
 }
 
@@ -663,15 +739,19 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsEl {
     #[doc = "Set the field `destination_file_location`.\n"]
     pub fn set_destination_file_location(
         mut self,
-        v: impl Into<BlockAssignable<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -709,7 +789,10 @@ pub struct TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef {
 }
 
 impl Ref for TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef {
-    fn new(shared: StackShared, base: String) -> TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef {
         TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -729,19 +812,29 @@ impl TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `overwrite_existing` after provisioning.\n"]
     pub fn overwrite_existing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overwrite_existing", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overwrite_existing", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_file_location` after provisioning.\n"]
     pub fn destination_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_file_location", self.base))
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElDestinationFileLocationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_file_location", self.base),
+        )
     }
 }
 
@@ -814,7 +907,10 @@ pub struct TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
 }
 
 impl Ref for TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
-    fn new(shared: StackShared, base: String) -> TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
         TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -834,7 +930,10 @@ impl TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
@@ -844,19 +943,25 @@ impl TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `timeout_seconds` after provisioning.\n"]
     pub fn timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_seconds", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
+pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     file_system_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     path: Option<PrimField<String>>,
 }
 
-impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
+impl
+    TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{
     #[doc = "Set the field `file_system_id`.\n"]
     pub fn set_file_system_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.file_system_id = Some(v.into());
@@ -885,7 +990,8 @@ impl ToListMappable for TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDe
     }
 }
 
-pub struct BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {}
+pub struct BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{}
 
 impl BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
     pub fn build(
@@ -898,7 +1004,8 @@ impl BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileL
     }
 }
 
-pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
+pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -932,14 +1039,17 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocati
 }
 
 #[derive(Serialize)]
-pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
+pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     key: Option<PrimField<String>>,
 }
 
-impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
+impl
+    TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl
+{
     #[doc = "Set the field `bucket`.\n"]
     pub fn set_bucket(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket = Some(v.into());
@@ -968,7 +1078,8 @@ impl ToListMappable for TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDe
     }
 }
 
-pub struct BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {}
+pub struct BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl
+{}
 
 impl BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
     pub fn build(
@@ -981,7 +1092,8 @@ impl BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileL
     }
 }
 
-pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef {
+pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1053,10 +1165,10 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocati
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.efs_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.efs_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -1076,17 +1188,21 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocati
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_file_location = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl {
-    type O = BlockAssignable<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl>;
+impl ToListMappable
+    for TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl
+{
+    type O = BlockAssignable<
+        TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1100,7 +1216,9 @@ impl ToListMappable for TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDe
 pub struct BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl {}
 
 impl BuildTransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl {
-    pub fn build(self) -> TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl {
+    pub fn build(
+        self,
+    ) -> TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl {
         TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl {
             efs_file_location: core::default::Default::default(),
             s3_file_location: core::default::Default::default(),
@@ -1134,22 +1252,30 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocati
     #[doc = "Get a reference to the value of field `efs_file_location` after provisioning.\n"]
     pub fn efs_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.efs_file_location", self.base))
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_file_location` after provisioning.\n"]
     pub fn s3_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_file_location", self.base))
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_file_location", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDynamic {
     destination_file_location: Option<
-        DynamicBlock<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl>,
+        DynamicBlock<
+            TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl,
+        >,
     >,
 }
 
@@ -1192,22 +1318,19 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsEl {
     #[doc = "Set the field `destination_file_location`.\n"]
     pub fn set_destination_file_location(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -1249,7 +1372,10 @@ pub struct TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
 }
 
 impl Ref for TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
-    fn new(shared: StackShared, base: String) -> TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
         TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1269,12 +1395,18 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `overwrite_existing` after provisioning.\n"]
     pub fn overwrite_existing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overwrite_existing", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overwrite_existing", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -1285,8 +1417,12 @@ impl TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef {
     #[doc = "Get a reference to the value of field `destination_file_location` after provisioning.\n"]
     pub fn destination_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_file_location", self.base))
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElDestinationFileLocationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_file_location", self.base),
+        )
     }
 }
 
@@ -1341,7 +1477,10 @@ pub struct TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef {
 }
 
 impl Ref for TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef {
-    fn new(shared: StackShared, base: String) -> TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef {
         TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1361,7 +1500,10 @@ impl TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 }
 
@@ -1371,7 +1513,7 @@ pub struct TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsEl {
     value: PrimField<String>,
 }
 
-impl TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsEl { }
+impl TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsEl {}
 
 impl ToListMappable for TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsEl {
     type O = BlockAssignable<TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsEl>;
@@ -1407,7 +1549,10 @@ pub struct TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsElRef {
 }
 
 impl Ref for TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsElRef {
-    fn new(shared: StackShared, base: String) -> TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsElRef {
         TransferWorkflowOnExceptionStepsElTagStepDetailsElTagsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1468,10 +1613,10 @@ impl TransferWorkflowOnExceptionStepsElTagStepDetailsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -1508,7 +1653,10 @@ pub struct TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
 }
 
 impl Ref for TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
-    fn new(shared: StackShared, base: String) -> TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
         TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1528,7 +1676,10 @@ impl TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
@@ -1540,9 +1691,12 @@ impl TransferWorkflowOnExceptionStepsElTagStepDetailsElRef {
 #[derive(Serialize, Default)]
 struct TransferWorkflowOnExceptionStepsElDynamic {
     copy_step_details: Option<DynamicBlock<TransferWorkflowOnExceptionStepsElCopyStepDetailsEl>>,
-    custom_step_details: Option<DynamicBlock<TransferWorkflowOnExceptionStepsElCustomStepDetailsEl>>,
-    decrypt_step_details: Option<DynamicBlock<TransferWorkflowOnExceptionStepsElDecryptStepDetailsEl>>,
-    delete_step_details: Option<DynamicBlock<TransferWorkflowOnExceptionStepsElDeleteStepDetailsEl>>,
+    custom_step_details:
+        Option<DynamicBlock<TransferWorkflowOnExceptionStepsElCustomStepDetailsEl>>,
+    decrypt_step_details:
+        Option<DynamicBlock<TransferWorkflowOnExceptionStepsElDecryptStepDetailsEl>>,
+    delete_step_details:
+        Option<DynamicBlock<TransferWorkflowOnExceptionStepsElDeleteStepDetailsEl>>,
     tag_step_details: Option<DynamicBlock<TransferWorkflowOnExceptionStepsElTagStepDetailsEl>>,
 }
 
@@ -1572,10 +1726,10 @@ impl TransferWorkflowOnExceptionStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.copy_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.copy_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -1588,10 +1742,10 @@ impl TransferWorkflowOnExceptionStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -1604,10 +1758,10 @@ impl TransferWorkflowOnExceptionStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.decrypt_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.decrypt_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -1620,10 +1774,10 @@ impl TransferWorkflowOnExceptionStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.delete_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.delete_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -1636,10 +1790,10 @@ impl TransferWorkflowOnExceptionStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -1701,28 +1855,53 @@ impl TransferWorkflowOnExceptionStepsElRef {
     }
 
     #[doc = "Get a reference to the value of field `copy_step_details` after provisioning.\n"]
-    pub fn copy_step_details(&self) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.copy_step_details", self.base))
+    pub fn copy_step_details(
+        &self,
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElCopyStepDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.copy_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_step_details` after provisioning.\n"]
-    pub fn custom_step_details(&self) -> ListRef<TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_step_details", self.base))
+    pub fn custom_step_details(
+        &self,
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElCustomStepDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `decrypt_step_details` after provisioning.\n"]
-    pub fn decrypt_step_details(&self) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.decrypt_step_details", self.base))
+    pub fn decrypt_step_details(
+        &self,
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElDecryptStepDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.decrypt_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_step_details` after provisioning.\n"]
-    pub fn delete_step_details(&self) -> ListRef<TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delete_step_details", self.base))
+    pub fn delete_step_details(
+        &self,
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElDeleteStepDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delete_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_step_details` after provisioning.\n"]
-    pub fn tag_step_details(&self) -> ListRef<TransferWorkflowOnExceptionStepsElTagStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_step_details", self.base))
+    pub fn tag_step_details(
+        &self,
+    ) -> ListRef<TransferWorkflowOnExceptionStepsElTagStepDetailsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_step_details", self.base),
+        )
     }
 }
 
@@ -1748,8 +1927,12 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLoc
     }
 }
 
-impl ToListMappable for TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
-    type O = BlockAssignable<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl>;
+impl ToListMappable
+    for TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{
+    type O = BlockAssignable<
+        TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1760,10 +1943,13 @@ impl ToListMappable for TransferWorkflowStepsElCopyStepDetailsElDestinationFileL
     }
 }
 
-pub struct BuildTransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {}
+pub struct BuildTransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{}
 
 impl BuildTransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
-    pub fn build(self) -> TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
+    pub fn build(
+        self,
+    ) -> TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
         TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl {
             file_system_id: core::default::Default::default(),
             path: core::default::Default::default(),
@@ -1795,7 +1981,10 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLoc
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -1826,8 +2015,12 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLoca
     }
 }
 
-impl ToListMappable for TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
-    type O = BlockAssignable<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl>;
+impl ToListMappable
+    for TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl
+{
+    type O = BlockAssignable<
+        TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1838,10 +2031,13 @@ impl ToListMappable for TransferWorkflowStepsElCopyStepDetailsElDestinationFileL
     }
 }
 
-pub struct BuildTransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {}
+pub struct BuildTransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
+}
 
 impl BuildTransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
-    pub fn build(self) -> TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
+    pub fn build(
+        self,
+    ) -> TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
         TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl {
             bucket: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -1885,19 +2081,27 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLoca
 #[derive(Serialize, Default)]
 struct TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElDynamic {
     efs_file_location: Option<
-        DynamicBlock<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl>,
+        DynamicBlock<
+            TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl,
+        >,
     >,
     s3_file_location: Option<
-        DynamicBlock<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl>,
+        DynamicBlock<
+            TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    efs_file_location: Option<Vec<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl>>,
+    efs_file_location: Option<
+        Vec<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3_file_location: Option<Vec<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl>>,
+    s3_file_location: Option<
+        Vec<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl>,
+    >,
     dynamic: TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElDynamic,
 }
 
@@ -1905,22 +2109,19 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl {
     #[doc = "Set the field `efs_file_location`.\n"]
     pub fn set_efs_file_location(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.efs_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.efs_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -1928,22 +2129,19 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl {
     #[doc = "Set the field `s3_file_location`.\n"]
     pub fn set_s3_file_location(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -1998,23 +2196,31 @@ impl TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElRef {
     #[doc = "Get a reference to the value of field `efs_file_location` after provisioning.\n"]
     pub fn efs_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.efs_file_location", self.base))
+    ) -> ListRef<
+        TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElEfsFileLocationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_file_location` after provisioning.\n"]
     pub fn s3_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_file_location", self.base))
+    ) -> ListRef<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElS3FileLocationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_file_location", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TransferWorkflowStepsElCopyStepDetailsElDynamic {
-    destination_file_location: Option<
-        DynamicBlock<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl>,
-    >,
+    destination_file_location:
+        Option<DynamicBlock<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl>>,
 }
 
 #[derive(Serialize)]
@@ -2026,7 +2232,8 @@ pub struct TransferWorkflowStepsElCopyStepDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     source_file_location: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_file_location: Option<Vec<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl>>,
+    destination_file_location:
+        Option<Vec<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationEl>>,
     dynamic: TransferWorkflowStepsElCopyStepDetailsElDynamic,
 }
 
@@ -2057,10 +2264,10 @@ impl TransferWorkflowStepsElCopyStepDetailsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -2118,19 +2325,28 @@ impl TransferWorkflowStepsElCopyStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `overwrite_existing` after provisioning.\n"]
     pub fn overwrite_existing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overwrite_existing", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overwrite_existing", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination_file_location` after provisioning.\n"]
     pub fn destination_file_location(
         &self,
     ) -> ListRef<TransferWorkflowStepsElCopyStepDetailsElDestinationFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_file_location", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_file_location", self.base),
+        )
     }
 }
 
@@ -2223,7 +2439,10 @@ impl TransferWorkflowStepsElCustomStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
@@ -2233,7 +2452,10 @@ impl TransferWorkflowStepsElCustomStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `timeout_seconds` after provisioning.\n"]
     pub fn timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_seconds", self.base),
+        )
     }
 }
 
@@ -2259,8 +2481,12 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFile
     }
 }
 
-impl ToListMappable for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
-    type O = BlockAssignable<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl>;
+impl ToListMappable
+    for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{
+    type O = BlockAssignable<
+        TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2271,10 +2497,13 @@ impl ToListMappable for TransferWorkflowStepsElDecryptStepDetailsElDestinationFi
     }
 }
 
-pub struct BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {}
+pub struct BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl
+{}
 
 impl BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
-    pub fn build(self) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
+    pub fn build(
+        self,
+    ) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
         TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl {
             file_system_id: core::default::Default::default(),
             path: core::default::Default::default(),
@@ -2282,16 +2511,20 @@ impl BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEf
     }
 }
 
-pub struct TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
+pub struct TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
+impl Ref
+    for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
+    ) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef
+    {
         TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2306,7 +2539,10 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFile
 
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_system_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.file_system_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
@@ -2337,8 +2573,12 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileL
     }
 }
 
-impl ToListMappable for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
-    type O = BlockAssignable<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl>;
+impl ToListMappable
+    for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl
+{
+    type O = BlockAssignable<
+        TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2349,10 +2589,13 @@ impl ToListMappable for TransferWorkflowStepsElDecryptStepDetailsElDestinationFi
     }
 }
 
-pub struct BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {}
+pub struct BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl
+{}
 
 impl BuildTransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
-    pub fn build(self) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
+    pub fn build(
+        self,
+    ) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
         TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl {
             bucket: core::default::Default::default(),
             key: core::default::Default::default(),
@@ -2365,11 +2608,14 @@ pub struct TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS
     base: String,
 }
 
-impl Ref for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef {
+impl Ref
+    for TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef {
+    ) -> TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef
+    {
         TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2396,19 +2642,27 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileL
 #[derive(Serialize, Default)]
 struct TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElDynamic {
     efs_file_location: Option<
-        DynamicBlock<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl>,
+        DynamicBlock<
+            TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl,
+        >,
     >,
     s3_file_location: Option<
-        DynamicBlock<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl>,
+        DynamicBlock<
+            TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    efs_file_location: Option<Vec<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl>>,
+    efs_file_location: Option<
+        Vec<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3_file_location: Option<Vec<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl>>,
+    s3_file_location: Option<
+        Vec<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationEl>,
+    >,
     dynamic: TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElDynamic,
 }
 
@@ -2428,10 +2682,10 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.efs_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.efs_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -2451,10 +2705,10 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -2509,23 +2763,32 @@ impl TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElRef {
     #[doc = "Get a reference to the value of field `efs_file_location` after provisioning.\n"]
     pub fn efs_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.efs_file_location", self.base))
+    ) -> ListRef<
+        TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElEfsFileLocationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.efs_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_file_location` after provisioning.\n"]
     pub fn s3_file_location(
         &self,
-    ) -> ListRef<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_file_location", self.base))
+    ) -> ListRef<
+        TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElS3FileLocationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_file_location", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TransferWorkflowStepsElDecryptStepDetailsElDynamic {
-    destination_file_location: Option<
-        DynamicBlock<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl>,
-    >,
+    destination_file_location:
+        Option<DynamicBlock<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl>>,
 }
 
 #[derive(Serialize)]
@@ -2539,7 +2802,8 @@ pub struct TransferWorkflowStepsElDecryptStepDetailsEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_file_location: Option<Vec<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl>>,
+    destination_file_location:
+        Option<Vec<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl>>,
     dynamic: TransferWorkflowStepsElDecryptStepDetailsElDynamic,
 }
 
@@ -2565,15 +2829,17 @@ impl TransferWorkflowStepsElDecryptStepDetailsEl {
     #[doc = "Set the field `destination_file_location`.\n"]
     pub fn set_destination_file_location(
         mut self,
-        v: impl Into<BlockAssignable<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl>>,
+        v: impl Into<
+            BlockAssignable<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination_file_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination_file_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -2635,12 +2901,18 @@ impl TransferWorkflowStepsElDecryptStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `overwrite_existing` after provisioning.\n"]
     pub fn overwrite_existing(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overwrite_existing", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overwrite_existing", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -2652,7 +2924,10 @@ impl TransferWorkflowStepsElDecryptStepDetailsElRef {
     pub fn destination_file_location(
         &self,
     ) -> ListRef<TransferWorkflowStepsElDecryptStepDetailsElDestinationFileLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.destination_file_location", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.destination_file_location", self.base),
+        )
     }
 }
 
@@ -2727,7 +3002,10 @@ impl TransferWorkflowStepsElDeleteStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 }
 
@@ -2737,7 +3015,7 @@ pub struct TransferWorkflowStepsElTagStepDetailsElTagsEl {
     value: PrimField<String>,
 }
 
-impl TransferWorkflowStepsElTagStepDetailsElTagsEl { }
+impl TransferWorkflowStepsElTagStepDetailsElTagsEl {}
 
 impl ToListMappable for TransferWorkflowStepsElTagStepDetailsElTagsEl {
     type O = BlockAssignable<TransferWorkflowStepsElTagStepDetailsElTagsEl>;
@@ -2827,14 +3105,17 @@ impl TransferWorkflowStepsElTagStepDetailsEl {
     }
 
     #[doc = "Set the field `tags`.\n"]
-    pub fn set_tags(mut self, v: impl Into<BlockAssignable<TransferWorkflowStepsElTagStepDetailsElTagsEl>>) -> Self {
+    pub fn set_tags(
+        mut self,
+        v: impl Into<BlockAssignable<TransferWorkflowStepsElTagStepDetailsElTagsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tags = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tags = Some(d);
-            },
+            }
         }
         self
     }
@@ -2891,7 +3172,10 @@ impl TransferWorkflowStepsElTagStepDetailsElRef {
 
     #[doc = "Get a reference to the value of field `source_file_location` after provisioning.\n"]
     pub fn source_file_location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.source_file_location", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.source_file_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
@@ -2935,10 +3219,10 @@ impl TransferWorkflowStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.copy_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.copy_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -2951,10 +3235,10 @@ impl TransferWorkflowStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -2967,10 +3251,10 @@ impl TransferWorkflowStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.decrypt_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.decrypt_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -2983,10 +3267,10 @@ impl TransferWorkflowStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.delete_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.delete_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -2999,10 +3283,10 @@ impl TransferWorkflowStepsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag_step_details = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag_step_details = Some(d);
-            },
+            }
         }
         self
     }
@@ -3065,27 +3349,42 @@ impl TransferWorkflowStepsElRef {
 
     #[doc = "Get a reference to the value of field `copy_step_details` after provisioning.\n"]
     pub fn copy_step_details(&self) -> ListRef<TransferWorkflowStepsElCopyStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.copy_step_details", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.copy_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_step_details` after provisioning.\n"]
     pub fn custom_step_details(&self) -> ListRef<TransferWorkflowStepsElCustomStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_step_details", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `decrypt_step_details` after provisioning.\n"]
     pub fn decrypt_step_details(&self) -> ListRef<TransferWorkflowStepsElDecryptStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.decrypt_step_details", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.decrypt_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_step_details` after provisioning.\n"]
     pub fn delete_step_details(&self) -> ListRef<TransferWorkflowStepsElDeleteStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delete_step_details", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delete_step_details", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_step_details` after provisioning.\n"]
     pub fn tag_step_details(&self) -> ListRef<TransferWorkflowStepsElTagStepDetailsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_step_details", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_step_details", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSesv2EmailIdentityData {
@@ -51,8 +51,7 @@ impl DataSesv2EmailIdentity {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -71,17 +70,28 @@ impl DataSesv2EmailIdentity {
 
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dkim_signing_attributes` after provisioning.\n"]
-    pub fn dkim_signing_attributes(&self) -> ListRef<DataSesv2EmailIdentityDkimSigningAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dkim_signing_attributes", self.extract_ref()))
+    pub fn dkim_signing_attributes(
+        &self,
+    ) -> ListRef<DataSesv2EmailIdentityDkimSigningAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dkim_signing_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_identity` after provisioning.\n"]
     pub fn email_identity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_identity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_identity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -91,38 +101,56 @@ impl DataSesv2EmailIdentity {
 
     #[doc = "Get a reference to the value of field `identity_type` after provisioning.\n"]
     pub fn identity_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verification_status` after provisioning.\n"]
     pub fn verification_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verification_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verification_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verified_for_sending_status` after provisioning.\n"]
     pub fn verified_for_sending_status(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verified_for_sending_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verified_for_sending_status", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSesv2EmailIdentity {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSesv2EmailIdentity { }
+impl Datasource for DataSesv2EmailIdentity {}
 
 impl ToListMappable for DataSesv2EmailIdentity {
     type O = ListRef<DataSesv2EmailIdentityRef>;
@@ -180,10 +208,7 @@ pub struct DataSesv2EmailIdentityRef {
 
 impl Ref for DataSesv2EmailIdentityRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -203,17 +228,28 @@ impl DataSesv2EmailIdentityRef {
 
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.configuration_set_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.configuration_set_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dkim_signing_attributes` after provisioning.\n"]
-    pub fn dkim_signing_attributes(&self) -> ListRef<DataSesv2EmailIdentityDkimSigningAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dkim_signing_attributes", self.extract_ref()))
+    pub fn dkim_signing_attributes(
+        &self,
+    ) -> ListRef<DataSesv2EmailIdentityDkimSigningAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dkim_signing_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `email_identity` after provisioning.\n"]
     pub fn email_identity(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.email_identity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.email_identity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -223,28 +259,42 @@ impl DataSesv2EmailIdentityRef {
 
     #[doc = "Get a reference to the value of field `identity_type` after provisioning.\n"]
     pub fn identity_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_type", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verification_status` after provisioning.\n"]
     pub fn verification_status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verification_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verification_status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verified_for_sending_status` after provisioning.\n"]
     pub fn verified_for_sending_status(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verified_for_sending_status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verified_for_sending_status", self.extract_ref()),
+        )
     }
 }
 
@@ -368,32 +418,50 @@ impl DataSesv2EmailIdentityDkimSigningAttributesElRef {
 
     #[doc = "Get a reference to the value of field `current_signing_key_length` after provisioning.\n"]
     pub fn current_signing_key_length(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.current_signing_key_length", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.current_signing_key_length", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_signing_private_key` after provisioning.\n"]
     pub fn domain_signing_private_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_signing_private_key", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_signing_private_key", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_signing_selector` after provisioning.\n"]
     pub fn domain_signing_selector(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_signing_selector", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_signing_selector", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_key_generation_timestamp` after provisioning.\n"]
     pub fn last_key_generation_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_key_generation_timestamp", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_key_generation_timestamp", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `next_signing_key_length` after provisioning.\n"]
     pub fn next_signing_key_length(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.next_signing_key_length", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.next_signing_key_length", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_attributes_origin` after provisioning.\n"]
     pub fn signing_attributes_origin(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.signing_attributes_origin", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.signing_attributes_origin", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodeguruprofilerProfilingGroupData {
@@ -22,7 +22,8 @@ struct CodeguruprofilerProfilingGroupData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    agent_orchestration_config: Option<Vec<CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl>>,
+    agent_orchestration_config:
+        Option<Vec<CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl>>,
     dynamic: CodeguruprofilerProfilingGroupDynamic,
 }
 
@@ -61,7 +62,8 @@ impl CodeguruprofilerProfilingGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +76,7 @@ impl CodeguruprofilerProfilingGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +87,22 @@ impl CodeguruprofilerProfilingGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,8 +112,7 @@ impl CodeguruprofilerProfilingGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -121,10 +132,10 @@ impl CodeguruprofilerProfilingGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().agent_orchestration_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.agent_orchestration_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -136,7 +147,10 @@ impl CodeguruprofilerProfilingGroup {
 
     #[doc = "Get a reference to the value of field `compute_platform` after provisioning.\n"]
     pub fn compute_platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -146,38 +160,58 @@ impl CodeguruprofilerProfilingGroup {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_orchestration_config` after provisioning.\n"]
-    pub fn agent_orchestration_config(&self) -> ListRef<CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.agent_orchestration_config", self.extract_ref()))
+    pub fn agent_orchestration_config(
+        &self,
+    ) -> ListRef<CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.agent_orchestration_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodeguruprofilerProfilingGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodeguruprofilerProfilingGroup { }
+impl Resource for CodeguruprofilerProfilingGroup {}
 
 impl ToListMappable for CodeguruprofilerProfilingGroup {
     type O = ListRef<CodeguruprofilerProfilingGroupRef>;
@@ -238,10 +272,7 @@ pub struct CodeguruprofilerProfilingGroupRef {
 
 impl Ref for CodeguruprofilerProfilingGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -261,7 +292,10 @@ impl CodeguruprofilerProfilingGroupRef {
 
     #[doc = "Get a reference to the value of field `compute_platform` after provisioning.\n"]
     pub fn compute_platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -271,28 +305,44 @@ impl CodeguruprofilerProfilingGroupRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `agent_orchestration_config` after provisioning.\n"]
-    pub fn agent_orchestration_config(&self) -> ListRef<CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.agent_orchestration_config", self.extract_ref()))
+    pub fn agent_orchestration_config(
+        &self,
+    ) -> ListRef<CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.agent_orchestration_config", self.extract_ref()),
+        )
     }
 }
 
@@ -301,7 +351,7 @@ pub struct CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {
     profiling_enabled: PrimField<bool>,
 }
 
-impl CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl { }
+impl CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {}
 
 impl ToListMappable for CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {
     type O = BlockAssignable<CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl>;
@@ -322,7 +372,9 @@ pub struct BuildCodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {
 
 impl BuildCodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {
     pub fn build(self) -> CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {
-        CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl { profiling_enabled: self.profiling_enabled }
+        CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl {
+            profiling_enabled: self.profiling_enabled,
+        }
     }
 }
 
@@ -332,7 +384,10 @@ pub struct CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef {
 }
 
 impl Ref for CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef {
-    fn new(shared: StackShared, base: String) -> CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef {
         CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -347,11 +402,15 @@ impl CodeguruprofilerProfilingGroupAgentOrchestrationConfigElRef {
 
     #[doc = "Get a reference to the value of field `profiling_enabled` after provisioning.\n"]
     pub fn profiling_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.profiling_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.profiling_enabled", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CodeguruprofilerProfilingGroupDynamic {
-    agent_orchestration_config: Option<DynamicBlock<CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl>>,
+    agent_orchestration_config:
+        Option<DynamicBlock<CodeguruprofilerProfilingGroupAgentOrchestrationConfigEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SsoadminCustomerManagedPolicyAttachmentData {
@@ -21,9 +21,8 @@ struct SsoadminCustomerManagedPolicyAttachmentData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    customer_managed_policy_reference: Option<
-        Vec<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl>,
-    >,
+    customer_managed_policy_reference:
+        Option<Vec<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<SsoadminCustomerManagedPolicyAttachmentTimeoutsEl>,
     dynamic: SsoadminCustomerManagedPolicyAttachmentDynamic,
@@ -64,7 +63,8 @@ impl SsoadminCustomerManagedPolicyAttachment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -77,7 +77,7 @@ impl SsoadminCustomerManagedPolicyAttachment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -88,12 +88,22 @@ impl SsoadminCustomerManagedPolicyAttachment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -103,8 +113,7 @@ impl SsoadminCustomerManagedPolicyAttachment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -113,21 +122,32 @@ impl SsoadminCustomerManagedPolicyAttachment {
     #[doc = "Set the field `customer_managed_policy_reference`.\n"]
     pub fn set_customer_managed_policy_reference(
         self,
-        v: impl Into<BlockAssignable<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().customer_managed_policy_reference = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.customer_managed_policy_reference = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .customer_managed_policy_reference = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<SsoadminCustomerManagedPolicyAttachmentTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<SsoadminCustomerManagedPolicyAttachmentTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -139,25 +159,36 @@ impl SsoadminCustomerManagedPolicyAttachment {
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permission_set_arn` after provisioning.\n"]
     pub fn permission_set_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permission_set_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permission_set_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_managed_policy_reference` after provisioning.\n"]
     pub fn customer_managed_policy_reference(
         &self,
     ) -> ListRef<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.customer_managed_policy_reference", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_policy_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -171,11 +202,15 @@ impl SsoadminCustomerManagedPolicyAttachment {
 
 impl Referable for SsoadminCustomerManagedPolicyAttachment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SsoadminCustomerManagedPolicyAttachment { }
+impl Resource for SsoadminCustomerManagedPolicyAttachment {}
 
 impl ToListMappable for SsoadminCustomerManagedPolicyAttachment {
     type O = ListRef<SsoadminCustomerManagedPolicyAttachmentRef>;
@@ -210,23 +245,25 @@ pub struct BuildSsoadminCustomerManagedPolicyAttachment {
 
 impl BuildSsoadminCustomerManagedPolicyAttachment {
     pub fn build(self, stack: &mut Stack) -> SsoadminCustomerManagedPolicyAttachment {
-        let out = SsoadminCustomerManagedPolicyAttachment(Rc::new(SsoadminCustomerManagedPolicyAttachment_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(SsoadminCustomerManagedPolicyAttachmentData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                instance_arn: self.instance_arn,
-                permission_set_arn: self.permission_set_arn,
-                region: core::default::Default::default(),
-                customer_managed_policy_reference: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = SsoadminCustomerManagedPolicyAttachment(Rc::new(
+            SsoadminCustomerManagedPolicyAttachment_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(SsoadminCustomerManagedPolicyAttachmentData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    instance_arn: self.instance_arn,
+                    permission_set_arn: self.permission_set_arn,
+                    region: core::default::Default::default(),
+                    customer_managed_policy_reference: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -239,10 +276,7 @@ pub struct SsoadminCustomerManagedPolicyAttachmentRef {
 
 impl Ref for SsoadminCustomerManagedPolicyAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -262,25 +296,36 @@ impl SsoadminCustomerManagedPolicyAttachmentRef {
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `permission_set_arn` after provisioning.\n"]
     pub fn permission_set_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.permission_set_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.permission_set_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `customer_managed_policy_reference` after provisioning.\n"]
     pub fn customer_managed_policy_reference(
         &self,
     ) -> ListRef<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.customer_managed_policy_reference", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_policy_reference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -308,7 +353,8 @@ impl SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
 }
 
 impl ToListMappable for SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
-    type O = BlockAssignable<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl>;
+    type O =
+        BlockAssignable<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -417,7 +463,10 @@ pub struct SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
 }
 
 impl Ref for SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
         SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

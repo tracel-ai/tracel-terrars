@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDxLocationData {
@@ -49,8 +49,7 @@ impl DataDxLocation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,17 +57,26 @@ impl DataDxLocation {
 
     #[doc = "Get a reference to the value of field `available_macsec_port_speeds` after provisioning.\n"]
     pub fn available_macsec_port_speeds(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.available_macsec_port_speeds", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.available_macsec_port_speeds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_port_speeds` after provisioning.\n"]
     pub fn available_port_speeds(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.available_port_speeds", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.available_port_speeds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_providers` after provisioning.\n"]
     pub fn available_providers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.available_providers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.available_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -78,28 +86,40 @@ impl DataDxLocation {
 
     #[doc = "Get a reference to the value of field `location_code` after provisioning.\n"]
     pub fn location_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location_name` after provisioning.\n"]
     pub fn location_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDxLocation {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDxLocation { }
+impl Datasource for DataDxLocation {}
 
 impl ToListMappable for DataDxLocation {
     type O = ListRef<DataDxLocationRef>;
@@ -156,10 +176,7 @@ pub struct DataDxLocationRef {
 
 impl Ref for DataDxLocationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -174,17 +191,26 @@ impl DataDxLocationRef {
 
     #[doc = "Get a reference to the value of field `available_macsec_port_speeds` after provisioning.\n"]
     pub fn available_macsec_port_speeds(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.available_macsec_port_speeds", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.available_macsec_port_speeds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_port_speeds` after provisioning.\n"]
     pub fn available_port_speeds(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.available_port_speeds", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.available_port_speeds", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `available_providers` after provisioning.\n"]
     pub fn available_providers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.available_providers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.available_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -194,17 +220,25 @@ impl DataDxLocationRef {
 
     #[doc = "Get a reference to the value of field `location_code` after provisioning.\n"]
     pub fn location_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_code", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_code", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location_name` after provisioning.\n"]
     pub fn location_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }

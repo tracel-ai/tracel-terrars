@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IvschatRoomData {
@@ -72,7 +72,8 @@ impl IvschatRoom {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -85,7 +86,7 @@ impl IvschatRoom {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -96,12 +97,22 @@ impl IvschatRoom {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,7 +123,10 @@ impl IvschatRoom {
     }
 
     #[doc = "Set the field `logging_configuration_identifiers`.\n"]
-    pub fn set_logging_configuration_identifiers(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
+    pub fn set_logging_configuration_identifiers(
+        self,
+        v: impl Into<ListField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().logging_configuration_identifiers = Some(v.into());
         self
     }
@@ -135,8 +149,7 @@ impl IvschatRoom {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -155,14 +168,17 @@ impl IvschatRoom {
     }
 
     #[doc = "Set the field `message_review_handler`.\n"]
-    pub fn set_message_review_handler(self, v: impl Into<BlockAssignable<IvschatRoomMessageReviewHandlerEl>>) -> Self {
+    pub fn set_message_review_handler(
+        self,
+        v: impl Into<BlockAssignable<IvschatRoomMessageReviewHandlerEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().message_review_handler = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.message_review_handler = Some(d);
-            },
+            }
         }
         self
     }
@@ -185,58 +201,88 @@ impl IvschatRoom {
 
     #[doc = "Get a reference to the value of field `logging_configuration_identifiers` after provisioning.\n"]
     pub fn logging_configuration_identifiers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_configuration_identifiers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_configuration_identifiers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_message_length` after provisioning.\n"]
     pub fn maximum_message_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_message_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_message_length", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_message_rate_per_second` after provisioning.\n"]
     pub fn maximum_message_rate_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_message_rate_per_second", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_message_rate_per_second", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `message_review_handler` after provisioning.\n"]
     pub fn message_review_handler(&self) -> ListRef<IvschatRoomMessageReviewHandlerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.message_review_handler", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.message_review_handler", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IvschatRoomTimeoutsElRef {
-        IvschatRoomTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        IvschatRoomTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IvschatRoom {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IvschatRoom { }
+impl Resource for IvschatRoom {}
 
 impl ToListMappable for IvschatRoom {
     type O = ListRef<IvschatRoomRef>;
@@ -300,10 +346,7 @@ pub struct IvschatRoomRef {
 
 impl Ref for IvschatRoomRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -328,48 +371,74 @@ impl IvschatRoomRef {
 
     #[doc = "Get a reference to the value of field `logging_configuration_identifiers` after provisioning.\n"]
     pub fn logging_configuration_identifiers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_configuration_identifiers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_configuration_identifiers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_message_length` after provisioning.\n"]
     pub fn maximum_message_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_message_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_message_length", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_message_rate_per_second` after provisioning.\n"]
     pub fn maximum_message_rate_per_second(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_message_rate_per_second", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_message_rate_per_second", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `message_review_handler` after provisioning.\n"]
     pub fn message_review_handler(&self) -> ListRef<IvschatRoomMessageReviewHandlerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.message_review_handler", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.message_review_handler", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IvschatRoomTimeoutsElRef {
-        IvschatRoomTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        IvschatRoomTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -439,7 +508,10 @@ impl IvschatRoomMessageReviewHandlerElRef {
 
     #[doc = "Get a reference to the value of field `fallback_result` after provisioning.\n"]
     pub fn fallback_result(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fallback_result", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fallback_result", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]

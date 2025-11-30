@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Route53DelegationSetData {
@@ -55,7 +55,8 @@ impl Route53DelegationSet {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -68,7 +69,7 @@ impl Route53DelegationSet {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -79,12 +80,22 @@ impl Route53DelegationSet {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,22 +123,32 @@ impl Route53DelegationSet {
 
     #[doc = "Get a reference to the value of field `name_servers` after provisioning.\n"]
     pub fn name_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.name_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.name_servers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reference_name` after provisioning.\n"]
     pub fn reference_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reference_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reference_name", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Route53DelegationSet {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Route53DelegationSet { }
+impl Resource for Route53DelegationSet {}
 
 impl ToListMappable for Route53DelegationSet {
     type O = ListRef<Route53DelegationSetRef>;
@@ -182,10 +203,7 @@ pub struct Route53DelegationSetRef {
 
 impl Ref for Route53DelegationSetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -210,11 +228,17 @@ impl Route53DelegationSetRef {
 
     #[doc = "Get a reference to the value of field `name_servers` after provisioning.\n"]
     pub fn name_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.name_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.name_servers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `reference_name` after provisioning.\n"]
     pub fn reference_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.reference_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.reference_name", self.extract_ref()),
+        )
     }
 }

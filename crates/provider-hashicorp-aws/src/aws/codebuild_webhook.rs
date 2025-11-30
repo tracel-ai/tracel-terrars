@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodebuildWebhookData {
@@ -69,7 +69,8 @@ impl CodebuildWebhook {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl CodebuildWebhook {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl CodebuildWebhook {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -126,22 +137,24 @@ impl CodebuildWebhook {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter_group`.\n"]
-    pub fn set_filter_group(self, v: impl Into<BlockAssignable<CodebuildWebhookFilterGroupEl>>) -> Self {
+    pub fn set_filter_group(
+        self,
+        v: impl Into<BlockAssignable<CodebuildWebhookFilterGroupEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter_group = Some(d);
-            },
+            }
         }
         self
     }
@@ -154,35 +167,44 @@ impl CodebuildWebhook {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().pull_request_build_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.pull_request_build_policy = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `scope_configuration`.\n"]
-    pub fn set_scope_configuration(self, v: impl Into<BlockAssignable<CodebuildWebhookScopeConfigurationEl>>) -> Self {
+    pub fn set_scope_configuration(
+        self,
+        v: impl Into<BlockAssignable<CodebuildWebhookScopeConfigurationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scope_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scope_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `branch_filter` after provisioning.\n"]
     pub fn branch_filter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.branch_filter", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.branch_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `build_type` after provisioning.\n"]
     pub fn build_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.build_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.build_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -192,28 +214,42 @@ impl CodebuildWebhook {
 
     #[doc = "Get a reference to the value of field `manual_creation` after provisioning.\n"]
     pub fn manual_creation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.manual_creation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.manual_creation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `payload_url` after provisioning.\n"]
     pub fn payload_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.payload_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.payload_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret` after provisioning.\n"]
     pub fn secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -222,23 +258,35 @@ impl CodebuildWebhook {
     }
 
     #[doc = "Get a reference to the value of field `pull_request_build_policy` after provisioning.\n"]
-    pub fn pull_request_build_policy(&self) -> ListRef<CodebuildWebhookPullRequestBuildPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pull_request_build_policy", self.extract_ref()))
+    pub fn pull_request_build_policy(
+        &self,
+    ) -> ListRef<CodebuildWebhookPullRequestBuildPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pull_request_build_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope_configuration` after provisioning.\n"]
     pub fn scope_configuration(&self) -> ListRef<CodebuildWebhookScopeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodebuildWebhook {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodebuildWebhook { }
+impl Resource for CodebuildWebhook {}
 
 impl ToListMappable for CodebuildWebhook {
     type O = ListRef<CodebuildWebhookRef>;
@@ -303,10 +351,7 @@ pub struct CodebuildWebhookRef {
 
 impl Ref for CodebuildWebhookRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -321,12 +366,18 @@ impl CodebuildWebhookRef {
 
     #[doc = "Get a reference to the value of field `branch_filter` after provisioning.\n"]
     pub fn branch_filter(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.branch_filter", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.branch_filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `build_type` after provisioning.\n"]
     pub fn build_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.build_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.build_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -336,28 +387,42 @@ impl CodebuildWebhookRef {
 
     #[doc = "Get a reference to the value of field `manual_creation` after provisioning.\n"]
     pub fn manual_creation(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.manual_creation", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.manual_creation", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `payload_url` after provisioning.\n"]
     pub fn payload_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.payload_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.payload_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret` after provisioning.\n"]
     pub fn secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -366,13 +431,21 @@ impl CodebuildWebhookRef {
     }
 
     #[doc = "Get a reference to the value of field `pull_request_build_policy` after provisioning.\n"]
-    pub fn pull_request_build_policy(&self) -> ListRef<CodebuildWebhookPullRequestBuildPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pull_request_build_policy", self.extract_ref()))
+    pub fn pull_request_build_policy(
+        &self,
+    ) -> ListRef<CodebuildWebhookPullRequestBuildPolicyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pull_request_build_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope_configuration` after provisioning.\n"]
     pub fn scope_configuration(&self) -> ListRef<CodebuildWebhookScopeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -443,7 +516,10 @@ impl CodebuildWebhookFilterGroupElFilterElRef {
 
     #[doc = "Get a reference to the value of field `exclude_matched_pattern` after provisioning.\n"]
     pub fn exclude_matched_pattern(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.exclude_matched_pattern", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.exclude_matched_pattern", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
@@ -471,14 +547,17 @@ pub struct CodebuildWebhookFilterGroupEl {
 
 impl CodebuildWebhookFilterGroupEl {
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(mut self, v: impl Into<BlockAssignable<CodebuildWebhookFilterGroupElFilterEl>>) -> Self {
+    pub fn set_filter(
+        mut self,
+        v: impl Into<BlockAssignable<CodebuildWebhookFilterGroupElFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -594,12 +673,18 @@ impl CodebuildWebhookPullRequestBuildPolicyElRef {
 
     #[doc = "Get a reference to the value of field `approver_roles` after provisioning.\n"]
     pub fn approver_roles(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.approver_roles", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.approver_roles", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `requires_comment_approval` after provisioning.\n"]
     pub fn requires_comment_approval(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.requires_comment_approval", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.requires_comment_approval", self.base),
+        )
     }
 }
 

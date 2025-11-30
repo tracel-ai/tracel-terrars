@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GuarddutyMemberDetectorFeatureData {
@@ -60,7 +60,8 @@ impl GuarddutyMemberDetectorFeature {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl GuarddutyMemberDetectorFeature {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,17 +85,26 @@ impl GuarddutyMemberDetectorFeature {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -108,53 +118,76 @@ impl GuarddutyMemberDetectorFeature {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().additional_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.additional_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_configuration` after provisioning.\n"]
-    pub fn additional_configuration(&self) -> ListRef<GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_configuration", self.extract_ref()))
+    pub fn additional_configuration(
+        &self,
+    ) -> ListRef<GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GuarddutyMemberDetectorFeature {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GuarddutyMemberDetectorFeature { }
+impl Resource for GuarddutyMemberDetectorFeature {}
 
 impl ToListMappable for GuarddutyMemberDetectorFeature {
     type O = ListRef<GuarddutyMemberDetectorFeatureRef>;
@@ -222,10 +255,7 @@ pub struct GuarddutyMemberDetectorFeatureRef {
 
 impl Ref for GuarddutyMemberDetectorFeatureRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -240,33 +270,52 @@ impl GuarddutyMemberDetectorFeatureRef {
 
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `additional_configuration` after provisioning.\n"]
-    pub fn additional_configuration(&self) -> ListRef<GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_configuration", self.extract_ref()))
+    pub fn additional_configuration(
+        &self,
+    ) -> ListRef<GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -276,7 +325,7 @@ pub struct GuarddutyMemberDetectorFeatureAdditionalConfigurationEl {
     status: PrimField<String>,
 }
 
-impl GuarddutyMemberDetectorFeatureAdditionalConfigurationEl { }
+impl GuarddutyMemberDetectorFeatureAdditionalConfigurationEl {}
 
 impl ToListMappable for GuarddutyMemberDetectorFeatureAdditionalConfigurationEl {
     type O = BlockAssignable<GuarddutyMemberDetectorFeatureAdditionalConfigurationEl>;
@@ -312,7 +361,10 @@ pub struct GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef {
 }
 
 impl Ref for GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef {
         GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -338,5 +390,6 @@ impl GuarddutyMemberDetectorFeatureAdditionalConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct GuarddutyMemberDetectorFeatureDynamic {
-    additional_configuration: Option<DynamicBlock<GuarddutyMemberDetectorFeatureAdditionalConfigurationEl>>,
+    additional_configuration:
+        Option<DynamicBlock<GuarddutyMemberDetectorFeatureAdditionalConfigurationEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketAnalyticsConfigurationData {
@@ -62,7 +62,8 @@ impl S3BucketAnalyticsConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -75,7 +76,7 @@ impl S3BucketAnalyticsConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -86,12 +87,22 @@ impl S3BucketAnalyticsConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -101,22 +112,24 @@ impl S3BucketAnalyticsConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<S3BucketAnalyticsConfigurationFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<S3BucketAnalyticsConfigurationFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -129,17 +142,20 @@ impl S3BucketAnalyticsConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().storage_class_analysis = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.storage_class_analysis = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -149,33 +165,50 @@ impl S3BucketAnalyticsConfiguration {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketAnalyticsConfigurationFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_class_analysis` after provisioning.\n"]
-    pub fn storage_class_analysis(&self) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_class_analysis", self.extract_ref()))
+    pub fn storage_class_analysis(
+        &self,
+    ) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_class_analysis", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketAnalyticsConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketAnalyticsConfiguration { }
+impl Resource for S3BucketAnalyticsConfiguration {}
 
 impl ToListMappable for S3BucketAnalyticsConfiguration {
     type O = ListRef<S3BucketAnalyticsConfigurationRef>;
@@ -239,10 +272,7 @@ pub struct S3BucketAnalyticsConfigurationRef {
 
 impl Ref for S3BucketAnalyticsConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -257,7 +287,10 @@ impl S3BucketAnalyticsConfigurationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -267,23 +300,36 @@ impl S3BucketAnalyticsConfigurationRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketAnalyticsConfigurationFilterElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filter", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filter", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_class_analysis` after provisioning.\n"]
-    pub fn storage_class_analysis(&self) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_class_analysis", self.extract_ref()))
+    pub fn storage_class_analysis(
+        &self,
+    ) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_class_analysis", self.extract_ref()),
+        )
     }
 }
 
@@ -363,7 +409,8 @@ impl S3BucketAnalyticsConfigurationFilterElRef {
 }
 
 #[derive(Serialize)]
-pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationEl {
+pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_account_id: Option<PrimField<String>>,
     bucket_arn: PrimField<String>,
@@ -408,7 +455,8 @@ impl ToListMappable for S3BucketAnalyticsConfigurationStorageClassAnalysisElData
     }
 }
 
-pub struct BuildS3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationEl {
+pub struct BuildS3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationEl
+{
     #[doc = ""]
     pub bucket_arn: PrimField<String>,
 }
@@ -426,7 +474,8 @@ impl BuildS3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestin
     }
 }
 
-pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationElRef {
+pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -503,17 +552,21 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestination
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_bucket_destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_bucket_destination = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl {
-    type O = BlockAssignable<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl>;
+impl ToListMappable
+    for S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl
+{
+    type O = BlockAssignable<
+        S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -527,7 +580,9 @@ impl ToListMappable for S3BucketAnalyticsConfigurationStorageClassAnalysisElData
 pub struct BuildS3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl {}
 
 impl BuildS3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl {
-    pub fn build(self) -> S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl {
+    pub fn build(
+        self,
+    ) -> S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl {
         S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl {
             s3_bucket_destination: core::default::Default::default(),
             dynamic: Default::default(),
@@ -562,14 +617,19 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestination
         &self,
     ) -> ListRef<
         S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElS3BucketDestinationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.s3_bucket_destination", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_destination", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDynamic {
-    destination: Option<DynamicBlock<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl>>,
+    destination: Option<
+        DynamicBlock<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -577,7 +637,8 @@ pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     output_schema_version: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination: Option<Vec<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl>>,
+    destination:
+        Option<Vec<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl>>,
     dynamic: S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDynamic,
 }
 
@@ -591,15 +652,19 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportEl {
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -635,7 +700,10 @@ pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef {
 }
 
 impl Ref for S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef {
         S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef {
             shared: shared,
             base: base.to_string(),
@@ -650,20 +718,25 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef {
 
     #[doc = "Get a reference to the value of field `output_schema_version` after provisioning.\n"]
     pub fn output_schema_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_schema_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_schema_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(
         &self,
-    ) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElRef> {
+    ) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElDestinationElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.destination", self.base))
     }
 }
 
 #[derive(Serialize, Default)]
 struct S3BucketAnalyticsConfigurationStorageClassAnalysisElDynamic {
-    data_export: Option<DynamicBlock<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportEl>>,
+    data_export:
+        Option<DynamicBlock<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportEl>>,
 }
 
 #[derive(Serialize)]
@@ -682,10 +755,10 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.data_export = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.data_export = Some(d);
-            },
+            }
         }
         self
     }
@@ -720,7 +793,10 @@ pub struct S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
 }
 
 impl Ref for S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
         S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
             shared: shared,
             base: base.to_string(),
@@ -734,7 +810,9 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
     }
 
     #[doc = "Get a reference to the value of field `data_export` after provisioning.\n"]
-    pub fn data_export(&self) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef> {
+    pub fn data_export(
+        &self,
+    ) -> ListRef<S3BucketAnalyticsConfigurationStorageClassAnalysisElDataExportElRef> {
         ListRef::new(self.shared().clone(), format!("{}.data_export", self.base))
     }
 }
@@ -742,5 +820,6 @@ impl S3BucketAnalyticsConfigurationStorageClassAnalysisElRef {
 #[derive(Serialize, Default)]
 struct S3BucketAnalyticsConfigurationDynamic {
     filter: Option<DynamicBlock<S3BucketAnalyticsConfigurationFilterEl>>,
-    storage_class_analysis: Option<DynamicBlock<S3BucketAnalyticsConfigurationStorageClassAnalysisEl>>,
+    storage_class_analysis:
+        Option<DynamicBlock<S3BucketAnalyticsConfigurationStorageClassAnalysisEl>>,
 }

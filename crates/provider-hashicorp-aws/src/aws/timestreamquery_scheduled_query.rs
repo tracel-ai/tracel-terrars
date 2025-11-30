@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct TimestreamqueryScheduledQueryData {
@@ -24,11 +24,13 @@ struct TimestreamqueryScheduledQueryData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    error_report_configuration: Option<Vec<TimestreamqueryScheduledQueryErrorReportConfigurationEl>>,
+    error_report_configuration:
+        Option<Vec<TimestreamqueryScheduledQueryErrorReportConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     last_run_summary: Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    notification_configuration: Option<Vec<TimestreamqueryScheduledQueryNotificationConfigurationEl>>,
+    notification_configuration:
+        Option<Vec<TimestreamqueryScheduledQueryNotificationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     recently_failed_runs: Option<Vec<TimestreamqueryScheduledQueryRecentlyFailedRunsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -75,7 +77,8 @@ impl TimestreamqueryScheduledQuery {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +91,7 @@ impl TimestreamqueryScheduledQuery {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +102,22 @@ impl TimestreamqueryScheduledQuery {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -114,8 +127,7 @@ impl TimestreamqueryScheduledQuery {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -135,10 +147,10 @@ impl TimestreamqueryScheduledQuery {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().error_report_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.error_report_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -151,10 +163,10 @@ impl TimestreamqueryScheduledQuery {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().last_run_summary = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.last_run_summary = Some(d);
-            },
+            }
         }
         self
     }
@@ -167,10 +179,10 @@ impl TimestreamqueryScheduledQuery {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().notification_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.notification_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -183,10 +195,10 @@ impl TimestreamqueryScheduledQuery {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().recently_failed_runs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.recently_failed_runs = Some(d);
-            },
+            }
         }
         self
     }
@@ -199,10 +211,10 @@ impl TimestreamqueryScheduledQuery {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().schedule_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.schedule_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -215,10 +227,10 @@ impl TimestreamqueryScheduledQuery {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().target_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.target_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -236,88 +248,148 @@ impl TimestreamqueryScheduledQuery {
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `next_invocation_time` after provisioning.\n"]
     pub fn next_invocation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.next_invocation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.next_invocation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `previous_invocation_time` after provisioning.\n"]
     pub fn previous_invocation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.previous_invocation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.previous_invocation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_string` after provisioning.\n"]
     pub fn query_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_string", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_report_configuration` after provisioning.\n"]
-    pub fn error_report_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryErrorReportConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.error_report_configuration", self.extract_ref()))
+    pub fn error_report_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryErrorReportConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.error_report_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_run_summary` after provisioning.\n"]
     pub fn last_run_summary(&self) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.last_run_summary", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.last_run_summary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_configuration` after provisioning.\n"]
-    pub fn notification_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryNotificationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_configuration", self.extract_ref()))
+    pub fn notification_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryNotificationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recently_failed_runs` after provisioning.\n"]
-    pub fn recently_failed_runs(&self) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recently_failed_runs", self.extract_ref()))
+    pub fn recently_failed_runs(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recently_failed_runs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_configuration` after provisioning.\n"]
-    pub fn schedule_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryScheduleConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule_configuration", self.extract_ref()))
+    pub fn schedule_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryScheduleConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_configuration` after provisioning.\n"]
-    pub fn target_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_configuration", self.extract_ref()))
+    pub fn target_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -331,11 +403,15 @@ impl TimestreamqueryScheduledQuery {
 
 impl Referable for TimestreamqueryScheduledQuery {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for TimestreamqueryScheduledQuery { }
+impl Resource for TimestreamqueryScheduledQuery {}
 
 impl ToListMappable for TimestreamqueryScheduledQuery {
     type O = ListRef<TimestreamqueryScheduledQueryRef>;
@@ -408,10 +484,7 @@ pub struct TimestreamqueryScheduledQueryRef {
 
 impl Ref for TimestreamqueryScheduledQueryRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -431,88 +504,148 @@ impl TimestreamqueryScheduledQueryRef {
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `next_invocation_time` after provisioning.\n"]
     pub fn next_invocation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.next_invocation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.next_invocation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `previous_invocation_time` after provisioning.\n"]
     pub fn previous_invocation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.previous_invocation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.previous_invocation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_string` after provisioning.\n"]
     pub fn query_string(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_string", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_string", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_report_configuration` after provisioning.\n"]
-    pub fn error_report_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryErrorReportConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.error_report_configuration", self.extract_ref()))
+    pub fn error_report_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryErrorReportConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.error_report_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_run_summary` after provisioning.\n"]
     pub fn last_run_summary(&self) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.last_run_summary", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.last_run_summary", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_configuration` after provisioning.\n"]
-    pub fn notification_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryNotificationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_configuration", self.extract_ref()))
+    pub fn notification_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryNotificationConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `recently_failed_runs` after provisioning.\n"]
-    pub fn recently_failed_runs(&self) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.recently_failed_runs", self.extract_ref()))
+    pub fn recently_failed_runs(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.recently_failed_runs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schedule_configuration` after provisioning.\n"]
-    pub fn schedule_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryScheduleConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schedule_configuration", self.extract_ref()))
+    pub fn schedule_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryScheduleConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schedule_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_configuration` after provisioning.\n"]
-    pub fn target_configuration(&self) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_configuration", self.extract_ref()))
+    pub fn target_configuration(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -548,7 +681,8 @@ impl TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl {
 }
 
 impl ToListMappable for TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl {
-    type O = BlockAssignable<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>;
+    type O =
+        BlockAssignable<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -603,24 +737,33 @@ impl TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationElRef
 
     #[doc = "Get a reference to the value of field `encryption_option` after provisioning.\n"]
     pub fn encryption_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.encryption_option", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.encryption_option", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `object_key_prefix` after provisioning.\n"]
     pub fn object_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.object_key_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.object_key_prefix", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TimestreamqueryScheduledQueryErrorReportConfigurationElDynamic {
-    s3_configuration: Option<DynamicBlock<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>>,
+    s3_configuration: Option<
+        DynamicBlock<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>,
+    >,
 }
 
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryErrorReportConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3_configuration: Option<Vec<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>>,
+    s3_configuration:
+        Option<Vec<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>>,
     dynamic: TimestreamqueryScheduledQueryErrorReportConfigurationElDynamic,
 }
 
@@ -628,15 +771,19 @@ impl TimestreamqueryScheduledQueryErrorReportConfigurationEl {
     #[doc = "Set the field `s3_configuration`.\n"]
     pub fn set_s3_configuration(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -671,7 +818,10 @@ pub struct TimestreamqueryScheduledQueryErrorReportConfigurationElRef {
 }
 
 impl Ref for TimestreamqueryScheduledQueryErrorReportConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamqueryScheduledQueryErrorReportConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamqueryScheduledQueryErrorReportConfigurationElRef {
         TimestreamqueryScheduledQueryErrorReportConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -688,17 +838,24 @@ impl TimestreamqueryScheduledQueryErrorReportConfigurationElRef {
     pub fn s3_configuration(
         &self,
     ) -> ListRef<TimestreamqueryScheduledQueryErrorReportConfigurationElS3ConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {}
 
-impl TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl { }
+impl TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {}
 
-impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {
-    type O = BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl>;
+impl ToListMappable
+    for TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl
+{
+    type O = BlockAssignable<
+        TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -709,10 +866,13 @@ impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElErrorReport
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {}
+pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {
-    pub fn build(self) -> TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {
+    pub fn build(
+        self,
+    ) -> TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {
         TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl {}
     }
 }
@@ -722,11 +882,14 @@ pub struct TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3R
     base: String,
 }
 
-impl Ref for TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef {
+impl Ref
+    for TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef {
+    ) -> TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef
+    {
         TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef {
             shared: shared,
             base: base.to_string(),
@@ -753,14 +916,18 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportL
 #[derive(Serialize, Default)]
 struct TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElDynamic {
     s3_report_location: Option<
-        DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl>,
+        DynamicBlock<
+            TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    s3_report_location: Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl>>,
+    s3_report_location: Option<
+        Vec<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationEl>,
+    >,
     dynamic: TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElDynamic,
 }
 
@@ -780,10 +947,10 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_report_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_report_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -837,15 +1004,20 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElRef {
     #[doc = "Get a reference to the value of field `s3_report_location` after provisioning.\n"]
     pub fn s3_report_location(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_report_location", self.base))
+    ) -> ListRef<
+        TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElS3ReportLocationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_report_location", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl {}
 
-impl TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl { }
+impl TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl {}
 
 impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl {
     type O = BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl>;
@@ -873,7 +1045,10 @@ pub struct TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
 }
 
 impl Ref for TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
         TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
             shared: shared,
             base: base.to_string(),
@@ -888,12 +1063,18 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
 
     #[doc = "Get a reference to the value of field `bytes_metered` after provisioning.\n"]
     pub fn bytes_metered(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bytes_metered", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bytes_metered", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cumulative_bytes_scanned` after provisioning.\n"]
     pub fn cumulative_bytes_scanned(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cumulative_bytes_scanned", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cumulative_bytes_scanned", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_writes` after provisioning.\n"]
@@ -903,24 +1084,37 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef {
 
     #[doc = "Get a reference to the value of field `execution_time_in_millis` after provisioning.\n"]
     pub fn execution_time_in_millis(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_time_in_millis", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_time_in_millis", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_result_rows` after provisioning.\n"]
     pub fn query_result_rows(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_result_rows", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_result_rows", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `records_ingested` after provisioning.\n"]
     pub fn records_ingested(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.records_ingested", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.records_ingested", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {}
+pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl
+{}
 
-impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl { }
+impl
+    TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl
+{
+}
 
 impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {
     type O =
@@ -937,7 +1131,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsigh
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {}
+pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {
     pub fn build(
@@ -947,7 +1142,8 @@ impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQu
     }
 }
 
-pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxElRef {
+pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1015,18 +1211,21 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySp
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.max = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.max = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl {
-    type O =
-        BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl>;
+impl ToListMappable
+    for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl
+{
+    type O = BlockAssignable<
+        TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1037,10 +1236,16 @@ impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsigh
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl {}
+pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl
+{}
 
-impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl {
-    pub fn build(self) -> TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl {
+impl
+    BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl
+{
+    pub fn build(
+        self,
+    ) -> TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl
+    {
         TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageEl {
             max: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1048,7 +1253,8 @@ impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQu
     }
 }
 
-pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElRef {
+pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1073,15 +1279,16 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySp
     #[doc = "Get a reference to the value of field `max` after provisioning.\n"]
     pub fn max(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxElRef> {
+    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElMaxElRef>{
         ListRef::new(self.shared().clone(), format!("{}.max", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl {}
+pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl
+{}
 
-impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl { }
+impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl {}
 
 impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl {
     type O =
@@ -1098,7 +1305,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsigh
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl {}
+pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxEl {
     pub fn build(
@@ -1108,7 +1316,8 @@ impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQu
     }
 }
 
-pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxElRef {
+pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1125,7 +1334,9 @@ impl Ref for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseE
     }
 }
 
-impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxElRef {
+impl
+    TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1171,18 +1382,21 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTe
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.max = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.max = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl {
-    type O =
-        BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl>;
+impl ToListMappable
+    for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl
+{
+    type O = BlockAssignable<
+        TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1193,10 +1407,14 @@ impl ToListMappable for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsigh
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl {}
+pub struct BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl {
-    pub fn build(self) -> TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl {
+    pub fn build(
+        self,
+    ) -> TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl
+    {
         TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeEl {
             max: core::default::Default::default(),
             dynamic: Default::default(),
@@ -1204,16 +1422,20 @@ impl BuildTimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQu
     }
 }
 
-pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef {
+pub struct TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef {
+impl Ref
+    for TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef {
+    ) -> TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef
+    {
         TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef {
             shared: shared,
             base: base.to_string(),
@@ -1229,7 +1451,7 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTe
     #[doc = "Get a reference to the value of field `max` after provisioning.\n"]
     pub fn max(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxElRef> {
+    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElMaxElRef>{
         ListRef::new(self.shared().clone(), format!("{}.max", self.base))
     }
 }
@@ -1273,10 +1495,10 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_spatial_coverage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_spatial_coverage = Some(d);
-            },
+            }
         }
         self
     }
@@ -1296,10 +1518,10 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_temporal_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_temporal_range = Some(d);
-            },
+            }
         }
         self
     }
@@ -1363,41 +1585,55 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElRef {
 
     #[doc = "Get a reference to the value of field `query_table_count` after provisioning.\n"]
     pub fn query_table_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_table_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_table_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_spatial_coverage` after provisioning.\n"]
     pub fn query_spatial_coverage(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_spatial_coverage", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQuerySpatialCoverageElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_spatial_coverage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_temporal_range` after provisioning.\n"]
     pub fn query_temporal_range(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_temporal_range", self.base))
+    ) -> ListRef<
+        TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElQueryTemporalRangeElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_temporal_range", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct TimestreamqueryScheduledQueryLastRunSummaryElDynamic {
-    error_report_location: Option<DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl>>,
-    execution_stats: Option<DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl>>,
-    query_insights_response: Option<
-        DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl>,
-    >,
+    error_report_location:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl>>,
+    execution_stats:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl>>,
+    query_insights_response:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl>>,
 }
 
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryLastRunSummaryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    error_report_location: Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl>>,
+    error_report_location:
+        Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     execution_stats: Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    query_insights_response: Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl>>,
+    query_insights_response:
+        Option<Vec<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl>>,
     dynamic: TimestreamqueryScheduledQueryLastRunSummaryElDynamic,
 }
 
@@ -1405,15 +1641,17 @@ impl TimestreamqueryScheduledQueryLastRunSummaryEl {
     #[doc = "Set the field `error_report_location`.\n"]
     pub fn set_error_report_location(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl>>,
+        v: impl Into<
+            BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.error_report_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.error_report_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -1426,10 +1664,10 @@ impl TimestreamqueryScheduledQueryLastRunSummaryEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.execution_stats = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.execution_stats = Some(d);
-            },
+            }
         }
         self
     }
@@ -1437,15 +1675,17 @@ impl TimestreamqueryScheduledQueryLastRunSummaryEl {
     #[doc = "Set the field `query_insights_response`.\n"]
     pub fn set_query_insights_response(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl>>,
+        v: impl Into<
+            BlockAssignable<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_insights_response = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_insights_response = Some(d);
-            },
+            }
         }
         self
     }
@@ -1497,12 +1737,18 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElRef {
 
     #[doc = "Get a reference to the value of field `failure_reason` after provisioning.\n"]
     pub fn failure_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_reason", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `invocation_time` after provisioning.\n"]
     pub fn invocation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invocation_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invocation_time", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_status` after provisioning.\n"]
@@ -1519,19 +1765,30 @@ impl TimestreamqueryScheduledQueryLastRunSummaryElRef {
     pub fn error_report_location(
         &self,
     ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElErrorReportLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.error_report_location", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.error_report_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_stats` after provisioning.\n"]
-    pub fn execution_stats(&self) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execution_stats", self.base))
+    pub fn execution_stats(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElExecutionStatsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execution_stats", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_insights_response` after provisioning.\n"]
     pub fn query_insights_response(
         &self,
     ) -> ListRef<TimestreamqueryScheduledQueryLastRunSummaryElQueryInsightsResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_insights_response", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_insights_response", self.base),
+        )
     }
 }
 
@@ -1540,10 +1797,11 @@ pub struct TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurat
     topic_arn: PrimField<String>,
 }
 
-impl TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl { }
+impl TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl {}
 
 impl ToListMappable for TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl {
-    type O = BlockAssignable<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl>;
+    type O =
+        BlockAssignable<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1560,8 +1818,12 @@ pub struct BuildTimestreamqueryScheduledQueryNotificationConfigurationElSnsConfi
 }
 
 impl BuildTimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl {
-    pub fn build(self) -> TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl {
-        TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl { topic_arn: self.topic_arn }
+    pub fn build(
+        self,
+    ) -> TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl {
+        TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl {
+            topic_arn: self.topic_arn,
+        }
     }
 }
 
@@ -1603,7 +1865,8 @@ struct TimestreamqueryScheduledQueryNotificationConfigurationElDynamic {
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryNotificationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    sns_configuration: Option<Vec<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl>>,
+    sns_configuration:
+        Option<Vec<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl>>,
     dynamic: TimestreamqueryScheduledQueryNotificationConfigurationElDynamic,
 }
 
@@ -1611,15 +1874,19 @@ impl TimestreamqueryScheduledQueryNotificationConfigurationEl {
     #[doc = "Set the field `sns_configuration`.\n"]
     pub fn set_sns_configuration(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sns_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sns_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1654,7 +1921,10 @@ pub struct TimestreamqueryScheduledQueryNotificationConfigurationElRef {
 }
 
 impl Ref for TimestreamqueryScheduledQueryNotificationConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamqueryScheduledQueryNotificationConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamqueryScheduledQueryNotificationConfigurationElRef {
         TimestreamqueryScheduledQueryNotificationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1670,19 +1940,27 @@ impl TimestreamqueryScheduledQueryNotificationConfigurationElRef {
     #[doc = "Get a reference to the value of field `sns_configuration` after provisioning.\n"]
     pub fn sns_configuration(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sns_configuration", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryNotificationConfigurationElSnsConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sns_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {}
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl
+{}
 
-impl TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl { }
+impl TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {}
 
-impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {
-    type O =
-        BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl>;
+impl ToListMappable
+    for TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl
+{
+    type O = BlockAssignable<
+        TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1693,24 +1971,32 @@ impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorRe
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {}
+pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {
-    pub fn build(self) -> TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {
+    pub fn build(
+        self,
+    ) -> TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl
+    {
         TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationEl {}
     }
 }
 
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef {
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef {
+impl Ref
+    for TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef {
+    ) -> TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef
+    {
         TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1766,17 +2052,18 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_report_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_report_location = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl {
-    type O = BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>;
+    type O =
+        BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1823,15 +2110,20 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElRef {
     #[doc = "Get a reference to the value of field `s3_report_location` after provisioning.\n"]
     pub fn s3_report_location(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_report_location", self.base))
+    ) -> ListRef<
+        TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElS3ReportLocationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_report_location", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl {}
 
-impl TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl { }
+impl TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl {}
 
 impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl {
     type O = BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl>;
@@ -1877,12 +2169,18 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsElRef {
 
     #[doc = "Get a reference to the value of field `bytes_metered` after provisioning.\n"]
     pub fn bytes_metered(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bytes_metered", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bytes_metered", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cumulative_bytes_scanned` after provisioning.\n"]
     pub fn cumulative_bytes_scanned(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cumulative_bytes_scanned", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cumulative_bytes_scanned", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_writes` after provisioning.\n"]
@@ -1892,22 +2190,32 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsElRef {
 
     #[doc = "Get a reference to the value of field `execution_time_in_millis` after provisioning.\n"]
     pub fn execution_time_in_millis(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.execution_time_in_millis", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.execution_time_in_millis", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_result_rows` after provisioning.\n"]
     pub fn query_result_rows(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_result_rows", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_result_rows", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `records_ingested` after provisioning.\n"]
     pub fn records_ingested(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.records_ingested", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.records_ingested", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {}
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxEl
+{}
 
 impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxEl { }
 
@@ -1926,7 +2234,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryIn
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {}
+pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxEl {
     pub fn build(
@@ -1936,7 +2245,8 @@ impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponse
     }
 }
 
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxElRef {
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElMaxElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1990,7 +2300,9 @@ pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsRespons
     dynamic: TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElDynamic,
 }
 
-impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageEl {
+impl
+    TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageEl
+{
     #[doc = "Set the field `max`.\n"]
     pub fn set_max(
         mut self,
@@ -2006,10 +2318,10 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQue
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.max = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.max = Some(d);
-            },
+            }
         }
         self
     }
@@ -2030,7 +2342,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryIn
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageEl {}
+pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageEl {
     pub fn build(
@@ -2043,7 +2356,8 @@ impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponse
     }
 }
 
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElRef {
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2076,7 +2390,8 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQue
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxEl {}
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxEl
+{}
 
 impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxEl { }
 
@@ -2095,7 +2410,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryIn
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxEl {}
+pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxEl {
     pub fn build(
@@ -2105,7 +2421,8 @@ impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponse
     }
 }
 
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxElRef {
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2170,16 +2487,18 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQue
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.max = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.max = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeEl {
+impl ToListMappable
+    for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeEl
+{
     type O =
         BlockAssignable<
             TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeEl,
@@ -2194,7 +2513,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryIn
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeEl {}
+pub struct BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeEl {
     pub fn build(
@@ -2207,7 +2527,8 @@ impl BuildTimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponse
     }
 }
 
-pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElRef {
+pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2224,7 +2545,9 @@ impl Ref for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsRespo
     }
 }
 
-impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElRef {
+impl
+    TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -2234,7 +2557,7 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQue
         &self,
     ) -> ListRef<
         TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElMaxElRef,
-    > {
+    >{
         ListRef::new(self.shared().clone(), format!("{}.max", self.base))
     }
 }
@@ -2278,10 +2601,10 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_spatial_coverage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_spatial_coverage = Some(d);
-            },
+            }
         }
         self
     }
@@ -2301,17 +2624,18 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_temporal_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_temporal_range = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl {
-    type O = BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl>;
+    type O =
+        BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2368,21 +2692,30 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElRef
 
     #[doc = "Get a reference to the value of field `query_table_count` after provisioning.\n"]
     pub fn query_table_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_table_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_table_count", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_spatial_coverage` after provisioning.\n"]
     pub fn query_spatial_coverage(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_spatial_coverage", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQuerySpatialCoverageElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_spatial_coverage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_temporal_range` after provisioning.\n"]
     pub fn query_temporal_range(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_temporal_range", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElQueryTemporalRangeElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_temporal_range", self.base),
+        )
     }
 }
 
@@ -2391,7 +2724,8 @@ struct TimestreamqueryScheduledQueryRecentlyFailedRunsElDynamic {
     error_report_location: Option<
         DynamicBlock<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>,
     >,
-    execution_stats: Option<DynamicBlock<TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl>>,
+    execution_stats:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl>>,
     query_insights_response: Option<
         DynamicBlock<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl>,
     >,
@@ -2400,11 +2734,13 @@ struct TimestreamqueryScheduledQueryRecentlyFailedRunsElDynamic {
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    error_report_location: Option<Vec<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>>,
+    error_report_location:
+        Option<Vec<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     execution_stats: Option<Vec<TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    query_insights_response: Option<Vec<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl>>,
+    query_insights_response:
+        Option<Vec<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl>>,
     dynamic: TimestreamqueryScheduledQueryRecentlyFailedRunsElDynamic,
 }
 
@@ -2412,15 +2748,17 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsEl {
     #[doc = "Set the field `error_report_location`.\n"]
     pub fn set_error_report_location(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>>,
+        v: impl Into<
+            BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.error_report_location = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.error_report_location = Some(d);
-            },
+            }
         }
         self
     }
@@ -2433,10 +2771,10 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.execution_stats = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.execution_stats = Some(d);
-            },
+            }
         }
         self
     }
@@ -2444,15 +2782,19 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsEl {
     #[doc = "Set the field `query_insights_response`.\n"]
     pub fn set_query_insights_response(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl>>,
+        v: impl Into<
+            BlockAssignable<
+                TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_insights_response = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_insights_response = Some(d);
-            },
+            }
         }
         self
     }
@@ -2489,7 +2831,10 @@ pub struct TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
 }
 
 impl Ref for TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
         TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
             shared: shared,
             base: base.to_string(),
@@ -2504,12 +2849,18 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
 
     #[doc = "Get a reference to the value of field `failure_reason` after provisioning.\n"]
     pub fn failure_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.failure_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.failure_reason", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `invocation_time` after provisioning.\n"]
     pub fn invocation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.invocation_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.invocation_time", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_status` after provisioning.\n"]
@@ -2526,19 +2877,30 @@ impl TimestreamqueryScheduledQueryRecentlyFailedRunsElRef {
     pub fn error_report_location(
         &self,
     ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElErrorReportLocationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.error_report_location", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.error_report_location", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `execution_stats` after provisioning.\n"]
-    pub fn execution_stats(&self) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.execution_stats", self.base))
+    pub fn execution_stats(
+        &self,
+    ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElExecutionStatsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.execution_stats", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_insights_response` after provisioning.\n"]
     pub fn query_insights_response(
         &self,
     ) -> ListRef<TimestreamqueryScheduledQueryRecentlyFailedRunsElQueryInsightsResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.query_insights_response", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.query_insights_response", self.base),
+        )
     }
 }
 
@@ -2547,7 +2909,7 @@ pub struct TimestreamqueryScheduledQueryScheduleConfigurationEl {
     schedule_expression: PrimField<String>,
 }
 
-impl TimestreamqueryScheduledQueryScheduleConfigurationEl { }
+impl TimestreamqueryScheduledQueryScheduleConfigurationEl {}
 
 impl ToListMappable for TimestreamqueryScheduledQueryScheduleConfigurationEl {
     type O = BlockAssignable<TimestreamqueryScheduledQueryScheduleConfigurationEl>;
@@ -2568,7 +2930,9 @@ pub struct BuildTimestreamqueryScheduledQueryScheduleConfigurationEl {
 
 impl BuildTimestreamqueryScheduledQueryScheduleConfigurationEl {
     pub fn build(self) -> TimestreamqueryScheduledQueryScheduleConfigurationEl {
-        TimestreamqueryScheduledQueryScheduleConfigurationEl { schedule_expression: self.schedule_expression }
+        TimestreamqueryScheduledQueryScheduleConfigurationEl {
+            schedule_expression: self.schedule_expression,
+        }
     }
 }
 
@@ -2578,7 +2942,10 @@ pub struct TimestreamqueryScheduledQueryScheduleConfigurationElRef {
 }
 
 impl Ref for TimestreamqueryScheduledQueryScheduleConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamqueryScheduledQueryScheduleConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamqueryScheduledQueryScheduleConfigurationElRef {
         TimestreamqueryScheduledQueryScheduleConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2593,17 +2960,21 @@ impl TimestreamqueryScheduledQueryScheduleConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl
+{
     dimension_value_type: PrimField<String>,
     name: PrimField<String>,
 }
 
-impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl { }
+impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl {}
 
 impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl {
     type O =
@@ -2620,7 +2991,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimest
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl {
+pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingEl
+{
     #[doc = ""]
     pub dimension_value_type: PrimField<String>,
     #[doc = ""]
@@ -2638,7 +3010,8 @@ impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurat
     }
 }
 
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingElRef {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2655,14 +3028,19 @@ impl Ref for TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigu
     }
 }
 
-impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingElRef {
+impl
+    TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `dimension_value_type` after provisioning.\n"]
     pub fn dimension_value_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dimension_value_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dimension_value_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -2672,7 +3050,8 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElMultiMeasureAttributeMappingEl {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElMultiMeasureAttributeMappingEl
+{
     measure_value_type: PrimField<String>,
     source_column: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2702,7 +3081,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimest
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElMultiMeasureAttributeMappingEl {
+pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElMultiMeasureAttributeMappingEl
+{
     #[doc = ""]
     pub measure_value_type: PrimField<String>,
     #[doc = ""]
@@ -2721,7 +3101,8 @@ impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurat
     }
 }
 
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElMultiMeasureAttributeMappingElRef {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElMultiMeasureAttributeMappingElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2786,7 +3167,9 @@ pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigura
     dynamic: TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElDynamic,
 }
 
-impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingEl {
+impl
+    TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingEl
+{
     #[doc = "Set the field `measure_name`.\n"]
     pub fn set_measure_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.measure_name = Some(v.into());
@@ -2820,10 +3203,10 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.multi_measure_attribute_mapping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.multi_measure_attribute_mapping = Some(d);
-            },
+            }
         }
         self
     }
@@ -2844,7 +3227,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimest
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingEl {
+pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingEl
+{
     #[doc = ""]
     pub measure_value_type: PrimField<String>,
 }
@@ -2864,7 +3248,8 @@ impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurat
     }
 }
 
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElRef {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2917,7 +3302,8 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
 }
 
 #[derive(Serialize)]
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElMultiMeasureAttributeMappingEl {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElMultiMeasureAttributeMappingEl
+{
     measure_value_type: PrimField<String>,
     source_column: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2947,7 +3333,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimest
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElMultiMeasureAttributeMappingEl {
+pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElMultiMeasureAttributeMappingEl
+{
     #[doc = ""]
     pub measure_value_type: PrimField<String>,
     #[doc = ""]
@@ -2966,7 +3353,8 @@ impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurat
     }
 }
 
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElMultiMeasureAttributeMappingElRef {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElMultiMeasureAttributeMappingElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3072,7 +3460,8 @@ impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimest
     }
 }
 
-pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsEl {}
+pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsEl
+{}
 
 impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsEl {
     pub fn build(
@@ -3086,7 +3475,8 @@ impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurat
     }
 }
 
-pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElRef {
+pub struct TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3182,10 +3572,10 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.dimension_mapping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.dimension_mapping = Some(d);
-            },
+            }
         }
         self
     }
@@ -3205,10 +3595,10 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.mixed_measure_mapping = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.mixed_measure_mapping = Some(d);
-            },
+            }
         }
         self
     }
@@ -3228,17 +3618,21 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.multi_measure_mappings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.multi_measure_mappings = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl {
-    type O = BlockAssignable<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl>;
+impl ToListMappable
+    for TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
+{
+    type O = BlockAssignable<
+        TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3259,7 +3653,9 @@ pub struct BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConf
 }
 
 impl BuildTimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl {
-    pub fn build(self) -> TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl {
+    pub fn build(
+        self,
+    ) -> TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl {
         TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl {
             database_name: self.database_name,
             measure_name_column: core::default::Default::default(),
@@ -3297,12 +3693,18 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `measure_name_column` after provisioning.\n"]
     pub fn measure_name_column(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.measure_name_column", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.measure_name_column", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
@@ -3318,15 +3720,21 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
     #[doc = "Get a reference to the value of field `dimension_mapping` after provisioning.\n"]
     pub fn dimension_mapping(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dimension_mapping", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElDimensionMappingElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dimension_mapping", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mixed_measure_mapping` after provisioning.\n"]
     pub fn mixed_measure_mapping(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mixed_measure_mapping", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMixedMeasureMappingElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mixed_measure_mapping", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `multi_measure_mappings` after provisioning.\n"]
@@ -3334,8 +3742,11 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl
         &self,
     ) -> ListRef<
         TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElMultiMeasureMappingsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.multi_measure_mappings", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.multi_measure_mappings", self.base),
+        )
     }
 }
 
@@ -3349,7 +3760,8 @@ struct TimestreamqueryScheduledQueryTargetConfigurationElDynamic {
 #[derive(Serialize)]
 pub struct TimestreamqueryScheduledQueryTargetConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    timestream_configuration: Option<Vec<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl>>,
+    timestream_configuration:
+        Option<Vec<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl>>,
     dynamic: TimestreamqueryScheduledQueryTargetConfigurationElDynamic,
 }
 
@@ -3357,15 +3769,19 @@ impl TimestreamqueryScheduledQueryTargetConfigurationEl {
     #[doc = "Set the field `timestream_configuration`.\n"]
     pub fn set_timestream_configuration(
         mut self,
-        v: impl Into<BlockAssignable<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.timestream_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.timestream_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3400,7 +3816,10 @@ pub struct TimestreamqueryScheduledQueryTargetConfigurationElRef {
 }
 
 impl Ref for TimestreamqueryScheduledQueryTargetConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> TimestreamqueryScheduledQueryTargetConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> TimestreamqueryScheduledQueryTargetConfigurationElRef {
         TimestreamqueryScheduledQueryTargetConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -3416,8 +3835,12 @@ impl TimestreamqueryScheduledQueryTargetConfigurationElRef {
     #[doc = "Get a reference to the value of field `timestream_configuration` after provisioning.\n"]
     pub fn timestream_configuration(
         &self,
-    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timestream_configuration", self.base))
+    ) -> ListRef<TimestreamqueryScheduledQueryTargetConfigurationElTimestreamConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timestream_configuration", self.base),
+        )
     }
 }
 
@@ -3432,22 +3855,19 @@ pub struct TimestreamqueryScheduledQueryTimeoutsEl {
 }
 
 impl TimestreamqueryScheduledQueryTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -3497,20 +3917,17 @@ impl TimestreamqueryScheduledQueryTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
@@ -3518,10 +3935,13 @@ impl TimestreamqueryScheduledQueryTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct TimestreamqueryScheduledQueryDynamic {
-    error_report_configuration: Option<DynamicBlock<TimestreamqueryScheduledQueryErrorReportConfigurationEl>>,
+    error_report_configuration:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryErrorReportConfigurationEl>>,
     last_run_summary: Option<DynamicBlock<TimestreamqueryScheduledQueryLastRunSummaryEl>>,
-    notification_configuration: Option<DynamicBlock<TimestreamqueryScheduledQueryNotificationConfigurationEl>>,
+    notification_configuration:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryNotificationConfigurationEl>>,
     recently_failed_runs: Option<DynamicBlock<TimestreamqueryScheduledQueryRecentlyFailedRunsEl>>,
-    schedule_configuration: Option<DynamicBlock<TimestreamqueryScheduledQueryScheduleConfigurationEl>>,
+    schedule_configuration:
+        Option<DynamicBlock<TimestreamqueryScheduledQueryScheduleConfigurationEl>>,
     target_configuration: Option<DynamicBlock<TimestreamqueryScheduledQueryTargetConfigurationEl>>,
 }

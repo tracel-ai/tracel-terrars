@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketNotificationData {
@@ -65,7 +65,8 @@ impl S3BucketNotification {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl S3BucketNotification {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl S3BucketNotification {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -110,22 +121,24 @@ impl S3BucketNotification {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `lambda_function`.\n"]
-    pub fn set_lambda_function(self, v: impl Into<BlockAssignable<S3BucketNotificationLambdaFunctionEl>>) -> Self {
+    pub fn set_lambda_function(
+        self,
+        v: impl Into<BlockAssignable<S3BucketNotificationLambdaFunctionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().lambda_function = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.lambda_function = Some(d);
-            },
+            }
         }
         self
     }
@@ -135,10 +148,10 @@ impl S3BucketNotification {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().queue = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.queue = Some(d);
-            },
+            }
         }
         self
     }
@@ -148,22 +161,28 @@ impl S3BucketNotification {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().topic = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.topic = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eventbridge` after provisioning.\n"]
     pub fn eventbridge(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.eventbridge", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.eventbridge", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -171,35 +190,50 @@ impl S3BucketNotification {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_function` after provisioning.\n"]
     pub fn lambda_function(&self) -> ListRef<S3BucketNotificationLambdaFunctionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_function", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_function", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queue` after provisioning.\n"]
     pub fn queue(&self) -> ListRef<S3BucketNotificationQueueElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.queue", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.queue", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> ListRef<S3BucketNotificationTopicElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.topic", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.topic", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketNotification {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketNotification { }
+impl Resource for S3BucketNotification {}
 
 impl ToListMappable for S3BucketNotification {
     type O = ListRef<S3BucketNotificationRef>;
@@ -262,10 +296,7 @@ pub struct S3BucketNotificationRef {
 
 impl Ref for S3BucketNotificationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -280,12 +311,18 @@ impl S3BucketNotificationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eventbridge` after provisioning.\n"]
     pub fn eventbridge(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.eventbridge", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.eventbridge", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -293,25 +330,36 @@ impl S3BucketNotificationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_function` after provisioning.\n"]
     pub fn lambda_function(&self) -> ListRef<S3BucketNotificationLambdaFunctionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_function", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_function", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `queue` after provisioning.\n"]
     pub fn queue(&self) -> ListRef<S3BucketNotificationQueueElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.queue", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.queue", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> ListRef<S3BucketNotificationTopicElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.topic", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.topic", self.extract_ref()),
+        )
     }
 }
 
@@ -409,12 +457,18 @@ impl S3BucketNotificationLambdaFunctionElRef {
 
     #[doc = "Get a reference to the value of field `filter_prefix` after provisioning.\n"]
     pub fn filter_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_suffix` after provisioning.\n"]
     pub fn filter_suffix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter_suffix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter_suffix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -424,7 +478,10 @@ impl S3BucketNotificationLambdaFunctionElRef {
 
     #[doc = "Get a reference to the value of field `lambda_function_arn` after provisioning.\n"]
     pub fn lambda_function_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_function_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_function_arn", self.base),
+        )
     }
 }
 
@@ -517,12 +574,18 @@ impl S3BucketNotificationQueueElRef {
 
     #[doc = "Get a reference to the value of field `filter_prefix` after provisioning.\n"]
     pub fn filter_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_suffix` after provisioning.\n"]
     pub fn filter_suffix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter_suffix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter_suffix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -625,12 +688,18 @@ impl S3BucketNotificationTopicElRef {
 
     #[doc = "Get a reference to the value of field `filter_prefix` after provisioning.\n"]
     pub fn filter_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter_suffix` after provisioning.\n"]
     pub fn filter_suffix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.filter_suffix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.filter_suffix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]

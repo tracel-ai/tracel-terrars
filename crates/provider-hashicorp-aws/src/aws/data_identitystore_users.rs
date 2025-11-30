@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIdentitystoreUsersData {
@@ -41,8 +41,7 @@ impl DataIdentitystoreUsers {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -50,28 +49,40 @@ impl DataIdentitystoreUsers {
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> ListRef<DataIdentitystoreUsersUsersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.users", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.users", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataIdentitystoreUsers {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIdentitystoreUsers { }
+impl Datasource for DataIdentitystoreUsers {}
 
 impl ToListMappable for DataIdentitystoreUsers {
     type O = ListRef<DataIdentitystoreUsersRef>;
@@ -127,10 +138,7 @@ pub struct DataIdentitystoreUsersRef {
 
 impl Ref for DataIdentitystoreUsersRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -145,18 +153,26 @@ impl DataIdentitystoreUsersRef {
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> ListRef<DataIdentitystoreUsersUsersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.users", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.users", self.extract_ref()),
+        )
     }
 }
 
@@ -310,7 +326,10 @@ impl DataIdentitystoreUsersUsersElAddressesElRef {
 
     #[doc = "Get a reference to the value of field `street_address` after provisioning.\n"]
     pub fn street_address(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.street_address", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.street_address", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -600,12 +619,18 @@ impl DataIdentitystoreUsersUsersElNameElRef {
 
     #[doc = "Get a reference to the value of field `honorific_prefix` after provisioning.\n"]
     pub fn honorific_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.honorific_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.honorific_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `honorific_suffix` after provisioning.\n"]
     pub fn honorific_suffix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.honorific_suffix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.honorific_suffix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `middle_name` after provisioning.\n"]
@@ -741,7 +766,10 @@ pub struct DataIdentitystoreUsersUsersEl {
 
 impl DataIdentitystoreUsersUsersEl {
     #[doc = "Set the field `addresses`.\n"]
-    pub fn set_addresses(mut self, v: impl Into<ListField<DataIdentitystoreUsersUsersElAddressesEl>>) -> Self {
+    pub fn set_addresses(
+        mut self,
+        v: impl Into<ListField<DataIdentitystoreUsersUsersElAddressesEl>>,
+    ) -> Self {
         self.addresses = Some(v.into());
         self
     }
@@ -753,13 +781,19 @@ impl DataIdentitystoreUsersUsersEl {
     }
 
     #[doc = "Set the field `emails`.\n"]
-    pub fn set_emails(mut self, v: impl Into<ListField<DataIdentitystoreUsersUsersElEmailsEl>>) -> Self {
+    pub fn set_emails(
+        mut self,
+        v: impl Into<ListField<DataIdentitystoreUsersUsersElEmailsEl>>,
+    ) -> Self {
         self.emails = Some(v.into());
         self
     }
 
     #[doc = "Set the field `external_ids`.\n"]
-    pub fn set_external_ids(mut self, v: impl Into<ListField<DataIdentitystoreUsersUsersElExternalIdsEl>>) -> Self {
+    pub fn set_external_ids(
+        mut self,
+        v: impl Into<ListField<DataIdentitystoreUsersUsersElExternalIdsEl>>,
+    ) -> Self {
         self.external_ids = Some(v.into());
         self
     }
@@ -777,7 +811,10 @@ impl DataIdentitystoreUsersUsersEl {
     }
 
     #[doc = "Set the field `name`.\n"]
-    pub fn set_name(mut self, v: impl Into<ListField<DataIdentitystoreUsersUsersElNameEl>>) -> Self {
+    pub fn set_name(
+        mut self,
+        v: impl Into<ListField<DataIdentitystoreUsersUsersElNameEl>>,
+    ) -> Self {
         self.name = Some(v.into());
         self
     }
@@ -789,7 +826,10 @@ impl DataIdentitystoreUsersUsersEl {
     }
 
     #[doc = "Set the field `phone_numbers`.\n"]
-    pub fn set_phone_numbers(mut self, v: impl Into<ListField<DataIdentitystoreUsersUsersElPhoneNumbersEl>>) -> Self {
+    pub fn set_phone_numbers(
+        mut self,
+        v: impl Into<ListField<DataIdentitystoreUsersUsersElPhoneNumbersEl>>,
+    ) -> Self {
         self.phone_numbers = Some(v.into());
         self
     }
@@ -915,7 +955,10 @@ impl DataIdentitystoreUsersUsersElRef {
 
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_store_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_store_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `locale` after provisioning.\n"]
@@ -935,12 +978,18 @@ impl DataIdentitystoreUsersUsersElRef {
 
     #[doc = "Get a reference to the value of field `phone_numbers` after provisioning.\n"]
     pub fn phone_numbers(&self) -> ListRef<DataIdentitystoreUsersUsersElPhoneNumbersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.phone_numbers", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.phone_numbers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_language` after provisioning.\n"]
     pub fn preferred_language(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.preferred_language", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.preferred_language", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `profile_url` after provisioning.\n"]

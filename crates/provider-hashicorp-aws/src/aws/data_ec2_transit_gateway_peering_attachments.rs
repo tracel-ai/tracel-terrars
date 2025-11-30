@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2TransitGatewayPeeringAttachmentsData {
@@ -53,28 +53,33 @@ impl DataEc2TransitGatewayPeeringAttachments {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2TransitGatewayPeeringAttachmentsFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2TransitGatewayPeeringAttachmentsFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataEc2TransitGatewayPeeringAttachmentsTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataEc2TransitGatewayPeeringAttachmentsTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -89,10 +94,12 @@ impl DataEc2TransitGatewayPeeringAttachments {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -106,11 +113,15 @@ impl DataEc2TransitGatewayPeeringAttachments {
 
 impl Referable for DataEc2TransitGatewayPeeringAttachments {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2TransitGatewayPeeringAttachments { }
+impl Datasource for DataEc2TransitGatewayPeeringAttachments {}
 
 impl ToListMappable for DataEc2TransitGatewayPeeringAttachments {
     type O = ListRef<DataEc2TransitGatewayPeeringAttachmentsRef>;
@@ -141,20 +152,22 @@ pub struct BuildDataEc2TransitGatewayPeeringAttachments {
 
 impl BuildDataEc2TransitGatewayPeeringAttachments {
     pub fn build(self, stack: &mut Stack) -> DataEc2TransitGatewayPeeringAttachments {
-        let out = DataEc2TransitGatewayPeeringAttachments(Rc::new(DataEc2TransitGatewayPeeringAttachments_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataEc2TransitGatewayPeeringAttachmentsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                filter: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataEc2TransitGatewayPeeringAttachments(Rc::new(
+            DataEc2TransitGatewayPeeringAttachments_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataEc2TransitGatewayPeeringAttachmentsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    filter: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -167,10 +180,7 @@ pub struct DataEc2TransitGatewayPeeringAttachmentsRef {
 
 impl Ref for DataEc2TransitGatewayPeeringAttachmentsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -193,10 +203,12 @@ impl DataEc2TransitGatewayPeeringAttachmentsRef {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -214,7 +226,7 @@ pub struct DataEc2TransitGatewayPeeringAttachmentsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2TransitGatewayPeeringAttachmentsFilterEl { }
+impl DataEc2TransitGatewayPeeringAttachmentsFilterEl {}
 
 impl ToListMappable for DataEc2TransitGatewayPeeringAttachmentsFilterEl {
     type O = BlockAssignable<DataEc2TransitGatewayPeeringAttachmentsFilterEl>;
@@ -250,7 +262,10 @@ pub struct DataEc2TransitGatewayPeeringAttachmentsFilterElRef {
 }
 
 impl Ref for DataEc2TransitGatewayPeeringAttachmentsFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayPeeringAttachmentsFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayPeeringAttachmentsFilterElRef {
         DataEc2TransitGatewayPeeringAttachmentsFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -304,7 +319,9 @@ pub struct BuildDataEc2TransitGatewayPeeringAttachmentsTimeoutsEl {}
 
 impl BuildDataEc2TransitGatewayPeeringAttachmentsTimeoutsEl {
     pub fn build(self) -> DataEc2TransitGatewayPeeringAttachmentsTimeoutsEl {
-        DataEc2TransitGatewayPeeringAttachmentsTimeoutsEl { read: core::default::Default::default() }
+        DataEc2TransitGatewayPeeringAttachmentsTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 
@@ -314,7 +331,10 @@ pub struct DataEc2TransitGatewayPeeringAttachmentsTimeoutsElRef {
 }
 
 impl Ref for DataEc2TransitGatewayPeeringAttachmentsTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayPeeringAttachmentsTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayPeeringAttachmentsTimeoutsElRef {
         DataEc2TransitGatewayPeeringAttachmentsTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

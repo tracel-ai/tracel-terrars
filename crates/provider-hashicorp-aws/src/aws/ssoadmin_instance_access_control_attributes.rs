@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SsoadminInstanceAccessControlAttributesData {
@@ -59,7 +59,8 @@ impl SsoadminInstanceAccessControlAttributes {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl SsoadminInstanceAccessControlAttributes {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl SsoadminInstanceAccessControlAttributes {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,8 +109,7 @@ impl SsoadminInstanceAccessControlAttributes {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -113,10 +123,10 @@ impl SsoadminInstanceAccessControlAttributes {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().attribute = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.attribute = Some(d);
-            },
+            }
         }
         self
     }
@@ -128,33 +138,48 @@ impl SsoadminInstanceAccessControlAttributes {
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SsoadminInstanceAccessControlAttributes {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SsoadminInstanceAccessControlAttributes { }
+impl Resource for SsoadminInstanceAccessControlAttributes {}
 
 impl ToListMappable for SsoadminInstanceAccessControlAttributes {
     type O = ListRef<SsoadminInstanceAccessControlAttributesRef>;
@@ -187,21 +212,23 @@ pub struct BuildSsoadminInstanceAccessControlAttributes {
 
 impl BuildSsoadminInstanceAccessControlAttributes {
     pub fn build(self, stack: &mut Stack) -> SsoadminInstanceAccessControlAttributes {
-        let out = SsoadminInstanceAccessControlAttributes(Rc::new(SsoadminInstanceAccessControlAttributes_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(SsoadminInstanceAccessControlAttributesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                instance_arn: self.instance_arn,
-                region: core::default::Default::default(),
-                attribute: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = SsoadminInstanceAccessControlAttributes(Rc::new(
+            SsoadminInstanceAccessControlAttributes_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(SsoadminInstanceAccessControlAttributesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    instance_arn: self.instance_arn,
+                    region: core::default::Default::default(),
+                    attribute: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -214,10 +241,7 @@ pub struct SsoadminInstanceAccessControlAttributesRef {
 
 impl Ref for SsoadminInstanceAccessControlAttributesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -237,23 +261,34 @@ impl SsoadminInstanceAccessControlAttributesRef {
 
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_arn", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status_reason", self.extract_ref()),
+        )
     }
 }
 
@@ -262,7 +297,7 @@ pub struct SsoadminInstanceAccessControlAttributesAttributeElValueEl {
     source: SetField<PrimField<String>>,
 }
 
-impl SsoadminInstanceAccessControlAttributesAttributeElValueEl { }
+impl SsoadminInstanceAccessControlAttributesAttributeElValueEl {}
 
 impl ToListMappable for SsoadminInstanceAccessControlAttributesAttributeElValueEl {
     type O = BlockAssignable<SsoadminInstanceAccessControlAttributesAttributeElValueEl>;
@@ -283,7 +318,9 @@ pub struct BuildSsoadminInstanceAccessControlAttributesAttributeElValueEl {
 
 impl BuildSsoadminInstanceAccessControlAttributesAttributeElValueEl {
     pub fn build(self) -> SsoadminInstanceAccessControlAttributesAttributeElValueEl {
-        SsoadminInstanceAccessControlAttributesAttributeElValueEl { source: self.source }
+        SsoadminInstanceAccessControlAttributesAttributeElValueEl {
+            source: self.source,
+        }
     }
 }
 
@@ -293,7 +330,10 @@ pub struct SsoadminInstanceAccessControlAttributesAttributeElValueElRef {
 }
 
 impl Ref for SsoadminInstanceAccessControlAttributesAttributeElValueElRef {
-    fn new(shared: StackShared, base: String) -> SsoadminInstanceAccessControlAttributesAttributeElValueElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsoadminInstanceAccessControlAttributesAttributeElValueElRef {
         SsoadminInstanceAccessControlAttributesAttributeElValueElRef {
             shared: shared,
             base: base.to_string(),
@@ -334,10 +374,10 @@ impl SsoadminInstanceAccessControlAttributesAttributeEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.value = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.value = Some(d);
-            },
+            }
         }
         self
     }
@@ -376,7 +416,10 @@ pub struct SsoadminInstanceAccessControlAttributesAttributeElRef {
 }
 
 impl Ref for SsoadminInstanceAccessControlAttributesAttributeElRef {
-    fn new(shared: StackShared, base: String) -> SsoadminInstanceAccessControlAttributesAttributeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsoadminInstanceAccessControlAttributesAttributeElRef {
         SsoadminInstanceAccessControlAttributesAttributeElRef {
             shared: shared,
             base: base.to_string(),

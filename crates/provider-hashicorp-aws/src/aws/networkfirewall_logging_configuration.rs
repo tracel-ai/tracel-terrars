@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct NetworkfirewallLoggingConfigurationData {
@@ -61,7 +61,8 @@ impl NetworkfirewallLoggingConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl NetworkfirewallLoggingConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl NetworkfirewallLoggingConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl NetworkfirewallLoggingConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -121,22 +131,28 @@ impl NetworkfirewallLoggingConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().logging_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.logging_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `enable_monitoring_dashboard` after provisioning.\n"]
     pub fn enable_monitoring_dashboard(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_monitoring_dashboard", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_monitoring_dashboard", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_arn` after provisioning.\n"]
     pub fn firewall_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -144,25 +160,36 @@ impl NetworkfirewallLoggingConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
-    pub fn logging_configuration(&self) -> ListRef<NetworkfirewallLoggingConfigurationLoggingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_configuration", self.extract_ref()))
+    pub fn logging_configuration(
+        &self,
+    ) -> ListRef<NetworkfirewallLoggingConfigurationLoggingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for NetworkfirewallLoggingConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for NetworkfirewallLoggingConfiguration { }
+impl Resource for NetworkfirewallLoggingConfiguration {}
 
 impl ToListMappable for NetworkfirewallLoggingConfiguration {
     type O = ListRef<NetworkfirewallLoggingConfigurationRef>;
@@ -195,22 +222,23 @@ pub struct BuildNetworkfirewallLoggingConfiguration {
 
 impl BuildNetworkfirewallLoggingConfiguration {
     pub fn build(self, stack: &mut Stack) -> NetworkfirewallLoggingConfiguration {
-        let out = NetworkfirewallLoggingConfiguration(Rc::new(NetworkfirewallLoggingConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(NetworkfirewallLoggingConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                enable_monitoring_dashboard: core::default::Default::default(),
-                firewall_arn: self.firewall_arn,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                logging_configuration: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            NetworkfirewallLoggingConfiguration(Rc::new(NetworkfirewallLoggingConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(NetworkfirewallLoggingConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    enable_monitoring_dashboard: core::default::Default::default(),
+                    firewall_arn: self.firewall_arn,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    logging_configuration: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -223,10 +251,7 @@ pub struct NetworkfirewallLoggingConfigurationRef {
 
 impl Ref for NetworkfirewallLoggingConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -241,12 +266,18 @@ impl NetworkfirewallLoggingConfigurationRef {
 
     #[doc = "Get a reference to the value of field `enable_monitoring_dashboard` after provisioning.\n"]
     pub fn enable_monitoring_dashboard(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_monitoring_dashboard", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_monitoring_dashboard", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_arn` after provisioning.\n"]
     pub fn firewall_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -254,15 +285,22 @@ impl NetworkfirewallLoggingConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
-    pub fn logging_configuration(&self) -> ListRef<NetworkfirewallLoggingConfigurationLoggingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging_configuration", self.extract_ref()))
+    pub fn logging_configuration(
+        &self,
+    ) -> ListRef<NetworkfirewallLoggingConfigurationLoggingConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -273,10 +311,14 @@ pub struct NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinati
     log_type: PrimField<String>,
 }
 
-impl NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl { }
+impl NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl {}
 
-impl ToListMappable for NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl {
-    type O = BlockAssignable<NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl>;
+impl ToListMappable
+    for NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl
+{
+    type O = BlockAssignable<
+        NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -297,7 +339,9 @@ pub struct BuildNetworkfirewallLoggingConfigurationLoggingConfigurationElLogDest
 }
 
 impl BuildNetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl {
-    pub fn build(self) -> NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl {
+    pub fn build(
+        self,
+    ) -> NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl {
         NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl {
             log_destination: self.log_destination,
             log_destination_type: self.log_destination_type,
@@ -330,12 +374,18 @@ impl NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConf
 
     #[doc = "Get a reference to the value of field `log_destination` after provisioning.\n"]
     pub fn log_destination(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.log_destination", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.log_destination", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_destination_type` after provisioning.\n"]
     pub fn log_destination_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.log_destination_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.log_destination_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_type` after provisioning.\n"]
@@ -347,14 +397,18 @@ impl NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConf
 #[derive(Serialize, Default)]
 struct NetworkfirewallLoggingConfigurationLoggingConfigurationElDynamic {
     log_destination_config: Option<
-        DynamicBlock<NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl>,
+        DynamicBlock<
+            NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct NetworkfirewallLoggingConfigurationLoggingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    log_destination_config: Option<Vec<NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl>>,
+    log_destination_config: Option<
+        Vec<NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl>,
+    >,
     dynamic: NetworkfirewallLoggingConfigurationLoggingConfigurationElDynamic,
 }
 
@@ -362,22 +416,19 @@ impl NetworkfirewallLoggingConfigurationLoggingConfigurationEl {
     #[doc = "Set the field `log_destination_config`.\n"]
     pub fn set_log_destination_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                NetworkfirewallLoggingConfigurationLoggingConfigurationElLogDestinationConfigEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.log_destination_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.log_destination_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -412,7 +463,10 @@ pub struct NetworkfirewallLoggingConfigurationLoggingConfigurationElRef {
 }
 
 impl Ref for NetworkfirewallLoggingConfigurationLoggingConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> NetworkfirewallLoggingConfigurationLoggingConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> NetworkfirewallLoggingConfigurationLoggingConfigurationElRef {
         NetworkfirewallLoggingConfigurationLoggingConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -428,5 +482,6 @@ impl NetworkfirewallLoggingConfigurationLoggingConfigurationElRef {
 
 #[derive(Serialize, Default)]
 struct NetworkfirewallLoggingConfigurationDynamic {
-    logging_configuration: Option<DynamicBlock<NetworkfirewallLoggingConfigurationLoggingConfigurationEl>>,
+    logging_configuration:
+        Option<DynamicBlock<NetworkfirewallLoggingConfigurationLoggingConfigurationEl>>,
 }

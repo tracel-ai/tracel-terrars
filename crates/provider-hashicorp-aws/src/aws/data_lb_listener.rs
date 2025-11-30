@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLbListenerData {
@@ -76,8 +76,7 @@ impl DataLbListener {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -97,7 +96,10 @@ impl DataLbListener {
 
     #[doc = "Get a reference to the value of field `alpn_policy` after provisioning.\n"]
     pub fn alpn_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alpn_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alpn_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -107,12 +109,18 @@ impl DataLbListener {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<DataLbListenerDefaultActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -122,53 +130,80 @@ impl DataLbListener {
 
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutual_authentication` after provisioning.\n"]
     pub fn mutual_authentication(&self) -> ListRef<DataLbListenerMutualAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mutual_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mutual_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ssl_policy` after provisioning.\n"]
     pub fn ssl_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssl_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssl_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataLbListenerTimeoutsElRef {
-        DataLbListenerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataLbListenerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLbListener {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLbListener { }
+impl Datasource for DataLbListener {}
 
 impl ToListMappable for DataLbListener {
     type O = ListRef<DataLbListenerRef>;
@@ -227,10 +262,7 @@ pub struct DataLbListenerRef {
 
 impl Ref for DataLbListenerRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -245,7 +277,10 @@ impl DataLbListenerRef {
 
     #[doc = "Get a reference to the value of field `alpn_policy` after provisioning.\n"]
     pub fn alpn_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alpn_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alpn_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -255,12 +290,18 @@ impl DataLbListenerRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<DataLbListenerDefaultActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.default_action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.default_action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -270,43 +311,66 @@ impl DataLbListenerRef {
 
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.load_balancer_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutual_authentication` after provisioning.\n"]
     pub fn mutual_authentication(&self) -> ListRef<DataLbListenerMutualAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mutual_authentication", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mutual_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.protocol", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ssl_policy` after provisioning.\n"]
     pub fn ssl_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ssl_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ssl_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataLbListenerTimeoutsElRef {
-        DataLbListenerTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataLbListenerTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -332,7 +396,10 @@ pub struct DataLbListenerDefaultActionElAuthenticateCognitoEl {
 
 impl DataLbListenerDefaultActionElAuthenticateCognitoEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
-    pub fn set_authentication_request_extra_params(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_authentication_request_extra_params(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
@@ -415,7 +482,10 @@ pub struct DataLbListenerDefaultActionElAuthenticateCognitoElRef {
 }
 
 impl Ref for DataLbListenerDefaultActionElAuthenticateCognitoElRef {
-    fn new(shared: StackShared, base: String) -> DataLbListenerDefaultActionElAuthenticateCognitoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLbListenerDefaultActionElAuthenticateCognitoElRef {
         DataLbListenerDefaultActionElAuthenticateCognitoElRef {
             shared: shared,
             base: base.to_string(),
@@ -430,12 +500,18 @@ impl DataLbListenerDefaultActionElAuthenticateCognitoElRef {
 
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.authentication_request_extra_params", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_request_extra_params", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_unauthenticated_request` after provisioning.\n"]
     pub fn on_unauthenticated_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_unauthenticated_request", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_unauthenticated_request", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -445,27 +521,42 @@ impl DataLbListenerDefaultActionElAuthenticateCognitoElRef {
 
     #[doc = "Get a reference to the value of field `session_cookie_name` after provisioning.\n"]
     pub fn session_cookie_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_cookie_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_cookie_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\n"]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_arn` after provisioning.\n"]
     pub fn user_pool_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_client_id` after provisioning.\n"]
     pub fn user_pool_client_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_client_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_client_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_domain` after provisioning.\n"]
     pub fn user_pool_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_domain", self.base),
+        )
     }
 }
 
@@ -497,7 +588,10 @@ pub struct DataLbListenerDefaultActionElAuthenticateOidcEl {
 
 impl DataLbListenerDefaultActionElAuthenticateOidcEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
-    pub fn set_authentication_request_extra_params(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_authentication_request_extra_params(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
@@ -601,7 +695,10 @@ pub struct DataLbListenerDefaultActionElAuthenticateOidcElRef {
 }
 
 impl Ref for DataLbListenerDefaultActionElAuthenticateOidcElRef {
-    fn new(shared: StackShared, base: String) -> DataLbListenerDefaultActionElAuthenticateOidcElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLbListenerDefaultActionElAuthenticateOidcElRef {
         DataLbListenerDefaultActionElAuthenticateOidcElRef {
             shared: shared,
             base: base.to_string(),
@@ -616,12 +713,18 @@ impl DataLbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.authentication_request_extra_params", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_request_extra_params", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -631,7 +734,10 @@ impl DataLbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -641,7 +747,10 @@ impl DataLbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `on_unauthenticated_request` after provisioning.\n"]
     pub fn on_unauthenticated_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_unauthenticated_request", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_unauthenticated_request", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -651,22 +760,34 @@ impl DataLbListenerDefaultActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `session_cookie_name` after provisioning.\n"]
     pub fn session_cookie_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_cookie_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_cookie_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\n"]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_endpoint` after provisioning.\n"]
     pub fn token_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_info_endpoint` after provisioning.\n"]
     pub fn user_info_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_info_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_info_endpoint", self.base),
+        )
     }
 }
 
@@ -810,7 +931,10 @@ pub struct DataLbListenerDefaultActionElForwardElStickinessElRef {
 }
 
 impl Ref for DataLbListenerDefaultActionElForwardElStickinessElRef {
-    fn new(shared: StackShared, base: String) -> DataLbListenerDefaultActionElForwardElStickinessElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLbListenerDefaultActionElForwardElStickinessElRef {
         DataLbListenerDefaultActionElForwardElStickinessElRef {
             shared: shared,
             base: base.to_string(),
@@ -885,7 +1009,10 @@ pub struct DataLbListenerDefaultActionElForwardElTargetGroupElRef {
 }
 
 impl Ref for DataLbListenerDefaultActionElForwardElTargetGroupElRef {
-    fn new(shared: StackShared, base: String) -> DataLbListenerDefaultActionElForwardElTargetGroupElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLbListenerDefaultActionElForwardElTargetGroupElRef {
         DataLbListenerDefaultActionElForwardElTargetGroupElRef {
             shared: shared,
             base: base.to_string(),
@@ -1050,7 +1177,10 @@ pub struct DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
 }
 
 impl Ref for DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
-    fn new(shared: StackShared, base: String) -> DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
         DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
             shared: shared,
             base: base.to_string(),
@@ -1082,7 +1212,8 @@ impl DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef {
 #[derive(Serialize)]
 pub struct DataLbListenerDefaultActionElJwtValidationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    additional_claim: Option<SetField<DataLbListenerDefaultActionElJwtValidationElAdditionalClaimEl>>,
+    additional_claim:
+        Option<SetField<DataLbListenerDefaultActionElJwtValidationElAdditionalClaimEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     issuer: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1156,8 +1287,13 @@ impl DataLbListenerDefaultActionElJwtValidationElRef {
     }
 
     #[doc = "Get a reference to the value of field `additional_claim` after provisioning.\n"]
-    pub fn additional_claim(&self) -> SetRef<DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.additional_claim", self.base))
+    pub fn additional_claim(
+        &self,
+    ) -> SetRef<DataLbListenerDefaultActionElJwtValidationElAdditionalClaimElRef> {
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.additional_claim", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -1167,7 +1303,10 @@ impl DataLbListenerDefaultActionElJwtValidationElRef {
 
     #[doc = "Get a reference to the value of field `jwks_endpoint` after provisioning.\n"]
     pub fn jwks_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.jwks_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.jwks_endpoint", self.base),
+        )
     }
 }
 
@@ -1344,19 +1483,28 @@ impl DataLbListenerDefaultActionEl {
     }
 
     #[doc = "Set the field `fixed_response`.\n"]
-    pub fn set_fixed_response(mut self, v: impl Into<ListField<DataLbListenerDefaultActionElFixedResponseEl>>) -> Self {
+    pub fn set_fixed_response(
+        mut self,
+        v: impl Into<ListField<DataLbListenerDefaultActionElFixedResponseEl>>,
+    ) -> Self {
         self.fixed_response = Some(v.into());
         self
     }
 
     #[doc = "Set the field `forward`.\n"]
-    pub fn set_forward(mut self, v: impl Into<ListField<DataLbListenerDefaultActionElForwardEl>>) -> Self {
+    pub fn set_forward(
+        mut self,
+        v: impl Into<ListField<DataLbListenerDefaultActionElForwardEl>>,
+    ) -> Self {
         self.forward = Some(v.into());
         self
     }
 
     #[doc = "Set the field `jwt_validation`.\n"]
-    pub fn set_jwt_validation(mut self, v: impl Into<ListField<DataLbListenerDefaultActionElJwtValidationEl>>) -> Self {
+    pub fn set_jwt_validation(
+        mut self,
+        v: impl Into<ListField<DataLbListenerDefaultActionElJwtValidationEl>>,
+    ) -> Self {
         self.jwt_validation = Some(v.into());
         self
     }
@@ -1368,7 +1516,10 @@ impl DataLbListenerDefaultActionEl {
     }
 
     #[doc = "Set the field `redirect`.\n"]
-    pub fn set_redirect(mut self, v: impl Into<ListField<DataLbListenerDefaultActionElRedirectEl>>) -> Self {
+    pub fn set_redirect(
+        mut self,
+        v: impl Into<ListField<DataLbListenerDefaultActionElRedirectEl>>,
+    ) -> Self {
         self.redirect = Some(v.into());
         self
     }
@@ -1436,18 +1587,29 @@ impl DataLbListenerDefaultActionElRef {
     }
 
     #[doc = "Get a reference to the value of field `authenticate_cognito` after provisioning.\n"]
-    pub fn authenticate_cognito(&self) -> ListRef<DataLbListenerDefaultActionElAuthenticateCognitoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authenticate_cognito", self.base))
+    pub fn authenticate_cognito(
+        &self,
+    ) -> ListRef<DataLbListenerDefaultActionElAuthenticateCognitoElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authenticate_cognito", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authenticate_oidc` after provisioning.\n"]
     pub fn authenticate_oidc(&self) -> ListRef<DataLbListenerDefaultActionElAuthenticateOidcElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authenticate_oidc", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authenticate_oidc", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_response` after provisioning.\n"]
     pub fn fixed_response(&self) -> ListRef<DataLbListenerDefaultActionElFixedResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fixed_response", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fixed_response", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward` after provisioning.\n"]
@@ -1457,7 +1619,10 @@ impl DataLbListenerDefaultActionElRef {
 
     #[doc = "Get a reference to the value of field `jwt_validation` after provisioning.\n"]
     pub fn jwt_validation(&self) -> ListRef<DataLbListenerDefaultActionElJwtValidationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_validation", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_validation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `order` after provisioning.\n"]
@@ -1472,7 +1637,10 @@ impl DataLbListenerDefaultActionElRef {
 
     #[doc = "Get a reference to the value of field `target_group_arn` after provisioning.\n"]
     pub fn target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -1565,12 +1733,18 @@ impl DataLbListenerMutualAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `advertise_trust_store_ca_names` after provisioning.\n"]
     pub fn advertise_trust_store_ca_names(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.advertise_trust_store_ca_names", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.advertise_trust_store_ca_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ignore_client_certificate_expiry` after provisioning.\n"]
     pub fn ignore_client_certificate_expiry(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ignore_client_certificate_expiry", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ignore_client_certificate_expiry", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
@@ -1580,7 +1754,10 @@ impl DataLbListenerMutualAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `trust_store_arn` after provisioning.\n"]
     pub fn trust_store_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_store_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_store_arn", self.base),
+        )
     }
 }
 
@@ -1614,7 +1791,9 @@ pub struct BuildDataLbListenerTimeoutsEl {}
 
 impl BuildDataLbListenerTimeoutsEl {
     pub fn build(self) -> DataLbListenerTimeoutsEl {
-        DataLbListenerTimeoutsEl { read: core::default::Default::default() }
+        DataLbListenerTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

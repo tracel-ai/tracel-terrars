@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2InstanceTypeOfferingData {
@@ -69,22 +69,24 @@ impl DataEc2InstanceTypeOffering {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2InstanceTypeOfferingFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2InstanceTypeOfferingFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -102,28 +104,42 @@ impl DataEc2InstanceTypeOffering {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location_type` after provisioning.\n"]
     pub fn location_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_instance_types` after provisioning.\n"]
     pub fn preferred_instance_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.preferred_instance_types", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.preferred_instance_types", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -137,11 +153,15 @@ impl DataEc2InstanceTypeOffering {
 
 impl Referable for DataEc2InstanceTypeOffering {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2InstanceTypeOffering { }
+impl Datasource for DataEc2InstanceTypeOffering {}
 
 impl ToListMappable for DataEc2InstanceTypeOffering {
     type O = ListRef<DataEc2InstanceTypeOfferingRef>;
@@ -200,10 +220,7 @@ pub struct DataEc2InstanceTypeOfferingRef {
 
 impl Ref for DataEc2InstanceTypeOfferingRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -223,28 +240,42 @@ impl DataEc2InstanceTypeOfferingRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location_type` after provisioning.\n"]
     pub fn location_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_instance_types` after provisioning.\n"]
     pub fn preferred_instance_types(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.preferred_instance_types", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.preferred_instance_types", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -262,7 +293,7 @@ pub struct DataEc2InstanceTypeOfferingFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2InstanceTypeOfferingFilterEl { }
+impl DataEc2InstanceTypeOfferingFilterEl {}
 
 impl ToListMappable for DataEc2InstanceTypeOfferingFilterEl {
     type O = BlockAssignable<DataEc2InstanceTypeOfferingFilterEl>;
@@ -352,7 +383,9 @@ pub struct BuildDataEc2InstanceTypeOfferingTimeoutsEl {}
 
 impl BuildDataEc2InstanceTypeOfferingTimeoutsEl {
     pub fn build(self) -> DataEc2InstanceTypeOfferingTimeoutsEl {
-        DataEc2InstanceTypeOfferingTimeoutsEl { read: core::default::Default::default() }
+        DataEc2InstanceTypeOfferingTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

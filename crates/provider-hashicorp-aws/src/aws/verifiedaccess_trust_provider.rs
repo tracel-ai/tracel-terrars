@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VerifiedaccessTrustProviderData {
@@ -33,7 +33,8 @@ struct VerifiedaccessTrustProviderData {
     #[serde(skip_serializing_if = "Option::is_none")]
     device_options: Option<Vec<VerifiedaccessTrustProviderDeviceOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    native_application_oidc_options: Option<Vec<VerifiedaccessTrustProviderNativeApplicationOidcOptionsEl>>,
+    native_application_oidc_options:
+        Option<Vec<VerifiedaccessTrustProviderNativeApplicationOidcOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     oidc_options: Option<Vec<VerifiedaccessTrustProviderOidcOptionsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -78,7 +79,8 @@ impl VerifiedaccessTrustProvider {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -91,7 +93,7 @@ impl VerifiedaccessTrustProvider {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -102,12 +104,22 @@ impl VerifiedaccessTrustProvider {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -129,8 +141,7 @@ impl VerifiedaccessTrustProvider {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -155,14 +166,17 @@ impl VerifiedaccessTrustProvider {
     }
 
     #[doc = "Set the field `device_options`.\n"]
-    pub fn set_device_options(self, v: impl Into<BlockAssignable<VerifiedaccessTrustProviderDeviceOptionsEl>>) -> Self {
+    pub fn set_device_options(
+        self,
+        v: impl Into<BlockAssignable<VerifiedaccessTrustProviderDeviceOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().device_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.device_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -175,23 +189,30 @@ impl VerifiedaccessTrustProvider {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().native_application_oidc_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.native_application_oidc_options = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .native_application_oidc_options = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `oidc_options`.\n"]
-    pub fn set_oidc_options(self, v: impl Into<BlockAssignable<VerifiedaccessTrustProviderOidcOptionsEl>>) -> Self {
+    pub fn set_oidc_options(
+        self,
+        v: impl Into<BlockAssignable<VerifiedaccessTrustProviderOidcOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().oidc_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.oidc_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -204,10 +225,10 @@ impl VerifiedaccessTrustProvider {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sse_specification = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sse_specification = Some(d);
-            },
+            }
         }
         self
     }
@@ -220,12 +241,18 @@ impl VerifiedaccessTrustProvider {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_trust_provider_type` after provisioning.\n"]
     pub fn device_trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_trust_provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_trust_provider_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -235,55 +262,84 @@ impl VerifiedaccessTrustProvider {
 
     #[doc = "Get a reference to the value of field `policy_reference_name` after provisioning.\n"]
     pub fn policy_reference_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_reference_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_reference_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_provider_type` after provisioning.\n"]
     pub fn trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_provider_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_trust_provider_type` after provisioning.\n"]
     pub fn user_trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_trust_provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_trust_provider_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_options` after provisioning.\n"]
     pub fn device_options(&self) -> ListRef<VerifiedaccessTrustProviderDeviceOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.device_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.device_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `native_application_oidc_options` after provisioning.\n"]
     pub fn native_application_oidc_options(
         &self,
     ) -> ListRef<VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.native_application_oidc_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.native_application_oidc_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oidc_options` after provisioning.\n"]
     pub fn oidc_options(&self) -> ListRef<VerifiedaccessTrustProviderOidcOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.oidc_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oidc_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sse_specification` after provisioning.\n"]
     pub fn sse_specification(&self) -> ListRef<VerifiedaccessTrustProviderSseSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sse_specification", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sse_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -297,11 +353,15 @@ impl VerifiedaccessTrustProvider {
 
 impl Referable for VerifiedaccessTrustProvider {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VerifiedaccessTrustProvider { }
+impl Resource for VerifiedaccessTrustProvider {}
 
 impl ToListMappable for VerifiedaccessTrustProvider {
     type O = ListRef<VerifiedaccessTrustProviderRef>;
@@ -373,10 +433,7 @@ pub struct VerifiedaccessTrustProviderRef {
 
 impl Ref for VerifiedaccessTrustProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -391,12 +448,18 @@ impl VerifiedaccessTrustProviderRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_trust_provider_type` after provisioning.\n"]
     pub fn device_trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_trust_provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_trust_provider_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -406,55 +469,84 @@ impl VerifiedaccessTrustProviderRef {
 
     #[doc = "Get a reference to the value of field `policy_reference_name` after provisioning.\n"]
     pub fn policy_reference_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.policy_reference_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.policy_reference_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_provider_type` after provisioning.\n"]
     pub fn trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_provider_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_trust_provider_type` after provisioning.\n"]
     pub fn user_trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_trust_provider_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_trust_provider_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `device_options` after provisioning.\n"]
     pub fn device_options(&self) -> ListRef<VerifiedaccessTrustProviderDeviceOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.device_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.device_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `native_application_oidc_options` after provisioning.\n"]
     pub fn native_application_oidc_options(
         &self,
     ) -> ListRef<VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.native_application_oidc_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.native_application_oidc_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `oidc_options` after provisioning.\n"]
     pub fn oidc_options(&self) -> ListRef<VerifiedaccessTrustProviderOidcOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.oidc_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.oidc_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sse_specification` after provisioning.\n"]
     pub fn sse_specification(&self) -> ListRef<VerifiedaccessTrustProviderSseSpecificationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sse_specification", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sse_specification", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -496,7 +588,9 @@ pub struct BuildVerifiedaccessTrustProviderDeviceOptionsEl {}
 
 impl BuildVerifiedaccessTrustProviderDeviceOptionsEl {
     pub fn build(self) -> VerifiedaccessTrustProviderDeviceOptionsEl {
-        VerifiedaccessTrustProviderDeviceOptionsEl { tenant_id: core::default::Default::default() }
+        VerifiedaccessTrustProviderDeviceOptionsEl {
+            tenant_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -626,7 +720,10 @@ pub struct VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
 }
 
 impl Ref for VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
-    fn new(shared: StackShared, base: String) -> VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
         VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -641,7 +738,10 @@ impl VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -651,7 +751,10 @@ impl VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -661,7 +764,10 @@ impl VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `public_signing_key_endpoint` after provisioning.\n"]
     pub fn public_signing_key_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.public_signing_key_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.public_signing_key_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -671,12 +777,18 @@ impl VerifiedaccessTrustProviderNativeApplicationOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `token_endpoint` after provisioning.\n"]
     pub fn token_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_info_endpoint` after provisioning.\n"]
     pub fn user_info_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_info_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_info_endpoint", self.base),
+        )
     }
 }
 
@@ -787,7 +899,10 @@ impl VerifiedaccessTrustProviderOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -797,7 +912,10 @@ impl VerifiedaccessTrustProviderOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -812,12 +930,18 @@ impl VerifiedaccessTrustProviderOidcOptionsElRef {
 
     #[doc = "Get a reference to the value of field `token_endpoint` after provisioning.\n"]
     pub fn token_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_info_endpoint` after provisioning.\n"]
     pub fn user_info_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_info_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_info_endpoint", self.base),
+        )
     }
 }
 
@@ -887,7 +1011,10 @@ impl VerifiedaccessTrustProviderSseSpecificationElRef {
 
     #[doc = "Get a reference to the value of field `customer_managed_key_enabled` after provisioning.\n"]
     pub fn customer_managed_key_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.customer_managed_key_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.customer_managed_key_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
@@ -988,7 +1115,8 @@ impl VerifiedaccessTrustProviderTimeoutsElRef {
 #[derive(Serialize, Default)]
 struct VerifiedaccessTrustProviderDynamic {
     device_options: Option<DynamicBlock<VerifiedaccessTrustProviderDeviceOptionsEl>>,
-    native_application_oidc_options: Option<DynamicBlock<VerifiedaccessTrustProviderNativeApplicationOidcOptionsEl>>,
+    native_application_oidc_options:
+        Option<DynamicBlock<VerifiedaccessTrustProviderNativeApplicationOidcOptionsEl>>,
     oidc_options: Option<DynamicBlock<VerifiedaccessTrustProviderOidcOptionsEl>>,
     sse_specification: Option<DynamicBlock<VerifiedaccessTrustProviderSseSpecificationEl>>,
 }

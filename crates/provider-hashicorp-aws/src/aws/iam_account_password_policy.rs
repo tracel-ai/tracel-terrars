@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct IamAccountPasswordPolicyData {
@@ -71,7 +71,8 @@ impl IamAccountPasswordPolicy {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl IamAccountPasswordPolicy {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl IamAccountPasswordPolicy {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -166,17 +177,26 @@ impl IamAccountPasswordPolicy {
 
     #[doc = "Get a reference to the value of field `allow_users_to_change_password` after provisioning.\n"]
     pub fn allow_users_to_change_password(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_users_to_change_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_users_to_change_password", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expire_passwords` after provisioning.\n"]
     pub fn expire_passwords(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expire_passwords", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expire_passwords", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hard_expiry` after provisioning.\n"]
     pub fn hard_expiry(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hard_expiry", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hard_expiry", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -186,47 +206,72 @@ impl IamAccountPasswordPolicy {
 
     #[doc = "Get a reference to the value of field `max_password_age` after provisioning.\n"]
     pub fn max_password_age(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_password_age", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_password_age", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_password_length` after provisioning.\n"]
     pub fn minimum_password_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_password_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_password_length", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password_reuse_prevention` after provisioning.\n"]
     pub fn password_reuse_prevention(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password_reuse_prevention", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password_reuse_prevention", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_lowercase_characters` after provisioning.\n"]
     pub fn require_lowercase_characters(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_lowercase_characters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_lowercase_characters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_numbers` after provisioning.\n"]
     pub fn require_numbers(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_numbers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_symbols` after provisioning.\n"]
     pub fn require_symbols(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_symbols", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_symbols", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_uppercase_characters` after provisioning.\n"]
     pub fn require_uppercase_characters(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_uppercase_characters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_uppercase_characters", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for IamAccountPasswordPolicy {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for IamAccountPasswordPolicy { }
+impl Resource for IamAccountPasswordPolicy {}
 
 impl ToListMappable for IamAccountPasswordPolicy {
     type O = ListRef<IamAccountPasswordPolicyRef>;
@@ -289,10 +334,7 @@ pub struct IamAccountPasswordPolicyRef {
 
 impl Ref for IamAccountPasswordPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -307,17 +349,26 @@ impl IamAccountPasswordPolicyRef {
 
     #[doc = "Get a reference to the value of field `allow_users_to_change_password` after provisioning.\n"]
     pub fn allow_users_to_change_password(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_users_to_change_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_users_to_change_password", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expire_passwords` after provisioning.\n"]
     pub fn expire_passwords(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expire_passwords", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expire_passwords", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hard_expiry` after provisioning.\n"]
     pub fn hard_expiry(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hard_expiry", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hard_expiry", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -327,36 +378,57 @@ impl IamAccountPasswordPolicyRef {
 
     #[doc = "Get a reference to the value of field `max_password_age` after provisioning.\n"]
     pub fn max_password_age(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_password_age", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_password_age", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `minimum_password_length` after provisioning.\n"]
     pub fn minimum_password_length(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.minimum_password_length", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.minimum_password_length", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password_reuse_prevention` after provisioning.\n"]
     pub fn password_reuse_prevention(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password_reuse_prevention", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password_reuse_prevention", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_lowercase_characters` after provisioning.\n"]
     pub fn require_lowercase_characters(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_lowercase_characters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_lowercase_characters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_numbers` after provisioning.\n"]
     pub fn require_numbers(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_numbers", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_numbers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_symbols` after provisioning.\n"]
     pub fn require_symbols(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_symbols", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_symbols", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `require_uppercase_characters` after provisioning.\n"]
     pub fn require_uppercase_characters(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.require_uppercase_characters", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.require_uppercase_characters", self.extract_ref()),
+        )
     }
 }

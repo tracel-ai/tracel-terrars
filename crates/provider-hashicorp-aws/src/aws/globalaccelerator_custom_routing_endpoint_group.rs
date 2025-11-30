@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GlobalacceleratorCustomRoutingEndpointGroupData {
@@ -20,9 +20,11 @@ struct GlobalacceleratorCustomRoutingEndpointGroupData {
     id: Option<PrimField<String>>,
     listener_arn: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    destination_configuration: Option<Vec<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>>,
+    destination_configuration:
+        Option<Vec<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    endpoint_configuration: Option<Vec<GlobalacceleratorCustomRoutingEndpointGroupEndpointConfigurationEl>>,
+    endpoint_configuration:
+        Option<Vec<GlobalacceleratorCustomRoutingEndpointGroupEndpointConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<GlobalacceleratorCustomRoutingEndpointGroupTimeoutsEl>,
     dynamic: GlobalacceleratorCustomRoutingEndpointGroupDynamic,
@@ -35,7 +37,9 @@ struct GlobalacceleratorCustomRoutingEndpointGroup_ {
 }
 
 #[derive(Clone)]
-pub struct GlobalacceleratorCustomRoutingEndpointGroup(Rc<GlobalacceleratorCustomRoutingEndpointGroup_>);
+pub struct GlobalacceleratorCustomRoutingEndpointGroup(
+    Rc<GlobalacceleratorCustomRoutingEndpointGroup_>,
+);
 
 impl GlobalacceleratorCustomRoutingEndpointGroup {
     fn shared(&self) -> &StackShared {
@@ -63,7 +67,8 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -76,7 +81,7 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -87,12 +92,22 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,15 +126,17 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
     #[doc = "Set the field `destination_configuration`.\n"]
     pub fn set_destination_configuration(
         self,
-        v: impl Into<BlockAssignable<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().destination_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.destination_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -127,21 +144,26 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
     #[doc = "Set the field `endpoint_configuration`.\n"]
     pub fn set_endpoint_configuration(
         self,
-        v: impl Into<BlockAssignable<GlobalacceleratorCustomRoutingEndpointGroupEndpointConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<GlobalacceleratorCustomRoutingEndpointGroupEndpointConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().endpoint_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.endpoint_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<GlobalacceleratorCustomRoutingEndpointGroupTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<GlobalacceleratorCustomRoutingEndpointGroupTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -153,7 +175,10 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
 
     #[doc = "Get a reference to the value of field `endpoint_group_region` after provisioning.\n"]
     pub fn endpoint_group_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_group_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_group_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -163,7 +188,10 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
 
     #[doc = "Get a reference to the value of field `listener_arn` after provisioning.\n"]
     pub fn listener_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -177,11 +205,15 @@ impl GlobalacceleratorCustomRoutingEndpointGroup {
 
 impl Referable for GlobalacceleratorCustomRoutingEndpointGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GlobalacceleratorCustomRoutingEndpointGroup { }
+impl Resource for GlobalacceleratorCustomRoutingEndpointGroup {}
 
 impl ToListMappable for GlobalacceleratorCustomRoutingEndpointGroup {
     type O = ListRef<GlobalacceleratorCustomRoutingEndpointGroupRef>;
@@ -214,23 +246,25 @@ pub struct BuildGlobalacceleratorCustomRoutingEndpointGroup {
 
 impl BuildGlobalacceleratorCustomRoutingEndpointGroup {
     pub fn build(self, stack: &mut Stack) -> GlobalacceleratorCustomRoutingEndpointGroup {
-        let out = GlobalacceleratorCustomRoutingEndpointGroup(Rc::new(GlobalacceleratorCustomRoutingEndpointGroup_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(GlobalacceleratorCustomRoutingEndpointGroupData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                endpoint_group_region: core::default::Default::default(),
-                id: core::default::Default::default(),
-                listener_arn: self.listener_arn,
-                destination_configuration: core::default::Default::default(),
-                endpoint_configuration: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = GlobalacceleratorCustomRoutingEndpointGroup(Rc::new(
+            GlobalacceleratorCustomRoutingEndpointGroup_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(GlobalacceleratorCustomRoutingEndpointGroupData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    endpoint_group_region: core::default::Default::default(),
+                    id: core::default::Default::default(),
+                    listener_arn: self.listener_arn,
+                    destination_configuration: core::default::Default::default(),
+                    endpoint_configuration: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -243,10 +277,7 @@ pub struct GlobalacceleratorCustomRoutingEndpointGroupRef {
 
 impl Ref for GlobalacceleratorCustomRoutingEndpointGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -266,7 +297,10 @@ impl GlobalacceleratorCustomRoutingEndpointGroupRef {
 
     #[doc = "Get a reference to the value of field `endpoint_group_region` after provisioning.\n"]
     pub fn endpoint_group_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_group_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_group_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -276,7 +310,10 @@ impl GlobalacceleratorCustomRoutingEndpointGroupRef {
 
     #[doc = "Get a reference to the value of field `listener_arn` after provisioning.\n"]
     pub fn listener_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -295,7 +332,7 @@ pub struct GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl
     to_port: PrimField<f64>,
 }
 
-impl GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl { }
+impl GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl {}
 
 impl ToListMappable for GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl {
     type O = BlockAssignable<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>;
@@ -481,7 +518,10 @@ pub struct GlobalacceleratorCustomRoutingEndpointGroupTimeoutsElRef {
 }
 
 impl Ref for GlobalacceleratorCustomRoutingEndpointGroupTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> GlobalacceleratorCustomRoutingEndpointGroupTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GlobalacceleratorCustomRoutingEndpointGroupTimeoutsElRef {
         GlobalacceleratorCustomRoutingEndpointGroupTimeoutsElRef {
             shared: shared,
             base: base.to_string(),
@@ -507,10 +547,8 @@ impl GlobalacceleratorCustomRoutingEndpointGroupTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct GlobalacceleratorCustomRoutingEndpointGroupDynamic {
-    destination_configuration: Option<
-        DynamicBlock<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>,
-    >,
-    endpoint_configuration: Option<
-        DynamicBlock<GlobalacceleratorCustomRoutingEndpointGroupEndpointConfigurationEl>,
-    >,
+    destination_configuration:
+        Option<DynamicBlock<GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationEl>>,
+    endpoint_configuration:
+        Option<DynamicBlock<GlobalacceleratorCustomRoutingEndpointGroupEndpointConfigurationEl>>,
 }

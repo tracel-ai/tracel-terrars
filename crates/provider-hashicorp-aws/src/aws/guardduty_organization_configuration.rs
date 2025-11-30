@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct GuarddutyOrganizationConfigurationData {
@@ -60,7 +60,8 @@ impl GuarddutyOrganizationConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -73,7 +74,7 @@ impl GuarddutyOrganizationConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -84,12 +85,22 @@ impl GuarddutyOrganizationConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -99,8 +110,7 @@ impl GuarddutyOrganizationConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -114,22 +124,28 @@ impl GuarddutyOrganizationConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().datasources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.datasources = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `auto_enable_organization_members` after provisioning.\n"]
     pub fn auto_enable_organization_members(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_enable_organization_members", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_enable_organization_members", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -137,25 +153,34 @@ impl GuarddutyOrganizationConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datasources` after provisioning.\n"]
     pub fn datasources(&self) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.datasources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.datasources", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for GuarddutyOrganizationConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for GuarddutyOrganizationConfiguration { }
+impl Resource for GuarddutyOrganizationConfiguration {}
 
 impl ToListMappable for GuarddutyOrganizationConfiguration {
     type O = ListRef<GuarddutyOrganizationConfigurationRef>;
@@ -190,22 +215,23 @@ pub struct BuildGuarddutyOrganizationConfiguration {
 
 impl BuildGuarddutyOrganizationConfiguration {
     pub fn build(self, stack: &mut Stack) -> GuarddutyOrganizationConfiguration {
-        let out = GuarddutyOrganizationConfiguration(Rc::new(GuarddutyOrganizationConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(GuarddutyOrganizationConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                auto_enable_organization_members: self.auto_enable_organization_members,
-                detector_id: self.detector_id,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                datasources: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            GuarddutyOrganizationConfiguration(Rc::new(GuarddutyOrganizationConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(GuarddutyOrganizationConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    auto_enable_organization_members: self.auto_enable_organization_members,
+                    detector_id: self.detector_id,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    datasources: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -218,10 +244,7 @@ pub struct GuarddutyOrganizationConfigurationRef {
 
 impl Ref for GuarddutyOrganizationConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -236,12 +259,18 @@ impl GuarddutyOrganizationConfigurationRef {
 
     #[doc = "Get a reference to the value of field `auto_enable_organization_members` after provisioning.\n"]
     pub fn auto_enable_organization_members(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.auto_enable_organization_members", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.auto_enable_organization_members", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `detector_id` after provisioning.\n"]
     pub fn detector_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.detector_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.detector_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -249,15 +278,20 @@ impl GuarddutyOrganizationConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `datasources` after provisioning.\n"]
     pub fn datasources(&self) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.datasources", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.datasources", self.extract_ref()),
+        )
     }
 }
 
@@ -266,10 +300,11 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsE
     enable: PrimField<bool>,
 }
 
-impl GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl { }
+impl GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl {}
 
 impl ToListMappable for GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl {
-    type O = BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl>;
+    type O =
+        BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -287,7 +322,9 @@ pub struct BuildGuarddutyOrganizationConfigurationDatasourcesElKubernetesElAudit
 
 impl BuildGuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl {
     pub fn build(self) -> GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl {
-        GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl { enable: self.enable }
+        GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl {
+            enable: self.enable,
+        }
     }
 }
 
@@ -321,7 +358,9 @@ impl GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsElRef {
 
 #[derive(Serialize, Default)]
 struct GuarddutyOrganizationConfigurationDatasourcesElKubernetesElDynamic {
-    audit_logs: Option<DynamicBlock<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl>>,
+    audit_logs: Option<
+        DynamicBlock<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -335,15 +374,17 @@ impl GuarddutyOrganizationConfigurationDatasourcesElKubernetesEl {
     #[doc = "Set the field `audit_logs`.\n"]
     pub fn set_audit_logs(
         mut self,
-        v: impl Into<BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl>>,
+        v: impl Into<
+            BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.audit_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.audit_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -378,7 +419,10 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef {
 }
 
 impl Ref for GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef {
-    fn new(shared: StackShared, base: String) -> GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef {
         GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef {
             shared: shared,
             base: base.to_string(),
@@ -392,13 +436,16 @@ impl GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef {
     }
 
     #[doc = "Get a reference to the value of field `audit_logs` after provisioning.\n"]
-    pub fn audit_logs(&self) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsElRef> {
+    pub fn audit_logs(
+        &self,
+    ) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElAuditLogsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.audit_logs", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl {
+pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl
+{
     auto_enable: PrimField<bool>,
 }
 
@@ -419,7 +466,8 @@ impl ToListMappable for GuarddutyOrganizationConfigurationDatasourcesElMalwarePr
     }
 }
 
-pub struct BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl {
+pub struct BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl
+{
     #[doc = ""]
     pub auto_enable: PrimField<bool>,
 }
@@ -434,7 +482,8 @@ impl BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScan
     }
 }
 
-pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef {
+pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -482,7 +531,9 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElSca
     dynamic: GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElDynamic,
 }
 
-impl GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {
+impl
+    GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl
+{
     #[doc = "Set the field `ebs_volumes`.\n"]
     pub fn set_ebs_volumes(
         mut self,
@@ -498,10 +549,10 @@ impl GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2In
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ebs_volumes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ebs_volumes = Some(d);
-            },
+            }
         }
         self
     }
@@ -522,7 +573,8 @@ impl ToListMappable for GuarddutyOrganizationConfigurationDatasourcesElMalwarePr
     }
 }
 
-pub struct BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {}
+pub struct BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl
+{}
 
 impl BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {
     pub fn build(
@@ -535,7 +587,8 @@ impl BuildGuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScan
     }
 }
 
-pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef {
+pub struct GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -599,10 +652,10 @@ impl GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.scan_ec2_instance_with_findings = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.scan_ec2_instance_with_findings = Some(d);
-            },
+            }
         }
         self
     }
@@ -656,8 +709,11 @@ impl GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElRef {
     #[doc = "Get a reference to the value of field `scan_ec2_instance_with_findings` after provisioning.\n"]
     pub fn scan_ec2_instance_with_findings(
         &self,
-    ) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scan_ec2_instance_with_findings", self.base))
+    ) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scan_ec2_instance_with_findings", self.base),
+        )
     }
 }
 
@@ -666,7 +722,7 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {
     auto_enable: PrimField<bool>,
 }
 
-impl GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl { }
+impl GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {}
 
 impl ToListMappable for GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {
     type O = BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl>;
@@ -687,7 +743,9 @@ pub struct BuildGuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {
 
 impl BuildGuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {
     pub fn build(self) -> GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {
-        GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl { auto_enable: self.auto_enable }
+        GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl {
+            auto_enable: self.auto_enable,
+        }
     }
 }
 
@@ -697,7 +755,10 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesElS3LogsElRef {
 }
 
 impl Ref for GuarddutyOrganizationConfigurationDatasourcesElS3LogsElRef {
-    fn new(shared: StackShared, base: String) -> GuarddutyOrganizationConfigurationDatasourcesElS3LogsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GuarddutyOrganizationConfigurationDatasourcesElS3LogsElRef {
         GuarddutyOrganizationConfigurationDatasourcesElS3LogsElRef {
             shared: shared,
             base: base.to_string(),
@@ -719,7 +780,8 @@ impl GuarddutyOrganizationConfigurationDatasourcesElS3LogsElRef {
 #[derive(Serialize, Default)]
 struct GuarddutyOrganizationConfigurationDatasourcesElDynamic {
     kubernetes: Option<DynamicBlock<GuarddutyOrganizationConfigurationDatasourcesElKubernetesEl>>,
-    malware_protection: Option<DynamicBlock<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl>>,
+    malware_protection:
+        Option<DynamicBlock<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl>>,
     s3_logs: Option<DynamicBlock<GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl>>,
 }
 
@@ -728,7 +790,8 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     kubernetes: Option<Vec<GuarddutyOrganizationConfigurationDatasourcesElKubernetesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    malware_protection: Option<Vec<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl>>,
+    malware_protection:
+        Option<Vec<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_logs: Option<Vec<GuarddutyOrganizationConfigurationDatasourcesElS3LogsEl>>,
     dynamic: GuarddutyOrganizationConfigurationDatasourcesElDynamic,
@@ -743,10 +806,10 @@ impl GuarddutyOrganizationConfigurationDatasourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kubernetes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kubernetes = Some(d);
-            },
+            }
         }
         self
     }
@@ -754,15 +817,17 @@ impl GuarddutyOrganizationConfigurationDatasourcesEl {
     #[doc = "Set the field `malware_protection`.\n"]
     pub fn set_malware_protection(
         mut self,
-        v: impl Into<BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl>>,
+        v: impl Into<
+            BlockAssignable<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.malware_protection = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.malware_protection = Some(d);
-            },
+            }
         }
         self
     }
@@ -775,10 +840,10 @@ impl GuarddutyOrganizationConfigurationDatasourcesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -815,7 +880,10 @@ pub struct GuarddutyOrganizationConfigurationDatasourcesElRef {
 }
 
 impl Ref for GuarddutyOrganizationConfigurationDatasourcesElRef {
-    fn new(shared: StackShared, base: String) -> GuarddutyOrganizationConfigurationDatasourcesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> GuarddutyOrganizationConfigurationDatasourcesElRef {
         GuarddutyOrganizationConfigurationDatasourcesElRef {
             shared: shared,
             base: base.to_string(),
@@ -829,13 +897,20 @@ impl GuarddutyOrganizationConfigurationDatasourcesElRef {
     }
 
     #[doc = "Get a reference to the value of field `kubernetes` after provisioning.\n"]
-    pub fn kubernetes(&self) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef> {
+    pub fn kubernetes(
+        &self,
+    ) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElKubernetesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.kubernetes", self.base))
     }
 
     #[doc = "Get a reference to the value of field `malware_protection` after provisioning.\n"]
-    pub fn malware_protection(&self) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.malware_protection", self.base))
+    pub fn malware_protection(
+        &self,
+    ) -> ListRef<GuarddutyOrganizationConfigurationDatasourcesElMalwareProtectionElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.malware_protection", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_logs` after provisioning.\n"]

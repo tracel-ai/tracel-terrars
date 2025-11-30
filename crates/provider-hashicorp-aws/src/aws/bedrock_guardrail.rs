@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockGuardrailData {
@@ -28,11 +28,13 @@ struct BedrockGuardrailData {
     #[serde(skip_serializing_if = "Option::is_none")]
     content_policy_config: Option<Vec<BedrockGuardrailContentPolicyConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    contextual_grounding_policy_config: Option<Vec<BedrockGuardrailContextualGroundingPolicyConfigEl>>,
+    contextual_grounding_policy_config:
+        Option<Vec<BedrockGuardrailContextualGroundingPolicyConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     cross_region_config: Option<Vec<BedrockGuardrailCrossRegionConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    sensitive_information_policy_config: Option<Vec<BedrockGuardrailSensitiveInformationPolicyConfigEl>>,
+    sensitive_information_policy_config:
+        Option<Vec<BedrockGuardrailSensitiveInformationPolicyConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<BedrockGuardrailTimeoutsEl>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -77,7 +79,8 @@ impl BedrockGuardrail {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -90,7 +93,7 @@ impl BedrockGuardrail {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -101,12 +104,22 @@ impl BedrockGuardrail {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +135,7 @@ impl BedrockGuardrail {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -143,10 +155,10 @@ impl BedrockGuardrail {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().content_policy_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.content_policy_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -159,23 +171,30 @@ impl BedrockGuardrail {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().contextual_grounding_policy_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.contextual_grounding_policy_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .contextual_grounding_policy_config = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Set the field `cross_region_config`.\n"]
-    pub fn set_cross_region_config(self, v: impl Into<BlockAssignable<BedrockGuardrailCrossRegionConfigEl>>) -> Self {
+    pub fn set_cross_region_config(
+        self,
+        v: impl Into<BlockAssignable<BedrockGuardrailCrossRegionConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cross_region_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cross_region_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,10 +207,14 @@ impl BedrockGuardrail {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sensitive_information_policy_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.sensitive_information_policy_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .sensitive_information_policy_config = Some(d);
+            }
         }
         self
     }
@@ -203,140 +226,213 @@ impl BedrockGuardrail {
     }
 
     #[doc = "Set the field `topic_policy_config`.\n"]
-    pub fn set_topic_policy_config(self, v: impl Into<BlockAssignable<BedrockGuardrailTopicPolicyConfigEl>>) -> Self {
+    pub fn set_topic_policy_config(
+        self,
+        v: impl Into<BlockAssignable<BedrockGuardrailTopicPolicyConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().topic_policy_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.topic_policy_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `word_policy_config`.\n"]
-    pub fn set_word_policy_config(self, v: impl Into<BlockAssignable<BedrockGuardrailWordPolicyConfigEl>>) -> Self {
+    pub fn set_word_policy_config(
+        self,
+        v: impl Into<BlockAssignable<BedrockGuardrailWordPolicyConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().word_policy_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.word_policy_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `blocked_input_messaging` after provisioning.\n"]
     pub fn blocked_input_messaging(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.blocked_input_messaging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.blocked_input_messaging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `blocked_outputs_messaging` after provisioning.\n"]
     pub fn blocked_outputs_messaging(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.blocked_outputs_messaging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.blocked_outputs_messaging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_arn` after provisioning.\n"]
     pub fn guardrail_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_id` after provisioning.\n"]
     pub fn guardrail_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `content_policy_config` after provisioning.\n"]
     pub fn content_policy_config(&self) -> ListRef<BedrockGuardrailContentPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_policy_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `contextual_grounding_policy_config` after provisioning.\n"]
-    pub fn contextual_grounding_policy_config(&self) -> ListRef<BedrockGuardrailContextualGroundingPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.contextual_grounding_policy_config", self.extract_ref()))
+    pub fn contextual_grounding_policy_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailContextualGroundingPolicyConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.contextual_grounding_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cross_region_config` after provisioning.\n"]
     pub fn cross_region_config(&self) -> ListRef<BedrockGuardrailCrossRegionConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cross_region_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cross_region_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sensitive_information_policy_config` after provisioning.\n"]
-    pub fn sensitive_information_policy_config(&self) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sensitive_information_policy_config", self.extract_ref()))
+    pub fn sensitive_information_policy_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sensitive_information_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockGuardrailTimeoutsElRef {
-        BedrockGuardrailTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockGuardrailTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topic_policy_config` after provisioning.\n"]
     pub fn topic_policy_config(&self) -> ListRef<BedrockGuardrailTopicPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.topic_policy_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.topic_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `word_policy_config` after provisioning.\n"]
     pub fn word_policy_config(&self) -> ListRef<BedrockGuardrailWordPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.word_policy_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.word_policy_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockGuardrail {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockGuardrail { }
+impl Resource for BedrockGuardrail {}
 
 impl ToListMappable for BedrockGuardrail {
     type O = ListRef<BedrockGuardrailRef>;
@@ -410,10 +506,7 @@ pub struct BedrockGuardrailRef {
 
 impl Ref for BedrockGuardrailRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -428,103 +521,166 @@ impl BedrockGuardrailRef {
 
     #[doc = "Get a reference to the value of field `blocked_input_messaging` after provisioning.\n"]
     pub fn blocked_input_messaging(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.blocked_input_messaging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.blocked_input_messaging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `blocked_outputs_messaging` after provisioning.\n"]
     pub fn blocked_outputs_messaging(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.blocked_outputs_messaging", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.blocked_outputs_messaging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_arn` after provisioning.\n"]
     pub fn guardrail_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `guardrail_id` after provisioning.\n"]
     pub fn guardrail_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `content_policy_config` after provisioning.\n"]
     pub fn content_policy_config(&self) -> ListRef<BedrockGuardrailContentPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.content_policy_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.content_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `contextual_grounding_policy_config` after provisioning.\n"]
-    pub fn contextual_grounding_policy_config(&self) -> ListRef<BedrockGuardrailContextualGroundingPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.contextual_grounding_policy_config", self.extract_ref()))
+    pub fn contextual_grounding_policy_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailContextualGroundingPolicyConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.contextual_grounding_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cross_region_config` after provisioning.\n"]
     pub fn cross_region_config(&self) -> ListRef<BedrockGuardrailCrossRegionConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cross_region_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cross_region_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sensitive_information_policy_config` after provisioning.\n"]
-    pub fn sensitive_information_policy_config(&self) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sensitive_information_policy_config", self.extract_ref()))
+    pub fn sensitive_information_policy_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sensitive_information_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockGuardrailTimeoutsElRef {
-        BedrockGuardrailTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockGuardrailTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `topic_policy_config` after provisioning.\n"]
     pub fn topic_policy_config(&self) -> ListRef<BedrockGuardrailTopicPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.topic_policy_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.topic_policy_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `word_policy_config` after provisioning.\n"]
     pub fn word_policy_config(&self) -> ListRef<BedrockGuardrailWordPolicyConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.word_policy_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.word_policy_config", self.extract_ref()),
+        )
     }
 }
 
@@ -558,7 +714,9 @@ pub struct BuildBedrockGuardrailContentPolicyConfigElTierConfigEl {}
 
 impl BuildBedrockGuardrailContentPolicyConfigElTierConfigEl {
     pub fn build(self) -> BedrockGuardrailContentPolicyConfigElTierConfigEl {
-        BedrockGuardrailContentPolicyConfigElTierConfigEl { tier_name: core::default::Default::default() }
+        BedrockGuardrailContentPolicyConfigElTierConfigEl {
+            tier_name: core::default::Default::default(),
+        }
     }
 }
 
@@ -568,7 +726,10 @@ pub struct BedrockGuardrailContentPolicyConfigElTierConfigElRef {
 }
 
 impl Ref for BedrockGuardrailContentPolicyConfigElTierConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailContentPolicyConfigElTierConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailContentPolicyConfigElTierConfigElRef {
         BedrockGuardrailContentPolicyConfigElTierConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -688,7 +849,10 @@ pub struct BedrockGuardrailContentPolicyConfigElFiltersConfigElRef {
 }
 
 impl Ref for BedrockGuardrailContentPolicyConfigElFiltersConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailContentPolicyConfigElFiltersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailContentPolicyConfigElFiltersConfigElRef {
         BedrockGuardrailContentPolicyConfigElFiltersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -708,37 +872,58 @@ impl BedrockGuardrailContentPolicyConfigElFiltersConfigElRef {
 
     #[doc = "Get a reference to the value of field `input_enabled` after provisioning.\n"]
     pub fn input_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_modalities` after provisioning.\n"]
     pub fn input_modalities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.input_modalities", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_modalities", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_strength` after provisioning.\n"]
     pub fn input_strength(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_strength", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_strength", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_action` after provisioning.\n"]
     pub fn output_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_enabled` after provisioning.\n"]
     pub fn output_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_modalities` after provisioning.\n"]
     pub fn output_modalities(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.output_modalities", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.output_modalities", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_strength` after provisioning.\n"]
     pub fn output_strength(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_strength", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_strength", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -779,10 +964,10 @@ impl BedrockGuardrailContentPolicyConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filters_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filters_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -844,7 +1029,7 @@ pub struct BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl {
     type_: PrimField<String>,
 }
 
-impl BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl { }
+impl BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl {}
 
 impl ToListMappable for BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl {
     type O = BlockAssignable<BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl>;
@@ -880,7 +1065,10 @@ pub struct BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef {
 }
 
 impl Ref for BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef {
         BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -906,7 +1094,8 @@ impl BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockGuardrailContextualGroundingPolicyConfigElDynamic {
-    filters_config: Option<DynamicBlock<BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl>>,
+    filters_config:
+        Option<DynamicBlock<BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigEl>>,
 }
 
 #[derive(Serialize)]
@@ -925,10 +1114,10 @@ impl BedrockGuardrailContextualGroundingPolicyConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filters_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filters_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -963,7 +1152,10 @@ pub struct BedrockGuardrailContextualGroundingPolicyConfigElRef {
 }
 
 impl Ref for BedrockGuardrailContextualGroundingPolicyConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailContextualGroundingPolicyConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailContextualGroundingPolicyConfigElRef {
         BedrockGuardrailContextualGroundingPolicyConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -977,8 +1169,13 @@ impl BedrockGuardrailContextualGroundingPolicyConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `filters_config` after provisioning.\n"]
-    pub fn filters_config(&self) -> ListRef<BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.filters_config", self.base))
+    pub fn filters_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailContextualGroundingPolicyConfigElFiltersConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.filters_config", self.base),
+        )
     }
 }
 
@@ -987,7 +1184,7 @@ pub struct BedrockGuardrailCrossRegionConfigEl {
     guardrail_profile_identifier: PrimField<String>,
 }
 
-impl BedrockGuardrailCrossRegionConfigEl { }
+impl BedrockGuardrailCrossRegionConfigEl {}
 
 impl ToListMappable for BedrockGuardrailCrossRegionConfigEl {
     type O = BlockAssignable<BedrockGuardrailCrossRegionConfigEl>;
@@ -1008,7 +1205,9 @@ pub struct BuildBedrockGuardrailCrossRegionConfigEl {
 
 impl BuildBedrockGuardrailCrossRegionConfigEl {
     pub fn build(self) -> BedrockGuardrailCrossRegionConfigEl {
-        BedrockGuardrailCrossRegionConfigEl { guardrail_profile_identifier: self.guardrail_profile_identifier }
+        BedrockGuardrailCrossRegionConfigEl {
+            guardrail_profile_identifier: self.guardrail_profile_identifier,
+        }
     }
 }
 
@@ -1033,7 +1232,10 @@ impl BedrockGuardrailCrossRegionConfigElRef {
 
     #[doc = "Get a reference to the value of field `guardrail_profile_identifier` after provisioning.\n"]
     pub fn guardrail_profile_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.guardrail_profile_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.guardrail_profile_identifier", self.base),
+        )
     }
 }
 
@@ -1144,17 +1346,26 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigElRef {
 
     #[doc = "Get a reference to the value of field `input_enabled` after provisioning.\n"]
     pub fn input_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_action` after provisioning.\n"]
     pub fn output_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_enabled` after provisioning.\n"]
     pub fn output_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -1287,7 +1498,10 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigElRef {
 
     #[doc = "Get a reference to the value of field `input_enabled` after provisioning.\n"]
     pub fn input_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1297,12 +1511,18 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigElRef {
 
     #[doc = "Get a reference to the value of field `output_action` after provisioning.\n"]
     pub fn output_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_enabled` after provisioning.\n"]
     pub fn output_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
@@ -1313,14 +1533,17 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockGuardrailSensitiveInformationPolicyConfigElDynamic {
-    pii_entities_config: Option<DynamicBlock<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigEl>>,
-    regexes_config: Option<DynamicBlock<BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigEl>>,
+    pii_entities_config:
+        Option<DynamicBlock<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigEl>>,
+    regexes_config:
+        Option<DynamicBlock<BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigEl>>,
 }
 
 #[derive(Serialize)]
 pub struct BedrockGuardrailSensitiveInformationPolicyConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pii_entities_config: Option<Vec<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigEl>>,
+    pii_entities_config:
+        Option<Vec<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     regexes_config: Option<Vec<BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigEl>>,
     dynamic: BedrockGuardrailSensitiveInformationPolicyConfigElDynamic,
@@ -1330,15 +1553,17 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigEl {
     #[doc = "Set the field `pii_entities_config`.\n"]
     pub fn set_pii_entities_config(
         mut self,
-        v: impl Into<BlockAssignable<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigEl>>,
+        v: impl Into<
+            BlockAssignable<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pii_entities_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pii_entities_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1351,10 +1576,10 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.regexes_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.regexes_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1390,7 +1615,10 @@ pub struct BedrockGuardrailSensitiveInformationPolicyConfigElRef {
 }
 
 impl Ref for BedrockGuardrailSensitiveInformationPolicyConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailSensitiveInformationPolicyConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailSensitiveInformationPolicyConfigElRef {
         BedrockGuardrailSensitiveInformationPolicyConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1407,12 +1635,20 @@ impl BedrockGuardrailSensitiveInformationPolicyConfigElRef {
     pub fn pii_entities_config(
         &self,
     ) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElPiiEntitiesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pii_entities_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pii_entities_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regexes_config` after provisioning.\n"]
-    pub fn regexes_config(&self) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.regexes_config", self.base))
+    pub fn regexes_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailSensitiveInformationPolicyConfigElRegexesConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.regexes_config", self.base),
+        )
     }
 }
 
@@ -1427,22 +1663,19 @@ pub struct BedrockGuardrailTimeoutsEl {
 }
 
 impl BedrockGuardrailTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -1492,20 +1725,17 @@ impl BedrockGuardrailTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
@@ -1541,7 +1771,9 @@ pub struct BuildBedrockGuardrailTopicPolicyConfigElTierConfigEl {}
 
 impl BuildBedrockGuardrailTopicPolicyConfigElTierConfigEl {
     pub fn build(self) -> BedrockGuardrailTopicPolicyConfigElTierConfigEl {
-        BedrockGuardrailTopicPolicyConfigElTierConfigEl { tier_name: core::default::Default::default() }
+        BedrockGuardrailTopicPolicyConfigElTierConfigEl {
+            tier_name: core::default::Default::default(),
+        }
     }
 }
 
@@ -1551,7 +1783,10 @@ pub struct BedrockGuardrailTopicPolicyConfigElTierConfigElRef {
 }
 
 impl Ref for BedrockGuardrailTopicPolicyConfigElTierConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailTopicPolicyConfigElTierConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailTopicPolicyConfigElTierConfigElRef {
         BedrockGuardrailTopicPolicyConfigElTierConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1626,7 +1861,10 @@ pub struct BedrockGuardrailTopicPolicyConfigElTopicsConfigElRef {
 }
 
 impl Ref for BedrockGuardrailTopicPolicyConfigElTopicsConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailTopicPolicyConfigElTopicsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailTopicPolicyConfigElTopicsConfigElRef {
         BedrockGuardrailTopicPolicyConfigElTopicsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1676,7 +1914,10 @@ pub struct BedrockGuardrailTopicPolicyConfigEl {
 
 impl BedrockGuardrailTopicPolicyConfigEl {
     #[doc = "Set the field `tier_config`.\n"]
-    pub fn set_tier_config(mut self, v: impl Into<ListField<BedrockGuardrailTopicPolicyConfigElTierConfigEl>>) -> Self {
+    pub fn set_tier_config(
+        mut self,
+        v: impl Into<ListField<BedrockGuardrailTopicPolicyConfigElTierConfigEl>>,
+    ) -> Self {
         self.tier_config = Some(v.into());
         self
     }
@@ -1689,10 +1930,10 @@ impl BedrockGuardrailTopicPolicyConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.topics_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.topics_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1748,7 +1989,10 @@ impl BedrockGuardrailTopicPolicyConfigElRef {
 
     #[doc = "Get a reference to the value of field `topics_config` after provisioning.\n"]
     pub fn topics_config(&self) -> ListRef<BedrockGuardrailTopicPolicyConfigElTopicsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.topics_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.topics_config", self.base),
+        )
     }
 }
 
@@ -1827,7 +2071,10 @@ pub struct BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef {
 }
 
 impl Ref for BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef {
         BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1847,17 +2094,26 @@ impl BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef {
 
     #[doc = "Get a reference to the value of field `input_enabled` after provisioning.\n"]
     pub fn input_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_action` after provisioning.\n"]
     pub fn output_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_enabled` after provisioning.\n"]
     pub fn output_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -1940,7 +2196,10 @@ pub struct BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
 }
 
 impl Ref for BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
-    fn new(shared: StackShared, base: String) -> BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
         BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1960,17 +2219,26 @@ impl BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
 
     #[doc = "Get a reference to the value of field `input_enabled` after provisioning.\n"]
     pub fn input_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_action` after provisioning.\n"]
     pub fn output_action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_action", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_action", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_enabled` after provisioning.\n"]
     pub fn output_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_enabled", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text` after provisioning.\n"]
@@ -1981,14 +2249,16 @@ impl BedrockGuardrailWordPolicyConfigElWordsConfigElRef {
 
 #[derive(Serialize, Default)]
 struct BedrockGuardrailWordPolicyConfigElDynamic {
-    managed_word_lists_config: Option<DynamicBlock<BedrockGuardrailWordPolicyConfigElManagedWordListsConfigEl>>,
+    managed_word_lists_config:
+        Option<DynamicBlock<BedrockGuardrailWordPolicyConfigElManagedWordListsConfigEl>>,
     words_config: Option<DynamicBlock<BedrockGuardrailWordPolicyConfigElWordsConfigEl>>,
 }
 
 #[derive(Serialize)]
 pub struct BedrockGuardrailWordPolicyConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    managed_word_lists_config: Option<Vec<BedrockGuardrailWordPolicyConfigElManagedWordListsConfigEl>>,
+    managed_word_lists_config:
+        Option<Vec<BedrockGuardrailWordPolicyConfigElManagedWordListsConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     words_config: Option<Vec<BedrockGuardrailWordPolicyConfigElWordsConfigEl>>,
     dynamic: BedrockGuardrailWordPolicyConfigElDynamic,
@@ -2003,10 +2273,10 @@ impl BedrockGuardrailWordPolicyConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.managed_word_lists_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.managed_word_lists_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2019,10 +2289,10 @@ impl BedrockGuardrailWordPolicyConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.words_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.words_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2072,8 +2342,13 @@ impl BedrockGuardrailWordPolicyConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `managed_word_lists_config` after provisioning.\n"]
-    pub fn managed_word_lists_config(&self) -> ListRef<BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.managed_word_lists_config", self.base))
+    pub fn managed_word_lists_config(
+        &self,
+    ) -> ListRef<BedrockGuardrailWordPolicyConfigElManagedWordListsConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.managed_word_lists_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `words_config` after provisioning.\n"]
@@ -2085,9 +2360,11 @@ impl BedrockGuardrailWordPolicyConfigElRef {
 #[derive(Serialize, Default)]
 struct BedrockGuardrailDynamic {
     content_policy_config: Option<DynamicBlock<BedrockGuardrailContentPolicyConfigEl>>,
-    contextual_grounding_policy_config: Option<DynamicBlock<BedrockGuardrailContextualGroundingPolicyConfigEl>>,
+    contextual_grounding_policy_config:
+        Option<DynamicBlock<BedrockGuardrailContextualGroundingPolicyConfigEl>>,
     cross_region_config: Option<DynamicBlock<BedrockGuardrailCrossRegionConfigEl>>,
-    sensitive_information_policy_config: Option<DynamicBlock<BedrockGuardrailSensitiveInformationPolicyConfigEl>>,
+    sensitive_information_policy_config:
+        Option<DynamicBlock<BedrockGuardrailSensitiveInformationPolicyConfigEl>>,
     topic_policy_config: Option<DynamicBlock<BedrockGuardrailTopicPolicyConfigEl>>,
     word_policy_config: Option<DynamicBlock<BedrockGuardrailWordPolicyConfigEl>>,
 }

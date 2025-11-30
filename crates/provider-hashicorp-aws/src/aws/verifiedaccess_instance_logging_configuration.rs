@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VerifiedaccessInstanceLoggingConfigurationData {
@@ -31,7 +31,9 @@ struct VerifiedaccessInstanceLoggingConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct VerifiedaccessInstanceLoggingConfiguration(Rc<VerifiedaccessInstanceLoggingConfiguration_>);
+pub struct VerifiedaccessInstanceLoggingConfiguration(
+    Rc<VerifiedaccessInstanceLoggingConfiguration_>,
+);
 
 impl VerifiedaccessInstanceLoggingConfiguration {
     fn shared(&self) -> &StackShared {
@@ -59,7 +61,8 @@ impl VerifiedaccessInstanceLoggingConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +75,7 @@ impl VerifiedaccessInstanceLoggingConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +86,22 @@ impl VerifiedaccessInstanceLoggingConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,8 +111,7 @@ impl VerifiedaccessInstanceLoggingConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -113,10 +125,10 @@ impl VerifiedaccessInstanceLoggingConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().access_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.access_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -126,30 +138,44 @@ impl VerifiedaccessInstanceLoggingConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verifiedaccess_instance_id` after provisioning.\n"]
     pub fn verifiedaccess_instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verifiedaccess_instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verifiedaccess_instance_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_logs` after provisioning.\n"]
-    pub fn access_logs(&self) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_logs", self.extract_ref()))
+    pub fn access_logs(
+        &self,
+    ) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_logs", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VerifiedaccessInstanceLoggingConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VerifiedaccessInstanceLoggingConfiguration { }
+impl Resource for VerifiedaccessInstanceLoggingConfiguration {}
 
 impl ToListMappable for VerifiedaccessInstanceLoggingConfiguration {
     type O = ListRef<VerifiedaccessInstanceLoggingConfigurationRef>;
@@ -182,21 +208,23 @@ pub struct BuildVerifiedaccessInstanceLoggingConfiguration {
 
 impl BuildVerifiedaccessInstanceLoggingConfiguration {
     pub fn build(self, stack: &mut Stack) -> VerifiedaccessInstanceLoggingConfiguration {
-        let out = VerifiedaccessInstanceLoggingConfiguration(Rc::new(VerifiedaccessInstanceLoggingConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(VerifiedaccessInstanceLoggingConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                verifiedaccess_instance_id: self.verifiedaccess_instance_id,
-                access_logs: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = VerifiedaccessInstanceLoggingConfiguration(Rc::new(
+            VerifiedaccessInstanceLoggingConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(VerifiedaccessInstanceLoggingConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    verifiedaccess_instance_id: self.verifiedaccess_instance_id,
+                    access_logs: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -209,10 +237,7 @@ pub struct VerifiedaccessInstanceLoggingConfigurationRef {
 
 impl Ref for VerifiedaccessInstanceLoggingConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -230,20 +255,30 @@ impl VerifiedaccessInstanceLoggingConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verifiedaccess_instance_id` after provisioning.\n"]
     pub fn verifiedaccess_instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verifiedaccess_instance_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verifiedaccess_instance_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_logs` after provisioning.\n"]
-    pub fn access_logs(&self) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_logs", self.extract_ref()))
+    pub fn access_logs(
+        &self,
+    ) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_logs", self.extract_ref()),
+        )
     }
 }
 
@@ -263,7 +298,8 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl {
 }
 
 impl ToListMappable for VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl {
-    type O = BlockAssignable<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>;
+    type O =
+        BlockAssignable<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -336,8 +372,12 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl
     }
 }
 
-impl ToListMappable for VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl {
-    type O = BlockAssignable<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl>;
+impl ToListMappable
+    for VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl
+{
+    type O = BlockAssignable<
+        VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -354,7 +394,9 @@ pub struct BuildVerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDat
 }
 
 impl BuildVerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl {
-    pub fn build(self) -> VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl {
+    pub fn build(
+        self,
+    ) -> VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl {
         VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl {
             delivery_stream: core::default::Default::default(),
             enabled: self.enabled,
@@ -386,7 +428,10 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl
 
     #[doc = "Get a reference to the value of field `delivery_stream` after provisioning.\n"]
     pub fn delivery_stream(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.delivery_stream", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.delivery_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
@@ -460,7 +505,10 @@ pub struct VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3ElRef {
 }
 
 impl Ref for VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3ElRef {
-    fn new(shared: StackShared, base: String) -> VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3ElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3ElRef {
         VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3ElRef {
             shared: shared,
             base: base.to_string(),
@@ -496,7 +544,9 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3ElRef {
 
 #[derive(Serialize, Default)]
 struct VerifiedaccessInstanceLoggingConfigurationAccessLogsElDynamic {
-    cloudwatch_logs: Option<DynamicBlock<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>>,
+    cloudwatch_logs: Option<
+        DynamicBlock<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>,
+    >,
     kinesis_data_firehose: Option<
         DynamicBlock<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl>,
     >,
@@ -510,9 +560,11 @@ pub struct VerifiedaccessInstanceLoggingConfigurationAccessLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_version: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    cloudwatch_logs: Option<Vec<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>>,
+    cloudwatch_logs:
+        Option<Vec<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    kinesis_data_firehose: Option<Vec<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl>>,
+    kinesis_data_firehose:
+        Option<Vec<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3: Option<Vec<VerifiedaccessInstanceLoggingConfigurationAccessLogsElS3El>>,
     dynamic: VerifiedaccessInstanceLoggingConfigurationAccessLogsElDynamic,
@@ -534,15 +586,17 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsEl {
     #[doc = "Set the field `cloudwatch_logs`.\n"]
     pub fn set_cloudwatch_logs(
         mut self,
-        v: impl Into<BlockAssignable<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>>,
+        v: impl Into<
+            BlockAssignable<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_logs = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_logs = Some(d);
-            },
+            }
         }
         self
     }
@@ -550,15 +604,19 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsEl {
     #[doc = "Set the field `kinesis_data_firehose`.\n"]
     pub fn set_kinesis_data_firehose(
         mut self,
-        v: impl Into<BlockAssignable<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl>>,
+        v: impl Into<
+            BlockAssignable<
+                VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.kinesis_data_firehose = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.kinesis_data_firehose = Some(d);
-            },
+            }
         }
         self
     }
@@ -571,10 +629,10 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3 = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3 = Some(d);
-            },
+            }
         }
         self
     }
@@ -613,7 +671,10 @@ pub struct VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
 }
 
 impl Ref for VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
-    fn new(shared: StackShared, base: String) -> VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
         VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
             shared: shared,
             base: base.to_string(),
@@ -628,7 +689,10 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
 
     #[doc = "Get a reference to the value of field `include_trust_context` after provisioning.\n"]
     pub fn include_trust_context(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.include_trust_context", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.include_trust_context", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `log_version` after provisioning.\n"]
@@ -637,15 +701,24 @@ impl VerifiedaccessInstanceLoggingConfigurationAccessLogsElRef {
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
-    pub fn cloudwatch_logs(&self) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_logs", self.base))
+    pub fn cloudwatch_logs(
+        &self,
+    ) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElCloudwatchLogsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_logs", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_data_firehose` after provisioning.\n"]
     pub fn kinesis_data_firehose(
         &self,
-    ) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_data_firehose", self.base))
+    ) -> ListRef<VerifiedaccessInstanceLoggingConfigurationAccessLogsElKinesisDataFirehoseElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_data_firehose", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]

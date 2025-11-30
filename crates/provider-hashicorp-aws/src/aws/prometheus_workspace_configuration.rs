@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct PrometheusWorkspaceConfigurationData {
@@ -61,7 +61,8 @@ impl PrometheusWorkspaceConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl PrometheusWorkspaceConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,17 +86,26 @@ impl PrometheusWorkspaceConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -115,10 +125,10 @@ impl PrometheusWorkspaceConfiguration {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().limits_per_label_set = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.limits_per_label_set = Some(d);
-            },
+            }
         }
         self
     }
@@ -129,25 +139,38 @@ impl PrometheusWorkspaceConfiguration {
         self
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period_in_days` after provisioning.\n"]
     pub fn retention_period_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period_in_days", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period_in_days", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workspace_id` after provisioning.\n"]
     pub fn workspace_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workspace_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workspace_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `limits_per_label_set` after provisioning.\n"]
-    pub fn limits_per_label_set(&self) -> ListRef<PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.limits_per_label_set", self.extract_ref()))
+    pub fn limits_per_label_set(
+        &self,
+    ) -> ListRef<PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.limits_per_label_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -161,11 +184,15 @@ impl PrometheusWorkspaceConfiguration {
 
 impl Referable for PrometheusWorkspaceConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for PrometheusWorkspaceConfiguration { }
+impl Resource for PrometheusWorkspaceConfiguration {}
 
 impl ToListMappable for PrometheusWorkspaceConfiguration {
     type O = ListRef<PrometheusWorkspaceConfigurationRef>;
@@ -226,10 +253,7 @@ pub struct PrometheusWorkspaceConfigurationRef {
 
 impl Ref for PrometheusWorkspaceConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -242,25 +266,38 @@ impl PrometheusWorkspaceConfigurationRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention_period_in_days` after provisioning.\n"]
     pub fn retention_period_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention_period_in_days", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention_period_in_days", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `workspace_id` after provisioning.\n"]
     pub fn workspace_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.workspace_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.workspace_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `limits_per_label_set` after provisioning.\n"]
-    pub fn limits_per_label_set(&self) -> ListRef<PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.limits_per_label_set", self.extract_ref()))
+    pub fn limits_per_label_set(
+        &self,
+    ) -> ListRef<PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.limits_per_label_set", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -277,7 +314,7 @@ pub struct PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {
     max_series: PrimField<f64>,
 }
 
-impl PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl { }
+impl PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {}
 
 impl ToListMappable for PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {
     type O = BlockAssignable<PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl>;
@@ -298,7 +335,9 @@ pub struct BuildPrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {
 
 impl BuildPrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {
     pub fn build(self) -> PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {
-        PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl { max_series: self.max_series }
+        PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsEl {
+            max_series: self.max_series,
+        }
     }
 }
 
@@ -308,7 +347,10 @@ pub struct PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef {
 }
 
 impl Ref for PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef {
-    fn new(shared: StackShared, base: String) -> PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef {
         PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef {
             shared: shared,
             base: base.to_string(),
@@ -349,10 +391,10 @@ impl PrometheusWorkspaceConfigurationLimitsPerLabelSetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.limits = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.limits = Some(d);
-            },
+            }
         }
         self
     }
@@ -391,7 +433,10 @@ pub struct PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef {
 }
 
 impl Ref for PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef {
-    fn new(shared: StackShared, base: String) -> PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef {
         PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef {
             shared: shared,
             base: base.to_string(),
@@ -410,7 +455,9 @@ impl PrometheusWorkspaceConfigurationLimitsPerLabelSetElRef {
     }
 
     #[doc = "Get a reference to the value of field `limits` after provisioning.\n"]
-    pub fn limits(&self) -> ListRef<PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef> {
+    pub fn limits(
+        &self,
+    ) -> ListRef<PrometheusWorkspaceConfigurationLimitsPerLabelSetElLimitsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.limits", self.base))
     }
 }
@@ -424,15 +471,13 @@ pub struct PrometheusWorkspaceConfigurationTimeoutsEl {
 }
 
 impl PrometheusWorkspaceConfigurationTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -481,14 +526,12 @@ impl PrometheusWorkspaceConfigurationTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }

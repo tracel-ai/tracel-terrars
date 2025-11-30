@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataGlueCatalogTableData {
@@ -68,8 +68,7 @@ impl DataGlueCatalogTable {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -88,17 +87,26 @@ impl DataGlueCatalogTable {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -108,83 +116,128 @@ impl DataGlueCatalogTable {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_index` after provisioning.\n"]
     pub fn partition_index(&self) -> ListRef<DataGlueCatalogTablePartitionIndexElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.partition_index", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partition_index", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_keys` after provisioning.\n"]
     pub fn partition_keys(&self) -> ListRef<DataGlueCatalogTablePartitionKeysElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.partition_keys", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partition_keys", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_as_of_time` after provisioning.\n"]
     pub fn query_as_of_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_as_of_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_as_of_time", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention` after provisioning.\n"]
     pub fn retention(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_descriptor` after provisioning.\n"]
     pub fn storage_descriptor(&self) -> ListRef<DataGlueCatalogTableStorageDescriptorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_descriptor", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_descriptor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_type` after provisioning.\n"]
     pub fn table_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_table` after provisioning.\n"]
     pub fn target_table(&self) -> ListRef<DataGlueCatalogTableTargetTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transaction_id` after provisioning.\n"]
     pub fn transaction_id(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transaction_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transaction_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `view_expanded_text` after provisioning.\n"]
     pub fn view_expanded_text(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.view_expanded_text", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.view_expanded_text", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `view_original_text` after provisioning.\n"]
     pub fn view_original_text(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.view_original_text", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.view_original_text", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataGlueCatalogTable {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataGlueCatalogTable { }
+impl Datasource for DataGlueCatalogTable {}
 
 impl ToListMappable for DataGlueCatalogTable {
     type O = ListRef<DataGlueCatalogTableRef>;
@@ -247,10 +300,7 @@ pub struct DataGlueCatalogTableRef {
 
 impl Ref for DataGlueCatalogTableRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -270,17 +320,26 @@ impl DataGlueCatalogTableRef {
 
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.catalog_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -290,73 +349,114 @@ impl DataGlueCatalogTableRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.owner", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.owner", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_index` after provisioning.\n"]
     pub fn partition_index(&self) -> ListRef<DataGlueCatalogTablePartitionIndexElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.partition_index", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partition_index", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `partition_keys` after provisioning.\n"]
     pub fn partition_keys(&self) -> ListRef<DataGlueCatalogTablePartitionKeysElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.partition_keys", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.partition_keys", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_as_of_time` after provisioning.\n"]
     pub fn query_as_of_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_as_of_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_as_of_time", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retention` after provisioning.\n"]
     pub fn retention(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.retention", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.retention", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_descriptor` after provisioning.\n"]
     pub fn storage_descriptor(&self) -> ListRef<DataGlueCatalogTableStorageDescriptorElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.storage_descriptor", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.storage_descriptor", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `table_type` after provisioning.\n"]
     pub fn table_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.table_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.table_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_table` after provisioning.\n"]
     pub fn target_table(&self) -> ListRef<DataGlueCatalogTableTargetTableElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_table", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_table", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transaction_id` after provisioning.\n"]
     pub fn transaction_id(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transaction_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transaction_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `view_expanded_text` after provisioning.\n"]
     pub fn view_expanded_text(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.view_expanded_text", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.view_expanded_text", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `view_original_text` after provisioning.\n"]
     pub fn view_original_text(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.view_original_text", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.view_original_text", self.extract_ref()),
+        )
     }
 }
 
@@ -621,7 +721,10 @@ pub struct DataGlueCatalogTableStorageDescriptorElColumnsElRef {
 }
 
 impl Ref for DataGlueCatalogTableStorageDescriptorElColumnsElRef {
-    fn new(shared: StackShared, base: String) -> DataGlueCatalogTableStorageDescriptorElColumnsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlueCatalogTableStorageDescriptorElColumnsElRef {
         DataGlueCatalogTableStorageDescriptorElColumnsElRef {
             shared: shared,
             base: base.to_string(),
@@ -733,7 +836,10 @@ impl DataGlueCatalogTableStorageDescriptorElSchemaReferenceElSchemaIdElRef {
 
     #[doc = "Get a reference to the value of field `registry_name` after provisioning.\n"]
     pub fn registry_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.registry_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.registry_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_arn` after provisioning.\n"]
@@ -750,7 +856,8 @@ impl DataGlueCatalogTableStorageDescriptorElSchemaReferenceElSchemaIdElRef {
 #[derive(Serialize)]
 pub struct DataGlueCatalogTableStorageDescriptorElSchemaReferenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    schema_id: Option<ListField<DataGlueCatalogTableStorageDescriptorElSchemaReferenceElSchemaIdEl>>,
+    schema_id:
+        Option<ListField<DataGlueCatalogTableStorageDescriptorElSchemaReferenceElSchemaIdEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     schema_version_id: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -810,7 +917,10 @@ pub struct DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef {
 }
 
 impl Ref for DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef {
-    fn new(shared: StackShared, base: String) -> DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef {
         DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef {
             shared: shared,
             base: base.to_string(),
@@ -824,18 +934,26 @@ impl DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef {
     }
 
     #[doc = "Get a reference to the value of field `schema_id` after provisioning.\n"]
-    pub fn schema_id(&self) -> ListRef<DataGlueCatalogTableStorageDescriptorElSchemaReferenceElSchemaIdElRef> {
+    pub fn schema_id(
+        &self,
+    ) -> ListRef<DataGlueCatalogTableStorageDescriptorElSchemaReferenceElSchemaIdElRef> {
         ListRef::new(self.shared().clone(), format!("{}.schema_id", self.base))
     }
 
     #[doc = "Get a reference to the value of field `schema_version_id` after provisioning.\n"]
     pub fn schema_version_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schema_version_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schema_version_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `schema_version_number` after provisioning.\n"]
     pub fn schema_version_number(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schema_version_number", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schema_version_number", self.base),
+        )
     }
 }
 
@@ -899,7 +1017,10 @@ pub struct DataGlueCatalogTableStorageDescriptorElSerDeInfoElRef {
 }
 
 impl Ref for DataGlueCatalogTableStorageDescriptorElSerDeInfoElRef {
-    fn new(shared: StackShared, base: String) -> DataGlueCatalogTableStorageDescriptorElSerDeInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlueCatalogTableStorageDescriptorElSerDeInfoElRef {
         DataGlueCatalogTableStorageDescriptorElSerDeInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -924,7 +1045,10 @@ impl DataGlueCatalogTableStorageDescriptorElSerDeInfoElRef {
 
     #[doc = "Get a reference to the value of field `serialization_library` after provisioning.\n"]
     pub fn serialization_library(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.serialization_library", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.serialization_library", self.base),
+        )
     }
 }
 
@@ -946,7 +1070,10 @@ impl DataGlueCatalogTableStorageDescriptorElSkewedInfoEl {
     }
 
     #[doc = "Set the field `skewed_column_value_location_maps`.\n"]
-    pub fn set_skewed_column_value_location_maps(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_skewed_column_value_location_maps(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.skewed_column_value_location_maps = Some(v.into());
         self
     }
@@ -988,7 +1115,10 @@ pub struct DataGlueCatalogTableStorageDescriptorElSkewedInfoElRef {
 }
 
 impl Ref for DataGlueCatalogTableStorageDescriptorElSkewedInfoElRef {
-    fn new(shared: StackShared, base: String) -> DataGlueCatalogTableStorageDescriptorElSkewedInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlueCatalogTableStorageDescriptorElSkewedInfoElRef {
         DataGlueCatalogTableStorageDescriptorElSkewedInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1003,17 +1133,26 @@ impl DataGlueCatalogTableStorageDescriptorElSkewedInfoElRef {
 
     #[doc = "Get a reference to the value of field `skewed_column_names` after provisioning.\n"]
     pub fn skewed_column_names(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.skewed_column_names", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.skewed_column_names", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skewed_column_value_location_maps` after provisioning.\n"]
     pub fn skewed_column_value_location_maps(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.skewed_column_value_location_maps", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.skewed_column_value_location_maps", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `skewed_column_values` after provisioning.\n"]
     pub fn skewed_column_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.skewed_column_values", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.skewed_column_values", self.base),
+        )
     }
 }
 
@@ -1068,7 +1207,10 @@ pub struct DataGlueCatalogTableStorageDescriptorElSortColumnsElRef {
 }
 
 impl Ref for DataGlueCatalogTableStorageDescriptorElSortColumnsElRef {
-    fn new(shared: StackShared, base: String) -> DataGlueCatalogTableStorageDescriptorElSortColumnsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataGlueCatalogTableStorageDescriptorElSortColumnsElRef {
         DataGlueCatalogTableStorageDescriptorElSortColumnsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1138,7 +1280,10 @@ impl DataGlueCatalogTableStorageDescriptorEl {
     }
 
     #[doc = "Set the field `columns`.\n"]
-    pub fn set_columns(mut self, v: impl Into<ListField<DataGlueCatalogTableStorageDescriptorElColumnsEl>>) -> Self {
+    pub fn set_columns(
+        mut self,
+        v: impl Into<ListField<DataGlueCatalogTableStorageDescriptorElColumnsEl>>,
+    ) -> Self {
         self.columns = Some(v.into());
         self
     }
@@ -1278,12 +1423,18 @@ impl DataGlueCatalogTableStorageDescriptorElRef {
 
     #[doc = "Get a reference to the value of field `additional_locations` after provisioning.\n"]
     pub fn additional_locations(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.additional_locations", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.additional_locations", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bucket_columns` after provisioning.\n"]
     pub fn bucket_columns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.bucket_columns", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bucket_columns", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `columns` after provisioning.\n"]
@@ -1308,12 +1459,18 @@ impl DataGlueCatalogTableStorageDescriptorElRef {
 
     #[doc = "Get a reference to the value of field `number_of_buckets` after provisioning.\n"]
     pub fn number_of_buckets(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.number_of_buckets", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.number_of_buckets", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_format", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_format", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
@@ -1322,8 +1479,13 @@ impl DataGlueCatalogTableStorageDescriptorElRef {
     }
 
     #[doc = "Get a reference to the value of field `schema_reference` after provisioning.\n"]
-    pub fn schema_reference(&self) -> ListRef<DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.schema_reference", self.base))
+    pub fn schema_reference(
+        &self,
+    ) -> ListRef<DataGlueCatalogTableStorageDescriptorElSchemaReferenceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.schema_reference", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ser_de_info` after provisioning.\n"]
@@ -1343,7 +1505,10 @@ impl DataGlueCatalogTableStorageDescriptorElRef {
 
     #[doc = "Get a reference to the value of field `stored_as_sub_directories` after provisioning.\n"]
     pub fn stored_as_sub_directories(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.stored_as_sub_directories", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.stored_as_sub_directories", self.base),
+        )
     }
 }
 
@@ -1436,7 +1601,10 @@ impl DataGlueCatalogTableTargetTableElRef {
 
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.database_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.database_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

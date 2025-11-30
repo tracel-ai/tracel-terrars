@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct LbListenerRuleData {
@@ -69,7 +69,8 @@ impl LbListenerRule {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -82,7 +83,7 @@ impl LbListenerRule {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -93,12 +94,22 @@ impl LbListenerRule {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -114,8 +125,7 @@ impl LbListenerRule {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -138,10 +148,10 @@ impl LbListenerRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
@@ -151,10 +161,10 @@ impl LbListenerRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
@@ -164,10 +174,10 @@ impl LbListenerRule {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().transform = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.transform = Some(d);
-            },
+            }
         }
         self
     }
@@ -184,43 +194,64 @@ impl LbListenerRule {
 
     #[doc = "Get a reference to the value of field `listener_arn` after provisioning.\n"]
     pub fn listener_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<LbListenerRuleActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for LbListenerRule {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for LbListenerRule { }
+impl Resource for LbListenerRule {}
 
 impl ToListMappable for LbListenerRule {
     type O = ListRef<LbListenerRuleRef>;
@@ -285,10 +316,7 @@ pub struct LbListenerRuleRef {
 
 impl Ref for LbListenerRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -313,33 +341,50 @@ impl LbListenerRuleRef {
 
     #[doc = "Get a reference to the value of field `listener_arn` after provisioning.\n"]
     pub fn listener_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.listener_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.listener_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<LbListenerRuleActionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 }
 
@@ -362,7 +407,10 @@ pub struct LbListenerRuleActionElAuthenticateCognitoEl {
 
 impl LbListenerRuleActionElAuthenticateCognitoEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
-    pub fn set_authentication_request_extra_params(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_authentication_request_extra_params(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
@@ -449,12 +497,18 @@ impl LbListenerRuleActionElAuthenticateCognitoElRef {
 
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.authentication_request_extra_params", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_request_extra_params", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `on_unauthenticated_request` after provisioning.\n"]
     pub fn on_unauthenticated_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_unauthenticated_request", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_unauthenticated_request", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -464,27 +518,42 @@ impl LbListenerRuleActionElAuthenticateCognitoElRef {
 
     #[doc = "Get a reference to the value of field `session_cookie_name` after provisioning.\n"]
     pub fn session_cookie_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_cookie_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_cookie_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\n"]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_arn` after provisioning.\n"]
     pub fn user_pool_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_client_id` after provisioning.\n"]
     pub fn user_pool_client_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_client_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_client_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_pool_domain` after provisioning.\n"]
     pub fn user_pool_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_pool_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_pool_domain", self.base),
+        )
     }
 }
 
@@ -510,7 +579,10 @@ pub struct LbListenerRuleActionElAuthenticateOidcEl {
 
 impl LbListenerRuleActionElAuthenticateOidcEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
-    pub fn set_authentication_request_extra_params(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_authentication_request_extra_params(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
@@ -606,12 +678,18 @@ impl LbListenerRuleActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.authentication_request_extra_params", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_request_extra_params", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.authorization_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.authorization_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
@@ -621,7 +699,10 @@ impl LbListenerRuleActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_secret", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -631,7 +712,10 @@ impl LbListenerRuleActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `on_unauthenticated_request` after provisioning.\n"]
     pub fn on_unauthenticated_request(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_unauthenticated_request", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_unauthenticated_request", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -641,22 +725,34 @@ impl LbListenerRuleActionElAuthenticateOidcElRef {
 
     #[doc = "Get a reference to the value of field `session_cookie_name` after provisioning.\n"]
     pub fn session_cookie_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_cookie_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_cookie_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout` after provisioning.\n"]
     pub fn session_timeout(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token_endpoint` after provisioning.\n"]
     pub fn token_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token_endpoint", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_info_endpoint` after provisioning.\n"]
     pub fn user_info_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_info_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_info_endpoint", self.base),
+        )
     }
 }
 
@@ -904,14 +1000,17 @@ pub struct LbListenerRuleActionElForwardEl {
 
 impl LbListenerRuleActionElForwardEl {
     #[doc = "Set the field `stickiness`.\n"]
-    pub fn set_stickiness(mut self, v: impl Into<BlockAssignable<LbListenerRuleActionElForwardElStickinessEl>>) -> Self {
+    pub fn set_stickiness(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleActionElForwardElStickinessEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.stickiness = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.stickiness = Some(d);
-            },
+            }
         }
         self
     }
@@ -924,10 +1023,10 @@ impl LbListenerRuleActionElForwardEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_group = Some(d);
-            },
+            }
         }
         self
     }
@@ -989,7 +1088,7 @@ pub struct LbListenerRuleActionElJwtValidationElAdditionalClaimEl {
     values: SetField<PrimField<String>>,
 }
 
-impl LbListenerRuleActionElJwtValidationElAdditionalClaimEl { }
+impl LbListenerRuleActionElJwtValidationElAdditionalClaimEl {}
 
 impl ToListMappable for LbListenerRuleActionElJwtValidationElAdditionalClaimEl {
     type O = BlockAssignable<LbListenerRuleActionElJwtValidationElAdditionalClaimEl>;
@@ -1028,7 +1127,10 @@ pub struct LbListenerRuleActionElJwtValidationElAdditionalClaimElRef {
 }
 
 impl Ref for LbListenerRuleActionElJwtValidationElAdditionalClaimElRef {
-    fn new(shared: StackShared, base: String) -> LbListenerRuleActionElJwtValidationElAdditionalClaimElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LbListenerRuleActionElJwtValidationElAdditionalClaimElRef {
         LbListenerRuleActionElJwtValidationElAdditionalClaimElRef {
             shared: shared,
             base: base.to_string(),
@@ -1080,10 +1182,10 @@ impl LbListenerRuleActionElJwtValidationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.additional_claim = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.additional_claim = Some(d);
-            },
+            }
         }
         self
     }
@@ -1145,7 +1247,10 @@ impl LbListenerRuleActionElJwtValidationElRef {
 
     #[doc = "Get a reference to the value of field `jwks_endpoint` after provisioning.\n"]
     pub fn jwks_endpoint(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.jwks_endpoint", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.jwks_endpoint", self.base),
+        )
     }
 }
 
@@ -1330,10 +1435,10 @@ impl LbListenerRuleActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.authenticate_cognito = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.authenticate_cognito = Some(d);
-            },
+            }
         }
         self
     }
@@ -1346,62 +1451,74 @@ impl LbListenerRuleActionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.authenticate_oidc = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.authenticate_oidc = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `fixed_response`.\n"]
-    pub fn set_fixed_response(mut self, v: impl Into<BlockAssignable<LbListenerRuleActionElFixedResponseEl>>) -> Self {
+    pub fn set_fixed_response(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleActionElFixedResponseEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.fixed_response = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.fixed_response = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `forward`.\n"]
-    pub fn set_forward(mut self, v: impl Into<BlockAssignable<LbListenerRuleActionElForwardEl>>) -> Self {
+    pub fn set_forward(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleActionElForwardEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.forward = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.forward = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `jwt_validation`.\n"]
-    pub fn set_jwt_validation(mut self, v: impl Into<BlockAssignable<LbListenerRuleActionElJwtValidationEl>>) -> Self {
+    pub fn set_jwt_validation(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleActionElJwtValidationEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.jwt_validation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.jwt_validation = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `redirect`.\n"]
-    pub fn set_redirect(mut self, v: impl Into<BlockAssignable<LbListenerRuleActionElRedirectEl>>) -> Self {
+    pub fn set_redirect(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleActionElRedirectEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.redirect = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.redirect = Some(d);
-            },
+            }
         }
         self
     }
@@ -1467,7 +1584,10 @@ impl LbListenerRuleActionElRef {
 
     #[doc = "Get a reference to the value of field `target_group_arn` after provisioning.\n"]
     pub fn target_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -1477,17 +1597,26 @@ impl LbListenerRuleActionElRef {
 
     #[doc = "Get a reference to the value of field `authenticate_cognito` after provisioning.\n"]
     pub fn authenticate_cognito(&self) -> ListRef<LbListenerRuleActionElAuthenticateCognitoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authenticate_cognito", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authenticate_cognito", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `authenticate_oidc` after provisioning.\n"]
     pub fn authenticate_oidc(&self) -> ListRef<LbListenerRuleActionElAuthenticateOidcElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authenticate_oidc", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authenticate_oidc", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_response` after provisioning.\n"]
     pub fn fixed_response(&self) -> ListRef<LbListenerRuleActionElFixedResponseElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.fixed_response", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fixed_response", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `forward` after provisioning.\n"]
@@ -1497,7 +1626,10 @@ impl LbListenerRuleActionElRef {
 
     #[doc = "Get a reference to the value of field `jwt_validation` after provisioning.\n"]
     pub fn jwt_validation(&self) -> ListRef<LbListenerRuleActionElJwtValidationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_validation", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_validation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `redirect` after provisioning.\n"]
@@ -1652,7 +1784,10 @@ impl LbListenerRuleConditionElHttpHeaderElRef {
 
     #[doc = "Get a reference to the value of field `http_header_name` after provisioning.\n"]
     pub fn http_header_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_header_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_header_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `regex_values` after provisioning.\n"]
@@ -1671,7 +1806,7 @@ pub struct LbListenerRuleConditionElHttpRequestMethodEl {
     values: SetField<PrimField<String>>,
 }
 
-impl LbListenerRuleConditionElHttpRequestMethodEl { }
+impl LbListenerRuleConditionElHttpRequestMethodEl {}
 
 impl ToListMappable for LbListenerRuleConditionElHttpRequestMethodEl {
     type O = BlockAssignable<LbListenerRuleConditionElHttpRequestMethodEl>;
@@ -1692,7 +1827,9 @@ pub struct BuildLbListenerRuleConditionElHttpRequestMethodEl {
 
 impl BuildLbListenerRuleConditionElHttpRequestMethodEl {
     pub fn build(self) -> LbListenerRuleConditionElHttpRequestMethodEl {
-        LbListenerRuleConditionElHttpRequestMethodEl { values: self.values }
+        LbListenerRuleConditionElHttpRequestMethodEl {
+            values: self.values,
+        }
     }
 }
 
@@ -1872,7 +2009,7 @@ pub struct LbListenerRuleConditionElSourceIpEl {
     values: SetField<PrimField<String>>,
 }
 
-impl LbListenerRuleConditionElSourceIpEl { }
+impl LbListenerRuleConditionElSourceIpEl {}
 
 impl ToListMappable for LbListenerRuleConditionElSourceIpEl {
     type O = BlockAssignable<LbListenerRuleConditionElSourceIpEl>;
@@ -1893,7 +2030,9 @@ pub struct BuildLbListenerRuleConditionElSourceIpEl {
 
 impl BuildLbListenerRuleConditionElSourceIpEl {
     pub fn build(self) -> LbListenerRuleConditionElSourceIpEl {
-        LbListenerRuleConditionElSourceIpEl { values: self.values }
+        LbListenerRuleConditionElSourceIpEl {
+            values: self.values,
+        }
     }
 }
 
@@ -1951,27 +2090,33 @@ pub struct LbListenerRuleConditionEl {
 
 impl LbListenerRuleConditionEl {
     #[doc = "Set the field `host_header`.\n"]
-    pub fn set_host_header(mut self, v: impl Into<BlockAssignable<LbListenerRuleConditionElHostHeaderEl>>) -> Self {
+    pub fn set_host_header(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleConditionElHostHeaderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.host_header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.host_header = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `http_header`.\n"]
-    pub fn set_http_header(mut self, v: impl Into<BlockAssignable<LbListenerRuleConditionElHttpHeaderEl>>) -> Self {
+    pub fn set_http_header(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleConditionElHttpHeaderEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_header = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_header = Some(d);
-            },
+            }
         }
         self
     }
@@ -1984,49 +2129,58 @@ impl LbListenerRuleConditionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.http_request_method = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.http_request_method = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `path_pattern`.\n"]
-    pub fn set_path_pattern(mut self, v: impl Into<BlockAssignable<LbListenerRuleConditionElPathPatternEl>>) -> Self {
+    pub fn set_path_pattern(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleConditionElPathPatternEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.path_pattern = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.path_pattern = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `query_string`.\n"]
-    pub fn set_query_string(mut self, v: impl Into<BlockAssignable<LbListenerRuleConditionElQueryStringEl>>) -> Self {
+    pub fn set_query_string(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleConditionElQueryStringEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.query_string = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.query_string = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `source_ip`.\n"]
-    pub fn set_source_ip(mut self, v: impl Into<BlockAssignable<LbListenerRuleConditionElSourceIpEl>>) -> Self {
+    pub fn set_source_ip(
+        mut self,
+        v: impl Into<BlockAssignable<LbListenerRuleConditionElSourceIpEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_ip = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_ip = Some(d);
-            },
+            }
         }
         self
     }
@@ -2091,7 +2245,10 @@ impl LbListenerRuleConditionElRef {
 
     #[doc = "Get a reference to the value of field `http_request_method` after provisioning.\n"]
     pub fn http_request_method(&self) -> ListRef<LbListenerRuleConditionElHttpRequestMethodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.http_request_method", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.http_request_method", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_pattern` after provisioning.\n"]
@@ -2111,7 +2268,7 @@ pub struct LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteEl {
     replace: PrimField<String>,
 }
 
-impl LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteEl { }
+impl LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteEl {}
 
 impl ToListMappable for LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteEl {
     type O = BlockAssignable<LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteEl>;
@@ -2147,7 +2304,10 @@ pub struct LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef {
 }
 
 impl Ref for LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef {
-    fn new(shared: StackShared, base: String) -> LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef {
         LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef {
             shared: shared,
             base: base.to_string(),
@@ -2192,10 +2352,10 @@ impl LbListenerRuleTransformElHostHeaderRewriteConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rewrite = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rewrite = Some(d);
-            },
+            }
         }
         self
     }
@@ -2230,7 +2390,10 @@ pub struct LbListenerRuleTransformElHostHeaderRewriteConfigElRef {
 }
 
 impl Ref for LbListenerRuleTransformElHostHeaderRewriteConfigElRef {
-    fn new(shared: StackShared, base: String) -> LbListenerRuleTransformElHostHeaderRewriteConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LbListenerRuleTransformElHostHeaderRewriteConfigElRef {
         LbListenerRuleTransformElHostHeaderRewriteConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -2244,7 +2407,9 @@ impl LbListenerRuleTransformElHostHeaderRewriteConfigElRef {
     }
 
     #[doc = "Get a reference to the value of field `rewrite` after provisioning.\n"]
-    pub fn rewrite(&self) -> ListRef<LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef> {
+    pub fn rewrite(
+        &self,
+    ) -> ListRef<LbListenerRuleTransformElHostHeaderRewriteConfigElRewriteElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rewrite", self.base))
     }
 }
@@ -2255,7 +2420,7 @@ pub struct LbListenerRuleTransformElUrlRewriteConfigElRewriteEl {
     replace: PrimField<String>,
 }
 
-impl LbListenerRuleTransformElUrlRewriteConfigElRewriteEl { }
+impl LbListenerRuleTransformElUrlRewriteConfigElRewriteEl {}
 
 impl ToListMappable for LbListenerRuleTransformElUrlRewriteConfigElRewriteEl {
     type O = BlockAssignable<LbListenerRuleTransformElUrlRewriteConfigElRewriteEl>;
@@ -2291,7 +2456,10 @@ pub struct LbListenerRuleTransformElUrlRewriteConfigElRewriteElRef {
 }
 
 impl Ref for LbListenerRuleTransformElUrlRewriteConfigElRewriteElRef {
-    fn new(shared: StackShared, base: String) -> LbListenerRuleTransformElUrlRewriteConfigElRewriteElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> LbListenerRuleTransformElUrlRewriteConfigElRewriteElRef {
         LbListenerRuleTransformElUrlRewriteConfigElRewriteElRef {
             shared: shared,
             base: base.to_string(),
@@ -2336,10 +2504,10 @@ impl LbListenerRuleTransformElUrlRewriteConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.rewrite = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.rewrite = Some(d);
-            },
+            }
         }
         self
     }
@@ -2395,7 +2563,8 @@ impl LbListenerRuleTransformElUrlRewriteConfigElRef {
 
 #[derive(Serialize, Default)]
 struct LbListenerRuleTransformElDynamic {
-    host_header_rewrite_config: Option<DynamicBlock<LbListenerRuleTransformElHostHeaderRewriteConfigEl>>,
+    host_header_rewrite_config:
+        Option<DynamicBlock<LbListenerRuleTransformElHostHeaderRewriteConfigEl>>,
     url_rewrite_config: Option<DynamicBlock<LbListenerRuleTransformElUrlRewriteConfigEl>>,
 }
 
@@ -2419,10 +2588,10 @@ impl LbListenerRuleTransformEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.host_header_rewrite_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.host_header_rewrite_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2435,10 +2604,10 @@ impl LbListenerRuleTransformEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.url_rewrite_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.url_rewrite_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -2497,13 +2666,21 @@ impl LbListenerRuleTransformElRef {
     }
 
     #[doc = "Get a reference to the value of field `host_header_rewrite_config` after provisioning.\n"]
-    pub fn host_header_rewrite_config(&self) -> ListRef<LbListenerRuleTransformElHostHeaderRewriteConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.host_header_rewrite_config", self.base))
+    pub fn host_header_rewrite_config(
+        &self,
+    ) -> ListRef<LbListenerRuleTransformElHostHeaderRewriteConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.host_header_rewrite_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url_rewrite_config` after provisioning.\n"]
     pub fn url_rewrite_config(&self) -> ListRef<LbListenerRuleTransformElUrlRewriteConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.url_rewrite_config", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.url_rewrite_config", self.base),
+        )
     }
 }
 

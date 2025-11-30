@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct SsmMaintenanceWindowTaskData {
@@ -77,7 +77,8 @@ impl SsmMaintenanceWindowTask {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -90,7 +91,7 @@ impl SsmMaintenanceWindowTask {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -101,12 +102,22 @@ impl SsmMaintenanceWindowTask {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -152,8 +163,7 @@ impl SsmMaintenanceWindowTask {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -166,14 +176,17 @@ impl SsmMaintenanceWindowTask {
     }
 
     #[doc = "Set the field `targets`.\n"]
-    pub fn set_targets(self, v: impl Into<BlockAssignable<SsmMaintenanceWindowTaskTargetsEl>>) -> Self {
+    pub fn set_targets(
+        self,
+        v: impl Into<BlockAssignable<SsmMaintenanceWindowTaskTargetsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().targets = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.targets = Some(d);
-            },
+            }
         }
         self
     }
@@ -186,10 +199,10 @@ impl SsmMaintenanceWindowTask {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().task_invocation_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.task_invocation_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -201,12 +214,18 @@ impl SsmMaintenanceWindowTask {
 
     #[doc = "Get a reference to the value of field `cutoff_behavior` after provisioning.\n"]
     pub fn cutoff_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cutoff_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cutoff_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -216,73 +235,114 @@ impl SsmMaintenanceWindowTask {
 
     #[doc = "Get a reference to the value of field `max_concurrency` after provisioning.\n"]
     pub fn max_concurrency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_errors` after provisioning.\n"]
     pub fn max_errors(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_errors", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_errors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_arn` after provisioning.\n"]
     pub fn task_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_type` after provisioning.\n"]
     pub fn task_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `window_id` after provisioning.\n"]
     pub fn window_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.window_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.window_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `window_task_id` after provisioning.\n"]
     pub fn window_task_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.window_task_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.window_task_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `targets` after provisioning.\n"]
     pub fn targets(&self) -> ListRef<SsmMaintenanceWindowTaskTargetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.targets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_invocation_parameters` after provisioning.\n"]
-    pub fn task_invocation_parameters(&self) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.task_invocation_parameters", self.extract_ref()))
+    pub fn task_invocation_parameters(
+        &self,
+    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.task_invocation_parameters", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for SsmMaintenanceWindowTask {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for SsmMaintenanceWindowTask { }
+impl Resource for SsmMaintenanceWindowTask {}
 
 impl ToListMappable for SsmMaintenanceWindowTask {
     type O = ListRef<SsmMaintenanceWindowTaskRef>;
@@ -356,10 +416,7 @@ pub struct SsmMaintenanceWindowTaskRef {
 
 impl Ref for SsmMaintenanceWindowTaskRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -379,12 +436,18 @@ impl SsmMaintenanceWindowTaskRef {
 
     #[doc = "Get a reference to the value of field `cutoff_behavior` after provisioning.\n"]
     pub fn cutoff_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cutoff_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cutoff_behavior", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -394,63 +457,100 @@ impl SsmMaintenanceWindowTaskRef {
 
     #[doc = "Get a reference to the value of field `max_concurrency` after provisioning.\n"]
     pub fn max_concurrency(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_concurrency", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_concurrency", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_errors` after provisioning.\n"]
     pub fn max_errors(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.max_errors", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.max_errors", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_arn` after provisioning.\n"]
     pub fn task_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_type` after provisioning.\n"]
     pub fn task_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `window_id` after provisioning.\n"]
     pub fn window_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.window_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.window_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `window_task_id` after provisioning.\n"]
     pub fn window_task_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.window_task_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.window_task_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `targets` after provisioning.\n"]
     pub fn targets(&self) -> ListRef<SsmMaintenanceWindowTaskTargetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.targets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `task_invocation_parameters` after provisioning.\n"]
-    pub fn task_invocation_parameters(&self) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.task_invocation_parameters", self.extract_ref()))
+    pub fn task_invocation_parameters(
+        &self,
+    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.task_invocation_parameters", self.extract_ref()),
+        )
     }
 }
 
@@ -460,7 +560,7 @@ pub struct SsmMaintenanceWindowTaskTargetsEl {
     values: ListField<PrimField<String>>,
 }
 
-impl SsmMaintenanceWindowTaskTargetsEl { }
+impl SsmMaintenanceWindowTaskTargetsEl {}
 
 impl ToListMappable for SsmMaintenanceWindowTaskTargetsEl {
     type O = BlockAssignable<SsmMaintenanceWindowTaskTargetsEl>;
@@ -526,10 +626,14 @@ pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParameter
     values: ListField<PrimField<String>>,
 }
 
-impl SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl { }
+impl SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {}
 
-impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {
-    type O = BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl>;
+impl ToListMappable
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl
+{
+    type O = BlockAssignable<
+        SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -540,7 +644,8 @@ impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElAutoma
     }
 }
 
-pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {
+pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -548,7 +653,9 @@ pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElAutomationPara
 }
 
 impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {
-    pub fn build(self) -> SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {
+    pub fn build(
+        self,
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {
         SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl {
             name: self.name,
             values: self.values,
@@ -561,11 +668,14 @@ pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParameter
     base: String,
 }
 
-impl Ref for SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterElRef {
+impl Ref
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterElRef {
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterElRef
+    {
         SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -592,7 +702,9 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElPar
 #[derive(Serialize, Default)]
 struct SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElDynamic {
     parameter: Option<
-        DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl>,
+        DynamicBlock<
+            SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl,
+        >,
     >,
 }
 
@@ -601,7 +713,9 @@ pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParameter
     #[serde(skip_serializing_if = "Option::is_none")]
     document_version: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    parameter: Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl>>,
+    parameter: Option<
+        Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl>,
+    >,
     dynamic: SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElDynamic,
 }
 
@@ -615,29 +729,27 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl {
     #[doc = "Set the field `parameter`.\n"]
     pub fn set_parameter(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElParameterEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parameter = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl {
-    type O = BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl>;
+    type O =
+        BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -684,7 +796,10 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElRef
 
     #[doc = "Get a reference to the value of field `document_version` after provisioning.\n"]
     pub fn document_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_version", self.base),
+        )
     }
 }
 
@@ -766,7 +881,10 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersElRef {
 
     #[doc = "Get a reference to the value of field `client_context` after provisioning.\n"]
     pub fn client_context(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_context", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_context", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `payload` after provisioning.\n"]
@@ -781,7 +899,8 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersElRef {
 }
 
 #[derive(Serialize)]
-pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl {
+pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     cloudwatch_log_group_name: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -802,9 +921,12 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElClo
     }
 }
 
-impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl {
-    type O =
-        BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl>;
+impl ToListMappable
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl
+{
+    type O = BlockAssignable<
+        SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -815,10 +937,16 @@ impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCom
     }
 }
 
-pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl {}
+pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl
+{}
 
-impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl {
-    pub fn build(self) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl {
+impl
+    BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl
+{
+    pub fn build(
+        self,
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl
+    {
         SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigEl {
             cloudwatch_log_group_name: core::default::Default::default(),
             cloudwatch_output_enabled: core::default::Default::default(),
@@ -826,7 +954,8 @@ impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParameters
     }
 }
 
-pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigElRef {
+pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -850,17 +979,24 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElClo
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_name` after provisioning.\n"]
     pub fn cloudwatch_log_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_log_group_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_group_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_output_enabled` after provisioning.\n"]
     pub fn cloudwatch_output_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_output_enabled", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_output_enabled", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl {
+pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     notification_arn: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -889,7 +1025,9 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNot
     }
 }
 
-impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl {
+impl ToListMappable
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl
+{
     type O =
         BlockAssignable<
             SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl,
@@ -904,7 +1042,8 @@ impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCom
     }
 }
 
-pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl {}
+pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl
+{}
 
 impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigEl {
     pub fn build(
@@ -918,7 +1057,8 @@ impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParameters
     }
 }
 
-pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigElRef {
+pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -935,24 +1075,35 @@ impl Ref for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParamet
     }
 }
 
-impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigElRef {
+impl
+    SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 
     #[doc = "Get a reference to the value of field `notification_arn` after provisioning.\n"]
     pub fn notification_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_events` after provisioning.\n"]
     pub fn notification_events(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_events", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_events", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_type` after provisioning.\n"]
     pub fn notification_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.notification_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.notification_type", self.base),
+        )
     }
 }
 
@@ -962,10 +1113,14 @@ pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParameter
     values: ListField<PrimField<String>>,
 }
 
-impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl { }
+impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {}
 
-impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {
-    type O = BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl>;
+impl ToListMappable
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl
+{
+    type O = BlockAssignable<
+        SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -976,7 +1131,8 @@ impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCom
     }
 }
 
-pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {
+pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl
+{
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
@@ -984,7 +1140,9 @@ pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandPara
 }
 
 impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {
-    pub fn build(self) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {
+    pub fn build(
+        self,
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {
         SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl {
             name: self.name,
             values: self.values,
@@ -997,11 +1155,14 @@ pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParameter
     base: String,
 }
 
-impl Ref for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterElRef {
+impl Ref
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterElRef {
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterElRef
+    {
         SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1133,10 +1294,10 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.cloudwatch_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.cloudwatch_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1156,10 +1317,10 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.notification_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.notification_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -1167,29 +1328,27 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl {
     #[doc = "Set the field `parameter`.\n"]
     pub fn set_parameter(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElParameterEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parameter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parameter = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl {
-    type O = BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl>;
+    type O =
+        BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1250,51 +1409,78 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElRef
 
     #[doc = "Get a reference to the value of field `document_hash` after provisioning.\n"]
     pub fn document_hash(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_hash", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_hash", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_hash_type` after provisioning.\n"]
     pub fn document_hash_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_hash_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_hash_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_version` after provisioning.\n"]
     pub fn document_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.document_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.document_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_s3_bucket` after provisioning.\n"]
     pub fn output_s3_bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_s3_bucket", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_s3_bucket", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `output_s3_key_prefix` after provisioning.\n"]
     pub fn output_s3_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.output_s3_key_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.output_s3_key_prefix", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout_seconds` after provisioning.\n"]
     pub fn timeout_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.timeout_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.timeout_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_config` after provisioning.\n"]
     pub fn cloudwatch_config(
         &self,
-    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cloudwatch_config", self.base))
+    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElCloudwatchConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `notification_config` after provisioning.\n"]
     pub fn notification_config(
         &self,
-    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.notification_config", self.base))
+    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElNotificationConfigElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.notification_config", self.base),
+        )
     }
 }
 
@@ -1320,8 +1506,12 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl
     }
 }
 
-impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl {
-    type O = BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl>;
+impl ToListMappable
+    for SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl
+{
+    type O = BlockAssignable<
+        SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1335,7 +1525,9 @@ impl ToListMappable for SsmMaintenanceWindowTaskTaskInvocationParametersElStepFu
 pub struct BuildSsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl {}
 
 impl BuildSsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl {
-    pub fn build(self) -> SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl {
+    pub fn build(
+        self,
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl {
         SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl {
             input: core::default::Default::default(),
             name: core::default::Default::default(),
@@ -1381,7 +1573,8 @@ struct SsmMaintenanceWindowTaskTaskInvocationParametersElDynamic {
     automation_parameters: Option<
         DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl>,
     >,
-    lambda_parameters: Option<DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersEl>>,
+    lambda_parameters:
+        Option<DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersEl>>,
     run_command_parameters: Option<
         DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl>,
     >,
@@ -1393,13 +1586,17 @@ struct SsmMaintenanceWindowTaskTaskInvocationParametersElDynamic {
 #[derive(Serialize)]
 pub struct SsmMaintenanceWindowTaskTaskInvocationParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    automation_parameters: Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl>>,
+    automation_parameters:
+        Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    lambda_parameters: Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersEl>>,
+    lambda_parameters:
+        Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    run_command_parameters: Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl>>,
+    run_command_parameters:
+        Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    step_functions_parameters: Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl>>,
+    step_functions_parameters:
+        Option<Vec<SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl>>,
     dynamic: SsmMaintenanceWindowTaskTaskInvocationParametersElDynamic,
 }
 
@@ -1407,15 +1604,19 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersEl {
     #[doc = "Set the field `automation_parameters`.\n"]
     pub fn set_automation_parameters(
         mut self,
-        v: impl Into<BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.automation_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.automation_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1423,15 +1624,17 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersEl {
     #[doc = "Set the field `lambda_parameters`.\n"]
     pub fn set_lambda_parameters(
         mut self,
-        v: impl Into<BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersEl>>,
+        v: impl Into<
+            BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.lambda_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.lambda_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1439,15 +1642,19 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersEl {
     #[doc = "Set the field `run_command_parameters`.\n"]
     pub fn set_run_command_parameters(
         mut self,
-        v: impl Into<BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.run_command_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.run_command_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1455,15 +1662,19 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersEl {
     #[doc = "Set the field `step_functions_parameters`.\n"]
     pub fn set_step_functions_parameters(
         mut self,
-        v: impl Into<BlockAssignable<SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl>>,
+        v: impl Into<
+            BlockAssignable<
+                SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.step_functions_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.step_functions_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -1501,7 +1712,10 @@ pub struct SsmMaintenanceWindowTaskTaskInvocationParametersElRef {
 }
 
 impl Ref for SsmMaintenanceWindowTaskTaskInvocationParametersElRef {
-    fn new(shared: StackShared, base: String) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> SsmMaintenanceWindowTaskTaskInvocationParametersElRef {
         SsmMaintenanceWindowTaskTaskInvocationParametersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1518,31 +1732,47 @@ impl SsmMaintenanceWindowTaskTaskInvocationParametersElRef {
     pub fn automation_parameters(
         &self,
     ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElAutomationParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.automation_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.automation_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `lambda_parameters` after provisioning.\n"]
-    pub fn lambda_parameters(&self) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.lambda_parameters", self.base))
+    pub fn lambda_parameters(
+        &self,
+    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElLambdaParametersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.lambda_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_command_parameters` after provisioning.\n"]
     pub fn run_command_parameters(
         &self,
     ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElRunCommandParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.run_command_parameters", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.run_command_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `step_functions_parameters` after provisioning.\n"]
     pub fn step_functions_parameters(
         &self,
-    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.step_functions_parameters", self.base))
+    ) -> ListRef<SsmMaintenanceWindowTaskTaskInvocationParametersElStepFunctionsParametersElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.step_functions_parameters", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct SsmMaintenanceWindowTaskDynamic {
     targets: Option<DynamicBlock<SsmMaintenanceWindowTaskTargetsEl>>,
-    task_invocation_parameters: Option<DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersEl>>,
+    task_invocation_parameters:
+        Option<DynamicBlock<SsmMaintenanceWindowTaskTaskInvocationParametersEl>>,
 }

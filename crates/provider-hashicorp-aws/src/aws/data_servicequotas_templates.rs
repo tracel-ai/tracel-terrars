@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataServicequotasTemplatesData {
@@ -56,7 +56,10 @@ impl DataServicequotasTemplates {
 
     #[doc = "Get a reference to the value of field `aws_region` after provisioning.\n"]
     pub fn aws_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -66,22 +69,32 @@ impl DataServicequotasTemplates {
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `templates` after provisioning.\n"]
     pub fn templates(&self) -> ListRef<DataServicequotasTemplatesTemplatesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.templates", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.templates", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataServicequotasTemplates {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataServicequotasTemplates { }
+impl Datasource for DataServicequotasTemplates {}
 
 impl ToListMappable for DataServicequotasTemplates {
     type O = ListRef<DataServicequotasTemplatesRef>;
@@ -135,10 +148,7 @@ pub struct DataServicequotasTemplatesRef {
 
 impl Ref for DataServicequotasTemplatesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -153,7 +163,10 @@ impl DataServicequotasTemplatesRef {
 
     #[doc = "Get a reference to the value of field `aws_region` after provisioning.\n"]
     pub fn aws_region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aws_region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.aws_region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -163,12 +176,18 @@ impl DataServicequotasTemplatesRef {
 
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `templates` after provisioning.\n"]
     pub fn templates(&self) -> ListRef<DataServicequotasTemplatesTemplatesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.templates", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.templates", self.extract_ref()),
+        )
     }
 }
 

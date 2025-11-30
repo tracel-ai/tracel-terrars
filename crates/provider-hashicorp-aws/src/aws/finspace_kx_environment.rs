@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct FinspaceKxEnvironmentData {
@@ -68,7 +68,8 @@ impl FinspaceKxEnvironment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +82,7 @@ impl FinspaceKxEnvironment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +93,22 @@ impl FinspaceKxEnvironment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -107,8 +118,7 @@ impl FinspaceKxEnvironment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,10 +144,10 @@ impl FinspaceKxEnvironment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().custom_dns_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.custom_dns_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -156,10 +166,14 @@ impl FinspaceKxEnvironment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().transit_gateway_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.transit_gateway_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .transit_gateway_configuration = Some(d);
+            }
         }
         self
     }
@@ -171,17 +185,26 @@ impl FinspaceKxEnvironment {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.availability_zones", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_timestamp` after provisioning.\n"]
     pub fn created_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -191,68 +214,108 @@ impl FinspaceKxEnvironment {
 
     #[doc = "Get a reference to the value of field `infrastructure_account_id` after provisioning.\n"]
     pub fn infrastructure_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.infrastructure_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.infrastructure_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_timestamp` after provisioning.\n"]
     pub fn last_modified_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_dns_configuration` after provisioning.\n"]
-    pub fn custom_dns_configuration(&self) -> ListRef<FinspaceKxEnvironmentCustomDnsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_dns_configuration", self.extract_ref()))
+    pub fn custom_dns_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxEnvironmentCustomDnsConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_dns_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FinspaceKxEnvironmentTimeoutsElRef {
-        FinspaceKxEnvironmentTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        FinspaceKxEnvironmentTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_configuration` after provisioning.\n"]
-    pub fn transit_gateway_configuration(&self) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_configuration", self.extract_ref()))
+    pub fn transit_gateway_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for FinspaceKxEnvironment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for FinspaceKxEnvironment { }
+impl Resource for FinspaceKxEnvironment {}
 
 impl ToListMappable for FinspaceKxEnvironment {
     type O = ListRef<FinspaceKxEnvironmentRef>;
@@ -319,10 +382,7 @@ pub struct FinspaceKxEnvironmentRef {
 
 impl Ref for FinspaceKxEnvironmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -342,17 +402,26 @@ impl FinspaceKxEnvironmentRef {
 
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.availability_zones", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.availability_zones", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_timestamp` after provisioning.\n"]
     pub fn created_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -362,58 +431,94 @@ impl FinspaceKxEnvironmentRef {
 
     #[doc = "Get a reference to the value of field `infrastructure_account_id` after provisioning.\n"]
     pub fn infrastructure_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.infrastructure_account_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.infrastructure_account_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.kms_key_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified_timestamp` after provisioning.\n"]
     pub fn last_modified_timestamp(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified_timestamp", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified_timestamp", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_dns_configuration` after provisioning.\n"]
-    pub fn custom_dns_configuration(&self) -> ListRef<FinspaceKxEnvironmentCustomDnsConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_dns_configuration", self.extract_ref()))
+    pub fn custom_dns_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxEnvironmentCustomDnsConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_dns_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FinspaceKxEnvironmentTimeoutsElRef {
-        FinspaceKxEnvironmentTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        FinspaceKxEnvironmentTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_configuration` after provisioning.\n"]
-    pub fn transit_gateway_configuration(&self) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.transit_gateway_configuration", self.extract_ref()))
+    pub fn transit_gateway_configuration(
+        &self,
+    ) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_configuration", self.extract_ref()),
+        )
     }
 }
 
@@ -423,7 +528,7 @@ pub struct FinspaceKxEnvironmentCustomDnsConfigurationEl {
     custom_dns_server_name: PrimField<String>,
 }
 
-impl FinspaceKxEnvironmentCustomDnsConfigurationEl { }
+impl FinspaceKxEnvironmentCustomDnsConfigurationEl {}
 
 impl ToListMappable for FinspaceKxEnvironmentCustomDnsConfigurationEl {
     type O = BlockAssignable<FinspaceKxEnvironmentCustomDnsConfigurationEl>;
@@ -474,12 +579,18 @@ impl FinspaceKxEnvironmentCustomDnsConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `custom_dns_server_ip` after provisioning.\n"]
     pub fn custom_dns_server_ip(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_dns_server_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_dns_server_ip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_dns_server_name` after provisioning.\n"]
     pub fn custom_dns_server_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.custom_dns_server_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.custom_dns_server_name", self.base),
+        )
     }
 }
 
@@ -573,7 +684,8 @@ impl FinspaceKxEnvironmentTimeoutsElRef {
 }
 
 #[derive(Serialize)]
-pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeEl {
+pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeEl
+{
     code: PrimField<f64>,
     #[serde(rename = "type")]
     type_: PrimField<f64>,
@@ -596,7 +708,8 @@ impl ToListMappable for FinspaceKxEnvironmentTransitGatewayConfigurationElAttach
     }
 }
 
-pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeEl {
+pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeEl
+{
     #[doc = ""]
     pub code: PrimField<f64>,
     #[doc = ""]
@@ -614,7 +727,8 @@ impl BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAcl
     }
 }
 
-pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeElRef {
+pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -648,12 +762,16 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfi
 }
 
 #[derive(Serialize)]
-pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl {
+pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl
+{
     from: PrimField<f64>,
     to: PrimField<f64>,
 }
 
-impl FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl { }
+impl
+    FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl
+{
+}
 
 impl ToListMappable for FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl {
     type O =
@@ -670,7 +788,8 @@ impl ToListMappable for FinspaceKxEnvironmentTransitGatewayConfigurationElAttach
     }
 }
 
-pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl {
+pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeEl
+{
     #[doc = ""]
     pub from: PrimField<f64>,
     #[doc = ""]
@@ -688,7 +807,8 @@ impl BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAcl
     }
 }
 
-pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeElRef {
+pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -766,10 +886,10 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.icmp_type_code = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.icmp_type_code = Some(d);
-            },
+            }
         }
         self
     }
@@ -789,17 +909,21 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfi
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.port_range = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.port_range = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl {
-    type O = BlockAssignable<FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl>;
+impl ToListMappable
+    for FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl
+{
+    type O = BlockAssignable<
+        FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -810,7 +934,8 @@ impl ToListMappable for FinspaceKxEnvironmentTransitGatewayConfigurationElAttach
     }
 }
 
-pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl {
+pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl
+{
     #[doc = ""]
     pub cidr_block: PrimField<String>,
     #[doc = ""]
@@ -822,7 +947,9 @@ pub struct BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetw
 }
 
 impl BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl {
-    pub fn build(self) -> FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl {
+    pub fn build(
+        self,
+    ) -> FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl {
         FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl {
             cidr_block: self.cidr_block,
             protocol: self.protocol,
@@ -835,16 +962,20 @@ impl BuildFinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAcl
     }
 }
 
-pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef {
+pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef {
+impl Ref
+    for FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef {
+    ) -> FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef
+    {
         FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -882,14 +1013,17 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfi
         &self,
     ) -> ListRef<
         FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElIcmpTypeCodeElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.icmp_type_code", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.icmp_type_code", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `port_range` after provisioning.\n"]
     pub fn port_range(
         &self,
-    ) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeElRef> {
+    ) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElPortRangeElRef>{
         ListRef::new(self.shared().clone(), format!("{}.port_range", self.base))
     }
 }
@@ -897,7 +1031,9 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfi
 #[derive(Serialize, Default)]
 struct FinspaceKxEnvironmentTransitGatewayConfigurationElDynamic {
     attachment_network_acl_configuration: Option<
-        DynamicBlock<FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl>,
+        DynamicBlock<
+            FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationEl,
+        >,
     >,
 }
 
@@ -928,10 +1064,10 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.attachment_network_acl_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.attachment_network_acl_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -973,7 +1109,10 @@ pub struct FinspaceKxEnvironmentTransitGatewayConfigurationElRef {
 }
 
 impl Ref for FinspaceKxEnvironmentTransitGatewayConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> FinspaceKxEnvironmentTransitGatewayConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> FinspaceKxEnvironmentTransitGatewayConfigurationElRef {
         FinspaceKxEnvironmentTransitGatewayConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -988,24 +1127,36 @@ impl FinspaceKxEnvironmentTransitGatewayConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `routable_cidr_space` after provisioning.\n"]
     pub fn routable_cidr_space(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.routable_cidr_space", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.routable_cidr_space", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `attachment_network_acl_configuration` after provisioning.\n"]
     pub fn attachment_network_acl_configuration(
         &self,
-    ) -> ListRef<FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.attachment_network_acl_configuration", self.base))
+    ) -> ListRef<
+        FinspaceKxEnvironmentTransitGatewayConfigurationElAttachmentNetworkAclConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.attachment_network_acl_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct FinspaceKxEnvironmentDynamic {
     custom_dns_configuration: Option<DynamicBlock<FinspaceKxEnvironmentCustomDnsConfigurationEl>>,
-    transit_gateway_configuration: Option<DynamicBlock<FinspaceKxEnvironmentTransitGatewayConfigurationEl>>,
+    transit_gateway_configuration:
+        Option<DynamicBlock<FinspaceKxEnvironmentTransitGatewayConfigurationEl>>,
 }

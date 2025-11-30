@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BatchJobDefinitionData {
@@ -85,7 +85,8 @@ impl BatchJobDefinition {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -98,7 +99,7 @@ impl BatchJobDefinition {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -109,12 +110,22 @@ impl BatchJobDefinition {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -166,8 +177,7 @@ impl BatchJobDefinition {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -192,27 +202,33 @@ impl BatchJobDefinition {
     }
 
     #[doc = "Set the field `eks_properties`.\n"]
-    pub fn set_eks_properties(self, v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesEl>>) -> Self {
+    pub fn set_eks_properties(
+        self,
+        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().eks_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.eks_properties = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `retry_strategy`.\n"]
-    pub fn set_retry_strategy(self, v: impl Into<BlockAssignable<BatchJobDefinitionRetryStrategyEl>>) -> Self {
+    pub fn set_retry_strategy(
+        self,
+        v: impl Into<BlockAssignable<BatchJobDefinitionRetryStrategyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().retry_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.retry_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -222,10 +238,10 @@ impl BatchJobDefinition {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().timeout = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.timeout = Some(d);
-            },
+            }
         }
         self
     }
@@ -237,22 +253,34 @@ impl BatchJobDefinition {
 
     #[doc = "Get a reference to the value of field `arn_prefix` after provisioning.\n"]
     pub fn arn_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.arn_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.arn_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_properties` after provisioning.\n"]
     pub fn container_properties(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_properties", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deregister_on_new_revision` after provisioning.\n"]
     pub fn deregister_on_new_revision(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deregister_on_new_revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deregister_on_new_revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_properties` after provisioning.\n"]
     pub fn ecs_properties(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ecs_properties", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ecs_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -262,83 +290,128 @@ impl BatchJobDefinition {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_properties` after provisioning.\n"]
     pub fn node_properties(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.node_properties", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.node_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_capabilities` after provisioning.\n"]
     pub fn platform_capabilities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.platform_capabilities", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.platform_capabilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision` after provisioning.\n"]
     pub fn revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduling_priority` after provisioning.\n"]
     pub fn scheduling_priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_priority", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eks_properties` after provisioning.\n"]
     pub fn eks_properties(&self) -> ListRef<BatchJobDefinitionEksPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eks_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eks_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_strategy` after provisioning.\n"]
     pub fn retry_strategy(&self) -> ListRef<BatchJobDefinitionRetryStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_strategy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> ListRef<BatchJobDefinitionTimeoutElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timeout", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timeout", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BatchJobDefinition {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BatchJobDefinition { }
+impl Resource for BatchJobDefinition {}
 
 impl ToListMappable for BatchJobDefinition {
     type O = ListRef<BatchJobDefinitionRef>;
@@ -413,10 +486,7 @@ pub struct BatchJobDefinitionRef {
 
 impl Ref for BatchJobDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -436,22 +506,34 @@ impl BatchJobDefinitionRef {
 
     #[doc = "Get a reference to the value of field `arn_prefix` after provisioning.\n"]
     pub fn arn_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.arn_prefix", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.arn_prefix", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `container_properties` after provisioning.\n"]
     pub fn container_properties(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.container_properties", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.container_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deregister_on_new_revision` after provisioning.\n"]
     pub fn deregister_on_new_revision(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deregister_on_new_revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deregister_on_new_revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_properties` after provisioning.\n"]
     pub fn ecs_properties(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ecs_properties", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ecs_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -461,73 +543,114 @@ impl BatchJobDefinitionRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `node_properties` after provisioning.\n"]
     pub fn node_properties(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.node_properties", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.node_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_capabilities` after provisioning.\n"]
     pub fn platform_capabilities(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.platform_capabilities", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.platform_capabilities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revision` after provisioning.\n"]
     pub fn revision(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revision", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revision", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scheduling_priority` after provisioning.\n"]
     pub fn scheduling_priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.scheduling_priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.scheduling_priority", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `eks_properties` after provisioning.\n"]
     pub fn eks_properties(&self) -> ListRef<BatchJobDefinitionEksPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.eks_properties", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.eks_properties", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_strategy` after provisioning.\n"]
     pub fn retry_strategy(&self) -> ListRef<BatchJobDefinitionRetryStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_strategy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_strategy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> ListRef<BatchJobDefinitionTimeoutElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.timeout", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.timeout", self.extract_ref()),
+        )
     }
 }
 
@@ -537,7 +660,7 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvEl {
     value: PrimField<String>,
 }
 
-impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvEl { }
+impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvEl {}
 
 impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvEl {
     type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvEl>;
@@ -623,7 +746,8 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
 }
 
 impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl {
-    type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>;
+    type O =
+        BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -724,8 +848,12 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContext
     }
 }
 
-impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
-    type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>;
+impl ToListMappable
+    for BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl
+{
+    type O = BlockAssignable<
+        BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -739,7 +867,9 @@ impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElContaine
 pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {}
 
 impl BuildBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
-    pub fn build(self) -> BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
+    pub fn build(
+        self,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
         BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl {
             privileged: core::default::Default::default(),
             read_only_root_file_system: core::default::Default::default(),
@@ -779,7 +909,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContext
 
     #[doc = "Get a reference to the value of field `read_only_root_file_system` after provisioning.\n"]
     pub fn read_only_root_file_system(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_only_root_file_system", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_only_root_file_system", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_group` after provisioning.\n"]
@@ -789,7 +922,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContext
 
     #[doc = "Get a reference to the value of field `run_as_non_root` after provisioning.\n"]
     pub fn run_as_non_root(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.run_as_non_root", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.run_as_non_root", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_user` after provisioning.\n"]
@@ -815,7 +951,8 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl 
 }
 
 impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
-    type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>;
+    type O =
+        BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -834,7 +971,9 @@ pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolu
 }
 
 impl BuildBatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
-    pub fn build(self) -> BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
+    pub fn build(
+        self,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
         BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl {
             mount_path: self.mount_path,
             name: self.name,
@@ -884,11 +1023,15 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsElR
 #[derive(Serialize, Default)]
 struct BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElDynamic {
     env: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElEnvEl>>,
-    resources: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>>,
+    resources: Option<
+        DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>,
+    >,
     security_context: Option<
         DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>,
     >,
-    volume_mounts: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>>,
+    volume_mounts: Option<
+        DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -907,9 +1050,11 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     resources: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    security_context: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>>,
+    security_context:
+        Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    volume_mounts: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>>,
+    volume_mounts:
+        Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>>,
     dynamic: BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElDynamic,
 }
 
@@ -946,10 +1091,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.env = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.env = Some(d);
-            },
+            }
         }
         self
     }
@@ -957,15 +1102,19 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[doc = "Set the field `resources`.\n"]
     pub fn set_resources(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resources = Some(d);
-            },
+            }
         }
         self
     }
@@ -973,15 +1122,19 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[doc = "Set the field `security_context`.\n"]
     pub fn set_security_context(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.security_context = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.security_context = Some(d);
-            },
+            }
         }
         self
     }
@@ -989,15 +1142,19 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl {
     #[doc = "Set the field `volume_mounts`.\n"]
     pub fn set_volume_mounts(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.volume_mounts = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.volume_mounts = Some(d);
-            },
+            }
         }
         self
     }
@@ -1043,7 +1200,10 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
 }
 
 impl Ref for BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
-    fn new(shared: StackShared, base: String) -> BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
         BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1073,7 +1233,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
 
     #[doc = "Get a reference to the value of field `image_pull_policy` after provisioning.\n"]
     pub fn image_pull_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_pull_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_pull_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1082,22 +1245,32 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef {
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
-    pub fn resources(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesElRef> {
+    pub fn resources(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElResourcesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.resources", self.base))
     }
 
     #[doc = "Get a reference to the value of field `security_context` after provisioning.\n"]
     pub fn security_context(
         &self,
-    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_context", self.base))
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElSecurityContextElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_context", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_mounts` after provisioning.\n"]
     pub fn volume_mounts(
         &self,
-    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.volume_mounts", self.base))
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElVolumeMountsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.volume_mounts", self.base),
+        )
     }
 }
 
@@ -1106,7 +1279,7 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl {
     name: PrimField<String>,
 }
 
-impl BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl { }
+impl BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl {}
 
 impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl {
     type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl>;
@@ -1165,7 +1338,7 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl
     value: PrimField<String>,
 }
 
-impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl { }
+impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {}
 
 impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl {
     type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>;
@@ -1250,8 +1423,12 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl
     }
 }
 
-impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
-    type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>;
+impl ToListMappable
+    for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl
+{
+    type O = BlockAssignable<
+        BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1265,7 +1442,9 @@ impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElInitCont
 pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {}
 
 impl BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
-    pub fn build(self) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
+    pub fn build(
+        self,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
         BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl {
             limits: core::default::Default::default(),
             requests: core::default::Default::default(),
@@ -1352,8 +1531,12 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityCon
     }
 }
 
-impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
-    type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl>;
+impl ToListMappable
+    for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl
+{
+    type O = BlockAssignable<
+        BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1364,10 +1547,13 @@ impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElInitCont
     }
 }
 
-pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {}
+pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
+}
 
 impl BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
-    pub fn build(self) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
+    pub fn build(
+        self,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
         BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl {
             privileged: core::default::Default::default(),
             read_only_root_file_system: core::default::Default::default(),
@@ -1407,7 +1593,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityCon
 
     #[doc = "Get a reference to the value of field `read_only_root_file_system` after provisioning.\n"]
     pub fn read_only_root_file_system(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.read_only_root_file_system", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.read_only_root_file_system", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_group` after provisioning.\n"]
@@ -1417,7 +1606,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityCon
 
     #[doc = "Get a reference to the value of field `run_as_non_root` after provisioning.\n"]
     pub fn run_as_non_root(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.run_as_non_root", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.run_as_non_root", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_as_user` after provisioning.\n"]
@@ -1442,8 +1634,12 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMount
     }
 }
 
-impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
-    type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>;
+impl ToListMappable
+    for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl
+{
+    type O = BlockAssignable<
+        BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1462,7 +1658,9 @@ pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl
 }
 
 impl BuildBatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
-    pub fn build(self) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
+    pub fn build(
+        self,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
         BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl {
             mount_path: self.mount_path,
             name: self.name,
@@ -1511,13 +1709,20 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMount
 
 #[derive(Serialize, Default)]
 struct BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElDynamic {
-    env: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>>,
-    resources: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>>,
+    env:
+        Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>>,
+    resources: Option<
+        DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>,
+    >,
     security_context: Option<
-        DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl>,
+        DynamicBlock<
+            BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl,
+        >,
     >,
     volume_mounts: Option<
-        DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>,
+        DynamicBlock<
+            BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
+        >,
     >,
 }
 
@@ -1535,11 +1740,15 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     env: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    resources: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>>,
+    resources:
+        Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    security_context: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl>>,
+    security_context: Option<
+        Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    volume_mounts: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>>,
+    volume_mounts:
+        Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl>>,
     dynamic: BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElDynamic,
 }
 
@@ -1571,15 +1780,17 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `env`.\n"]
     pub fn set_env(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>>,
+        v: impl Into<
+            BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElEnvEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.env = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.env = Some(d);
-            },
+            }
         }
         self
     }
@@ -1587,15 +1798,19 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `resources`.\n"]
     pub fn set_resources(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.resources = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.resources = Some(d);
-            },
+            }
         }
         self
     }
@@ -1603,22 +1818,19 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `security_context`.\n"]
     pub fn set_security_context(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.security_context = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.security_context = Some(d);
-            },
+            }
         }
         self
     }
@@ -1626,22 +1838,19 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl {
     #[doc = "Set the field `volume_mounts`.\n"]
     pub fn set_volume_mounts(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.volume_mounts = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.volume_mounts = Some(d);
-            },
+            }
         }
         self
     }
@@ -1687,7 +1896,10 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
 }
 
 impl Ref for BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
-    fn new(shared: StackShared, base: String) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
         BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
             shared: shared,
             base: base.to_string(),
@@ -1717,7 +1929,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
 
     #[doc = "Get a reference to the value of field `image_pull_policy` after provisioning.\n"]
     pub fn image_pull_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_pull_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_pull_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -1726,22 +1941,33 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef {
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
-    pub fn resources(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesElRef> {
+    pub fn resources(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElResourcesElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.resources", self.base))
     }
 
     #[doc = "Get a reference to the value of field `security_context` after provisioning.\n"]
     pub fn security_context(
         &self,
-    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.security_context", self.base))
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElSecurityContextElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_context", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `volume_mounts` after provisioning.\n"]
     pub fn volume_mounts(
         &self,
-    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.volume_mounts", self.base))
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElVolumeMountsElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.volume_mounts", self.base),
+        )
     }
 }
 
@@ -1775,7 +2001,9 @@ pub struct BuildBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {}
 
 impl BuildBatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
     pub fn build(self) -> BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
-        BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl { labels: core::default::Default::default() }
+        BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl {
+            labels: core::default::Default::default(),
+        }
     }
 }
 
@@ -1785,7 +2013,10 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
 }
 
 impl Ref for BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
-    fn new(shared: StackShared, base: String) -> BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
         BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef {
             shared: shared,
             base: base.to_string(),
@@ -1883,7 +2114,7 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl {
     path: PrimField<String>,
 }
 
-impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl { }
+impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl {}
 
 impl ToListMappable for BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl {
     type O = BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>;
@@ -2012,8 +2243,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretElRef {
 
 #[derive(Serialize, Default)]
 struct BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElDynamic {
-    empty_dir: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>>,
-    host_path: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>>,
+    empty_dir:
+        Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>>,
+    host_path:
+        Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>>,
     secret: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretEl>>,
 }
 
@@ -2040,15 +2273,17 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesEl {
     #[doc = "Set the field `empty_dir`.\n"]
     pub fn set_empty_dir(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>>,
+        v: impl Into<
+            BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.empty_dir = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.empty_dir = Some(d);
-            },
+            }
         }
         self
     }
@@ -2056,15 +2291,17 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesEl {
     #[doc = "Set the field `host_path`.\n"]
     pub fn set_host_path(
         mut self,
-        v: impl Into<BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>>,
+        v: impl Into<
+            BlockAssignable<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.host_path = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.host_path = Some(d);
-            },
+            }
         }
         self
     }
@@ -2077,10 +2314,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.secret = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.secret = Some(d);
-            },
+            }
         }
         self
     }
@@ -2118,7 +2355,10 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
 }
 
 impl Ref for BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
-    fn new(shared: StackShared, base: String) -> BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
         BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2137,17 +2377,23 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
     }
 
     #[doc = "Get a reference to the value of field `empty_dir` after provisioning.\n"]
-    pub fn empty_dir(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirElRef> {
+    pub fn empty_dir(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElEmptyDirElRef> {
         ListRef::new(self.shared().clone(), format!("{}.empty_dir", self.base))
     }
 
     #[doc = "Get a reference to the value of field `host_path` after provisioning.\n"]
-    pub fn host_path(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathElRef> {
+    pub fn host_path(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElHostPathElRef> {
         ListRef::new(self.shared().clone(), format!("{}.host_path", self.base))
     }
 
     #[doc = "Get a reference to the value of field `secret` after provisioning.\n"]
-    pub fn secret(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretElRef> {
+    pub fn secret(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElSecretElRef> {
         ListRef::new(self.shared().clone(), format!("{}.secret", self.base))
     }
 }
@@ -2155,8 +2401,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesElRef {
 #[derive(Serialize, Default)]
 struct BatchJobDefinitionEksPropertiesElPodPropertiesElDynamic {
     containers: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl>>,
-    image_pull_secret: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl>>,
-    init_containers: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl>>,
+    image_pull_secret:
+        Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl>>,
+    init_containers:
+        Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl>>,
     metadata: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataEl>>,
     volumes: Option<DynamicBlock<BatchJobDefinitionEksPropertiesElPodPropertiesElVolumesEl>>,
 }
@@ -2174,7 +2422,8 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     containers: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    image_pull_secret: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl>>,
+    image_pull_secret:
+        Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     init_containers: Option<Vec<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2217,10 +2466,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.containers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.containers = Some(d);
-            },
+            }
         }
         self
     }
@@ -2233,10 +2482,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.image_pull_secret = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.image_pull_secret = Some(d);
-            },
+            }
         }
         self
     }
@@ -2249,10 +2498,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.init_containers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.init_containers = Some(d);
-            },
+            }
         }
         self
     }
@@ -2265,10 +2514,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metadata = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metadata = Some(d);
-            },
+            }
         }
         self
     }
@@ -2281,10 +2530,10 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.volumes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.volumes = Some(d);
-            },
+            }
         }
         self
     }
@@ -2327,7 +2576,10 @@ pub struct BatchJobDefinitionEksPropertiesElPodPropertiesElRef {
 }
 
 impl Ref for BatchJobDefinitionEksPropertiesElPodPropertiesElRef {
-    fn new(shared: StackShared, base: String) -> BatchJobDefinitionEksPropertiesElPodPropertiesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchJobDefinitionEksPropertiesElPodPropertiesElRef {
         BatchJobDefinitionEksPropertiesElPodPropertiesElRef {
             shared: shared,
             base: base.to_string(),
@@ -2352,31 +2604,51 @@ impl BatchJobDefinitionEksPropertiesElPodPropertiesElRef {
 
     #[doc = "Get a reference to the value of field `service_account_name` after provisioning.\n"]
     pub fn service_account_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_account_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_account_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_process_namespace` after provisioning.\n"]
     pub fn share_process_namespace(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.share_process_namespace", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.share_process_namespace", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `containers` after provisioning.\n"]
-    pub fn containers(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef> {
+    pub fn containers(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElContainersElRef> {
         ListRef::new(self.shared().clone(), format!("{}.containers", self.base))
     }
 
     #[doc = "Get a reference to the value of field `image_pull_secret` after provisioning.\n"]
-    pub fn image_pull_secret(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.image_pull_secret", self.base))
+    pub fn image_pull_secret(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElImagePullSecretElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.image_pull_secret", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `init_containers` after provisioning.\n"]
-    pub fn init_containers(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.init_containers", self.base))
+    pub fn init_containers(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElInitContainersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.init_containers", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metadata` after provisioning.\n"]
-    pub fn metadata(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef> {
+    pub fn metadata(
+        &self,
+    ) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElMetadataElRef> {
         ListRef::new(self.shared().clone(), format!("{}.metadata", self.base))
     }
 
@@ -2407,10 +2679,10 @@ impl BatchJobDefinitionEksPropertiesEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pod_properties = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pod_properties = Some(d);
-            },
+            }
         }
         self
     }
@@ -2460,7 +2732,10 @@ impl BatchJobDefinitionEksPropertiesElRef {
 
     #[doc = "Get a reference to the value of field `pod_properties` after provisioning.\n"]
     pub fn pod_properties(&self) -> ListRef<BatchJobDefinitionEksPropertiesElPodPropertiesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.pod_properties", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.pod_properties", self.base),
+        )
     }
 }
 
@@ -2529,7 +2804,10 @@ pub struct BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
 }
 
 impl Ref for BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
-    fn new(shared: StackShared, base: String) -> BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
         BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
             shared: shared,
             base: base.to_string(),
@@ -2559,7 +2837,10 @@ impl BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef {
 
     #[doc = "Get a reference to the value of field `on_status_reason` after provisioning.\n"]
     pub fn on_status_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.on_status_reason", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.on_status_reason", self.base),
+        )
     }
 }
 
@@ -2592,10 +2873,10 @@ impl BatchJobDefinitionRetryStrategyEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.evaluate_on_exit = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.evaluate_on_exit = Some(d);
-            },
+            }
         }
         self
     }
@@ -2650,8 +2931,13 @@ impl BatchJobDefinitionRetryStrategyElRef {
     }
 
     #[doc = "Get a reference to the value of field `evaluate_on_exit` after provisioning.\n"]
-    pub fn evaluate_on_exit(&self) -> ListRef<BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.evaluate_on_exit", self.base))
+    pub fn evaluate_on_exit(
+        &self,
+    ) -> ListRef<BatchJobDefinitionRetryStrategyElEvaluateOnExitElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.evaluate_on_exit", self.base),
+        )
     }
 }
 
@@ -2685,7 +2971,9 @@ pub struct BuildBatchJobDefinitionTimeoutEl {}
 
 impl BuildBatchJobDefinitionTimeoutEl {
     pub fn build(self) -> BatchJobDefinitionTimeoutEl {
-        BatchJobDefinitionTimeoutEl { attempt_duration_seconds: core::default::Default::default() }
+        BatchJobDefinitionTimeoutEl {
+            attempt_duration_seconds: core::default::Default::default(),
+        }
     }
 }
 
@@ -2710,7 +2998,10 @@ impl BatchJobDefinitionTimeoutElRef {
 
     #[doc = "Get a reference to the value of field `attempt_duration_seconds` after provisioning.\n"]
     pub fn attempt_duration_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.attempt_duration_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.attempt_duration_seconds", self.base),
+        )
     }
 }
 

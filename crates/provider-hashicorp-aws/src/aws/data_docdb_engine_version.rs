@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataDocdbEngineVersionData {
@@ -74,8 +74,7 @@ impl DataDocdbEngineVersion {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -89,17 +88,26 @@ impl DataDocdbEngineVersion {
 
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engine_description` after provisioning.\n"]
     pub fn engine_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exportable_log_types` after provisioning.\n"]
     pub fn exportable_log_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.exportable_log_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.exportable_log_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -109,48 +117,72 @@ impl DataDocdbEngineVersion {
 
     #[doc = "Get a reference to the value of field `parameter_group_family` after provisioning.\n"]
     pub fn parameter_group_family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parameter_group_family", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parameter_group_family", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_versions` after provisioning.\n"]
     pub fn preferred_versions(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.preferred_versions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.preferred_versions", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supports_log_exports_to_cloudwatch` after provisioning.\n"]
     pub fn supports_log_exports_to_cloudwatch(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.supports_log_exports_to_cloudwatch", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.supports_log_exports_to_cloudwatch", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_upgrade_targets` after provisioning.\n"]
     pub fn valid_upgrade_targets(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.valid_upgrade_targets", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.valid_upgrade_targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_description` after provisioning.\n"]
     pub fn version_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_description", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataDocdbEngineVersion {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataDocdbEngineVersion { }
+impl Datasource for DataDocdbEngineVersion {}
 
 impl ToListMappable for DataDocdbEngineVersion {
     type O = ListRef<DataDocdbEngineVersionRef>;
@@ -208,10 +240,7 @@ pub struct DataDocdbEngineVersionRef {
 
 impl Ref for DataDocdbEngineVersionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -226,17 +255,26 @@ impl DataDocdbEngineVersionRef {
 
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `engine_description` after provisioning.\n"]
     pub fn engine_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.engine_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.engine_description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `exportable_log_types` after provisioning.\n"]
     pub fn exportable_log_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.exportable_log_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.exportable_log_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -246,37 +284,57 @@ impl DataDocdbEngineVersionRef {
 
     #[doc = "Get a reference to the value of field `parameter_group_family` after provisioning.\n"]
     pub fn parameter_group_family(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parameter_group_family", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parameter_group_family", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_versions` after provisioning.\n"]
     pub fn preferred_versions(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.preferred_versions", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.preferred_versions", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supports_log_exports_to_cloudwatch` after provisioning.\n"]
     pub fn supports_log_exports_to_cloudwatch(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.supports_log_exports_to_cloudwatch", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.supports_log_exports_to_cloudwatch", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `valid_upgrade_targets` after provisioning.\n"]
     pub fn valid_upgrade_targets(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.valid_upgrade_targets", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.valid_upgrade_targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_description` after provisioning.\n"]
     pub fn version_description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_description", self.extract_ref()),
+        )
     }
 }

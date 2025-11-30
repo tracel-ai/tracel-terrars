@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataOrganizationsOrganizationalUnitsData {
@@ -49,7 +49,10 @@ impl DataOrganizationsOrganizationalUnits {
 
     #[doc = "Get a reference to the value of field `children` after provisioning.\n"]
     pub fn children(&self) -> ListRef<DataOrganizationsOrganizationalUnitsChildrenElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.children", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.children", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -59,17 +62,24 @@ impl DataOrganizationsOrganizationalUnits {
 
     #[doc = "Get a reference to the value of field `parent_id` after provisioning.\n"]
     pub fn parent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataOrganizationsOrganizationalUnits {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataOrganizationsOrganizationalUnits { }
+impl Datasource for DataOrganizationsOrganizationalUnits {}
 
 impl ToListMappable for DataOrganizationsOrganizationalUnits {
     type O = ListRef<DataOrganizationsOrganizationalUnitsRef>;
@@ -102,17 +112,18 @@ pub struct BuildDataOrganizationsOrganizationalUnits {
 
 impl BuildDataOrganizationsOrganizationalUnits {
     pub fn build(self, stack: &mut Stack) -> DataOrganizationsOrganizationalUnits {
-        let out = DataOrganizationsOrganizationalUnits(Rc::new(DataOrganizationsOrganizationalUnits_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataOrganizationsOrganizationalUnitsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                parent_id: self.parent_id,
-            }),
-        }));
+        let out =
+            DataOrganizationsOrganizationalUnits(Rc::new(DataOrganizationsOrganizationalUnits_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataOrganizationsOrganizationalUnitsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    parent_id: self.parent_id,
+                }),
+            }));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -125,10 +136,7 @@ pub struct DataOrganizationsOrganizationalUnitsRef {
 
 impl Ref for DataOrganizationsOrganizationalUnitsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -143,7 +151,10 @@ impl DataOrganizationsOrganizationalUnitsRef {
 
     #[doc = "Get a reference to the value of field `children` after provisioning.\n"]
     pub fn children(&self) -> ListRef<DataOrganizationsOrganizationalUnitsChildrenElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.children", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.children", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -153,7 +164,10 @@ impl DataOrganizationsOrganizationalUnitsRef {
 
     #[doc = "Get a reference to the value of field `parent_id` after provisioning.\n"]
     pub fn parent_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parent_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parent_id", self.extract_ref()),
+        )
     }
 }
 

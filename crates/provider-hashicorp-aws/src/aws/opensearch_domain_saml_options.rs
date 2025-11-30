@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct OpensearchDomainSamlOptionsData {
@@ -61,7 +61,8 @@ impl OpensearchDomainSamlOptions {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -74,7 +75,7 @@ impl OpensearchDomainSamlOptions {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -85,12 +86,22 @@ impl OpensearchDomainSamlOptions {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -100,22 +111,24 @@ impl OpensearchDomainSamlOptions {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `saml_options`.\n"]
-    pub fn set_saml_options(self, v: impl Into<BlockAssignable<OpensearchDomainSamlOptionsSamlOptionsEl>>) -> Self {
+    pub fn set_saml_options(
+        self,
+        v: impl Into<BlockAssignable<OpensearchDomainSamlOptionsSamlOptionsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().saml_options = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.saml_options = Some(d);
-            },
+            }
         }
         self
     }
@@ -128,7 +141,10 @@ impl OpensearchDomainSamlOptions {
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -136,15 +152,20 @@ impl OpensearchDomainSamlOptions {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_options` after provisioning.\n"]
     pub fn saml_options(&self) -> ListRef<OpensearchDomainSamlOptionsSamlOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.saml_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.saml_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -158,11 +179,15 @@ impl OpensearchDomainSamlOptions {
 
 impl Referable for OpensearchDomainSamlOptions {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for OpensearchDomainSamlOptions { }
+impl Resource for OpensearchDomainSamlOptions {}
 
 impl ToListMappable for OpensearchDomainSamlOptions {
     type O = ListRef<OpensearchDomainSamlOptionsRef>;
@@ -223,10 +248,7 @@ pub struct OpensearchDomainSamlOptionsRef {
 
 impl Ref for OpensearchDomainSamlOptionsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -241,7 +263,10 @@ impl OpensearchDomainSamlOptionsRef {
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -249,15 +274,20 @@ impl OpensearchDomainSamlOptionsRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_options` after provisioning.\n"]
     pub fn saml_options(&self) -> ListRef<OpensearchDomainSamlOptionsSamlOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.saml_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.saml_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -275,7 +305,7 @@ pub struct OpensearchDomainSamlOptionsSamlOptionsElIdpEl {
     metadata_content: PrimField<String>,
 }
 
-impl OpensearchDomainSamlOptionsSamlOptionsElIdpEl { }
+impl OpensearchDomainSamlOptionsSamlOptionsElIdpEl {}
 
 impl ToListMappable for OpensearchDomainSamlOptionsSamlOptionsElIdpEl {
     type O = BlockAssignable<OpensearchDomainSamlOptionsSamlOptionsElIdpEl>;
@@ -331,7 +361,10 @@ impl OpensearchDomainSamlOptionsSamlOptionsElIdpElRef {
 
     #[doc = "Get a reference to the value of field `metadata_content` after provisioning.\n"]
     pub fn metadata_content(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metadata_content", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.metadata_content", self.base),
+        )
     }
 }
 
@@ -397,14 +430,17 @@ impl OpensearchDomainSamlOptionsSamlOptionsEl {
     }
 
     #[doc = "Set the field `idp`.\n"]
-    pub fn set_idp(mut self, v: impl Into<BlockAssignable<OpensearchDomainSamlOptionsSamlOptionsElIdpEl>>) -> Self {
+    pub fn set_idp(
+        mut self,
+        v: impl Into<BlockAssignable<OpensearchDomainSamlOptionsSamlOptionsElIdpEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.idp = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.idp = Some(d);
-            },
+            }
         }
         self
     }
@@ -465,12 +501,18 @@ impl OpensearchDomainSamlOptionsSamlOptionsElRef {
 
     #[doc = "Get a reference to the value of field `master_backend_role` after provisioning.\n"]
     pub fn master_backend_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.master_backend_role", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.master_backend_role", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `master_user_name` after provisioning.\n"]
     pub fn master_user_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.master_user_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.master_user_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `roles_key` after provisioning.\n"]
@@ -480,7 +522,10 @@ impl OpensearchDomainSamlOptionsSamlOptionsElRef {
 
     #[doc = "Get a reference to the value of field `session_timeout_minutes` after provisioning.\n"]
     pub fn session_timeout_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout_minutes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subject_key` after provisioning.\n"]

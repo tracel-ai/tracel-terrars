@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudfrontVpcOriginData {
@@ -58,7 +58,8 @@ impl CloudfrontVpcOrigin {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -71,7 +72,7 @@ impl CloudfrontVpcOrigin {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -82,12 +83,22 @@ impl CloudfrontVpcOrigin {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -111,10 +122,10 @@ impl CloudfrontVpcOrigin {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vpc_origin_endpoint_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.vpc_origin_endpoint_config = Some(d);
-            },
+            }
         }
         self
     }
@@ -126,7 +137,10 @@ impl CloudfrontVpcOrigin {
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -136,32 +150,50 @@ impl CloudfrontVpcOrigin {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudfrontVpcOriginTimeoutsElRef {
-        CloudfrontVpcOriginTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CloudfrontVpcOriginTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_origin_endpoint_config` after provisioning.\n"]
-    pub fn vpc_origin_endpoint_config(&self) -> ListRef<CloudfrontVpcOriginVpcOriginEndpointConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_origin_endpoint_config", self.extract_ref()))
+    pub fn vpc_origin_endpoint_config(
+        &self,
+    ) -> ListRef<CloudfrontVpcOriginVpcOriginEndpointConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_origin_endpoint_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudfrontVpcOrigin {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudfrontVpcOrigin { }
+impl Resource for CloudfrontVpcOrigin {}
 
 impl ToListMappable for CloudfrontVpcOrigin {
     type O = ListRef<CloudfrontVpcOriginRef>;
@@ -218,10 +250,7 @@ pub struct CloudfrontVpcOriginRef {
 
 impl Ref for CloudfrontVpcOriginRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -241,7 +270,10 @@ impl CloudfrontVpcOriginRef {
 
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.etag", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.etag", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -251,22 +283,36 @@ impl CloudfrontVpcOriginRef {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudfrontVpcOriginTimeoutsElRef {
-        CloudfrontVpcOriginTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        CloudfrontVpcOriginTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_origin_endpoint_config` after provisioning.\n"]
-    pub fn vpc_origin_endpoint_config(&self) -> ListRef<CloudfrontVpcOriginVpcOriginEndpointConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_origin_endpoint_config", self.extract_ref()))
+    pub fn vpc_origin_endpoint_config(
+        &self,
+    ) -> ListRef<CloudfrontVpcOriginVpcOriginEndpointConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_origin_endpoint_config", self.extract_ref()),
+        )
     }
 }
 
@@ -281,22 +327,19 @@ pub struct CloudfrontVpcOriginTimeoutsEl {
 }
 
 impl CloudfrontVpcOriginTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
@@ -346,20 +389,17 @@ impl CloudfrontVpcOriginTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
@@ -371,7 +411,7 @@ pub struct CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl {
     quantity: PrimField<f64>,
 }
 
-impl CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl { }
+impl CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl {}
 
 impl ToListMappable for CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl {
     type O = BlockAssignable<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl>;
@@ -407,7 +447,10 @@ pub struct CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef {
 }
 
 impl Ref for CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef {
-    fn new(shared: StackShared, base: String) -> CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef {
         CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef {
             shared: shared,
             base: base.to_string(),
@@ -433,7 +476,8 @@ impl CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef {
 
 #[derive(Serialize, Default)]
 struct CloudfrontVpcOriginVpcOriginEndpointConfigElDynamic {
-    origin_ssl_protocols: Option<DynamicBlock<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl>>,
+    origin_ssl_protocols:
+        Option<DynamicBlock<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl>>,
 }
 
 #[derive(Serialize)]
@@ -444,7 +488,8 @@ pub struct CloudfrontVpcOriginVpcOriginEndpointConfigEl {
     name: PrimField<String>,
     origin_protocol_policy: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    origin_ssl_protocols: Option<Vec<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl>>,
+    origin_ssl_protocols:
+        Option<Vec<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsEl>>,
     dynamic: CloudfrontVpcOriginVpcOriginEndpointConfigElDynamic,
 }
 
@@ -457,10 +502,10 @@ impl CloudfrontVpcOriginVpcOriginEndpointConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.origin_ssl_protocols = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.origin_ssl_protocols = Some(d);
-            },
+            }
         }
         self
     }
@@ -546,12 +591,20 @@ impl CloudfrontVpcOriginVpcOriginEndpointConfigElRef {
 
     #[doc = "Get a reference to the value of field `origin_protocol_policy` after provisioning.\n"]
     pub fn origin_protocol_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.origin_protocol_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.origin_protocol_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `origin_ssl_protocols` after provisioning.\n"]
-    pub fn origin_ssl_protocols(&self) -> ListRef<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.origin_ssl_protocols", self.base))
+    pub fn origin_ssl_protocols(
+        &self,
+    ) -> ListRef<CloudfrontVpcOriginVpcOriginEndpointConfigElOriginSslProtocolsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.origin_ssl_protocols", self.base),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BedrockagentDataSourceData {
@@ -25,11 +25,13 @@ struct BedrockagentDataSourceData {
     #[serde(skip_serializing_if = "Option::is_none")]
     data_source_configuration: Option<Vec<BedrockagentDataSourceDataSourceConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    server_side_encryption_configuration: Option<Vec<BedrockagentDataSourceServerSideEncryptionConfigurationEl>>,
+    server_side_encryption_configuration:
+        Option<Vec<BedrockagentDataSourceServerSideEncryptionConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<BedrockagentDataSourceTimeoutsEl>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    vector_ingestion_configuration: Option<Vec<BedrockagentDataSourceVectorIngestionConfigurationEl>>,
+    vector_ingestion_configuration:
+        Option<Vec<BedrockagentDataSourceVectorIngestionConfigurationEl>>,
     dynamic: BedrockagentDataSourceDynamic,
 }
 
@@ -68,7 +70,8 @@ impl BedrockagentDataSource {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -81,7 +84,7 @@ impl BedrockagentDataSource {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -92,12 +95,22 @@ impl BedrockagentDataSource {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -113,8 +126,7 @@ impl BedrockagentDataSource {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -128,10 +140,10 @@ impl BedrockagentDataSource {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().data_source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.data_source_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -143,11 +155,18 @@ impl BedrockagentDataSource {
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().server_side_encryption_configuration = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .server_side_encryption_configuration = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.server_side_encryption_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .server_side_encryption_configuration = Some(d);
+            }
         }
         self
     }
@@ -166,27 +185,40 @@ impl BedrockagentDataSource {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().vector_ingestion_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.vector_ingestion_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .vector_ingestion_configuration = Some(d);
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `data_deletion_policy` after provisioning.\n"]
     pub fn data_deletion_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_deletion_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_deletion_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_source_id` after provisioning.\n"]
     pub fn data_source_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -196,50 +228,81 @@ impl BedrockagentDataSource {
 
     #[doc = "Get a reference to the value of field `knowledge_base_id` after provisioning.\n"]
     pub fn knowledge_base_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.knowledge_base_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.knowledge_base_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_source_configuration` after provisioning.\n"]
-    pub fn data_source_configuration(&self) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_source_configuration", self.extract_ref()))
+    pub fn data_source_configuration(
+        &self,
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_source_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
     pub fn server_side_encryption_configuration(
         &self,
     ) -> ListRef<BedrockagentDataSourceServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentDataSourceTimeoutsElRef {
-        BedrockagentDataSourceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentDataSourceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vector_ingestion_configuration` after provisioning.\n"]
-    pub fn vector_ingestion_configuration(&self) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vector_ingestion_configuration", self.extract_ref()))
+    pub fn vector_ingestion_configuration(
+        &self,
+    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vector_ingestion_configuration", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BedrockagentDataSource {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BedrockagentDataSource { }
+impl Resource for BedrockagentDataSource {}
 
 impl ToListMappable for BedrockagentDataSource {
     type O = ListRef<BedrockagentDataSourceRef>;
@@ -306,10 +369,7 @@ pub struct BedrockagentDataSourceRef {
 
 impl Ref for BedrockagentDataSourceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -324,17 +384,26 @@ impl BedrockagentDataSourceRef {
 
     #[doc = "Get a reference to the value of field `data_deletion_policy` after provisioning.\n"]
     pub fn data_deletion_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_deletion_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_deletion_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_source_id` after provisioning.\n"]
     pub fn data_source_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.data_source_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.data_source_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -344,45 +413,73 @@ impl BedrockagentDataSourceRef {
 
     #[doc = "Get a reference to the value of field `knowledge_base_id` after provisioning.\n"]
     pub fn knowledge_base_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.knowledge_base_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.knowledge_base_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `data_source_configuration` after provisioning.\n"]
-    pub fn data_source_configuration(&self) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.data_source_configuration", self.extract_ref()))
+    pub fn data_source_configuration(
+        &self,
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.data_source_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
     pub fn server_side_encryption_configuration(
         &self,
     ) -> ListRef<BedrockagentDataSourceServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentDataSourceTimeoutsElRef {
-        BedrockagentDataSourceTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        BedrockagentDataSourceTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vector_ingestion_configuration` after provisioning.\n"]
-    pub fn vector_ingestion_configuration(&self) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vector_ingestion_configuration", self.extract_ref()))
+    pub fn vector_ingestion_configuration(
+        &self,
+    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vector_ingestion_configuration", self.extract_ref()),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     exclusion_filters: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -419,7 +516,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl
+{
     #[doc = ""]
     pub object_type: PrimField<String>,
 }
@@ -436,7 +534,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -534,7 +633,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl {
     pub fn build(
@@ -547,7 +647,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -641,7 +742,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -658,7 +760,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElFilterConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -715,7 +818,9 @@ pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfiguratio
     dynamic: BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElDynamic,
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationEl {
+impl
+    BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationEl
+{
     #[doc = "Set the field `filter_configuration`.\n"]
     pub fn set_filter_configuration(
         mut self,
@@ -731,10 +836,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCra
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -755,7 +860,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationEl {
     pub fn build(
@@ -768,7 +874,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -801,14 +908,15 @@ impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCra
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl
+{
     auth_type: PrimField<String>,
     credentials_secret_arn: PrimField<String>,
     host_type: PrimField<String>,
     host_url: PrimField<String>,
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl { }
+impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl {}
 
 impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl {
     type O =
@@ -825,7 +933,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationEl
+{
     #[doc = ""]
     pub auth_type: PrimField<String>,
     #[doc = ""]
@@ -849,7 +958,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElConfluenceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -866,7 +976,9 @@ impl Ref for BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurat
     }
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationElRef {
+impl
+    BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -878,7 +990,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSou
 
     #[doc = "Get a reference to the value of field `credentials_secret_arn` after provisioning.\n"]
     pub fn credentials_secret_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials_secret_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credentials_secret_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `host_type` after provisioning.\n"]
@@ -931,10 +1046,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crawler_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crawler_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -954,17 +1069,18 @@ impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl {
-    type O = BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl>;
+    type O =
+        BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1012,15 +1128,21 @@ impl BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElRef
     #[doc = "Get a reference to the value of field `crawler_configuration` after provisioning.\n"]
     pub fn crawler_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crawler_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElCrawlerConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crawler_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElSourceConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.base),
+        )
     }
 }
 
@@ -1080,7 +1202,10 @@ pub struct BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef {
 }
 
 impl Ref for BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef {
         BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1100,17 +1225,24 @@ impl BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `bucket_owner_account_id` after provisioning.\n"]
     pub fn bucket_owner_account_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_owner_account_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket_owner_account_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inclusion_prefixes` after provisioning.\n"]
     pub fn inclusion_prefixes(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.inclusion_prefixes", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.inclusion_prefixes", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     exclusion_filters: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1147,7 +1279,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl
+{
     #[doc = ""]
     pub object_type: PrimField<String>,
 }
@@ -1164,7 +1297,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1262,7 +1396,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl {
     pub fn build(
@@ -1275,7 +1410,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1369,7 +1505,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -1386,7 +1523,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElFilterConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1443,7 +1581,9 @@ pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfiguratio
     dynamic: BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElDynamic,
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationEl {
+impl
+    BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationEl
+{
     #[doc = "Set the field `filter_configuration`.\n"]
     pub fn set_filter_configuration(
         mut self,
@@ -1459,10 +1599,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCra
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1483,7 +1623,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationEl {
     pub fn build(
@@ -1496,7 +1637,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1529,13 +1671,14 @@ impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCra
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl
+{
     auth_type: PrimField<String>,
     credentials_secret_arn: PrimField<String>,
     host_url: PrimField<String>,
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl { }
+impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl {}
 
 impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl {
     type O =
@@ -1552,7 +1695,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforc
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationEl
+{
     #[doc = ""]
     pub auth_type: PrimField<String>,
     #[doc = ""]
@@ -1573,7 +1717,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSalesforceConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1590,7 +1735,9 @@ impl Ref for BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurat
     }
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationElRef {
+impl
+    BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -1602,7 +1749,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSou
 
     #[doc = "Get a reference to the value of field `credentials_secret_arn` after provisioning.\n"]
     pub fn credentials_secret_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials_secret_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credentials_secret_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `host_url` after provisioning.\n"]
@@ -1650,10 +1800,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crawler_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crawler_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1673,17 +1823,18 @@ impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl {
-    type O = BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl>;
+    type O =
+        BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1731,20 +1882,27 @@ impl BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElRef
     #[doc = "Get a reference to the value of field `crawler_configuration` after provisioning.\n"]
     pub fn crawler_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crawler_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElCrawlerConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crawler_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElSourceConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     exclusion_filters: Option<SetField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1781,7 +1939,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSharePoin
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersEl
+{
     #[doc = ""]
     pub object_type: PrimField<String>,
 }
@@ -1798,7 +1957,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElFiltersElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1896,7 +2056,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSharePoin
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterEl {
     pub fn build(
@@ -1909,7 +2070,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElPatternObjectFilterElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2003,7 +2165,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSharePoin
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationEl
+{
     #[doc = ""]
     pub type_: PrimField<String>,
 }
@@ -2020,7 +2183,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElFilterConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2077,7 +2241,9 @@ pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfiguratio
     dynamic: BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElDynamic,
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationEl {
+impl
+    BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationEl
+{
     #[doc = "Set the field `filter_configuration`.\n"]
     pub fn set_filter_configuration(
         mut self,
@@ -2093,10 +2259,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCra
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2117,7 +2283,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSharePoin
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationEl {
     pub fn build(
@@ -2130,7 +2297,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2163,7 +2331,8 @@ impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCra
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationEl
+{
     auth_type: PrimField<String>,
     credentials_secret_arn: PrimField<String>,
     domain: PrimField<String>,
@@ -2196,7 +2365,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSharePoin
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationEl {
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationEl
+{
     #[doc = ""]
     pub auth_type: PrimField<String>,
     #[doc = ""]
@@ -2224,7 +2394,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElSharePointConfiguration
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2241,7 +2412,9 @@ impl Ref for BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurat
     }
 }
 
-impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationElRef {
+impl
+    BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationElRef
+{
     fn shared(&self) -> &StackShared {
         &self.shared
     }
@@ -2253,7 +2426,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSou
 
     #[doc = "Get a reference to the value of field `credentials_secret_arn` after provisioning.\n"]
     pub fn credentials_secret_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials_secret_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.credentials_secret_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
@@ -2316,10 +2492,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crawler_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crawler_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2339,17 +2515,18 @@ impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl {
-    type O = BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl>;
+    type O =
+        BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2397,20 +2574,27 @@ impl BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElRef
     #[doc = "Get a reference to the value of field `crawler_configuration` after provisioning.\n"]
     pub fn crawler_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crawler_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElCrawlerConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crawler_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElSourceConfigurationElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     max_pages: Option<PrimField<f64>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2446,7 +2630,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfig
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsEl {
     pub fn build(
@@ -2459,7 +2644,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawl
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2558,18 +2744,21 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerCon
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crawler_limits = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crawler_limits = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl {
-    type O =
-        BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl>;
+impl ToListMappable
+    for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2580,10 +2769,14 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfig
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl {
-    pub fn build(self) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl
+    {
         BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl {
             exclusion_filters: core::default::Default::default(),
             inclusion_filters: core::default::Default::default(),
@@ -2595,16 +2788,20 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawl
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef {
+impl Ref
+    for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef {
+    ) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef
+    {
         BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2619,12 +2816,18 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerCon
 
     #[doc = "Get a reference to the value of field `exclusion_filters` after provisioning.\n"]
     pub fn exclusion_filters(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.exclusion_filters", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.exclusion_filters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `inclusion_filters` after provisioning.\n"]
     pub fn inclusion_filters(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.inclusion_filters", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.inclusion_filters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
@@ -2642,13 +2845,17 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerCon
         &self,
     ) -> ListRef<
         BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElCrawlerLimitsElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.crawler_limits", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crawler_limits", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsEl {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     url: Option<PrimField<String>>,
 }
@@ -2676,7 +2883,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfig
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsEl {
     pub fn build(
@@ -2688,7 +2896,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourc
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElSeedUrlsElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2776,7 +2985,8 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfig
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationEl {
     pub fn build(
@@ -2789,7 +2999,8 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourc
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -2855,17 +3066,21 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConf
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.url_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.url_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl {
-    type O = BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl>;
+impl ToListMappable
+    for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -2876,10 +3091,14 @@ impl ToListMappable for BedrockagentDataSourceDataSourceConfigurationElWebConfig
     }
 }
 
-pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl {}
+pub struct BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl {
-    pub fn build(self) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl
+    {
         BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl {
             url_configuration: core::default::Default::default(),
             dynamic: Default::default(),
@@ -2887,16 +3106,20 @@ impl BuildBedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourc
     }
 }
 
-pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef {
+pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef {
+impl Ref
+    for BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef {
+    ) -> BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef
+    {
         BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2914,18 +3137,25 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConf
         &self,
     ) -> ListRef<
         BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElUrlConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.url_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.url_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElDynamic {
     crawler_configuration: Option<
-        DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl>,
+        DynamicBlock<
+            BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl,
+        >,
     >,
     source_configuration: Option<
-        DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl>,
+        DynamicBlock<
+            BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationEl,
+        >,
     >,
 }
 
@@ -2933,7 +3163,9 @@ struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElDynamic 
 pub struct BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     crawler_configuration: Option<
-        Vec<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl>,
+        Vec<
+            BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_configuration: Option<
@@ -2958,10 +3190,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.crawler_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.crawler_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -2981,10 +3213,10 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3039,15 +3271,25 @@ impl BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElRef {
     #[doc = "Get a reference to the value of field `crawler_configuration` after provisioning.\n"]
     pub fn crawler_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.crawler_configuration", self.base))
+    ) -> ListRef<
+        BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElCrawlerConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.crawler_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `source_configuration` after provisioning.\n"]
     pub fn source_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_configuration", self.base))
+    ) -> ListRef<
+        BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElSourceConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_configuration", self.base),
+        )
     }
 }
 
@@ -3056,14 +3298,16 @@ struct BedrockagentDataSourceDataSourceConfigurationElDynamic {
     confluence_configuration: Option<
         DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl>,
     >,
-    s3_configuration: Option<DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationEl>>,
+    s3_configuration:
+        Option<DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationEl>>,
     salesforce_configuration: Option<
         DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl>,
     >,
     share_point_configuration: Option<
         DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl>,
     >,
-    web_configuration: Option<DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl>>,
+    web_configuration:
+        Option<DynamicBlock<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl>>,
 }
 
 #[derive(Serialize)]
@@ -3071,15 +3315,19 @@ pub struct BedrockagentDataSourceDataSourceConfigurationEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    confluence_configuration: Option<Vec<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl>>,
+    confluence_configuration:
+        Option<Vec<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_configuration: Option<Vec<BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    salesforce_configuration: Option<Vec<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl>>,
+    salesforce_configuration:
+        Option<Vec<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    share_point_configuration: Option<Vec<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl>>,
+    share_point_configuration:
+        Option<Vec<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    web_configuration: Option<Vec<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl>>,
+    web_configuration:
+        Option<Vec<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationEl>>,
     dynamic: BedrockagentDataSourceDataSourceConfigurationElDynamic,
 }
 
@@ -3087,15 +3335,19 @@ impl BedrockagentDataSourceDataSourceConfigurationEl {
     #[doc = "Set the field `confluence_configuration`.\n"]
     pub fn set_confluence_configuration(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.confluence_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.confluence_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3108,10 +3360,10 @@ impl BedrockagentDataSourceDataSourceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.s3_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.s3_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3119,15 +3371,19 @@ impl BedrockagentDataSourceDataSourceConfigurationEl {
     #[doc = "Set the field `salesforce_configuration`.\n"]
     pub fn set_salesforce_configuration(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.salesforce_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.salesforce_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3135,15 +3391,19 @@ impl BedrockagentDataSourceDataSourceConfigurationEl {
     #[doc = "Set the field `share_point_configuration`.\n"]
     pub fn set_share_point_configuration(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.share_point_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.share_point_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3156,10 +3416,10 @@ impl BedrockagentDataSourceDataSourceConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.web_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.web_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3202,7 +3462,10 @@ pub struct BedrockagentDataSourceDataSourceConfigurationElRef {
 }
 
 impl Ref for BedrockagentDataSourceDataSourceConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentDataSourceDataSourceConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentDataSourceDataSourceConfigurationElRef {
         BedrockagentDataSourceDataSourceConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -3224,31 +3487,50 @@ impl BedrockagentDataSourceDataSourceConfigurationElRef {
     pub fn confluence_configuration(
         &self,
     ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElConfluenceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.confluence_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.confluence_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_configuration` after provisioning.\n"]
-    pub fn s3_configuration(&self) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.s3_configuration", self.base))
+    pub fn s3_configuration(
+        &self,
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElS3ConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.s3_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `salesforce_configuration` after provisioning.\n"]
     pub fn salesforce_configuration(
         &self,
     ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSalesforceConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.salesforce_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.salesforce_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `share_point_configuration` after provisioning.\n"]
     pub fn share_point_configuration(
         &self,
     ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElSharePointConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.share_point_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.share_point_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `web_configuration` after provisioning.\n"]
-    pub fn web_configuration(&self) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.web_configuration", self.base))
+    pub fn web_configuration(
+        &self,
+    ) -> ListRef<BedrockagentDataSourceDataSourceConfigurationElWebConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.web_configuration", self.base),
+        )
     }
 }
 
@@ -3282,7 +3564,9 @@ pub struct BuildBedrockagentDataSourceServerSideEncryptionConfigurationEl {}
 
 impl BuildBedrockagentDataSourceServerSideEncryptionConfigurationEl {
     pub fn build(self) -> BedrockagentDataSourceServerSideEncryptionConfigurationEl {
-        BedrockagentDataSourceServerSideEncryptionConfigurationEl { kms_key_arn: core::default::Default::default() }
+        BedrockagentDataSourceServerSideEncryptionConfigurationEl {
+            kms_key_arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -3292,7 +3576,10 @@ pub struct BedrockagentDataSourceServerSideEncryptionConfigurationElRef {
 }
 
 impl Ref for BedrockagentDataSourceServerSideEncryptionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentDataSourceServerSideEncryptionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentDataSourceServerSideEncryptionConfigurationElRef {
         BedrockagentDataSourceServerSideEncryptionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -3320,15 +3607,13 @@ pub struct BedrockagentDataSourceTimeoutsEl {
 }
 
 impl BedrockagentDataSourceTimeoutsEl {
-    #[doc =
-        "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
@@ -3377,21 +3662,20 @@ impl BedrockagentDataSourceTimeoutsElRef {
         &self.shared
     }
 
-    #[doc =
-        "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
+    #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 
-    #[doc =
-        "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
+    #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationEl {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationEl
+{
     max_tokens: PrimField<f64>,
     overlap_percentage: PrimField<f64>,
 }
@@ -3413,7 +3697,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElChun
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationEl
+{
     #[doc = ""]
     pub max_tokens: PrimField<f64>,
     #[doc = ""]
@@ -3431,7 +3716,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurat
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3465,7 +3751,8 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElLevelConfigurationEl {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElLevelConfigurationEl
+{
     max_tokens: PrimField<f64>,
 }
 
@@ -3488,7 +3775,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElChun
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElLevelConfigurationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElLevelConfigurationEl
+{
     #[doc = ""]
     pub max_tokens: PrimField<f64>,
 }
@@ -3503,7 +3791,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurat
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElLevelConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElLevelConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3592,7 +3881,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElChun
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationEl
+{
     #[doc = ""]
     pub overlap_tokens: PrimField<f64>,
 }
@@ -3609,7 +3899,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurat
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3647,7 +3938,8 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationEl {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationEl
+{
     breakpoint_percentile_threshold: PrimField<f64>,
     buffer_size: PrimField<f64>,
     max_token: PrimField<f64>,
@@ -3670,7 +3962,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElChun
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationEl
+{
     #[doc = ""]
     pub breakpoint_percentile_threshold: PrimField<f64>,
     #[doc = ""]
@@ -3691,7 +3984,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurat
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -3788,10 +4082,10 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.fixed_size_chunking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.fixed_size_chunking_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3811,10 +4105,10 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.hierarchical_chunking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.hierarchical_chunking_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -3834,17 +4128,21 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.semantic_chunking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.semantic_chunking_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl {
-    type O = BlockAssignable<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl>;
+impl ToListMappable
+    for BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -3861,7 +4159,9 @@ pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConf
 }
 
 impl BuildBedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl {
-    pub fn build(self) -> BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl {
         BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl {
             chunking_strategy: self.chunking_strategy,
             fixed_size_chunking_configuration: core::default::Default::default(),
@@ -3896,7 +4196,10 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
 
     #[doc = "Get a reference to the value of field `chunking_strategy` after provisioning.\n"]
     pub fn chunking_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.chunking_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.chunking_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fixed_size_chunking_configuration` after provisioning.\n"]
@@ -3904,8 +4207,11 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
         &self,
     ) -> ListRef<
         BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElFixedSizeChunkingConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.fixed_size_chunking_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.fixed_size_chunking_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hierarchical_chunking_configuration` after provisioning.\n"]
@@ -3913,8 +4219,11 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
         &self,
     ) -> ListRef<
         BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElHierarchicalChunkingConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.hierarchical_chunking_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.hierarchical_chunking_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `semantic_chunking_configuration` after provisioning.\n"]
@@ -3922,13 +4231,17 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl
         &self,
     ) -> ListRef<
         BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElSemanticChunkingConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.semantic_chunking_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.semantic_chunking_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElS3LocationEl {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElS3LocationEl
+{
     uri: PrimField<String>,
 }
 
@@ -3951,7 +4264,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCust
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElS3LocationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElS3LocationEl
+{
     #[doc = ""]
     pub uri: PrimField<String>,
 }
@@ -3966,7 +4280,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElS3LocationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElS3LocationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4054,7 +4369,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCust
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageEl {}
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageEl
+{}
 
 impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageEl {
     pub fn build(
@@ -4067,7 +4383,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4100,7 +4417,8 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationCon
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElTransformationLambdaConfigurationEl {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElTransformationLambdaConfigurationEl
+{
     lambda_arn: PrimField<String>,
 }
 
@@ -4123,7 +4441,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCust
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElTransformationLambdaConfigurationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElTransformationLambdaConfigurationEl
+{
     #[doc = ""]
     pub lambda_arn: PrimField<String>,
 }
@@ -4138,7 +4457,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElTransformationLambdaConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElTransformationLambdaConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4226,7 +4546,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCust
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionEl {}
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionEl
+{}
 
 impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionEl {
     pub fn build(
@@ -4239,7 +4560,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElTransformationFunctionElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4332,7 +4654,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCust
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationEl
+{
     #[doc = ""]
     pub step_to_apply: PrimField<String>,
 }
@@ -4349,7 +4672,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4431,10 +4755,10 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationCon
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.intermediate_storage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.intermediate_storage = Some(d);
-            },
+            }
         }
         self
     }
@@ -4454,18 +4778,21 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationCon
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.transformation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.transformation = Some(d);
-            },
+            }
         }
         self
     }
 }
 
-impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl {
-    type O =
-        BlockAssignable<BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl>;
+impl ToListMappable
+    for BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl
+{
+    type O = BlockAssignable<
+        BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4476,10 +4803,14 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElCust
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl {}
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl
+{}
 
 impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl {
-    pub fn build(self) -> BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl
+    {
         BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl {
             intermediate_storage: core::default::Default::default(),
             transformation: core::default::Default::default(),
@@ -4488,16 +4819,20 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElCustomTransformati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef {
+impl Ref
+    for BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef {
+    ) -> BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef
+    {
         BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -4515,8 +4850,11 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationCon
         &self,
     ) -> ListRef<
         BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElIntermediateStorageElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.intermediate_storage", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.intermediate_storage", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transformation` after provisioning.\n"]
@@ -4524,13 +4862,17 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationCon
         &self,
     ) -> ListRef<
         BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElTransformationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.transformation", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.transformation", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElParsingPromptEl {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElParsingPromptEl
+{
     parsing_prompt_string: PrimField<String>,
 }
 
@@ -4553,7 +4895,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElPars
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElParsingPromptEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElParsingPromptEl
+{
     #[doc = ""]
     pub parsing_prompt_string: PrimField<String>,
 }
@@ -4568,7 +4911,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElParsingPromptElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElParsingPromptElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4657,7 +5001,8 @@ impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElPars
     }
 }
 
-pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationEl {
+pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationEl
+{
     #[doc = ""]
     pub model_arn: PrimField<String>,
 }
@@ -4674,7 +5019,8 @@ impl BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurati
     }
 }
 
-pub struct BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElRef {
+pub struct BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -4748,17 +5094,18 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl 
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.bedrock_foundation_model_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.bedrock_foundation_model_configuration = Some(d);
-            },
+            }
         }
         self
     }
 }
 
 impl ToListMappable for BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl {
-    type O = BlockAssignable<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl>;
+    type O =
+        BlockAssignable<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -4775,7 +5122,9 @@ pub struct BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfi
 }
 
 impl BuildBedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl {
-    pub fn build(self) -> BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl {
+    pub fn build(
+        self,
+    ) -> BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl {
         BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl {
             parsing_strategy: self.parsing_strategy,
             bedrock_foundation_model_configuration: core::default::Default::default(),
@@ -4808,7 +5157,10 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElR
 
     #[doc = "Get a reference to the value of field `parsing_strategy` after provisioning.\n"]
     pub fn parsing_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.parsing_strategy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.parsing_strategy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `bedrock_foundation_model_configuration` after provisioning.\n"]
@@ -4816,8 +5168,11 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElR
         &self,
     ) -> ListRef<
         BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElBedrockFoundationModelConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.bedrock_foundation_model_configuration", self.base))
+    >{
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.bedrock_foundation_model_configuration", self.base),
+        )
     }
 }
 
@@ -4827,7 +5182,9 @@ struct BedrockagentDataSourceVectorIngestionConfigurationElDynamic {
         DynamicBlock<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl>,
     >,
     custom_transformation_configuration: Option<
-        DynamicBlock<BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl>,
+        DynamicBlock<
+            BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl,
+        >,
     >,
     parsing_configuration: Option<
         DynamicBlock<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl>,
@@ -4837,13 +5194,17 @@ struct BedrockagentDataSourceVectorIngestionConfigurationElDynamic {
 #[derive(Serialize)]
 pub struct BedrockagentDataSourceVectorIngestionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    chunking_configuration: Option<Vec<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl>>,
+    chunking_configuration:
+        Option<Vec<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     custom_transformation_configuration: Option<
-        Vec<BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl>,
+        Vec<
+            BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationEl,
+        >,
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    parsing_configuration: Option<Vec<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl>>,
+    parsing_configuration:
+        Option<Vec<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl>>,
     dynamic: BedrockagentDataSourceVectorIngestionConfigurationElDynamic,
 }
 
@@ -4851,15 +5212,19 @@ impl BedrockagentDataSourceVectorIngestionConfigurationEl {
     #[doc = "Set the field `chunking_configuration`.\n"]
     pub fn set_chunking_configuration(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.chunking_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.chunking_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4879,10 +5244,10 @@ impl BedrockagentDataSourceVectorIngestionConfigurationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.custom_transformation_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.custom_transformation_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4890,15 +5255,19 @@ impl BedrockagentDataSourceVectorIngestionConfigurationEl {
     #[doc = "Set the field `parsing_configuration`.\n"]
     pub fn set_parsing_configuration(
         mut self,
-        v: impl Into<BlockAssignable<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.parsing_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.parsing_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -4935,7 +5304,10 @@ pub struct BedrockagentDataSourceVectorIngestionConfigurationElRef {
 }
 
 impl Ref for BedrockagentDataSourceVectorIngestionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> BedrockagentDataSourceVectorIngestionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> BedrockagentDataSourceVectorIngestionConfigurationElRef {
         BedrockagentDataSourceVectorIngestionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -4951,30 +5323,44 @@ impl BedrockagentDataSourceVectorIngestionConfigurationElRef {
     #[doc = "Get a reference to the value of field `chunking_configuration` after provisioning.\n"]
     pub fn chunking_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.chunking_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElChunkingConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.chunking_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `custom_transformation_configuration` after provisioning.\n"]
     pub fn custom_transformation_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.custom_transformation_configuration", self.base))
+    ) -> ListRef<
+        BedrockagentDataSourceVectorIngestionConfigurationElCustomTransformationConfigurationElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.custom_transformation_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `parsing_configuration` after provisioning.\n"]
     pub fn parsing_configuration(
         &self,
-    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.parsing_configuration", self.base))
+    ) -> ListRef<BedrockagentDataSourceVectorIngestionConfigurationElParsingConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.parsing_configuration", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct BedrockagentDataSourceDynamic {
-    data_source_configuration: Option<DynamicBlock<BedrockagentDataSourceDataSourceConfigurationEl>>,
-    server_side_encryption_configuration: Option<
-        DynamicBlock<BedrockagentDataSourceServerSideEncryptionConfigurationEl>,
-    >,
-    vector_ingestion_configuration: Option<DynamicBlock<BedrockagentDataSourceVectorIngestionConfigurationEl>>,
+    data_source_configuration:
+        Option<DynamicBlock<BedrockagentDataSourceDataSourceConfigurationEl>>,
+    server_side_encryption_configuration:
+        Option<DynamicBlock<BedrockagentDataSourceServerSideEncryptionConfigurationEl>>,
+    vector_ingestion_configuration:
+        Option<DynamicBlock<BedrockagentDataSourceVectorIngestionConfigurationEl>>,
 }

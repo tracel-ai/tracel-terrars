@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEmrcontainersVirtualClusterData {
@@ -51,8 +51,7 @@ impl DataEmrcontainersVirtualCluster {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -70,13 +69,21 @@ impl DataEmrcontainersVirtualCluster {
     }
 
     #[doc = "Get a reference to the value of field `container_provider` after provisioning.\n"]
-    pub fn container_provider(&self) -> ListRef<DataEmrcontainersVirtualClusterContainerProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.container_provider", self.extract_ref()))
+    pub fn container_provider(
+        &self,
+    ) -> ListRef<DataEmrcontainersVirtualClusterContainerProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -86,38 +93,56 @@ impl DataEmrcontainersVirtualCluster {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_cluster_id` after provisioning.\n"]
     pub fn virtual_cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_cluster_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEmrcontainersVirtualCluster {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEmrcontainersVirtualCluster { }
+impl Datasource for DataEmrcontainersVirtualCluster {}
 
 impl ToListMappable for DataEmrcontainersVirtualCluster {
     type O = ListRef<DataEmrcontainersVirtualClusterRef>;
@@ -175,10 +200,7 @@ pub struct DataEmrcontainersVirtualClusterRef {
 
 impl Ref for DataEmrcontainersVirtualClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -197,13 +219,21 @@ impl DataEmrcontainersVirtualClusterRef {
     }
 
     #[doc = "Get a reference to the value of field `container_provider` after provisioning.\n"]
-    pub fn container_provider(&self) -> ListRef<DataEmrcontainersVirtualClusterContainerProviderElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.container_provider", self.extract_ref()))
+    pub fn container_provider(
+        &self,
+    ) -> ListRef<DataEmrcontainersVirtualClusterContainerProviderElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.container_provider", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -213,28 +243,42 @@ impl DataEmrcontainersVirtualClusterRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `virtual_cluster_id` after provisioning.\n"]
     pub fn virtual_cluster_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.virtual_cluster_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.virtual_cluster_id", self.extract_ref()),
+        )
     }
 }
 
@@ -335,7 +379,9 @@ pub struct BuildDataEmrcontainersVirtualClusterContainerProviderElInfoEl {}
 
 impl BuildDataEmrcontainersVirtualClusterContainerProviderElInfoEl {
     pub fn build(self) -> DataEmrcontainersVirtualClusterContainerProviderElInfoEl {
-        DataEmrcontainersVirtualClusterContainerProviderElInfoEl { eks_info: core::default::Default::default() }
+        DataEmrcontainersVirtualClusterContainerProviderElInfoEl {
+            eks_info: core::default::Default::default(),
+        }
     }
 }
 
@@ -345,7 +391,10 @@ pub struct DataEmrcontainersVirtualClusterContainerProviderElInfoElRef {
 }
 
 impl Ref for DataEmrcontainersVirtualClusterContainerProviderElInfoElRef {
-    fn new(shared: StackShared, base: String) -> DataEmrcontainersVirtualClusterContainerProviderElInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEmrcontainersVirtualClusterContainerProviderElInfoElRef {
         DataEmrcontainersVirtualClusterContainerProviderElInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -359,7 +408,9 @@ impl DataEmrcontainersVirtualClusterContainerProviderElInfoElRef {
     }
 
     #[doc = "Get a reference to the value of field `eks_info` after provisioning.\n"]
-    pub fn eks_info(&self) -> ListRef<DataEmrcontainersVirtualClusterContainerProviderElInfoElEksInfoElRef> {
+    pub fn eks_info(
+        &self,
+    ) -> ListRef<DataEmrcontainersVirtualClusterContainerProviderElInfoElEksInfoElRef> {
         ListRef::new(self.shared().clone(), format!("{}.eks_info", self.base))
     }
 }
@@ -427,7 +478,10 @@ pub struct DataEmrcontainersVirtualClusterContainerProviderElRef {
 }
 
 impl Ref for DataEmrcontainersVirtualClusterContainerProviderElRef {
-    fn new(shared: StackShared, base: String) -> DataEmrcontainersVirtualClusterContainerProviderElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEmrcontainersVirtualClusterContainerProviderElRef {
         DataEmrcontainersVirtualClusterContainerProviderElRef {
             shared: shared,
             base: base.to_string(),

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct StoragegatewayFileSystemAssociationData {
@@ -70,7 +70,8 @@ impl StoragegatewayFileSystemAssociation {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -83,7 +84,7 @@ impl StoragegatewayFileSystemAssociation {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -94,12 +95,22 @@ impl StoragegatewayFileSystemAssociation {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -115,8 +126,7 @@ impl StoragegatewayFileSystemAssociation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -142,10 +152,10 @@ impl StoragegatewayFileSystemAssociation {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cache_attributes = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cache_attributes = Some(d);
-            },
+            }
         }
         self
     }
@@ -163,12 +173,18 @@ impl StoragegatewayFileSystemAssociation {
 
     #[doc = "Get a reference to the value of field `audit_destination_arn` after provisioning.\n"]
     pub fn audit_destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.audit_destination_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.audit_destination_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -178,38 +194,60 @@ impl StoragegatewayFileSystemAssociation {
 
     #[doc = "Get a reference to the value of field `location_arn` after provisioning.\n"]
     pub fn location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.username", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.username", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_attributes` after provisioning.\n"]
-    pub fn cache_attributes(&self) -> ListRef<StoragegatewayFileSystemAssociationCacheAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache_attributes", self.extract_ref()))
+    pub fn cache_attributes(
+        &self,
+    ) -> ListRef<StoragegatewayFileSystemAssociationCacheAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -223,11 +261,15 @@ impl StoragegatewayFileSystemAssociation {
 
 impl Referable for StoragegatewayFileSystemAssociation {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for StoragegatewayFileSystemAssociation { }
+impl Resource for StoragegatewayFileSystemAssociation {}
 
 impl ToListMappable for StoragegatewayFileSystemAssociation {
     type O = ListRef<StoragegatewayFileSystemAssociationRef>;
@@ -266,28 +308,29 @@ pub struct BuildStoragegatewayFileSystemAssociation {
 
 impl BuildStoragegatewayFileSystemAssociation {
     pub fn build(self, stack: &mut Stack) -> StoragegatewayFileSystemAssociation {
-        let out = StoragegatewayFileSystemAssociation(Rc::new(StoragegatewayFileSystemAssociation_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(StoragegatewayFileSystemAssociationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                audit_destination_arn: core::default::Default::default(),
-                gateway_arn: self.gateway_arn,
-                id: core::default::Default::default(),
-                location_arn: self.location_arn,
-                password: self.password,
-                region: core::default::Default::default(),
-                tags: core::default::Default::default(),
-                tags_all: core::default::Default::default(),
-                username: self.username,
-                cache_attributes: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out =
+            StoragegatewayFileSystemAssociation(Rc::new(StoragegatewayFileSystemAssociation_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(StoragegatewayFileSystemAssociationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    audit_destination_arn: core::default::Default::default(),
+                    gateway_arn: self.gateway_arn,
+                    id: core::default::Default::default(),
+                    location_arn: self.location_arn,
+                    password: self.password,
+                    region: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                    tags_all: core::default::Default::default(),
+                    username: self.username,
+                    cache_attributes: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            }));
         stack.add_resource(out.0.clone());
         out
     }
@@ -300,10 +343,7 @@ pub struct StoragegatewayFileSystemAssociationRef {
 
 impl Ref for StoragegatewayFileSystemAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -323,12 +363,18 @@ impl StoragegatewayFileSystemAssociationRef {
 
     #[doc = "Get a reference to the value of field `audit_destination_arn` after provisioning.\n"]
     pub fn audit_destination_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.audit_destination_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.audit_destination_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.gateway_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.gateway_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -338,38 +384,60 @@ impl StoragegatewayFileSystemAssociationRef {
 
     #[doc = "Get a reference to the value of field `location_arn` after provisioning.\n"]
     pub fn location_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.password", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.username", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.username", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cache_attributes` after provisioning.\n"]
-    pub fn cache_attributes(&self) -> ListRef<StoragegatewayFileSystemAssociationCacheAttributesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.cache_attributes", self.extract_ref()))
+    pub fn cache_attributes(
+        &self,
+    ) -> ListRef<StoragegatewayFileSystemAssociationCacheAttributesElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.cache_attributes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -423,7 +491,10 @@ pub struct StoragegatewayFileSystemAssociationCacheAttributesElRef {
 }
 
 impl Ref for StoragegatewayFileSystemAssociationCacheAttributesElRef {
-    fn new(shared: StackShared, base: String) -> StoragegatewayFileSystemAssociationCacheAttributesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> StoragegatewayFileSystemAssociationCacheAttributesElRef {
         StoragegatewayFileSystemAssociationCacheAttributesElRef {
             shared: shared,
             base: base.to_string(),
@@ -438,7 +509,10 @@ impl StoragegatewayFileSystemAssociationCacheAttributesElRef {
 
     #[doc = "Get a reference to the value of field `cache_stale_timeout_in_seconds` after provisioning.\n"]
     pub fn cache_stale_timeout_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cache_stale_timeout_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cache_stale_timeout_in_seconds", self.base),
+        )
     }
 }
 

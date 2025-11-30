@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ChimesdkvoiceVoiceProfileDomainData {
@@ -24,7 +24,8 @@ struct ChimesdkvoiceVoiceProfileDomainData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    server_side_encryption_configuration: Option<Vec<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>>,
+    server_side_encryption_configuration:
+        Option<Vec<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<ChimesdkvoiceVoiceProfileDomainTimeoutsEl>,
     dynamic: ChimesdkvoiceVoiceProfileDomainDynamic,
@@ -65,7 +66,8 @@ impl ChimesdkvoiceVoiceProfileDomain {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +80,7 @@ impl ChimesdkvoiceVoiceProfileDomain {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +91,22 @@ impl ChimesdkvoiceVoiceProfileDomain {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -104,8 +116,7 @@ impl ChimesdkvoiceVoiceProfileDomain {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -126,15 +137,24 @@ impl ChimesdkvoiceVoiceProfileDomain {
     #[doc = "Set the field `server_side_encryption_configuration`.\n"]
     pub fn set_server_side_encryption_configuration(
         self,
-        v: impl Into<BlockAssignable<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
-                self.0.data.borrow_mut().server_side_encryption_configuration = Some(v);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .server_side_encryption_configuration = Some(v);
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.server_side_encryption_configuration = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .server_side_encryption_configuration = Some(d);
+            }
         }
         self
     }
@@ -152,7 +172,10 @@ impl ChimesdkvoiceVoiceProfileDomain {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -162,30 +185,47 @@ impl ChimesdkvoiceVoiceProfileDomain {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
     pub fn server_side_encryption_configuration(
         &self,
     ) -> ListRef<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -199,11 +239,15 @@ impl ChimesdkvoiceVoiceProfileDomain {
 
 impl Referable for ChimesdkvoiceVoiceProfileDomain {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ChimesdkvoiceVoiceProfileDomain { }
+impl Resource for ChimesdkvoiceVoiceProfileDomain {}
 
 impl ToListMappable for ChimesdkvoiceVoiceProfileDomain {
     type O = ListRef<ChimesdkvoiceVoiceProfileDomainRef>;
@@ -266,10 +310,7 @@ pub struct ChimesdkvoiceVoiceProfileDomainRef {
 
 impl Ref for ChimesdkvoiceVoiceProfileDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -289,7 +330,10 @@ impl ChimesdkvoiceVoiceProfileDomainRef {
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -299,30 +343,47 @@ impl ChimesdkvoiceVoiceProfileDomainRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
     pub fn server_side_encryption_configuration(
         &self,
     ) -> ListRef<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -339,7 +400,7 @@ pub struct ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl {
     kms_key_arn: PrimField<String>,
 }
 
-impl ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl { }
+impl ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl {}
 
 impl ToListMappable for ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl {
     type O = BlockAssignable<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>;
@@ -360,7 +421,9 @@ pub struct BuildChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfiguration
 
 impl BuildChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl {
     pub fn build(self) -> ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl {
-        ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl { kms_key_arn: self.kms_key_arn }
+        ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl {
+            kms_key_arn: self.kms_key_arn,
+        }
     }
 }
 
@@ -483,7 +546,6 @@ impl ChimesdkvoiceVoiceProfileDomainTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct ChimesdkvoiceVoiceProfileDomainDynamic {
-    server_side_encryption_configuration: Option<
-        DynamicBlock<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>,
-    >,
+    server_side_encryption_configuration:
+        Option<DynamicBlock<ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfigurationEl>>,
 }

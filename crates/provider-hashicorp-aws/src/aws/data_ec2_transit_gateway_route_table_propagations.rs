@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2TransitGatewayRouteTablePropagationsData {
@@ -31,7 +31,9 @@ struct DataEc2TransitGatewayRouteTablePropagations_ {
 }
 
 #[derive(Clone)]
-pub struct DataEc2TransitGatewayRouteTablePropagations(Rc<DataEc2TransitGatewayRouteTablePropagations_>);
+pub struct DataEc2TransitGatewayRouteTablePropagations(
+    Rc<DataEc2TransitGatewayRouteTablePropagations_>,
+);
 
 impl DataEc2TransitGatewayRouteTablePropagations {
     fn shared(&self) -> &StackShared {
@@ -54,28 +56,33 @@ impl DataEc2TransitGatewayRouteTablePropagations {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2TransitGatewayRouteTablePropagationsFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2TransitGatewayRouteTablePropagationsFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `timeouts`.\n"]
-    pub fn set_timeouts(self, v: impl Into<DataEc2TransitGatewayRouteTablePropagationsTimeoutsEl>) -> Self {
+    pub fn set_timeouts(
+        self,
+        v: impl Into<DataEc2TransitGatewayRouteTablePropagationsTimeoutsEl>,
+    ) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
@@ -90,15 +97,20 @@ impl DataEc2TransitGatewayRouteTablePropagations {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_id` after provisioning.\n"]
     pub fn transit_gateway_route_table_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_route_table_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_route_table_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -112,11 +124,15 @@ impl DataEc2TransitGatewayRouteTablePropagations {
 
 impl Referable for DataEc2TransitGatewayRouteTablePropagations {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2TransitGatewayRouteTablePropagations { }
+impl Datasource for DataEc2TransitGatewayRouteTablePropagations {}
 
 impl ToListMappable for DataEc2TransitGatewayRouteTablePropagations {
     type O = ListRef<DataEc2TransitGatewayRouteTablePropagationsRef>;
@@ -149,21 +165,23 @@ pub struct BuildDataEc2TransitGatewayRouteTablePropagations {
 
 impl BuildDataEc2TransitGatewayRouteTablePropagations {
     pub fn build(self, stack: &mut Stack) -> DataEc2TransitGatewayRouteTablePropagations {
-        let out = DataEc2TransitGatewayRouteTablePropagations(Rc::new(DataEc2TransitGatewayRouteTablePropagations_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataEc2TransitGatewayRouteTablePropagationsData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                transit_gateway_route_table_id: self.transit_gateway_route_table_id,
-                filter: core::default::Default::default(),
-                timeouts: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = DataEc2TransitGatewayRouteTablePropagations(Rc::new(
+            DataEc2TransitGatewayRouteTablePropagations_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataEc2TransitGatewayRouteTablePropagationsData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    transit_gateway_route_table_id: self.transit_gateway_route_table_id,
+                    filter: core::default::Default::default(),
+                    timeouts: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -176,10 +194,7 @@ pub struct DataEc2TransitGatewayRouteTablePropagationsRef {
 
 impl Ref for DataEc2TransitGatewayRouteTablePropagationsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -202,15 +217,20 @@ impl DataEc2TransitGatewayRouteTablePropagationsRef {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_id` after provisioning.\n"]
     pub fn transit_gateway_route_table_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transit_gateway_route_table_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transit_gateway_route_table_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -228,7 +248,7 @@ pub struct DataEc2TransitGatewayRouteTablePropagationsFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2TransitGatewayRouteTablePropagationsFilterEl { }
+impl DataEc2TransitGatewayRouteTablePropagationsFilterEl {}
 
 impl ToListMappable for DataEc2TransitGatewayRouteTablePropagationsFilterEl {
     type O = BlockAssignable<DataEc2TransitGatewayRouteTablePropagationsFilterEl>;
@@ -264,7 +284,10 @@ pub struct DataEc2TransitGatewayRouteTablePropagationsFilterElRef {
 }
 
 impl Ref for DataEc2TransitGatewayRouteTablePropagationsFilterElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayRouteTablePropagationsFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayRouteTablePropagationsFilterElRef {
         DataEc2TransitGatewayRouteTablePropagationsFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -318,7 +341,9 @@ pub struct BuildDataEc2TransitGatewayRouteTablePropagationsTimeoutsEl {}
 
 impl BuildDataEc2TransitGatewayRouteTablePropagationsTimeoutsEl {
     pub fn build(self) -> DataEc2TransitGatewayRouteTablePropagationsTimeoutsEl {
-        DataEc2TransitGatewayRouteTablePropagationsTimeoutsEl { read: core::default::Default::default() }
+        DataEc2TransitGatewayRouteTablePropagationsTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 
@@ -328,7 +353,10 @@ pub struct DataEc2TransitGatewayRouteTablePropagationsTimeoutsElRef {
 }
 
 impl Ref for DataEc2TransitGatewayRouteTablePropagationsTimeoutsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayRouteTablePropagationsTimeoutsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2TransitGatewayRouteTablePropagationsTimeoutsElRef {
         DataEc2TransitGatewayRouteTablePropagationsTimeoutsElRef {
             shared: shared,
             base: base.to_string(),

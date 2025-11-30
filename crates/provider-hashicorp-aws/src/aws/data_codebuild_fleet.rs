@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCodebuildFleetData {
@@ -43,8 +43,7 @@ impl DataCodebuildFleet {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,32 +62,50 @@ impl DataCodebuildFleet {
 
     #[doc = "Get a reference to the value of field `base_capacity` after provisioning.\n"]
     pub fn base_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_configuration` after provisioning.\n"]
     pub fn compute_configuration(&self) -> ListRef<DataCodebuildFleetComputeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_type` after provisioning.\n"]
     pub fn compute_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created` after provisioning.\n"]
     pub fn created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_type` after provisioning.\n"]
     pub fn environment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.environment_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.environment_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_service_role` after provisioning.\n"]
     pub fn fleet_service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fleet_service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fleet_service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -98,58 +115,88 @@ impl DataCodebuildFleet {
 
     #[doc = "Get a reference to the value of field `image_id` after provisioning.\n"]
     pub fn image_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `overflow_behavior` after provisioning.\n"]
     pub fn overflow_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overflow_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overflow_behavior", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_configuration` after provisioning.\n"]
     pub fn scaling_configuration(&self) -> ListRef<DataCodebuildFleetScalingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> SetRef<DataCodebuildFleetStatusElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<DataCodebuildFleetVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCodebuildFleet {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCodebuildFleet { }
+impl Datasource for DataCodebuildFleet {}
 
 impl ToListMappable for DataCodebuildFleet {
     type O = ListRef<DataCodebuildFleetRef>;
@@ -206,10 +253,7 @@ pub struct DataCodebuildFleetRef {
 
 impl Ref for DataCodebuildFleetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -229,32 +273,50 @@ impl DataCodebuildFleetRef {
 
     #[doc = "Get a reference to the value of field `base_capacity` after provisioning.\n"]
     pub fn base_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.base_capacity", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.base_capacity", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_configuration` after provisioning.\n"]
     pub fn compute_configuration(&self) -> ListRef<DataCodebuildFleetComputeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.compute_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.compute_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_type` after provisioning.\n"]
     pub fn compute_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created` after provisioning.\n"]
     pub fn created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `environment_type` after provisioning.\n"]
     pub fn environment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.environment_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.environment_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fleet_service_role` after provisioning.\n"]
     pub fn fleet_service_role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fleet_service_role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fleet_service_role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -264,48 +326,74 @@ impl DataCodebuildFleetRef {
 
     #[doc = "Get a reference to the value of field `image_id` after provisioning.\n"]
     pub fn image_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.image_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.image_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `overflow_behavior` after provisioning.\n"]
     pub fn overflow_behavior(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.overflow_behavior", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.overflow_behavior", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scaling_configuration` after provisioning.\n"]
     pub fn scaling_configuration(&self) -> ListRef<DataCodebuildFleetScalingConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scaling_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scaling_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> SetRef<DataCodebuildFleetStatusElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<DataCodebuildFleetVpcConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.vpc_config", self.extract_ref()),
+        )
     }
 }
 
@@ -407,7 +495,10 @@ impl DataCodebuildFleetComputeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `machine_type` after provisioning.\n"]
@@ -449,7 +540,8 @@ impl DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
 }
 
 impl ToListMappable for DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
-    type O = BlockAssignable<DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>;
+    type O =
+        BlockAssignable<DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -513,9 +605,8 @@ pub struct DataCodebuildFleetScalingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     scaling_type: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    target_tracking_scaling_configs: Option<
-        ListField<DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>,
-    >,
+    target_tracking_scaling_configs:
+        Option<ListField<DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>>,
 }
 
 impl DataCodebuildFleetScalingConfigurationEl {
@@ -593,7 +684,10 @@ impl DataCodebuildFleetScalingConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.desired_capacity", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.desired_capacity", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
@@ -610,7 +704,10 @@ impl DataCodebuildFleetScalingConfigurationElRef {
     pub fn target_tracking_scaling_configs(
         &self,
     ) -> ListRef<DataCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_tracking_scaling_configs", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_tracking_scaling_configs", self.base),
+        )
     }
 }
 
@@ -778,7 +875,10 @@ impl DataCodebuildFleetVpcConfigElRef {
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]

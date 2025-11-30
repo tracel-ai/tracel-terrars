@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataIamOpenidConnectProviderData {
@@ -77,7 +77,10 @@ impl DataIamOpenidConnectProvider {
 
     #[doc = "Get a reference to the value of field `client_id_list` after provisioning.\n"]
     pub fn client_id_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.client_id_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_id_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -87,12 +90,18 @@ impl DataIamOpenidConnectProvider {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `thumbprint_list` after provisioning.\n"]
     pub fn thumbprint_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.thumbprint_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.thumbprint_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -103,11 +112,15 @@ impl DataIamOpenidConnectProvider {
 
 impl Referable for DataIamOpenidConnectProvider {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataIamOpenidConnectProvider { }
+impl Datasource for DataIamOpenidConnectProvider {}
 
 impl ToListMappable for DataIamOpenidConnectProvider {
     type O = ListRef<DataIamOpenidConnectProviderRef>;
@@ -163,10 +176,7 @@ pub struct DataIamOpenidConnectProviderRef {
 
 impl Ref for DataIamOpenidConnectProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -186,7 +196,10 @@ impl DataIamOpenidConnectProviderRef {
 
     #[doc = "Get a reference to the value of field `client_id_list` after provisioning.\n"]
     pub fn client_id_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.client_id_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_id_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -196,12 +209,18 @@ impl DataIamOpenidConnectProviderRef {
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `thumbprint_list` after provisioning.\n"]
     pub fn thumbprint_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.thumbprint_list", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.thumbprint_list", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]

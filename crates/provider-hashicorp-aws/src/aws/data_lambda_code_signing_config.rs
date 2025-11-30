@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataLambdaCodeSigningConfigData {
@@ -49,8 +49,7 @@ impl DataLambdaCodeSigningConfig {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -58,7 +57,10 @@ impl DataLambdaCodeSigningConfig {
 
     #[doc = "Get a reference to the value of field `allowed_publishers` after provisioning.\n"]
     pub fn allowed_publishers(&self) -> ListRef<DataLambdaCodeSigningConfigAllowedPublishersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.allowed_publishers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_publishers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -68,12 +70,18 @@ impl DataLambdaCodeSigningConfig {
 
     #[doc = "Get a reference to the value of field `config_id` after provisioning.\n"]
     pub fn config_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -83,28 +91,40 @@ impl DataLambdaCodeSigningConfig {
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policies` after provisioning.\n"]
     pub fn policies(&self) -> ListRef<DataLambdaCodeSigningConfigPoliciesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.policies", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.policies", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataLambdaCodeSigningConfig {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataLambdaCodeSigningConfig { }
+impl Datasource for DataLambdaCodeSigningConfig {}
 
 impl ToListMappable for DataLambdaCodeSigningConfig {
     type O = ListRef<DataLambdaCodeSigningConfigRef>;
@@ -161,10 +181,7 @@ pub struct DataLambdaCodeSigningConfigRef {
 
 impl Ref for DataLambdaCodeSigningConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -179,7 +196,10 @@ impl DataLambdaCodeSigningConfigRef {
 
     #[doc = "Get a reference to the value of field `allowed_publishers` after provisioning.\n"]
     pub fn allowed_publishers(&self) -> ListRef<DataLambdaCodeSigningConfigAllowedPublishersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.allowed_publishers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.allowed_publishers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -189,12 +209,18 @@ impl DataLambdaCodeSigningConfigRef {
 
     #[doc = "Get a reference to the value of field `config_id` after provisioning.\n"]
     pub fn config_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.config_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.config_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -204,18 +230,26 @@ impl DataLambdaCodeSigningConfigRef {
 
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_modified", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_modified", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `policies` after provisioning.\n"]
     pub fn policies(&self) -> ListRef<DataLambdaCodeSigningConfigPoliciesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.policies", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.policies", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -227,7 +261,10 @@ pub struct DataLambdaCodeSigningConfigAllowedPublishersEl {
 
 impl DataLambdaCodeSigningConfigAllowedPublishersEl {
     #[doc = "Set the field `signing_profile_version_arns`.\n"]
-    pub fn set_signing_profile_version_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_signing_profile_version_arns(
+        mut self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.signing_profile_version_arns = Some(v.into());
         self
     }
@@ -276,7 +313,10 @@ impl DataLambdaCodeSigningConfigAllowedPublishersElRef {
 
     #[doc = "Get a reference to the value of field `signing_profile_version_arns` after provisioning.\n"]
     pub fn signing_profile_version_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.signing_profile_version_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.signing_profile_version_arns", self.base),
+        )
     }
 }
 
@@ -310,7 +350,9 @@ pub struct BuildDataLambdaCodeSigningConfigPoliciesEl {}
 
 impl BuildDataLambdaCodeSigningConfigPoliciesEl {
     pub fn build(self) -> DataLambdaCodeSigningConfigPoliciesEl {
-        DataLambdaCodeSigningConfigPoliciesEl { untrusted_artifact_on_deployment: core::default::Default::default() }
+        DataLambdaCodeSigningConfigPoliciesEl {
+            untrusted_artifact_on_deployment: core::default::Default::default(),
+        }
     }
 }
 
@@ -335,6 +377,9 @@ impl DataLambdaCodeSigningConfigPoliciesElRef {
 
     #[doc = "Get a reference to the value of field `untrusted_artifact_on_deployment` after provisioning.\n"]
     pub fn untrusted_artifact_on_deployment(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.untrusted_artifact_on_deployment", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.untrusted_artifact_on_deployment", self.base),
+        )
     }
 }

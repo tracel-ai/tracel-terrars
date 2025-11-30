@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CloudwatchEventTargetData {
@@ -94,7 +94,8 @@ impl CloudwatchEventTarget {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -107,7 +108,7 @@ impl CloudwatchEventTarget {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -118,12 +119,22 @@ impl CloudwatchEventTarget {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -157,8 +168,7 @@ impl CloudwatchEventTarget {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -177,118 +187,145 @@ impl CloudwatchEventTarget {
     }
 
     #[doc = "Set the field `appsync_target`.\n"]
-    pub fn set_appsync_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetAppsyncTargetEl>>) -> Self {
+    pub fn set_appsync_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetAppsyncTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().appsync_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.appsync_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `batch_target`.\n"]
-    pub fn set_batch_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetBatchTargetEl>>) -> Self {
+    pub fn set_batch_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetBatchTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().batch_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.batch_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `dead_letter_config`.\n"]
-    pub fn set_dead_letter_config(self, v: impl Into<BlockAssignable<CloudwatchEventTargetDeadLetterConfigEl>>) -> Self {
+    pub fn set_dead_letter_config(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetDeadLetterConfigEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().dead_letter_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.dead_letter_config = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `ecs_target`.\n"]
-    pub fn set_ecs_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetEcsTargetEl>>) -> Self {
+    pub fn set_ecs_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetEcsTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ecs_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ecs_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `http_target`.\n"]
-    pub fn set_http_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetHttpTargetEl>>) -> Self {
+    pub fn set_http_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetHttpTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().http_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.http_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `input_transformer`.\n"]
-    pub fn set_input_transformer(self, v: impl Into<BlockAssignable<CloudwatchEventTargetInputTransformerEl>>) -> Self {
+    pub fn set_input_transformer(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetInputTransformerEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().input_transformer = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.input_transformer = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `kinesis_target`.\n"]
-    pub fn set_kinesis_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetKinesisTargetEl>>) -> Self {
+    pub fn set_kinesis_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetKinesisTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().kinesis_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.kinesis_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `redshift_target`.\n"]
-    pub fn set_redshift_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetRedshiftTargetEl>>) -> Self {
+    pub fn set_redshift_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetRedshiftTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().redshift_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.redshift_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `retry_policy`.\n"]
-    pub fn set_retry_policy(self, v: impl Into<BlockAssignable<CloudwatchEventTargetRetryPolicyEl>>) -> Self {
+    pub fn set_retry_policy(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetRetryPolicyEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().retry_policy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.retry_policy = Some(d);
-            },
+            }
         }
         self
     }
@@ -301,10 +338,10 @@ impl CloudwatchEventTarget {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().run_command_targets = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.run_command_targets = Some(d);
-            },
+            }
         }
         self
     }
@@ -317,23 +354,26 @@ impl CloudwatchEventTarget {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sagemaker_pipeline_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sagemaker_pipeline_target = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `sqs_target`.\n"]
-    pub fn set_sqs_target(self, v: impl Into<BlockAssignable<CloudwatchEventTargetSqsTargetEl>>) -> Self {
+    pub fn set_sqs_target(
+        self,
+        v: impl Into<BlockAssignable<CloudwatchEventTargetSqsTargetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().sqs_target = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.sqs_target = Some(d);
-            },
+            }
         }
         self
     }
@@ -345,12 +385,18 @@ impl CloudwatchEventTarget {
 
     #[doc = "Get a reference to the value of field `event_bus_name` after provisioning.\n"]
     pub fn event_bus_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_bus_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_bus_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_destroy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_destroy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -360,103 +406,162 @@ impl CloudwatchEventTarget {
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_path` after provisioning.\n"]
     pub fn input_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_path", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `appsync_target` after provisioning.\n"]
     pub fn appsync_target(&self) -> ListRef<CloudwatchEventTargetAppsyncTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.appsync_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.appsync_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `batch_target` after provisioning.\n"]
     pub fn batch_target(&self) -> ListRef<CloudwatchEventTargetBatchTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.batch_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.batch_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<CloudwatchEventTargetDeadLetterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dead_letter_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dead_letter_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_target` after provisioning.\n"]
     pub fn ecs_target(&self) -> ListRef<CloudwatchEventTargetEcsTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecs_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecs_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_target` after provisioning.\n"]
     pub fn http_target(&self) -> ListRef<CloudwatchEventTargetHttpTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.http_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.http_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_transformer` after provisioning.\n"]
     pub fn input_transformer(&self) -> ListRef<CloudwatchEventTargetInputTransformerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_transformer", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_transformer", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_target` after provisioning.\n"]
     pub fn kinesis_target(&self) -> ListRef<CloudwatchEventTargetKinesisTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `redshift_target` after provisioning.\n"]
     pub fn redshift_target(&self) -> ListRef<CloudwatchEventTargetRedshiftTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.redshift_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.redshift_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_policy` after provisioning.\n"]
     pub fn retry_policy(&self) -> ListRef<CloudwatchEventTargetRetryPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_command_targets` after provisioning.\n"]
     pub fn run_command_targets(&self) -> ListRef<CloudwatchEventTargetRunCommandTargetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.run_command_targets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.run_command_targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_pipeline_target` after provisioning.\n"]
-    pub fn sagemaker_pipeline_target(&self) -> ListRef<CloudwatchEventTargetSagemakerPipelineTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sagemaker_pipeline_target", self.extract_ref()))
+    pub fn sagemaker_pipeline_target(
+        &self,
+    ) -> ListRef<CloudwatchEventTargetSagemakerPipelineTargetElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_pipeline_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_target` after provisioning.\n"]
     pub fn sqs_target(&self) -> ListRef<CloudwatchEventTargetSqsTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_target", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CloudwatchEventTarget {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CloudwatchEventTarget { }
+impl Resource for CloudwatchEventTarget {}
 
 impl ToListMappable for CloudwatchEventTarget {
     type O = ListRef<CloudwatchEventTargetRef>;
@@ -536,10 +641,7 @@ pub struct CloudwatchEventTargetRef {
 
 impl Ref for CloudwatchEventTargetRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -559,12 +661,18 @@ impl CloudwatchEventTargetRef {
 
     #[doc = "Get a reference to the value of field `event_bus_name` after provisioning.\n"]
     pub fn event_bus_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.event_bus_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.event_bus_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.force_destroy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.force_destroy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -574,93 +682,148 @@ impl CloudwatchEventTargetRef {
 
     #[doc = "Get a reference to the value of field `input` after provisioning.\n"]
     pub fn input(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_path` after provisioning.\n"]
     pub fn input_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_path", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_path", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_id` after provisioning.\n"]
     pub fn target_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `appsync_target` after provisioning.\n"]
     pub fn appsync_target(&self) -> ListRef<CloudwatchEventTargetAppsyncTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.appsync_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.appsync_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `batch_target` after provisioning.\n"]
     pub fn batch_target(&self) -> ListRef<CloudwatchEventTargetBatchTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.batch_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.batch_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<CloudwatchEventTargetDeadLetterConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.dead_letter_config", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dead_letter_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_target` after provisioning.\n"]
     pub fn ecs_target(&self) -> ListRef<CloudwatchEventTargetEcsTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecs_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecs_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_target` after provisioning.\n"]
     pub fn http_target(&self) -> ListRef<CloudwatchEventTargetHttpTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.http_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.http_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `input_transformer` after provisioning.\n"]
     pub fn input_transformer(&self) -> ListRef<CloudwatchEventTargetInputTransformerElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.input_transformer", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.input_transformer", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `kinesis_target` after provisioning.\n"]
     pub fn kinesis_target(&self) -> ListRef<CloudwatchEventTargetKinesisTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `redshift_target` after provisioning.\n"]
     pub fn redshift_target(&self) -> ListRef<CloudwatchEventTargetRedshiftTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.redshift_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.redshift_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `retry_policy` after provisioning.\n"]
     pub fn retry_policy(&self) -> ListRef<CloudwatchEventTargetRetryPolicyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.retry_policy", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.retry_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `run_command_targets` after provisioning.\n"]
     pub fn run_command_targets(&self) -> ListRef<CloudwatchEventTargetRunCommandTargetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.run_command_targets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.run_command_targets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sagemaker_pipeline_target` after provisioning.\n"]
-    pub fn sagemaker_pipeline_target(&self) -> ListRef<CloudwatchEventTargetSagemakerPipelineTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sagemaker_pipeline_target", self.extract_ref()))
+    pub fn sagemaker_pipeline_target(
+        &self,
+    ) -> ListRef<CloudwatchEventTargetSagemakerPipelineTargetElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sagemaker_pipeline_target", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sqs_target` after provisioning.\n"]
     pub fn sqs_target(&self) -> ListRef<CloudwatchEventTargetSqsTargetElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sqs_target", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sqs_target", self.extract_ref()),
+        )
     }
 }
 
@@ -694,7 +857,9 @@ pub struct BuildCloudwatchEventTargetAppsyncTargetEl {}
 
 impl BuildCloudwatchEventTargetAppsyncTargetEl {
     pub fn build(self) -> CloudwatchEventTargetAppsyncTargetEl {
-        CloudwatchEventTargetAppsyncTargetEl { graphql_operation: core::default::Default::default() }
+        CloudwatchEventTargetAppsyncTargetEl {
+            graphql_operation: core::default::Default::default(),
+        }
     }
 }
 
@@ -719,7 +884,10 @@ impl CloudwatchEventTargetAppsyncTargetElRef {
 
     #[doc = "Get a reference to the value of field `graphql_operation` after provisioning.\n"]
     pub fn graphql_operation(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.graphql_operation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.graphql_operation", self.base),
+        )
     }
 }
 
@@ -808,7 +976,10 @@ impl CloudwatchEventTargetBatchTargetElRef {
 
     #[doc = "Get a reference to the value of field `job_definition` after provisioning.\n"]
     pub fn job_definition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.job_definition", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.job_definition", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `job_name` after provisioning.\n"]
@@ -847,7 +1018,9 @@ pub struct BuildCloudwatchEventTargetDeadLetterConfigEl {}
 
 impl BuildCloudwatchEventTargetDeadLetterConfigEl {
     pub fn build(self) -> CloudwatchEventTargetDeadLetterConfigEl {
-        CloudwatchEventTargetDeadLetterConfigEl { arn: core::default::Default::default() }
+        CloudwatchEventTargetDeadLetterConfigEl {
+            arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -932,7 +1105,10 @@ pub struct CloudwatchEventTargetEcsTargetElCapacityProviderStrategyElRef {
 }
 
 impl Ref for CloudwatchEventTargetEcsTargetElCapacityProviderStrategyElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchEventTargetEcsTargetElCapacityProviderStrategyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchEventTargetEcsTargetElCapacityProviderStrategyElRef {
         CloudwatchEventTargetEcsTargetElCapacityProviderStrategyElRef {
             shared: shared,
             base: base.to_string(),
@@ -952,7 +1128,10 @@ impl CloudwatchEventTargetEcsTargetElCapacityProviderStrategyElRef {
 
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.capacity_provider", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.capacity_provider", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
@@ -1017,7 +1196,10 @@ pub struct CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef {
 }
 
 impl Ref for CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef {
         CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1032,12 +1214,18 @@ impl CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.assign_public_ip", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.assign_public_ip", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_groups", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_groups", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
@@ -1094,7 +1282,10 @@ pub struct CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef {
 }
 
 impl Ref for CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef {
         CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef {
             shared: shared,
             base: base.to_string(),
@@ -1166,7 +1357,10 @@ pub struct CloudwatchEventTargetEcsTargetElPlacementConstraintElRef {
 }
 
 impl Ref for CloudwatchEventTargetEcsTargetElPlacementConstraintElRef {
-    fn new(shared: StackShared, base: String) -> CloudwatchEventTargetEcsTargetElPlacementConstraintElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CloudwatchEventTargetEcsTargetElPlacementConstraintElRef {
         CloudwatchEventTargetEcsTargetElPlacementConstraintElRef {
             shared: shared,
             base: base.to_string(),
@@ -1192,10 +1386,14 @@ impl CloudwatchEventTargetEcsTargetElPlacementConstraintElRef {
 
 #[derive(Serialize, Default)]
 struct CloudwatchEventTargetEcsTargetElDynamic {
-    capacity_provider_strategy: Option<DynamicBlock<CloudwatchEventTargetEcsTargetElCapacityProviderStrategyEl>>,
-    network_configuration: Option<DynamicBlock<CloudwatchEventTargetEcsTargetElNetworkConfigurationEl>>,
-    ordered_placement_strategy: Option<DynamicBlock<CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyEl>>,
-    placement_constraint: Option<DynamicBlock<CloudwatchEventTargetEcsTargetElPlacementConstraintEl>>,
+    capacity_provider_strategy:
+        Option<DynamicBlock<CloudwatchEventTargetEcsTargetElCapacityProviderStrategyEl>>,
+    network_configuration:
+        Option<DynamicBlock<CloudwatchEventTargetEcsTargetElNetworkConfigurationEl>>,
+    ordered_placement_strategy:
+        Option<DynamicBlock<CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyEl>>,
+    placement_constraint:
+        Option<DynamicBlock<CloudwatchEventTargetEcsTargetElPlacementConstraintEl>>,
 }
 
 #[derive(Serialize)]
@@ -1218,11 +1416,13 @@ pub struct CloudwatchEventTargetEcsTargetEl {
     task_count: Option<PrimField<f64>>,
     task_definition_arn: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    capacity_provider_strategy: Option<Vec<CloudwatchEventTargetEcsTargetElCapacityProviderStrategyEl>>,
+    capacity_provider_strategy:
+        Option<Vec<CloudwatchEventTargetEcsTargetElCapacityProviderStrategyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     network_configuration: Option<Vec<CloudwatchEventTargetEcsTargetElNetworkConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    ordered_placement_strategy: Option<Vec<CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyEl>>,
+    ordered_placement_strategy:
+        Option<Vec<CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     placement_constraint: Option<Vec<CloudwatchEventTargetEcsTargetElPlacementConstraintEl>>,
     dynamic: CloudwatchEventTargetEcsTargetElDynamic,
@@ -1285,10 +1485,10 @@ impl CloudwatchEventTargetEcsTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.capacity_provider_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.capacity_provider_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1301,10 +1501,10 @@ impl CloudwatchEventTargetEcsTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.network_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.network_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -1317,10 +1517,10 @@ impl CloudwatchEventTargetEcsTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ordered_placement_strategy = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ordered_placement_strategy = Some(d);
-            },
+            }
         }
         self
     }
@@ -1333,10 +1533,10 @@ impl CloudwatchEventTargetEcsTargetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.placement_constraint = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.placement_constraint = Some(d);
-            },
+            }
         }
         self
     }
@@ -1401,12 +1601,18 @@ impl CloudwatchEventTargetEcsTargetElRef {
 
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_ecs_managed_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_ecs_managed_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enable_execute_command", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enable_execute_command", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
@@ -1421,12 +1627,18 @@ impl CloudwatchEventTargetEcsTargetElRef {
 
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_version", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.propagate_tags", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.propagate_tags", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
@@ -1441,17 +1653,30 @@ impl CloudwatchEventTargetEcsTargetElRef {
 
     #[doc = "Get a reference to the value of field `task_definition_arn` after provisioning.\n"]
     pub fn task_definition_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.task_definition_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.task_definition_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
-    pub fn network_configuration(&self) -> ListRef<CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.network_configuration", self.base))
+    pub fn network_configuration(
+        &self,
+    ) -> ListRef<CloudwatchEventTargetEcsTargetElNetworkConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.network_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ordered_placement_strategy` after provisioning.\n"]
-    pub fn ordered_placement_strategy(&self) -> ListRef<CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ordered_placement_strategy", self.base))
+    pub fn ordered_placement_strategy(
+        &self,
+    ) -> ListRef<CloudwatchEventTargetEcsTargetElOrderedPlacementStrategyElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ordered_placement_strategy", self.base),
+        )
     }
 }
 
@@ -1479,7 +1704,10 @@ impl CloudwatchEventTargetHttpTargetEl {
     }
 
     #[doc = "Set the field `query_string_parameters`.\n"]
-    pub fn set_query_string_parameters(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
+    pub fn set_query_string_parameters(
+        mut self,
+        v: impl Into<RecField<PrimField<String>>>,
+    ) -> Self {
         self.query_string_parameters = Some(v.into());
         self
     }
@@ -1530,17 +1758,26 @@ impl CloudwatchEventTargetHttpTargetElRef {
 
     #[doc = "Get a reference to the value of field `header_parameters` after provisioning.\n"]
     pub fn header_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.header_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.header_parameters", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `path_parameter_values` after provisioning.\n"]
     pub fn path_parameter_values(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.path_parameter_values", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.path_parameter_values", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `query_string_parameters` after provisioning.\n"]
     pub fn query_string_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.query_string_parameters", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.query_string_parameters", self.base),
+        )
     }
 }
 
@@ -1611,7 +1848,10 @@ impl CloudwatchEventTargetInputTransformerElRef {
 
     #[doc = "Get a reference to the value of field `input_template` after provisioning.\n"]
     pub fn input_template(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.input_template", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.input_template", self.base),
+        )
     }
 }
 
@@ -1645,7 +1885,9 @@ pub struct BuildCloudwatchEventTargetKinesisTargetEl {}
 
 impl BuildCloudwatchEventTargetKinesisTargetEl {
     pub fn build(self) -> CloudwatchEventTargetKinesisTargetEl {
-        CloudwatchEventTargetKinesisTargetEl { partition_key_path: core::default::Default::default() }
+        CloudwatchEventTargetKinesisTargetEl {
+            partition_key_path: core::default::Default::default(),
+        }
     }
 }
 
@@ -1670,7 +1912,10 @@ impl CloudwatchEventTargetKinesisTargetElRef {
 
     #[doc = "Get a reference to the value of field `partition_key_path` after provisioning.\n"]
     pub fn partition_key_path(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.partition_key_path", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.partition_key_path", self.base),
+        )
     }
 }
 
@@ -1782,7 +2027,10 @@ impl CloudwatchEventTargetRedshiftTargetElRef {
 
     #[doc = "Get a reference to the value of field `secrets_manager_arn` after provisioning.\n"]
     pub fn secrets_manager_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secrets_manager_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secrets_manager_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
@@ -1792,7 +2040,10 @@ impl CloudwatchEventTargetRedshiftTargetElRef {
 
     #[doc = "Get a reference to the value of field `statement_name` after provisioning.\n"]
     pub fn statement_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.statement_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.statement_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `with_event` after provisioning.\n"]
@@ -1867,12 +2118,18 @@ impl CloudwatchEventTargetRetryPolicyElRef {
 
     #[doc = "Get a reference to the value of field `maximum_event_age_in_seconds` after provisioning.\n"]
     pub fn maximum_event_age_in_seconds(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_event_age_in_seconds", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_event_age_in_seconds", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `maximum_retry_attempts` after provisioning.\n"]
     pub fn maximum_retry_attempts(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.maximum_retry_attempts", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.maximum_retry_attempts", self.base),
+        )
     }
 }
 
@@ -1882,7 +2139,7 @@ pub struct CloudwatchEventTargetRunCommandTargetsEl {
     values: ListField<PrimField<String>>,
 }
 
-impl CloudwatchEventTargetRunCommandTargetsEl { }
+impl CloudwatchEventTargetRunCommandTargetsEl {}
 
 impl ToListMappable for CloudwatchEventTargetRunCommandTargetsEl {
     type O = BlockAssignable<CloudwatchEventTargetRunCommandTargetsEl>;
@@ -1948,7 +2205,7 @@ pub struct CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl
     value: PrimField<String>,
 }
 
-impl CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl { }
+impl CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl {}
 
 impl ToListMappable for CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl {
     type O = BlockAssignable<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>;
@@ -2013,15 +2270,15 @@ impl CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListElRef {
 
 #[derive(Serialize, Default)]
 struct CloudwatchEventTargetSagemakerPipelineTargetElDynamic {
-    pipeline_parameter_list: Option<
-        DynamicBlock<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>,
-    >,
+    pipeline_parameter_list:
+        Option<DynamicBlock<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>>,
 }
 
 #[derive(Serialize)]
 pub struct CloudwatchEventTargetSagemakerPipelineTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pipeline_parameter_list: Option<Vec<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>>,
+    pipeline_parameter_list:
+        Option<Vec<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>>,
     dynamic: CloudwatchEventTargetSagemakerPipelineTargetElDynamic,
 }
 
@@ -2029,15 +2286,17 @@ impl CloudwatchEventTargetSagemakerPipelineTargetEl {
     #[doc = "Set the field `pipeline_parameter_list`.\n"]
     pub fn set_pipeline_parameter_list(
         mut self,
-        v: impl Into<BlockAssignable<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>>,
+        v: impl Into<
+            BlockAssignable<CloudwatchEventTargetSagemakerPipelineTargetElPipelineParameterListEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.pipeline_parameter_list = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.pipeline_parameter_list = Some(d);
-            },
+            }
         }
         self
     }
@@ -2116,7 +2375,9 @@ pub struct BuildCloudwatchEventTargetSqsTargetEl {}
 
 impl BuildCloudwatchEventTargetSqsTargetEl {
     pub fn build(self) -> CloudwatchEventTargetSqsTargetEl {
-        CloudwatchEventTargetSqsTargetEl { message_group_id: core::default::Default::default() }
+        CloudwatchEventTargetSqsTargetEl {
+            message_group_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -2141,7 +2402,10 @@ impl CloudwatchEventTargetSqsTargetElRef {
 
     #[doc = "Get a reference to the value of field `message_group_id` after provisioning.\n"]
     pub fn message_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.message_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.message_group_id", self.base),
+        )
     }
 }
 

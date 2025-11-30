@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataRoute53RecordsData {
@@ -49,27 +49,40 @@ impl DataRoute53Records {
 
     #[doc = "Get a reference to the value of field `name_regex` after provisioning.\n"]
     pub fn name_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_regex", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_regex", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_record_sets` after provisioning.\n"]
     pub fn resource_record_sets(&self) -> ListRef<DataRoute53RecordsResourceRecordSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_record_sets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_record_sets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zone_id` after provisioning.\n"]
     pub fn zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zone_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataRoute53Records {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataRoute53Records { }
+impl Datasource for DataRoute53Records {}
 
 impl ToListMappable for DataRoute53Records {
     type O = ListRef<DataRoute53RecordsRef>;
@@ -125,10 +138,7 @@ pub struct DataRoute53RecordsRef {
 
 impl Ref for DataRoute53RecordsRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -143,17 +153,26 @@ impl DataRoute53RecordsRef {
 
     #[doc = "Get a reference to the value of field `name_regex` after provisioning.\n"]
     pub fn name_regex(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name_regex", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name_regex", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_record_sets` after provisioning.\n"]
     pub fn resource_record_sets(&self) -> ListRef<DataRoute53RecordsResourceRecordSetsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_record_sets", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_record_sets", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `zone_id` after provisioning.\n"]
     pub fn zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.zone_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.zone_id", self.extract_ref()),
+        )
     }
 }
 
@@ -217,7 +236,10 @@ pub struct DataRoute53RecordsResourceRecordSetsElAliasTargetRef {
 }
 
 impl Ref for DataRoute53RecordsResourceRecordSetsElAliasTargetRef {
-    fn new(shared: StackShared, base: String) -> DataRoute53RecordsResourceRecordSetsElAliasTargetRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataRoute53RecordsResourceRecordSetsElAliasTargetRef {
         DataRoute53RecordsResourceRecordSetsElAliasTargetRef {
             shared: shared,
             base: base.to_string(),
@@ -237,12 +259,18 @@ impl DataRoute53RecordsResourceRecordSetsElAliasTargetRef {
 
     #[doc = "Get a reference to the value of field `evaluate_target_health` after provisioning.\n"]
     pub fn evaluate_target_health(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.evaluate_target_health", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.evaluate_target_health", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.base),
+        )
     }
 }
 
@@ -297,7 +325,10 @@ pub struct DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
 }
 
 impl Ref for DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
-    fn new(shared: StackShared, base: String) -> DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
         DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
             shared: shared,
             base: base.to_string(),
@@ -312,12 +343,18 @@ impl DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
 
     #[doc = "Get a reference to the value of field `collection_id` after provisioning.\n"]
     pub fn collection_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.collection_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.collection_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `location_name` after provisioning.\n"]
     pub fn location_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.location_name", self.base),
+        )
     }
 }
 
@@ -381,7 +418,10 @@ pub struct DataRoute53RecordsResourceRecordSetsElGeolocationRef {
 }
 
 impl Ref for DataRoute53RecordsResourceRecordSetsElGeolocationRef {
-    fn new(shared: StackShared, base: String) -> DataRoute53RecordsResourceRecordSetsElGeolocationRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataRoute53RecordsResourceRecordSetsElGeolocationRef {
         DataRoute53RecordsResourceRecordSetsElGeolocationRef {
             shared: shared,
             base: base.to_string(),
@@ -396,7 +436,10 @@ impl DataRoute53RecordsResourceRecordSetsElGeolocationRef {
 
     #[doc = "Get a reference to the value of field `continent_code` after provisioning.\n"]
     pub fn continent_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.continent_code", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.continent_code", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `country_code` after provisioning.\n"]
@@ -406,7 +449,10 @@ impl DataRoute53RecordsResourceRecordSetsElGeolocationRef {
 
     #[doc = "Get a reference to the value of field `subdivision_code` after provisioning.\n"]
     pub fn subdivision_code(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subdivision_code", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subdivision_code", self.base),
+        )
     }
 }
 
@@ -560,7 +606,10 @@ pub struct DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
 }
 
 impl Ref for DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
-    fn new(shared: StackShared, base: String) -> DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
         DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
             shared: shared,
             base: base.to_string(),
@@ -584,7 +633,9 @@ impl DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
     }
 
     #[doc = "Get a reference to the value of field `coordinates` after provisioning.\n"]
-    pub fn coordinates(&self) -> DataRoute53RecordsResourceRecordSetsElGeoproximityLocationCoordinatesRef {
+    pub fn coordinates(
+        &self,
+    ) -> DataRoute53RecordsResourceRecordSetsElGeoproximityLocationCoordinatesRef {
         DataRoute53RecordsResourceRecordSetsElGeoproximityLocationCoordinatesRef::new(
             self.shared().clone(),
             format!("{}.coordinates", self.base),
@@ -593,7 +644,10 @@ impl DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
 
     #[doc = "Get a reference to the value of field `local_zone_group` after provisioning.\n"]
     pub fn local_zone_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.local_zone_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.local_zone_group", self.base),
+        )
     }
 }
 
@@ -627,7 +681,9 @@ pub struct BuildDataRoute53RecordsResourceRecordSetsElResourceRecordsEl {}
 
 impl BuildDataRoute53RecordsResourceRecordSetsElResourceRecordsEl {
     pub fn build(self) -> DataRoute53RecordsResourceRecordSetsElResourceRecordsEl {
-        DataRoute53RecordsResourceRecordSetsElResourceRecordsEl { value: core::default::Default::default() }
+        DataRoute53RecordsResourceRecordSetsElResourceRecordsEl {
+            value: core::default::Default::default(),
+        }
     }
 }
 
@@ -637,7 +693,10 @@ pub struct DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef {
 }
 
 impl Ref for DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef {
-    fn new(shared: StackShared, base: String) -> DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef {
         DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef {
             shared: shared,
             base: base.to_string(),
@@ -692,7 +751,10 @@ pub struct DataRoute53RecordsResourceRecordSetsEl {
 
 impl DataRoute53RecordsResourceRecordSetsEl {
     #[doc = "Set the field `alias_target`.\n"]
-    pub fn set_alias_target(mut self, v: impl Into<DataRoute53RecordsResourceRecordSetsElAliasTarget>) -> Self {
+    pub fn set_alias_target(
+        mut self,
+        v: impl Into<DataRoute53RecordsResourceRecordSetsElAliasTarget>,
+    ) -> Self {
         self.alias_target = Some(v.into());
         self
     }
@@ -713,7 +775,10 @@ impl DataRoute53RecordsResourceRecordSetsEl {
     }
 
     #[doc = "Set the field `geolocation`.\n"]
-    pub fn set_geolocation(mut self, v: impl Into<DataRoute53RecordsResourceRecordSetsElGeolocation>) -> Self {
+    pub fn set_geolocation(
+        mut self,
+        v: impl Into<DataRoute53RecordsResourceRecordSetsElGeolocation>,
+    ) -> Self {
         self.geolocation = Some(v.into());
         self
     }
@@ -855,7 +920,9 @@ impl DataRoute53RecordsResourceRecordSetsElRef {
     }
 
     #[doc = "Get a reference to the value of field `cidr_routing_config` after provisioning.\n"]
-    pub fn cidr_routing_config(&self) -> DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
+    pub fn cidr_routing_config(
+        &self,
+    ) -> DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef {
         DataRoute53RecordsResourceRecordSetsElCidrRoutingConfigRef::new(
             self.shared().clone(),
             format!("{}.cidr_routing_config", self.base),
@@ -876,7 +943,9 @@ impl DataRoute53RecordsResourceRecordSetsElRef {
     }
 
     #[doc = "Get a reference to the value of field `geoproximity_location` after provisioning.\n"]
-    pub fn geoproximity_location(&self) -> DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
+    pub fn geoproximity_location(
+        &self,
+    ) -> DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef {
         DataRoute53RecordsResourceRecordSetsElGeoproximityLocationRef::new(
             self.shared().clone(),
             format!("{}.geoproximity_location", self.base),
@@ -885,12 +954,18 @@ impl DataRoute53RecordsResourceRecordSetsElRef {
 
     #[doc = "Get a reference to the value of field `health_check_id` after provisioning.\n"]
     pub fn health_check_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.health_check_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.health_check_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `multi_value_answer` after provisioning.\n"]
     pub fn multi_value_answer(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.multi_value_answer", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.multi_value_answer", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
@@ -904,18 +979,29 @@ impl DataRoute53RecordsResourceRecordSetsElRef {
     }
 
     #[doc = "Get a reference to the value of field `resource_records` after provisioning.\n"]
-    pub fn resource_records(&self) -> ListRef<DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.resource_records", self.base))
+    pub fn resource_records(
+        &self,
+    ) -> ListRef<DataRoute53RecordsResourceRecordSetsElResourceRecordsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.resource_records", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `set_identifier` after provisioning.\n"]
     pub fn set_identifier(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.set_identifier", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.set_identifier", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_policy_instance_id` after provisioning.\n"]
     pub fn traffic_policy_instance_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_policy_instance_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_policy_instance_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSecretsmanagerSecretRotationData {
@@ -49,8 +49,7 @@ impl DataSecretsmanagerSecretRotation {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -61,40 +60,58 @@ impl DataSecretsmanagerSecretRotation {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rotation_enabled` after provisioning.\n"]
     pub fn rotation_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rotation_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rotation_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rotation_lambda_arn` after provisioning.\n"]
     pub fn rotation_lambda_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rotation_lambda_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rotation_lambda_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rotation_rules` after provisioning.\n"]
     pub fn rotation_rules(&self) -> ListRef<DataSecretsmanagerSecretRotationRotationRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rotation_rules", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rotation_rules", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_id` after provisioning.\n"]
     pub fn secret_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_id", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSecretsmanagerSecretRotation {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSecretsmanagerSecretRotation { }
+impl Datasource for DataSecretsmanagerSecretRotation {}
 
 impl ToListMappable for DataSecretsmanagerSecretRotation {
     type O = ListRef<DataSecretsmanagerSecretRotationRef>;
@@ -151,10 +168,7 @@ pub struct DataSecretsmanagerSecretRotationRef {
 
 impl Ref for DataSecretsmanagerSecretRotationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -172,30 +186,44 @@ impl DataSecretsmanagerSecretRotationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rotation_enabled` after provisioning.\n"]
     pub fn rotation_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rotation_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rotation_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rotation_lambda_arn` after provisioning.\n"]
     pub fn rotation_lambda_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.rotation_lambda_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.rotation_lambda_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rotation_rules` after provisioning.\n"]
     pub fn rotation_rules(&self) -> ListRef<DataSecretsmanagerSecretRotationRotationRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rotation_rules", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rotation_rules", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `secret_id` after provisioning.\n"]
     pub fn secret_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secret_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secret_id", self.extract_ref()),
+        )
     }
 }
 
@@ -259,7 +287,10 @@ pub struct DataSecretsmanagerSecretRotationRotationRulesElRef {
 }
 
 impl Ref for DataSecretsmanagerSecretRotationRotationRulesElRef {
-    fn new(shared: StackShared, base: String) -> DataSecretsmanagerSecretRotationRotationRulesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSecretsmanagerSecretRotationRotationRulesElRef {
         DataSecretsmanagerSecretRotationRotationRulesElRef {
             shared: shared,
             base: base.to_string(),
@@ -274,7 +305,10 @@ impl DataSecretsmanagerSecretRotationRotationRulesElRef {
 
     #[doc = "Get a reference to the value of field `automatically_after_days` after provisioning.\n"]
     pub fn automatically_after_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.automatically_after_days", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.automatically_after_days", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
@@ -284,6 +318,9 @@ impl DataSecretsmanagerSecretRotationRotationRulesElRef {
 
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.schedule_expression", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.schedule_expression", self.base),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodecatalystDevEnvironmentData {
@@ -71,7 +71,8 @@ impl CodecatalystDevEnvironment {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +85,7 @@ impl CodecatalystDevEnvironment {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +96,22 @@ impl CodecatalystDevEnvironment {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +133,7 @@ impl CodecatalystDevEnvironment {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -134,10 +144,10 @@ impl CodecatalystDevEnvironment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ides = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ides = Some(d);
-            },
+            }
         }
         self
     }
@@ -150,23 +160,26 @@ impl CodecatalystDevEnvironment {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().persistent_storage = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.persistent_storage = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `repositories`.\n"]
-    pub fn set_repositories(self, v: impl Into<BlockAssignable<CodecatalystDevEnvironmentRepositoriesEl>>) -> Self {
+    pub fn set_repositories(
+        self,
+        v: impl Into<BlockAssignable<CodecatalystDevEnvironmentRepositoriesEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().repositories = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.repositories = Some(d);
-            },
+            }
         }
         self
     }
@@ -179,7 +192,10 @@ impl CodecatalystDevEnvironment {
 
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -189,43 +205,66 @@ impl CodecatalystDevEnvironment {
 
     #[doc = "Get a reference to the value of field `inactivity_timeout_minutes` after provisioning.\n"]
     pub fn inactivity_timeout_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inactivity_timeout_minutes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inactivity_timeout_minutes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `space_name` after provisioning.\n"]
     pub fn space_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.space_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.space_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ides` after provisioning.\n"]
     pub fn ides(&self) -> ListRef<CodecatalystDevEnvironmentIdesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ides", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ides", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `persistent_storage` after provisioning.\n"]
     pub fn persistent_storage(&self) -> ListRef<CodecatalystDevEnvironmentPersistentStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.persistent_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.persistent_storage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repositories` after provisioning.\n"]
     pub fn repositories(&self) -> ListRef<CodecatalystDevEnvironmentRepositoriesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.repositories", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.repositories", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -239,11 +278,15 @@ impl CodecatalystDevEnvironment {
 
 impl Referable for CodecatalystDevEnvironment {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodecatalystDevEnvironment { }
+impl Resource for CodecatalystDevEnvironment {}
 
 impl ToListMappable for CodecatalystDevEnvironment {
     type O = ListRef<CodecatalystDevEnvironmentRef>;
@@ -314,10 +357,7 @@ pub struct CodecatalystDevEnvironmentRef {
 
 impl Ref for CodecatalystDevEnvironmentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -332,7 +372,10 @@ impl CodecatalystDevEnvironmentRef {
 
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.alias", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.alias", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -342,43 +385,66 @@ impl CodecatalystDevEnvironmentRef {
 
     #[doc = "Get a reference to the value of field `inactivity_timeout_minutes` after provisioning.\n"]
     pub fn inactivity_timeout_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inactivity_timeout_minutes", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inactivity_timeout_minutes", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.project_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.project_name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `space_name` after provisioning.\n"]
     pub fn space_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.space_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.space_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ides` after provisioning.\n"]
     pub fn ides(&self) -> ListRef<CodecatalystDevEnvironmentIdesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ides", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ides", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `persistent_storage` after provisioning.\n"]
     pub fn persistent_storage(&self) -> ListRef<CodecatalystDevEnvironmentPersistentStorageElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.persistent_storage", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.persistent_storage", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `repositories` after provisioning.\n"]
     pub fn repositories(&self) -> ListRef<CodecatalystDevEnvironmentRepositoriesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.repositories", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.repositories", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
@@ -470,7 +536,7 @@ pub struct CodecatalystDevEnvironmentPersistentStorageEl {
     size: PrimField<f64>,
 }
 
-impl CodecatalystDevEnvironmentPersistentStorageEl { }
+impl CodecatalystDevEnvironmentPersistentStorageEl {}
 
 impl ToListMappable for CodecatalystDevEnvironmentPersistentStorageEl {
     type O = BlockAssignable<CodecatalystDevEnvironmentPersistentStorageEl>;
@@ -587,7 +653,10 @@ impl CodecatalystDevEnvironmentRepositoriesElRef {
 
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.repository_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.repository_name", self.base),
+        )
     }
 }
 

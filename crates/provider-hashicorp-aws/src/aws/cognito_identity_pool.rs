@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CognitoIdentityPoolData {
@@ -75,7 +75,8 @@ impl CognitoIdentityPool {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -88,7 +89,7 @@ impl CognitoIdentityPool {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -99,12 +100,22 @@ impl CognitoIdentityPool {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -133,13 +144,15 @@ impl CognitoIdentityPool {
     }
 
     #[doc = "Set the field `openid_connect_provider_arns`.\n"]
-    pub fn set_openid_connect_provider_arns(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_openid_connect_provider_arns(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().openid_connect_provider_arns = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -177,22 +190,28 @@ impl CognitoIdentityPool {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().cognito_identity_providers = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.cognito_identity_providers = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `allow_classic_flow` after provisioning.\n"]
     pub fn allow_classic_flow(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_classic_flow", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_classic_flow", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_unauthenticated_identities` after provisioning.\n"]
     pub fn allow_unauthenticated_identities(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_unauthenticated_identities", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_unauthenticated_identities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -202,7 +221,10 @@ impl CognitoIdentityPool {
 
     #[doc = "Get a reference to the value of field `developer_provider_name` after provisioning.\n"]
     pub fn developer_provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.developer_provider_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.developer_provider_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -212,48 +234,72 @@ impl CognitoIdentityPool {
 
     #[doc = "Get a reference to the value of field `identity_pool_name` after provisioning.\n"]
     pub fn identity_pool_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_pool_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_pool_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `openid_connect_provider_arns` after provisioning.\n"]
     pub fn openid_connect_provider_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.openid_connect_provider_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.openid_connect_provider_arns", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_provider_arns` after provisioning.\n"]
     pub fn saml_provider_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.saml_provider_arns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.saml_provider_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_login_providers` after provisioning.\n"]
     pub fn supported_login_providers(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.supported_login_providers", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.supported_login_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CognitoIdentityPool {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CognitoIdentityPool { }
+impl Resource for CognitoIdentityPool {}
 
 impl ToListMappable for CognitoIdentityPool {
     type O = ListRef<CognitoIdentityPoolRef>;
@@ -321,10 +367,7 @@ pub struct CognitoIdentityPoolRef {
 
 impl Ref for CognitoIdentityPoolRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -339,12 +382,18 @@ impl CognitoIdentityPoolRef {
 
     #[doc = "Get a reference to the value of field `allow_classic_flow` after provisioning.\n"]
     pub fn allow_classic_flow(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_classic_flow", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_classic_flow", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `allow_unauthenticated_identities` after provisioning.\n"]
     pub fn allow_unauthenticated_identities(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.allow_unauthenticated_identities", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.allow_unauthenticated_identities", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -354,7 +403,10 @@ impl CognitoIdentityPoolRef {
 
     #[doc = "Get a reference to the value of field `developer_provider_name` after provisioning.\n"]
     pub fn developer_provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.developer_provider_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.developer_provider_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -364,38 +416,58 @@ impl CognitoIdentityPoolRef {
 
     #[doc = "Get a reference to the value of field `identity_pool_name` after provisioning.\n"]
     pub fn identity_pool_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.identity_pool_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.identity_pool_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `openid_connect_provider_arns` after provisioning.\n"]
     pub fn openid_connect_provider_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.openid_connect_provider_arns", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.openid_connect_provider_arns", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_provider_arns` after provisioning.\n"]
     pub fn saml_provider_arns(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.saml_provider_arns", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.saml_provider_arns", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `supported_login_providers` after provisioning.\n"]
     pub fn supported_login_providers(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.supported_login_providers", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.supported_login_providers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 }
 
@@ -479,12 +551,18 @@ impl CognitoIdentityPoolCognitoIdentityProvidersElRef {
 
     #[doc = "Get a reference to the value of field `provider_name` after provisioning.\n"]
     pub fn provider_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.provider_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.provider_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_token_check` after provisioning.\n"]
     pub fn server_side_token_check(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_side_token_check", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_side_token_check", self.base),
+        )
     }
 }
 

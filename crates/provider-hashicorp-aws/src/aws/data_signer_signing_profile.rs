@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataSignerSigningProfileData {
@@ -51,8 +51,7 @@ impl DataSignerSigningProfile {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -76,73 +75,114 @@ impl DataSignerSigningProfile {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_display_name` after provisioning.\n"]
     pub fn platform_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_id` after provisioning.\n"]
     pub fn platform_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revocation_record` after provisioning.\n"]
     pub fn revocation_record(&self) -> ListRef<DataSignerSigningProfileRevocationRecordElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revocation_record", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revocation_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signature_validity_period` after provisioning.\n"]
-    pub fn signature_validity_period(&self) -> ListRef<DataSignerSigningProfileSignatureValidityPeriodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.signature_validity_period", self.extract_ref()))
+    pub fn signature_validity_period(
+        &self,
+    ) -> ListRef<DataSignerSigningProfileSignatureValidityPeriodElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signature_validity_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_material` after provisioning.\n"]
     pub fn signing_material(&self) -> ListRef<DataSignerSigningProfileSigningMaterialElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.signing_material", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signing_material", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_parameters` after provisioning.\n"]
     pub fn signing_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.signing_parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.signing_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_arn` after provisioning.\n"]
     pub fn version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_arn", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataSignerSigningProfile {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataSignerSigningProfile { }
+impl Datasource for DataSignerSigningProfile {}
 
 impl ToListMappable for DataSignerSigningProfile {
     type O = ListRef<DataSignerSigningProfileRef>;
@@ -200,10 +240,7 @@ pub struct DataSignerSigningProfileRef {
 
 impl Ref for DataSignerSigningProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -228,63 +265,100 @@ impl DataSignerSigningProfileRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_display_name` after provisioning.\n"]
     pub fn platform_display_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_display_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_display_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `platform_id` after provisioning.\n"]
     pub fn platform_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.platform_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.platform_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revocation_record` after provisioning.\n"]
     pub fn revocation_record(&self) -> ListRef<DataSignerSigningProfileRevocationRecordElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.revocation_record", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.revocation_record", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signature_validity_period` after provisioning.\n"]
-    pub fn signature_validity_period(&self) -> ListRef<DataSignerSigningProfileSignatureValidityPeriodElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.signature_validity_period", self.extract_ref()))
+    pub fn signature_validity_period(
+        &self,
+    ) -> ListRef<DataSignerSigningProfileSignatureValidityPeriodElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signature_validity_period", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_material` after provisioning.\n"]
     pub fn signing_material(&self) -> ListRef<DataSignerSigningProfileSigningMaterialElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.signing_material", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.signing_material", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `signing_parameters` after provisioning.\n"]
     pub fn signing_parameters(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.signing_parameters", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.signing_parameters", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `version_arn` after provisioning.\n"]
     pub fn version_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.version_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.version_arn", self.extract_ref()),
+        )
     }
 }
 
@@ -363,7 +437,10 @@ impl DataSignerSigningProfileRevocationRecordElRef {
 
     #[doc = "Get a reference to the value of field `revocation_effective_from` after provisioning.\n"]
     pub fn revocation_effective_from(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.revocation_effective_from", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.revocation_effective_from", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `revoked_at` after provisioning.\n"]
@@ -428,7 +505,10 @@ pub struct DataSignerSigningProfileSignatureValidityPeriodElRef {
 }
 
 impl Ref for DataSignerSigningProfileSignatureValidityPeriodElRef {
-    fn new(shared: StackShared, base: String) -> DataSignerSigningProfileSignatureValidityPeriodElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataSignerSigningProfileSignatureValidityPeriodElRef {
         DataSignerSigningProfileSignatureValidityPeriodElRef {
             shared: shared,
             base: base.to_string(),
@@ -482,7 +562,9 @@ pub struct BuildDataSignerSigningProfileSigningMaterialEl {}
 
 impl BuildDataSignerSigningProfileSigningMaterialEl {
     pub fn build(self) -> DataSignerSigningProfileSigningMaterialEl {
-        DataSignerSigningProfileSigningMaterialEl { certificate_arn: core::default::Default::default() }
+        DataSignerSigningProfileSigningMaterialEl {
+            certificate_arn: core::default::Default::default(),
+        }
     }
 }
 
@@ -507,6 +589,9 @@ impl DataSignerSigningProfileSigningMaterialElRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.base),
+        )
     }
 }

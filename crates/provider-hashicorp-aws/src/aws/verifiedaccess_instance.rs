@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct VerifiedaccessInstanceData {
@@ -65,7 +65,8 @@ impl VerifiedaccessInstance {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl VerifiedaccessInstance {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,12 +90,22 @@ impl VerifiedaccessInstance {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +133,7 @@ impl VerifiedaccessInstance {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -143,22 +153,34 @@ impl VerifiedaccessInstance {
 
     #[doc = "Get a reference to the value of field `cidr_endpoints_custom_subdomain` after provisioning.\n"]
     pub fn cidr_endpoints_custom_subdomain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr_endpoints_custom_subdomain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr_endpoints_custom_subdomain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fips_enabled` after provisioning.\n"]
     pub fn fips_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fips_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fips_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -168,43 +190,66 @@ impl VerifiedaccessInstance {
 
     #[doc = "Get a reference to the value of field `last_updated_time` after provisioning.\n"]
     pub fn last_updated_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_servers` after provisioning.\n"]
     pub fn name_servers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.name_servers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.name_servers", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verified_access_trust_providers` after provisioning.\n"]
-    pub fn verified_access_trust_providers(&self) -> ListRef<VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.verified_access_trust_providers", self.extract_ref()))
+    pub fn verified_access_trust_providers(
+        &self,
+    ) -> ListRef<VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.verified_access_trust_providers", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for VerifiedaccessInstance {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for VerifiedaccessInstance { }
+impl Resource for VerifiedaccessInstance {}
 
 impl ToListMappable for VerifiedaccessInstance {
     type O = ListRef<VerifiedaccessInstanceRef>;
@@ -264,10 +309,7 @@ pub struct VerifiedaccessInstanceRef {
 
 impl Ref for VerifiedaccessInstanceRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -282,22 +324,34 @@ impl VerifiedaccessInstanceRef {
 
     #[doc = "Get a reference to the value of field `cidr_endpoints_custom_subdomain` after provisioning.\n"]
     pub fn cidr_endpoints_custom_subdomain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cidr_endpoints_custom_subdomain", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cidr_endpoints_custom_subdomain", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fips_enabled` after provisioning.\n"]
     pub fn fips_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fips_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.fips_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -307,33 +361,52 @@ impl VerifiedaccessInstanceRef {
 
     #[doc = "Get a reference to the value of field `last_updated_time` after provisioning.\n"]
     pub fn last_updated_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name_servers` after provisioning.\n"]
     pub fn name_servers(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.name_servers", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.name_servers", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verified_access_trust_providers` after provisioning.\n"]
-    pub fn verified_access_trust_providers(&self) -> ListRef<VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.verified_access_trust_providers", self.extract_ref()))
+    pub fn verified_access_trust_providers(
+        &self,
+    ) -> ListRef<VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.verified_access_trust_providers", self.extract_ref()),
+        )
     }
 }
 
@@ -377,7 +450,10 @@ impl VerifiedaccessInstanceVerifiedAccessTrustProvidersEl {
     }
 
     #[doc = "Set the field `verified_access_trust_provider_id`.\n"]
-    pub fn set_verified_access_trust_provider_id(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_verified_access_trust_provider_id(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.verified_access_trust_provider_id = Some(v.into());
         self
     }
@@ -415,7 +491,10 @@ pub struct VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef {
 }
 
 impl Ref for VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef {
-    fn new(shared: StackShared, base: String) -> VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef {
         VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef {
             shared: shared,
             base: base.to_string(),
@@ -435,21 +514,33 @@ impl VerifiedaccessInstanceVerifiedAccessTrustProvidersElRef {
 
     #[doc = "Get a reference to the value of field `device_trust_provider_type` after provisioning.\n"]
     pub fn device_trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.device_trust_provider_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.device_trust_provider_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_provider_type` after provisioning.\n"]
     pub fn trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_provider_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_provider_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_trust_provider_type` after provisioning.\n"]
     pub fn user_trust_provider_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_trust_provider_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_trust_provider_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `verified_access_trust_provider_id` after provisioning.\n"]
     pub fn verified_access_trust_provider_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.verified_access_trust_provider_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.verified_access_trust_provider_id", self.base),
+        )
     }
 }

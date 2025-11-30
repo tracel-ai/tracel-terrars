@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataKendraIndexData {
@@ -43,8 +43,7 @@ impl DataKendraIndex {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -63,34 +62,55 @@ impl DataKendraIndex {
 
     #[doc = "Get a reference to the value of field `capacity_units` after provisioning.\n"]
     pub fn capacity_units(&self) -> ListRef<DataKendraIndexCapacityUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_metadata_configuration_updates` after provisioning.\n"]
     pub fn document_metadata_configuration_updates(
         &self,
     ) -> SetRef<DataKendraIndexDocumentMetadataConfigurationUpdatesElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.document_metadata_configuration_updates", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.document_metadata_configuration_updates",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edition` after provisioning.\n"]
     pub fn edition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.error_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.error_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -100,68 +120,113 @@ impl DataKendraIndex {
 
     #[doc = "Get a reference to the value of field `index_statistics` after provisioning.\n"]
     pub fn index_statistics(&self) -> ListRef<DataKendraIndexIndexStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.index_statistics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.index_statistics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
-    pub fn server_side_encryption_configuration(&self) -> ListRef<DataKendraIndexServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+    pub fn server_side_encryption_configuration(
+        &self,
+    ) -> ListRef<DataKendraIndexServerSideEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_context_policy` after provisioning.\n"]
     pub fn user_context_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_context_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_context_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_group_resolution_configuration` after provisioning.\n"]
-    pub fn user_group_resolution_configuration(&self) -> ListRef<DataKendraIndexUserGroupResolutionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_group_resolution_configuration", self.extract_ref()))
+    pub fn user_group_resolution_configuration(
+        &self,
+    ) -> ListRef<DataKendraIndexUserGroupResolutionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_group_resolution_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_token_configurations` after provisioning.\n"]
-    pub fn user_token_configurations(&self) -> ListRef<DataKendraIndexUserTokenConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_token_configurations", self.extract_ref()))
+    pub fn user_token_configurations(
+        &self,
+    ) -> ListRef<DataKendraIndexUserTokenConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_token_configurations", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataKendraIndex {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataKendraIndex { }
+impl Datasource for DataKendraIndex {}
 
 impl ToListMappable for DataKendraIndex {
     type O = ListRef<DataKendraIndexRef>;
@@ -218,10 +283,7 @@ pub struct DataKendraIndexRef {
 
 impl Ref for DataKendraIndexRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -241,34 +303,55 @@ impl DataKendraIndexRef {
 
     #[doc = "Get a reference to the value of field `capacity_units` after provisioning.\n"]
     pub fn capacity_units(&self) -> ListRef<DataKendraIndexCapacityUnitsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.capacity_units", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.capacity_units", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `document_metadata_configuration_updates` after provisioning.\n"]
     pub fn document_metadata_configuration_updates(
         &self,
     ) -> SetRef<DataKendraIndexDocumentMetadataConfigurationUpdatesElRef> {
-        SetRef::new(self.shared().clone(), format!("{}.document_metadata_configuration_updates", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.document_metadata_configuration_updates",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `edition` after provisioning.\n"]
     pub fn edition(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.edition", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.edition", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.error_message", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.error_message", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -278,58 +361,99 @@ impl DataKendraIndexRef {
 
     #[doc = "Get a reference to the value of field `index_statistics` after provisioning.\n"]
     pub fn index_statistics(&self) -> ListRef<DataKendraIndexIndexStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.index_statistics", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.index_statistics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
-    pub fn server_side_encryption_configuration(&self) -> ListRef<DataKendraIndexServerSideEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.server_side_encryption_configuration", self.extract_ref()))
+    pub fn server_side_encryption_configuration(
+        &self,
+    ) -> ListRef<DataKendraIndexServerSideEncryptionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.server_side_encryption_configuration",
+                self.extract_ref()
+            ),
+        )
     }
 
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.status", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.status", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.updated_at", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.updated_at", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_context_policy` after provisioning.\n"]
     pub fn user_context_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_context_policy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_context_policy", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_group_resolution_configuration` after provisioning.\n"]
-    pub fn user_group_resolution_configuration(&self) -> ListRef<DataKendraIndexUserGroupResolutionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_group_resolution_configuration", self.extract_ref()))
+    pub fn user_group_resolution_configuration(
+        &self,
+    ) -> ListRef<DataKendraIndexUserGroupResolutionConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_group_resolution_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_token_configurations` after provisioning.\n"]
-    pub fn user_token_configurations(&self) -> ListRef<DataKendraIndexUserTokenConfigurationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.user_token_configurations", self.extract_ref()))
+    pub fn user_token_configurations(
+        &self,
+    ) -> ListRef<DataKendraIndexUserTokenConfigurationsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.user_token_configurations", self.extract_ref()),
+        )
     }
 }
 
@@ -399,12 +523,18 @@ impl DataKendraIndexCapacityUnitsElRef {
 
     #[doc = "Get a reference to the value of field `query_capacity_units` after provisioning.\n"]
     pub fn query_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.query_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.query_capacity_units", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `storage_capacity_units` after provisioning.\n"]
     pub fn storage_capacity_units(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_capacity_units", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_capacity_units", self.base),
+        )
     }
 }
 
@@ -486,7 +616,10 @@ pub struct DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
 }
 
 impl Ref for DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
         DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
             shared: shared,
             base: base.to_string(),
@@ -521,7 +654,10 @@ impl DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef {
 
     #[doc = "Get a reference to the value of field `values_importance_map` after provisioning.\n"]
     pub fn values_importance_map(&self) -> RecRef<PrimExpr<f64>> {
-        RecRef::new(self.shared().clone(), format!("{}.values_importance_map", self.base))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.values_importance_map", self.base),
+        )
     }
 }
 
@@ -594,7 +730,10 @@ pub struct DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
 }
 
 impl Ref for DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
         DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef {
             shared: shared,
             base: base.to_string(),
@@ -703,7 +842,10 @@ pub struct DataKendraIndexDocumentMetadataConfigurationUpdatesElRef {
 }
 
 impl Ref for DataKendraIndexDocumentMetadataConfigurationUpdatesElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexDocumentMetadataConfigurationUpdatesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexDocumentMetadataConfigurationUpdatesElRef {
         DataKendraIndexDocumentMetadataConfigurationUpdatesElRef {
             shared: shared,
             base: base.to_string(),
@@ -722,12 +864,16 @@ impl DataKendraIndexDocumentMetadataConfigurationUpdatesElRef {
     }
 
     #[doc = "Get a reference to the value of field `relevance` after provisioning.\n"]
-    pub fn relevance(&self) -> ListRef<DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef> {
+    pub fn relevance(
+        &self,
+    ) -> ListRef<DataKendraIndexDocumentMetadataConfigurationUpdatesElRelevanceElRef> {
         ListRef::new(self.shared().clone(), format!("{}.relevance", self.base))
     }
 
     #[doc = "Get a reference to the value of field `search` after provisioning.\n"]
-    pub fn search(&self) -> ListRef<DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef> {
+    pub fn search(
+        &self,
+    ) -> ListRef<DataKendraIndexDocumentMetadataConfigurationUpdatesElSearchElRef> {
         ListRef::new(self.shared().clone(), format!("{}.search", self.base))
     }
 
@@ -779,7 +925,10 @@ pub struct DataKendraIndexIndexStatisticsElFaqStatisticsElRef {
 }
 
 impl Ref for DataKendraIndexIndexStatisticsElFaqStatisticsElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexIndexStatisticsElFaqStatisticsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexIndexStatisticsElFaqStatisticsElRef {
         DataKendraIndexIndexStatisticsElFaqStatisticsElRef {
             shared: shared,
             base: base.to_string(),
@@ -794,7 +943,10 @@ impl DataKendraIndexIndexStatisticsElFaqStatisticsElRef {
 
     #[doc = "Get a reference to the value of field `indexed_question_answers_count` after provisioning.\n"]
     pub fn indexed_question_answers_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.indexed_question_answers_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.indexed_question_answers_count", self.base),
+        )
     }
 }
 
@@ -849,7 +1001,10 @@ pub struct DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
 }
 
 impl Ref for DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
         DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
             shared: shared,
             base: base.to_string(),
@@ -864,12 +1019,18 @@ impl DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef {
 
     #[doc = "Get a reference to the value of field `indexed_text_bytes` after provisioning.\n"]
     pub fn indexed_text_bytes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.indexed_text_bytes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.indexed_text_bytes", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `indexed_text_documents_count` after provisioning.\n"]
     pub fn indexed_text_documents_count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.indexed_text_documents_count", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.indexed_text_documents_count", self.base),
+        )
     }
 }
 
@@ -878,7 +1039,8 @@ pub struct DataKendraIndexIndexStatisticsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     faq_statistics: Option<ListField<DataKendraIndexIndexStatisticsElFaqStatisticsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    text_document_statistics: Option<ListField<DataKendraIndexIndexStatisticsElTextDocumentStatisticsEl>>,
+    text_document_statistics:
+        Option<ListField<DataKendraIndexIndexStatisticsElTextDocumentStatisticsEl>>,
 }
 
 impl DataKendraIndexIndexStatisticsEl {
@@ -945,12 +1107,20 @@ impl DataKendraIndexIndexStatisticsElRef {
 
     #[doc = "Get a reference to the value of field `faq_statistics` after provisioning.\n"]
     pub fn faq_statistics(&self) -> ListRef<DataKendraIndexIndexStatisticsElFaqStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.faq_statistics", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.faq_statistics", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `text_document_statistics` after provisioning.\n"]
-    pub fn text_document_statistics(&self) -> ListRef<DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.text_document_statistics", self.base))
+    pub fn text_document_statistics(
+        &self,
+    ) -> ListRef<DataKendraIndexIndexStatisticsElTextDocumentStatisticsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.text_document_statistics", self.base),
+        )
     }
 }
 
@@ -984,7 +1154,9 @@ pub struct BuildDataKendraIndexServerSideEncryptionConfigurationEl {}
 
 impl BuildDataKendraIndexServerSideEncryptionConfigurationEl {
     pub fn build(self) -> DataKendraIndexServerSideEncryptionConfigurationEl {
-        DataKendraIndexServerSideEncryptionConfigurationEl { kms_key_id: core::default::Default::default() }
+        DataKendraIndexServerSideEncryptionConfigurationEl {
+            kms_key_id: core::default::Default::default(),
+        }
     }
 }
 
@@ -994,7 +1166,10 @@ pub struct DataKendraIndexServerSideEncryptionConfigurationElRef {
 }
 
 impl Ref for DataKendraIndexServerSideEncryptionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexServerSideEncryptionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexServerSideEncryptionConfigurationElRef {
         DataKendraIndexServerSideEncryptionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1055,7 +1230,10 @@ pub struct DataKendraIndexUserGroupResolutionConfigurationElRef {
 }
 
 impl Ref for DataKendraIndexUserGroupResolutionConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> DataKendraIndexUserGroupResolutionConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataKendraIndexUserGroupResolutionConfigurationElRef {
         DataKendraIndexUserGroupResolutionConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -1070,7 +1248,10 @@ impl DataKendraIndexUserGroupResolutionConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `user_group_resolution_mode` after provisioning.\n"]
     pub fn user_group_resolution_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_group_resolution_mode", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_group_resolution_mode", self.base),
+        )
     }
 }
 
@@ -1143,12 +1324,18 @@ impl DataKendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `group_attribute_field` after provisioning.\n"]
     pub fn group_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_attribute_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `user_name_attribute_field` after provisioning.\n"]
     pub fn user_name_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name_attribute_field", self.base),
+        )
     }
 }
 
@@ -1271,7 +1458,10 @@ impl DataKendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `group_attribute_field` after provisioning.\n"]
     pub fn group_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.group_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.group_attribute_field", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
@@ -1286,7 +1476,10 @@ impl DataKendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `secrets_manager_arn` after provisioning.\n"]
     pub fn secrets_manager_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.secrets_manager_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.secrets_manager_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
@@ -1296,18 +1489,21 @@ impl DataKendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `user_name_attribute_field` after provisioning.\n"]
     pub fn user_name_attribute_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.user_name_attribute_field", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.user_name_attribute_field", self.base),
+        )
     }
 }
 
 #[derive(Serialize)]
 pub struct DataKendraIndexUserTokenConfigurationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    json_token_type_configuration: Option<
-        ListField<DataKendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>,
-    >,
+    json_token_type_configuration:
+        Option<ListField<DataKendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    jwt_token_type_configuration: Option<ListField<DataKendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationEl>>,
+    jwt_token_type_configuration:
+        Option<ListField<DataKendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationEl>>,
 }
 
 impl DataKendraIndexUserTokenConfigurationsEl {
@@ -1376,13 +1572,19 @@ impl DataKendraIndexUserTokenConfigurationsElRef {
     pub fn json_token_type_configuration(
         &self,
     ) -> ListRef<DataKendraIndexUserTokenConfigurationsElJsonTokenTypeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.json_token_type_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.json_token_type_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `jwt_token_type_configuration` after provisioning.\n"]
     pub fn jwt_token_type_configuration(
         &self,
     ) -> ListRef<DataKendraIndexUserTokenConfigurationsElJwtTokenTypeConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.jwt_token_type_configuration", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.jwt_token_type_configuration", self.base),
+        )
     }
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct BackupSelectionData {
@@ -67,7 +67,8 @@ impl BackupSelection {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl BackupSelection {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl BackupSelection {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -112,8 +123,7 @@ impl BackupSelection {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -130,30 +140,36 @@ impl BackupSelection {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().condition = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.condition = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `selection_tag`.\n"]
-    pub fn set_selection_tag(self, v: impl Into<BlockAssignable<BackupSelectionSelectionTagEl>>) -> Self {
+    pub fn set_selection_tag(
+        self,
+        v: impl Into<BlockAssignable<BackupSelectionSelectionTagEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().selection_tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.selection_tag = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -163,38 +179,56 @@ impl BackupSelection {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_resources` after provisioning.\n"]
     pub fn not_resources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.not_resources", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.not_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `plan_id` after provisioning.\n"]
     pub fn plan_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.plan_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.plan_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resources", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resources", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for BackupSelection {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for BackupSelection { }
+impl Resource for BackupSelection {}
 
 impl ToListMappable for BackupSelection {
     type O = ListRef<BackupSelectionRef>;
@@ -263,10 +297,7 @@ pub struct BackupSelectionRef {
 
 impl Ref for BackupSelectionRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -281,7 +312,10 @@ impl BackupSelectionRef {
 
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.iam_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.iam_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -291,28 +325,42 @@ impl BackupSelectionRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `not_resources` after provisioning.\n"]
     pub fn not_resources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.not_resources", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.not_resources", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `plan_id` after provisioning.\n"]
     pub fn plan_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.plan_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.plan_id", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.resources", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.resources", self.extract_ref()),
+        )
     }
 }
 
@@ -322,7 +370,7 @@ pub struct BackupSelectionConditionElStringEqualsEl {
     value: PrimField<String>,
 }
 
-impl BackupSelectionConditionElStringEqualsEl { }
+impl BackupSelectionConditionElStringEqualsEl {}
 
 impl ToListMappable for BackupSelectionConditionElStringEqualsEl {
     type O = BlockAssignable<BackupSelectionConditionElStringEqualsEl>;
@@ -388,7 +436,7 @@ pub struct BackupSelectionConditionElStringLikeEl {
     value: PrimField<String>,
 }
 
-impl BackupSelectionConditionElStringLikeEl { }
+impl BackupSelectionConditionElStringLikeEl {}
 
 impl ToListMappable for BackupSelectionConditionElStringLikeEl {
     type O = BlockAssignable<BackupSelectionConditionElStringLikeEl>;
@@ -454,7 +502,7 @@ pub struct BackupSelectionConditionElStringNotEqualsEl {
     value: PrimField<String>,
 }
 
-impl BackupSelectionConditionElStringNotEqualsEl { }
+impl BackupSelectionConditionElStringNotEqualsEl {}
 
 impl ToListMappable for BackupSelectionConditionElStringNotEqualsEl {
     type O = BlockAssignable<BackupSelectionConditionElStringNotEqualsEl>;
@@ -520,7 +568,7 @@ pub struct BackupSelectionConditionElStringNotLikeEl {
     value: PrimField<String>,
 }
 
-impl BackupSelectionConditionElStringNotLikeEl { }
+impl BackupSelectionConditionElStringNotLikeEl {}
 
 impl ToListMappable for BackupSelectionConditionElStringNotLikeEl {
     type O = BlockAssignable<BackupSelectionConditionElStringNotLikeEl>;
@@ -603,27 +651,33 @@ pub struct BackupSelectionConditionEl {
 
 impl BackupSelectionConditionEl {
     #[doc = "Set the field `string_equals`.\n"]
-    pub fn set_string_equals(mut self, v: impl Into<BlockAssignable<BackupSelectionConditionElStringEqualsEl>>) -> Self {
+    pub fn set_string_equals(
+        mut self,
+        v: impl Into<BlockAssignable<BackupSelectionConditionElStringEqualsEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.string_equals = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.string_equals = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `string_like`.\n"]
-    pub fn set_string_like(mut self, v: impl Into<BlockAssignable<BackupSelectionConditionElStringLikeEl>>) -> Self {
+    pub fn set_string_like(
+        mut self,
+        v: impl Into<BlockAssignable<BackupSelectionConditionElStringLikeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.string_like = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.string_like = Some(d);
-            },
+            }
         }
         self
     }
@@ -636,10 +690,10 @@ impl BackupSelectionConditionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.string_not_equals = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.string_not_equals = Some(d);
-            },
+            }
         }
         self
     }
@@ -652,10 +706,10 @@ impl BackupSelectionConditionEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.string_not_like = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.string_not_like = Some(d);
-            },
+            }
         }
         self
     }
@@ -715,7 +769,7 @@ pub struct BackupSelectionSelectionTagEl {
     value: PrimField<String>,
 }
 
-impl BackupSelectionSelectionTagEl { }
+impl BackupSelectionSelectionTagEl {}
 
 impl ToListMappable for BackupSelectionSelectionTagEl {
     type O = BlockAssignable<BackupSelectionSelectionTagEl>;

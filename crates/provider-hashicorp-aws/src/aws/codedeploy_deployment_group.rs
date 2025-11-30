@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct CodedeployDeploymentGroupData {
@@ -50,7 +50,8 @@ struct CodedeployDeploymentGroupData {
     #[serde(skip_serializing_if = "Option::is_none")]
     load_balancer_info: Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    on_premises_instance_tag_filter: Option<Vec<CodedeployDeploymentGroupOnPremisesInstanceTagFilterEl>>,
+    on_premises_instance_tag_filter:
+        Option<Vec<CodedeployDeploymentGroupOnPremisesInstanceTagFilterEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     trigger_configuration: Option<Vec<CodedeployDeploymentGroupTriggerConfigurationEl>>,
     dynamic: CodedeployDeploymentGroupDynamic,
@@ -91,7 +92,8 @@ impl CodedeployDeploymentGroup {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -104,7 +106,7 @@ impl CodedeployDeploymentGroup {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -115,12 +117,22 @@ impl CodedeployDeploymentGroup {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -148,8 +160,7 @@ impl CodedeployDeploymentGroup {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -181,10 +192,10 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().alarm_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.alarm_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -197,10 +208,10 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().auto_rollback_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.auto_rollback_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -213,10 +224,14 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().blue_green_deployment_config = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.blue_green_deployment_config = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .blue_green_deployment_config = Some(d);
+            }
         }
         self
     }
@@ -229,49 +244,58 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().deployment_style = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.deployment_style = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `ec2_tag_filter`.\n"]
-    pub fn set_ec2_tag_filter(self, v: impl Into<BlockAssignable<CodedeployDeploymentGroupEc2TagFilterEl>>) -> Self {
+    pub fn set_ec2_tag_filter(
+        self,
+        v: impl Into<BlockAssignable<CodedeployDeploymentGroupEc2TagFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ec2_tag_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ec2_tag_filter = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `ec2_tag_set`.\n"]
-    pub fn set_ec2_tag_set(self, v: impl Into<BlockAssignable<CodedeployDeploymentGroupEc2TagSetEl>>) -> Self {
+    pub fn set_ec2_tag_set(
+        self,
+        v: impl Into<BlockAssignable<CodedeployDeploymentGroupEc2TagSetEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ec2_tag_set = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ec2_tag_set = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `ecs_service`.\n"]
-    pub fn set_ecs_service(self, v: impl Into<BlockAssignable<CodedeployDeploymentGroupEcsServiceEl>>) -> Self {
+    pub fn set_ecs_service(
+        self,
+        v: impl Into<BlockAssignable<CodedeployDeploymentGroupEcsServiceEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().ecs_service = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.ecs_service = Some(d);
-            },
+            }
         }
         self
     }
@@ -284,10 +308,10 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().load_balancer_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.load_balancer_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -300,10 +324,14 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().on_premises_instance_tag_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
-                self.0.data.borrow_mut().dynamic.on_premises_instance_tag_filter = Some(d);
-            },
+                self.0
+                    .data
+                    .borrow_mut()
+                    .dynamic
+                    .on_premises_instance_tag_filter = Some(d);
+            }
         }
         self
     }
@@ -316,17 +344,20 @@ impl CodedeployDeploymentGroup {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().trigger_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.trigger_configuration = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `app_name` after provisioning.\n"]
     pub fn app_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -336,27 +367,42 @@ impl CodedeployDeploymentGroup {
 
     #[doc = "Get a reference to the value of field `autoscaling_groups` after provisioning.\n"]
     pub fn autoscaling_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.autoscaling_groups", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_platform` after provisioning.\n"]
     pub fn compute_platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_config_name` after provisioning.\n"]
     pub fn deployment_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_config_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_config_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_group_id` after provisioning.\n"]
     pub fn deployment_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_group_name` after provisioning.\n"]
     pub fn deployment_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -366,73 +412,116 @@ impl CodedeployDeploymentGroup {
 
     #[doc = "Get a reference to the value of field `outdated_instances_strategy` after provisioning.\n"]
     pub fn outdated_instances_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outdated_instances_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outdated_instances_strategy", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_hook_enabled` after provisioning.\n"]
     pub fn termination_hook_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.termination_hook_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.termination_hook_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_configuration` after provisioning.\n"]
     pub fn alarm_configuration(&self) -> ListRef<CodedeployDeploymentGroupAlarmConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alarm_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alarm_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_rollback_configuration` after provisioning.\n"]
-    pub fn auto_rollback_configuration(&self) -> ListRef<CodedeployDeploymentGroupAutoRollbackConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_rollback_configuration", self.extract_ref()))
+    pub fn auto_rollback_configuration(
+        &self,
+    ) -> ListRef<CodedeployDeploymentGroupAutoRollbackConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_rollback_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `blue_green_deployment_config` after provisioning.\n"]
-    pub fn blue_green_deployment_config(&self) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.blue_green_deployment_config", self.extract_ref()))
+    pub fn blue_green_deployment_config(
+        &self,
+    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.blue_green_deployment_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_style` after provisioning.\n"]
     pub fn deployment_style(&self) -> ListRef<CodedeployDeploymentGroupDeploymentStyleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_style", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_style", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_service` after provisioning.\n"]
     pub fn ecs_service(&self) -> ListRef<CodedeployDeploymentGroupEcsServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecs_service", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecs_service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_info` after provisioning.\n"]
     pub fn load_balancer_info(&self) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.load_balancer_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_info", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for CodedeployDeploymentGroup {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for CodedeployDeploymentGroup { }
+impl Resource for CodedeployDeploymentGroup {}
 
 impl ToListMappable for CodedeployDeploymentGroup {
     type O = ListRef<CodedeployDeploymentGroupRef>;
@@ -513,10 +602,7 @@ pub struct CodedeployDeploymentGroupRef {
 
 impl Ref for CodedeployDeploymentGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -531,7 +617,10 @@ impl CodedeployDeploymentGroupRef {
 
     #[doc = "Get a reference to the value of field `app_name` after provisioning.\n"]
     pub fn app_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.app_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.app_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -541,27 +630,42 @@ impl CodedeployDeploymentGroupRef {
 
     #[doc = "Get a reference to the value of field `autoscaling_groups` after provisioning.\n"]
     pub fn autoscaling_groups(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.autoscaling_groups", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.autoscaling_groups", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `compute_platform` after provisioning.\n"]
     pub fn compute_platform(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.compute_platform", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.compute_platform", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_config_name` after provisioning.\n"]
     pub fn deployment_config_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_config_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_config_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_group_id` after provisioning.\n"]
     pub fn deployment_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_group_name` after provisioning.\n"]
     pub fn deployment_group_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_group_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_group_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -571,63 +675,102 @@ impl CodedeployDeploymentGroupRef {
 
     #[doc = "Get a reference to the value of field `outdated_instances_strategy` after provisioning.\n"]
     pub fn outdated_instances_strategy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.outdated_instances_strategy", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.outdated_instances_strategy", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.service_role_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.service_role_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `termination_hook_enabled` after provisioning.\n"]
     pub fn termination_hook_enabled(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.termination_hook_enabled", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.termination_hook_enabled", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `alarm_configuration` after provisioning.\n"]
     pub fn alarm_configuration(&self) -> ListRef<CodedeployDeploymentGroupAlarmConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.alarm_configuration", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.alarm_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `auto_rollback_configuration` after provisioning.\n"]
-    pub fn auto_rollback_configuration(&self) -> ListRef<CodedeployDeploymentGroupAutoRollbackConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.auto_rollback_configuration", self.extract_ref()))
+    pub fn auto_rollback_configuration(
+        &self,
+    ) -> ListRef<CodedeployDeploymentGroupAutoRollbackConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.auto_rollback_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `blue_green_deployment_config` after provisioning.\n"]
-    pub fn blue_green_deployment_config(&self) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.blue_green_deployment_config", self.extract_ref()))
+    pub fn blue_green_deployment_config(
+        &self,
+    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.blue_green_deployment_config", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_style` after provisioning.\n"]
     pub fn deployment_style(&self) -> ListRef<CodedeployDeploymentGroupDeploymentStyleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_style", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_style", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ecs_service` after provisioning.\n"]
     pub fn ecs_service(&self) -> ListRef<CodedeployDeploymentGroupEcsServiceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.ecs_service", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.ecs_service", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `load_balancer_info` after provisioning.\n"]
     pub fn load_balancer_info(&self) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.load_balancer_info", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.load_balancer_info", self.extract_ref()),
+        )
     }
 }
 
@@ -716,7 +859,10 @@ impl CodedeployDeploymentGroupAlarmConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `ignore_poll_alarm_failure` after provisioning.\n"]
     pub fn ignore_poll_alarm_failure(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ignore_poll_alarm_failure", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ignore_poll_alarm_failure", self.base),
+        )
     }
 }
 
@@ -771,7 +917,10 @@ pub struct CodedeployDeploymentGroupAutoRollbackConfigurationElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupAutoRollbackConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupAutoRollbackConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupAutoRollbackConfigurationElRef {
         CodedeployDeploymentGroupAutoRollbackConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -817,8 +966,12 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl
     }
 }
 
-impl ToListMappable for CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl {
-    type O = BlockAssignable<CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl>;
+impl ToListMappable
+    for CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl
+{
+    type O = BlockAssignable<
+        CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -832,7 +985,9 @@ impl ToListMappable for CodedeployDeploymentGroupBlueGreenDeploymentConfigElDepl
 pub struct BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl {}
 
 impl BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl {
-    pub fn build(self) -> CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl {
+    pub fn build(
+        self,
+    ) -> CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl {
         CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl {
             action_on_timeout: core::default::Default::default(),
             wait_time_in_minutes: core::default::Default::default(),
@@ -864,12 +1019,18 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl
 
     #[doc = "Get a reference to the value of field `action_on_timeout` after provisioning.\n"]
     pub fn action_on_timeout(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action_on_timeout", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action_on_timeout", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `wait_time_in_minutes` after provisioning.\n"]
     pub fn wait_time_in_minutes(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.wait_time_in_minutes", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.wait_time_in_minutes", self.base),
+        )
     }
 }
 
@@ -887,8 +1048,12 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningO
     }
 }
 
-impl ToListMappable for CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl {
-    type O = BlockAssignable<CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl>;
+impl ToListMappable
+    for CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl
+{
+    type O = BlockAssignable<
+        CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -899,10 +1064,13 @@ impl ToListMappable for CodedeployDeploymentGroupBlueGreenDeploymentConfigElGree
     }
 }
 
-pub struct BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl {}
+pub struct BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl
+{}
 
 impl BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl {
-    pub fn build(self) -> CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl {
+    pub fn build(
+        self,
+    ) -> CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl {
         CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl {
             action: core::default::Default::default(),
         }
@@ -938,14 +1106,17 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningO
 }
 
 #[derive(Serialize)]
-pub struct CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl {
+pub struct CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl
+{
     #[serde(skip_serializing_if = "Option::is_none")]
     action: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     termination_wait_time_in_minutes: Option<PrimField<f64>>,
 }
 
-impl CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl {
+impl
+    CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl
+{
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.action = Some(v.into());
@@ -974,7 +1145,8 @@ impl ToListMappable for CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerm
     }
 }
 
-pub struct BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl {}
+pub struct BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl
+{}
 
 impl BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessEl {
     pub fn build(
@@ -987,7 +1159,8 @@ impl BuildCodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInsta
     }
 }
 
-pub struct CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessElRef {
+pub struct CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessElRef
+{
     shared: StackShared,
     base: String,
 }
@@ -1052,15 +1225,19 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigEl {
     #[doc = "Set the field `deployment_ready_option`.\n"]
     pub fn set_deployment_ready_option(
         mut self,
-        v: impl Into<BlockAssignable<CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.deployment_ready_option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.deployment_ready_option = Some(d);
-            },
+            }
         }
         self
     }
@@ -1068,22 +1245,19 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigEl {
     #[doc = "Set the field `green_fleet_provisioning_option`.\n"]
     pub fn set_green_fleet_provisioning_option(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.green_fleet_provisioning_option = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.green_fleet_provisioning_option = Some(d);
-            },
+            }
         }
         self
     }
@@ -1103,10 +1277,10 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.terminate_blue_instances_on_deployment_success = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.terminate_blue_instances_on_deployment_success = Some(d);
-            },
+            }
         }
         self
     }
@@ -1143,7 +1317,10 @@ pub struct CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef {
         CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -1159,23 +1336,37 @@ impl CodedeployDeploymentGroupBlueGreenDeploymentConfigElRef {
     #[doc = "Get a reference to the value of field `deployment_ready_option` after provisioning.\n"]
     pub fn deployment_ready_option(
         &self,
-    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.deployment_ready_option", self.base))
+    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElDeploymentReadyOptionElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.deployment_ready_option", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `green_fleet_provisioning_option` after provisioning.\n"]
     pub fn green_fleet_provisioning_option(
         &self,
-    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.green_fleet_provisioning_option", self.base))
+    ) -> ListRef<
+        CodedeployDeploymentGroupBlueGreenDeploymentConfigElGreenFleetProvisioningOptionElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.green_fleet_provisioning_option", self.base),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `terminate_blue_instances_on_deployment_success` after provisioning.\n"]
+    #[doc = "Get a reference to the value of field `terminate_blue_instances_on_deployment_success` after provisioning.\n"]
     pub fn terminate_blue_instances_on_deployment_success(
         &self,
-    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.terminate_blue_instances_on_deployment_success", self.base))
+    ) -> ListRef<CodedeployDeploymentGroupBlueGreenDeploymentConfigElTerminateBlueInstancesOnDeploymentSuccessElRef>{
+        ListRef::new(
+            self.shared().clone(),
+            format!(
+                "{}.terminate_blue_instances_on_deployment_success",
+                self.base
+            ),
+        )
     }
 }
 
@@ -1245,12 +1436,18 @@ impl CodedeployDeploymentGroupDeploymentStyleElRef {
 
     #[doc = "Get a reference to the value of field `deployment_option` after provisioning.\n"]
     pub fn deployment_option(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_option", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_option", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `deployment_type` after provisioning.\n"]
     pub fn deployment_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.deployment_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.deployment_type", self.base),
+        )
     }
 }
 
@@ -1403,7 +1600,10 @@ pub struct CodedeployDeploymentGroupEc2TagSetElEc2TagFilterElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupEc2TagSetElEc2TagFilterElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupEc2TagSetElEc2TagFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupEc2TagSetElEc2TagFilterElRef {
         CodedeployDeploymentGroupEc2TagSetElEc2TagFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -1453,10 +1653,10 @@ impl CodedeployDeploymentGroupEc2TagSetEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.ec2_tag_filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.ec2_tag_filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1511,7 +1711,7 @@ pub struct CodedeployDeploymentGroupEcsServiceEl {
     service_name: PrimField<String>,
 }
 
-impl CodedeployDeploymentGroupEcsServiceEl { }
+impl CodedeployDeploymentGroupEcsServiceEl {}
 
 impl ToListMappable for CodedeployDeploymentGroupEcsServiceEl {
     type O = BlockAssignable<CodedeployDeploymentGroupEcsServiceEl>;
@@ -1601,7 +1801,9 @@ pub struct BuildCodedeployDeploymentGroupLoadBalancerInfoElElbInfoEl {}
 
 impl BuildCodedeployDeploymentGroupLoadBalancerInfoElElbInfoEl {
     pub fn build(self) -> CodedeployDeploymentGroupLoadBalancerInfoElElbInfoEl {
-        CodedeployDeploymentGroupLoadBalancerInfoElElbInfoEl { name: core::default::Default::default() }
+        CodedeployDeploymentGroupLoadBalancerInfoElElbInfoEl {
+            name: core::default::Default::default(),
+        }
     }
 }
 
@@ -1611,7 +1813,10 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoElElbInfoElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupLoadBalancerInfoElElbInfoElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupLoadBalancerInfoElElbInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupLoadBalancerInfoElElbInfoElRef {
         CodedeployDeploymentGroupLoadBalancerInfoElElbInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1660,7 +1865,9 @@ pub struct BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl {}
 
 impl BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl {
     pub fn build(self) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl {
-        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl { name: core::default::Default::default() }
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl {
+            name: core::default::Default::default(),
+        }
     }
 }
 
@@ -1670,7 +1877,10 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoElRef {
         CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -1694,10 +1904,14 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdT
     listener_arns: SetField<PrimField<String>>,
 }
 
-impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl { }
+impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl {}
 
-impl ToListMappable for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl {
-    type O = BlockAssignable<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl>;
+impl ToListMappable
+    for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl
+{
+    type O = BlockAssignable<
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1714,7 +1928,9 @@ pub struct BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl
 }
 
 impl BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl {
-    pub fn build(self) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl {
+    pub fn build(
+        self,
+    ) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl {
         CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl {
             listener_arns: self.listener_arns,
         }
@@ -1745,7 +1961,10 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTraffic
 
     #[doc = "Get a reference to the value of field `listener_arns` after provisioning.\n"]
     pub fn listener_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.listener_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.listener_arns", self.base),
+        )
     }
 }
 
@@ -1754,10 +1973,14 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTarge
     name: PrimField<String>,
 }
 
-impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl { }
+impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl {}
 
-impl ToListMappable for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl {
-    type O = BlockAssignable<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl>;
+impl ToListMappable
+    for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl
+{
+    type O = BlockAssignable<
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1774,8 +1997,12 @@ pub struct BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl
 }
 
 impl BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl {
-    pub fn build(self) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl {
-        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl { name: self.name }
+    pub fn build(
+        self,
+    ) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl {
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl {
+            name: self.name,
+        }
     }
 }
 
@@ -1812,10 +2039,14 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestT
     listener_arns: SetField<PrimField<String>>,
 }
 
-impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl { }
+impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl {}
 
-impl ToListMappable for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl {
-    type O = BlockAssignable<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl>;
+impl ToListMappable
+    for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl
+{
+    type O = BlockAssignable<
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1832,7 +2063,9 @@ pub struct BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl
 }
 
 impl BuildCodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl {
-    pub fn build(self) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl {
+    pub fn build(
+        self,
+    ) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl {
         CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl {
             listener_arns: self.listener_arns,
         }
@@ -1863,31 +2096,43 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTraffic
 
     #[doc = "Get a reference to the value of field `listener_arns` after provisioning.\n"]
     pub fn listener_arns(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.listener_arns", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.listener_arns", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElDynamic {
     prod_traffic_route: Option<
-        DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl>,
+        DynamicBlock<
+            CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl,
+        >,
     >,
     target_group: Option<
         DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl>,
     >,
     test_traffic_route: Option<
-        DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl>,
+        DynamicBlock<
+            CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl,
+        >,
     >,
 }
 
 #[derive(Serialize)]
 pub struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    prod_traffic_route: Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl>>,
+    prod_traffic_route: Option<
+        Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl>,
+    >,
     #[serde(skip_serializing_if = "Option::is_none")]
-    target_group: Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl>>,
+    target_group:
+        Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    test_traffic_route: Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl>>,
+    test_traffic_route: Option<
+        Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl>,
+    >,
     dynamic: CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElDynamic,
 }
 
@@ -1895,22 +2140,19 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl {
     #[doc = "Set the field `prod_traffic_route`.\n"]
     pub fn set_prod_traffic_route(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.prod_traffic_route = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.prod_traffic_route = Some(d);
-            },
+            }
         }
         self
     }
@@ -1918,15 +2160,19 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl {
     #[doc = "Set the field `target_group`.\n"]
     pub fn set_target_group(
         mut self,
-        v: impl Into<BlockAssignable<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl>>,
+        v: impl Into<
+            BlockAssignable<
+                CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_group = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_group = Some(d);
-            },
+            }
         }
         self
     }
@@ -1934,22 +2180,19 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl {
     #[doc = "Set the field `test_traffic_route`.\n"]
     pub fn set_test_traffic_route(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.test_traffic_route = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.test_traffic_route = Some(d);
-            },
+            }
         }
         self
     }
@@ -1986,7 +2229,10 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef {
         CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef {
             shared: shared,
             base: base.to_string(),
@@ -2002,30 +2248,43 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef {
     #[doc = "Get a reference to the value of field `prod_traffic_route` after provisioning.\n"]
     pub fn prod_traffic_route(
         &self,
-    ) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.prod_traffic_route", self.base))
+    ) -> ListRef<
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElProdTrafficRouteElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.prod_traffic_route", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_group` after provisioning.\n"]
     pub fn target_group(
         &self,
-    ) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupElRef> {
+    ) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTargetGroupElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.target_group", self.base))
     }
 
     #[doc = "Get a reference to the value of field `test_traffic_route` after provisioning.\n"]
     pub fn test_traffic_route(
         &self,
-    ) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.test_traffic_route", self.base))
+    ) -> ListRef<
+        CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElTestTrafficRouteElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.test_traffic_route", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CodedeployDeploymentGroupLoadBalancerInfoElDynamic {
     elb_info: Option<DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElElbInfoEl>>,
-    target_group_info: Option<DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl>>,
-    target_group_pair_info: Option<DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl>>,
+    target_group_info:
+        Option<DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl>>,
+    target_group_pair_info:
+        Option<DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl>>,
 }
 
 #[derive(Serialize)]
@@ -2035,7 +2294,8 @@ pub struct CodedeployDeploymentGroupLoadBalancerInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_group_info: Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupInfoEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    target_group_pair_info: Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl>>,
+    target_group_pair_info:
+        Option<Vec<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoEl>>,
     dynamic: CodedeployDeploymentGroupLoadBalancerInfoElDynamic,
 }
 
@@ -2048,10 +2308,10 @@ impl CodedeployDeploymentGroupLoadBalancerInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.elb_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.elb_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -2064,10 +2324,10 @@ impl CodedeployDeploymentGroupLoadBalancerInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_group_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_group_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -2080,10 +2340,10 @@ impl CodedeployDeploymentGroupLoadBalancerInfoEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.target_group_pair_info = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.target_group_pair_info = Some(d);
-            },
+            }
         }
         self
     }
@@ -2134,8 +2394,13 @@ impl CodedeployDeploymentGroupLoadBalancerInfoElRef {
     }
 
     #[doc = "Get a reference to the value of field `target_group_pair_info` after provisioning.\n"]
-    pub fn target_group_pair_info(&self) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.target_group_pair_info", self.base))
+    pub fn target_group_pair_info(
+        &self,
+    ) -> ListRef<CodedeployDeploymentGroupLoadBalancerInfoElTargetGroupPairInfoElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.target_group_pair_info", self.base),
+        )
     }
 }
 
@@ -2199,7 +2464,10 @@ pub struct CodedeployDeploymentGroupOnPremisesInstanceTagFilterElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupOnPremisesInstanceTagFilterElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupOnPremisesInstanceTagFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupOnPremisesInstanceTagFilterElRef {
         CodedeployDeploymentGroupOnPremisesInstanceTagFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -2235,7 +2503,7 @@ pub struct CodedeployDeploymentGroupTriggerConfigurationEl {
     trigger_target_arn: PrimField<String>,
 }
 
-impl CodedeployDeploymentGroupTriggerConfigurationEl { }
+impl CodedeployDeploymentGroupTriggerConfigurationEl {}
 
 impl ToListMappable for CodedeployDeploymentGroupTriggerConfigurationEl {
     type O = BlockAssignable<CodedeployDeploymentGroupTriggerConfigurationEl>;
@@ -2274,7 +2542,10 @@ pub struct CodedeployDeploymentGroupTriggerConfigurationElRef {
 }
 
 impl Ref for CodedeployDeploymentGroupTriggerConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> CodedeployDeploymentGroupTriggerConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> CodedeployDeploymentGroupTriggerConfigurationElRef {
         CodedeployDeploymentGroupTriggerConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -2289,7 +2560,10 @@ impl CodedeployDeploymentGroupTriggerConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `trigger_events` after provisioning.\n"]
     pub fn trigger_events(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.trigger_events", self.base))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.trigger_events", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trigger_name` after provisioning.\n"]
@@ -2299,20 +2573,26 @@ impl CodedeployDeploymentGroupTriggerConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `trigger_target_arn` after provisioning.\n"]
     pub fn trigger_target_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trigger_target_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trigger_target_arn", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct CodedeployDeploymentGroupDynamic {
     alarm_configuration: Option<DynamicBlock<CodedeployDeploymentGroupAlarmConfigurationEl>>,
-    auto_rollback_configuration: Option<DynamicBlock<CodedeployDeploymentGroupAutoRollbackConfigurationEl>>,
-    blue_green_deployment_config: Option<DynamicBlock<CodedeployDeploymentGroupBlueGreenDeploymentConfigEl>>,
+    auto_rollback_configuration:
+        Option<DynamicBlock<CodedeployDeploymentGroupAutoRollbackConfigurationEl>>,
+    blue_green_deployment_config:
+        Option<DynamicBlock<CodedeployDeploymentGroupBlueGreenDeploymentConfigEl>>,
     deployment_style: Option<DynamicBlock<CodedeployDeploymentGroupDeploymentStyleEl>>,
     ec2_tag_filter: Option<DynamicBlock<CodedeployDeploymentGroupEc2TagFilterEl>>,
     ec2_tag_set: Option<DynamicBlock<CodedeployDeploymentGroupEc2TagSetEl>>,
     ecs_service: Option<DynamicBlock<CodedeployDeploymentGroupEcsServiceEl>>,
     load_balancer_info: Option<DynamicBlock<CodedeployDeploymentGroupLoadBalancerInfoEl>>,
-    on_premises_instance_tag_filter: Option<DynamicBlock<CodedeployDeploymentGroupOnPremisesInstanceTagFilterEl>>,
+    on_premises_instance_tag_filter:
+        Option<DynamicBlock<CodedeployDeploymentGroupOnPremisesInstanceTagFilterEl>>,
     trigger_configuration: Option<DynamicBlock<CodedeployDeploymentGroupTriggerConfigurationEl>>,
 }

@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataCloudfrontRealtimeLogConfigData {
@@ -54,12 +54,18 @@ impl DataCloudfrontRealtimeLogConfig {
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> ListRef<DataCloudfrontRealtimeLogConfigEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoint", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fields` after provisioning.\n"]
     pub fn fields(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.fields", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.fields", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -69,22 +75,32 @@ impl DataCloudfrontRealtimeLogConfig {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_rate", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataCloudfrontRealtimeLogConfig {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataCloudfrontRealtimeLogConfig { }
+impl Datasource for DataCloudfrontRealtimeLogConfig {}
 
 impl ToListMappable for DataCloudfrontRealtimeLogConfig {
     type O = ListRef<DataCloudfrontRealtimeLogConfigRef>;
@@ -140,10 +156,7 @@ pub struct DataCloudfrontRealtimeLogConfigRef {
 
 impl Ref for DataCloudfrontRealtimeLogConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -163,12 +176,18 @@ impl DataCloudfrontRealtimeLogConfigRef {
 
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> ListRef<DataCloudfrontRealtimeLogConfigEndpointElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.endpoint", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.endpoint", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `fields` after provisioning.\n"]
     pub fn fields(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.fields", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.fields", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -178,12 +197,18 @@ impl DataCloudfrontRealtimeLogConfigRef {
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sampling_rate", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sampling_rate", self.extract_ref()),
+        )
     }
 }
 
@@ -238,7 +263,10 @@ pub struct DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
 }
 
 impl Ref for DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
-    fn new(shared: StackShared, base: String) -> DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
         DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
             shared: shared,
             base: base.to_string(),
@@ -265,7 +293,8 @@ impl DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef {
 #[derive(Serialize)]
 pub struct DataCloudfrontRealtimeLogConfigEndpointEl {
     #[serde(skip_serializing_if = "Option::is_none")]
-    kinesis_stream_config: Option<ListField<DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl>>,
+    kinesis_stream_config:
+        Option<ListField<DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     stream_type: Option<PrimField<String>>,
 }
@@ -330,8 +359,13 @@ impl DataCloudfrontRealtimeLogConfigEndpointElRef {
     }
 
     #[doc = "Get a reference to the value of field `kinesis_stream_config` after provisioning.\n"]
-    pub fn kinesis_stream_config(&self) -> ListRef<DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.kinesis_stream_config", self.base))
+    pub fn kinesis_stream_config(
+        &self,
+    ) -> ListRef<DataCloudfrontRealtimeLogConfigEndpointElKinesisStreamConfigElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.kinesis_stream_config", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `stream_type` after provisioning.\n"]

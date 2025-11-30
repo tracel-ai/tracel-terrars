@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEc2ClientVpnEndpointData {
@@ -63,8 +63,7 @@ impl DataEc2ClientVpnEndpoint {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -77,14 +76,17 @@ impl DataEc2ClientVpnEndpoint {
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(self, v: impl Into<BlockAssignable<DataEc2ClientVpnEndpointFilterEl>>) -> Self {
+    pub fn set_filter(
+        self,
+        v: impl Into<BlockAssignable<DataEc2ClientVpnEndpointFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -101,60 +103,101 @@ impl DataEc2ClientVpnEndpoint {
     }
 
     #[doc = "Get a reference to the value of field `authentication_options` after provisioning.\n"]
-    pub fn authentication_options(&self) -> ListRef<DataEc2ClientVpnEndpointAuthenticationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_options", self.extract_ref()))
+    pub fn authentication_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointAuthenticationOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_cidr_block` after provisioning.\n"]
     pub fn client_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_connect_options` after provisioning.\n"]
-    pub fn client_connect_options(&self) -> ListRef<DataEc2ClientVpnEndpointClientConnectOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_connect_options", self.extract_ref()))
+    pub fn client_connect_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointClientConnectOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_connect_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_login_banner_options` after provisioning.\n"]
-    pub fn client_login_banner_options(&self) -> ListRef<DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_login_banner_options", self.extract_ref()))
+    pub fn client_login_banner_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_login_banner_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_route_enforcement_options` after provisioning.\n"]
     pub fn client_route_enforcement_options(
         &self,
     ) -> ListRef<DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_route_enforcement_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_route_enforcement_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_vpn_endpoint_id` after provisioning.\n"]
     pub fn client_vpn_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_vpn_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_vpn_endpoint_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_log_options` after provisioning.\n"]
-    pub fn connection_log_options(&self) -> ListRef<DataEc2ClientVpnEndpointConnectionLogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_log_options", self.extract_ref()))
+    pub fn connection_log_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointConnectionLogOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_log_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_servers` after provisioning.\n"]
     pub fn dns_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_servers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_ip_address_type` after provisioning.\n"]
     pub fn endpoint_ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -162,80 +205,122 @@ impl DataEc2ClientVpnEndpoint {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_service_portal` after provisioning.\n"]
     pub fn self_service_portal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.self_service_portal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.self_service_portal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_service_portal_url` after provisioning.\n"]
     pub fn self_service_portal_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.self_service_portal_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.self_service_portal_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_certificate_arn` after provisioning.\n"]
     pub fn server_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout_hours` after provisioning.\n"]
     pub fn session_timeout_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout_hours", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout_hours", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `split_tunnel` after provisioning.\n"]
     pub fn split_tunnel(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.split_tunnel", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.split_tunnel", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_ip_address_type` after provisioning.\n"]
     pub fn traffic_ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transport_protocol` after provisioning.\n"]
     pub fn transport_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transport_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transport_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpn_port` after provisioning.\n"]
     pub fn vpn_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpn_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpn_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2ClientVpnEndpointTimeoutsElRef {
-        DataEc2ClientVpnEndpointTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEc2ClientVpnEndpointTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEc2ClientVpnEndpoint {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEc2ClientVpnEndpoint { }
+impl Datasource for DataEc2ClientVpnEndpoint {}
 
 impl ToListMappable for DataEc2ClientVpnEndpoint {
     type O = ListRef<DataEc2ClientVpnEndpointRef>;
@@ -294,10 +379,7 @@ pub struct DataEc2ClientVpnEndpointRef {
 
 impl Ref for DataEc2ClientVpnEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -316,60 +398,101 @@ impl DataEc2ClientVpnEndpointRef {
     }
 
     #[doc = "Get a reference to the value of field `authentication_options` after provisioning.\n"]
-    pub fn authentication_options(&self) -> ListRef<DataEc2ClientVpnEndpointAuthenticationOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.authentication_options", self.extract_ref()))
+    pub fn authentication_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointAuthenticationOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.authentication_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_cidr_block` after provisioning.\n"]
     pub fn client_cidr_block(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_cidr_block", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_cidr_block", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_connect_options` after provisioning.\n"]
-    pub fn client_connect_options(&self) -> ListRef<DataEc2ClientVpnEndpointClientConnectOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_connect_options", self.extract_ref()))
+    pub fn client_connect_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointClientConnectOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_connect_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_login_banner_options` after provisioning.\n"]
-    pub fn client_login_banner_options(&self) -> ListRef<DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_login_banner_options", self.extract_ref()))
+    pub fn client_login_banner_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_login_banner_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_route_enforcement_options` after provisioning.\n"]
     pub fn client_route_enforcement_options(
         &self,
     ) -> ListRef<DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.client_route_enforcement_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.client_route_enforcement_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `client_vpn_endpoint_id` after provisioning.\n"]
     pub fn client_vpn_endpoint_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.client_vpn_endpoint_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.client_vpn_endpoint_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `connection_log_options` after provisioning.\n"]
-    pub fn connection_log_options(&self) -> ListRef<DataEc2ClientVpnEndpointConnectionLogOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.connection_log_options", self.extract_ref()))
+    pub fn connection_log_options(
+        &self,
+    ) -> ListRef<DataEc2ClientVpnEndpointConnectionLogOptionsElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.connection_log_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.dns_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `dns_servers` after provisioning.\n"]
     pub fn dns_servers(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.dns_servers", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.dns_servers", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_ip_address_type` after provisioning.\n"]
     pub fn endpoint_ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -377,70 +500,108 @@ impl DataEc2ClientVpnEndpointRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.security_group_ids", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_service_portal` after provisioning.\n"]
     pub fn self_service_portal(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.self_service_portal", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.self_service_portal", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_service_portal_url` after provisioning.\n"]
     pub fn self_service_portal_url(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.self_service_portal_url", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.self_service_portal_url", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `server_certificate_arn` after provisioning.\n"]
     pub fn server_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.server_certificate_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.server_certificate_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `session_timeout_hours` after provisioning.\n"]
     pub fn session_timeout_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.session_timeout_hours", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.session_timeout_hours", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `split_tunnel` after provisioning.\n"]
     pub fn split_tunnel(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.split_tunnel", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.split_tunnel", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `traffic_ip_address_type` after provisioning.\n"]
     pub fn traffic_ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.traffic_ip_address_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.traffic_ip_address_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `transport_protocol` after provisioning.\n"]
     pub fn transport_protocol(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.transport_protocol", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.transport_protocol", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpc_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `vpn_port` after provisioning.\n"]
     pub fn vpn_port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vpn_port", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.vpn_port", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2ClientVpnEndpointTimeoutsElRef {
-        DataEc2ClientVpnEndpointTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        DataEc2ClientVpnEndpointTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -522,7 +683,10 @@ pub struct DataEc2ClientVpnEndpointAuthenticationOptionsElRef {
 }
 
 impl Ref for DataEc2ClientVpnEndpointAuthenticationOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2ClientVpnEndpointAuthenticationOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2ClientVpnEndpointAuthenticationOptionsElRef {
         DataEc2ClientVpnEndpointAuthenticationOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -537,22 +701,34 @@ impl DataEc2ClientVpnEndpointAuthenticationOptionsElRef {
 
     #[doc = "Get a reference to the value of field `active_directory_id` after provisioning.\n"]
     pub fn active_directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.active_directory_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.active_directory_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `root_certificate_chain_arn` after provisioning.\n"]
     pub fn root_certificate_chain_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.root_certificate_chain_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.root_certificate_chain_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `saml_provider_arn` after provisioning.\n"]
     pub fn saml_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.saml_provider_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.saml_provider_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `self_service_saml_provider_arn` after provisioning.\n"]
     pub fn self_service_saml_provider_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.self_service_saml_provider_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.self_service_saml_provider_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
@@ -632,7 +808,10 @@ impl DataEc2ClientVpnEndpointClientConnectOptionsElRef {
 
     #[doc = "Get a reference to the value of field `lambda_function_arn` after provisioning.\n"]
     pub fn lambda_function_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.lambda_function_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.lambda_function_arn", self.base),
+        )
     }
 }
 
@@ -687,7 +866,10 @@ pub struct DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef {
 }
 
 impl Ref for DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef {
         DataEc2ClientVpnEndpointClientLoginBannerOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -741,7 +923,9 @@ pub struct BuildDataEc2ClientVpnEndpointClientRouteEnforcementOptionsEl {}
 
 impl BuildDataEc2ClientVpnEndpointClientRouteEnforcementOptionsEl {
     pub fn build(self) -> DataEc2ClientVpnEndpointClientRouteEnforcementOptionsEl {
-        DataEc2ClientVpnEndpointClientRouteEnforcementOptionsEl { enforced: core::default::Default::default() }
+        DataEc2ClientVpnEndpointClientRouteEnforcementOptionsEl {
+            enforced: core::default::Default::default(),
+        }
     }
 }
 
@@ -751,7 +935,10 @@ pub struct DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef {
 }
 
 impl Ref for DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef {
-    fn new(shared: StackShared, base: String) -> DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef {
         DataEc2ClientVpnEndpointClientRouteEnforcementOptionsElRef {
             shared: shared,
             base: base.to_string(),
@@ -845,12 +1032,18 @@ impl DataEc2ClientVpnEndpointConnectionLogOptionsElRef {
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_group` after provisioning.\n"]
     pub fn cloudwatch_log_group(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_log_group", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_group", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `cloudwatch_log_stream` after provisioning.\n"]
     pub fn cloudwatch_log_stream(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.cloudwatch_log_stream", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.cloudwatch_log_stream", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
@@ -865,7 +1058,7 @@ pub struct DataEc2ClientVpnEndpointFilterEl {
     values: SetField<PrimField<String>>,
 }
 
-impl DataEc2ClientVpnEndpointFilterEl { }
+impl DataEc2ClientVpnEndpointFilterEl {}
 
 impl ToListMappable for DataEc2ClientVpnEndpointFilterEl {
     type O = BlockAssignable<DataEc2ClientVpnEndpointFilterEl>;
@@ -955,7 +1148,9 @@ pub struct BuildDataEc2ClientVpnEndpointTimeoutsEl {}
 
 impl BuildDataEc2ClientVpnEndpointTimeoutsEl {
     pub fn build(self) -> DataEc2ClientVpnEndpointTimeoutsEl {
-        DataEc2ClientVpnEndpointTimeoutsEl { read: core::default::Default::default() }
+        DataEc2ClientVpnEndpointTimeoutsEl {
+            read: core::default::Default::default(),
+        }
     }
 }
 

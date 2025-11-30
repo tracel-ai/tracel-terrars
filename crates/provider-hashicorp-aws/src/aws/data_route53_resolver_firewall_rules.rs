@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataRoute53ResolverFirewallRulesData {
@@ -65,8 +65,7 @@ impl DataRoute53ResolverFirewallRules {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -74,17 +73,26 @@ impl DataRoute53ResolverFirewallRules {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_rule_group_id` after provisioning.\n"]
     pub fn firewall_rule_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_rule_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_rule_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_rules` after provisioning.\n"]
     pub fn firewall_rules(&self) -> ListRef<DataRoute53ResolverFirewallRulesFirewallRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.firewall_rules", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.firewall_rules", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -94,23 +102,32 @@ impl DataRoute53ResolverFirewallRules {
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataRoute53ResolverFirewallRules {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataRoute53ResolverFirewallRules { }
+impl Datasource for DataRoute53ResolverFirewallRules {}
 
 impl ToListMappable for DataRoute53ResolverFirewallRules {
     type O = ListRef<DataRoute53ResolverFirewallRulesRef>;
@@ -169,10 +186,7 @@ pub struct DataRoute53ResolverFirewallRulesRef {
 
 impl Ref for DataRoute53ResolverFirewallRulesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -187,17 +201,26 @@ impl DataRoute53ResolverFirewallRulesRef {
 
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.action", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.action", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_rule_group_id` after provisioning.\n"]
     pub fn firewall_rule_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_rule_group_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_rule_group_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_rules` after provisioning.\n"]
     pub fn firewall_rules(&self) -> ListRef<DataRoute53ResolverFirewallRulesFirewallRulesElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.firewall_rules", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.firewall_rules", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -207,13 +230,18 @@ impl DataRoute53ResolverFirewallRulesRef {
 
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.priority", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.priority", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -358,7 +386,10 @@ pub struct DataRoute53ResolverFirewallRulesFirewallRulesElRef {
 }
 
 impl Ref for DataRoute53ResolverFirewallRulesFirewallRulesElRef {
-    fn new(shared: StackShared, base: String) -> DataRoute53ResolverFirewallRulesFirewallRulesElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataRoute53ResolverFirewallRulesFirewallRulesElRef {
         DataRoute53ResolverFirewallRulesFirewallRulesElRef {
             shared: shared,
             base: base.to_string(),
@@ -378,47 +409,74 @@ impl DataRoute53ResolverFirewallRulesFirewallRulesElRef {
 
     #[doc = "Get a reference to the value of field `block_override_dns_type` after provisioning.\n"]
     pub fn block_override_dns_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_override_dns_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_override_dns_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_override_domain` after provisioning.\n"]
     pub fn block_override_domain(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_override_domain", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_override_domain", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_override_ttl` after provisioning.\n"]
     pub fn block_override_ttl(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_override_ttl", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_override_ttl", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `block_response` after provisioning.\n"]
     pub fn block_response(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.block_response", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.block_response", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creation_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creation_time", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `creator_request_id` after provisioning.\n"]
     pub fn creator_request_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.creator_request_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.creator_request_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_domain_list_id` after provisioning.\n"]
     pub fn firewall_domain_list_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_domain_list_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_domain_list_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `firewall_rule_group_id` after provisioning.\n"]
     pub fn firewall_rule_group_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.firewall_rule_group_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.firewall_rule_group_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `modification_time` after provisioning.\n"]
     pub fn modification_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.modification_time", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.modification_time", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]

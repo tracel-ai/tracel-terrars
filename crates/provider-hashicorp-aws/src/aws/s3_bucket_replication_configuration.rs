@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3BucketReplicationConfigurationData {
@@ -62,7 +62,8 @@ impl S3BucketReplicationConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -75,7 +76,7 @@ impl S3BucketReplicationConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -86,12 +87,22 @@ impl S3BucketReplicationConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -101,8 +112,7 @@ impl S3BucketReplicationConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -115,21 +125,27 @@ impl S3BucketReplicationConfiguration {
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(self, v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleEl>>) -> Self {
+    pub fn set_rule(
+        self,
+        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -137,35 +153,50 @@ impl S3BucketReplicationConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token` after provisioning.\n"]
     pub fn token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketReplicationConfigurationRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3BucketReplicationConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3BucketReplicationConfiguration { }
+impl Resource for S3BucketReplicationConfiguration {}
 
 impl ToListMappable for S3BucketReplicationConfiguration {
     type O = ListRef<S3BucketReplicationConfigurationRef>;
@@ -229,10 +260,7 @@ pub struct S3BucketReplicationConfigurationRef {
 
 impl Ref for S3BucketReplicationConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -247,7 +275,10 @@ impl S3BucketReplicationConfigurationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -255,25 +286,36 @@ impl S3BucketReplicationConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.role", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.role", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `token` after provisioning.\n"]
     pub fn token(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.token", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.token", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketReplicationConfigurationRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 }
 
@@ -282,7 +324,7 @@ pub struct S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl {
     status: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl { }
+impl S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl {}
 
 impl ToListMappable for S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl>;
@@ -303,7 +345,9 @@ pub struct BuildS3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl 
 
 impl BuildS3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl {
     pub fn build(self) -> S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl {
-        S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl { status: self.status }
+        S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl {
+            status: self.status,
+        }
     }
 }
 
@@ -313,7 +357,10 @@ pub struct S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationElRef {
 }
 
 impl Ref for S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationElRef {
         S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationElRef {
             shared: shared,
             base: base.to_string(),
@@ -337,10 +384,14 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationElAccessControlTrans
     owner: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl { }
+impl S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl {}
 
-impl ToListMappable for S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl {
-    type O = BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl>;
+impl ToListMappable
+    for S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl
+{
+    type O = BlockAssignable<
+        S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -357,8 +408,12 @@ pub struct BuildS3BucketReplicationConfigurationRuleElDestinationElAccessControl
 }
 
 impl BuildS3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl {
-    pub fn build(self) -> S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl {
-        S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl { owner: self.owner }
+    pub fn build(
+        self,
+    ) -> S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl {
+        S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl {
+            owner: self.owner,
+        }
     }
 }
 
@@ -395,10 +450,14 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigur
     replica_kms_key_id: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl { }
+impl S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl {}
 
-impl ToListMappable for S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl {
-    type O = BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl>;
+impl ToListMappable
+    for S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl
+{
+    type O = BlockAssignable<
+        S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -415,7 +474,9 @@ pub struct BuildS3BucketReplicationConfigurationRuleElDestinationElEncryptionCon
 }
 
 impl BuildS3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl {
-    pub fn build(self) -> S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl {
+    pub fn build(
+        self,
+    ) -> S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl {
         S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl {
             replica_kms_key_id: self.replica_kms_key_id,
         }
@@ -446,7 +507,10 @@ impl S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationE
 
     #[doc = "Get a reference to the value of field `replica_kms_key_id` after provisioning.\n"]
     pub fn replica_kms_key_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.replica_kms_key_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.replica_kms_key_id", self.base),
+        )
     }
 }
 
@@ -455,10 +519,14 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThre
     minutes: PrimField<f64>,
 }
 
-impl S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl { }
+impl S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl {}
 
-impl ToListMappable for S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl {
-    type O = BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl>;
+impl ToListMappable
+    for S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl
+{
+    type O = BlockAssignable<
+        S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -475,8 +543,12 @@ pub struct BuildS3BucketReplicationConfigurationRuleElDestinationElMetricsElEven
 }
 
 impl BuildS3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl {
-    pub fn build(self) -> S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl {
-        S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl { minutes: self.minutes }
+    pub fn build(
+        self,
+    ) -> S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl {
+        S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl {
+            minutes: self.minutes,
+        }
     }
 }
 
@@ -519,7 +591,8 @@ struct S3BucketReplicationConfigurationRuleElDestinationElMetricsElDynamic {
 pub struct S3BucketReplicationConfigurationRuleElDestinationElMetricsEl {
     status: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    event_threshold: Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl>>,
+    event_threshold:
+        Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl>>,
     dynamic: S3BucketReplicationConfigurationRuleElDestinationElMetricsElDynamic,
 }
 
@@ -527,15 +600,19 @@ impl S3BucketReplicationConfigurationRuleElDestinationElMetricsEl {
     #[doc = "Set the field `event_threshold`.\n"]
     pub fn set_event_threshold(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.event_threshold = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.event_threshold = Some(d);
-            },
+            }
         }
         self
     }
@@ -574,7 +651,10 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef {
 }
 
 impl Ref for S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef {
         S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef {
             shared: shared,
             base: base.to_string(),
@@ -595,8 +675,12 @@ impl S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef {
     #[doc = "Get a reference to the value of field `event_threshold` after provisioning.\n"]
     pub fn event_threshold(
         &self,
-    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.event_threshold", self.base))
+    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElMetricsElEventThresholdElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.event_threshold", self.base),
+        )
     }
 }
 
@@ -605,10 +689,11 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElT
     minutes: PrimField<f64>,
 }
 
-impl S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl { }
+impl S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl {}
 
 impl ToListMappable for S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl {
-    type O = BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl>;
+    type O =
+        BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl>;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -625,8 +710,12 @@ pub struct BuildS3BucketReplicationConfigurationRuleElDestinationElReplicationTi
 }
 
 impl BuildS3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl {
-    pub fn build(self) -> S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl {
-        S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl { minutes: self.minutes }
+    pub fn build(
+        self,
+    ) -> S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl {
+        S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl {
+            minutes: self.minutes,
+        }
     }
 }
 
@@ -660,7 +749,9 @@ impl S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeElR
 
 #[derive(Serialize, Default)]
 struct S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElDynamic {
-    time: Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl>>,
+    time: Option<
+        DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl>,
+    >,
 }
 
 #[derive(Serialize)]
@@ -675,15 +766,19 @@ impl S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl {
     #[doc = "Set the field `time`.\n"]
     pub fn set_time(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.time = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.time = Some(d);
-            },
+            }
         }
         self
     }
@@ -744,7 +839,10 @@ impl S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElRef {
     }
 
     #[doc = "Get a reference to the value of field `time` after provisioning.\n"]
-    pub fn time(&self) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeElRef> {
+    pub fn time(
+        &self,
+    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElTimeElRef>
+    {
         ListRef::new(self.shared().clone(), format!("{}.time", self.base))
     }
 }
@@ -758,7 +856,8 @@ struct S3BucketReplicationConfigurationRuleElDestinationElDynamic {
         DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl>,
     >,
     metrics: Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationElMetricsEl>>,
-    replication_time: Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl>>,
+    replication_time:
+        Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl>>,
 }
 
 #[derive(Serialize)]
@@ -769,15 +868,16 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     storage_class: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    access_control_translation: Option<
-        Vec<S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl>,
-    >,
+    access_control_translation:
+        Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    encryption_configuration: Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl>>,
+    encryption_configuration:
+        Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     metrics: Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElMetricsEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    replication_time: Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl>>,
+    replication_time:
+        Option<Vec<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl>>,
     dynamic: S3BucketReplicationConfigurationRuleElDestinationElDynamic,
 }
 
@@ -797,15 +897,19 @@ impl S3BucketReplicationConfigurationRuleElDestinationEl {
     #[doc = "Set the field `access_control_translation`.\n"]
     pub fn set_access_control_translation(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.access_control_translation = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.access_control_translation = Some(d);
-            },
+            }
         }
         self
     }
@@ -813,15 +917,19 @@ impl S3BucketReplicationConfigurationRuleElDestinationEl {
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.encryption_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.encryption_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -834,10 +942,10 @@ impl S3BucketReplicationConfigurationRuleElDestinationEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metrics = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metrics = Some(d);
-            },
+            }
         }
         self
     }
@@ -845,15 +953,17 @@ impl S3BucketReplicationConfigurationRuleElDestinationEl {
     #[doc = "Set the field `replication_time`.\n"]
     pub fn set_replication_time(
         mut self,
-        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl>>,
+        v: impl Into<
+            BlockAssignable<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.replication_time = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.replication_time = Some(d);
-            },
+            }
         }
         self
     }
@@ -897,7 +1007,10 @@ pub struct S3BucketReplicationConfigurationRuleElDestinationElRef {
 }
 
 impl Ref for S3BucketReplicationConfigurationRuleElDestinationElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationRuleElDestinationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketReplicationConfigurationRuleElDestinationElRef {
         S3BucketReplicationConfigurationRuleElDestinationElRef {
             shared: shared,
             base: base.to_string(),
@@ -922,31 +1035,49 @@ impl S3BucketReplicationConfigurationRuleElDestinationElRef {
 
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.storage_class", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.storage_class", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `access_control_translation` after provisioning.\n"]
     pub fn access_control_translation(
         &self,
-    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.access_control_translation", self.base))
+    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElAccessControlTranslationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.access_control_translation", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
-    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.encryption_configuration", self.base))
+    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElEncryptionConfigurationElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.encryption_configuration", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `metrics` after provisioning.\n"]
-    pub fn metrics(&self) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef> {
+    pub fn metrics(
+        &self,
+    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElMetricsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.metrics", self.base))
     }
 
     #[doc = "Get a reference to the value of field `replication_time` after provisioning.\n"]
-    pub fn replication_time(&self) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.replication_time", self.base))
+    pub fn replication_time(
+        &self,
+    ) -> ListRef<S3BucketReplicationConfigurationRuleElDestinationElReplicationTimeElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.replication_time", self.base),
+        )
     }
 }
 
@@ -955,7 +1086,7 @@ pub struct S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl {
     status: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl { }
+impl S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl {}
 
 impl ToListMappable for S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl>;
@@ -976,7 +1107,9 @@ pub struct BuildS3BucketReplicationConfigurationRuleElExistingObjectReplicationE
 
 impl BuildS3BucketReplicationConfigurationRuleElExistingObjectReplicationEl {
     pub fn build(self) -> S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl {
-        S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl { status: self.status }
+        S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl {
+            status: self.status,
+        }
     }
 }
 
@@ -1059,7 +1192,10 @@ pub struct S3BucketReplicationConfigurationRuleElFilterElAndElRef {
 }
 
 impl Ref for S3BucketReplicationConfigurationRuleElFilterElAndElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationRuleElFilterElAndElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketReplicationConfigurationRuleElFilterElAndElRef {
         S3BucketReplicationConfigurationRuleElFilterElAndElRef {
             shared: shared,
             base: base.to_string(),
@@ -1089,7 +1225,7 @@ pub struct S3BucketReplicationConfigurationRuleElFilterElTagEl {
     value: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElFilterElTagEl { }
+impl S3BucketReplicationConfigurationRuleElFilterElTagEl {}
 
 impl ToListMappable for S3BucketReplicationConfigurationRuleElFilterElTagEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationRuleElFilterElTagEl>;
@@ -1125,7 +1261,10 @@ pub struct S3BucketReplicationConfigurationRuleElFilterElTagElRef {
 }
 
 impl Ref for S3BucketReplicationConfigurationRuleElFilterElTagElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationRuleElFilterElTagElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketReplicationConfigurationRuleElFilterElTagElRef {
         S3BucketReplicationConfigurationRuleElFilterElTagElRef {
             shared: shared,
             base: base.to_string(),
@@ -1181,10 +1320,10 @@ impl S3BucketReplicationConfigurationRuleElFilterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.and = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.and = Some(d);
-            },
+            }
         }
         self
     }
@@ -1197,10 +1336,10 @@ impl S3BucketReplicationConfigurationRuleElFilterEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.tag = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.tag = Some(d);
-            },
+            }
         }
         self
     }
@@ -1271,10 +1410,14 @@ pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplic
     status: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl { }
+impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {}
 
-impl ToListMappable for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {
-    type O = BlockAssignable<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl>;
+impl ToListMappable
+    for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl
+{
+    type O = BlockAssignable<
+        S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1285,27 +1428,36 @@ impl ToListMappable for S3BucketReplicationConfigurationRuleElSourceSelectionCri
     }
 }
 
-pub struct BuildS3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {
+pub struct BuildS3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl
+{
     #[doc = ""]
     pub status: PrimField<String>,
 }
 
 impl BuildS3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {
-    pub fn build(self) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {
-        S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl { status: self.status }
+    pub fn build(
+        self,
+    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {
+        S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl {
+            status: self.status,
+        }
     }
 }
 
-pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef {
+pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef {
+impl Ref
+    for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef {
+    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef
+    {
         S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1329,11 +1481,14 @@ pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKms
     status: PrimField<String>,
 }
 
-impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl { }
+impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {}
 
-impl ToListMappable for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {
-    type O =
-        BlockAssignable<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl>;
+impl ToListMappable
+    for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
+{
+    type O = BlockAssignable<
+        S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -1344,29 +1499,37 @@ impl ToListMappable for S3BucketReplicationConfigurationRuleElSourceSelectionCri
     }
 }
 
-pub struct BuildS3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {
+pub struct BuildS3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
+{
     #[doc = ""]
     pub status: PrimField<String>,
 }
 
 impl BuildS3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {
-    pub fn build(self) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {
+    pub fn build(
+        self,
+    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
+    {
         S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {
             status: self.status,
         }
     }
 }
 
-pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
+pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef
+{
     shared: StackShared,
     base: String,
 }
 
-impl Ref for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
+impl Ref
+    for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef
+{
     fn new(
         shared: StackShared,
         base: String,
-    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
+    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef
+    {
         S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
             shared: shared,
             base: base.to_string(),
@@ -1388,10 +1551,14 @@ impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryp
 #[derive(Serialize, Default)]
 struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElDynamic {
     replica_modifications: Option<
-        DynamicBlock<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl>,
+        DynamicBlock<
+            S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsEl,
+        >,
     >,
     sse_kms_encrypted_objects: Option<
-        DynamicBlock<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl>,
+        DynamicBlock<
+            S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl,
+        >,
     >,
 }
 
@@ -1403,7 +1570,9 @@ pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl {
     >,
     #[serde(skip_serializing_if = "Option::is_none")]
     sse_kms_encrypted_objects: Option<
-        Vec<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl>,
+        Vec<
+            S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl,
+        >,
     >,
     dynamic: S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElDynamic,
 }
@@ -1424,10 +1593,10 @@ impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.replica_modifications = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.replica_modifications = Some(d);
-            },
+            }
         }
         self
     }
@@ -1447,10 +1616,10 @@ impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.sse_kms_encrypted_objects = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.sse_kms_encrypted_objects = Some(d);
-            },
+            }
         }
         self
     }
@@ -1486,7 +1655,10 @@ pub struct S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef {
 }
 
 impl Ref for S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef {
-    fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef {
         S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef {
             shared: shared,
             base: base.to_string(),
@@ -1502,29 +1674,38 @@ impl S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef {
     #[doc = "Get a reference to the value of field `replica_modifications` after provisioning.\n"]
     pub fn replica_modifications(
         &self,
-    ) -> ListRef<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.replica_modifications", self.base))
+    ) -> ListRef<
+        S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElReplicaModificationsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.replica_modifications", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sse_kms_encrypted_objects` after provisioning.\n"]
     pub fn sse_kms_encrypted_objects(
         &self,
-    ) -> ListRef<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.sse_kms_encrypted_objects", self.base))
+    ) -> ListRef<
+        S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.sse_kms_encrypted_objects", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct S3BucketReplicationConfigurationRuleElDynamic {
-    delete_marker_replication: Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl>>,
+    delete_marker_replication:
+        Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl>>,
     destination: Option<DynamicBlock<S3BucketReplicationConfigurationRuleElDestinationEl>>,
-    existing_object_replication: Option<
-        DynamicBlock<S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl>,
-    >,
+    existing_object_replication:
+        Option<DynamicBlock<S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl>>,
     filter: Option<DynamicBlock<S3BucketReplicationConfigurationRuleElFilterEl>>,
-    source_selection_criteria: Option<
-        DynamicBlock<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl>,
-    >,
+    source_selection_criteria:
+        Option<DynamicBlock<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl>>,
 }
 
 #[derive(Serialize)]
@@ -1537,15 +1718,18 @@ pub struct S3BucketReplicationConfigurationRuleEl {
     priority: Option<PrimField<f64>>,
     status: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    delete_marker_replication: Option<Vec<S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl>>,
+    delete_marker_replication:
+        Option<Vec<S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     destination: Option<Vec<S3BucketReplicationConfigurationRuleElDestinationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    existing_object_replication: Option<Vec<S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl>>,
+    existing_object_replication:
+        Option<Vec<S3BucketReplicationConfigurationRuleElExistingObjectReplicationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     filter: Option<Vec<S3BucketReplicationConfigurationRuleElFilterEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source_selection_criteria: Option<Vec<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl>>,
+    source_selection_criteria:
+        Option<Vec<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaEl>>,
     dynamic: S3BucketReplicationConfigurationRuleElDynamic,
 }
 
@@ -1576,10 +1760,10 @@ impl S3BucketReplicationConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.delete_marker_replication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.delete_marker_replication = Some(d);
-            },
+            }
         }
         self
     }
@@ -1592,10 +1776,10 @@ impl S3BucketReplicationConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.destination = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.destination = Some(d);
-            },
+            }
         }
         self
     }
@@ -1608,23 +1792,26 @@ impl S3BucketReplicationConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.existing_object_replication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.existing_object_replication = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `filter`.\n"]
-    pub fn set_filter(mut self, v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElFilterEl>>) -> Self {
+    pub fn set_filter(
+        mut self,
+        v: impl Into<BlockAssignable<S3BucketReplicationConfigurationRuleElFilterEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -1637,10 +1824,10 @@ impl S3BucketReplicationConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.source_selection_criteria = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.source_selection_criteria = Some(d);
-            },
+            }
         }
         self
     }
@@ -1723,7 +1910,10 @@ impl S3BucketReplicationConfigurationRuleElRef {
     pub fn delete_marker_replication(
         &self,
     ) -> ListRef<S3BucketReplicationConfigurationRuleElDeleteMarkerReplicationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.delete_marker_replication", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.delete_marker_replication", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
@@ -1735,7 +1925,10 @@ impl S3BucketReplicationConfigurationRuleElRef {
     pub fn existing_object_replication(
         &self,
     ) -> ListRef<S3BucketReplicationConfigurationRuleElExistingObjectReplicationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.existing_object_replication", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.existing_object_replication", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
@@ -1747,7 +1940,10 @@ impl S3BucketReplicationConfigurationRuleElRef {
     pub fn source_selection_criteria(
         &self,
     ) -> ListRef<S3BucketReplicationConfigurationRuleElSourceSelectionCriteriaElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.source_selection_criteria", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.source_selection_criteria", self.base),
+        )
     }
 }
 

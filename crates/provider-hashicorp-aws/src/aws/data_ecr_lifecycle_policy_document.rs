@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataEcrLifecyclePolicyDocumentData {
@@ -42,36 +42,49 @@ impl DataEcrLifecyclePolicyDocument {
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(self, v: impl Into<BlockAssignable<DataEcrLifecyclePolicyDocumentRuleEl>>) -> Self {
+    pub fn set_rule(
+        self,
+        v: impl Into<BlockAssignable<DataEcrLifecyclePolicyDocumentRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<DataEcrLifecyclePolicyDocumentRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataEcrLifecyclePolicyDocument {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataEcrLifecyclePolicyDocument { }
+impl Datasource for DataEcrLifecyclePolicyDocument {}
 
 impl ToListMappable for DataEcrLifecyclePolicyDocument {
     type O = ListRef<DataEcrLifecyclePolicyDocumentRef>;
@@ -125,10 +138,7 @@ pub struct DataEcrLifecyclePolicyDocumentRef {
 
 impl Ref for DataEcrLifecyclePolicyDocumentRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -143,12 +153,18 @@ impl DataEcrLifecyclePolicyDocumentRef {
 
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.json", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.json", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<DataEcrLifecyclePolicyDocumentRuleElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.rule", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.rule", self.extract_ref()),
+        )
     }
 }
 
@@ -158,7 +174,7 @@ pub struct DataEcrLifecyclePolicyDocumentRuleElActionEl {
     type_: PrimField<String>,
 }
 
-impl DataEcrLifecyclePolicyDocumentRuleElActionEl { }
+impl DataEcrLifecyclePolicyDocumentRuleElActionEl {}
 
 impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleElActionEl {
     type O = BlockAssignable<DataEcrLifecyclePolicyDocumentRuleElActionEl>;
@@ -281,7 +297,10 @@ pub struct DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
 }
 
 impl Ref for DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
-    fn new(shared: StackShared, base: String) -> DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
         DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
             shared: shared,
             base: base.to_string(),
@@ -311,12 +330,18 @@ impl DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
 
     #[doc = "Get a reference to the value of field `tag_pattern_list` after provisioning.\n"]
     pub fn tag_pattern_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_pattern_list", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_pattern_list", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_prefix_list` after provisioning.\n"]
     pub fn tag_prefix_list(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.tag_prefix_list", self.base))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.tag_prefix_list", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tag_status` after provisioning.\n"]
@@ -351,14 +376,17 @@ impl DataEcrLifecyclePolicyDocumentRuleEl {
     }
 
     #[doc = "Set the field `action`.\n"]
-    pub fn set_action(mut self, v: impl Into<BlockAssignable<DataEcrLifecyclePolicyDocumentRuleElActionEl>>) -> Self {
+    pub fn set_action(
+        mut self,
+        v: impl Into<BlockAssignable<DataEcrLifecyclePolicyDocumentRuleElActionEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.action = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.action = Some(d);
-            },
+            }
         }
         self
     }
@@ -371,10 +399,10 @@ impl DataEcrLifecyclePolicyDocumentRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.selection = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.selection = Some(d);
-            },
+            }
         }
         self
     }

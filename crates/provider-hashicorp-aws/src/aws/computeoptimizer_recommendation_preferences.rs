@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct ComputeoptimizerRecommendationPreferencesData {
@@ -26,13 +26,15 @@ struct ComputeoptimizerRecommendationPreferencesData {
     #[serde(skip_serializing_if = "Option::is_none")]
     savings_estimation_mode: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    external_metrics_preference: Option<Vec<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>>,
+    external_metrics_preference:
+        Option<Vec<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     preferred_resource: Option<Vec<ComputeoptimizerRecommendationPreferencesPreferredResourceEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     scope: Option<Vec<ComputeoptimizerRecommendationPreferencesScopeEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    utilization_preference: Option<Vec<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl>>,
+    utilization_preference:
+        Option<Vec<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl>>,
     dynamic: ComputeoptimizerRecommendationPreferencesDynamic,
 }
 
@@ -43,7 +45,9 @@ struct ComputeoptimizerRecommendationPreferences_ {
 }
 
 #[derive(Clone)]
-pub struct ComputeoptimizerRecommendationPreferences(Rc<ComputeoptimizerRecommendationPreferences_>);
+pub struct ComputeoptimizerRecommendationPreferences(
+    Rc<ComputeoptimizerRecommendationPreferences_>,
+);
 
 impl ComputeoptimizerRecommendationPreferences {
     fn shared(&self) -> &StackShared {
@@ -71,7 +75,8 @@ impl ComputeoptimizerRecommendationPreferences {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -84,7 +89,7 @@ impl ComputeoptimizerRecommendationPreferences {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -95,12 +100,22 @@ impl ComputeoptimizerRecommendationPreferences {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -122,8 +137,7 @@ impl ComputeoptimizerRecommendationPreferences {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -138,15 +152,17 @@ impl ComputeoptimizerRecommendationPreferences {
     #[doc = "Set the field `external_metrics_preference`.\n"]
     pub fn set_external_metrics_preference(
         self,
-        v: impl Into<BlockAssignable<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>>,
+        v: impl Into<
+            BlockAssignable<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().external_metrics_preference = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.external_metrics_preference = Some(d);
-            },
+            }
         }
         self
     }
@@ -159,23 +175,26 @@ impl ComputeoptimizerRecommendationPreferences {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().preferred_resource = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.preferred_resource = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Set the field `scope`.\n"]
-    pub fn set_scope(self, v: impl Into<BlockAssignable<ComputeoptimizerRecommendationPreferencesScopeEl>>) -> Self {
+    pub fn set_scope(
+        self,
+        v: impl Into<BlockAssignable<ComputeoptimizerRecommendationPreferencesScopeEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().scope = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.scope = Some(d);
-            },
+            }
         }
         self
     }
@@ -188,17 +207,20 @@ impl ComputeoptimizerRecommendationPreferences {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().utilization_preference = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.utilization_preference = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `enhanced_infrastructure_metrics` after provisioning.\n"]
     pub fn enhanced_infrastructure_metrics(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enhanced_infrastructure_metrics", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enhanced_infrastructure_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -208,60 +230,94 @@ impl ComputeoptimizerRecommendationPreferences {
 
     #[doc = "Get a reference to the value of field `inferred_workload_types` after provisioning.\n"]
     pub fn inferred_workload_types(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inferred_workload_types", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inferred_workload_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `look_back_period` after provisioning.\n"]
     pub fn look_back_period(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.look_back_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.look_back_period", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `savings_estimation_mode` after provisioning.\n"]
     pub fn savings_estimation_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.savings_estimation_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.savings_estimation_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_metrics_preference` after provisioning.\n"]
     pub fn external_metrics_preference(
         &self,
     ) -> ListRef<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.external_metrics_preference", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.external_metrics_preference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_resource` after provisioning.\n"]
-    pub fn preferred_resource(&self) -> ListRef<ComputeoptimizerRecommendationPreferencesPreferredResourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.preferred_resource", self.extract_ref()))
+    pub fn preferred_resource(
+        &self,
+    ) -> ListRef<ComputeoptimizerRecommendationPreferencesPreferredResourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.preferred_resource", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<ComputeoptimizerRecommendationPreferencesScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `utilization_preference` after provisioning.\n"]
-    pub fn utilization_preference(&self) -> ListRef<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.utilization_preference", self.extract_ref()))
+    pub fn utilization_preference(
+        &self,
+    ) -> ListRef<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.utilization_preference", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for ComputeoptimizerRecommendationPreferences {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for ComputeoptimizerRecommendationPreferences { }
+impl Resource for ComputeoptimizerRecommendationPreferences {}
 
 impl ToListMappable for ComputeoptimizerRecommendationPreferences {
     type O = ListRef<ComputeoptimizerRecommendationPreferencesRef>;
@@ -294,27 +350,29 @@ pub struct BuildComputeoptimizerRecommendationPreferences {
 
 impl BuildComputeoptimizerRecommendationPreferences {
     pub fn build(self, stack: &mut Stack) -> ComputeoptimizerRecommendationPreferences {
-        let out = ComputeoptimizerRecommendationPreferences(Rc::new(ComputeoptimizerRecommendationPreferences_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(ComputeoptimizerRecommendationPreferencesData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                enhanced_infrastructure_metrics: core::default::Default::default(),
-                inferred_workload_types: core::default::Default::default(),
-                look_back_period: core::default::Default::default(),
-                region: core::default::Default::default(),
-                resource_type: self.resource_type,
-                savings_estimation_mode: core::default::Default::default(),
-                external_metrics_preference: core::default::Default::default(),
-                preferred_resource: core::default::Default::default(),
-                scope: core::default::Default::default(),
-                utilization_preference: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = ComputeoptimizerRecommendationPreferences(Rc::new(
+            ComputeoptimizerRecommendationPreferences_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(ComputeoptimizerRecommendationPreferencesData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    enhanced_infrastructure_metrics: core::default::Default::default(),
+                    inferred_workload_types: core::default::Default::default(),
+                    look_back_period: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    resource_type: self.resource_type,
+                    savings_estimation_mode: core::default::Default::default(),
+                    external_metrics_preference: core::default::Default::default(),
+                    preferred_resource: core::default::Default::default(),
+                    scope: core::default::Default::default(),
+                    utilization_preference: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -327,10 +385,7 @@ pub struct ComputeoptimizerRecommendationPreferencesRef {
 
 impl Ref for ComputeoptimizerRecommendationPreferencesRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -345,7 +400,10 @@ impl ComputeoptimizerRecommendationPreferencesRef {
 
     #[doc = "Get a reference to the value of field `enhanced_infrastructure_metrics` after provisioning.\n"]
     pub fn enhanced_infrastructure_metrics(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.enhanced_infrastructure_metrics", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.enhanced_infrastructure_metrics", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -355,50 +413,80 @@ impl ComputeoptimizerRecommendationPreferencesRef {
 
     #[doc = "Get a reference to the value of field `inferred_workload_types` after provisioning.\n"]
     pub fn inferred_workload_types(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.inferred_workload_types", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.inferred_workload_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `look_back_period` after provisioning.\n"]
     pub fn look_back_period(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.look_back_period", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.look_back_period", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.resource_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.resource_type", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `savings_estimation_mode` after provisioning.\n"]
     pub fn savings_estimation_mode(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.savings_estimation_mode", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.savings_estimation_mode", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `external_metrics_preference` after provisioning.\n"]
     pub fn external_metrics_preference(
         &self,
     ) -> ListRef<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.external_metrics_preference", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.external_metrics_preference", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `preferred_resource` after provisioning.\n"]
-    pub fn preferred_resource(&self) -> ListRef<ComputeoptimizerRecommendationPreferencesPreferredResourceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.preferred_resource", self.extract_ref()))
+    pub fn preferred_resource(
+        &self,
+    ) -> ListRef<ComputeoptimizerRecommendationPreferencesPreferredResourceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.preferred_resource", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<ComputeoptimizerRecommendationPreferencesScopeElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.scope", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.scope", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `utilization_preference` after provisioning.\n"]
-    pub fn utilization_preference(&self) -> ListRef<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.utilization_preference", self.extract_ref()))
+    pub fn utilization_preference(
+        &self,
+    ) -> ListRef<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.utilization_preference", self.extract_ref()),
+        )
     }
 }
 
@@ -407,7 +495,7 @@ pub struct ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl 
     source: PrimField<String>,
 }
 
-impl ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl { }
+impl ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl {}
 
 impl ToListMappable for ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl {
     type O = BlockAssignable<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>;
@@ -428,7 +516,9 @@ pub struct BuildComputeoptimizerRecommendationPreferencesExternalMetricsPreferen
 
 impl BuildComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl {
     pub fn build(self) -> ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl {
-        ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl { source: self.source }
+        ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl {
+            source: self.source,
+        }
     }
 }
 
@@ -516,7 +606,10 @@ pub struct ComputeoptimizerRecommendationPreferencesPreferredResourceElRef {
 }
 
 impl Ref for ComputeoptimizerRecommendationPreferencesPreferredResourceElRef {
-    fn new(shared: StackShared, base: String) -> ComputeoptimizerRecommendationPreferencesPreferredResourceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComputeoptimizerRecommendationPreferencesPreferredResourceElRef {
         ComputeoptimizerRecommendationPreferencesPreferredResourceElRef {
             shared: shared,
             base: base.to_string(),
@@ -551,7 +644,7 @@ pub struct ComputeoptimizerRecommendationPreferencesScopeEl {
     value: PrimField<String>,
 }
 
-impl ComputeoptimizerRecommendationPreferencesScopeEl { }
+impl ComputeoptimizerRecommendationPreferencesScopeEl {}
 
 impl ToListMappable for ComputeoptimizerRecommendationPreferencesScopeEl {
     type O = BlockAssignable<ComputeoptimizerRecommendationPreferencesScopeEl>;
@@ -587,7 +680,10 @@ pub struct ComputeoptimizerRecommendationPreferencesScopeElRef {
 }
 
 impl Ref for ComputeoptimizerRecommendationPreferencesScopeElRef {
-    fn new(shared: StackShared, base: String) -> ComputeoptimizerRecommendationPreferencesScopeElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComputeoptimizerRecommendationPreferencesScopeElRef {
         ComputeoptimizerRecommendationPreferencesScopeElRef {
             shared: shared,
             base: base.to_string(),
@@ -626,8 +722,12 @@ impl ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParam
     }
 }
 
-impl ToListMappable for ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl {
-    type O = BlockAssignable<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl>;
+impl ToListMappable
+    for ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl
+{
+    type O = BlockAssignable<
+        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -644,7 +744,9 @@ pub struct BuildComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl
 }
 
 impl BuildComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl {
-    pub fn build(self) -> ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl {
+    pub fn build(
+        self,
+    ) -> ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl {
         ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl {
             headroom: self.headroom,
             threshold: core::default::Default::default(),
@@ -688,7 +790,9 @@ impl ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParam
 #[derive(Serialize, Default)]
 struct ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElDynamic {
     metric_parameters: Option<
-        DynamicBlock<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl>,
+        DynamicBlock<
+            ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl,
+        >,
     >,
 }
 
@@ -696,7 +800,9 @@ struct ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElDynamic {
 pub struct ComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl {
     metric_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    metric_parameters: Option<Vec<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl>>,
+    metric_parameters: Option<
+        Vec<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl>,
+    >,
     dynamic: ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElDynamic,
 }
 
@@ -704,22 +810,19 @@ impl ComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl {
     #[doc = "Set the field `metric_parameters`.\n"]
     pub fn set_metric_parameters(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl,
-                        >,
-                    >,
+        v: impl Into<
+            BlockAssignable<
+                ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.metric_parameters = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.metric_parameters = Some(d);
-            },
+            }
         }
         self
     }
@@ -758,7 +861,10 @@ pub struct ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef {
 }
 
 impl Ref for ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef {
-    fn new(shared: StackShared, base: String) -> ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef {
         ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef {
             shared: shared,
             base: base.to_string(),
@@ -779,17 +885,23 @@ impl ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElRef {
     #[doc = "Get a reference to the value of field `metric_parameters` after provisioning.\n"]
     pub fn metric_parameters(
         &self,
-    ) -> ListRef<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.metric_parameters", self.base))
+    ) -> ListRef<
+        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceElMetricParametersElRef,
+    > {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.metric_parameters", self.base),
+        )
     }
 }
 
 #[derive(Serialize, Default)]
 struct ComputeoptimizerRecommendationPreferencesDynamic {
-    external_metrics_preference: Option<
-        DynamicBlock<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>,
-    >,
-    preferred_resource: Option<DynamicBlock<ComputeoptimizerRecommendationPreferencesPreferredResourceEl>>,
+    external_metrics_preference:
+        Option<DynamicBlock<ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceEl>>,
+    preferred_resource:
+        Option<DynamicBlock<ComputeoptimizerRecommendationPreferencesPreferredResourceEl>>,
     scope: Option<DynamicBlock<ComputeoptimizerRecommendationPreferencesScopeEl>>,
-    utilization_preference: Option<DynamicBlock<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl>>,
+    utilization_preference:
+        Option<DynamicBlock<ComputeoptimizerRecommendationPreferencesUtilizationPreferenceEl>>,
 }

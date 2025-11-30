@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct Apigatewayv2DomainNameData {
@@ -67,7 +67,8 @@ impl Apigatewayv2DomainName {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -80,7 +81,7 @@ impl Apigatewayv2DomainName {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -91,12 +92,22 @@ impl Apigatewayv2DomainName {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -106,8 +117,7 @@ impl Apigatewayv2DomainName {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -133,10 +143,10 @@ impl Apigatewayv2DomainName {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().domain_name_configuration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.domain_name_configuration = Some(d);
-            },
+            }
         }
         self
     }
@@ -149,10 +159,10 @@ impl Apigatewayv2DomainName {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().mutual_tls_authentication = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.mutual_tls_authentication = Some(d);
-            },
+            }
         }
         self
     }
@@ -165,7 +175,10 @@ impl Apigatewayv2DomainName {
 
     #[doc = "Get a reference to the value of field `api_mapping_selection_expression` after provisioning.\n"]
     pub fn api_mapping_selection_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_mapping_selection_expression", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_mapping_selection_expression", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -175,7 +188,10 @@ impl Apigatewayv2DomainName {
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -183,45 +199,70 @@ impl Apigatewayv2DomainName {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name_configuration` after provisioning.\n"]
-    pub fn domain_name_configuration(&self) -> ListRef<Apigatewayv2DomainNameDomainNameConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.domain_name_configuration", self.extract_ref()))
+    pub fn domain_name_configuration(
+        &self,
+    ) -> ListRef<Apigatewayv2DomainNameDomainNameConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.domain_name_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutual_tls_authentication` after provisioning.\n"]
-    pub fn mutual_tls_authentication(&self) -> ListRef<Apigatewayv2DomainNameMutualTlsAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mutual_tls_authentication", self.extract_ref()))
+    pub fn mutual_tls_authentication(
+        &self,
+    ) -> ListRef<Apigatewayv2DomainNameMutualTlsAuthenticationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mutual_tls_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Apigatewayv2DomainNameTimeoutsElRef {
-        Apigatewayv2DomainNameTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Apigatewayv2DomainNameTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for Apigatewayv2DomainName {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for Apigatewayv2DomainName { }
+impl Resource for Apigatewayv2DomainName {}
 
 impl ToListMappable for Apigatewayv2DomainName {
     type O = ListRef<Apigatewayv2DomainNameRef>;
@@ -285,10 +326,7 @@ pub struct Apigatewayv2DomainNameRef {
 
 impl Ref for Apigatewayv2DomainNameRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -303,7 +341,10 @@ impl Apigatewayv2DomainNameRef {
 
     #[doc = "Get a reference to the value of field `api_mapping_selection_expression` after provisioning.\n"]
     pub fn api_mapping_selection_expression(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.api_mapping_selection_expression", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.api_mapping_selection_expression", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
@@ -313,7 +354,10 @@ impl Apigatewayv2DomainNameRef {
 
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -321,35 +365,56 @@ impl Apigatewayv2DomainNameRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags_all", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags_all", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `domain_name_configuration` after provisioning.\n"]
-    pub fn domain_name_configuration(&self) -> ListRef<Apigatewayv2DomainNameDomainNameConfigurationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.domain_name_configuration", self.extract_ref()))
+    pub fn domain_name_configuration(
+        &self,
+    ) -> ListRef<Apigatewayv2DomainNameDomainNameConfigurationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.domain_name_configuration", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `mutual_tls_authentication` after provisioning.\n"]
-    pub fn mutual_tls_authentication(&self) -> ListRef<Apigatewayv2DomainNameMutualTlsAuthenticationElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.mutual_tls_authentication", self.extract_ref()))
+    pub fn mutual_tls_authentication(
+        &self,
+    ) -> ListRef<Apigatewayv2DomainNameMutualTlsAuthenticationElRef> {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.mutual_tls_authentication", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Apigatewayv2DomainNameTimeoutsElRef {
-        Apigatewayv2DomainNameTimeoutsElRef::new(self.shared().clone(), format!("{}.timeouts", self.extract_ref()))
+        Apigatewayv2DomainNameTimeoutsElRef::new(
+            self.shared().clone(),
+            format!("{}.timeouts", self.extract_ref()),
+        )
     }
 }
 
@@ -372,7 +437,10 @@ impl Apigatewayv2DomainNameDomainNameConfigurationEl {
     }
 
     #[doc = "Set the field `ownership_verification_certificate_arn`.\n"]
-    pub fn set_ownership_verification_certificate_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
+    pub fn set_ownership_verification_certificate_arn(
+        mut self,
+        v: impl Into<PrimField<String>>,
+    ) -> Self {
         self.ownership_verification_certificate_arn = Some(v.into());
         self
     }
@@ -417,7 +485,10 @@ pub struct Apigatewayv2DomainNameDomainNameConfigurationElRef {
 }
 
 impl Ref for Apigatewayv2DomainNameDomainNameConfigurationElRef {
-    fn new(shared: StackShared, base: String) -> Apigatewayv2DomainNameDomainNameConfigurationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Apigatewayv2DomainNameDomainNameConfigurationElRef {
         Apigatewayv2DomainNameDomainNameConfigurationElRef {
             shared: shared,
             base: base.to_string(),
@@ -432,37 +503,58 @@ impl Apigatewayv2DomainNameDomainNameConfigurationElRef {
 
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `endpoint_type` after provisioning.\n"]
     pub fn endpoint_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.endpoint_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.endpoint_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.hosted_zone_id", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.hosted_zone_id", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ip_address_type", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ip_address_type", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `ownership_verification_certificate_arn` after provisioning.\n"]
     pub fn ownership_verification_certificate_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.ownership_verification_certificate_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.ownership_verification_certificate_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_policy` after provisioning.\n"]
     pub fn security_policy(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.security_policy", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.security_policy", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `target_domain_name` after provisioning.\n"]
     pub fn target_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_domain_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.target_domain_name", self.base),
+        )
     }
 }
 
@@ -513,7 +605,10 @@ pub struct Apigatewayv2DomainNameMutualTlsAuthenticationElRef {
 }
 
 impl Ref for Apigatewayv2DomainNameMutualTlsAuthenticationElRef {
-    fn new(shared: StackShared, base: String) -> Apigatewayv2DomainNameMutualTlsAuthenticationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> Apigatewayv2DomainNameMutualTlsAuthenticationElRef {
         Apigatewayv2DomainNameMutualTlsAuthenticationElRef {
             shared: shared,
             base: base.to_string(),
@@ -528,12 +623,18 @@ impl Apigatewayv2DomainNameMutualTlsAuthenticationElRef {
 
     #[doc = "Get a reference to the value of field `truststore_uri` after provisioning.\n"]
     pub fn truststore_uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.truststore_uri", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.truststore_uri", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `truststore_version` after provisioning.\n"]
     pub fn truststore_version(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.truststore_version", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.truststore_version", self.base),
+        )
     }
 }
 
@@ -614,6 +715,8 @@ impl Apigatewayv2DomainNameTimeoutsElRef {
 
 #[derive(Serialize, Default)]
 struct Apigatewayv2DomainNameDynamic {
-    domain_name_configuration: Option<DynamicBlock<Apigatewayv2DomainNameDomainNameConfigurationEl>>,
-    mutual_tls_authentication: Option<DynamicBlock<Apigatewayv2DomainNameMutualTlsAuthenticationEl>>,
+    domain_name_configuration:
+        Option<DynamicBlock<Apigatewayv2DomainNameDomainNameConfigurationEl>>,
+    mutual_tls_authentication:
+        Option<DynamicBlock<Apigatewayv2DomainNameMutualTlsAuthenticationEl>>,
 }

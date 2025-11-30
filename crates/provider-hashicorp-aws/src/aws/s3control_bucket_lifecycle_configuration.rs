@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct S3controlBucketLifecycleConfigurationData {
@@ -59,7 +59,8 @@ impl S3controlBucketLifecycleConfiguration {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -72,7 +73,7 @@ impl S3controlBucketLifecycleConfiguration {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -83,12 +84,22 @@ impl S3controlBucketLifecycleConfiguration {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
@@ -98,29 +109,34 @@ impl S3controlBucketLifecycleConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
 
     #[doc = "Set the field `rule`.\n"]
-    pub fn set_rule(self, v: impl Into<BlockAssignable<S3controlBucketLifecycleConfigurationRuleEl>>) -> Self {
+    pub fn set_rule(
+        self,
+        v: impl Into<BlockAssignable<S3controlBucketLifecycleConfigurationRuleEl>>,
+    ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.0.data.borrow_mut().rule = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.0.data.borrow_mut().dynamic.rule = Some(d);
-            },
+            }
         }
         self
     }
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -128,20 +144,26 @@ impl S3controlBucketLifecycleConfiguration {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for S3controlBucketLifecycleConfiguration {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for S3controlBucketLifecycleConfiguration { }
+impl Resource for S3controlBucketLifecycleConfiguration {}
 
 impl ToListMappable for S3controlBucketLifecycleConfiguration {
     type O = ListRef<S3controlBucketLifecycleConfigurationRef>;
@@ -174,21 +196,23 @@ pub struct BuildS3controlBucketLifecycleConfiguration {
 
 impl BuildS3controlBucketLifecycleConfiguration {
     pub fn build(self, stack: &mut Stack) -> S3controlBucketLifecycleConfiguration {
-        let out = S3controlBucketLifecycleConfiguration(Rc::new(S3controlBucketLifecycleConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(S3controlBucketLifecycleConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                lifecycle: core::default::Default::default(),
-                for_each: None,
-                bucket: self.bucket,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                rule: core::default::Default::default(),
-                dynamic: Default::default(),
-            }),
-        }));
+        let out = S3controlBucketLifecycleConfiguration(Rc::new(
+            S3controlBucketLifecycleConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(S3controlBucketLifecycleConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    lifecycle: core::default::Default::default(),
+                    for_each: None,
+                    bucket: self.bucket,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    rule: core::default::Default::default(),
+                    dynamic: Default::default(),
+                }),
+            },
+        ));
         stack.add_resource(out.0.clone());
         out
     }
@@ -201,10 +225,7 @@ pub struct S3controlBucketLifecycleConfigurationRef {
 
 impl Ref for S3controlBucketLifecycleConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -219,7 +240,10 @@ impl S3controlBucketLifecycleConfigurationRef {
 
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.bucket", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -227,10 +251,12 @@ impl S3controlBucketLifecycleConfigurationRef {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 }
 
@@ -239,10 +265,14 @@ pub struct S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUp
     days_after_initiation: PrimField<f64>,
 }
 
-impl S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl { }
+impl S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl {}
 
-impl ToListMappable for S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl {
-    type O = BlockAssignable<S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>;
+impl ToListMappable
+    for S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl
+{
+    type O = BlockAssignable<
+        S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl,
+    >;
 
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
@@ -259,7 +289,9 @@ pub struct BuildS3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultip
 }
 
 impl BuildS3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl {
-    pub fn build(self) -> S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl {
+    pub fn build(
+        self,
+    ) -> S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl {
         S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl {
             days_after_initiation: self.days_after_initiation,
         }
@@ -290,7 +322,10 @@ impl S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl
 
     #[doc = "Get a reference to the value of field `days_after_initiation` after provisioning.\n"]
     pub fn days_after_initiation(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.days_after_initiation", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.days_after_initiation", self.base),
+        )
     }
 }
 
@@ -354,7 +389,10 @@ pub struct S3controlBucketLifecycleConfigurationRuleElExpirationElRef {
 }
 
 impl Ref for S3controlBucketLifecycleConfigurationRuleElExpirationElRef {
-    fn new(shared: StackShared, base: String) -> S3controlBucketLifecycleConfigurationRuleElExpirationElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3controlBucketLifecycleConfigurationRuleElExpirationElRef {
         S3controlBucketLifecycleConfigurationRuleElExpirationElRef {
             shared: shared,
             base: base.to_string(),
@@ -379,7 +417,10 @@ impl S3controlBucketLifecycleConfigurationRuleElExpirationElRef {
 
     #[doc = "Get a reference to the value of field `expired_object_delete_marker` after provisioning.\n"]
     pub fn expired_object_delete_marker(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expired_object_delete_marker", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.expired_object_delete_marker", self.base),
+        )
     }
 }
 
@@ -434,7 +475,10 @@ pub struct S3controlBucketLifecycleConfigurationRuleElFilterElRef {
 }
 
 impl Ref for S3controlBucketLifecycleConfigurationRuleElFilterElRef {
-    fn new(shared: StackShared, base: String) -> S3controlBucketLifecycleConfigurationRuleElFilterElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> S3controlBucketLifecycleConfigurationRuleElFilterElRef {
         S3controlBucketLifecycleConfigurationRuleElFilterElRef {
             shared: shared,
             base: base.to_string(),
@@ -473,9 +517,8 @@ pub struct S3controlBucketLifecycleConfigurationRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    abort_incomplete_multipart_upload: Option<
-        Vec<S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>,
-    >,
+    abort_incomplete_multipart_upload:
+        Option<Vec<S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     expiration: Option<Vec<S3controlBucketLifecycleConfigurationRuleElExpirationEl>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -493,15 +536,19 @@ impl S3controlBucketLifecycleConfigurationRuleEl {
     #[doc = "Set the field `abort_incomplete_multipart_upload`.\n"]
     pub fn set_abort_incomplete_multipart_upload(
         mut self,
-        v: impl Into<BlockAssignable<S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl>>,
+        v: impl Into<
+            BlockAssignable<
+                S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadEl,
+            >,
+        >,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.abort_incomplete_multipart_upload = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.abort_incomplete_multipart_upload = Some(d);
-            },
+            }
         }
         self
     }
@@ -514,10 +561,10 @@ impl S3controlBucketLifecycleConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.expiration = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.expiration = Some(d);
-            },
+            }
         }
         self
     }
@@ -530,10 +577,10 @@ impl S3controlBucketLifecycleConfigurationRuleEl {
         match v.into() {
             BlockAssignable::Literal(v) => {
                 self.filter = Some(v);
-            },
+            }
             BlockAssignable::Dynamic(d) => {
                 self.dynamic.filter = Some(d);
-            },
+            }
         }
         self
     }
@@ -601,12 +648,18 @@ impl S3controlBucketLifecycleConfigurationRuleElRef {
     #[doc = "Get a reference to the value of field `abort_incomplete_multipart_upload` after provisioning.\n"]
     pub fn abort_incomplete_multipart_upload(
         &self,
-    ) -> ListRef<S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.abort_incomplete_multipart_upload", self.base))
+    ) -> ListRef<S3controlBucketLifecycleConfigurationRuleElAbortIncompleteMultipartUploadElRef>
+    {
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.abort_incomplete_multipart_upload", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
-    pub fn expiration(&self) -> ListRef<S3controlBucketLifecycleConfigurationRuleElExpirationElRef> {
+    pub fn expiration(
+        &self,
+    ) -> ListRef<S3controlBucketLifecycleConfigurationRuleElExpirationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.expiration", self.base))
     }
 

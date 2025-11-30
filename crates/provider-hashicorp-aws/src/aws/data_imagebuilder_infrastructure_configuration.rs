@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DataImagebuilderInfrastructureConfigurationData {
@@ -30,7 +30,9 @@ struct DataImagebuilderInfrastructureConfiguration_ {
 }
 
 #[derive(Clone)]
-pub struct DataImagebuilderInfrastructureConfiguration(Rc<DataImagebuilderInfrastructureConfiguration_>);
+pub struct DataImagebuilderInfrastructureConfiguration(
+    Rc<DataImagebuilderInfrastructureConfiguration_>,
+);
 
 impl DataImagebuilderInfrastructureConfiguration {
     fn shared(&self) -> &StackShared {
@@ -53,8 +55,7 @@ impl DataImagebuilderInfrastructureConfiguration {
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -79,17 +80,26 @@ impl DataImagebuilderInfrastructureConfiguration {
 
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_updated", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_updated", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -101,83 +111,128 @@ impl DataImagebuilderInfrastructureConfiguration {
     pub fn instance_metadata_options(
         &self,
     ) -> ListRef<DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_metadata_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_metadata_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_profile_name` after provisioning.\n"]
     pub fn instance_profile_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_profile_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_profile_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_types` after provisioning.\n"]
     pub fn instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_pair` after provisioning.\n"]
     pub fn key_pair(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_pair", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_pair", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging` after provisioning.\n"]
     pub fn logging(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationLoggingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement` after provisioning.\n"]
     pub fn placement(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationPlacementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.resource_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instance_on_failure` after provisioning.\n"]
     pub fn terminate_instance_on_failure(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instance_on_failure", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instance_on_failure", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DataImagebuilderInfrastructureConfiguration {
     fn extract_ref(&self) -> String {
-        format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
+        format!(
+            "data.{}.{}",
+            self.0.extract_datasource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Datasource for DataImagebuilderInfrastructureConfiguration { }
+impl Datasource for DataImagebuilderInfrastructureConfiguration {}
 
 impl ToListMappable for DataImagebuilderInfrastructureConfiguration {
     type O = ListRef<DataImagebuilderInfrastructureConfigurationRef>;
@@ -210,20 +265,22 @@ pub struct BuildDataImagebuilderInfrastructureConfiguration {
 
 impl BuildDataImagebuilderInfrastructureConfiguration {
     pub fn build(self, stack: &mut Stack) -> DataImagebuilderInfrastructureConfiguration {
-        let out = DataImagebuilderInfrastructureConfiguration(Rc::new(DataImagebuilderInfrastructureConfiguration_ {
-            shared: stack.shared.clone(),
-            tf_id: self.tf_id,
-            data: RefCell::new(DataImagebuilderInfrastructureConfigurationData {
-                depends_on: core::default::Default::default(),
-                provider: None,
-                for_each: None,
-                arn: self.arn,
-                id: core::default::Default::default(),
-                region: core::default::Default::default(),
-                resource_tags: core::default::Default::default(),
-                tags: core::default::Default::default(),
-            }),
-        }));
+        let out = DataImagebuilderInfrastructureConfiguration(Rc::new(
+            DataImagebuilderInfrastructureConfiguration_ {
+                shared: stack.shared.clone(),
+                tf_id: self.tf_id,
+                data: RefCell::new(DataImagebuilderInfrastructureConfigurationData {
+                    depends_on: core::default::Default::default(),
+                    provider: None,
+                    for_each: None,
+                    arn: self.arn,
+                    id: core::default::Default::default(),
+                    region: core::default::Default::default(),
+                    resource_tags: core::default::Default::default(),
+                    tags: core::default::Default::default(),
+                }),
+            },
+        ));
         stack.add_datasource(out.0.clone());
         out
     }
@@ -236,10 +293,7 @@ pub struct DataImagebuilderInfrastructureConfigurationRef {
 
 impl Ref for DataImagebuilderInfrastructureConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -259,17 +313,26 @@ impl DataImagebuilderInfrastructureConfigurationRef {
 
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_created", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_created", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_updated", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.date_updated", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.description", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.description", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -281,73 +344,114 @@ impl DataImagebuilderInfrastructureConfigurationRef {
     pub fn instance_metadata_options(
         &self,
     ) -> ListRef<DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.instance_metadata_options", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.instance_metadata_options", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_profile_name` after provisioning.\n"]
     pub fn instance_profile_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.instance_profile_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.instance_profile_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `instance_types` after provisioning.\n"]
     pub fn instance_types(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.instance_types", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.instance_types", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `key_pair` after provisioning.\n"]
     pub fn key_pair(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.key_pair", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.key_pair", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `logging` after provisioning.\n"]
     pub fn logging(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationLoggingElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.logging", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.logging", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `placement` after provisioning.\n"]
     pub fn placement(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationPlacementElRef> {
-        ListRef::new(self.shared().clone(), format!("{}.placement", self.extract_ref()))
+        ListRef::new(
+            self.shared().clone(),
+            format!("{}.placement", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.resource_tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.resource_tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.security_group_ids", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.security_group_ids", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sns_topic_arn", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.sns_topic_arn", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.subnet_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
-        RecRef::new(self.shared().clone(), format!("{}.tags", self.extract_ref()))
+        RecRef::new(
+            self.shared().clone(),
+            format!("{}.tags", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `terminate_instance_on_failure` after provisioning.\n"]
     pub fn terminate_instance_on_failure(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.terminate_instance_on_failure", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.terminate_instance_on_failure", self.extract_ref()),
+        )
     }
 }
 
@@ -420,7 +524,10 @@ impl DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef {
 
     #[doc = "Get a reference to the value of field `http_put_response_hop_limit` after provisioning.\n"]
     pub fn http_put_response_hop_limit(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.http_put_response_hop_limit", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.http_put_response_hop_limit", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `http_tokens` after provisioning.\n"]
@@ -480,7 +587,10 @@ pub struct DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
 }
 
 impl Ref for DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
-    fn new(shared: StackShared, base: String) -> DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
         DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
             shared: shared,
             base: base.to_string(),
@@ -495,12 +605,18 @@ impl DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
 
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket_name", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_bucket_name", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `s3_key_prefix` after provisioning.\n"]
     pub fn s3_key_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.s3_key_prefix", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.s3_key_prefix", self.base),
+        )
     }
 }
 
@@ -537,7 +653,9 @@ pub struct BuildDataImagebuilderInfrastructureConfigurationLoggingEl {}
 
 impl BuildDataImagebuilderInfrastructureConfigurationLoggingEl {
     pub fn build(self) -> DataImagebuilderInfrastructureConfigurationLoggingEl {
-        DataImagebuilderInfrastructureConfigurationLoggingEl { s3_logs: core::default::Default::default() }
+        DataImagebuilderInfrastructureConfigurationLoggingEl {
+            s3_logs: core::default::Default::default(),
+        }
     }
 }
 
@@ -547,7 +665,10 @@ pub struct DataImagebuilderInfrastructureConfigurationLoggingElRef {
 }
 
 impl Ref for DataImagebuilderInfrastructureConfigurationLoggingElRef {
-    fn new(shared: StackShared, base: String) -> DataImagebuilderInfrastructureConfigurationLoggingElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataImagebuilderInfrastructureConfigurationLoggingElRef {
         DataImagebuilderInfrastructureConfigurationLoggingElRef {
             shared: shared,
             base: base.to_string(),
@@ -561,7 +682,9 @@ impl DataImagebuilderInfrastructureConfigurationLoggingElRef {
     }
 
     #[doc = "Get a reference to the value of field `s3_logs` after provisioning.\n"]
-    pub fn s3_logs(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef> {
+    pub fn s3_logs(
+        &self,
+    ) -> ListRef<DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3_logs", self.base))
     }
 }
@@ -635,7 +758,10 @@ pub struct DataImagebuilderInfrastructureConfigurationPlacementElRef {
 }
 
 impl Ref for DataImagebuilderInfrastructureConfigurationPlacementElRef {
-    fn new(shared: StackShared, base: String) -> DataImagebuilderInfrastructureConfigurationPlacementElRef {
+    fn new(
+        shared: StackShared,
+        base: String,
+    ) -> DataImagebuilderInfrastructureConfigurationPlacementElRef {
         DataImagebuilderInfrastructureConfigurationPlacementElRef {
             shared: shared,
             base: base.to_string(),
@@ -650,7 +776,10 @@ impl DataImagebuilderInfrastructureConfigurationPlacementElRef {
 
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.availability_zone", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.availability_zone", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `host_id` after provisioning.\n"]
@@ -660,7 +789,10 @@ impl DataImagebuilderInfrastructureConfigurationPlacementElRef {
 
     #[doc = "Get a reference to the value of field `host_resource_group_arn` after provisioning.\n"]
     pub fn host_resource_group_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.host_resource_group_arn", self.base))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.host_resource_group_arn", self.base),
+        )
     }
 
     #[doc = "Get a reference to the value of field `tenancy` after provisioning.\n"]

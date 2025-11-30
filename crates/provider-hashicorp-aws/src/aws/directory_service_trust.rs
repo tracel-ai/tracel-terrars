@@ -1,8 +1,8 @@
+use super::provider::ProviderAws;
 use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-use super::provider::ProviderAws;
 
 #[derive(Serialize)]
 struct DirectoryServiceTrustData {
@@ -65,7 +65,8 @@ impl DirectoryServiceTrust {
     }
 
     pub fn ignore_changes_to_all(self) -> Self {
-        self.0.data.borrow_mut().lifecycle.ignore_changes = Some(IgnoreChanges::All(IgnoreChangesAll::All));
+        self.0.data.borrow_mut().lifecycle.ignore_changes =
+            Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
 
@@ -78,7 +79,7 @@ impl DirectoryServiceTrust {
                     IgnoreChanges::Refs(r) => {
                         r.push(attr.to_string());
                         false
-                    },
+                    }
                 },
                 None => true,
             } {
@@ -89,29 +90,47 @@ impl DirectoryServiceTrust {
     }
 
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(r.extract_ref());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(r.extract_ref());
         self
     }
 
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
-        self.0.data.borrow_mut().lifecycle.replace_triggered_by.push(attr.to_string());
+        self.0
+            .data
+            .borrow_mut()
+            .lifecycle
+            .replace_triggered_by
+            .push(attr.to_string());
         self
     }
 
     #[doc = "Set the field `conditional_forwarder_ip_addrs`.\n"]
-    pub fn set_conditional_forwarder_ip_addrs(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
+    pub fn set_conditional_forwarder_ip_addrs(
+        self,
+        v: impl Into<SetField<PrimField<String>>>,
+    ) -> Self {
         self.0.data.borrow_mut().conditional_forwarder_ip_addrs = Some(v.into());
         self
     }
 
     #[doc = "Set the field `delete_associated_conditional_forwarder`.\n"]
-    pub fn set_delete_associated_conditional_forwarder(self, v: impl Into<PrimField<bool>>) -> Self {
-        self.0.data.borrow_mut().delete_associated_conditional_forwarder = Some(v.into());
+    pub fn set_delete_associated_conditional_forwarder(
+        self,
+        v: impl Into<PrimField<bool>>,
+    ) -> Self {
+        self.0
+            .data
+            .borrow_mut()
+            .delete_associated_conditional_forwarder = Some(v.into());
         self
     }
 
-    #[doc =
-        "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
@@ -131,25 +150,37 @@ impl DirectoryServiceTrust {
 
     #[doc = "Get a reference to the value of field `conditional_forwarder_ip_addrs` after provisioning.\n"]
     pub fn conditional_forwarder_ip_addrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.conditional_forwarder_ip_addrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.conditional_forwarder_ip_addrs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date_time` after provisioning.\n"]
     pub fn created_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_associated_conditional_forwarder` after provisioning.\n"]
     pub fn delete_associated_conditional_forwarder(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.delete_associated_conditional_forwarder", self.extract_ref()),
+            format!(
+                "{}.delete_associated_conditional_forwarder",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `directory_id` after provisioning.\n"]
     pub fn directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.directory_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.directory_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -159,63 +190,96 @@ impl DirectoryServiceTrust {
 
     #[doc = "Get a reference to the value of field `last_updated_date_time` after provisioning.\n"]
     pub fn last_updated_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date_time", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_domain_name` after provisioning.\n"]
     pub fn remote_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `selective_auth` after provisioning.\n"]
     pub fn selective_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.selective_auth", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.selective_auth", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_last_updated_date_time` after provisioning.\n"]
     pub fn state_last_updated_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_last_updated_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_last_updated_date_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_direction` after provisioning.\n"]
     pub fn trust_direction(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_direction", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_direction", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_password` after provisioning.\n"]
     pub fn trust_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_password", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_state` after provisioning.\n"]
     pub fn trust_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_state_reason` after provisioning.\n"]
     pub fn trust_state_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_state_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_state_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_type` after provisioning.\n"]
     pub fn trust_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_type", self.extract_ref()),
+        )
     }
 }
 
 impl Referable for DirectoryServiceTrust {
     fn extract_ref(&self) -> String {
-        format!("{}.{}", self.0.extract_resource_type(), self.0.extract_tf_id())
+        format!(
+            "{}.{}",
+            self.0.extract_resource_type(),
+            self.0.extract_tf_id()
+        )
     }
 }
 
-impl Resource for DirectoryServiceTrust { }
+impl Resource for DirectoryServiceTrust {}
 
 impl ToListMappable for DirectoryServiceTrust {
     type O = ListRef<DirectoryServiceTrustRef>;
@@ -285,10 +349,7 @@ pub struct DirectoryServiceTrustRef {
 
 impl Ref for DirectoryServiceTrustRef {
     fn new(shared: StackShared, base: String) -> Self {
-        Self {
-            shared,
-            base,
-        }
+        Self { shared, base }
     }
 }
 
@@ -303,25 +364,37 @@ impl DirectoryServiceTrustRef {
 
     #[doc = "Get a reference to the value of field `conditional_forwarder_ip_addrs` after provisioning.\n"]
     pub fn conditional_forwarder_ip_addrs(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.conditional_forwarder_ip_addrs", self.extract_ref()))
+        SetRef::new(
+            self.shared().clone(),
+            format!("{}.conditional_forwarder_ip_addrs", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `created_date_time` after provisioning.\n"]
     pub fn created_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.created_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.created_date_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `delete_associated_conditional_forwarder` after provisioning.\n"]
     pub fn delete_associated_conditional_forwarder(&self) -> PrimExpr<bool> {
         PrimExpr::new(
             self.shared().clone(),
-            format!("{}.delete_associated_conditional_forwarder", self.extract_ref()),
+            format!(
+                "{}.delete_associated_conditional_forwarder",
+                self.extract_ref()
+            ),
         )
     }
 
     #[doc = "Get a reference to the value of field `directory_id` after provisioning.\n"]
     pub fn directory_id(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.directory_id", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.directory_id", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
@@ -331,52 +404,81 @@ impl DirectoryServiceTrustRef {
 
     #[doc = "Get a reference to the value of field `last_updated_date_time` after provisioning.\n"]
     pub fn last_updated_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.last_updated_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.last_updated_date_time", self.extract_ref()),
+        )
     }
 
-    #[doc =
-        "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
+    #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.region", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.region", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `remote_domain_name` after provisioning.\n"]
     pub fn remote_domain_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.remote_domain_name", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.remote_domain_name", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `selective_auth` after provisioning.\n"]
     pub fn selective_auth(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.selective_auth", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.selective_auth", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `state_last_updated_date_time` after provisioning.\n"]
     pub fn state_last_updated_date_time(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.state_last_updated_date_time", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.state_last_updated_date_time", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_direction` after provisioning.\n"]
     pub fn trust_direction(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_direction", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_direction", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_password` after provisioning.\n"]
     pub fn trust_password(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_password", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_password", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_state` after provisioning.\n"]
     pub fn trust_state(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_state", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_state", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_state_reason` after provisioning.\n"]
     pub fn trust_state_reason(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_state_reason", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_state_reason", self.extract_ref()),
+        )
     }
 
     #[doc = "Get a reference to the value of field `trust_type` after provisioning.\n"]
     pub fn trust_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.trust_type", self.extract_ref()))
+        PrimExpr::new(
+            self.shared().clone(),
+            format!("{}.trust_type", self.extract_ref()),
+        )
     }
 }
